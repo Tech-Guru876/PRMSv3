@@ -237,15 +237,15 @@ $canAward = ($committeeCount >= 3 && $reportCount > 0 && $majorityMet);
     $sm = $statusMap[$rfq['status']] ?? ['bg' => '#6c757d', 'icon' => 'bi-question-circle'];
 
     $acceptMap = [
-        'ACCEPTED' => ['bg' => 'bg-success', 'icon' => 'bi-check-circle'],
-        'DECLINED' => ['bg' => 'bg-danger',  'icon' => 'bi-x-circle'],
-        'PENDING'  => ['bg' => 'bg-warning text-dark', 'icon' => 'bi-hourglass-split'],
+        'ACCEPTED' => ['bg' => 'bg-success', 'icon' => 'bi-check-circle', 'color' => '#198754'],
+        'DECLINED' => ['bg' => 'bg-danger',  'icon' => 'bi-x-circle', 'color' => '#dc3545'],
+        'PENDING'  => ['bg' => 'bg-warning text-dark', 'icon' => 'bi-hourglass-split', 'color' => '#c9a227'],
     ];
     $am = $acceptMap[$rfq['acceptance_status'] ?? 'PENDING'] ?? $acceptMap['PENDING'];
 ?>
 <div class="row g-3 mb-4">
     <div class="col-6 col-lg-3">
-        <div class="card border-0 shadow-sm rounded-4 h-100">
+        <div class="card border-0 shadow-sm rounded-4 h-100" style="border-left:4px solid <?= $sm['bg'] ?> !important;">
             <div class="card-body py-3 text-center">
                 <div class="text-muted small mb-1">Status</div>
                 <span class="badge rounded-pill text-white px-3 py-2" style="background:<?= $sm['bg'] ?>;">
@@ -255,7 +255,7 @@ $canAward = ($committeeCount >= 3 && $reportCount > 0 && $majorityMet);
         </div>
     </div>
     <div class="col-6 col-lg-3">
-        <div class="card border-0 shadow-sm rounded-4 h-100">
+        <div class="card border-0 shadow-sm rounded-4 h-100" style="border-left:4px solid #0dcaf0 !important;">
             <div class="card-body py-3 text-center">
                 <div class="text-muted small mb-1">RFQ Date</div>
                 <div class="fw-bold"><?= !empty($rfq['rfq_date']) && $rfq['rfq_date'] !== '0000-00-00' ? date('d M Y', strtotime($rfq['rfq_date'])) : '—' ?></div>
@@ -263,7 +263,7 @@ $canAward = ($committeeCount >= 3 && $reportCount > 0 && $majorityMet);
         </div>
     </div>
     <div class="col-6 col-lg-3">
-        <div class="card border-0 shadow-sm rounded-4 h-100">
+        <div class="card border-0 shadow-sm rounded-4 h-100" style="border-left:4px solid #ffc107 !important;">
             <div class="card-body py-3 text-center">
                 <div class="text-muted small mb-1">Deadline</div>
                 <div class="fw-bold <?= (!empty($rfq['submission_deadline']) && $rfq['submission_deadline'] !== '0000-00-00 00:00:00' && strtotime($rfq['submission_deadline']) < time()) ? 'text-danger' : 'text-success' ?>">
@@ -273,7 +273,7 @@ $canAward = ($committeeCount >= 3 && $reportCount > 0 && $majorityMet);
         </div>
     </div>
     <div class="col-6 col-lg-3">
-        <div class="card border-0 shadow-sm rounded-4 h-100">
+        <div class="card border-0 shadow-sm rounded-4 h-100" style="border-left:4px solid <?= $am['color'] ?> !important;">
             <div class="card-body py-3 text-center">
                 <div class="text-muted small mb-1">Acceptance</div>
                 <span class="badge <?= $am['bg'] ?> rounded-pill px-3 py-2">
@@ -283,7 +283,7 @@ $canAward = ($committeeCount >= 3 && $reportCount > 0 && $majorityMet);
         </div>
     </div>
     <div class="col-6 col-lg-3">
-        <div class="card border-0 shadow-sm rounded-4 h-100">
+        <div class="card border-0 shadow-sm rounded-4 h-100" style="border-left:4px solid #0b5e2b !important;">
             <div class="card-body py-3 text-center">
                 <div class="text-muted small mb-1">Vendors</div>
                 <div class="fs-3 fw-bold" style="color:#0b5e2b;"><?= count($vendors) ?></div>
@@ -291,7 +291,7 @@ $canAward = ($committeeCount >= 3 && $reportCount > 0 && $majorityMet);
         </div>
     </div>
     <div class="col-6 col-lg-3">
-        <div class="card border-0 shadow-sm rounded-4 h-100">
+        <div class="card border-0 shadow-sm rounded-4 h-100" style="border-left:4px solid #c9a227 !important;">
             <div class="card-body py-3 text-center">
                 <div class="text-muted small mb-1">Quotes</div>
                 <div class="fs-3 fw-bold" style="color:#c9a227;"><?= count($quotes) ?></div>
@@ -300,7 +300,7 @@ $canAward = ($committeeCount >= 3 && $reportCount > 0 && $majorityMet);
     </div>
     <?php if (!empty($rfq['rfq_letter_file'])): ?>
     <div class="col-6 col-lg-3">
-        <div class="card border-0 shadow-sm rounded-4 h-100">
+        <div class="card border-0 shadow-sm rounded-4 h-100" style="border-left:4px solid #0d6efd !important;">
             <div class="card-body py-3 text-center">
                 <div class="text-muted small mb-1">RFQ Letter</div>
                 <a href="<?= htmlspecialchars($rfq['rfq_letter_file']) ?>" target="_blank" class="btn btn-sm btn-outline-primary rounded-pill">
