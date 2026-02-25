@@ -3,6 +3,26 @@ $REQUIRE_PERMISSION = 'view_requests';
 require_once $_SERVER['DOCUMENT_ROOT'].'/config/page_guard.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . "/config/db.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/includes/pagination.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/config/helper.php";
+// Handle delete request
+if (
+    isset($_POST['delete_request_id']) &&
+    (
+        (isset($_SESSION['role_name']) && in_array(strtolower($_SESSION['role_name']), ['admin', 'superadmin'])) ||
+        (isset($_SESSION['role']) && in_array(strtolower($_SESSION['role']), ['admin', 'superadmin']))
+    )
+) {
+    $deleteId = (int)$_POST['delete_request_id'];
+    // Delete request
+    $delStmt = $pdo->prepare("DELETE FROM procurement_requests WHERE request_id = ?");
+    $delStmt->execute([$deleteId]);
+    // Audit log
+    logAudit($pdo, 'procurement_requests', $deleteId, 'DELETE', 'Request deleted by admin');
+    logRequestTimeline($pdo, $deleteId, 'DELETE', 'Request deleted by admin');
+    // Feedback: show popup notification then reload
+    echo '<script>alert("Request deleted successfully."); window.location.href="/procurement/list.php";</script>';
+    exit;
+}
 
 /* ================================
    Filters
@@ -525,7 +545,26 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/config/helper.php";
                         <a href="/po/view.php?po_id=<?= (int)$row['po_id'] ?>"
                            style="display: inline-block; padding: 0.4rem 0.8rem; background-color: #fff3cd; color: #b09500; text-decoration: none; border-radius: 4px; font-weight: 600; border: none; cursor: pointer;" title="View PO">📄</a>
                         <?php endif; ?>
+                        <?php if (
+                            (isset($_SESSION['role_name']) && in_array(strtolower($_SESSION['role_name']), ['admin', 'superadmin'])) ||
+                            (isset($_SESSION['role']) && in_array(strtolower($_SESSION['role']), ['admin', 'superadmin']))
+                        ): ?>
+                        <form method="post" style="display:inline; margin-left:0.25rem;" onsubmit="return confirm('Are you sure you want to delete this request? This action cannot be undone.');">
+                            <input type="hidden" name="delete_request_id" value="<?= (int)$row['request_id'] ?>">
+                            <button type="submit" class="btn btn-danger btn-sm" style="padding: 0.4rem 0.8rem; border-radius: 4px; font-weight: 600; border: none; cursor: pointer;" title="Delete Request">🗑️</button>
+                        </form>
+                        <?php endif; ?>
                     </div>
+                <?php if (isset($_GET['deleted']) && $_GET['deleted'] == 1): ?>
+                <div class="alert alert-success border-0 mb-4" style="border-radius: 6px;" role="alert">
+                    <div class="d-flex align-items-center gap-3">
+                        <span style="font-size: 2rem;">🗑️</span>
+                        <div>
+                            <strong style="color: #1a1a1a;">Request deleted successfully.</strong>
+                        </div>
+                    </div>
+                </div>
+                <?php endif; ?>
                 </td>
             </tr>
             <?php endforeach; ?>
