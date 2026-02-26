@@ -181,7 +181,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   .form-floating .form-control {
     border: 2px solid #e0e0e0;
     border-radius: 8px;
-    padding: 0.9rem 0.9rem 0.9rem 2.5rem;
+    padding: 0.9rem 2.5rem 0.9rem 2.5rem;
     height: 2.8rem;
     font-size: 0.95rem;
     background: #fafafa;
@@ -200,7 +200,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   .input-icon {
     position: absolute;
     left: 0.9rem;
-    top: 3.2rem;
+    top: 50%;
+    transform: translateY(-50%);
     color: #999;
     font-size: 1rem;
     pointer-events: none;
@@ -214,7 +215,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   .pw-toggle {
     position: absolute;
     right: 0.9rem;
-    top: 3.2rem;
+    top: 50%;
+    transform: translateY(-50%);
     background: none;
     border: none;
     color: #999;
@@ -419,7 +421,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
               name="new_password"
               id="newPassword"
               class="form-control"
-              placeholder="New password"
+              placeholder="   New password"
               required
               autofocus
               oninput="checkStrength(); checkMatch();"
@@ -445,7 +447,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
               name="confirm_password"
               id="confirmPassword"
               class="form-control"
-              placeholder="Confirm password"
+              placeholder="   Confirm password"
               required
               oninput="checkMatch();"
             >
