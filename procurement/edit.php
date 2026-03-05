@@ -71,7 +71,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Estimated value update
     $estimatedValueRaw = $_POST['estimated_value'] ?? '';
-    $estimatedValue = floatval(str_replace([',', ' '], '', $estimatedValueRaw));
+    // Remove all characters except digits and decimal point
+    $estimatedValueSanitized = preg_replace('/[^\d.]/', '', $estimatedValueRaw);
+    $estimatedValue = floatval($estimatedValueSanitized);
     if ($estimatedValue <= 0) {
         pop('Estimated value must be greater than zero.', '/procurement/edit.php?id='.$id, POP_DEFAULT_DELAY_MS, 'error');
         exit;
@@ -284,6 +286,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/includes/header.php";
         </div>
         <div class="card-body">
             <form method="POST" id="editForm">
+                <!-- Hidden field to capture estimated value from summary card -->
+                <input type="hidden" name="estimated_value" id="hiddenEstimatedValue">
                 <div id="itemsContainer">
                     <?php if (empty($items)): ?>
                         <div class="alert alert-info border-0" role="alert">
@@ -492,8 +496,15 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Form validation
+    // Form validation and value capture
     editForm.addEventListener('submit', function(e) {
+        // Capture estimated value from the visible input
+        const estValInput = document.getElementById('estimated_value_edit');
+        const hiddenEstVal = document.getElementById('hiddenEstimatedValue');
+        if (estValInput && hiddenEstVal) {
+            hiddenEstVal.value = estValInput.value;
+        }
+        
         const rows = document.querySelectorAll('#itemsBody tr');
         if (rows.length === 0) {
             e.preventDefault();
