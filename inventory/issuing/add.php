@@ -28,6 +28,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
         $pdo->beginTransaction();
 
+        // Enforce period controls
+        requireOpenPeriod($pdo);
+
         $issueTo       = trim($_POST['issued_to_user_id'] ?? '');
         $issueToDept   = (int) ($_POST['issued_to_department_id'] ?? 0);
         $issueToProject = trim($_POST['issued_to_project'] ?? '');
@@ -39,6 +42,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($fromLocation <= 0) throw new Exception("Source location is required.");
         if (empty($issueTo) && $issueToDept <= 0) throw new Exception("Issue to person or department is required.");
 
+        // Enforce freeze controls
+        requireLocationNotFrozen($pdo, $fromLocation);
+
         $itemIds  = $_POST['item_id'] ?? [];
         $qtys     = $_POST['qty_issued'] ?? [];
 
@@ -48,12 +54,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $issueNumber = InventoryService::generateDocNumber($pdo, 'SIV', 'inv_issues', 'issue_number');
 
+        // Calculate total value for approval matrix
+        $totalValue = 0;
+        for ($i = 0; $i < count($itemIds); $i++) {
+            $iid = (int) ($itemIds[$i] ?? 0);
+            if ($iid <= 0) continue;
+            $qi = (float) ($qtys[$i] ?? 0);
+            if ($qi <= 0) continue;
+            $itemData = getInventoryItem($pdo, $iid);
+            $totalValue += $qi * (float) ($itemData['average_cost'] ?? 0);
+        }
+
+        // Issue goes to PENDING_APPROVAL (segregation of duties: issuer ≠ approver)
         $pdo->prepare("INSERT INTO inv_issues
             (issue_number, requisition_number, issued_to_user_id, issued_to_department_id,
              issued_to_project, issued_by, from_location_id, cost_centre, notes, status, created_at)
             VALUES (?,?,?,?,?,?,?,?,?,?,NOW())")
             ->execute([$issueNumber, $reqNumber, $issueTo ?: null, $issueToDept > 0 ? $issueToDept : null,
-                $issueToProject ?: null, $_SESSION['user_id'], $fromLocation, $costCentre, $notes, 'COMPLETED']);
+                $issueToProject ?: null, $_SESSION['user_id'], $fromLocation, $costCentre, $notes, 'PENDING_APPROVAL']);
 
         $issueId = $pdo->lastInsertId();
 
@@ -70,18 +88,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Check stock availability enforcing FEFO
             $stock = InventoryService::getStockLevel($pdo, $iid, $fromLocation);
             if ($stock < $qi) {
-                $itemName = $pdo->query("SELECT item_name FROM inv_items WHERE item_id=$iid")->fetchColumn();
+                $itemName = $pdo->query("SELECT item_name FROM inv_items WHERE item_id=" . (int)$iid)->fetchColumn();
                 throw new Exception("Insufficient stock for $itemName. Available: $stock, Requested: $qi");
             }
 
             $insertLine->execute([$issueId, $iid, $qi, $qi,
                 $_POST['lot_number'][$i] ?? null, $_POST['batch_number'][$i] ?? null, $_POST['serial_number'][$i] ?? null]);
+        }
 
-            // Deduct stock
-            InventoryService::updateStockLevel($pdo, $iid, $fromLocation, $qi, 'subtract');
-            InventoryService::recordTransaction($pdo, $iid, $fromLocation, 'ISSUE', $qi, $issueId, 'inv_issues',
-                "Issued to " . ($issueTo ? "user $issueTo" : "dept $issueToDept"), $_SESSION['user_id'],
-                $_POST['lot_number'][$i] ?? null, $_POST['batch_number'][$i] ?? null, $_POST['serial_number'][$i] ?? null, null);
+        // Create document control record
+        createInvDocument($pdo, 'STOCK_ISSUE_VOUCHER', 'inv_issues', $issueId, "Issue $issueNumber created");
+
+        // Create approval log entries from approval matrix
+        $approvals = getRequiredApprovals($pdo, 'ISSUE', $totalValue);
+        if (!empty($approvals)) {
+            createApprovalLog($pdo, 'inv_issues', $issueId, $approvals);
         }
 
         // Update requisition fulfilled qty if linked
@@ -89,9 +110,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $pdo->prepare("UPDATE inv_requisitions SET status = 'FULFILLED' WHERE requisition_id = ?")->execute([$reqId]);
         }
 
-        logInventoryAudit($pdo, 'inv_issues', $issueId, 'CREATED', "Stock issued: $issueNumber");
+        logInventoryAudit($pdo, 'inv_issues', $issueId, 'CREATED', "Stock issue $issueNumber created — pending approval");
         $pdo->commit();
-        pop("Stock issue $issueNumber created.", "/inventory/issuing/view.php?id=$issueId", 1800, 'success');
+        pop("Stock issue $issueNumber created. Awaiting approval.", "/inventory/issuing/view.php?id=$issueId", 1800, 'success');
         exit;
     } catch (Exception $e) {
         $pdo->rollBack();

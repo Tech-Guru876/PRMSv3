@@ -48,9 +48,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
             $pdo->prepare("UPDATE inv_disposals SET status = 'APPROVED', approved_by = ?, approved_at = NOW() WHERE disposal_id = ?")
                 ->execute([$_SESSION['user_id'], $dispId]);
+
+            // Lock disposal document
+            lockDocumentByReference($pdo, 'inv_disposals', $dispId);
+
             logInventoryAudit($pdo, 'inv_disposals', $dispId, 'APPROVED', "Disposal approved");
 
         } elseif ($action === 'complete' && $disp['status'] === 'APPROVED') {
+            // Enforce period and freeze controls
+            requireOpenPeriod($pdo);
+            requireLocationNotFrozen($pdo, $disp['location_id']);
+
             $proceeds = (float) ($_POST['actual_proceeds'] ?? 0);
             // Remove stock
             foreach ($lineItems as $li) {

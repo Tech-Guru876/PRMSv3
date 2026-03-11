@@ -469,6 +469,342 @@ function logInventoryAudit(PDO $pdo, string $table, ?int $recordId, string $acti
 }
 
 /* ================================================================
+   APPROVAL MATRIX LOOKUP
+================================================================ */
+
+/**
+ * Get the required approval levels for a transaction based on value and type.
+ * Uses the inv_approval_matrix table.
+ */
+function getRequiredApprovals(PDO $pdo, string $transactionType, float $totalValue, bool $isEmergency = false, ?int $departmentId = null): array
+{
+    $sql = "
+        SELECT am.*, r.role_name, r.role_code
+        FROM inv_approval_matrix am
+        JOIN inv_roles r ON am.required_role_code = r.role_code
+        WHERE am.transaction_type = ?
+          AND am.is_active = 1
+          AND am.min_value <= ?
+          AND am.max_value >= ?
+          AND (am.is_emergency = 0 OR am.is_emergency = ?)
+    ";
+    $params = [$transactionType, $totalValue, $totalValue, $isEmergency ? 1 : 0];
+
+    if ($departmentId) {
+        $sql .= " AND (am.department_id IS NULL OR am.department_id = ?)";
+        $params[] = $departmentId;
+    } else {
+        $sql .= " AND am.department_id IS NULL";
+    }
+
+    $sql .= " ORDER BY am.approval_level ASC";
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute($params);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+/**
+ * Check if user can approve at a given level based on their inventory role.
+ */
+function canApproveAtLevel(PDO $pdo, string $requiredRoleCode, ?int $locationId = null): bool
+{
+    return hasInvRole($pdo, $requiredRoleCode, $locationId);
+}
+
+/**
+ * Create approval log entries for a transaction.
+ */
+function createApprovalLog(PDO $pdo, string $refType, int $refId, array $requiredApprovals): void
+{
+    $stmt = $pdo->prepare("
+        INSERT INTO inv_approval_log (reference_type, reference_id, approval_level, required_role_code)
+        VALUES (?, ?, ?, ?)
+    ");
+    foreach ($requiredApprovals as $a) {
+        $stmt->execute([$refType, $refId, $a['approval_level'], $a['required_role_code']]);
+    }
+}
+
+/**
+ * Record an approval action in the log.
+ */
+function recordApproval(PDO $pdo, string $refType, int $refId, int $level, string $status, ?string $notes = null): void
+{
+    $pdo->prepare("
+        UPDATE inv_approval_log
+        SET approved_by = ?, approved_at = NOW(), status = ?, notes = ?
+        WHERE reference_type = ? AND reference_id = ? AND approval_level = ? AND status = 'PENDING'
+        LIMIT 1
+    ")->execute([$_SESSION['user_id'], $status, $notes, $refType, $refId, $level]);
+}
+
+/**
+ * Get next pending approval level for a transaction.
+ */
+function getNextPendingApproval(PDO $pdo, string $refType, int $refId): ?array
+{
+    $stmt = $pdo->prepare("
+        SELECT * FROM inv_approval_log
+        WHERE reference_type = ? AND reference_id = ? AND status = 'PENDING'
+        ORDER BY approval_level ASC LIMIT 1
+    ");
+    $stmt->execute([$refType, $refId]);
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $row ?: null;
+}
+
+/**
+ * Check if all approval levels are complete for a transaction.
+ */
+function allApprovalsComplete(PDO $pdo, string $refType, int $refId): bool
+{
+    $stmt = $pdo->prepare("
+        SELECT COUNT(*) FROM inv_approval_log
+        WHERE reference_type = ? AND reference_id = ? AND status = 'PENDING'
+    ");
+    $stmt->execute([$refType, $refId]);
+    return (int) $stmt->fetchColumn() === 0;
+}
+
+/* ================================================================
+   PERIOD CONTROLS
+================================================================ */
+
+/**
+ * Check if the current date falls within an open fiscal period.
+ * Returns the open period or null if no period is open.
+ */
+function getCurrentOpenPeriod(PDO $pdo): ?array
+{
+    $stmt = $pdo->query("
+        SELECT * FROM inv_fiscal_periods
+        WHERE status = 'OPEN' AND period_start <= CURDATE() AND period_end >= CURDATE()
+        ORDER BY period_start DESC LIMIT 1
+    ");
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $row ?: null;
+}
+
+/**
+ * Enforce that a transaction can only occur in an open period.
+ * Throws an exception if no open period exists.
+ */
+function requireOpenPeriod(PDO $pdo): array
+{
+    try {
+        $pdo->query("SELECT 1 FROM inv_fiscal_periods LIMIT 1");
+    } catch (PDOException $e) {
+        // Table doesn't exist yet — migration not run; allow transactions
+        return ['period_id' => 0, 'status' => 'OPEN'];
+    }
+
+    $period = getCurrentOpenPeriod($pdo);
+    if (!$period) {
+        // Check if any period exists at all; if not, don't enforce
+        $count = (int) $pdo->query("SELECT COUNT(*) FROM inv_fiscal_periods")->fetchColumn();
+        if ($count === 0) {
+            return ['period_id' => 0, 'status' => 'OPEN'];
+        }
+        throw new Exception("No open fiscal period. Contact Finance to open the current period before recording transactions.");
+    }
+    return $period;
+}
+
+/**
+ * Create a period-end snapshot of all stock values.
+ */
+function createPeriodSnapshot(PDO $pdo, int $periodId): int
+{
+    $stmt = $pdo->prepare("
+        INSERT INTO inv_period_snapshots (period_id, item_id, location_id, quantity_on_hand, unit_cost, total_value, nrv)
+        SELECT ?, s.item_id, s.location_id, s.quantity_on_hand, s.unit_cost,
+               (s.quantity_on_hand * s.unit_cost), s.nrv
+        FROM inv_stock s
+        WHERE s.quantity_on_hand > 0
+    ");
+    $stmt->execute([$periodId]);
+    return $stmt->rowCount();
+}
+
+/* ================================================================
+   QUARANTINE MANAGEMENT
+================================================================ */
+
+/**
+ * Move stock into quarantine.
+ */
+function quarantineStock(PDO $pdo, int $itemId, int $fromLocationId, float $qty, string $reason, ?string $batchLot = null, ?string $serial = null): int
+{
+    // Decrease usable stock
+    decreaseStock($pdo, $itemId, $fromLocationId, $qty);
+
+    // Record quarantine log entry
+    $stmt = $pdo->prepare("
+        INSERT INTO inv_quarantine_log
+        (item_id, location_id, quantity, reason, quarantined_by, batch_lot_number, serial_number)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
+    ");
+    $stmt->execute([$itemId, $fromLocationId, $qty, $reason, $_SESSION['user_id'], $batchLot, $serial]);
+    $quarantineId = (int) $pdo->lastInsertId();
+
+    recordStockTransaction($pdo, [
+        'transaction_type' => 'QUARANTINE_IN',
+        'item_id' => $itemId,
+        'location_id' => $fromLocationId,
+        'quantity' => $qty,
+        'reference_type' => 'inv_quarantine_log',
+        'reference_id' => $quarantineId,
+        'batch_lot_number' => $batchLot,
+        'serial_number' => $serial,
+        'notes' => "Quarantined: $reason",
+    ]);
+
+    return $quarantineId;
+}
+
+/**
+ * Release stock from quarantine back to usable.
+ */
+function releaseFromQuarantine(PDO $pdo, int $quarantineId, string $decision, ?string $notes = null): void
+{
+    $q = $pdo->prepare("SELECT * FROM inv_quarantine_log WHERE quarantine_id = ? AND status IN ('QUARANTINED','UNDER_INSPECTION')");
+    $q->execute([$quarantineId]);
+    $qr = $q->fetch(PDO::FETCH_ASSOC);
+    if (!$qr) throw new Exception("Quarantine record not found or already resolved.");
+
+    if ($decision === 'RETURN_TO_STOCK') {
+        increaseStock($pdo, $qr['item_id'], $qr['location_id'], (float) $qr['quantity'], [
+            'batch_lot_number' => $qr['batch_lot_number'],
+            'serial_number' => $qr['serial_number'],
+        ]);
+        recordStockTransaction($pdo, [
+            'transaction_type' => 'QUARANTINE_OUT',
+            'item_id' => $qr['item_id'],
+            'location_id' => $qr['location_id'],
+            'quantity' => $qr['quantity'],
+            'reference_type' => 'inv_quarantine_log',
+            'reference_id' => $quarantineId,
+            'notes' => "Released from quarantine: $decision",
+        ]);
+    }
+
+    $pdo->prepare("
+        UPDATE inv_quarantine_log
+        SET status = ?, release_decision = ?, decision_notes = ?, released_by = ?, released_at = NOW()
+        WHERE quarantine_id = ?
+    ")->execute([
+        $decision === 'RETURN_TO_STOCK' ? 'RELEASED' : 'DISPOSED',
+        $decision, $notes, $_SESSION['user_id'], $quarantineId
+    ]);
+}
+
+/* ================================================================
+   FREEZE CONTROLS FOR STOCK COUNTS
+================================================================ */
+
+/**
+ * Check if a location is frozen for stock counting.
+ */
+function isLocationFrozen(PDO $pdo, int $locationId): bool
+{
+    try {
+        $stmt = $pdo->prepare("
+            SELECT COUNT(*) FROM inv_stock_counts
+            WHERE location_id = ? AND is_frozen = 1 AND status = 'IN_PROGRESS'
+        ");
+        $stmt->execute([$locationId]);
+        return (int) $stmt->fetchColumn() > 0;
+    } catch (PDOException $e) {
+        // Column doesn't exist yet — migration not run
+        return false;
+    }
+}
+
+/**
+ * Enforce that a location is not frozen before allowing stock movements.
+ */
+function requireLocationNotFrozen(PDO $pdo, int $locationId): void
+{
+    if (isLocationFrozen($pdo, $locationId)) {
+        throw new Exception("This location is currently frozen for stock counting. No stock movements are allowed until the count is completed.");
+    }
+}
+
+/* ================================================================
+   DOCUMENT CONTROL HELPERS
+================================================================ */
+
+/**
+ * Create and optionally lock a document for any workflow step.
+ */
+function createAndLockDocument(PDO $pdo, string $docType, string $refTable, int $refId, ?string $notes = null): int
+{
+    $docId = createInvDocument($pdo, $docType, $refTable, $refId, $notes);
+    lockDocument($pdo, $docId);
+    return $docId;
+}
+
+/**
+ * Find document for a reference and lock it.
+ */
+function lockDocumentByReference(PDO $pdo, string $refTable, int $refId): void
+{
+    $stmt = $pdo->prepare("
+        SELECT document_id FROM inv_documents
+        WHERE reference_table = ? AND reference_id = ? AND is_locked = 0
+        ORDER BY created_at DESC LIMIT 1
+    ");
+    $stmt->execute([$refTable, $refId]);
+    $docId = $stmt->fetchColumn();
+    if ($docId) {
+        lockDocument($pdo, (int) $docId);
+    }
+}
+
+/* ================================================================
+   NUMBER GENERATORS FOR NEW MODULES
+================================================================ */
+
+function generateRecallNumber(PDO $pdo): string {
+    return generateInventoryNumber($pdo, 'RCL-', 'inv_recalls', 'recall_number');
+}
+
+function generateReturnNumber(PDO $pdo): string {
+    return generateInventoryNumber($pdo, 'RTS-', 'inv_returns', 'return_number');
+}
+
+function generateIncidentNumber(PDO $pdo): string {
+    return generateInventoryNumber($pdo, 'INC-', 'inv_incidents', 'incident_number');
+}
+
+function generateWriteDownNumber(PDO $pdo): string {
+    return generateInventoryNumber($pdo, 'WDN-', 'inv_write_downs', 'write_down_number');
+}
+
+/* ================================================================
+   BATCH TRACEABILITY
+================================================================ */
+
+/**
+ * Trace all transactions for a given batch/lot number across the system.
+ */
+function traceBatch(PDO $pdo, string $batchLotNumber): array
+{
+    $stmt = $pdo->prepare("
+        SELECT t.*, i.item_code, i.item_name, l.location_code, u.full_name AS performed_by_name
+        FROM inv_transactions t
+        JOIN inv_items i ON t.item_id = i.item_id
+        LEFT JOIN inv_locations l ON t.location_id = l.location_id
+        LEFT JOIN users u ON t.performed_by = u.user_id
+        WHERE t.batch_lot_number = ?
+        ORDER BY t.created_at ASC
+    ");
+    $stmt->execute([$batchLotNumber]);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+/* ================================================================
    STATIC FACADE CLASS
    Provides InventoryService::method() wrappers used by module files.
 ================================================================ */

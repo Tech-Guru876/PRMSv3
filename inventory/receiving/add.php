@@ -39,6 +39,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $locationId     = (int) ($_POST['receiving_location_id'] ?? 0);
         $donorInfo      = trim($_POST['donor_info'] ?? '');
         $isNonExchange  = isset($_POST['is_non_exchange_transaction']) ? 1 : 0;
+        $isDonation     = isset($_POST['is_donation']) ? 1 : 0;
+        $acceptanceCert = trim($_POST['acceptance_certificate_number'] ?? '') ?: null;
+        $fairValueAssessor = trim($_POST['fair_value_assessor'] ?? '') ?: null;
         $notes          = trim($_POST['notes'] ?? '');
         $statusAction   = $_POST['status_action'] ?? 'DRAFT';
 
@@ -62,10 +65,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $pdo->prepare("UPDATE inv_goods_received SET
                 po_reference=?, supplier_name=?, delivery_note_number=?, invoice_number=?,
                 received_date=?, receiving_location_id=?, donor_source=?, is_non_exchange_transaction=?,
+                is_donation=?, acceptance_certificate_number=?, fair_value_assessor=?,
                 notes=?, status=?, updated_at=NOW()
                 WHERE grn_id=?")
                 ->execute([$poNumber, $supplierName, $deliveryNote, $invoiceNo,
                     $receivedDate, $locationId, $donorInfo, $isNonExchange,
+                    $isDonation, $acceptanceCert, $fairValueAssessor,
                     $notes, $statusAction, $editId]);
             $grnId = $editId;
             $pdo->prepare("DELETE FROM inv_grn_items WHERE grn_id = ?")->execute([$grnId]);
@@ -74,11 +79,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $pdo->prepare("INSERT INTO inv_goods_received
                 (grn_number, po_reference, supplier_name, delivery_note_number, invoice_number,
                  received_date, received_by, receiving_location_id, donor_source,
-                 is_non_exchange_transaction, notes, status, created_at)
-                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,NOW())")
+                 is_non_exchange_transaction, is_donation, acceptance_certificate_number,
+                 fair_value_assessor, notes, status, created_at)
+                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,NOW())")
                 ->execute([$grnNumber, $poNumber, $supplierName, $deliveryNote, $invoiceNo,
                     $receivedDate, $_SESSION['user_id'], $locationId, $donorInfo,
-                    $isNonExchange, $notes, $statusAction]);
+                    $isNonExchange, $isDonation, $acceptanceCert, $fairValueAssessor,
+                    $notes, $statusAction]);
             $grnId = $pdo->lastInsertId();
         }
 
@@ -186,10 +193,22 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
                     <input type="text" name="donor_info" class="form-control" value="<?= htmlspecialchars($grn['donor_source'] ?? '') ?>">
                 </div>
                 <div class="col-md-3 d-flex align-items-end">
-                    <div class="form-check">
+                    <div class="form-check mb-2">
                         <input class="form-check-input" type="checkbox" name="is_non_exchange_transaction" id="nonExch" <?= ($grn['is_non_exchange_transaction'] ?? 0) ? 'checked' : '' ?>>
                         <label class="form-check-label" for="nonExch">Non-Exchange Transaction</label>
                     </div>
+                    <div class="form-check mb-2 ms-3">
+                        <input class="form-check-input" type="checkbox" name="is_donation" id="isDonation" <?= ($grn['is_donation'] ?? 0) ? 'checked' : '' ?> onchange="toggleDonationFields()">
+                        <label class="form-check-label" for="isDonation">Donation/Gift</label>
+                    </div>
+                </div>
+                <div class="col-md-4 donation-fields" style="display:none">
+                    <label class="form-label">Acceptance Certificate #</label>
+                    <input type="text" name="acceptance_certificate_number" class="form-control" value="<?= htmlspecialchars($grn['acceptance_certificate_number'] ?? '') ?>" placeholder="GoJ acceptance certificate number">
+                </div>
+                <div class="col-md-4 donation-fields" style="display:none">
+                    <label class="form-label">Fair Value Assessor</label>
+                    <input type="text" name="fair_value_assessor" class="form-control" value="<?= htmlspecialchars($grn['fair_value_assessor'] ?? '') ?>" placeholder="Name of assessor">
                 </div>
                 <div class="col-12">
                     <label class="form-label">Notes</label>
@@ -297,6 +316,11 @@ function addRow() {
     row.querySelectorAll('select').forEach(s => s.selectedIndex = 0);
     tbody.appendChild(row);
 }
+function toggleDonationFields() {
+    const show = document.getElementById('isDonation').checked;
+    document.querySelectorAll('.donation-fields').forEach(el => el.style.display = show ? '' : 'none');
+}
+document.addEventListener('DOMContentLoaded', toggleDonationFields);
 </script>
 
 <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/footer.php'; ?>

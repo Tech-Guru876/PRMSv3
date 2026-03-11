@@ -53,9 +53,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && has_permission('approve_stock_requi
                     ->execute([$approvedQty, $li['req_item_id']]);
             }
 
+            // Lock the requisition document
+            lockDocumentByReference($pdo, 'inv_requisitions', $reqId);
+
             logInventoryAudit($pdo, 'inv_requisitions', $reqId, 'APPROVED', "Requisition approved");
             $pdo->commit();
             pop("Requisition approved.", "/inventory/requisitions/view.php?id=$reqId", 1800, 'success');
+            exit;
+
+        } elseif ($action === 'emergency_approve' && $req['urgency'] === 'EMERGENCY') {
+            // Emergency expedited approval — GoJ FI requirement
+            // Allows senior officer to approve and immediately release for issuing
+            // Post-facto documentation must be completed within 48 hours
+            if ($_SESSION['user_id'] == $req['requester_user_id']) {
+                throw new Exception("Segregation of duties: you cannot approve your own emergency requisition.");
+            }
+
+            $emergencyJustification = trim($_POST['emergency_justification'] ?? '');
+            if (empty($emergencyJustification)) {
+                throw new Exception("Emergency justification is required for expedited approval.");
+            }
+
+            $pdo->prepare("UPDATE inv_requisitions SET status = 'APPROVED', approved_by = ?, approved_at = NOW(),
+                justification = CONCAT(COALESCE(justification,''), '\n[EMERGENCY APPROVAL] ', ?)
+                WHERE requisition_id = ?")
+                ->execute([$_SESSION['user_id'], $emergencyJustification, $reqId]);
+
+            foreach ($lineItems as $li) {
+                $pdo->prepare("UPDATE inv_requisition_items SET quantity_approved = quantity_requested WHERE req_item_id = ?")
+                    ->execute([$li['req_item_id']]);
+            }
+
+            lockDocumentByReference($pdo, 'inv_requisitions', $reqId);
+            logInventoryAudit($pdo, 'inv_requisitions', $reqId, 'EMERGENCY_APPROVED',
+                "Emergency approval: $emergencyJustification — Post-facto documentation required within 48h");
+            $pdo->commit();
+            pop("Emergency requisition approved. Post-facto documentation required within 48 hours.", "/inventory/requisitions/view.php?id=$reqId", 3000, 'success');
             exit;
 
         } elseif ($action === 'reject') {
@@ -150,6 +183,18 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 
         <?php if ($req['status'] === 'SUBMITTED' && has_permission('approve_stock_requisition')): ?>
         <form method="POST" id="approvalForm">
+            <?php if ($req['urgency'] === 'EMERGENCY'): ?>
+            <div class="alert alert-danger py-2 mb-2">
+                <strong><i class="bi bi-lightning-charge"></i> EMERGENCY</strong> — Expedited approval available
+            </div>
+            <div class="mb-2">
+                <textarea name="emergency_justification" class="form-control" rows="2" placeholder="Emergency justification (GoJ FI requirement)..."></textarea>
+            </div>
+            <button type="submit" name="action" value="emergency_approve" class="btn btn-warning w-100 btn-lg mb-2">
+                <i class="bi bi-lightning-charge"></i> Emergency Approve (Immediate Release)
+            </button>
+            <hr>
+            <?php endif; ?>
             <button type="submit" name="action" value="approve" class="btn btn-success w-100 btn-lg mb-2">
                 <i class="bi bi-check-circle"></i> Approve
             </button>

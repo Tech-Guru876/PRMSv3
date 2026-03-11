@@ -388,6 +388,36 @@ function isCollapsibleActive($urls, $currentPage) {
                 📝 Stock Counts
             </a>
             <?php endif; ?>
+            <?php if (has_permission('manage_quarantine')): ?>
+            <a class="nav-link text-white <?= active('/inventory/quarantine', $currentPage) ?>"
+               href="/inventory/quarantine/list.php">
+                🛡️ Quarantine
+            </a>
+            <?php endif; ?>
+            <?php if (has_permission('manage_recalls')): ?>
+            <a class="nav-link text-white <?= active('/inventory/recall', $currentPage) ?>"
+               href="/inventory/recall/list.php">
+                🔔 Recalls
+            </a>
+            <?php endif; ?>
+            <?php if (has_permission('manage_returns')): ?>
+            <a class="nav-link text-white <?= active('/inventory/returns', $currentPage) ?>"
+               href="/inventory/returns/list.php">
+                ↩️ Returns to Supplier
+            </a>
+            <?php endif; ?>
+            <?php if (has_permission('manage_incidents')): ?>
+            <a class="nav-link text-white <?= active('/inventory/incidents', $currentPage) ?>"
+               href="/inventory/incidents/list.php">
+                ⚠️ Incidents / Losses
+            </a>
+            <?php endif; ?>
+            <?php if (has_permission('manage_write_downs')): ?>
+            <a class="nav-link text-white <?= active('/inventory/writedowns', $currentPage) ?>"
+               href="/inventory/writedowns/list.php">
+                📉 Write-Downs (NRV)
+            </a>
+            <?php endif; ?>
             <?php if (has_permission('view_inventory_reports')): ?>
             <a class="nav-link text-white <?= active('/inventory/reports', $currentPage) ?>"
                href="/inventory/reports/">

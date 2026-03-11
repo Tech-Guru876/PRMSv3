@@ -42,11 +42,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($_SESSION['user_id'] == $transfer['requested_by']) {
                 throw new Exception("Cannot approve your own transfer (segregation of duties).");
             }
-            $pdo->prepare("UPDATE inv_transfers SET status = 'APPROVED', approved_by = ?, approved_at = NOW() WHERE transfer_id = ?")
+
+            // For INTER_MDA transfers, require Financial Secretary approval
+            if ($transfer['transfer_type'] === 'INTER_MDA') {
+                $pdo->prepare("UPDATE inv_transfers SET status = 'PENDING_FS_APPROVAL', approved_by = ?, approved_at = NOW() WHERE transfer_id = ?")
+                    ->execute([$_SESSION['user_id'], $transferId]);
+                lockDocumentByReference($pdo, 'inv_transfers', $transferId);
+                logInventoryAudit($pdo, 'inv_transfers', $transferId, 'APPROVED', "Transfer approved — awaiting Financial Secretary approval");
+            } else {
+                $pdo->prepare("UPDATE inv_transfers SET status = 'APPROVED', approved_by = ?, approved_at = NOW() WHERE transfer_id = ?")
+                    ->execute([$_SESSION['user_id'], $transferId]);
+                lockDocumentByReference($pdo, 'inv_transfers', $transferId);
+                logInventoryAudit($pdo, 'inv_transfers', $transferId, 'APPROVED', "Transfer approved");
+            }
+
+        } elseif ($action === 'fs_approve' && $transfer['status'] === 'PENDING_FS_APPROVAL') {
+            // Financial Secretary approval for inter-MDA transfers
+            $pdo->prepare("UPDATE inv_transfers SET financial_secretary_approval = 1, fs_approved_by = ?, fs_approved_at = NOW(), status = 'APPROVED' WHERE transfer_id = ?")
                 ->execute([$_SESSION['user_id'], $transferId]);
-            logInventoryAudit($pdo, 'inv_transfers', $transferId, 'APPROVED', "Transfer approved");
+            logInventoryAudit($pdo, 'inv_transfers', $transferId, 'FS_APPROVED', "Financial Secretary approval granted");
 
         } elseif ($action === 'dispatch' && $transfer['status'] === 'APPROVED') {
+            // Enforce period and freeze controls
+            requireOpenPeriod($pdo);
+            requireLocationNotFrozen($pdo, $transfer['source_location_id']);
+
             // Deduct stock from source
             foreach ($lineItems as $li) {
                 InventoryService::updateStockLevel($pdo, $li['item_id'], $transfer['source_location_id'], $li['quantity'], 'subtract');
@@ -117,8 +137,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
                         </span>
                     </div>
                     <div class="col-md-4"><strong>Status:</strong>
-                        <?php $sc = match($transfer['status']) { 'COMPLETED' => 'success', 'IN_TRANSIT' => 'info', 'APPROVED' => 'primary', 'PENDING_APPROVAL' => 'warning', default => 'secondary' }; ?>
-                        <span class="badge bg-<?= $sc ?>"><?= $transfer['status'] ?></span>
+                        <?php $sc = match($transfer['status']) { 'COMPLETED' => 'success', 'IN_TRANSIT' => 'info', 'APPROVED' => 'primary', 'PENDING_APPROVAL' => 'warning', 'PENDING_FS_APPROVAL' => 'danger', default => 'secondary' }; ?>
+                        <span class="badge bg-<?= $sc ?>"><?= str_replace('_', ' ', $transfer['status']) ?></span>
                     </div>
                     <div class="col-md-4"><strong>From:</strong> <?= htmlspecialchars($transfer['from_loc'] . ' - ' . $transfer['from_site']) ?></div>
                     <div class="col-md-4"><strong>To:</strong> <?= htmlspecialchars($transfer['to_loc'] . ' - ' . $transfer['to_site']) ?></div>
@@ -139,6 +159,21 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
         <form method="POST" class="mb-2">
             <button type="submit" name="action" value="approve" class="btn btn-success w-100 btn-lg mb-2">
                 <i class="bi bi-check-circle"></i> Approve Transfer
+            </button>
+            <textarea name="rejection_reason" class="form-control mb-2" rows="2" placeholder="Rejection reason..."></textarea>
+            <button type="submit" name="action" value="reject" class="btn btn-danger w-100">
+                <i class="bi bi-x-circle"></i> Reject
+            </button>
+        </form>
+        <?php endif; ?>
+
+        <?php if ($transfer['status'] === 'PENDING_FS_APPROVAL'): ?>
+        <div class="alert alert-warning mb-2">
+            <i class="bi bi-exclamation-triangle"></i> <strong>Inter-MDA Transfer</strong> — Requires Financial Secretary approval per GoJ Financial Instructions.
+        </div>
+        <form method="POST" class="mb-2">
+            <button type="submit" name="action" value="fs_approve" class="btn btn-warning w-100 btn-lg mb-2">
+                <i class="bi bi-shield-check"></i> Financial Secretary Approval
             </button>
             <textarea name="rejection_reason" class="form-control mb-2" rows="2" placeholder="Rejection reason..."></textarea>
             <button type="submit" name="action" value="reject" class="btn btn-danger w-100">

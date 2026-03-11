@@ -41,6 +41,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && has_permission('approve_adjustment'
                 throw new Exception("Cannot approve your own adjustment (segregation of duties).");
             }
 
+            // Enforce period and freeze controls
+            requireOpenPeriod($pdo);
+            requireLocationNotFrozen($pdo, $adj['location_id']);
+
             // Apply stock changes
             foreach ($lineItems as $li) {
                 $variance = $li['quantity_variance'];
@@ -57,6 +61,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && has_permission('approve_adjustment'
 
             $pdo->prepare("UPDATE inv_adjustments SET status = 'APPROVED', supervisor_approved_by = ?, supervisor_approved_at = NOW() WHERE adjustment_id = ?")
                 ->execute([$_SESSION['user_id'], $adjId]);
+
+            // Lock document and create control record
+            lockDocumentByReference($pdo, 'inv_adjustments', $adjId);
+
             logInventoryAudit($pdo, 'inv_adjustments', $adjId, 'APPROVED', "Stock adjustment approved and applied");
 
         } elseif ($action === 'reject') {
