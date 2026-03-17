@@ -166,7 +166,8 @@ class RFQService
         $deadlineFormatted = date('F d, Y H:i', strtotime($rfq['submission_deadline']));
         $estimatedValue = number_format((float)$rfq['estimated_value'], 2);
         $currency = $rfq['currency'] ?? 'JMD';
-        $description = htmlspecialchars($rfq['description'] ?? '');
+        // Preserve line breaks for better readability
+        $description = nl2br(htmlspecialchars($rfq['description'] ?? 'No details provided'));
         $requestNumber = htmlspecialchars($rfq['request_number']);
         $rfqNumber = htmlspecialchars($rfq['rfq_number']);
         $logo = "$appUrl/logo/cropped-Logo.png";
@@ -318,7 +319,7 @@ class RFQService
 
             <!-- RFQ Details Section -->
             <div class="section">
-                <div class="section-title">📋 RFQ Details</div>
+                <div class="section-title">[RFQ DETAILS]</div>
                 <div class="section-content">
                     <table>
                         <tr>
@@ -339,8 +340,8 @@ class RFQService
 
             <!-- Request Details Section -->
             <div class="section">
-                <div class="section-title">📝 Request Details</div>
-                <div class="section-content">
+                <div class="section-title">[REQUEST DESCRIPTION]</div>
+                <div class="section-content" style="min-height: 40px; white-space: pre-wrap; word-wrap: break-word;">
                     $description
                 </div>
             </div>
@@ -366,7 +367,7 @@ class RFQService
 
             <!-- Requirements Section -->
             <div class="section">
-                <div class="section-title">✓ What You Need to Do</div>
+                <div class="section-title">[WHAT YOU NEED TO DO]</div>
                 <div class="section-content">
                     <ol style="margin: 10px 0; padding-left: 20px;">
                         <li>Review the request details and specifications</li>
@@ -379,7 +380,7 @@ class RFQService
 
             <!-- Contact Section -->
             <div class="section">
-                <div class="section-title">❓ Need Assistance?</div>
+                <div class="section-title">[NEED ASSISTANCE?]</div>
                 <div class="section-content">
                     If you have any questions about this RFQ, please contact the Procurement Department at:
                     <br><br>
