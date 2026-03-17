@@ -1756,4 +1756,145 @@ HTML;
     }
 }
 
+/**
+ * Notify Procurement Officers that a signed request has been received
+ * Branch heads have printed, signed, and uploaded the procurement request document
+ * Procurement can now proceed with RFQ or other workflow steps
+ */
+function notifySignedRequestReceived(int $requestId, string $requestNumber): bool {
+    if (!notificationsEnabled()) {
+        error_log("NOTIFY SIGNED REQUEST: Notifications disabled globally");
+        return false;
+    }
+
+    global $pdo;
+    try {
+        // Get request details
+        $stmt = $pdo->prepare("
+            SELECT pr.request_id, pr.request_number, pr.estimated_value, pr.currency, pr.request_type,
+                   pr.created_by, pr.branch_id, pr.signed_request_received_date,
+                   b.branch_name, u.full_name as requestor_name
+            FROM procurement_requests pr
+            LEFT JOIN branches b ON pr.branch_id = b.branch_id
+            LEFT JOIN users u ON pr.created_by = u.user_id
+            WHERE pr.request_id = ?
+        ");
+        $stmt->execute([$requestId]);
+        $request = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$request) {
+            error_log("NOTIFY SIGNED REQUEST: Request not found for ID $requestId");
+            return false;
+        }
+
+        // Get all Procurement Officers
+        $procurementUsers = getUsersByRole('Procurement Officer');
+        if (empty($procurementUsers)) {
+            error_log("NOTIFY SIGNED REQUEST: No Procurement Officers found in the system");
+            return false;
+        }
+
+        $appUrl = getAppUrl();
+        $currency = normalizeCurrency($request['currency'] ?? 'JMD');
+        $estimatedValue = $currency . ' ' . number_format($request['estimated_value'], 2);
+        $subject = "Signed Request Received - Ready for Processing: {$requestNumber}";
+
+        $sent = false;
+        foreach ($procurementUsers as $po) {
+            if (empty($po['email'])) continue;
+
+            $html = <<<HTML
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8">
+<style>
+    body { font-family: Arial, sans-serif; color: #333; }
+    .container { max-width: 600px; margin: 0 auto; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; }
+    .header { background: linear-gradient(90deg, #0b5e2b, #c9a227); color: white; padding: 20px; }
+    .content { padding: 20px; }
+    .status-box { background: #198754; color: white; padding: 15px; border-radius: 5px; text-align: center; margin: 15px 0; font-size: 18px; font-weight: bold; }
+    .alert { background: #c8f5e0; border-left: 4px solid #198754; padding: 12px; margin: 15px 0; border-radius: 4px; color: #155724; }
+    .details { background: #f8f9fa; padding: 15px; border-radius: 5px; margin: 15px 0; }
+    .detail-row { margin: 8px 0; }
+    .label { font-weight: bold; color: #555; }
+    .button { background: #0b5e2b; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px; display: inline-block; margin-top: 15px; }
+    .footer { background: #f8f9fa; padding: 15px; text-align: center; font-size: 12px; color: #777; border-top: 1px solid #ddd; }
+</style></head><body>
+<div class="container">
+    <div class="header">
+        <h2 style="margin: 0;">✓ Signed Request Received - Ready for Processing</h2>
+        <p style="margin: 5px 0 0 0;">Government Chemist - PRMS</p>
+    </div>
+    <div class="content">
+        <p>Dear {$po['full_name']},</p>
+        
+        <div class="alert">
+            <strong>✓ The branch head has signed and uploaded the procurement request. The document is now available for your review and the request is ready for processing.</strong>
+        </div>
+        
+        <div class="status-box">Signed Document Received - Ready for Next Steps</div>
+        
+        <div class="details">
+            <div class="detail-row">
+                <span class="label">Request Number:</span> <strong>{$request['request_number']}</strong>
+            </div>
+            <div class="detail-row">
+                <span class="label">Request Type:</span> {$request['request_type']}
+            </div>
+            <div class="detail-row">
+                <span class="label">Requestor:</span> {$request['requestor_name']}
+            </div>
+            <div class="detail-row">
+                <span class="label">Branch:</span> {$request['branch_name']}
+            </div>
+            <div class="detail-row">
+                <span class="label">Estimated Value:</span> {$estimatedValue}
+            </div>
+            <div class="detail-row">
+                <span class="label">Signed Document Received:</span> {$request['signed_request_received_date']}
+            </div>
+        </div>
+        
+        <p style="margin-top: 20px;">
+            The branch head has completed their review and provided the signed authorization for this procurement request. 
+            You can now:
+        </p>
+        
+        <ul style="margin: 15px 0; padding-left: 20px;">
+            <li>Review the signed document</li>
+            <li>Proceed with RFQ creation if applicable</li>
+            <li>Contact vendors for quotes</li>
+            <li>Begin the procurement workflow process</li>
+        </ul>
+        
+        <p style="text-align: center; margin-top: 25px;">
+            <a href="{$appUrl}/procurement/view.php?id={$requestId}" class="button">
+                View Request & Start Processing
+            </a>
+        </p>
+        
+        <p style="margin-top: 20px; font-size: 12px; color: #777;">
+            This is an automated notification from the Procurement Request Management System indicating that the signed request document has been received and is ready for processing.
+        </p>
+    </div>
+    <div class="footer">
+        <p>&copy; Government Chemist &middot; PRMS &middot; Confidential</p>
+    </div>
+</div></body></html>
+HTML;
+            if (sendMail($po['email'], $subject, $html)) {
+                $sent = true;
+            }
+        }
+        
+        if ($sent) {
+            error_log("NOTIFY SIGNED REQUEST: Successfully notified procurement officers that signed request received for request $requestId");
+        }
+        return $sent;
+
+    } catch (Exception $e) {
+        error_log("Notify signed request received error: {$e->getMessage()}");
+        return false;
+    }
+}
+
 ?>

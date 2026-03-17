@@ -76,10 +76,14 @@ function stageOwner(string $stage): array {
 }
 
 /**
- * Get the approval chain for a request based on branch.
- * Returns array of approver roles in order (only ONE role needed per request)
+ * Get the approval chain for a request based on branch and amount.
+ * Returns array of approver roles in order.
  *
- * THREE approvers in the system (regardless of amount):
+ * Amount-based approval thresholds:
+ *   - Over 500,000 JMD: Requires HOD approval
+ *   - Over 3,000,000 JMD: Requires committee review
+ *
+ * Branch-based approvals:
  *   - HRM&A branch (id=5)              → Director HRM&A
  *   - Analytical & Advisory branch (id=6) → Deputy Government Chemist
  *   - All other branches               → HOD
@@ -92,17 +96,62 @@ function getApprovalChain(string $requestType, float $estimatedValue, ?int $bran
         return ['Finance Officer'];
     }
 
-    // Branch-based approvals (ONE approver per branch, regardless of amount)
-    if ($branchId === 6) {
-        // Analytical & Advisory Branch → Deputy Government Chemist
-        return ['Deputy Government Chemist'];
-    } elseif ($branchId === 5) {
-        // HRM&A Branch → Director HRM&A
-        return ['Director HRM&A'];
+    // Get thresholds from database (if PDO provided)
+    $hodThreshold = 500000.00;
+    $committeeThreshold = 3000000.00;
+    
+    if ($pdo) {
+        try {
+            $stmt = $pdo->prepare("SELECT config_value FROM system_config WHERE config_key = 'hod_approval_threshold'");
+            $stmt->execute();
+            $val = $stmt->fetchColumn();
+            if ($val !== false) {
+                $hodThreshold = (float)$val;
+            }
+        } catch (Exception $e) {
+            // Use default if query fails
+        }
+        
+        try {
+            $stmt = $pdo->prepare("SELECT config_value FROM system_config WHERE config_key = 'committee_review_threshold'");
+            $stmt->execute();
+            $val = $stmt->fetchColumn();
+            if ($val !== false) {
+                $committeeThreshold = (float)$val;
+            }
+        } catch (Exception $e) {
+            // Use default if query fails
+        }
     }
 
-    // All other branches → HOD
-    return ['HOD'];
+    // Build approval chain based on amount thresholds
+    $chain = [];
+    
+    // Over committee review threshold: Add committee review
+    if ($estimatedValue > $committeeThreshold) {
+        $chain[] = 'Procurement Committee';
+    }
+    
+    // Over HOD threshold: Add HOD approval
+    if ($estimatedValue > $hodThreshold) {
+        $chain[] = 'HOD';
+    }
+    
+    // Add branch-based primary approver
+    if ($branchId === 6) {
+        // Analytical & Advisory Branch → Deputy Government Chemist
+        $chain[] = 'Deputy Government Chemist';
+    } elseif ($branchId === 5) {
+        // HRM&A Branch → Director HRM&A
+        $chain[] = 'Director HRM&A';
+    } else {
+        // All other branches → HOD (if not already added by threshold)
+        if (!in_array('HOD', $chain)) {
+            $chain[] = 'HOD';
+        }
+    }
+
+    return $chain;
 }
 
 /**
@@ -263,6 +312,28 @@ function getDirectProcurementThreshold(PDO $pdo): float {
     $stmt->execute();
     $val = $stmt->fetchColumn();
     return $val !== false ? (float)$val : 500000.00;
+}
+
+/**
+ * Get the HOD approval threshold from system config
+ * Requests above this amount require HOD approval
+ */
+function getHODApprovalThreshold(PDO $pdo): float {
+    $stmt = $pdo->prepare("SELECT config_value FROM system_config WHERE config_key = 'hod_approval_threshold'");
+    $stmt->execute();
+    $val = $stmt->fetchColumn();
+    return $val !== false ? (float)$val : 500000.00;
+}
+
+/**
+ * Get the committee review threshold from system config
+ * Requests above this amount require committee review
+ */
+function getCommitteeReviewThreshold(PDO $pdo): float {
+    $stmt = $pdo->prepare("SELECT config_value FROM system_config WHERE config_key = 'committee_review_threshold'");
+    $stmt->execute();
+    $val = $stmt->fetchColumn();
+    return $val !== false ? (float)$val : 3000000.00;
 }
 
 function enforceTransition(array $request, string $nextStage) {

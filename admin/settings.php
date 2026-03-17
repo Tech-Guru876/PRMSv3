@@ -50,6 +50,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ");
             $stmt->execute([$newUsdRate]);
         }
+
+        // Update HOD approval threshold if provided
+        if (isset($_POST['hod_approval_threshold'])) {
+            $newHODThreshold = max(0, (float)$_POST['hod_approval_threshold']);
+            $stmt = $pdo->prepare("
+                INSERT INTO system_config (config_key, config_value, description, created_at)
+                VALUES ('hod_approval_threshold', ?, 'Procurement requests above this amount require HOD approval (JMD)', NOW())
+                ON DUPLICATE KEY UPDATE config_value = VALUES(config_value)
+            ");
+            $stmt->execute([$newHODThreshold]);
+        }
+
+        // Update committee review threshold if provided
+        if (isset($_POST['committee_review_threshold'])) {
+            $newCommitteeThreshold = max(0, (float)$_POST['committee_review_threshold']);
+            $stmt = $pdo->prepare("
+                INSERT INTO system_config (config_key, config_value, description, created_at)
+                VALUES ('committee_review_threshold', ?, 'Procurement requests above this amount require committee review (JMD)', NOW())
+                ON DUPLICATE KEY UPDATE config_value = VALUES(config_value)
+            ");
+            $stmt->execute([$newCommitteeThreshold]);
+        }
         
         // Log audit
         logAudit(
@@ -61,6 +83,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 . (isset($newThreshold) ? ', threshold=' . number_format($newThreshold, 2) : '')
                 . (isset($newPCLimit)  ? ', petty_cash_limit=' . number_format($newPCLimit, 2) : '')
                 . (isset($newUsdRate)  ? ', usd_to_jmd_rate=' . number_format($newUsdRate, 4) : '')
+                . (isset($newHODThreshold) ? ', hod_approval_threshold=' . number_format($newHODThreshold, 2) : '')
+                . (isset($newCommitteeThreshold) ? ', committee_review_threshold=' . number_format($newCommitteeThreshold, 2) : '')
         );
         
         $_SESSION['toast'] = [
@@ -91,6 +115,8 @@ try {
 // Get current threshold settings
 $currentThreshold = getDirectProcurementThreshold($pdo);
 $currentPettyCashLimit = getPettyCashLimit($pdo);
+$currentHODThreshold = getHODApprovalThreshold($pdo);
+$currentCommitteeThreshold = getCommitteeReviewThreshold($pdo);
 
 // Get current USD exchange rate
 try {
@@ -165,12 +191,41 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/includes/header.php';
                                                 Used to auto-convert USD amounts to JMD for commitments.
                                             </small>
                                         </div>
+                                        <div class="col-md-6 mt-3">
+                                            <label class="form-label fw-bold" for="hod_approval_threshold">
+                                                <i class="bi bi-person-check me-1"></i> HOD Approval Threshold (JMD)
+                                            </label>
+                                            <div class="input-group">
+                                                <span class="input-group-text">JMD</span>
+                                                <input type="number" class="form-control" id="hod_approval_threshold"
+                                                       name="hod_approval_threshold" step="0.01" min="0"
+                                                       value="<?= htmlspecialchars($currentHODThreshold) ?>">
+                                            </div>
+                                            <small class="text-muted">
+                                                Requests <strong>above</strong> this amount require HOD approval.
+                                            </small>
+                                        </div>
+                                        <div class="col-md-6 mt-3">
+                                            <label class="form-label fw-bold" for="committee_review_threshold">
+                                                <i class="bi bi-people me-1"></i> Committee Review Threshold (JMD)
+                                            </label>
+                                            <div class="input-group">
+                                                <span class="input-group-text">JMD</span>
+                                                <input type="number" class="form-control" id="committee_review_threshold"
+                                                       name="committee_review_threshold" step="0.01" min="0"
+                                                       value="<?= htmlspecialchars($currentCommitteeThreshold) ?>">
+                                            </div>
+                                            <small class="text-muted">
+                                                Requests <strong>above</strong> this amount require committee review.
+                                            </small>
+                                        </div>
                                     </div>
                                     <div class="alert alert-info mt-3 mb-0 small">
                                         <strong>How thresholds control workflow routing:</strong>
                                         <ul class="mb-0 mt-1">
                                             <li><strong>Under threshold:</strong> Branch supervisor approves &rarr; Simplified RFQ (no committee evaluation)</li>
-                                            <li><strong>Over threshold:</strong> HOD approves &rarr; Full RFQ with committee evaluation</li>
+                                            <li><strong>Over HOD threshold:</strong> HOD approval required</li>
+                                            <li><strong>Over Committee threshold:</strong> Procurement Committee review required</li>
                                             <li><strong>Petty Cash / Reimbursement:</strong> Always use their dedicated direct workflows</li>
                                         </ul>
                                     </div>

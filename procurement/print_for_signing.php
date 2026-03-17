@@ -1,0 +1,263 @@
+<?php
+/**
+ * Print Procurement Request for Signing by Branch Head
+ * Generates a clean PDF document that branch heads can print, sign, and return
+ */
+$REQUIRE_PERMISSION = 'view_requests';
+require_once $_SERVER['DOCUMENT_ROOT'].'/config/page_guard.php';
+require_once $_SERVER['DOCUMENT_ROOT']."/config/db.php";
+require_once $_SERVER['DOCUMENT_ROOT']."/config/helper.php";
+require_once __DIR__."/../vendor/autoload.php";
+
+use Dompdf\Dompdf;
+use Dompdf\Options;
+
+// Get request ID from GET parameter
+if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
+    http_response_code(400);
+    exit('Invalid request ID');
+}
+
+$request_id = (int)$_GET['id'];
+
+// Fetch request details
+$stmt = $pdo->prepare("
+    SELECT pr.*, 
+           b.branch_name,
+           u1.full_name AS created_by_name,
+           u2.full_name AS approved_by_name
+    FROM procurement_requests pr
+    LEFT JOIN branches b ON pr.branch_id = b.branch_id
+    LEFT JOIN users u1 ON pr.created_by = u1.user_id
+    LEFT JOIN users u2 ON pr.approved_by = u2.user_id
+    WHERE pr.request_id = ?
+");
+$stmt->execute([$request_id]);
+$r = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if (!$r) {
+    http_response_code(404);
+    exit('Request not found');
+}
+
+// Fetch request items
+$itemStmt = $pdo->prepare("
+    SELECT item_name, specification, quantity, remarks
+    FROM procurement_request_items
+    WHERE request_id = ?
+    ORDER BY item_id ASC
+");
+$itemStmt->execute([$request_id]);
+$items = $itemStmt->fetchAll(PDO::FETCH_ASSOC);
+
+// Pre-format values
+$reqNum = htmlspecialchars($r['request_number']);
+$reqDate = date('d M Y', strtotime($r['request_date']));
+$branchName = htmlspecialchars($r['branch_name'] ?? 'N/A');
+$createdBy = htmlspecialchars($r['created_by_name'] ?? 'N/A');
+$description = htmlspecialchars($r['description'] ?? '');
+$currency = normalizeCurrency($r['currency'] ?? 'JMD');
+$currSymbol = $currency === 'USD' ? 'US$' : '$';
+$estValue = $currency . ' ' . $currSymbol . number_format((float)($r['estimated_value'] ?? 0), 2);
+$procMethod = htmlspecialchars($r['procurement_method'] ?? 'SINGLE_SOURCE');
+$genDate = date('d M Y');
+$genTime = date('g:i A');
+
+// Build items list HTML
+$itemsHtml = '';
+if (!empty($items)) {
+    $itemsHtml = '<table width="100%" cellspacing="0" cellpadding="0" style="border-collapse:collapse;margin-top:8px;">';
+    $itemsHtml .= '<thead><tr style="background:#0b5e2b;"><th style="padding:8px;color:#fff;text-align:left;font-size:11px;">Item Name</th><th style="padding:8px;color:#fff;text-align:left;font-size:11px;">Specification</th><th style="padding:8px;color:#fff;text-align:center;font-size:11px;">Qty</th><th style="padding:8px;color:#fff;text-align:left;font-size:11px;">Remarks</th></tr></thead>';
+    $itemsHtml .= '<tbody>';
+    foreach ($items as $idx => $item) {
+        $bgColor = ($idx % 2 === 0) ? '#ffffff' : '#f8f9fa';
+        $itemName = htmlspecialchars($item['item_name'] ?? '');
+        $spec = htmlspecialchars($item['specification'] ?? '');
+        $qty = htmlspecialchars($item['quantity'] ?? '');
+        $remarks = htmlspecialchars($item['remarks'] ?? '');
+        $itemsHtml .= "<tr style='background:{$bgColor};'>";
+        $itemsHtml .= "<td style='padding:8px;border-bottom:1px solid #e9ecef;font-size:11px;'>$itemName</td>";
+        $itemsHtml .= "<td style='padding:8px;border-bottom:1px solid #e9ecef;font-size:10px;'>$spec</td>";
+        $itemsHtml .= "<td style='padding:8px;border-bottom:1px solid #e9ecef;font-size:11px;text-align:center;'>$qty</td>";
+        $itemsHtml .= "<td style='padding:8px;border-bottom:1px solid #e9ecef;font-size:10px;'>$remarks</td>";
+        $itemsHtml .= '</tr>';
+    }
+    $itemsHtml .= '</tbody></table>';
+} else {
+    $itemsHtml = '<p style="color:#6c757d;font-size:11px;">No items listed</p>';
+}
+
+// HTML for PDF
+$html = <<<HTML
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  body {
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    color: #212529;
+    font-size: 11px;
+    margin: 0;
+    padding: 0;
+  }
+  .page-break { page-break-after: always; }
+</style>
+</head>
+<body>
+
+<!-- Header Bar -->
+<div style="background:linear-gradient(90deg, #0b5e2b, #c9a227);padding:12px 20px;color:#fff;margin-bottom:4px;">
+  <table width="100%">
+    <tr>
+      <td>
+        <span style="font-size:14px;font-weight:700;">Department of the Government Chemist</span><br>
+        <span style="font-size:9px;opacity:0.85;">Procurement Request Management System</span>
+      </td>
+      <td style="text-align:right;font-size:9px;">
+        $genDate at $genTime
+      </td>
+    </tr>
+  </table>
+</div>
+
+<!-- Title -->
+<div style="padding:14px 20px 8px;border-bottom:2px solid #0b5e2b;">
+  <h2 style="margin:0;font-size:18px;color:#0b5e2b;">PROCUREMENT REQUEST FOR APPROVAL</h2>
+  <p style="margin:4px 0 0;font-size:9px;color:#6c757d;">Please print this document, review carefully, sign below, and upload the signed copy.</p>
+</div>
+
+<!-- Request Information Section -->
+<div style="padding:14px 20px;background:#f8f9fa;margin-bottom:4px;">
+  <table width="100%" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="50%">
+        <table cellspacing="0" cellpadding="3" style="font-size:10px;width:100%;">
+          <tr>
+            <td style="color:#6c757d;font-weight:600;width:40%;">Request #:</td>
+            <td style="font-weight:700;font-size:12px;">$reqNum</td>
+          </tr>
+          <tr>
+            <td style="color:#6c757d;font-weight:600;">Request Date:</td>
+            <td style="font-weight:600;">$reqDate</td>
+          </tr>
+          <tr>
+            <td style="color:#6c757d;font-weight:600;">Branch:</td>
+            <td style="font-weight:600;">$branchName</td>
+          </tr>
+          <tr>
+            <td style="color:#6c757d;font-weight:600;">Requested By:</td>
+            <td style="font-weight:600;">$createdBy</td>
+          </tr>
+        </table>
+      </td>
+      <td width="50%">
+        <div style="background:#e8f5e9;border-radius:8px;padding:12px;text-align:center;margin-left:8px;">
+          <span style="font-size:8px;text-transform:uppercase;color:#2e7d32;font-weight:700;letter-spacing:0.5px;">Estimated Value</span><br>
+          <span style="font-size:16px;font-weight:700;color:#0b5e2b;">$estValue</span>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<!-- Description Section -->
+<div style="padding:10px 20px;">
+  <h4 style="font-size:11px;color:#0b5e2b;margin:0 0 6px;font-weight:700;text-transform:uppercase;">Description / Purpose</h4>
+  <div style="background:#f8f9fa;padding:10px;border-left:3px solid #0b5e2b;border-radius:4px;font-size:10px;line-height:1.5;">
+    $description
+  </div>
+</div>
+
+<!-- Items Section -->
+<div style="padding:10px 20px;">
+  <h4 style="font-size:11px;color:#0b5e2b;margin:0 0 6px;font-weight:700;text-transform:uppercase;">Request Items</h4>
+  $itemsHtml
+</div>
+
+<!-- Additional Details Section -->
+<div style="padding:10px 20px;background:#f8f9fa;margin:6px 0;">
+  <table width="100%" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="50%">
+        <h4 style="font-size:10px;color:#6c757d;margin:0 0 4px;font-weight:700;">Procurement Method</h4>
+        <p style="margin:0;font-size:10px;font-weight:600;">$procMethod</p>
+      </td>
+      <td width="50%">
+        <h4 style="font-size:10px;color:#6c757d;margin:0 0 4px;font-weight:700;">Currency</h4>
+        <p style="margin:0;font-size:10px;font-weight:600;">$currency</p>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<!-- Signature Section -->
+<div style="padding:20px 20px;margin-top:20px;border-top:2px solid #e9ecef;">
+  <h4 style="font-size:11px;color:#0b5e2b;margin:0 0 20px;font-weight:700;text-transform:uppercase;">Authorization By Branch Head</h4>
+  
+  <!-- Signature Block -->
+  <table width="100%" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="45%">
+        <div style="border-bottom:2px solid #212529;height:50px;margin-bottom:4px;"></div>
+        <table cellspacing="0" cellpadding="0" style="font-size:9px;">
+          <tr>
+            <td style="color:#6c757d;font-weight:600;">Signature</td>
+          </tr>
+          <tr>
+            <td style="color:#adb5bd;font-size:8px;height:12px;"></td>
+          </tr>
+          <tr>
+            <td style="border-top:1px solid #212529;color:#6c757d;font-weight:600;padding-top:2px;">Print Name</td>
+          </tr>
+          <tr>
+            <td style="color:#adb5bd;font-size:8px;height:12px;"></td>
+          </tr>
+          <tr>
+            <td style="border-top:1px solid #212529;color:#6c757d;font-weight:600;padding-top:2px;">Date</td>
+          </tr>
+        </table>
+      </td>
+      <td width="10%"></td>
+      <td width="45%">
+        <div style="background:#fff3cd;border-left:3px solid #ffc107;padding:8px;border-radius:4px;font-size:9px;">
+          <strong>Important:</strong> By signing below, you confirm that you have reviewed this procurement request and approve its proceed to procurement processing.
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<!-- Instructions -->
+<div style="padding:10px 20px;background:#e3f2fd;border-left:3px solid #2196f3;margin-top:10px;border-radius:4px;">
+  <h4 style="margin:0 0 4px;font-size:10px;color:#1565c0;font-weight:700;">NEXT STEPS:</h4>
+  <ol style="margin:0;padding-left:16px;font-size:9px;line-height:1.6;">
+    <li>Print this document</li>
+    <li>Review the request details carefully</li>
+    <li>Sign and date in the "Authorization by Branch Head" section</li>
+    <li>Scan or photograph the signed document</li>
+    <li>Upload the signed copy via the system</li>
+    <li>Procurement will then review and proceed with processing</li>
+  </ol>
+</div>
+
+<!-- Footer -->
+<div style="padding:10px 20px;text-align:center;color:#adb5bd;font-size:8px;border-top:1px solid #e9ecef;margin-top:20px;">
+  Department of the Government Chemist &middot; PRMS &middot; Confidential &middot; $genDate
+</div>
+
+</body>
+</html>
+HTML;
+
+// Generate PDF
+$options = new Options();
+$options->set('isHtml5ParserEnabled', true);
+$options->set('defaultFont', 'Helvetica');
+
+$pdf = new Dompdf($options);
+$pdf->loadHtml($html);
+$pdf->setPaper('A4');
+$pdf->render();
+$pdf->stream("procurement_request_{$request_id}_for_signing.pdf", ["Attachment" => false]);
+exit;
