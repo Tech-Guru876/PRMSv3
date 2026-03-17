@@ -70,6 +70,16 @@ class RFQService
                 return false;
             }
 
+            // Fetch items for this procurement request
+            $itemsStmt = $this->pdo->prepare("
+                SELECT item_name, specification, quantity
+                FROM procurement_request_items
+                WHERE request_id = ?
+                ORDER BY item_id ASC
+            ");
+            $itemsStmt->execute([$rfq['request_id']]);
+            $items = $itemsStmt->fetchAll(PDO::FETCH_ASSOC);
+
             // Build email content
             $subject = "Request for Quote - {$rfq['rfq_number']} - {$rfq['request_number']}";
             $html = $this->buildRFQEmailTemplate(
@@ -77,7 +87,8 @@ class RFQService
                 $vendor['contact_person'],
                 $rfq,
                 $rfq_id,
-                $vendor_id
+                $vendor_id,
+                $items
             );
 
             // Send email
@@ -159,7 +170,8 @@ class RFQService
         ?string $contact_person,
         array $rfq,
         int $rfq_id,
-        int $vendor_id
+        int $vendor_id,
+        array $items = []
     ): string
     {
         $appUrl = APP_URL;
@@ -171,6 +183,39 @@ class RFQService
         $requestNumber = htmlspecialchars($rfq['request_number']);
         $rfqNumber = htmlspecialchars($rfq['rfq_number']);
         $logo = "$appUrl/logo/cropped-Logo.png";
+
+        // Build items table HTML
+        $itemsTableHTML = '';
+        if (!empty($items)) {
+            $itemsTableHTML = '<div class="section">
+                <div class="section-title">[ITEMS REQUESTED]</div>
+                <div class="section-content">
+                    <table style="width: 100%; border-collapse: collapse;">
+                        <thead style="background-color: #0b5e2b; color: white;">
+                            <tr>
+                                <th style="padding: 10px; text-align: left; font-weight: bold;">Item</th>
+                                <th style="padding: 10px; text-align: left; font-weight: bold;">Specification</th>
+                                <th style="padding: 10px; text-align: center; font-weight: bold;">Qty</th>
+                            </tr>
+                        </thead>
+                        <tbody>';
+            foreach ($items as $item) {
+                $itemName = htmlspecialchars($item['item_name']);
+                $spec = htmlspecialchars($item['specification'] ?? '');
+                $qty = (int)$item['quantity'];
+                $itemsTableHTML .= "
+                            <tr style=\"border-bottom: 1px solid #ddd;\">
+                                <td style=\"padding: 10px; text-align: left;\">$itemName</td>
+                                <td style=\"padding: 10px; text-align: left; font-size: 13px; color: #555;\">$spec</td>
+                                <td style=\"padding: 10px; text-align: center; font-weight: bold;\">$qty</td>
+                            </tr>";
+            }
+            $itemsTableHTML .= '
+                        </tbody>
+                    </table>
+                </div>
+            </div>';
+        }
 
         $greeting = $contact_person ? "Dear " . htmlspecialchars($contact_person) . "," : "Dear " . htmlspecialchars($vendor_name) . ",";
 
@@ -346,6 +391,8 @@ class RFQService
                 </div>
             </div>
 
+            $itemsTableHTML
+
             <!-- Important Deadline -->
             <div class="important-date">
                 <div class="label">Submission Deadline</div>
@@ -394,7 +441,7 @@ class RFQService
         <div class="footer">
             <p>
                 This is an automated message from the <strong>Digital Government Chemist Procurement Management System</strong>.<br>
-                Please do not reply to this email. For assistance, contact the Procurement Department at :Gabrielle.Green@moh.gov.jm.
+                Please do not reply to this email. For assistance, contact the Procurement Department.
             </p>
             <p style="margin-top: 10px; color: #999;">
                 © 2026 Digital Government Chemist. All rights reserved.
@@ -406,3 +453,4 @@ class RFQService
 HTML;
     }
 }
+
