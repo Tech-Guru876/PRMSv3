@@ -108,6 +108,9 @@ try {
     require_once $_SERVER['DOCUMENT_ROOT']."/config/notifications.php";
     notifyQuoteSelected($quote['request_id'], $quote['vendor_name'], (float)$quote['quote_amount']);
     
+    // Notify Finance Officers that commitment/funds verification is needed
+    notifyFinanceCommitmentNeeded($quote['request_id'], $quote['vendor_name'], (float)$quote['quote_amount']);
+    
     pop('Quote selected successfully. Next: Verify funds and create commitment.', '/commitments/add.php?request_id=' . $quote['request_id'], POP_DEFAULT_DELAY_MS, 'success');
     exit;
 

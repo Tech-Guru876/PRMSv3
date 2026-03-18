@@ -182,6 +182,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (in_array($nextStatus, ['AWARDED', 'RFQ_LETTER_AVAILABLE', 'PROCUREMENT_STAGE'])) {
             notifyRequestFinalized($id, $nextStatus);
         }
+        if ($nextStatus === 'RFQ_LETTER_AVAILABLE') {
+            notifyProcurementRFQReady($id);
+        }
 
         modalPop(
             "Approval Successful",

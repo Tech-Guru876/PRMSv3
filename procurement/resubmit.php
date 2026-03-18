@@ -70,6 +70,10 @@ try {
 
     $pdo->commit();
 
+    // Notify the approver that a declined request has been resubmitted
+    require_once $_SERVER['DOCUMENT_ROOT']."/config/notifications.php";
+    notifyRequestResubmitted($id);
+
     pop(
         "Request reset to Draft. You may edit and submit again.",
         "/procurement/edit.php?id=" . $id,

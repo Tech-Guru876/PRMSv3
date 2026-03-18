@@ -110,6 +110,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         "Quote uploaded for RFQ ID $rfq_id"
     ]);
 
+    /* Notify Procurement Officer & requestor that a vendor quote was received */
+    require_once $_SERVER['DOCUMENT_ROOT']."/config/notifications.php";
+    notifyQuoteUploaded($rfq_id, $vendor['vendor_name']);
+
     header("Location: view.php?id=" . $rfq_id);
     exit;
 }

@@ -1897,4 +1897,466 @@ HTML;
     }
 }
 
+/**
+ * Notify Procurement Officers that a request is ready for RFQ creation
+ * Triggered when a request reaches RFQ_LETTER_AVAILABLE status
+ */
+function notifyProcurementRFQReady(int $requestId): bool {
+    if (!notificationsEnabled()) return false;
+
+    global $pdo;
+    try {
+        $stmt = $pdo->prepare("
+            SELECT pr.request_id, pr.request_number, pr.estimated_value, pr.currency,
+                   pr.request_type, b.branch_name, u.full_name as requestor_name
+            FROM procurement_requests pr
+            LEFT JOIN branches b ON pr.branch_id = b.branch_id
+            LEFT JOIN users u ON pr.created_by = u.user_id
+            WHERE pr.request_id = ?
+        ");
+        $stmt->execute([$requestId]);
+        $request = $stmt->fetch(PDO::FETCH_ASSOC);
+        if (!$request) return false;
+
+        $procurementUsers = getUsersByRole('Procurement Officer');
+        if (empty($procurementUsers)) return false;
+
+        $appUrl = getAppUrl();
+        $currency = normalizeCurrency($request['currency'] ?? 'JMD');
+        $estimatedValue = $currency . ' ' . number_format($request['estimated_value'], 2);
+        $subject = "Action Required: Create RFQ for {$request['request_number']}";
+
+        $sent = false;
+        foreach ($procurementUsers as $po) {
+            if (empty($po['email'])) continue;
+            $html = <<<HTML
+<!DOCTYPE html><html><head><meta charset="UTF-8">
+<style>
+    body { font-family: Arial, sans-serif; color: #333; }
+    .container { max-width: 600px; margin: 0 auto; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; }
+    .header { background: linear-gradient(90deg, #0b5e2b, #c9a227); color: white; padding: 20px; }
+    .content { padding: 20px; }
+    .alert { background: #fff3cd; border-left: 4px solid #c9a227; padding: 12px; margin: 15px 0; border-radius: 4px; color: #856404; }
+    .details { background: #f8f9fa; padding: 15px; border-radius: 5px; margin: 15px 0; }
+    .detail-row { margin: 8px 0; }
+    .label { font-weight: bold; color: #555; }
+    .button { background: #0b5e2b; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px; display: inline-block; margin-top: 15px; }
+    .footer { background: #f8f9fa; padding: 15px; text-align: center; font-size: 12px; color: #777; border-top: 1px solid #ddd; }
+</style></head><body>
+<div class="container">
+    <div class="header">
+        <h2 style="margin: 0;">Action Required: Create RFQ</h2>
+        <p style="margin: 5px 0 0 0;">Government Chemist - PRMS</p>
+    </div>
+    <div class="content">
+        <p>Dear {$po['full_name']},</p>
+        <div class="alert">
+            <strong>A procurement request has been fully approved and is now ready for RFQ creation.</strong>
+        </div>
+        <div class="details">
+            <div class="detail-row"><span class="label">Request Number:</span> <strong>{$request['request_number']}</strong></div>
+            <div class="detail-row"><span class="label">Requestor:</span> {$request['requestor_name']}</div>
+            <div class="detail-row"><span class="label">Branch:</span> {$request['branch_name']}</div>
+            <div class="detail-row"><span class="label">Estimated Value:</span> {$estimatedValue}</div>
+        </div>
+        <p><strong>Next Step:</strong> Create and send the RFQ to vendors.</p>
+        <p><a href="{$appUrl}/procurement/view.php?id={$requestId}" class="button">View Request &amp; Create RFQ</a></p>
+    </div>
+    <div class="footer"><p>&copy; Government Chemist &middot; PRMS &middot; Confidential</p></div>
+</div></body></html>
+HTML;
+            if (sendMail($po['email'], $subject, $html)) $sent = true;
+        }
+        return $sent;
+    } catch (Exception $e) {
+        error_log("notifyProcurementRFQReady error: {$e->getMessage()}");
+        return false;
+    }
+}
+
+/**
+ * Notify Procurement Officer and requestor when a vendor uploads a quote
+ */
+function notifyQuoteUploaded(int $rfqId, string $vendorName): bool {
+    if (!notificationsEnabled()) return false;
+
+    global $pdo;
+    try {
+        $stmt = $pdo->prepare("
+            SELECT r.rfq_number, pr.request_id, pr.request_number, pr.created_by,
+                   u.full_name as requestor_name, u.email as requestor_email
+            FROM rfqs r
+            JOIN procurement_requests pr ON r.request_id = pr.request_id
+            LEFT JOIN users u ON pr.created_by = u.user_id
+            WHERE r.rfq_id = ?
+        ");
+        $stmt->execute([$rfqId]);
+        $data = $stmt->fetch(PDO::FETCH_ASSOC);
+        if (!$data) return false;
+
+        $appUrl = getAppUrl();
+        $subject = "Vendor Quote Received - {$data['rfq_number']}";
+        $vendorNameSafe = htmlspecialchars($vendorName);
+
+        $recipients = [];
+        // Add requestor
+        if (!empty($data['requestor_email'])) {
+            $recipients[] = ['email' => $data['requestor_email'], 'name' => $data['requestor_name']];
+        }
+        // Add procurement officers
+        foreach (getUsersByRole('Procurement Officer') as $po) {
+            if (!empty($po['email'])) {
+                $recipients[] = ['email' => $po['email'], 'name' => $po['full_name']];
+            }
+        }
+
+        $sent = false;
+        $seen = [];
+        foreach ($recipients as $r) {
+            if (isset($seen[$r['email']])) continue;
+            $seen[$r['email']] = true;
+
+            $html = <<<HTML
+<!DOCTYPE html><html><head><meta charset="UTF-8">
+<style>
+    body { font-family: Arial, sans-serif; color: #333; }
+    .container { max-width: 600px; margin: 0 auto; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; }
+    .header { background: linear-gradient(90deg, #0b5e2b, #c9a227); color: white; padding: 20px; }
+    .content { padding: 20px; }
+    .alert { background: #d1ecf1; border-left: 4px solid #0dcaf0; padding: 12px; margin: 15px 0; border-radius: 4px; color: #0c5460; }
+    .details { background: #f8f9fa; padding: 15px; border-radius: 5px; margin: 15px 0; }
+    .detail-row { margin: 8px 0; }
+    .label { font-weight: bold; color: #555; }
+    .button { background: #0b5e2b; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px; display: inline-block; margin-top: 15px; }
+    .footer { background: #f8f9fa; padding: 15px; text-align: center; font-size: 12px; color: #777; border-top: 1px solid #ddd; }
+</style></head><body>
+<div class="container">
+    <div class="header">
+        <h2 style="margin: 0;">Vendor Quote Received</h2>
+        <p style="margin: 5px 0 0 0;">Government Chemist - PRMS</p>
+    </div>
+    <div class="content">
+        <p>Dear {$r['name']},</p>
+        <div class="alert">
+            <strong>A vendor has submitted a quotation for {$data['rfq_number']}.</strong>
+        </div>
+        <div class="details">
+            <div class="detail-row"><span class="label">RFQ Number:</span> <strong>{$data['rfq_number']}</strong></div>
+            <div class="detail-row"><span class="label">Request Number:</span> {$data['request_number']}</div>
+            <div class="detail-row"><span class="label">Vendor:</span> {$vendorNameSafe}</div>
+        </div>
+        <p><a href="{$appUrl}/rfq/view.php?id={$rfqId}" class="button">View RFQ &amp; Quotes</a></p>
+    </div>
+    <div class="footer"><p>&copy; Government Chemist &middot; PRMS &middot; Confidential</p></div>
+</div></body></html>
+HTML;
+            if (sendMail($r['email'], $subject, $html)) $sent = true;
+        }
+        return $sent;
+    } catch (Exception $e) {
+        error_log("notifyQuoteUploaded error: {$e->getMessage()}");
+        return false;
+    }
+}
+
+/**
+ * Notify relevant users that quotes are ready for review (QUOTE_REVIEW_PENDING)
+ * Notifies: Requestor, HOD, Procurement Officers
+ */
+function notifyQuoteReviewReady(int $requestId, int $rfqId): bool {
+    if (!notificationsEnabled()) return false;
+
+    global $pdo;
+    try {
+        $stmt = $pdo->prepare("
+            SELECT pr.request_number, pr.created_by, u.full_name as requestor_name, u.email as requestor_email
+            FROM procurement_requests pr
+            LEFT JOIN users u ON pr.created_by = u.user_id
+            WHERE pr.request_id = ?
+        ");
+        $stmt->execute([$requestId]);
+        $request = $stmt->fetch(PDO::FETCH_ASSOC);
+        if (!$request) return false;
+
+        $appUrl = getAppUrl();
+        $subject = "Action Required: Review Vendor Quotes - {$request['request_number']}";
+
+        $recipients = [];
+        if (!empty($request['requestor_email'])) {
+            $recipients[] = ['email' => $request['requestor_email'], 'name' => $request['requestor_name']];
+        }
+        foreach (getUsersByRole('HOD') as $u) {
+            if (!empty($u['email'])) $recipients[] = ['email' => $u['email'], 'name' => $u['full_name']];
+        }
+        foreach (getUsersByRole('Procurement Officer') as $u) {
+            if (!empty($u['email'])) $recipients[] = ['email' => $u['email'], 'name' => $u['full_name']];
+        }
+
+        $sent = false;
+        $seen = [];
+        foreach ($recipients as $r) {
+            if (isset($seen[$r['email']])) continue;
+            $seen[$r['email']] = true;
+
+            $html = <<<HTML
+<!DOCTYPE html><html><head><meta charset="UTF-8">
+<style>
+    body { font-family: Arial, sans-serif; color: #333; }
+    .container { max-width: 600px; margin: 0 auto; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; }
+    .header { background: linear-gradient(90deg, #0b5e2b, #c9a227); color: white; padding: 20px; }
+    .content { padding: 20px; }
+    .alert { background: #fff3cd; border-left: 4px solid #c9a227; padding: 12px; margin: 15px 0; border-radius: 4px; color: #856404; }
+    .details { background: #f8f9fa; padding: 15px; border-radius: 5px; margin: 15px 0; }
+    .detail-row { margin: 8px 0; }
+    .label { font-weight: bold; color: #555; }
+    .button { background: #0b5e2b; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px; display: inline-block; margin-top: 15px; }
+    .footer { background: #f8f9fa; padding: 15px; text-align: center; font-size: 12px; color: #777; border-top: 1px solid #ddd; }
+</style></head><body>
+<div class="container">
+    <div class="header">
+        <h2 style="margin: 0;">Action Required: Review Vendor Quotes</h2>
+        <p style="margin: 5px 0 0 0;">Government Chemist - PRMS</p>
+    </div>
+    <div class="content">
+        <p>Dear {$r['name']},</p>
+        <div class="alert">
+            <strong>Vendor quotes are now available for review for request {$request['request_number']}.</strong>
+        </div>
+        <p>Please review the submitted vendor quotes and approve or provide feedback.</p>
+        <p><a href="{$appUrl}/rfq/view.php?id={$rfqId}" class="button">Review Quotes Now</a></p>
+    </div>
+    <div class="footer"><p>&copy; Government Chemist &middot; PRMS &middot; Confidential</p></div>
+</div></body></html>
+HTML;
+            if (sendMail($r['email'], $subject, $html)) $sent = true;
+        }
+        return $sent;
+    } catch (Exception $e) {
+        error_log("notifyQuoteReviewReady error: {$e->getMessage()}");
+        return false;
+    }
+}
+
+/**
+ * Notify evaluation committee members that the evaluation stage has started
+ */
+function notifyEvaluationStarted(int $rfqId): bool {
+    if (!notificationsEnabled()) return false;
+
+    global $pdo;
+    try {
+        $stmt = $pdo->prepare("
+            SELECT r.rfq_number, pr.request_number
+            FROM rfqs r
+            JOIN procurement_requests pr ON r.request_id = pr.request_id
+            WHERE r.rfq_id = ?
+        ");
+        $stmt->execute([$rfqId]);
+        $rfq = $stmt->fetch(PDO::FETCH_ASSOC);
+        if (!$rfq) return false;
+
+        // Get committee members for this RFQ
+        $stmt = $pdo->prepare("
+            SELECT u.user_id, u.email, u.full_name
+            FROM rfq_evaluation_committee ec
+            JOIN users u ON ec.user_id = u.user_id
+            WHERE ec.rfq_id = ? AND u.is_active = 1
+        ");
+        $stmt->execute([$rfqId]);
+        $members = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        if (empty($members)) return false;
+
+        $appUrl = getAppUrl();
+        $subject = "Action Required: Evaluate RFQ {$rfq['rfq_number']}";
+
+        $sent = false;
+        foreach ($members as $m) {
+            if (empty($m['email'])) continue;
+            $html = <<<HTML
+<!DOCTYPE html><html><head><meta charset="UTF-8">
+<style>
+    body { font-family: Arial, sans-serif; color: #333; }
+    .container { max-width: 600px; margin: 0 auto; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; }
+    .header { background: linear-gradient(90deg, #0b5e2b, #c9a227); color: white; padding: 20px; }
+    .content { padding: 20px; }
+    .alert { background: #fff3cd; border-left: 4px solid #c9a227; padding: 12px; margin: 15px 0; border-radius: 4px; color: #856404; }
+    .details { background: #f8f9fa; padding: 15px; border-radius: 5px; margin: 15px 0; }
+    .detail-row { margin: 8px 0; }
+    .label { font-weight: bold; color: #555; }
+    .button { background: #0b5e2b; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px; display: inline-block; margin-top: 15px; }
+    .footer { background: #f8f9fa; padding: 15px; text-align: center; font-size: 12px; color: #777; border-top: 1px solid #ddd; }
+</style></head><body>
+<div class="container">
+    <div class="header">
+        <h2 style="margin: 0;">Action Required: RFQ Evaluation</h2>
+        <p style="margin: 5px 0 0 0;">Government Chemist - PRMS</p>
+    </div>
+    <div class="content">
+        <p>Dear {$m['full_name']},</p>
+        <div class="alert">
+            <strong>You have been assigned to evaluate {$rfq['rfq_number']} ({$rfq['request_number']}).</strong>
+        </div>
+        <p>The evaluation stage has started. Please review the vendor quotes and cast your vote.</p>
+        <p><a href="{$appUrl}/rfq/view.php?id={$rfqId}" class="button">Start Evaluation</a></p>
+    </div>
+    <div class="footer"><p>&copy; Government Chemist &middot; PRMS &middot; Confidential</p></div>
+</div></body></html>
+HTML;
+            if (sendMail($m['email'], $subject, $html)) $sent = true;
+        }
+        return $sent;
+    } catch (Exception $e) {
+        error_log("notifyEvaluationStarted error: {$e->getMessage()}");
+        return false;
+    }
+}
+
+/**
+ * Notify Finance Officers that a quote has been approved and funds verification/commitment is needed
+ */
+function notifyFinanceCommitmentNeeded(int $requestId, string $vendorName, float $quoteAmount): bool {
+    if (!notificationsEnabled()) return false;
+
+    global $pdo;
+    try {
+        $stmt = $pdo->prepare("
+            SELECT pr.request_number, pr.currency, b.branch_name, u.full_name as requestor_name
+            FROM procurement_requests pr
+            LEFT JOIN branches b ON pr.branch_id = b.branch_id
+            LEFT JOIN users u ON pr.created_by = u.user_id
+            WHERE pr.request_id = ?
+        ");
+        $stmt->execute([$requestId]);
+        $request = $stmt->fetch(PDO::FETCH_ASSOC);
+        if (!$request) return false;
+
+        $financeUsers = getUsersByRole('Finance Officer');
+        if (empty($financeUsers)) return false;
+
+        $appUrl = getAppUrl();
+        $currency = normalizeCurrency($request['currency'] ?? 'JMD');
+        $formattedAmount = $currency . ' ' . number_format($quoteAmount, 2);
+        $subject = "Action Required: Verify Funds & Create Commitment - {$request['request_number']}";
+        $vendorNameSafe = htmlspecialchars($vendorName);
+
+        $sent = false;
+        foreach ($financeUsers as $fo) {
+            if (empty($fo['email'])) continue;
+            $html = <<<HTML
+<!DOCTYPE html><html><head><meta charset="UTF-8">
+<style>
+    body { font-family: Arial, sans-serif; color: #333; }
+    .container { max-width: 600px; margin: 0 auto; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; }
+    .header { background: linear-gradient(90deg, #0b5e2b, #c9a227); color: white; padding: 20px; }
+    .content { padding: 20px; }
+    .alert { background: #fff3cd; border-left: 4px solid #c9a227; padding: 12px; margin: 15px 0; border-radius: 4px; color: #856404; }
+    .details { background: #f8f9fa; padding: 15px; border-radius: 5px; margin: 15px 0; }
+    .detail-row { margin: 8px 0; }
+    .label { font-weight: bold; color: #555; }
+    .button { background: #0b5e2b; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px; display: inline-block; margin-top: 15px; }
+    .footer { background: #f8f9fa; padding: 15px; text-align: center; font-size: 12px; color: #777; border-top: 1px solid #ddd; }
+</style></head><body>
+<div class="container">
+    <div class="header">
+        <h2 style="margin: 0;">Action Required: Verify Funds &amp; Create Commitment</h2>
+        <p style="margin: 5px 0 0 0;">Government Chemist - PRMS</p>
+    </div>
+    <div class="content">
+        <p>Dear {$fo['full_name']},</p>
+        <div class="alert">
+            <strong>A vendor quote has been approved for {$request['request_number']}. Funds verification and commitment creation are now required.</strong>
+        </div>
+        <div class="details">
+            <div class="detail-row"><span class="label">Request Number:</span> <strong>{$request['request_number']}</strong></div>
+            <div class="detail-row"><span class="label">Requestor:</span> {$request['requestor_name']}</div>
+            <div class="detail-row"><span class="label">Selected Vendor:</span> {$vendorNameSafe}</div>
+            <div class="detail-row"><span class="label">Quote Amount:</span> {$formattedAmount}</div>
+        </div>
+        <p><a href="{$appUrl}/commitments/add.php?request_id={$requestId}" class="button">Verify Funds &amp; Create Commitment</a></p>
+    </div>
+    <div class="footer"><p>&copy; Government Chemist &middot; PRMS &middot; Confidential</p></div>
+</div></body></html>
+HTML;
+            if (sendMail($fo['email'], $subject, $html)) $sent = true;
+        }
+        return $sent;
+    } catch (Exception $e) {
+        error_log("notifyFinanceCommitmentNeeded error: {$e->getMessage()}");
+        return false;
+    }
+}
+
+/**
+ * Notify the first approver that a declined request has been resubmitted
+ */
+function notifyRequestResubmitted(int $requestId): bool {
+    if (!notificationsEnabled()) return false;
+
+    global $pdo;
+    try {
+        $stmt = $pdo->prepare("
+            SELECT pr.request_number, pr.estimated_value, pr.currency, pr.request_type,
+                   pr.branch_id, b.branch_name, u.full_name as requestor_name
+            FROM procurement_requests pr
+            LEFT JOIN branches b ON pr.branch_id = b.branch_id
+            LEFT JOIN users u ON pr.created_by = u.user_id
+            WHERE pr.request_id = ?
+        ");
+        $stmt->execute([$requestId]);
+        $request = $stmt->fetch(PDO::FETCH_ASSOC);
+        if (!$request) return false;
+
+        $approverEmail = getApproverEmailForBranch(
+            (int)$request['branch_id'],
+            (float)$request['estimated_value'],
+            $request['request_type']
+        );
+        if (!$approverEmail) return false;
+
+        $appUrl = getAppUrl();
+        $subject = "Request Resubmitted After Decline - {$request['request_number']}";
+
+        $html = <<<HTML
+<!DOCTYPE html><html><head><meta charset="UTF-8">
+<style>
+    body { font-family: Arial, sans-serif; color: #333; }
+    .container { max-width: 600px; margin: 0 auto; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; }
+    .header { background: linear-gradient(90deg, #0b5e2b, #c9a227); color: white; padding: 20px; }
+    .content { padding: 20px; }
+    .alert { background: #d1ecf1; border-left: 4px solid #0dcaf0; padding: 12px; margin: 15px 0; border-radius: 4px; color: #0c5460; }
+    .details { background: #f8f9fa; padding: 15px; border-radius: 5px; margin: 15px 0; }
+    .detail-row { margin: 8px 0; }
+    .label { font-weight: bold; color: #555; }
+    .button { background: #0b5e2b; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px; display: inline-block; margin-top: 15px; }
+    .footer { background: #f8f9fa; padding: 15px; text-align: center; font-size: 12px; color: #777; border-top: 1px solid #ddd; }
+</style></head><body>
+<div class="container">
+    <div class="header">
+        <h2 style="margin: 0;">Request Resubmitted</h2>
+        <p style="margin: 5px 0 0 0;">Government Chemist - PRMS</p>
+    </div>
+    <div class="content">
+        <p>Dear Approver,</p>
+        <div class="alert">
+            <strong>A previously declined request has been revised and resubmitted by {$request['requestor_name']}.</strong>
+        </div>
+        <div class="details">
+            <div class="detail-row"><span class="label">Request Number:</span> <strong>{$request['request_number']}</strong></div>
+            <div class="detail-row"><span class="label">Requestor:</span> {$request['requestor_name']}</div>
+            <div class="detail-row"><span class="label">Branch:</span> {$request['branch_name']}</div>
+            <div class="detail-row"><span class="label">Request Type:</span> {$request['request_type']}</div>
+        </div>
+        <p>This request will need to be resubmitted by the requestor before it reaches your queue. No action needed yet.</p>
+        <p><a href="{$appUrl}/procurement/view.php?id={$requestId}" class="button">View Request</a></p>
+    </div>
+    <div class="footer"><p>&copy; Government Chemist &middot; PRMS &middot; Confidential</p></div>
+</div></body></html>
+HTML;
+        return sendMail($approverEmail, $subject, $html);
+    } catch (Exception $e) {
+        error_log("notifyRequestResubmitted error: {$e->getMessage()}");
+        return false;
+    }
+}
+
 ?>

@@ -43,6 +43,10 @@ if ($estimatedValue <= $directThreshold) {
 
     // Also update RFQ status to PUBLISHED
     $pdo->prepare("UPDATE rfqs SET status = 'PUBLISHED' WHERE rfq_id = ?")->execute([$rfq_id]);
+
+    // Notify quote reviewers (Requestor, HOD, Procurement)
+    require_once $_SERVER['DOCUMENT_ROOT']."/config/notifications.php";
+    notifyQuoteReviewReady($data['request_id'], $rfq_id);
     
     pop('Under-threshold RFQ moved to quote review (no committee evaluation required).', '/rfq/view.php?id='.$rfq_id, POP_DEFAULT_DELAY_MS, 'success');
     exit;
@@ -68,6 +72,10 @@ $pdo->prepare("
 
 // Also update RFQ status to EVALUATION
 $pdo->prepare("UPDATE rfqs SET status = 'EVALUATION' WHERE rfq_id = ?")->execute([$rfq_id]);
+
+// Notify evaluation committee members
+require_once $_SERVER['DOCUMENT_ROOT']."/config/notifications.php";
+notifyEvaluationStarted($rfq_id);
 
 header("Location: /rfq/view.php?id=".$rfq_id);
 exit;

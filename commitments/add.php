@@ -158,6 +158,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                               "Finance Officer verified funds are available for this request.");
             
             $pdo->commit();
+
+            // Notify requestor that funds have been verified
+            require_once $_SERVER['DOCUMENT_ROOT']."/config/notifications.php";
+            notifyRequestFinalized($request_id, 'FUNDS_VERIFIED');
             
             pop(
                 "Funds verified successfully. You can now upload the commitment document.",
