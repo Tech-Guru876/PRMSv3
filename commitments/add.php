@@ -197,7 +197,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit;
             
         } elseif ($action === 'submit_commitment_form') {
-            /* ===== STEP 2: PROCUREMENT FILLS COMMITMENT FORM ===== */
+            /* ===== STEP 2: PROCUREMENT SUBMITS COMMITMENT FORM ===== */
             if (!$isProcurement) {
                 throw new Exception("Only Procurement Officers can submit the commitment form.");
             }
@@ -229,23 +229,59 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
             }
             
+            // Handle optional commitment form upload
+            $formDocPath = null;
+            if (isset($_FILES['commitment_form_doc']) && $_FILES['commitment_form_doc']['error'] === UPLOAD_ERR_OK) {
+                $file = $_FILES['commitment_form_doc'];
+                
+                $allowedTypes = ['application/pdf', 'application/msword',
+                                'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                                'application/vnd.ms-excel',
+                                'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+                                'image/jpeg', 'image/png'];
+                
+                $finfo = finfo_open(FILEINFO_MIME_TYPE);
+                $mimeType = finfo_file($finfo, $file['tmp_name']);
+                finfo_close($finfo);
+                
+                if (!in_array($mimeType, $allowedTypes)) {
+                    throw new Exception("Invalid file type. Only PDF, Word, Excel, JPEG and PNG files are allowed.");
+                }
+                if ($file['size'] > 50 * 1024 * 1024) {
+                    throw new Exception("File size exceeds 50 MB limit.");
+                }
+                
+                $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/uploads/commitments/';
+                if (!is_dir($uploadDir)) {
+                    mkdir($uploadDir, 0755, true);
+                }
+                $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
+                $safeFilename = 'COMMIT_FORM_' . time() . '_' . uniqid() . '.' . $ext;
+                $uploadPath = $uploadDir . $safeFilename;
+                if (!move_uploaded_file($file['tmp_name'], $uploadPath)) {
+                    throw new Exception("Failed to save commitment form document.");
+                }
+                $formDocPath = '/uploads/commitments/' . $safeFilename;
+            }
+            
             // Generate commitment number
             $commitmentNumber = generateCommitmentNumber($pdo);
             
             $pdo->beginTransaction();
             
-            // Create commitment record (pending Finance upload)
+            // Create commitment record (pending Finance to create & upload)
             $stmt = $pdo->prepare("
                 INSERT INTO commitments
-                (request_id, commitment_number, commitment_date, commitment_total, gfms_commitment_number, status, commitment_type)
-                VALUES (?, ?, ?, ?, ?, 'open', 'ORIGINAL')
+                (request_id, commitment_number, commitment_date, commitment_total, gfms_commitment_number, document_path, status, commitment_type)
+                VALUES (?, ?, ?, ?, ?, ?, 'open', 'ORIGINAL')
             ");
             $stmt->execute([
                 $request_id,
                 $commitmentNumber,
                 $commitmentDate,
                 (float)$commitmentTotal,
-                !empty($gfmsNumber) ? $gfmsNumber : null
+                !empty($gfmsNumber) ? $gfmsNumber : null,
+                $formDocPath
             ]);
             
             $commitment_id = $pdo->lastInsertId();
@@ -257,19 +293,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 WHERE request_id = ?
             ")->execute([$request_id]);
             
+            $formNote = $formDocPath ? ' (form document attached)' : ' (paper form submitted)';
             logAudit($pdo, 'commitments', $commitment_id, 'CREATE',
-                    "Commitment form submitted by Procurement Officer");
+                    "Commitment form submitted by Procurement Officer" . $formNote);
             logRequestTimeline($pdo, $request_id, 'COMMITMENTS_PENDING',
-                              "Procurement Officer submitted commitment form $commitmentNumber. Awaiting Finance to upload commitment document.");
+                              "Procurement Officer submitted commitment form $commitmentNumber{$formNote}. Awaiting Finance to create commitment.");
             
             $pdo->commit();
             
-            // Notify Finance Officers to upload commitment document
+            // Notify Finance Officers to create commitment
             require_once $_SERVER['DOCUMENT_ROOT']."/config/notifications.php";
             notifyFinanceCommitmentUploadNeeded($request_id, $commitmentNumber);
             
             pop(
-                "Commitment form submitted successfully. Finance has been notified to upload the commitment document.",
+                "Commitment form submitted successfully. Finance has been notified to create the commitment.",
                 "/procurement/view.php?id=" . $request_id,
                 2500,
                 "success"
@@ -277,14 +314,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit;
             
         } elseif ($action === 'upload_commitment') {
-            /* ===== STEP 3: FINANCE UPLOADS COMMITMENT DOCUMENT ===== */
+            /* ===== STEP 3: FINANCE CREATES COMMITMENT & UPLOADS DOCUMENT ===== */
             if (!$isFinance) {
-                throw new Exception("Only Finance Officers can upload commitment documents.");
-            }
-            
-            // Must have existing commitment from Procurement
-            if (!$existingCommitment) {
-                throw new Exception("No commitment form found. Procurement must submit the commitment form first.");
+                throw new Exception("Only Finance Officers can create commitments.");
             }
             
             $commitmentDate  = trim($_POST['commitment_date'] ?? '');
@@ -301,8 +333,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             // Validate GFMS number if provided
             if (!empty($gfmsNumber)) {
+                $excludeId = $existingCommitment['commitment_id'] ?? 0;
                 $checkGfms = $pdo->prepare("SELECT commitment_id FROM commitments WHERE gfms_commitment_number = ? AND commitment_id != ? LIMIT 1");
-                $checkGfms->execute([$gfmsNumber, $existingCommitment['commitment_id']]);
+                $checkGfms->execute([$gfmsNumber, $excludeId]);
                 if ($checkGfms->fetchColumn()) {
                     throw new Exception("This GFMS Commitment Number already exists in the system.");
                 }
@@ -361,21 +394,41 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             $pdo->beginTransaction();
             
-            // Update existing commitment record with document and any revised details
-            $stmt = $pdo->prepare("
-                UPDATE commitments
-                SET commitment_date = ?, commitment_total = ?, gfms_commitment_number = ?,
-                    document_path = ?, status = 'closed', approved_at = NOW()
-                WHERE commitment_id = ?
-            ");
-            
-            $stmt->execute([
-                $commitmentDate,
-                (float)$commitmentTotal,
-                !empty($gfmsNumber) ? $gfmsNumber : null,
-                $documentPath,
-                $existingCommitment['commitment_id']
-            ]);
+            if ($existingCommitment) {
+                // Update existing commitment record from Procurement's form
+                $stmt = $pdo->prepare("
+                    UPDATE commitments
+                    SET commitment_date = ?, commitment_total = ?, gfms_commitment_number = ?,
+                        document_path = ?, status = 'closed', approved_at = NOW()
+                    WHERE commitment_id = ?
+                ");
+                $stmt->execute([
+                    $commitmentDate,
+                    (float)$commitmentTotal,
+                    !empty($gfmsNumber) ? $gfmsNumber : null,
+                    $documentPath,
+                    $existingCommitment['commitment_id']
+                ]);
+                $commitmentNumber = $existingCommitment['commitment_number'];
+                $commitment_id = $existingCommitment['commitment_id'];
+            } else {
+                // Create new commitment record (Finance creating directly)
+                $commitmentNumber = generateCommitmentNumber($pdo);
+                $stmt = $pdo->prepare("
+                    INSERT INTO commitments
+                    (request_id, commitment_number, commitment_date, commitment_total, gfms_commitment_number, document_path, status, approved_at, commitment_type)
+                    VALUES (?, ?, ?, ?, ?, ?, 'closed', NOW(), 'ORIGINAL')
+                ");
+                $stmt->execute([
+                    $request_id,
+                    $commitmentNumber,
+                    $commitmentDate,
+                    (float)$commitmentTotal,
+                    !empty($gfmsNumber) ? $gfmsNumber : null,
+                    $documentPath
+                ]);
+                $commitment_id = $pdo->lastInsertId();
+            }
             
             // Update request status to COMMITMENT_APPROVED
             $pdo->prepare("
@@ -384,24 +437,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 WHERE request_id = ?
             ")->execute([$request_id]);
             
-            $commitmentNumber = $existingCommitment['commitment_number'];
-            
-            logAudit($pdo, 'commitments', $existingCommitment['commitment_id'], 'UPDATE',
-                    "Commitment document uploaded by Finance Officer - Commitment finalized");
+            logAudit($pdo, 'commitments', $commitment_id, $existingCommitment ? 'UPDATE' : 'CREATE',
+                    "Commitment created and document uploaded by Finance Officer");
             
             logRequestTimeline($pdo, $request_id, 'COMMITMENT_APPROVED',
-                              "Finance Officer uploaded commitment document for $commitmentNumber. Ready for PO creation.");
+                              "Finance Officer created commitment $commitmentNumber and uploaded document. Ready for PO creation.");
             
             $pdo->commit();
             
             // Notify about commitment creation — email Procurement Officers
             require_once $_SERVER['DOCUMENT_ROOT']."/config/notifications.php";
-            notifyCommitmentAction($request_id, $commitmentNumber, 'APPROVED', 'Funds verified and commitment uploaded from GFMS. Ready for PO creation.');
+            notifyCommitmentAction($request_id, $commitmentNumber, 'APPROVED', 'Funds verified and commitment created from GFMS. Ready for PO creation.');
             notifyProcurementOfCommitment($request_id, $commitmentNumber);
             
             pop(
-                "Commitment uploaded successfully. Procurement has been notified. Request moves to PO creation stage.",
-                "/commitments/view.php?commitment_id=" . $existingCommitment['commitment_id'],
+                "Commitment created and document uploaded successfully. Procurement has been notified. Request moves to PO creation stage.",
+                "/commitments/view.php?commitment_id=" . $commitment_id,
                 2500,
                 "success"
             );
@@ -434,7 +485,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/includes/header.php";
                 <?php elseif ($isProcurement && $currentStep === 'fill_commitment'): ?>
                     Step 2: Fill out commitment form and submit to Finance
                 <?php elseif ($isFinance && $currentStep === 'upload_commitment'): ?>
-                    Step 3: Upload commitment document from GFMS
+                    Step 3: Create commitment and upload document from GFMS
                 <?php else: ?>
                     Funds verification and commitment creation
                 <?php endif; ?>
@@ -472,7 +523,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/includes/header.php";
                     $step3Active = $currentStep === 'upload_commitment';
                     ?>
                     <div class="rounded-circle d-inline-flex align-items-center justify-content-center mb-2 <?= $step3Active ? 'bg-primary text-white' : ($step3Done ? 'bg-success text-white' : 'bg-light text-muted') ?>" style="width:48px;height:48px;font-size:1.2rem;font-weight:bold;">3</div>
-                    <div class="small fw-bold">Upload Commitment</div>
+                    <div class="small fw-bold">Create Commitment</div>
                     <div class="small text-muted">Finance</div>
                 </div>
             </div>
@@ -595,15 +646,15 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/includes/header.php";
         <!-- STEP 2: PROCUREMENT FILLS COMMITMENT FORM -->
         <div class="card border-warning mb-4">
             <div class="card-header bg-warning text-dark">
-                <h5 class="mb-0">📝 Step 2: Fill Out Commitment Form</h5>
+                <h5 class="mb-0">📝 Step 2: Submit Commitment Form</h5>
             </div>
             <div class="card-body">
                 <div class="alert alert-success mb-4">
                     <i class="bi bi-check-circle me-2"></i>
-                    <strong>Funds verified by Finance!</strong> Please fill out the commitment details and submit to Finance for commitment creation.
+                    <strong>Funds verified by Finance!</strong> Please fill out the commitment details below and submit to Finance. You can also attach a scanned copy of the paper commitment form (optional).
                 </div>
 
-                <form method="post">
+                <form method="post" enctype="multipart/form-data">
                     <input type="hidden" name="action" value="submit_commitment_form">
                     
                     <!-- Commitment Date -->
@@ -649,6 +700,18 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/includes/header.php";
                                class="form-control form-control-lg" placeholder="e.g., GC/2026/CM/00001" maxlength="50">
                     </div>
 
+                    <!-- Optional: Upload scanned commitment form -->
+                    <div class="mb-4">
+                        <label for="commitment_form_doc" class="form-label">
+                            <i class="bi bi-paperclip"></i> Attach Commitment Form (Optional)
+                        </label>
+                        <input type="file" id="commitment_form_doc" name="commitment_form_doc"
+                               class="form-control" accept=".pdf,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png">
+                        <small class="text-muted d-block mt-2">
+                            Optional: Upload a scanned copy of the paper commitment form (PDF, Word, Excel, JPEG, PNG). Max 50 MB.
+                        </small>
+                    </div>
+
                     <div class="d-grid gap-2">
                         <button type="submit" class="btn btn-warning btn-lg text-dark" onclick="return confirm('Submit this commitment form to Finance?')">
                             <i class="bi bi-send me-1"></i> Submit Commitment Form to Finance
@@ -661,15 +724,15 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/includes/header.php";
             </div>
         </div>
     <?php else: ?>
-        <!-- STEP 3: FINANCE UPLOADS COMMITMENT -->
+        <!-- STEP 3: FINANCE CREATES COMMITMENT & UPLOADS DOCUMENT -->
         <div class="card border-primary mb-4">
             <div class="card-header bg-primary text-white">
-                <h5 class="mb-0">📄 Step 3: Upload Commitment Document</h5>
+                <h5 class="mb-0">📄 Step 3: Create Commitment & Upload Document</h5>
             </div>
             <div class="card-body">
                 <div class="alert alert-success mb-4">
                     <i class="bi bi-check-circle me-2"></i>
-                    <strong>Commitment form submitted by Procurement!</strong> Review the details below and upload the commitment document from GFMS.
+                    <strong>Commitment form received from Procurement!</strong> Review the details, create the commitment in GFMS, and upload the commitment document.
                 </div>
 
                 <?php if ($existingCommitment): ?>
@@ -692,6 +755,14 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/includes/header.php";
                         <div class="col-md-4 mt-2">
                             <small class="text-muted d-block">GFMS Number</small>
                             <strong><?= htmlspecialchars($existingCommitment['gfms_commitment_number']) ?></strong>
+                        </div>
+                        <?php endif; ?>
+                        <?php if (!empty($existingCommitment['document_path'])): ?>
+                        <div class="col-md-4 mt-2">
+                            <small class="text-muted d-block">Attached Form</small>
+                            <a href="<?= htmlspecialchars($existingCommitment['document_path']) ?>" target="_blank" class="btn btn-sm btn-outline-primary">
+                                <i class="bi bi-file-earmark me-1"></i>View
+                            </a>
                         </div>
                         <?php endif; ?>
                     </div>
@@ -753,7 +824,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/includes/header.php";
 
                     <div class="d-grid gap-2">
                         <button type="submit" class="btn btn-primary btn-lg">
-                            <i class="bi bi-cloud-upload me-1"></i> Upload Commitment & Finalize
+                            <i class="bi bi-cloud-upload me-1"></i> Create Commitment & Upload Document
                         </button>
                         <a href="/procurement/view.php?id=<?= $request_id ?>" class="btn btn-outline-secondary">
                             <i class="bi bi-arrow-left me-1"></i> Cancel
@@ -769,10 +840,10 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/includes/header.php";
         <i class="bi bi-lightbulb"></i>
         <strong>Commitment Workflow:</strong>
         <ul class="mb-0 ms-3 mt-2">
-            <li><strong>Step 1 (Finance):</strong> Review the request and verify that sufficient funds are available</li>
-            <li><strong>Step 2 (Procurement):</strong> Fill out the commitment form with date, amount, and GFMS number</li>
-            <li><strong>Step 3 (Finance):</strong> Upload the commitment document from GFMS and finalize</li>
-            <li><strong>After upload:</strong> Procurement will be notified automatically to create the PO</li>
+            <li><strong>Step 1 (Finance):</strong> Verify that sufficient funds are available</li>
+            <li><strong>Step 2 (Procurement):</strong> Fill out the commitment form (paper) and submit details to Finance. Optionally attach a scanned copy.</li>
+            <li><strong>Step 3 (Finance):</strong> Create the commitment in GFMS and upload the commitment document</li>
+            <li><strong>After creation:</strong> Procurement will be notified automatically to create the PO</li>
         </ul>
         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
     </div>
