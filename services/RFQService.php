@@ -72,7 +72,7 @@ class RFQService
 
             // Fetch items for this procurement request
             $itemsStmt = $this->pdo->prepare("
-                SELECT item_name, specification, quantity
+                SELECT item_name, specification, quantity, remarks
                 FROM procurement_request_items
                 WHERE request_id = ?
                 ORDER BY item_id ASC
@@ -188,7 +188,7 @@ class RFQService
         $itemsTableHTML = '';
         if (!empty($items)) {
             $itemsTableHTML = '<div class="section">
-                <div class="section-title">[ITEMS REQUESTED]</div>
+                <div class="section-title">[REQUEST ITEMS]</div>
                 <div class="section-content">
                     <table style="width: 100%; border-collapse: collapse;">
                         <thead style="background-color: #0b5e2b; color: white;">
@@ -196,6 +196,7 @@ class RFQService
                                 <th style="padding: 10px; text-align: left; font-weight: bold;">Item</th>
                                 <th style="padding: 10px; text-align: left; font-weight: bold;">Specification</th>
                                 <th style="padding: 10px; text-align: center; font-weight: bold;">Qty</th>
+                                <th style="padding: 10px; text-align: left; font-weight: bold;">Remarks</th>
                             </tr>
                         </thead>
                         <tbody>';
@@ -203,11 +204,13 @@ class RFQService
                 $itemName = htmlspecialchars($item['item_name']);
                 $spec = htmlspecialchars($item['specification'] ?? '');
                 $qty = (int)$item['quantity'];
+                $remarks = htmlspecialchars($item['remarks'] ?? '');
                 $itemsTableHTML .= "
                             <tr style=\"border-bottom: 1px solid #ddd;\">
                                 <td style=\"padding: 10px; text-align: left;\">$itemName</td>
                                 <td style=\"padding: 10px; text-align: left; font-size: 13px; color: #555;\">$spec</td>
                                 <td style=\"padding: 10px; text-align: center; font-weight: bold;\">$qty</td>
+                                <td style=\"padding: 10px; text-align: left; font-size: 13px; color: #555;\">$remarks</td>
                             </tr>";
             }
             $itemsTableHTML .= '

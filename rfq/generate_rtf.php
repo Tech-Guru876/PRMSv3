@@ -102,7 +102,7 @@ $data = $vendorRows[0];
 
 /* Fetch Items */
 $stmt = $pdo->prepare("
-    SELECT item_name, specification, quantity
+    SELECT item_name, specification, quantity, remarks
     FROM procurement_request_items
     WHERE request_id = ?
 ");
@@ -295,9 +295,10 @@ $itemHtml = '
 <table cellpadding="6" border="0" width="100%">
   <tr>
     <th width="8%" align="center">#</th>
-    <th width="42%">Item</th>
-    <th width="35%">Specification</th>
-    <th width="15%" align="center">Qty</th>
+    <th width="32%">Item</th>
+    <th width="28%">Specification</th>
+    <th width="10%" align="center">Qty</th>
+    <th width="22%">Remarks</th>
   </tr>';
 
 foreach ($items as $idx => $item) {
@@ -308,6 +309,7 @@ foreach ($items as $idx => $item) {
         <td>'.htmlspecialchars($item['item_name']).'</td>
         <td style="color:#6c757d;">'.htmlspecialchars($item['specification'] ?? '—').'</td>
         <td align="center"><b>'.htmlspecialchars($item['quantity']).'</b></td>
+        <td style="color:#6c757d;">'.htmlspecialchars($item['remarks'] ?? '—').'</td>
     </tr>';
 }
 
