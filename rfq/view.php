@@ -398,6 +398,14 @@ $canAward = ($committeeCount >= 3 && $reportCount > 0 && $majorityMet);
                                             <i class="bi bi-file-earmark-text me-1"></i>RFQ Letter
                                         </a>
                                         <?php endif; ?>
+                                        <?php if (!$isAwarded && in_array($userRoleName, ['Admin', 'SuperAdmin', 'Procurement Officer'])): ?>
+                                        <a href="/rfq/remove_vendor.php?rfq_id=<?= $rfq_id ?>&vendor_id=<?= $vendor['rfq_vendor_id'] ?>"
+                                           class="btn btn-sm btn-outline-danger rounded-pill"
+                                           title="Remove <?= htmlspecialchars($vendor['vendor_name']) ?> from RFQ"
+                                           onclick="return confirm('Are you sure you want to remove <?= htmlspecialchars($vendor['vendor_name'], ENT_QUOTES) ?> from this RFQ?');">
+                                            <i class="bi bi-trash me-1"></i>Remove
+                                        </a>
+                                        <?php endif; ?>
                                         <?php if ($isAwarded && !($userRoleName === 'Procurement Officer')): ?>
                                         <span class="text-muted small">—</span>
                                         <?php endif; ?>
