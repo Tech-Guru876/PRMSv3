@@ -784,11 +784,11 @@ $rfqId = $stmt->fetchColumn();
                     $nextStepColor = 'text-info';
                 } elseif ($current === 'FUNDS_VERIFIED' && !$nextApprovalId) {
                     // Post-quote FUNDS_VERIFIED (no more approvals pending = commitment flow)
-                    $nextStepDisplay = "Funds verified by Finance. Procurement Officer to fill out commitment form.";
+                    $nextStepDisplay = "Funds verified by Finance. Procurement may upload an optional commitment form, then Finance creates the commitment in GFMS and uploads the document.";
                     $nextStepIcon = 'bi-pencil-square';
                     $nextStepColor = 'text-warning';
                 } elseif ($current === 'COMMITMENTS_PENDING') {
-                    $nextStepDisplay = "Commitment form submitted by Procurement. Finance to create commitment and upload document from GFMS.";
+                    $nextStepDisplay = "Commitment form submitted by Procurement. Finance to create commitment in GFMS and upload the document.";
                     $nextStepIcon = 'bi-cloud-upload';
                     $nextStepColor = 'text-info';
                 } elseif ($current === 'COMMITMENT_APPROVED') {
@@ -980,8 +980,9 @@ $rfqId = $stmt->fetchColumn();
                     <?php endif; ?>
 
                     <?php if ($current === 'FUNDS_VERIFIED' && !$nextApprovalId): ?>
-                        <a href="/commitments/add.php?request_id=<?= $request['request_id'] ?>" class="btn btn-warning text-dark">
-                            <i class="bi bi-pencil-square me-1"></i>Fill Commitment Form
+                        <a href="/commitments/add.php?request_id=<?= $request['request_id'] ?>" class="btn <?= in_array($role, ['Finance Officer', 'Admin', 'SuperAdmin']) ? 'btn-primary' : 'btn-warning text-dark' ?>">
+                            <i class="bi <?= in_array($role, ['Finance Officer', 'Admin', 'SuperAdmin']) ? 'bi-cloud-upload' : 'bi-paperclip' ?> me-1"></i>
+                            <?= in_array($role, ['Finance Officer', 'Admin', 'SuperAdmin']) ? 'Upload Commitment Form / Create Commitment' : 'Upload Commitment Form (Optional)' ?>
                         </a>
                     <?php endif; ?>
 

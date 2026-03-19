@@ -2460,7 +2460,9 @@ function notifyFinanceCommitmentUploadNeeded(int $requestId, string $commitmentN
         $appUrl = getAppUrl();
         $commitmentAmount = 'JMD ' . number_format((float)($request['commitment_total'] ?? 0), 2);
         $gfmsNum = $request['gfms_commitment_number'] ? htmlspecialchars($request['gfms_commitment_number']) : 'Not provided';
-        $subject = "Commitment Form Submitted - {$request['request_number']} - Upload Required";
+        $hasForm = !empty($request['commitment_date']) || !empty($request['commitment_total']) || !empty($request['gfms_commitment_number']);
+        $formStatusText = $hasForm ? 'Provided in PRMS for review.' : 'Not provided.';
+        $subject = "Commitment Action Required - {$request['request_number']}";
 
         foreach ($financeUsers as $fu) {
             if (empty($fu['email'])) continue;
@@ -2481,21 +2483,25 @@ function notifyFinanceCommitmentUploadNeeded(int $requestId, string $commitmentN
 </style></head><body>
 <div class="container">
     <div class="header">
-        <h2 style="margin: 0;">Commitment Form Submitted - Upload Required</h2>
+        <h2 style="margin: 0;">Commitment Action Required</h2>
         <p style="margin: 5px 0 0 0;">Government Chemist - PRMS</p>
     </div>
     <div class="content">
         <p>Dear {$fu['full_name']},</p>
-        <div class="status-box">Commitment Document Upload Required</div>
+        <div class="status-box">Create Commitment in GFMS</div>
         <div class="details">
             <div class="detail-row"><span class="label">Request Number:</span> {$request['request_number']}</div>
-            <div class="detail-row"><span class="label">Commitment Number:</span> {$commitmentNumber}</div>
-            <div class="detail-row"><span class="label">Commitment Amount:</span> {$commitmentAmount}</div>
-            <div class="detail-row"><span class="label">GFMS Number:</span> {$gfmsNum}</div>
             <div class="detail-row"><span class="label">Branch:</span> {$request['branch_name']}</div>
         </div>
-        <p>Procurement has submitted the commitment form for this request. Please upload the commitment document from GFMS to finalize the commitment.</p>
-        <p><a href="{$appUrl}/commitments/add.php?request_id={$requestId}" class="button">Upload Commitment Document</a></p>
+        <p>
+            Procurement has completed their step for this request.
+            Please create the commitment in GFMS, then upload the commitment document into PRMS to finalize the commitment.
+        </p>
+        <p>
+            Optional commitment form from Procurement:
+            {$formStatusText}
+        </p>
+        <p><a href="{$appUrl}/commitments/add.php?request_id={$requestId}" class="button">Create Commitment</a></p>
         <p style="margin-top: 20px; font-size: 12px; color: #777;">This is an automated notification from PRMS.</p>
     </div>
     <div class="footer"><p>&copy; Government Chemist &middot; PRMS &middot; Confidential</p></div>
