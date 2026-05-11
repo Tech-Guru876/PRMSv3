@@ -1,0 +1,58 @@
+# ============================================================
+# .htaccess — PRMS v3  (Apache 2.4)
+# ============================================================
+
+# ── Block access to sensitive files ─────────────────────────
+<FilesMatch "(\.env|\.env\.example|composer\.json|composer\.lock|\.git)">
+    Require all denied
+</FilesMatch>
+
+<FilesMatch "\.(sh|sql)$">
+    Require all denied
+</FilesMatch>
+
+# Block access to deploy, config and migrations directories
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^(deploy|config|migrations)/     - [F,L]
+</IfModule>
+
+# ── Directory listing off ────────────────────────────────────
+Options -Indexes
+
+# ── Character set ────────────────────────────────────────────
+AddDefaultCharset UTF-8
+
+# ── Security headers ─────────────────────────────────────────
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options  "nosniff"
+    Header always set X-Frame-Options         "SAMEORIGIN"
+    Header always set X-XSS-Protection        "1; mode=block"
+    Header always set Referrer-Policy         "strict-origin-when-cross-origin"
+</IfModule>
+
+# ── Compression ──────────────────────────────────────────────
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/css application/javascript text/plain application/json
+</IfModule>
+
+# ── Static asset caching ─────────────────────────────────────
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType text/css                  "access plus 30 days"
+    ExpiresByType application/javascript    "access plus 30 days"
+    ExpiresByType image/png                 "access plus 30 days"
+    ExpiresByType image/jpeg                "access plus 30 days"
+    ExpiresByType image/gif                 "access plus 30 days"
+    ExpiresByType image/svg+xml             "access plus 30 days"
+    ExpiresByType font/woff2                "access plus 1 year"
+    ExpiresByType font/woff                 "access plus 1 year"
+</IfModule>
+
+# ── PHP settings (override php.ini for uploads) ───────────────
+<IfModule mod_php.c>
+    php_value upload_max_filesize 50M
+    php_value post_max_size       55M
+    php_value memory_limit        256M
+    php_value max_execution_time  120
+</IfModule>

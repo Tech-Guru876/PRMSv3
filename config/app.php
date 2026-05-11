@@ -1,20 +1,24 @@
 <?php
 
 // config/app.php
-date_default_timezone_set('America/Jamaica');
+require_once __DIR__ . '/env.php';
+
+date_default_timezone_set(env('APP_TIMEZONE', 'America/Jamaica'));
 
 // Application URL for emails and redirects
-define('APP_URL', isset($_SERVER['REQUEST_SCHEME']) && isset($_SERVER['HTTP_HOST']) 
-    ? $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] 
-    : 'http://localhost');
+define('APP_URL', env('APP_URL',
+    (isset($_SERVER['REQUEST_SCHEME'], $_SERVER['HTTP_HOST'])
+        ? $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST']
+        : 'http://localhost')
+));
 
-define('APP_ENV', 'prod'); // dev | prod
-define('MAIL_HOST', 'smtp.gmail.com');
-define('MAIL_PORT', 587);
-define('MAIL_USER', 'dgcjamaica@gmail.com');
-define('MAIL_PASS', 'nyeoaounnzwhdlui');
-define('MAIL_FROM', 'dgcjamaica@gmail.com');
-define('MAIL_FROM_NAME', 'DGC Procurement System');
+define('APP_ENV',        env('APP_ENV',        'prod'));
+define('MAIL_HOST',      env('MAIL_HOST',      'smtp.gmail.com'));
+define('MAIL_PORT', (int) env('MAIL_PORT',      587));
+define('MAIL_USER',      env('MAIL_USER',      ''));
+define('MAIL_PASS',      env('MAIL_PASS',      ''));
+define('MAIL_FROM',      env('MAIL_FROM',      ''));
+define('MAIL_FROM_NAME', env('MAIL_FROM_NAME', 'DGC Procurement System'));
 
 
 // Role constants
