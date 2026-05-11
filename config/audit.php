@@ -1,4 +1,5 @@
 <?php
+if (!function_exists('logAudit')) {
 function logAudit(
     PDO $pdo,
     string $table,
@@ -19,4 +20,5 @@ function logAudit(
         $_SESSION['full_name'] ?? null,
         $notes
     ]);
+}
 }
