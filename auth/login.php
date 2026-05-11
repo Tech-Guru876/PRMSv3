@@ -62,13 +62,6 @@ $_SESSION['role'] = $role;
         $_SESSION['name']    = $user['full_name'];
         $_SESSION['full_name'] = $user['full_name'];
         
-        // Load role name from roles table
-$stmtRole = $pdo->prepare("SELECT name FROM roles WHERE id = ?");
-$stmtRole->execute([$user['role_id']]);
-$_SESSION['role_name'] = $stmtRole->fetchColumn();
-$_SESSION['role'] = $_SESSION['role_name'];
-
-
 if (strtolower($_SESSION['role_name']) === 'admin') {
     $_SESSION['show_admin_welcome'] = true;
 }

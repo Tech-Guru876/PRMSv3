@@ -17,8 +17,12 @@ function policyViolation($pdo, $action, $notes = '') {
     // Set friendly error message
     $_SESSION['error'] = $notes ?: 'Action not permitted by policy.';
 
-    // Redirect back safely
-    header("Location: " . ($_SERVER['HTTP_REFERER'] ?? '/dashboard/index.php'));
+    // Redirect back safely — validate referer is a local path to prevent open redirect
+    $referer = $_SERVER['HTTP_REFERER'] ?? '';
+    $parsedHost = parse_url($referer, PHP_URL_HOST);
+    $isLocal = empty($parsedHost) || $parsedHost === ($_SERVER['HTTP_HOST'] ?? '');
+    $safeRedirect = ($isLocal && !empty($referer)) ? $referer : '/dashboard/index.php';
+    header("Location: " . $safeRedirect);
     exit;
 }
 
