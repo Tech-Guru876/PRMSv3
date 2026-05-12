@@ -1,109 +1,100 @@
 /* ===============================
-   Gold & Green Table Theme
+   DGC PRMS — Table Theme
+   (Green & Gold Brand)
    =============================== */
 
-/* Table container */
+/* ── Table wrapper ── */
 .table {
-  border-color: #c9b458; /* muted gold */
+  border-color: #e5e7eb;
+  font-size: 0.875rem;
+  color: #374151;
 }
-.refresh-btn:hover i {
-    transform: rotate(90deg);
-    transition: transform .2s ease;
-}
-/* Table header */
+
+/* ── Table header ── */
 .table thead {
-  background: linear-gradient(90deg, #1f7a4d, #145c38); /* deep green */
+  background: linear-gradient(90deg, #0b5e2b, #0d7a38);
 }
 
 .table thead th {
-  color: #f6f3e7; /* soft gold-white */
+  color: #f0fdf4;
   font-weight: 600;
-  border-color: #c9b458;
+  border-color: rgba(255,255,255,0.12);
   text-transform: uppercase;
-  font-size: 0.85rem;
-  letter-spacing: 0.03em;
+  font-size: 0.76rem;
+  letter-spacing: 0.06em;
+  padding: 0.85rem 1rem;
+  white-space: nowrap;
 }
 
-/* Table rows */
+/* ── Table body rows ── */
 .table tbody tr {
   background-color: #ffffff;
-  transition: background-color 0.15s ease;
+  transition: background-color 0.12s ease;
 }
 
 .table tbody tr:hover {
-  background-color: #f9f6e8; /* pale gold hover */
+  background-color: #f0fdf4;
 }
 
-/* Table cells */
+/* ── Table cells ── */
 .table td,
 .table th {
   vertical-align: middle;
-  border-color: #e0d7a1;
+  border-color: #e5e7eb;
+  padding: 0.7rem 1rem;
 }
 
-/* Zebra striping */
+/* ── Zebra striping ── */
 .table-striped > tbody > tr:nth-of-type(odd) {
-  background-color: #fcfbf4;
+  background-color: #fafafa;
 }
 
-/* Status badges */
-.badge.bg-success {
-  background-color: #1f7a4d !important;
+/* ── Hover refresh button ── */
+.refresh-btn:hover i {
+  transform: rotate(90deg);
+  transition: transform 0.2s ease;
 }
 
-.badge.bg-warning {
-  background-color: #c9b458 !important;
-  color: #1f2d1f !important;
-}
+/* ── Status badges ── */
+.badge.bg-success  { background-color: #059669 !important; }
+.badge.bg-warning  { background-color: #c9a227 !important; color: #1a1a1a !important; }
+.badge.bg-danger   { background-color: #dc2626 !important; }
+.badge.bg-secondary{ background-color: #6b7280 !important; }
+.badge.bg-info     { background-color: #0ea5e9 !important; }
 
-.badge.bg-danger {
-  background-color: #b02a37 !important;
-}
-
-.badge.bg-secondary {
-  background-color: #6c757d !important;
-}
-
-/* Table action buttons */
+/* ── Table action buttons ── */
 .table .btn-info {
-  background-color: #1f7a4d;
-  border-color: #1f7a4d;
+  background-color: #0b5e2b;
+  border-color: #0b5e2b;
   color: #fff;
 }
 
 .table .btn-info:hover {
-  background-color: #145c38;
-  border-color: #145c38;
+  background-color: #064a20;
+  border-color: #064a20;
 }
 
-/* Empty state */
-.table .text-muted {
-  color: #8a7f3a !important;
-}
+/* ── Empty state text ── */
+.table .text-muted { color: #9ca3af !important; }
 
+/* ── Amount column ── */
 .td-amount {
   font-weight: 600;
-  color: #f7220f;
+  color: #dc2626;
 }
 
+/* ── Section title ── */
 .section-title {
-  border-left: 5px solid #c9b458;
+  border-left: 4px solid var(--dgc-gold, #c9a227);
   padding-left: 10px;
-  color: #145c38;
-  font-weight: 600;
+  color: var(--dgc-green-dark, #064a20);
+  font-weight: 700;
 }
 
-
-.badge.bg-secondary {
-  background-color: #6c757d;
-}
-
-.badge.bg-status-change {
-  background-color: #1f7a4d;
-}
-
+/* ── Audit trail badge types ── */
+.badge.bg-status-change { background-color: var(--dgc-green, #0b5e2b) !important; }
 .badge.bg-policy {
-  background-color: #c9b458;
-  color: #1f2d1f;
+  background-color: var(--dgc-gold, #c9a227) !important;
+  color: #1a1a1a !important;
 }
 

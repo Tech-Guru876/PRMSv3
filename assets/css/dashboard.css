@@ -1,62 +1,57 @@
-.btn-procurement { background:#0d6efd; color:#fff; }
-.btn-invoice     { background:#198754; color:#fff; }
-.btn-payment     { background:#6c757d; color:#fff; }
-.btn-management  { background:#212529; color:#fff; }
-.btn-analytics   { background:#0dcaf0; color:#000; }
+/* ================================
+   DGC PRMS — Dashboard Stylesheet
+================================ */
+
+/* ── Role-specific button helpers ── */
+.btn-procurement { background: #0b5e2b; color: #fff; border: none; }
+.btn-invoice     { background: #059669; color: #fff; border: none; }
+.btn-payment     { background: #6b7280; color: #fff; border: none; }
+.btn-management  { background: #1e293b; color: #fff; border: none; }
+.btn-analytics   { background: var(--dgc-gold, #c9a227); color: #1a1a1a; border: none; }
 
 .btn-procurement:hover,
 .btn-invoice:hover,
 .btn-payment:hover,
 .btn-management:hover,
-.btn-analytics:hover {
-  opacity: .9;
+.btn-analytics:hover { opacity: .88; }
+
+/* ── Cards ── */
+.card {
+  transition: transform 0.16s ease, box-shadow 0.16s ease;
+}
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,0,0,.10);
 }
 
-  .card {
-    transition: transform .15s ease, box-shadow .15s ease;
-  }
-  .card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
-  }
+/* ── Navbar logo ── */
+.navbar-brand img {
+  max-height: 38px;
+  transition: filter 0.3s ease;
+}
 
-  /* Logo */
-  .navbar-brand img {
-    max-height: 38px;
-    transition: filter 0.3s ease;
-  }
+/* ── Toast ── */
+.toast-container {
+  z-index: 1050 !important;
+  top: 1rem;
+  pointer-events: none;
+}
+.toast-container .toast { pointer-events: auto; }
 
-  /* Toast: visible at top, don't block clicks behind it */
-  .toast-container {
-    z-index: 1050 !important;
-    top: 1rem;
-    pointer-events: none;
-  }
-  .toast-container .toast {
-    pointer-events: auto;
-  }
-
+/* ── Audit scroll ── */
 .audit-scroll {
-  max-height: 260px;      /* adjust height as needed */
+  max-height: 260px;
   overflow-y: auto;
 }
-
-/* Optional polish */
-.audit-scroll::-webkit-scrollbar {
-  width: 6px;
-}
-
+.audit-scroll::-webkit-scrollbar { width: 5px; }
 .audit-scroll::-webkit-scrollbar-thumb {
-  background-color: rgba(0,0,0,0.3);
+  background-color: rgba(0,0,0,0.2);
   border-radius: 4px;
 }
-
-.audit-scroll::-webkit-scrollbar-track {
-  background: transparent;
-}
+.audit-scroll::-webkit-scrollbar-track { background: transparent; }
 
 .audit-scroll-full {
-  max-height: calc(100vh - 300px); /* fills screen but respects header */
+  max-height: calc(100vh - 300px);
   overflow-y: auto;
 }
 
