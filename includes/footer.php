@@ -5,16 +5,14 @@
 </div> <!-- end container-fluid -->
 
 <!-- Footer -->
-<footer class="footer mt-auto bg-light border-top shadow-sm">
-  <div class="container-fluid px-4 py-3">
-    <div class="row align-items-center">
-      <div class="col-md-6 text-start">
-        <span class="fw-bold text-dark">&copy; <?= date('Y') ?> Department of Government Chemist</span>
-        <span class="ms-2 text-muted small">PRMS v1.0</span>
-      </div>
-      <div class="col-md-6 text-end">
-        <span class="text-muted small">Developed by ICT Unit <span class="ms-2">💻</span> | All Rights Reserved <span class="ms-2">🔒</span></span>
-      </div>
+<footer class="footer mt-auto" style="background:#ffffff; border-top:1px solid #e5e7eb; padding:0.75rem 1.5rem;">
+  <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+    <div style="font-size:0.78rem; color:#6b7280;">
+      <span style="font-weight:600; color:#374151;">&copy; <?= date('Y') ?> Department of Government Chemist</span>
+      <span style="margin-left:0.5rem; background:#f0fdf4; color:#0b5e2b; padding:0.15rem 0.5rem; border-radius:12px; font-weight:600;">PRMS v1.0</span>
+    </div>
+    <div style="font-size:0.76rem; color:#9ca3af;">
+      <i class="bi bi-cpu me-1"></i>Developed by ICT Unit &nbsp;&bull;&nbsp; All Rights Reserved
     </div>
   </div>
 </footer>

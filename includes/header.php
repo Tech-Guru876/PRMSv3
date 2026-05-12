@@ -10,6 +10,10 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/config/auth.php";
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/png" href="/logo/cropped-Logo.png">
   <link rel="shortcut icon" type="image/png" href="/logo/cropped-Logo.png">
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="/assets/css/app.css?v=<?= time() ?>">
@@ -17,16 +21,16 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/config/auth.php";
   <link rel="stylesheet" href="/assets/css/tables.css?v=<?= time() ?>">
 </head>
 
-<body data-theme="dark" class="bg-light">
+<body class="prms-body">
 
 <!-- Mobile sidebar toggle -->
-<div class="d-md-none bg-dark text-white p-2 d-flex align-items-center justify-content-between">
+<div class="d-md-none text-white p-2 d-flex align-items-center justify-content-between" style="background:linear-gradient(90deg,#1a1a2e,#0f3460);">
   <a href="/dashboard/index.php" class="text-white text-decoration-none d-flex align-items-center gap-2">
-    <img src="/logo/cropped-Logo.png" alt="Logo" style="height:28px; filter: brightness(0) invert(1);">
-    <span class="fw-semibold">DGC PRMS</span>
+    <img src="/logo/cropped-Logo.png" alt="Logo" style="height:26px; filter: brightness(0) invert(1);">
+    <span class="fw-bold" style="font-size:0.9rem; letter-spacing:0.5px;">DGC PRMS</span>
   </a>
-  <button class="btn btn-outline-light btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu">
-    <i class="bi bi-list"></i> Menu
+  <button class="btn btn-sm" style="background:rgba(255,255,255,0.12); color:#fff; border:1px solid rgba(255,255,255,0.2); border-radius:6px;" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu">
+    <i class="bi bi-list"></i>
   </button>
 </div>
 
@@ -39,7 +43,38 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/config/auth.php";
     </nav>
 
     <!-- Main content -->
-    <main class="col-md-10 ms-sm-auto col-lg-10 px-md-4 pt-4">
+    <main class="col-md-10 ms-sm-auto col-lg-10 px-md-4 pt-3">
+
+<!-- Global Top Bar -->
+<div class="global-topbar mb-3">
+  <div class="global-topbar-left">
+    <a href="/dashboard/index.php" class="topbar-home-link">
+      <i class="bi bi-house-fill"></i>
+    </a>
+    <span class="topbar-divider">
+      <i class="bi bi-chevron-right"></i>
+    </span>
+    <span class="topbar-app-name">DGC PRMS</span>
+  </div>
+  <div class="global-topbar-right">
+    <span class="topbar-date d-none d-sm-flex">
+      <i class="bi bi-calendar3 me-1"></i>
+      <?= date('D, j M Y') ?>
+    </span>
+    <div class="topbar-user-chip">
+      <div class="topbar-avatar-circle">
+        <i class="bi bi-person-fill"></i>
+      </div>
+      <div class="topbar-user-details">
+        <span class="topbar-user-name"><?= htmlspecialchars($_SESSION['full_name'] ?? 'User') ?></span>
+        <span class="topbar-user-role"><?= htmlspecialchars($_SESSION['role_name'] ?? '') ?></span>
+      </div>
+    </div>
+    <a href="/auth/logout.php" class="topbar-logout-btn" title="Sign out">
+      <i class="bi bi-box-arrow-right"></i>
+    </a>
+  </div>
+</div>
 
 <?php
 // Flash and login notification modals
