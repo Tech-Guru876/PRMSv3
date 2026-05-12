@@ -34,8 +34,15 @@ die()  { echo "ERROR: $*" >&2; exit 1; }
 [[ -f "$ENV_FILE" ]] || die ".env not found at $ENV_FILE"
 
 set -o allexport
-# shellcheck source=/dev/null
-source "$ENV_FILE"
+set +u  # allow unset variables while sourcing .env (values may contain $ or spaces)
+# Parse .env manually: skip blank lines and comments, then export each KEY=VALUE
+while IFS= read -r _line || [[ -n "$_line" ]]; do
+    # Skip blank lines and comment lines (including decorative comment headers)
+    [[ "$_line" =~ ^[[:space:]]*$ ]]  && continue
+    [[ "$_line" =~ ^[[:space:]]*#  ]] && continue
+    export "$_line"
+done < "$ENV_FILE"
+set -u
 set +o allexport
 
 DB_HOST="${DB_HOST:-localhost}"
