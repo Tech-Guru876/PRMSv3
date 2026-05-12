@@ -44,9 +44,9 @@ apt-get install -y \
 # ── Web server ──────────────────────────────────────────────
 if [[ "$WEB_SERVER" == "apache" ]]; then
     apt-get install -y apache2
-    a2enmod rewrite headers deflate expires ssl proxy_fcgi setenvif
+    a2enmod rewrite headers deflate expires proxy_fcgi setenvif
     a2enconf "php${PHP_VER}-fpm"
-    # Allow Apache to listen on port 8080 (HTTPS)
+    # Allow Apache to listen on port 8080
     if ! grep -q "^Listen 8080" /etc/apache2/ports.conf 2>/dev/null; then
         echo "Listen 8080" >> /etc/apache2/ports.conf
     fi
@@ -116,13 +116,19 @@ echo "  4. Run: cd $APP_DIR/public && composer install --no-dev"
 echo "  5. Run pending migrations against the database"
 echo "  6. Install the virtual host:"
 if [[ "$WEB_SERVER" == "apache" ]]; then
+    echo "     # For LAN/IP access (plain HTTP):"
     echo "     sudo cp deploy/apache.conf /etc/apache2/sites-available/prms.conf"
+    echo "     # For a public domain with SSL (requires a valid cert):"
+    echo "     sudo cp deploy/apache-ssl.conf /etc/apache2/sites-available/prms.conf"
     echo "     sudo a2ensite prms && sudo systemctl reload apache2"
 else
     echo "     sudo cp deploy/nginx.conf /etc/nginx/sites-available/prms"
     echo "     sudo ln -s /etc/nginx/sites-available/prms /etc/nginx/sites-enabled/"
     echo "     sudo nginx -t && sudo systemctl reload nginx"
 fi
-echo "  7. Obtain SSL cert: sudo certbot --$WEB_SERVER -d prms.example.com"
+echo "  7. (Optional, public domain only) Obtain SSL cert:"
+echo "     sudo a2enmod ssl"
+echo "     sudo certbot --${WEB_SERVER} -d prms.yourdomain.com"
+echo "     sudo a2ensite prms && sudo systemctl reload apache2"
 echo "  8. Open firewall ports (HTTP redirect + HTTPS on 8080):"
 echo "     sudo ufw allow 80/tcp && sudo ufw allow 8080/tcp && sudo ufw reload"
