@@ -42,6 +42,10 @@ switch ($role) {
     case 'Director Procurement':
         header("Location: /dashboard/director_procurement.php"); exit;
 
+    // New: Property Management Officer
+    case 'Property Management Officer':
+        header("Location: /dashboard/property_management_officer.php"); exit;
+
     // New: Requestor
     case 'Requestor':
         header("Location: /dashboard/requestor.php"); exit;
