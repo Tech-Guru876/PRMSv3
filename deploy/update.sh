@@ -41,6 +41,9 @@ die()  { echo "ERROR: $*" >&2; exit 1; }
 
 cd "$APP_DIR"
 
+# ── Git safe.directory (needed when running as root/sudo over a www-data-owned tree) ──
+git config --global --add safe.directory "$APP_DIR" 2>/dev/null || true
+
 # ── Load .env ───────────────────────────────────────────────
 set +u
 while IFS= read -r _line || [[ -n "$_line" ]]; do
@@ -69,6 +72,24 @@ fi
 
 CURRENT_BRANCH="$(git rev-parse --abbrev-ref HEAD)"
 log "Pulling branch: $CURRENT_BRANCH"
+
+# ── Clear any leftover merge-conflict state ──────────────────
+# This can happen if a previous stash pop or merge left unresolved files
+# (e.g. vendor/ files that are now gitignored but were still in the index).
+if git ls-files --unmerged | grep -q .; then
+    log "  Unmerged files detected — clearing conflict state..."
+    while IFS= read -r _f; do
+        if git check-ignore -q "$_f" 2>/dev/null; then
+            # File is now gitignored — remove it from the index entirely
+            git rm --cached -f "$_f" 2>/dev/null \
+                && log "    Removed ignored file from index: $_f"
+        else
+            # Tracked file — reset to the HEAD version
+            git checkout HEAD -- "$_f" 2>/dev/null \
+                && log "    Reset to HEAD: $_f"
+        fi
+    done < <(git ls-files --unmerged | awk '{print $4}' | sort -u)
+fi
 
 # Stash any local modifications so the pull never fails silently
 if ! git diff --quiet || ! git diff --cached --quiet; then
