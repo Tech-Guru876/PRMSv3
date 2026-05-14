@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Mar 10, 2026 at 11:36 PM
--- Server version: 11.8.3-MariaDB-log
+-- Generation Time: May 14, 2026 at 09:10 PM
+-- Server version: 11.8.6-MariaDB-log
 -- PHP Version: 7.2.34
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -39,6 +39,18 @@ CREATE TABLE `acting_roles` (
   `created_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `acting_roles`
+--
+
+INSERT INTO `acting_roles` (`id`, `user_id`, `acting_role_id`, `assigned_by`, `reason`, `starts_at`, `ends_at`, `is_active`, `created_at`) VALUES
+(10, 27, 4, 27, NULL, '2026-03-17 11:51:00', NULL, 0, '2026-03-17 11:51:15'),
+(11, 30, 3, 27, NULL, '2026-03-18 09:47:00', NULL, 0, '2026-03-18 09:48:06'),
+(12, 27, 3, 27, NULL, '2026-03-18 09:48:00', NULL, 0, '2026-03-18 09:48:48'),
+(13, 27, 11, 27, NULL, '2026-03-18 12:55:00', NULL, 0, '2026-03-18 12:56:09'),
+(14, 42, 2, 27, 'acting procurement officer', '2026-04-07 09:52:00', '2026-08-28 09:53:00', 1, '2026-04-07 09:51:58'),
+(16, 40, 5, 27, NULL, '2026-05-13 10:11:00', NULL, 0, '2026-05-13 10:13:56');
+
 -- --------------------------------------------------------
 
 --
@@ -54,6 +66,44 @@ CREATE TABLE `acting_role_log` (
   `ip_address` varchar(45) DEFAULT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `acting_role_log`
+--
+
+INSERT INTO `acting_role_log` (`id`, `user_id`, `switched_from_role_id`, `switched_to_role_id`, `is_acting`, `ip_address`, `created_at`) VALUES
+(42, 27, 6, 4, 1, '67.230.76.197', '2026-03-17 11:51:19'),
+(43, 27, 6, 4, 1, '67.230.76.197', '2026-03-17 12:12:58'),
+(44, 27, 4, 6, 0, '67.230.76.197', '2026-03-17 12:14:06'),
+(45, 27, 6, 4, 1, '67.230.76.197', '2026-03-18 09:48:18'),
+(46, 27, 4, 6, 0, '67.230.76.197', '2026-03-18 09:48:26'),
+(47, 27, 6, 3, 1, '67.230.76.197', '2026-03-18 09:49:01'),
+(48, 27, 3, 6, 0, '67.230.76.197', '2026-03-18 09:57:27'),
+(49, 27, 6, 3, 1, '67.230.76.197', '2026-03-18 11:07:48'),
+(50, 27, 3, 6, 0, '67.230.76.197', '2026-03-18 11:20:33'),
+(51, 27, 6, 3, 1, '67.230.76.197', '2026-03-18 11:52:29'),
+(52, 27, 6, 11, 1, '67.230.76.197', '2026-03-18 12:56:14'),
+(53, 27, 6, 4, 1, '67.230.76.197', '2026-03-18 12:57:03'),
+(54, 27, 4, 11, 1, '67.230.76.197', '2026-03-18 13:00:13'),
+(55, 27, 11, 6, 0, '67.230.76.197', '2026-03-18 13:00:43'),
+(56, 27, 6, 11, 1, '67.230.76.197', '2026-03-19 09:00:43'),
+(57, 27, 11, 3, 1, '67.230.76.197', '2026-03-19 09:03:22'),
+(58, 27, 3, 11, 1, '67.230.76.197', '2026-03-19 09:08:39'),
+(59, 27, 11, 6, 0, '67.230.76.197', '2026-03-19 09:10:05'),
+(60, 27, 6, 3, 1, '67.230.76.197', '2026-03-19 09:11:04'),
+(61, 27, 3, 6, 0, '67.230.76.197', '2026-03-19 09:11:12'),
+(62, 27, 6, 11, 1, '67.230.76.197', '2026-03-19 09:11:59'),
+(63, 27, 11, 6, 0, '67.230.76.197', '2026-03-19 09:12:07'),
+(64, 27, 6, 11, 1, '67.230.76.197', '2026-03-19 09:13:34'),
+(65, 27, 11, 3, 1, '67.230.76.197', '2026-03-19 09:14:43'),
+(66, 27, 3, 11, 1, '67.230.76.197', '2026-03-19 09:14:51'),
+(67, 27, 11, 3, 1, '67.230.76.197', '2026-03-19 09:15:44'),
+(68, 27, 6, 3, 1, '72.252.32.165', '2026-03-22 08:29:01'),
+(69, 42, 12, 2, 1, '67.230.76.197', '2026-04-07 09:52:11'),
+(70, 27, 6, 4, 1, '67.213.150.200', '2026-05-01 17:16:34'),
+(71, 27, 6, 3, 1, '67.213.149.6', '2026-05-04 17:48:22'),
+(72, 27, 3, 6, 0, '67.213.149.6', '2026-05-04 17:48:48'),
+(73, 40, 12, 5, 1, '67.230.76.197', '2026-05-13 10:14:22');
 
 -- --------------------------------------------------------
 
@@ -1948,7 +1998,331 @@ INSERT INTO `audit_log` (`audit_id`, `table_name`, `record_id`, `action`, `chang
 (1844, 'procurement_requests', 132, 'RFQ_LETTER_AVAILABLE', 'Nellesha Samuels', '2026-03-06 17:24:09', 'Approval by Director HRM&A'),
 (1845, 'users', 44, 'LOCKOUT', '44', '2026-03-09 16:44:43', 'Account locked after failed attempts'),
 (1846, 'users', 44, 'LOCKOUT', '44', '2026-03-09 18:28:22', 'Account locked after failed attempts'),
-(1847, 'users', 44, 'ACCOUNT_UNLOCKED', 'Technical & User Support Officer', '2026-03-09 18:30:02', 'Account unlocked by admin (User ID: 27). Previous failed attempts: 5');
+(1847, 'users', 44, 'ACCOUNT_UNLOCKED', 'Technical & User Support Officer', '2026-03-09 18:30:02', 'Account unlocked by admin (User ID: 27). Previous failed attempts: 5'),
+(1848, 'procurement_requests', 133, 'CREATE', 'Technical & User Support Officer', '2026-03-12 20:12:44', 'Procurement request created'),
+(1849, 'procurement_requests', 133, 'STATUS_CHANGE', 'Technical & User Support Officer', '2026-03-12 20:12:51', 'Draft → Submitted'),
+(1850, 'procurement_requests', 133, 'APPROVAL_CHAIN_CREAT', 'Technical & User Support Officer', '2026-03-12 20:12:51', 'Approval chain created: Director HRM&A'),
+(1851, 'request_approvals', 99, 'APPROVE_STAGE', 'Nellesha Samuels', '2026-03-12 20:17:12', 'Approved by Director HRM&A'),
+(1852, 'procurement_requests', 133, 'STATUS_CHANGE', 'Nellesha Samuels', '2026-03-12 20:17:12', 'Approved → RFQ_LETTER_AVAILABLE (funds certified) by Director HRM&A'),
+(1853, 'procurement_requests', 133, 'RFQ_LETTER_AVAILABLE', 'Nellesha Samuels', '2026-03-12 20:17:12', 'Approval by Director HRM&A'),
+(1854, 'procurement_requests', 133, 'DELETE', 'Technical & User Support Officer', '2026-03-16 14:10:42', 'Request deleted by admin'),
+(1855, 'procurement_requests', 133, 'DELETE', 'Technical & User Support Officer', '2026-03-16 14:10:42', 'Request deleted by admin'),
+(1856, 'procurement_requests', 134, 'CREATE', 'Technical & User Support Officer', '2026-03-16 14:20:03', 'Procurement request created'),
+(1857, 'procurement_requests', 134, 'STATUS_CHANGE', 'Technical & User Support Officer', '2026-03-16 14:20:13', 'Draft → Submitted'),
+(1858, 'procurement_requests', 134, 'APPROVAL_CHAIN_CREAT', 'Technical & User Support Officer', '2026-03-16 14:20:13', 'Approval chain created: Deputy Government Chemist'),
+(1859, 'rfqs', 25, 'CREATE', 'Gabrielle Green', '2026-03-16 17:51:59', 'RFQ created for request ID 131. Date: 2026-03-16, Deadline: 2026-03-23T04:51'),
+(1860, 'rfqs', 26, 'CREATE', 'Gabrielle Green', '2026-03-16 20:31:08', 'RFQ created for request ID 132. Date: 2026-03-16, Deadline: 2026-03-23T15:31'),
+(1861, 'procurement_requests', 135, 'CREATE', 'Technical & User Support Officer', '2026-03-17 14:29:45', 'Procurement request created'),
+(1862, 'procurement_requests', 135, 'STATUS_CHANGE', 'Technical & User Support Officer', '2026-03-17 14:29:58', 'Draft → Submitted'),
+(1863, 'procurement_requests', 135, 'APPROVAL_CHAIN_CREAT', 'Technical & User Support Officer', '2026-03-17 14:29:58', 'Approval chain created: Deputy Government Chemist'),
+(1864, 'request_approvals', 101, 'APPROVE_STAGE', 'Daneika Anderson', '2026-03-17 14:39:45', 'Approved by Deputy Government Chemist'),
+(1865, 'procurement_requests', 131, 'DELETE', 'Technical & User Support Officer', '2026-03-17 15:49:23', 'Request deleted by admin'),
+(1866, 'procurement_requests', 131, 'DELETE', 'Technical & User Support Officer', '2026-03-17 15:49:23', 'Request deleted by admin'),
+(1867, 'procurement_requests', 135, 'DELETE', 'Technical & User Support Officer', '2026-03-17 15:51:27', 'Request deleted by admin'),
+(1868, 'procurement_requests', 135, 'DELETE', 'Technical & User Support Officer', '2026-03-17 15:51:27', 'Request deleted by admin'),
+(1869, 'procurement_requests', 136, 'CREATE', 'Technical & User Support Officer', '2026-03-17 15:53:09', 'Procurement request created'),
+(1870, 'system_config', 0, 'UPDATE', 'Technical & User Support Officer', '2026-03-17 15:53:51', 'System settings updated: enable_notifications=ON, threshold=3,000,000.00, petty_cash_limit=5,000.00, usd_to_jmd_rate=155.2200, hod_approval_threshold=500,000.00, committee_review_threshold=3,000,000.00'),
+(1871, 'procurement_requests', 136, 'STATUS_CHANGE', 'Technical & User Support Officer', '2026-03-17 15:57:12', 'Draft → Submitted'),
+(1872, 'procurement_requests', 136, 'APPROVAL_CHAIN_CREAT', 'Technical & User Support Officer', '2026-03-17 15:57:12', 'Approval chain created: HOD → Deputy Government Chemist'),
+(1873, 'procurement_requests', 137, 'CREATE', 'Technical & User Support Officer', '2026-03-17 15:59:36', 'Procurement request created'),
+(1874, 'procurement_requests', 137, 'STATUS_CHANGE', 'Technical & User Support Officer', '2026-03-17 16:00:01', 'Draft → Submitted'),
+(1875, 'procurement_requests', 137, 'APPROVAL_CHAIN_CREAT', 'Technical & User Support Officer', '2026-03-17 16:00:01', 'Approval chain created: HOD'),
+(1878, 'procurement_requests', 134, 'STATUS_CHANGE', 'Daneika Anderson', '2026-03-17 16:10:49', 'Submitted → Declined by Daneika Anderson'),
+(1879, 'procurement_requests', 134, 'DECLINED', 'Daneika Anderson', '2026-03-17 16:10:49', 'Request declined: Fix issue — by Daneika Anderson'),
+(1880, 'procurement_requests', 137, 'STATUS_CHANGE', 'Yanique A. Fraser', '2026-03-17 16:11:54', 'Approved — Funds certified & Status changed to RFQ_LETTER_AVAILABLE by HOD'),
+(1881, 'procurement_requests', 137, 'RFQ_LETTER_AVAILABLE', 'Yanique A. Fraser', '2026-03-17 16:11:54', 'Approval by Yanique A. Fraser - HOD'),
+(1882, 'procurement_requests', 127, 'UPDATE', 'Technical & User Support Officer', '2026-03-17 16:27:11', 'Signed request uploaded: FinMan Installation_Revised (1).pdf'),
+(1883, 'procurement_requests', 127, 'SIGNED_REQUEST_UPLOA', 'Technical & User Support Officer', '2026-03-17 16:27:11', 'Signed request uploaded by Technical & User Support Officer: FinMan Installation_Revised (1).pdf'),
+(1884, 'procurement_requests', 137, 'UPDATE', 'Yanique A. Fraser', '2026-03-17 16:29:43', 'Signed request uploaded: PR013.pdf'),
+(1885, 'procurement_requests', 137, 'SIGNED_REQUEST_UPLOA', 'Yanique A. Fraser', '2026-03-17 16:29:43', 'Signed request uploaded by Yanique A. Fraser: PR013.pdf'),
+(1886, 'procurement_requests', 138, 'CREATE', 'Technical & User Support Officer', '2026-03-17 16:45:56', 'Procurement request created'),
+(1887, 'procurement_requests', 138, 'STATUS_CHANGE', 'Technical & User Support Officer', '2026-03-17 16:46:03', 'Draft → Submitted'),
+(1888, 'procurement_requests', 138, 'APPROVAL_CHAIN_CREAT', 'Technical & User Support Officer', '2026-03-17 16:46:03', 'Approval chain created: HOD → Deputy Government Chemist'),
+(1891, 'procurement_requests', 138, 'STATUS_CHANGE', 'Yanique A. Fraser', '2026-03-17 16:47:58', 'Submitted → Declined by Yanique A. Fraser'),
+(1892, 'procurement_requests', 138, 'DECLINED', 'Yanique A. Fraser', '2026-03-17 16:47:58', 'Request declined: not able to approve — by Yanique A. Fraser'),
+(1893, 'rfqs', 27, 'CREATE', 'Gabrielle Green', '2026-03-17 16:53:40', 'RFQ created for request ID 137. Date: 2026-03-17, Deadline: 2026-03-19T11:00'),
+(1894, 'vendors', 4, 'CREATE', '44', '2026-03-17 16:56:32', 'Vendor \'MC System\' created'),
+(1895, 'rfq_vendors', 65, 'CREATE', '44', '2026-03-17 16:57:01', 'Vendor \'MC System\' added to RFQ RFQ-20260317-137'),
+(1896, 'procurement_requests', 138, 'STATUS_CHANGE', 'Technical & User Support Officer', '2026-03-17 17:14:17', 'Declined → Draft (Resubmitted by Technical & User Support Officer)'),
+(1897, 'procurement_requests', 138, 'RESUBMITTED', 'Technical & User Support Officer', '2026-03-17 17:14:17', 'Request resubmitted after decline by Technical & User Support Officer'),
+(1898, 'procurement_requests', 138, 'EDIT', 'Technical & User Support Officer', '2026-03-17 17:14:28', 'Procurement Request #138 edited.\n\nOLD ITEMS:\n- APC Smart‑UPS On‑Line SRT 5.4 kVA | Qty: 1 | SRT5KXLTUS \n\nNEW ITEMS:\n- APC Smart‑UPS On‑Line SRT 5.4 kVA | Qty: 1 | SRT5KXLTUS \n'),
+(1899, 'procurement_requests', 138, 'STATUS_CHANGE', 'Technical & User Support Officer', '2026-03-17 17:14:46', 'Draft → Submitted'),
+(1900, 'procurement_requests', 138, 'APPROVAL_CHAIN_CREAT', 'Technical & User Support Officer', '2026-03-17 17:14:46', 'Approval chain created: HOD → Deputy Government Chemist'),
+(1901, 'vendors', 5, 'CREATE', '44', '2026-03-17 17:14:52', 'Vendor \'Advanced Integrated System\' created'),
+(1902, 'rfq_vendors', 66, 'CREATE', '44', '2026-03-17 17:15:32', 'Vendor \'Advanced Integrated System\' added to RFQ RFQ-20260317-137'),
+(1903, 'vendors', 6, 'CREATE', '44', '2026-03-17 17:16:54', 'Vendor \'Printware\' created'),
+(1904, 'rfq_vendors', 67, 'CREATE', '44', '2026-03-17 17:17:38', 'Vendor \'Printware\' added to RFQ RFQ-20260317-137'),
+(1905, 'procurement_requests', 138, 'STATUS_CHANGE', 'Yanique A. Fraser', '2026-03-17 17:27:56', 'Approved — Funds certified & Status changed to HOD_APPROVED by HOD'),
+(1906, 'procurement_requests', 138, 'HOD_APPROVED', 'Yanique A. Fraser', '2026-03-17 17:27:56', 'Approval by Yanique A. Fraser - HOD'),
+(1907, 'procurement_requests', 138, 'UPDATE', 'Yanique A. Fraser', '2026-03-17 17:31:10', 'Signed request uploaded: PR014.pdf'),
+(1908, 'procurement_requests', 138, 'SIGNED_REQUEST_UPLOA', 'Yanique A. Fraser', '2026-03-17 17:31:10', 'Signed request uploaded by Yanique A. Fraser: PR014.pdf'),
+(1909, 'procurement_requests', 138, 'STATUS_CHANGE', 'Daneika Anderson', '2026-03-17 17:59:29', 'GC Approved (funds certified) — Status changed to RFQ_LETTER_AVAILABLE'),
+(1910, 'procurement_requests', 138, 'RFQ_LETTER_AVAILABLE', 'Daneika Anderson', '2026-03-17 17:59:29', 'GC approval by Daneika Anderson'),
+(1911, 'vendors', 7, 'CREATE', '44', '2026-03-17 18:53:56', 'Vendor \'D&S IT Services\' created'),
+(1912, 'rfq_vendors', 68, 'CREATE', '44', '2026-03-17 18:54:20', 'Vendor \'D&S IT Services\' added to RFQ RFQ-20260317-137'),
+(1913, 'rfqs', 28, 'CREATE', 'Gabrielle Green', '2026-03-17 19:12:55', 'RFQ created for request ID 138. Date: 2026-03-17, Deadline: 2026-03-19T11:00'),
+(1914, 'rfq_vendors', 69, 'CREATE', '44', '2026-03-17 19:13:46', 'Vendor \'Accu Power Limited\' added to RFQ RFQ-20260317-138'),
+(1915, 'rfqs', 28, 'UPDATE', '44', '2026-03-17 19:46:39', 'RFQ emails sent - Total: 1, Sent: 1, Failed: 0'),
+(1916, 'vendors', 8, 'CREATE', '44', '2026-03-17 19:48:10', 'Vendor \'Demario Ewan\' created'),
+(1917, 'rfq_vendors', 70, 'CREATE', '44', '2026-03-17 19:50:02', 'Vendor \'Demario Ewan\' added to RFQ RFQ-20260317-138 - RFQ notification email sent to demario.ewan@moh.gov.jm'),
+(1918, 'rfqs', 28, 'UPDATE', '44', '2026-03-17 19:50:12', 'RFQ emails sent - Total: 2, Sent: 2, Failed: 0'),
+(1919, 'rfq_vendors', 71, 'CREATE', '44', '2026-03-17 19:54:46', 'Vendor \'Demario Ewan\' added to RFQ RFQ-20260316-132 - RFQ notification email sent to demario.ewan@moh.gov.jm'),
+(1920, 'procurement_requests', 139, 'CREATE', 'Sancia Johnally Haynes', '2026-03-17 20:03:02', 'Reimbursement request created'),
+(1921, 'pre_authorizations', 1920, 'CREATE', 'Sancia Johnally Haynes', '2026-03-17 20:03:02', 'Pre-authorization created for reimbursement'),
+(1922, 'user_permissions', 39, 'PERMISSION_OVERRIDE', 'Technical & User Support Officer', '2026-03-17 20:05:21', 'Permission 103 updated (granted=1)'),
+(1923, 'rfqs', 28, 'UPDATE', '27', '2026-03-17 20:06:48', 'RFQ emails sent - Total: 2, Sent: 2, Failed: 0'),
+(1924, 'rfqs', 26, 'UPDATE', '27', '2026-03-17 20:10:30', 'RFQ emails sent - Total: 1, Sent: 1, Failed: 0'),
+(1925, 'procurement_requests', 139, 'STATUS_CHANGE', 'Sancia Johnally Haynes', '2026-03-17 20:15:42', 'Draft → Submitted'),
+(1926, 'procurement_requests', 139, 'APPROVAL_CHAIN_CREAT', 'Sancia Johnally Haynes', '2026-03-17 20:15:42', 'Approval chain created: HOD'),
+(1927, 'rfqs', 26, 'UPDATE', '27', '2026-03-18 13:09:23', 'RFQ emails sent - Total: 1, Sent: 1, Failed: 0'),
+(1928, 'rfqs', 26, 'UPDATE', '27', '2026-03-18 13:41:23', 'RFQ emails sent - Total: 1, Sent: 1, Failed: 0'),
+(1929, 'vendors', 9, 'CREATE', '44', '2026-03-18 13:48:28', 'Vendor \'Royale Computers & Accessories Ltd\' created'),
+(1930, 'rfq_vendors', 72, 'CREATE', '44', '2026-03-18 13:48:44', 'Vendor \'Royale Computers & Accessories Ltd\' added to RFQ RFQ-20260317-137 - RFQ notification email sent to Shaquille.Murray@royalecomputers.com'),
+(1931, 'rfqs', 26, 'UPDATE', '27', '2026-03-18 13:50:59', 'RFQ emails sent - Total: 1, Sent: 1, Failed: 0'),
+(1932, 'vendors', 8, 'UPDATE', '27', '2026-03-18 13:59:20', 'Updated: Status: ACTIVE → INACTIVE'),
+(1933, 'vendors', 8, 'UPDATE', '27', '2026-03-18 13:59:32', 'Updated: Status:  → ACTIVE'),
+(1934, 'rfq_vendors', 26, 'DELETE', 'Technical & User Support Officer', '2026-03-18 14:02:07', 'Vendor \"Demario Ewan\" (rfq_vendor_id=71) removed from RFQ'),
+(1935, 'rfq_quotes', NULL, 'UPLOAD', NULL, '2026-03-18 14:02:07', 'Quote uploaded for RFQ ID 27'),
+(1936, 'rfq_quotes', NULL, 'REVIEW', NULL, '2026-03-18 14:03:15', 'Quote 65 reviewed: MEETS_REQUIREMENTS by Technical & User Support Officer'),
+(1937, 'rfq_vendors', 73, 'CREATE', '27', '2026-03-18 14:07:18', 'Vendor \'Demario Ewan\' added to RFQ RFQ-20260316-132 - RFQ notification email sent to demario.ewan@moh.gov.jm'),
+(1938, 'vendors', 3, 'DELETE', 'Technical & User Support Officer', '2026-03-18 14:08:10', 'Vendor \"Intcomex Limited\" deleted from master list'),
+(1939, 'vendors', 2, 'UPDATE', '27', '2026-03-18 14:08:30', 'Updated: Status: ACTIVE → INACTIVE'),
+(1940, 'rfq_quotes', NULL, 'SELECT', NULL, '2026-03-18 14:20:21', 'Quote 65 selected by Finance Officer Latoya Gayle - Vendor: Royale Computers & Accessories Ltd, Amount: $355949.10'),
+(1941, 'procurement_requests', 137, 'FUNDS_VERIFIED', 'Latoya Gayle', '2026-03-18 14:20:43', 'Funds verified by Finance Officer'),
+(1942, 'procurement_requests', 137, 'FUNDS_VERIFIED', 'Latoya Gayle', '2026-03-18 14:20:43', 'Finance Officer verified funds are available for this request.'),
+(1943, 'rfq_vendors', 28, 'DELETE', 'Technical & User Support Officer', '2026-03-18 14:57:45', 'Vendor \"Demario Ewan\" (rfq_vendor_id=70) removed from RFQ'),
+(1944, 'rfq_quotes', NULL, 'REVIEW', NULL, '2026-03-18 15:20:30', 'Quote 65 reviewed: MEETS_REQUIREMENTS by Technical & User Support Officer'),
+(1945, 'rfq_quotes', NULL, 'REVIEW', NULL, '2026-03-18 15:34:03', 'Quote 65 reviewed: MEETS_REQUIREMENTS by Technical & User Support Officer'),
+(1946, 'procurement_requests', 137, 'QUOTE_APPROVED', 'Technical & User Support Officer', '2026-03-18 15:34:03', 'Quote from Royale Computers & Accessories Ltd approved by Technical & User Support Officer. Finance notified to verify funds.'),
+(1947, 'procurement_requests', 137, 'FUNDS_VERIFIED', 'Latoya Gayle', '2026-03-18 16:13:12', 'Funds verified by Finance Officer'),
+(1948, 'procurement_requests', 137, 'FUNDS_VERIFIED', 'Latoya Gayle', '2026-03-18 16:13:12', 'Finance Officer verified funds are available. Procurement Officer to fill commitment form.'),
+(1949, 'commitments', 86, 'CREATE', 'Gabrielle Green', '2026-03-18 16:22:55', 'Commitment form submitted by Procurement Officer (paper form submitted)'),
+(1950, 'procurement_requests', 137, 'COMMITMENTS_PENDING', 'Gabrielle Green', '2026-03-18 16:22:55', 'Procurement Officer submitted commitment form CM001 (paper form submitted). Awaiting Finance to create commitment.'),
+(1951, 'rfq_quotes', NULL, 'REVIEW', NULL, '2026-03-18 16:53:48', 'Quote 65 reviewed: MEETS_REQUIREMENTS by Technical & User Support Officer'),
+(1952, 'procurement_requests', 137, 'QUOTE_APPROVED', 'Technical & User Support Officer', '2026-03-18 16:53:48', 'Quote from Royale Computers & Accessories Ltd approved by Technical & User Support Officer. Finance notified to verify funds.'),
+(1953, 'procurement_requests', 137, 'FUNDS_VERIFIED', 'Latoya Gayle', '2026-03-18 19:51:11', 'Funds verified by Finance Officer'),
+(1954, 'procurement_requests', 137, 'FUNDS_VERIFIED', 'Latoya Gayle', '2026-03-18 19:51:11', 'Finance Officer verified funds are available. Procurement Officer to fill commitment form.'),
+(1955, 'procurement_requests', 137, 'FORM_UPLOADED', 'Latoya Gayle', '2026-03-19 17:11:07', 'Commitment form uploaded by Finance Officer: /uploads/commitments/COMMIT_FORM_1773940267_69bc2e2bc7a70.pdf'),
+(1956, 'procurement_requests', 137, 'FUNDS_VERIFIED', 'Latoya Gayle', '2026-03-19 17:11:07', 'Finance Officer uploaded commitment form. Finance to create commitment in GFMS.'),
+(1957, 'procurement_requests', 137, 'FORM_SKIPPED', 'Latoya Gayle', '2026-03-19 17:11:24', 'Finance Officer skipped commitment form upload (optional step).'),
+(1958, 'procurement_requests', 137, 'FUNDS_VERIFIED', 'Latoya Gayle', '2026-03-19 17:11:24', 'Finance Officer proceeded without uploading commitment form. Finance to create commitment in GFMS.'),
+(1959, 'procurement_requests', 137, 'FORM_UPLOADED', 'Latoya Gayle', '2026-03-19 17:20:01', 'Commitment form uploaded by Finance Officer: /uploads/commitments/COMMIT_FORM_1773940801_69bc3041f0636.pdf'),
+(1960, 'procurement_requests', 137, 'COMMITMENTS_PENDING', 'Latoya Gayle', '2026-03-19 17:20:01', 'Finance Officer uploaded commitment form. Finance to create commitment in GFMS.');
+INSERT INTO `audit_log` (`audit_id`, `table_name`, `record_id`, `action`, `changed_by`, `change_date`, `notes`) VALUES
+(1961, 'commitments', 87, 'CREATE', 'Latoya Gayle', '2026-03-19 17:21:22', 'Commitment created by Finance Officer from GFMS and document uploaded'),
+(1962, 'procurement_requests', 137, 'COMMITMENT_APPROVED', 'Latoya Gayle', '2026-03-19 17:21:22', 'Finance Officer created commitment CM001 in GFMS and uploaded commitment document. Ready for PO creation.'),
+(1963, 'rfq_vendors', 74, 'CREATE', '27', '2026-03-20 16:50:45', 'Vendor \'Demario Ewan\' added to RFQ RFQ-20260317-138 - RFQ notification email sent to demario.ewan@moh.gov.jm'),
+(1964, 'rfq_vendors', 28, 'DELETE', 'Technical & User Support Officer', '2026-03-20 16:50:56', 'Vendor \"Demario Ewan\" (rfq_vendor_id=74) removed from RFQ'),
+(1965, 'procurement_requests', 140, 'CREATE', 'Technical & User Support Officer', '2026-03-24 15:27:47', 'Procurement request created'),
+(1966, 'procurement_requests', 140, 'STATUS_CHANGE', 'Technical & User Support Officer', '2026-03-24 15:27:55', 'Draft → Submitted'),
+(1967, 'procurement_requests', 140, 'APPROVAL_CHAIN_CREAT', 'Technical & User Support Officer', '2026-03-24 15:27:55', 'Approval chain created: Director HRM&A'),
+(1968, 'request_approvals', 110, 'APPROVE_STAGE', 'Nellesha Samuels', '2026-03-24 16:33:26', 'Approved by Director HRM&A'),
+(1969, 'procurement_requests', 140, 'STATUS_CHANGE', 'Nellesha Samuels', '2026-03-24 16:33:26', 'Approved → RFQ_LETTER_AVAILABLE (funds certified) by Director HRM&A'),
+(1970, 'procurement_requests', 140, 'RFQ_LETTER_AVAILABLE', 'Nellesha Samuels', '2026-03-24 16:33:26', 'Approval by Director HRM&A'),
+(1971, 'rfq_vendors', 26, 'DELETE', 'Technical & User Support Officer', '2026-03-24 16:59:59', 'Vendor \"Demario Ewan\" (rfq_vendor_id=73) removed from RFQ'),
+(1972, 'procurement_requests', 136, 'STATUS_CHANGE', 'Yanique A. Fraser', '2026-03-27 18:30:09', 'Submitted → Declined by Yanique A. Fraser'),
+(1973, 'procurement_requests', 136, 'DECLINED', 'Yanique A. Fraser', '2026-03-27 18:30:09', 'Request declined: Previously approved — by Yanique A. Fraser'),
+(1974, 'rfq_quotes', NULL, 'UPLOAD', NULL, '2026-03-30 14:17:50', 'Quote uploaded for RFQ ID 28'),
+(1975, 'rfq_quotes', NULL, 'UPLOAD', NULL, '2026-03-30 14:17:53', 'Quote uploaded for RFQ ID 28'),
+(1976, 'rfq_quotes', NULL, 'REVIEW', NULL, '2026-03-30 14:36:38', 'Quote 66 reviewed: MEETS_REQUIREMENTS by Technical & User Support Officer'),
+(1977, 'procurement_requests', 138, 'QUOTE_APPROVED', 'Technical & User Support Officer', '2026-03-30 14:36:38', 'Quote from Accu Power Limited approved by Technical & User Support Officer. Finance notified to verify funds.'),
+(1978, 'users', 42, 'PASSWORD_CHANGE', 'Yanique McKenzie', '2026-04-07 14:50:15', 'Password updated'),
+(1979, 'rfq_vendors', 27, 'DELETE', 'Gabrielle Green', '2026-04-07 15:01:46', 'Vendor \"D&S IT Services\" (rfq_vendor_id=68) removed from RFQ'),
+(1980, 'rfq_vendors', 27, 'DELETE', 'Gabrielle Green', '2026-04-07 15:01:49', 'Vendor \"Printware\" (rfq_vendor_id=67) removed from RFQ'),
+(1981, 'rfq_vendors', 27, 'DELETE', 'Gabrielle Green', '2026-04-07 15:01:52', 'Vendor \"Advanced Integrated System\" (rfq_vendor_id=66) removed from RFQ'),
+(1982, 'rfq_vendors', 27, 'DELETE', 'Gabrielle Green', '2026-04-07 15:01:55', 'Vendor \"MC System\" (rfq_vendor_id=65) removed from RFQ'),
+(1983, 'procurement_requests', 141, 'CREATE', 'Technical & User Support Officer', '2026-04-10 13:47:58', 'Procurement request created'),
+(1984, 'procurement_requests', 141, 'STATUS_CHANGE', 'Technical & User Support Officer', '2026-04-10 13:48:31', 'Draft → Submitted'),
+(1985, 'procurement_requests', 141, 'APPROVAL_CHAIN_CREAT', 'Technical & User Support Officer', '2026-04-10 13:48:31', 'Approval chain created: Director HRM&A'),
+(1986, 'request_approvals', 111, 'APPROVE_STAGE', 'Nellesha Samuels', '2026-04-10 14:14:16', 'Approved by Director HRM&A'),
+(1987, 'procurement_requests', 141, 'STATUS_CHANGE', 'Nellesha Samuels', '2026-04-10 14:14:16', 'Approved → RFQ_LETTER_AVAILABLE (funds certified) by Director HRM&A'),
+(1988, 'procurement_requests', 141, 'RFQ_LETTER_AVAILABLE', 'Nellesha Samuels', '2026-04-10 14:14:16', 'Approval by Director HRM&A'),
+(1989, 'user_permissions', 37, 'PERMISSION_OVERRIDE', 'Technical & User Support Officer', '2026-04-17 16:47:11', 'Permission 102 updated (granted=1)'),
+(1990, 'procurement_requests', 142, 'CREATE', 'Shermaine McKenzie', '2026-04-17 17:07:55', 'Procurement request created'),
+(1991, 'procurement_requests', 142, 'STATUS_CHANGE', 'Shermaine McKenzie', '2026-04-17 17:08:11', 'Draft → Submitted'),
+(1992, 'procurement_requests', 142, 'APPROVAL_CHAIN_CREAT', 'Shermaine McKenzie', '2026-04-17 17:08:11', 'Approval chain created: Deputy Government Chemist'),
+(1993, 'procurement_requests', 142, 'STATUS_CHANGE', 'Daneika Anderson', '2026-04-17 17:45:53', 'GC Approved (funds certified) — Status changed to RFQ_LETTER_AVAILABLE'),
+(1994, 'procurement_requests', 142, 'RFQ_LETTER_AVAILABLE', 'Daneika Anderson', '2026-04-17 17:45:53', 'GC approval by Daneika Anderson'),
+(1995, 'procurement_requests', 143, 'CREATE', 'Technical & User Support Officer', '2026-04-22 20:12:26', 'Procurement request created'),
+(1996, 'procurement_requests', 143, 'STATUS_CHANGE', 'Technical & User Support Officer', '2026-04-22 20:12:33', 'Draft → Submitted'),
+(1997, 'procurement_requests', 143, 'APPROVAL_CHAIN_CREAT', 'Technical & User Support Officer', '2026-04-22 20:12:33', 'Approval chain created: Director HRM&A'),
+(1998, 'request_approvals', 113, 'APPROVE_STAGE', 'Nellesha Samuels', '2026-04-22 20:21:20', 'Approved by Director HRM&A'),
+(1999, 'procurement_requests', 143, 'STATUS_CHANGE', 'Nellesha Samuels', '2026-04-22 20:21:20', 'Approved → RFQ_LETTER_AVAILABLE (funds certified) by Director HRM&A'),
+(2000, 'procurement_requests', 143, 'RFQ_LETTER_AVAILABLE', 'Nellesha Samuels', '2026-04-22 20:21:20', 'Approval by Director HRM&A'),
+(2001, 'procurement_requests', 143, 'UPDATE', 'Technical & User Support Officer', '2026-04-22 20:28:00', 'Signed request uploaded: Scan2026-04-22_152717.pdf'),
+(2002, 'procurement_requests', 143, 'SIGNED_REQUEST_UPLOA', 'Technical & User Support Officer', '2026-04-22 20:28:00', 'Signed request uploaded by Technical & User Support Officer: Scan2026-04-22_152717.pdf'),
+(2003, 'procurement_requests', 144, 'CREATE', 'Technical & User Support Officer', '2026-04-27 17:00:15', 'Procurement request created'),
+(2004, 'procurement_requests', 144, 'STATUS_CHANGE', 'Technical & User Support Officer', '2026-04-27 17:00:39', 'Draft → Submitted'),
+(2005, 'procurement_requests', 144, 'APPROVAL_CHAIN_CREAT', 'Technical & User Support Officer', '2026-04-27 17:00:39', 'Approval chain created: Director HRM&A'),
+(2006, 'request_approvals', 114, 'APPROVE_STAGE', 'Nellesha Samuels', '2026-04-27 17:11:34', 'Approved by Director HRM&A'),
+(2007, 'procurement_requests', 144, 'STATUS_CHANGE', 'Nellesha Samuels', '2026-04-27 17:11:34', 'Approved → RFQ_LETTER_AVAILABLE (funds certified) by Director HRM&A'),
+(2008, 'procurement_requests', 144, 'RFQ_LETTER_AVAILABLE', 'Nellesha Samuels', '2026-04-27 17:11:34', 'Approval by Director HRM&A'),
+(2009, 'procurement_requests', 144, 'UPDATE', 'Technical & User Support Officer', '2026-04-27 17:18:42', 'Signed request uploaded: Document_260427_121219.pdf'),
+(2010, 'procurement_requests', 144, 'SIGNED_REQUEST_UPLOA', 'Technical & User Support Officer', '2026-04-27 17:18:42', 'Signed request uploaded by Technical & User Support Officer: Document_260427_121219.pdf'),
+(2011, 'rfqs', 29, 'CREATE', 'Gabrielle Green', '2026-04-27 17:33:44', 'RFQ created for request ID 144. Date: 2026-04-08, Deadline: 2026-04-15T11:00'),
+(2012, 'rfq_vendors', 75, 'CREATE', '44', '2026-04-27 17:34:41', 'Vendor \'Royale Computers & Accessories Ltd\' added to RFQ RFQ-20260427-144 - RFQ notification email sent to Shaquille.Murray@royalecomputers.com'),
+(2013, 'rfq_quotes', NULL, 'UPLOAD', NULL, '2026-04-27 17:35:19', 'Quote uploaded for RFQ ID 29'),
+(2014, 'rfq_quotes', NULL, 'REVIEW', NULL, '2026-04-27 17:38:24', 'Quote 68 reviewed: MEETS_REQUIREMENTS by Technical & User Support Officer'),
+(2015, 'procurement_requests', 144, 'QUOTE_APPROVED', 'Technical & User Support Officer', '2026-04-27 17:38:24', 'Quote from Royale Computers & Accessories Ltd approved by Technical & User Support Officer. Finance notified to verify funds.'),
+(2016, 'procurement_requests', 144, 'FUNDS_VERIFIED', 'Latoya Gayle', '2026-04-27 18:42:27', 'Funds verified by Finance Officer'),
+(2017, 'procurement_requests', 144, 'FUNDS_VERIFIED', 'Latoya Gayle', '2026-04-27 18:42:27', 'Finance Officer verified funds are available. Procurement Officer to fill commitment form.'),
+(2018, 'procurement_requests', 145, 'CREATE', 'Shermaine McKenzie', '2026-04-30 18:41:31', 'Procurement request created'),
+(2019, 'procurement_requests', 145, 'STATUS_CHANGE', 'Shermaine McKenzie', '2026-04-30 18:41:44', 'Draft → Submitted'),
+(2020, 'procurement_requests', 145, 'APPROVAL_CHAIN_CREAT', 'Shermaine McKenzie', '2026-04-30 18:41:45', 'Approval chain created: Deputy Government Chemist'),
+(2021, 'procurement_requests', 146, 'CREATE', 'Technical & User Support Officer', '2026-04-30 19:48:45', 'Procurement request created'),
+(2022, 'procurement_requests', 146, 'STATUS_CHANGE', 'Technical & User Support Officer', '2026-04-30 19:49:04', 'Draft → Submitted'),
+(2023, 'procurement_requests', 146, 'APPROVAL_CHAIN_CREAT', 'Technical & User Support Officer', '2026-04-30 19:49:04', 'Approval chain created: HOD'),
+(2024, 'procurement_requests', 145, 'STATUS_CHANGE', 'Daneika Anderson', '2026-05-01 14:20:35', 'GC Approved (funds certified) — Status changed to RFQ_LETTER_AVAILABLE'),
+(2025, 'procurement_requests', 145, 'RFQ_LETTER_AVAILABLE', 'Daneika Anderson', '2026-05-01 14:20:35', 'GC approval by Daneika Anderson'),
+(2026, 'POLICY', NULL, 'BACKDATED_REQUEST_AT', '37', '2026-05-01 14:25:41', 'Back-dating of procurement request was attempted'),
+(2027, 'procurement_requests', 147, 'CREATE', 'Shermaine McKenzie', '2026-05-01 14:28:30', 'Procurement request created'),
+(2028, 'procurement_requests', 147, 'STATUS_CHANGE', 'Shermaine McKenzie', '2026-05-01 14:28:44', 'Draft → Submitted'),
+(2029, 'procurement_requests', 147, 'APPROVAL_CHAIN_CREAT', 'Shermaine McKenzie', '2026-05-01 14:28:44', 'Approval chain created: Deputy Government Chemist'),
+(2030, 'procurement_requests', 147, 'STATUS_CHANGE', 'Daneika Anderson', '2026-05-01 16:43:42', 'GC Approved (funds certified) — Status changed to RFQ_LETTER_AVAILABLE'),
+(2031, 'procurement_requests', 147, 'RFQ_LETTER_AVAILABLE', 'Daneika Anderson', '2026-05-01 16:43:42', 'GC approval by Daneika Anderson'),
+(2032, 'users', 42, 'ROLE_CHANGE', 'Technical & User Support Officer', '2026-05-01 17:48:06', 'Role updated to Procurement Officer'),
+(2033, 'procurement_requests', 145, 'EDIT', 'Technical & User Support Officer', '2026-05-01 17:50:20', 'Procurement Request #145 edited.\n\nOLD ITEMS:\n- Hard Drive | Qty: 1 | SSD, Min. 480 GB\n- Memory Card | Qty: 1 | DDR4, 8GB\n- 27\" Monitor | Qty: 1 |  19 GHz, 19-20 refresh rate\n- Printer | Qty: 1 | Wireless Black & White All-in-One Laser Printer, Scanner, Copier\n\nNEW ITEMS:\n- Hard Drive | Qty: 1 | SSD, Min. 480 GB\n- Memory Card | Qty: 1 | DDR4, 8GB\n- 27\" Monitor | Qty: 1 | 90hz-120hz refresh rate\n- Printer | Qty: 1 | Wireless Black & White All-in-One Laser Printer, Scanner, Copier\n'),
+(2034, 'procurement_requests', 145, 'UPDATE', 'Daneika Anderson', '2026-05-01 18:00:24', 'Signed request uploaded: PR021 .pdf'),
+(2035, 'procurement_requests', 145, 'SIGNED_REQUEST_UPLOA', 'Daneika Anderson', '2026-05-01 18:00:24', 'Signed request uploaded by Daneika Anderson: PR021 .pdf'),
+(2036, 'procurement_requests', 147, 'UPDATE', 'Daneika Anderson', '2026-05-01 18:04:45', 'Signed request uploaded: PR023.pdf'),
+(2037, 'procurement_requests', 147, 'SIGNED_REQUEST_UPLOA', 'Daneika Anderson', '2026-05-01 18:04:45', 'Signed request uploaded by Daneika Anderson: PR023.pdf'),
+(2038, 'procurement_requests', 146, 'STATUS_CHANGE', 'Yanique A. Fraser', '2026-05-01 22:36:38', 'Approved — Funds certified & Status changed to RFQ_LETTER_AVAILABLE by HOD'),
+(2039, 'procurement_requests', 146, 'RFQ_LETTER_AVAILABLE', 'Yanique A. Fraser', '2026-05-01 22:36:38', 'Approval by Yanique A. Fraser - HOD'),
+(2040, 'request_approvals', 109, 'APPROVE_STAGE', 'Yanique A. Fraser', '2026-05-01 22:37:33', 'Approved by HOD'),
+(2041, 'procurement_requests', 139, 'STATUS_CHANGE', 'Yanique A. Fraser', '2026-05-01 22:37:33', 'Approved → AWARDED (funds certified) by HOD'),
+(2042, 'procurement_requests', 139, 'AWARDED', 'Yanique A. Fraser', '2026-05-01 22:37:33', 'Approval by HOD'),
+(2043, 'POLICY', NULL, 'BACKDATED_REQUEST_AT', '40', '2026-05-04 14:12:28', 'Back-dating of procurement request was attempted'),
+(2044, 'procurement_requests', 148, 'CREATE', 'Alfred Bryan', '2026-05-04 21:15:08', 'Procurement request created'),
+(2045, 'procurement_requests', 148, 'EDIT', 'Alfred Bryan', '2026-05-04 21:30:09', 'Procurement Request #148 edited.\n\nOLD ITEMS:\n- Copy Paper | Qty: 50 | Letter Size \n- Copy Paper | Qty: 20 | Legal Size \n- 4 Quire Book | Qty: 6 | Hard Cover\n- Flag Its | Qty: 20 | Sign Here\n- Sticky Notes | Qty: 36 | 3*3\n- Stenopad | Qty: 15 | \n- Whiteboard | Qty: 1 | Length: 41 inches, width 41 inches\n- Whiteboard Markers | Qty: 4 | black, blue, red, green\n- Paper Clip  | Qty: 10 | Regular - 33mm\n\nNEW ITEMS:\n- Copy Paper | Qty: 50 | Letter Size \n- Copy Paper | Qty: 20 | Legal Size \n- 4 Quire Book | Qty: 6 | Hard Cover\n- Flag Its | Qty: 20 | Sign Here\n- Sticky Notes | Qty: 36 | 3*3\n- Stenopad | Qty: 15 | \n- Whiteboard | Qty: 1 | Length: 41 inches, width 41 inches\n- Whiteboard Markers | Qty: 4 | black, blue, red, green\n- Paper Clip  | Qty: 10 | Regular - 33mm\n- Paper Clip | Qty: 10 | Jumbo - 50mm\n- Scientific Calculator | Qty: 3 | \n- Desktop Calculator  | Qty: 3 | \n- Bull Dog Clip | Qty: 24 | 37mm\n- Bull Dog Clip | Qty: 24 | 51mm\n- Highlighter | Qty: 1 | \n- Mesh Document Tray | Qty: 1 | \n- Pen | Qty: 36 | Gel - blue - fine\n- Pen | Qty: 36 | BIC - Blue - Fine\n- Pen | Qty: 12 | BIC - Blue - Medium\n- Pen | Qty: 36 | BIC - Black- Fine\n'),
+(2046, 'procurement_requests', 148, 'STATUS_CHANGE', 'Alfred Bryan', '2026-05-04 21:30:19', 'Draft → Submitted'),
+(2047, 'procurement_requests', 148, 'APPROVAL_CHAIN_CREAT', 'Alfred Bryan', '2026-05-04 21:30:19', 'Approval chain created: Director HRM&A'),
+(2048, 'request_approvals', 118, 'APPROVE_STAGE', 'Nellesha Samuels', '2026-05-04 21:33:42', 'Approved by Director HRM&A'),
+(2049, 'procurement_requests', 148, 'STATUS_CHANGE', 'Nellesha Samuels', '2026-05-04 21:33:42', 'Approved → RFQ_LETTER_AVAILABLE (funds certified) by Director HRM&A'),
+(2050, 'procurement_requests', 148, 'RFQ_LETTER_AVAILABLE', 'Nellesha Samuels', '2026-05-04 21:33:42', 'Approval by Director HRM&A'),
+(2051, 'rfqs', 30, 'CREATE', 'Yanique McKenzie', '2026-05-04 21:40:18', 'RFQ created for request ID 147. Date: 2026-05-01, Deadline: 2026-05-08T11:00'),
+(2052, 'vendors', 10, 'CREATE', '42', '2026-05-04 21:44:20', 'Vendor \'BCB Sales and Services\' created'),
+(2053, 'vendors', 11, 'CREATE', '42', '2026-05-04 21:47:29', 'Vendor \'Jam Labs\' created'),
+(2054, 'rfqs', 31, 'CREATE', 'Yanique McKenzie', '2026-05-04 22:08:29', 'RFQ created for request ID 146. Date: 2026-05-04, Deadline: 2026-05-11T11:00'),
+(2055, 'rfq_vendors', 76, 'CREATE', '42', '2026-05-04 22:09:21', 'Vendor \'D&S IT Services\' added to RFQ RFQ-20260504-146 - RFQ notification email sent to ssmith@dsitservicesja.com'),
+(2056, 'rfqs', 32, 'CREATE', 'Yanique McKenzie', '2026-05-04 22:12:50', 'RFQ created for request ID 145. Date: 2026-05-04, Deadline: 2026-05-11T11:00'),
+(2057, 'rfq_vendors', 77, 'CREATE', '42', '2026-05-04 22:13:35', 'Vendor \'Royale Computers & Accessories Ltd\' added to RFQ RFQ-20260504-145 - RFQ notification email sent to Shaquille.Murray@royalecomputers.com'),
+(2058, 'rfqs', 33, 'CREATE', 'Gabrielle Green', '2026-05-04 22:17:16', 'RFQ created for request ID 143. Date: 2026-04-29, Deadline: 2026-05-26T11:00'),
+(2059, 'rfqs', 33, 'UPDATE', 'Gabrielle Green', '2026-05-04 22:17:31', 'RFQ letter uploaded'),
+(2060, 'rfq_vendors', 78, 'CREATE', '44', '2026-05-04 22:17:41', 'Vendor \'D&S IT Services\' added to RFQ RFQ-20260504-143 - RFQ notification email sent to ssmith@dsitservicesja.com'),
+(2061, 'rfq_vendors', 79, 'CREATE', '44', '2026-05-04 22:17:53', 'Vendor \'Royale Computers & Accessories Ltd\' added to RFQ RFQ-20260504-143 - RFQ notification email sent to Shaquille.Murray@royalecomputers.com'),
+(2062, 'vendors', 12, 'CREATE', '44', '2026-05-04 22:18:36', 'Vendor \'Tech Pro Business Solution\' created'),
+(2063, 'rfq_vendors', 80, 'CREATE', '44', '2026-05-04 22:18:57', 'Vendor \'Tech Pro Business Solution\' added to RFQ RFQ-20260504-143 - No email address on file'),
+(2064, 'rfq_quotes', NULL, 'UPLOAD', NULL, '2026-05-04 22:21:56', 'Quote uploaded for RFQ ID 33'),
+(2065, 'rfq_quotes', NULL, 'UPLOAD', NULL, '2026-05-04 22:22:50', 'Quote uploaded for RFQ ID 33'),
+(2066, 'rfq_quotes', NULL, 'UPLOAD', NULL, '2026-05-04 22:23:36', 'Quote uploaded for RFQ ID 33'),
+(2067, 'rfq_quotes', NULL, 'UPLOAD', NULL, '2026-05-04 22:24:32', 'Quote uploaded for RFQ ID 33'),
+(2068, 'rfq_quotes', NULL, 'UPLOAD', NULL, '2026-05-04 22:24:36', 'Quote uploaded for RFQ ID 33'),
+(2069, 'rfq_quotes', NULL, 'UPLOAD', NULL, '2026-05-05 14:23:25', 'Quote uploaded for RFQ ID 31'),
+(2070, 'rfq_quotes', NULL, 'UPLOAD', NULL, '2026-05-05 14:23:26', 'Quote uploaded for RFQ ID 31'),
+(2071, 'rfq_quotes', NULL, 'UPLOAD', NULL, '2026-05-05 14:23:26', 'Quote uploaded for RFQ ID 31'),
+(2072, 'rfq_quotes', NULL, 'UPLOAD', NULL, '2026-05-05 14:23:27', 'Quote uploaded for RFQ ID 31'),
+(2073, 'rfq_quotes', NULL, 'UPLOAD', NULL, '2026-05-05 14:23:29', 'Quote uploaded for RFQ ID 31'),
+(2074, 'rfqs', 34, 'CREATE', 'Gabrielle Green', '2026-05-05 18:42:09', 'RFQ created for request ID 142. Date: 2026-04-29, Deadline: 2026-05-06T11:00'),
+(2075, 'rfqs', 34, 'UPDATE', 'Gabrielle Green', '2026-05-05 18:42:27', 'RFQ letter uploaded'),
+(2076, 'vendors', 10, 'UPDATE', '44', '2026-05-05 18:43:00', 'Updated: Email: info@bcbscientifics.com → '),
+(2077, 'rfq_vendors', 81, 'CREATE', '44', '2026-05-05 18:43:26', 'Vendor \'BCB Sales and Services\' added to RFQ RFQ-20260505-142 - No email address on file'),
+(2078, 'rfq_vendors', 82, 'CREATE', '42', '2026-05-05 20:26:45', 'Vendor \'BCB Sales and Services\' added to RFQ RFQ-20260504-147 - No email address on file'),
+(2079, 'rfq_quotes', NULL, 'UPLOAD', NULL, '2026-05-05 20:28:49', 'Quote uploaded for RFQ ID 30'),
+(2080, 'rfq_quotes', NULL, 'UPLOAD', NULL, '2026-05-05 20:47:22', 'Quote uploaded for RFQ ID 34'),
+(2081, 'rfqs', 35, 'CREATE', 'Yanique McKenzie', '2026-05-05 21:28:10', 'RFQ created for request ID 148. Date: 2026-05-05, Deadline: 2026-05-12T11:00'),
+(2082, 'rfq_vendors', 83, 'CREATE', '42', '2026-05-05 21:28:31', 'Vendor \'Tech Pro Business Solution\' added to RFQ RFQ-20260505-148 - No email address on file'),
+(2083, 'rfq_quotes', NULL, 'UPLOAD', NULL, '2026-05-05 21:29:53', 'Quote uploaded for RFQ ID 35'),
+(2084, 'rfq_quotes', NULL, 'UPLOAD', NULL, '2026-05-05 21:29:55', 'Quote uploaded for RFQ ID 35'),
+(2085, 'vendors', 11, 'UPDATE', '44', '2026-05-06 14:07:15', 'Updated: Email: araymon@jamlabssupplies.com → '),
+(2086, 'rfq_vendors', 84, 'CREATE', '44', '2026-05-06 14:07:33', 'Vendor \'Jam Labs\' added to RFQ RFQ-20260505-142 - No email address on file'),
+(2087, 'rfq_quotes', NULL, 'UPLOAD', NULL, '2026-05-06 14:08:03', 'Quote uploaded for RFQ ID 34'),
+(2088, 'rfq_quotes', NULL, 'REVIEW', NULL, '2026-05-06 19:28:18', 'Quote 81 reviewed: MEETS_REQUIREMENTS by Alfred Bryan'),
+(2089, 'procurement_requests', 148, 'QUOTE_APPROVED', 'Alfred Bryan', '2026-05-06 19:28:18', 'Quote from Tech Pro Business Solution approved by Alfred Bryan. Finance notified to verify funds.'),
+(2090, 'procurement_requests', 149, 'CREATE', 'Alfred Bryan', '2026-05-06 20:01:25', 'Procurement request created'),
+(2091, 'procurement_requests', 149, 'STATUS_CHANGE', 'Alfred Bryan', '2026-05-06 20:12:05', 'Draft → Submitted'),
+(2092, 'procurement_requests', 149, 'APPROVAL_CHAIN_CREAT', 'Alfred Bryan', '2026-05-06 20:12:05', 'Approval chain created: Director HRM&A'),
+(2093, 'request_approvals', 119, 'APPROVE_STAGE', 'Nellesha Samuels', '2026-05-06 20:13:19', 'Approved by Director HRM&A'),
+(2094, 'procurement_requests', 149, 'STATUS_CHANGE', 'Nellesha Samuels', '2026-05-06 20:13:19', 'Approved → RFQ_LETTER_AVAILABLE (funds certified) by Director HRM&A'),
+(2095, 'procurement_requests', 149, 'RFQ_LETTER_AVAILABLE', 'Nellesha Samuels', '2026-05-06 20:13:19', 'Approval by Director HRM&A'),
+(2096, 'procurement_requests', 150, 'CREATE', 'Alfred Bryan', '2026-05-07 16:39:01', 'Procurement request created'),
+(2097, 'rfqs', 36, 'CREATE', 'Yanique McKenzie', '2026-05-07 16:39:25', 'RFQ created for request ID 149. Date: 2026-05-07, Deadline: 2026-05-14T11:00'),
+(2098, 'procurement_requests', 149, 'EDIT', 'Yanique McKenzie', '2026-05-07 16:47:14', 'Procurement Request #149 edited.\n\nOLD ITEMS:\n- ID CARD CASE WITH RETRACTABLE CLIP | Qty: 50 | HEAVY DUTY\n\nNEW ITEMS:\n- ID CARD CASE WITH RETRACTABLE CLIP | Qty: 50 | HEAVY DUTY\n'),
+(2099, 'procurement_requests', 150, 'EDIT', 'Alfred Bryan', '2026-05-07 16:51:48', 'Procurement Request #150 edited.\n\nOLD ITEMS:\n- Box Cutter | Qty: 1 | \n- Cement | Qty: 12 | \n- Thinset  | Qty: 3 | \n- Hose (Garden/Water) | Qty: 3 | 100 feet\n- Pole Saw | Qty: 1 | 20 feet or closest to \n- Paint | Qty: 2 | White/Gallon\n- Corking Sylicone | Qty: 6 | White\n- Drywall Screw | Qty: 500 | 1 1/2inch\n\nNEW ITEMS:\n- Box Cutter | Qty: 1 | \n- Cement | Qty: 12 | \n- Thinset  | Qty: 3 | \n- Hose (Garden/Water) | Qty: 3 | 100 feet\n- Pole Saw | Qty: 1 | 20 feet or closest to \n- Paint | Qty: 2 | White/Gallon\n- Corking Sylicone | Qty: 6 | White\n- Drywall Screw | Qty: 500 | 1 1/2inch\n- Tee PVC | Qty: 1 | 1 inch\n- Length of Pipe PVC | Qty: 5 | 1 inch\n- Elbow PVC | Qty: 9 | 1 inch\n- Coupling PVC | Qty: 9 | 1 inch\n- Turn of Valve PVC | Qty: 4 | 1 inch\n- Length of Pipe PVC | Qty: 6 | 1/2\n- Coupling PVC | Qty: 1 | 1/2 inch with thread (female)\n- Reducer PVC | Qty: 3 | 1 inch to 1/2 inch \n- Pipe cock | Qty: 5 | Metal\n- Thread Tape | Qty: 1 | 6\n- Elbow PVC | Qty: 6 | 1/2 inch\n- Tee PVC | Qty: 1 | 1/2inch\n'),
+(2100, 'procurement_requests', 150, 'EDIT', 'Alfred Bryan', '2026-05-07 17:01:47', 'Procurement Request #150 edited.\n\nOLD ITEMS:\n- Box Cutter | Qty: 1 | \n- Cement | Qty: 12 | \n- Thinset  | Qty: 3 | \n- Hose (Garden/Water) | Qty: 3 | 100 feet\n- Pole Saw | Qty: 1 | 20 feet or closest to \n- Paint | Qty: 2 | White/Gallon\n- Corking Sylicone | Qty: 6 | White\n- Drywall Screw | Qty: 500 | 1 1/2inch\n- Tee PVC | Qty: 1 | 1 inch\n- Length of Pipe PVC | Qty: 5 | 1 inch\n- Elbow PVC | Qty: 9 | 1 inch\n- Coupling PVC | Qty: 9 | 1 inch\n- Turn of Valve PVC | Qty: 4 | 1 inch\n- Length of Pipe PVC | Qty: 6 | 1/2\n- Coupling PVC | Qty: 1 | 1/2 inch with thread (female)\n- Reducer PVC | Qty: 3 | 1 inch to 1/2 inch \n- Pipe cock | Qty: 5 | Metal\n- Thread Tape | Qty: 1 | 6\n- Elbow PVC | Qty: 6 | 1/2 inch\n- Tee PVC | Qty: 1 | 1/2inch\n\nNEW ITEMS:\n- Box Cutter | Qty: 1 | \n- Cement | Qty: 12 | \n- Thinset  | Qty: 3 | \n- Hose (Garden/Water) | Qty: 3 | 100 feet\n- Pole Saw | Qty: 1 | 20 feet or closest to \n- Paint | Qty: 2 | White/Gallon\n- Corking Sylicone | Qty: 6 | White\n- Drywall Screw | Qty: 500 | 1 1/2inch\n- Tee PVC | Qty: 1 | 1 inch\n- Length of Pipe PVC | Qty: 5 | 1 inch\n- Elbow PVC | Qty: 9 | 1 inch\n- Coupling PVC | Qty: 9 | 1 inch\n- Turn of Valve PVC | Qty: 4 | 1 inch\n- Length of Pipe PVC | Qty: 6 | 1/2\n- Coupling PVC | Qty: 1 | 1/2 inch with thread (female)\n- Reducer PVC | Qty: 3 | 1 inch to 1/2 inch \n- Pipe cock | Qty: 5 | Metal\n- Thread Tape | Qty: 1 | 6\n- Elbow PVC | Qty: 6 | 1/2 inch\n- Tee PVC | Qty: 1 | 1/2inch\n- Flood Light | Qty: 15 | 300 Watts, Solar\n'),
+(2101, 'procurement_requests', 151, 'CREATE', 'Alfred Bryan', '2026-05-07 17:19:06', 'Reimbursement request created'),
+(2102, 'pre_authorizations', 2101, 'CREATE', 'Alfred Bryan', '2026-05-07 17:19:06', 'Pre-authorization created for reimbursement'),
+(2103, 'procurement_requests', 150, 'EDIT', 'Alfred Bryan', '2026-05-08 13:17:13', 'Procurement Request #150 edited.\n\nOLD ITEMS:\n- Box Cutter | Qty: 1 | \n- Cement | Qty: 12 | \n- Thinset  | Qty: 3 | \n- Hose (Garden/Water) | Qty: 3 | 100 feet\n- Pole Saw | Qty: 1 | 20 feet or closest to \n- Paint | Qty: 2 | White/Gallon\n- Corking Sylicone | Qty: 6 | White\n- Drywall Screw | Qty: 500 | 1 1/2inch\n- Tee PVC | Qty: 1 | 1 inch\n- Length of Pipe PVC | Qty: 5 | 1 inch\n- Elbow PVC | Qty: 9 | 1 inch\n- Coupling PVC | Qty: 9 | 1 inch\n- Turn of Valve PVC | Qty: 4 | 1 inch\n- Length of Pipe PVC | Qty: 6 | 1/2\n- Coupling PVC | Qty: 1 | 1/2 inch with thread (female)\n- Reducer PVC | Qty: 3 | 1 inch to 1/2 inch \n- Pipe cock | Qty: 5 | Metal\n- Thread Tape | Qty: 1 | 6\n- Elbow PVC | Qty: 6 | 1/2 inch\n- Tee PVC | Qty: 1 | 1/2inch\n- Flood Light | Qty: 15 | 300 Watts, Solar\n\nNEW ITEMS:\n- Box Cutter | Qty: 1 | \n- Cement | Qty: 12 | \n- Thinset  | Qty: 3 | \n- Hose (Garden/Water) | Qty: 3 | 100 feet\n- Pole Saw | Qty: 1 | 20 feet or closest to, electric if possible\n- Paint | Qty: 2 | White/Gallon\n- Corking Sylicone | Qty: 6 | White\n- Drywall Screw | Qty: 500 | 1 1/2inch\n- Tee PVC | Qty: 1 | 1 inch\n- Length of Pipe PVC | Qty: 5 | 1 inch\n- Elbow PVC | Qty: 9 | 1 inch\n- Coupling PVC | Qty: 9 | 1 inch\n- Turn of Valve PVC | Qty: 4 | 1 inch\n- Length of Pipe PVC | Qty: 6 | 1/2\n- Coupling PVC | Qty: 1 | 1/2 inch with thread (female)\n- Reducer PVC | Qty: 3 | 1 inch to 1/2 inch \n- Pipe cock | Qty: 5 | Metal\n- Thread Tape | Qty: 1 | 6\n- Elbow PVC | Qty: 6 | 1/2 inch\n- Tee PVC | Qty: 1 | 1/2inch\n- Flood Light | Qty: 15 | 300 Watts, Solar\n'),
+(2104, 'procurement_requests', 150, 'STATUS_CHANGE', 'Alfred Bryan', '2026-05-08 13:17:16', 'Draft → Submitted'),
+(2105, 'procurement_requests', 150, 'APPROVAL_CHAIN_CREAT', 'Alfred Bryan', '2026-05-08 13:17:16', 'Approval chain created: Director HRM&A'),
+(2106, 'procurement_requests', 150, 'STATUS_CHANGE', 'Nellesha Samuels', '2026-05-08 20:45:25', 'Submitted → Declined by Nellesha Samuels'),
+(2107, 'procurement_requests', 150, 'DECLINED', 'Nellesha Samuels', '2026-05-08 20:45:25', 'Request declined: Please speak with me regarding this request. — by Nellesha Samuels'),
+(2108, 'rfq_quotes', NULL, 'REVIEW', NULL, '2026-05-11 15:11:49', 'Quote 72 reviewed: MEETS_REQUIREMENTS by Technical & User Support Officer'),
+(2109, 'procurement_requests', 143, 'QUOTE_APPROVED', 'Technical & User Support Officer', '2026-05-11 15:11:49', 'Quote from Tech Pro Business Solution approved by Technical & User Support Officer. Finance notified to verify funds.'),
+(2110, 'procurement_requests', 152, 'CREATE', 'Alfred Bryan', '2026-05-11 15:27:29', 'Petty cash request created'),
+(2111, 'rfq_vendors', 85, 'CREATE', '42', '2026-05-11 15:49:36', 'Vendor \'D&S IT Services\' added to RFQ RFQ-20260504-145 - RFQ notification email sent to ssmith@dsitservicesja.com'),
+(2112, 'rfq_vendors', 86, 'CREATE', '42', '2026-05-11 15:50:19', 'Vendor \'Tech Pro Business Solution\' added to RFQ RFQ-20260504-145 - No email address on file'),
+(2113, 'procurement_requests', 153, 'CREATE', 'Alfred Bryan', '2026-05-11 20:07:00', 'Procurement request created'),
+(2114, 'procurement_requests', 153, 'STATUS_CHANGE', 'Alfred Bryan', '2026-05-11 20:07:09', 'Draft → Submitted'),
+(2115, 'procurement_requests', 153, 'APPROVAL_CHAIN_CREAT', 'Alfred Bryan', '2026-05-11 20:07:09', 'Approval chain created: Director HRM&A'),
+(2116, 'procurement_requests', 154, 'CREATE', 'Alfred Bryan', '2026-05-11 21:08:50', 'Procurement request created'),
+(2117, 'rfq_quotes', NULL, 'UPLOAD', NULL, '2026-05-12 14:27:48', 'Quote uploaded for RFQ ID 32'),
+(2118, 'rfq_quotes', NULL, 'UPLOAD', NULL, '2026-05-12 14:29:23', 'Quote uploaded for RFQ ID 32'),
+(2119, 'rfq_vendors', 32, 'DELETE', 'Gabrielle Green', '2026-05-12 14:30:30', 'Vendor \"Royale Computers & Accessories Ltd\" (rfq_vendor_id=77) removed from RFQ'),
+(2120, 'procurement_requests', 155, 'CREATE', 'Alfred Bryan', '2026-05-12 19:00:26', 'Procurement request created'),
+(2121, 'procurement_requests', 155, 'STATUS_CHANGE', 'Alfred Bryan', '2026-05-12 19:00:37', 'Draft → Submitted'),
+(2122, 'procurement_requests', 155, 'APPROVAL_CHAIN_CREAT', 'Alfred Bryan', '2026-05-12 19:00:37', 'Approval chain created: Director HRM&A'),
+(2123, 'procurement_requests', 156, 'CREATE', 'Alfred Bryan', '2026-05-12 19:12:11', 'Procurement request created'),
+(2124, 'procurement_requests', 156, 'STATUS_CHANGE', 'Alfred Bryan', '2026-05-12 19:12:18', 'Draft → Submitted'),
+(2125, 'procurement_requests', 156, 'APPROVAL_CHAIN_CREAT', 'Alfred Bryan', '2026-05-12 19:12:18', 'Approval chain created: Director HRM&A'),
+(2126, 'request_approvals', 121, 'APPROVE_STAGE', 'Nellesha Samuels', '2026-05-12 19:28:40', 'Approved by Director HRM&A'),
+(2127, 'procurement_requests', 153, 'STATUS_CHANGE', 'Nellesha Samuels', '2026-05-12 19:28:40', 'Approved → RFQ_LETTER_AVAILABLE (funds certified) by Director HRM&A'),
+(2128, 'procurement_requests', 153, 'RFQ_LETTER_AVAILABLE', 'Nellesha Samuels', '2026-05-12 19:28:40', 'Approval by Director HRM&A'),
+(2129, 'request_approvals', 122, 'APPROVE_STAGE', 'Nellesha Samuels', '2026-05-12 19:30:32', 'Approved by Director HRM&A'),
+(2130, 'procurement_requests', 155, 'STATUS_CHANGE', 'Nellesha Samuels', '2026-05-12 19:30:32', 'Approved → RFQ_LETTER_AVAILABLE (funds certified) by Director HRM&A'),
+(2131, 'procurement_requests', 155, 'RFQ_LETTER_AVAILABLE', 'Nellesha Samuels', '2026-05-12 19:30:32', 'Approval by Director HRM&A'),
+(2132, 'procurement_requests', 156, 'STATUS_CHANGE', 'Nellesha Samuels', '2026-05-12 19:32:18', 'Submitted → Declined by Nellesha Samuels'),
+(2133, 'procurement_requests', 156, 'DECLINED', 'Nellesha Samuels', '2026-05-12 19:32:18', 'Request declined: Lets speak. — by Nellesha Samuels'),
+(2134, 'procurement_requests', 154, 'EDIT', 'Alfred Bryan', '2026-05-12 19:48:49', 'Procurement Request #154 edited.\n\nOLD ITEMS:\n- Peppered steak | Qty: 4 | Large \n- Chicken lunch | Qty: 4 | Large \n- Fish meal  | Qty: 1 | Large \n- Soda | Qty: 1 | \n- Orange Juice | Qty: 1 | \n- Natural Juice | Qty: 7 | \n\nNEW ITEMS:\n- Peppered steak | Qty: 4 | Large \n- Chicken lunch | Qty: 4 | Large \n- Fish meal  | Qty: 2 | Large \n- Soda | Qty: 1 | \n- Orange Juice | Qty: 1 | \n- Natural Juice | Qty: 7 | \n'),
+(2135, 'procurement_requests', 154, 'EDIT', 'Alfred Bryan', '2026-05-12 19:49:44', 'Procurement Request #154 edited.\n\nOLD ITEMS:\n- Peppered steak | Qty: 4 | Large \n- Chicken lunch | Qty: 4 | Large \n- Fish meal  | Qty: 2 | Large \n- Soda | Qty: 1 | \n- Orange Juice | Qty: 1 | \n- Natural Juice | Qty: 7 | \n\nNEW ITEMS:\n- Peppered steak | Qty: 4 | Large \n- Chicken lunch | Qty: 4 | Large \n- Fish meal  | Qty: 2 | Large \n- Soda | Qty: 1 | \n- Orange Juice | Qty: 1 | \n- Natural Juice | Qty: 8 | \n'),
+(2136, 'procurement_requests', 154, 'STATUS_CHANGE', 'Alfred Bryan', '2026-05-12 19:49:47', 'Draft → Submitted'),
+(2137, 'procurement_requests', 154, 'APPROVAL_CHAIN_CREAT', 'Alfred Bryan', '2026-05-12 19:49:47', 'Approval chain created: Director HRM&A'),
+(2138, 'rfqs', 37, 'CREATE', 'Yanique McKenzie', '2026-05-12 20:48:45', 'RFQ created for request ID 155. Date: 2026-05-12, Deadline: 2026-05-19T11:00'),
+(2139, 'procurement_requests', 146, 'UPDATE', 'Technical & User Support Officer', '2026-05-12 21:06:44', 'Signed request uploaded: PR22.pdf'),
+(2140, 'procurement_requests', 146, 'SIGNED_REQUEST_UPLOA', 'Technical & User Support Officer', '2026-05-12 21:06:44', 'Signed request uploaded by Technical & User Support Officer: PR22.pdf'),
+(2141, 'procurement_requests', 157, 'CREATE', 'Alfred Bryan', '2026-05-13 14:19:25', 'Petty cash request created'),
+(2142, 'procurement_requests', 156, 'STATUS_CHANGE', 'Alfred Bryan', '2026-05-13 14:27:43', 'Declined → Draft (Resubmitted by Alfred Bryan)'),
+(2143, 'procurement_requests', 156, 'RESUBMITTED', 'Alfred Bryan', '2026-05-13 14:27:43', 'Request resubmitted after decline by Alfred Bryan'),
+(2144, 'procurement_requests', 156, 'EDIT', 'Alfred Bryan', '2026-05-13 14:27:57', 'Procurement Request #156 edited.\n\nOLD ITEMS:\n- CHAIR (OFFICE) | Qty: 2 | \n- CHAIR (EXECUTIVE) | Qty: 3 | \n- DESK (OFFICE) | Qty: 2 | \n- DESK (EXECUTIVE) | Qty: 3 | \n- CHAIRS (BOARD ROOM/CONFERENCE ROOM) | Qty: 12 | \n- DESK (BOARD ROOM/CONFERENCE ROOM) | Qty: 1 | \n\nNEW ITEMS:\n- CHAIR (OFFICE) | Qty: 2 | \n- CHAIR (EXECUTIVE) | Qty: 3 | \n- DESK (OFFICE) | Qty: 2 | \n- DESK (EXECUTIVE) | Qty: 3 | \n- CHAIRS (BOARD ROOM/CONFERENCE ROOM) | Qty: 12 | \n- DESK (BOARD ROOM/CONFERENCE ROOM) | Qty: 1 | \n'),
+(2145, 'procurement_requests', 156, 'STATUS_CHANGE', 'Alfred Bryan', '2026-05-13 14:28:02', 'Draft → Submitted'),
+(2146, 'procurement_requests', 156, 'APPROVAL_CHAIN_CREAT', 'Alfred Bryan', '2026-05-13 14:28:02', 'Approval chain created: Director HRM&A'),
+(2147, 'procurement_requests', 151, 'STATUS_CHANGE', 'Alfred Bryan', '2026-05-13 15:15:01', 'Reimbursement Request: Draft → Submitted'),
+(2148, 'procurement_requests', 151, 'APPROVAL_CHAIN_CREAT', 'Alfred Bryan', '2026-05-13 15:15:01', 'Reimbursement approval chain created: Finance Officer'),
+(2149, 'procurement_requests', 152, 'STATUS_CHANGE', 'Alfred Bryan', '2026-05-13 15:16:00', 'Petty Cash Request: Draft → Submitted'),
+(2150, 'procurement_requests', 152, 'APPROVAL_CHAIN_CREAT', 'Alfred Bryan', '2026-05-13 15:16:00', 'Petty cash approval chain created: Finance Officer'),
+(2151, 'procurement_requests', 157, 'STATUS_CHANGE', 'Alfred Bryan', '2026-05-13 15:16:32', 'Petty Cash Request: Draft → Submitted'),
+(2152, 'procurement_requests', 157, 'APPROVAL_CHAIN_CREAT', 'Alfred Bryan', '2026-05-13 15:16:32', 'Petty cash approval chain created: Finance Officer'),
+(2153, 'request_approvals', 124, 'APPROVE_STAGE', 'Nellesha Samuels', '2026-05-13 15:19:50', 'Approved by Director HRM&A'),
+(2154, 'procurement_requests', 154, 'STATUS_CHANGE', 'Nellesha Samuels', '2026-05-13 15:19:50', 'Approved → RFQ_LETTER_AVAILABLE (funds certified) by Director HRM&A'),
+(2155, 'procurement_requests', 154, 'RFQ_LETTER_AVAILABLE', 'Nellesha Samuels', '2026-05-13 15:19:50', 'Approval by Director HRM&A'),
+(2156, 'request_approvals', 125, 'APPROVE_STAGE', 'Nellesha Samuels', '2026-05-13 15:20:09', 'Approved by Director HRM&A'),
+(2157, 'procurement_requests', 156, 'STATUS_CHANGE', 'Nellesha Samuels', '2026-05-13 15:20:09', 'Approved → RFQ_LETTER_AVAILABLE (funds certified) by Director HRM&A'),
+(2158, 'procurement_requests', 156, 'RFQ_LETTER_AVAILABLE', 'Nellesha Samuels', '2026-05-13 15:20:09', 'Approval by Director HRM&A'),
+(2159, 'POLICY', NULL, 'BACKDATED_REQUEST_AT', '40', '2026-05-13 16:30:44', 'Back-dating of procurement request was attempted'),
+(2160, 'procurement_requests', 158, 'CREATE', 'Alfred Bryan', '2026-05-13 16:39:26', 'Procurement request created'),
+(2161, 'procurement_requests', 158, 'STATUS_CHANGE', 'Alfred Bryan', '2026-05-13 16:39:39', 'Draft → Submitted'),
+(2162, 'procurement_requests', 158, 'APPROVAL_CHAIN_CREAT', 'Alfred Bryan', '2026-05-13 16:39:39', 'Approval chain created: Director HRM&A'),
+(2163, 'request_approvals', 92, 'APPROVE_STAGE', 'Latoya Gayle', '2026-05-13 17:22:12', 'Approved by Finance Officer'),
+(2164, 'procurement_requests', 128, 'STATUS_CHANGE', 'Latoya Gayle', '2026-05-13 17:22:12', 'Approved → AWARDED (funds certified) by Finance Officer'),
+(2165, 'procurement_requests', 128, 'AWARDED', 'Latoya Gayle', '2026-05-13 17:22:12', 'Approval by Finance Officer'),
+(2166, 'procurement_requests', 152, 'STATUS_CHANGE', 'Latoya Gayle', '2026-05-13 17:43:36', 'Petty Cash Request: SUBMITTED → FUNDS_VERIFIED by Finance Officer'),
+(2167, 'procurement_requests', 157, 'STATUS_CHANGE', 'Latoya Gayle', '2026-05-13 17:44:24', 'Petty Cash Request: SUBMITTED → FUNDS_VERIFIED by Finance Officer'),
+(2168, 'procurement_requests', 151, 'STATUS_CHANGE', 'Latoya Gayle', '2026-05-13 17:44:43', 'Reimbursement Request: SUBMITTED → FUNDS_VERIFIED by Finance Officer'),
+(2169, 'request_approvals', 129, 'APPROVE_STAGE', 'Nellesha Samuels', '2026-05-13 21:54:50', 'Approved by Director HRM&A'),
+(2170, 'procurement_requests', 158, 'STATUS_CHANGE', 'Nellesha Samuels', '2026-05-13 21:54:50', 'Approved → RFQ_LETTER_AVAILABLE (funds certified) by Director HRM&A'),
+(2171, 'procurement_requests', 158, 'RFQ_LETTER_AVAILABLE', 'Nellesha Samuels', '2026-05-13 21:54:50', 'Approval by Director HRM&A'),
+(2172, 'procurement_requests', 159, 'CREATE', 'Alfred Bryan', '2026-05-14 18:19:15', 'Procurement request created'),
+(2173, 'procurement_requests', 159, 'STATUS_CHANGE', 'Alfred Bryan', '2026-05-14 18:20:01', 'Draft → Submitted'),
+(2174, 'procurement_requests', 159, 'APPROVAL_CHAIN_CREAT', 'Alfred Bryan', '2026-05-14 18:20:01', 'Approval chain created: Director HRM&A');
 
 -- --------------------------------------------------------
 
@@ -1995,6 +2369,13 @@ CREATE TABLE `commitments` (
   `gfms_commitment_number` varchar(50) DEFAULT NULL COMMENT 'Unique commitment number from GFMS system',
   `document_path` varchar(255) DEFAULT NULL COMMENT 'Path to uploaded commitment document from GFMS'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `commitments`
+--
+
+INSERT INTO `commitments` (`commitment_id`, `request_id`, `commitment_number`, `commitment_date`, `commitment_total`, `created_at`, `approved_at`, `status`, `parent_commitment_id`, `commitment_type`, `rfq_id`, `selected_quote_id`, `quote_approved_at`, `gfms_generated`, `gfms_commitment_number`, `document_path`) VALUES
+(87, 137, 'CM001', '2026-03-19', 355949.10, '2026-03-19 17:21:22', '2026-03-19 12:21:22', 'closed', NULL, 'ORIGINAL', NULL, NULL, NULL, 0, 'CO7111504', '/uploads/commitments/COMMITMENT_1773940882_69bc3092de07d.pdf');
 
 --
 -- Triggers `commitments`
@@ -2279,6 +2660,14 @@ CREATE TABLE `petty_cash_disbursements` (
   `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Petty cash disbursement tracking with 24-hour accountability';
 
+--
+-- Dumping data for table `petty_cash_disbursements`
+--
+
+INSERT INTO `petty_cash_disbursements` (`disburse_id`, `request_id`, `amount_authorized`, `disbursed_by`, `disbursement_date`, `disbursement_deadline`, `status`, `created_at`, `updated_at`) VALUES
+(1, 152, 5000.00, 34, '2026-05-13 12:43:36', '2026-05-14 12:43:36', 'AUTHORIZED', '2026-05-13 12:43:36', '2026-05-13 12:43:36'),
+(2, 157, 5000.00, 34, '2026-05-13 12:44:24', '2026-05-14 12:44:24', 'AUTHORIZED', '2026-05-13 12:44:24', '2026-05-13 12:44:24');
+
 -- --------------------------------------------------------
 
 --
@@ -2393,7 +2782,9 @@ CREATE TABLE `pre_authorizations` (
 --
 
 INSERT INTO `pre_authorizations` (`auth_id`, `request_id`, `authorized_by`, `authorization_date`, `authorization_amount`, `authorization_notes`, `created_at`) VALUES
-(4, 128, 32, '2026-03-03 00:00:00', 2000.00, 'Pre-authorization for reimbursement request', '2026-03-04 09:46:43');
+(4, 128, 32, '2026-03-03 00:00:00', 2000.00, 'Pre-authorization for reimbursement request', '2026-03-04 09:46:43'),
+(5, 139, 39, '2026-03-09 00:00:00', 900.00, 'Pre-authorization for reimbursement request', '2026-03-17 15:03:02'),
+(6, 151, 40, '2026-05-05 00:00:00', 500.00, 'Pre-authorization for reimbursement request', '2026-05-07 12:19:06');
 
 -- --------------------------------------------------------
 
@@ -2407,7 +2798,7 @@ CREATE TABLE `procurement_requests` (
   `request_number` varchar(20) NOT NULL,
   `request_date` date NOT NULL,
   `description` text NOT NULL,
-  `request_type` enum('REGULAR','EXPEDITED','EMERGENCY') DEFAULT 'REGULAR',
+  `request_type` enum('REGULAR','REIMBURSEMENT','PETTY_CASH') NOT NULL DEFAULT 'REGULAR' COMMENT 'Type of request: REGULAR procurement, REIMBURSEMENT, or PETTY_CASH',
   `status` varchar(30) NOT NULL DEFAULT 'DRAFT',
   `rfq_date` date DEFAULT NULL,
   `quotes_received` int(11) DEFAULT 0,
@@ -2419,9 +2810,13 @@ CREATE TABLE `procurement_requests` (
   `approved_by` int(11) DEFAULT NULL,
   `approved_at` datetime DEFAULT NULL,
   `decline_reason` text DEFAULT NULL,
+  `signed_request_document_path` varchar(255) DEFAULT NULL COMMENT 'Path to uploaded signed request by branch head',
+  `signed_request_received_date` datetime DEFAULT NULL COMMENT 'Date when signed request was received',
+  `signed_by_user_id` int(11) DEFAULT NULL COMMENT 'User ID of person who signed the request',
   `finance_reviewed_by` int(11) DEFAULT NULL,
   `finance_reviewed_at` datetime DEFAULT NULL,
   `funds_available` tinyint(1) DEFAULT 0,
+  `commitment_form_path` varchar(500) DEFAULT NULL COMMENT 'Optional scanned commitment form uploaded by Procurement Officer (Finance will create actual commitment in GFMS)',
   `procurement_method` enum('SINGLE_SOURCE','RESTRICTED_BIDDING','NATIONAL_COMPETITIVE','INTERNATIONAL_COMPETITIVE') DEFAULT NULL,
   `external_approval_required` enum('NONE','PPC','CABINET') DEFAULT NULL,
   `requires_rfq` tinyint(1) DEFAULT 0,
@@ -2437,17 +2832,41 @@ CREATE TABLE `procurement_requests` (
 -- Dumping data for table `procurement_requests`
 --
 
-INSERT INTO `procurement_requests` (`request_id`, `branch_id`, `request_number`, `request_date`, `description`, `request_type`, `status`, `rfq_date`, `quotes_received`, `awardee`, `award_date`, `created_by`, `created_at`, `updated_at`, `approved_by`, `approved_at`, `decline_reason`, `finance_reviewed_by`, `finance_reviewed_at`, `funds_available`, `procurement_method`, `external_approval_required`, `requires_rfq`, `rfq_letter_generated_at`, `estimated_value`, `currency`, `usd_rate`, `ppc_approval_status`, `cabinet_approval_status`) VALUES
-(123, 6, 'PR001', '2026-02-26', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 37, '2026-02-26 15:55:56', '2026-02-26 10:56:09', 33, '2026-02-26 11:04:04', NULL, 33, '2026-02-26 11:04:04', 1, 'SINGLE_SOURCE', NULL, 1, NULL, 7000.00, 'JMD', NULL, NULL, NULL),
-(124, 6, 'PR002', '2026-02-26', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 38, '2026-02-26 16:06:07', '2026-02-26 11:07:39', 33, '2026-02-26 11:08:20', NULL, 33, '2026-02-26 11:08:20', 1, 'SINGLE_SOURCE', NULL, 1, NULL, 28038.00, 'JMD', NULL, NULL, NULL),
-(125, 1, 'PR003', '2026-02-26', '', 'REGULAR', 'PROCUREMENT_STAGE', NULL, 0, NULL, NULL, 36, '2026-02-26 16:16:29', '2026-02-26 11:29:31', 32, '2026-02-26 11:30:49', NULL, 32, '2026-02-26 11:30:49', 1, 'SINGLE_SOURCE', NULL, 1, NULL, 1500000.00, 'JMD', NULL, NULL, NULL),
-(126, 6, 'PR004', '2026-02-26', '', 'REGULAR', 'SUBMITTED', NULL, 0, NULL, NULL, 41, '2026-02-26 16:18:23', '2026-02-26 11:18:43', NULL, NULL, NULL, NULL, NULL, 0, 'SINGLE_SOURCE', NULL, 1, NULL, 224999.10, 'JMD', NULL, NULL, NULL),
-(127, 1, 'PR005', '2026-02-26', '', 'REGULAR', 'DECLINED', NULL, 0, NULL, NULL, 36, '2026-02-26 16:20:53', '2026-02-26 11:21:05', 32, '2026-02-26 11:22:21', 'Youre pushing it', NULL, NULL, 0, 'SINGLE_SOURCE', NULL, 1, NULL, 15000.00, 'JMD', NULL, NULL, NULL),
-(128, 1, 'PR006', '2026-03-04', 'Hostinger monthly payment', '', 'SUBMITTED', NULL, 0, NULL, NULL, 32, '2026-03-04 14:46:43', '2026-03-04 09:46:56', NULL, NULL, NULL, NULL, NULL, 0, 'SINGLE_SOURCE', NULL, 1, NULL, 2000.00, 'JMD', NULL, NULL, NULL),
-(129, 5, 'PR007', '2026-03-04', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 27, '2026-03-04 18:09:12', '2026-03-04 15:40:55', 35, '2026-03-04 16:02:57', NULL, 35, '2026-03-04 16:02:57', 1, 'SINGLE_SOURCE', NULL, 1, NULL, 63000.00, 'JMD', NULL, NULL, NULL),
-(130, 5, 'PR008', '2026-03-04', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 27, '2026-03-04 18:10:59', '2026-03-04 15:43:04', 35, '2026-03-04 16:03:50', NULL, 35, '2026-03-04 16:03:50', 1, 'SINGLE_SOURCE', NULL, 1, NULL, 19000.00, 'JMD', NULL, NULL, NULL),
-(131, 1, 'PR009', '2026-03-04', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 27, '2026-03-04 20:46:20', '2026-03-04 15:53:17', 32, '2026-03-04 16:04:34', NULL, 32, '2026-03-04 16:04:34', 1, 'SINGLE_SOURCE', NULL, 1, NULL, 257427.42, 'JMD', NULL, NULL, NULL),
-(132, 5, 'PR010', '2026-03-06', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 40, '2026-03-06 17:14:45', '2026-03-06 12:15:29', 35, '2026-03-06 12:24:09', NULL, 35, '2026-03-06 12:24:09', 1, 'SINGLE_SOURCE', NULL, 1, NULL, 500000.00, 'JMD', NULL, NULL, NULL);
+INSERT INTO `procurement_requests` (`request_id`, `branch_id`, `request_number`, `request_date`, `description`, `request_type`, `status`, `rfq_date`, `quotes_received`, `awardee`, `award_date`, `created_by`, `created_at`, `updated_at`, `approved_by`, `approved_at`, `decline_reason`, `signed_request_document_path`, `signed_request_received_date`, `signed_by_user_id`, `finance_reviewed_by`, `finance_reviewed_at`, `funds_available`, `commitment_form_path`, `procurement_method`, `external_approval_required`, `requires_rfq`, `rfq_letter_generated_at`, `estimated_value`, `currency`, `usd_rate`, `ppc_approval_status`, `cabinet_approval_status`) VALUES
+(123, 6, 'PR001', '2026-02-26', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 37, '2026-02-26 15:55:56', '2026-02-26 10:56:09', 33, '2026-02-26 11:04:04', NULL, NULL, NULL, NULL, 33, '2026-02-26 11:04:04', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 7000.00, 'JMD', NULL, NULL, NULL),
+(124, 6, 'PR002', '2026-02-26', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 38, '2026-02-26 16:06:07', '2026-02-26 11:07:39', 33, '2026-02-26 11:08:20', NULL, NULL, NULL, NULL, 33, '2026-02-26 11:08:20', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 28038.00, 'JMD', NULL, NULL, NULL),
+(125, 1, 'PR003', '2026-02-26', '', 'REGULAR', 'PROCUREMENT_STAGE', NULL, 0, NULL, NULL, 36, '2026-02-26 16:16:29', '2026-02-26 11:29:31', 32, '2026-02-26 11:30:49', NULL, NULL, NULL, NULL, 32, '2026-02-26 11:30:49', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 1500000.00, 'JMD', NULL, NULL, NULL),
+(126, 6, 'PR004', '2026-02-26', '', 'REGULAR', 'SUBMITTED', NULL, 0, NULL, NULL, 41, '2026-02-26 16:18:23', '2026-02-26 11:18:43', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 224999.10, 'JMD', NULL, NULL, NULL),
+(127, 1, 'PR005', '2026-02-26', '', 'REGULAR', 'DECLINED', NULL, 0, NULL, NULL, 36, '2026-02-26 16:20:53', '2026-02-26 11:21:05', 32, '2026-02-26 11:22:21', 'Youre pushing it', '/uploads/signed_requests/SIGNED_REQUEST_127_1773764831_69b980dfe1b24.pdf', '2026-03-17 11:27:11', 27, NULL, NULL, 0, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 15000.00, 'JMD', NULL, NULL, NULL),
+(128, 1, 'PR006', '2026-03-04', 'Hostinger monthly payment', 'REIMBURSEMENT', 'AWARDED', NULL, 0, NULL, NULL, 32, '2026-03-04 14:46:43', '2026-03-04 09:46:56', 34, '2026-05-13 12:22:12', NULL, NULL, NULL, NULL, 34, '2026-05-13 12:22:12', 1, NULL, 'SINGLE_SOURCE', NULL, 0, NULL, 2000.00, 'JMD', NULL, NULL, NULL),
+(129, 5, 'PR007', '2026-03-04', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 27, '2026-03-04 18:09:12', '2026-03-04 15:40:55', 35, '2026-03-04 16:02:57', NULL, NULL, NULL, NULL, 35, '2026-03-04 16:02:57', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 63000.00, 'JMD', NULL, NULL, NULL),
+(130, 5, 'PR008', '2026-03-04', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 27, '2026-03-04 18:10:59', '2026-03-04 15:43:04', 35, '2026-03-04 16:03:50', NULL, NULL, NULL, NULL, 35, '2026-03-04 16:03:50', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 19000.00, 'JMD', NULL, NULL, NULL),
+(132, 5, 'PR010', '2026-03-06', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 40, '2026-03-06 17:14:45', '2026-03-06 12:15:29', 35, '2026-03-06 12:24:09', NULL, NULL, NULL, NULL, 35, '2026-03-06 12:24:09', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 500000.00, 'JMD', NULL, NULL, NULL),
+(134, 6, 'PR011', '2026-03-16', '', 'REGULAR', 'DECLINED', NULL, 0, NULL, NULL, 27, '2026-03-16 14:20:03', '2026-03-16 09:20:13', 33, '2026-03-17 11:10:49', 'Fix issue', NULL, NULL, NULL, NULL, NULL, 0, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 500.00, 'JMD', NULL, NULL, NULL),
+(136, 6, 'PR012', '2026-03-17', '', 'REGULAR', 'DECLINED', NULL, 0, NULL, NULL, 27, '2026-03-17 15:53:09', '2026-03-17 10:57:12', 32, '2026-03-27 13:30:09', 'Previously approved', NULL, NULL, NULL, NULL, NULL, 0, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 579540.94, 'JMD', NULL, NULL, NULL),
+(137, 1, 'PR013', '2026-03-17', '', 'REGULAR', 'COMMITMENT_APPROVED', NULL, 0, NULL, NULL, 27, '2026-03-17 15:59:36', '2026-03-17 11:00:01', 32, '2026-03-17 11:11:54', NULL, '/uploads/signed_requests/SIGNED_REQUEST_137_1773764983_69b98177a23d3.pdf', '2026-03-17 11:29:43', 32, 34, '2026-03-18 14:51:11', 1, '/uploads/commitments/COMMIT_FORM_1773940801_69bc3041f0636.pdf', 'SINGLE_SOURCE', NULL, 1, NULL, 385000.00, 'JMD', NULL, NULL, NULL),
+(138, 6, 'PR014', '2026-03-17', '', 'REGULAR', 'QUOTE_APPROVED', NULL, 0, NULL, NULL, 27, '2026-03-17 16:45:56', '2026-03-17 12:14:46', 33, '2026-03-17 12:59:29', NULL, '/uploads/signed_requests/SIGNED_REQUEST_138_1773768670_69b98fde0b40b.pdf', '2026-03-17 12:31:10', 32, 33, '2026-03-17 12:59:29', 0, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 579540.94, 'JMD', NULL, NULL, NULL),
+(139, 1, 'PR015', '2026-03-17', 'Pan Jamaica Property Company Parking Receipt dated March 10, 2026 for parking - Government Chemist attended a meeting at the MoH&W', 'REIMBURSEMENT', 'AWARDED', NULL, 0, NULL, NULL, 39, '2026-03-17 20:03:02', '2026-03-17 15:15:42', 32, '2026-05-01 17:37:33', NULL, NULL, NULL, NULL, 32, '2026-05-01 17:37:33', 1, NULL, 'SINGLE_SOURCE', NULL, 0, NULL, 900.00, 'JMD', NULL, NULL, NULL),
+(140, 5, 'PR016', '2026-03-24', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 27, '2026-03-24 15:27:47', '2026-03-24 10:27:55', 35, '2026-03-24 11:33:26', NULL, NULL, NULL, NULL, 35, '2026-03-24 11:33:26', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 37000.00, 'JMD', NULL, NULL, NULL),
+(141, 5, 'PR017', '2026-04-10', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 27, '2026-04-10 13:47:58', '2026-04-10 08:48:31', 35, '2026-04-10 09:14:16', NULL, NULL, NULL, NULL, 35, '2026-04-10 09:14:16', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 20000.00, 'JMD', NULL, NULL, NULL),
+(142, 6, 'PR018', '2026-04-17', '', 'REGULAR', 'QUOTE_REVIEW_PENDING', NULL, 0, NULL, NULL, 37, '2026-04-17 17:07:55', '2026-04-17 12:08:11', 33, '2026-04-17 12:45:53', NULL, NULL, NULL, NULL, 33, '2026-04-17 12:45:53', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 208480.00, 'JMD', NULL, NULL, NULL),
+(143, 5, 'PR019', '2026-04-22', '', 'REGULAR', 'QUOTE_APPROVED', NULL, 0, NULL, NULL, 27, '2026-04-22 20:12:26', '2026-04-22 15:12:33', 35, '2026-04-22 15:21:20', NULL, '/uploads/signed_requests/SIGNED_REQUEST_143_1776889680_69e92f5051dd1.pdf', '2026-04-22 15:28:00', 27, 35, '2026-04-22 15:21:20', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 19000.00, 'JMD', NULL, NULL, NULL),
+(144, 5, 'PR020', '2026-04-27', '', 'REGULAR', 'FUNDS_VERIFIED', NULL, 0, NULL, NULL, 27, '2026-04-27 17:00:15', '2026-04-27 12:00:39', 35, '2026-04-27 12:11:34', NULL, '/uploads/signed_requests/SIGNED_REQUEST_144_1777310322_69ef9a72b765c.pdf', '2026-04-27 12:18:42', 27, 34, '2026-04-27 13:42:27', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 137214.00, 'JMD', NULL, NULL, NULL),
+(145, 6, 'PR021', '2026-04-30', '', 'REGULAR', 'QUOTE_REVIEW_PENDING', NULL, 0, NULL, NULL, 37, '2026-04-30 18:41:31', '2026-05-01 12:50:20', 33, '2026-05-01 09:20:35', NULL, '/uploads/signed_requests/SIGNED_REQUEST_145_1777658424_69f4ea3896a07.pdf', '2026-05-01 13:00:24', 33, 33, '2026-05-01 09:20:35', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 145000.00, 'JMD', NULL, NULL, NULL),
+(146, 1, 'PR022', '2026-04-30', '', 'REGULAR', 'QUOTE_REVIEW_PENDING', NULL, 0, NULL, NULL, 27, '2026-04-30 19:48:45', '2026-04-30 14:49:04', 32, '2026-05-01 17:36:38', NULL, '/uploads/signed_requests/SIGNED_REQUEST_146_1778620004_6a0396643df85.pdf', '2026-05-12 16:06:44', 27, 32, '2026-05-01 17:36:38', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 67490.00, 'JMD', NULL, NULL, NULL),
+(147, 6, 'PR023', '2026-05-01', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 37, '2026-05-01 14:28:30', '2026-05-01 09:28:44', 33, '2026-05-01 11:43:42', NULL, '/uploads/signed_requests/SIGNED_REQUEST_147_1777658685_69f4eb3deef7e.pdf', '2026-05-01 13:04:45', 33, 33, '2026-05-01 11:43:42', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 57000.00, 'JMD', NULL, NULL, NULL),
+(148, 5, 'PR024', '2026-05-04', '', 'REGULAR', 'QUOTE_APPROVED', NULL, 0, NULL, NULL, 40, '2026-05-04 21:15:08', '2026-05-04 16:30:19', 35, '2026-05-04 16:33:42', NULL, NULL, NULL, NULL, 35, '2026-05-04 16:33:42', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 80000.00, 'JMD', NULL, NULL, NULL),
+(149, 5, 'PR025', '2026-05-06', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 40, '2026-05-06 20:01:25', '2026-05-07 11:47:14', 35, '2026-05-06 15:13:19', NULL, NULL, NULL, NULL, 35, '2026-05-06 15:13:19', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 40000.00, 'JMD', NULL, NULL, NULL),
+(150, 5, 'PR026', '2026-05-07', '', 'REGULAR', 'DECLINED', NULL, 0, NULL, NULL, 40, '2026-05-07 16:39:01', '2026-05-08 08:17:16', 35, '2026-05-08 15:45:25', 'Please speak with me regarding this request.', NULL, NULL, NULL, NULL, NULL, 0, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 77000.00, 'JMD', NULL, NULL, NULL),
+(151, 5, 'PR027', '2026-05-07', 'Purchased Land Title from National Lands Agency elandjamaica platform to update DGC records and to facilitate surveying, assessment of land for construction/building.', 'REIMBURSEMENT', 'FUNDS_VERIFIED', NULL, 0, NULL, NULL, 40, '2026-05-07 17:19:06', '2026-05-13 12:44:43', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'SINGLE_SOURCE', NULL, 0, NULL, 500.00, 'JMD', NULL, NULL, NULL),
+(152, 5, 'PR028', '2026-05-11', 'Tea Supplies for Meeting', 'PETTY_CASH', 'FUNDS_VERIFIED', NULL, 0, NULL, NULL, 40, '2026-05-11 15:27:29', '2026-05-13 12:43:36', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'SINGLE_SOURCE', NULL, 0, NULL, 5000.00, 'JMD', NULL, NULL, NULL),
+(153, 5, 'PR029', '2026-05-11', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 40, '2026-05-11 20:07:00', '2026-05-11 15:07:09', 35, '2026-05-12 14:28:40', NULL, NULL, NULL, NULL, 35, '2026-05-12 14:28:40', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 20000.00, 'JMD', NULL, NULL, NULL),
+(154, 5, 'PR030', '2026-05-11', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 40, '2026-05-11 21:08:50', '2026-05-12 14:49:47', 35, '2026-05-13 10:19:50', NULL, NULL, NULL, NULL, 35, '2026-05-13 10:19:50', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 18000.00, 'JMD', NULL, NULL, NULL),
+(155, 5, 'PR031', '2026-05-12', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 40, '2026-05-12 19:00:26', '2026-05-12 14:00:37', 35, '2026-05-12 14:30:32', NULL, NULL, NULL, NULL, 35, '2026-05-12 14:30:32', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 10000.00, 'JMD', NULL, NULL, NULL),
+(156, 5, 'PR032', '2026-05-12', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 40, '2026-05-12 19:12:11', '2026-05-13 09:28:02', 35, '2026-05-13 10:20:09', NULL, NULL, NULL, NULL, 35, '2026-05-13 10:20:09', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 300000.00, 'JMD', NULL, NULL, NULL),
+(157, 5, 'PR033', '2026-05-13', 'Gasoline 90 (Gallon)\r\nNeeded to supply weed eater and lawnmower with fuel for maintenance work', 'PETTY_CASH', 'FUNDS_VERIFIED', NULL, 0, NULL, NULL, 40, '2026-05-13 14:19:25', '2026-05-13 12:44:24', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'SINGLE_SOURCE', NULL, 0, NULL, 5000.00, 'JMD', NULL, NULL, NULL),
+(158, 5, 'PR034', '2026-05-13', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 40, '2026-05-13 16:39:26', '2026-05-13 11:39:39', 35, '2026-05-13 16:54:50', NULL, NULL, NULL, NULL, 35, '2026-05-13 16:54:50', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 20000.00, 'JMD', NULL, NULL, NULL),
+(159, 5, 'PR035', '2026-05-14', '', 'REGULAR', 'SUBMITTED', NULL, 0, NULL, NULL, 40, '2026-05-14 18:19:15', '2026-05-14 13:20:01', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 80000.00, 'JMD', NULL, NULL, NULL);
 
 --
 -- Triggers `procurement_requests`
@@ -2603,7 +3022,98 @@ INSERT INTO `procurement_request_items` (`item_id`, `request_id`, `item_name`, `
 (146, 131, 'Microsoft Surface Pro 13\"', '3K 120Hz OLED Touch AI Laptop, 900nits, 12-Core Snapdragon, 45 Tops NPU, 16GB RAM, 512GB SSD, USB4, Wi-Fi 7, Backlit KB, Stylus, MS 365, Win 11 Pro', 1, 'For Government Chemist', '2026-03-04 20:53:11'),
 (147, 131, 'Fintie Case for 13 Inch Microsoft Surface Pro', 'Multiple Angle Viewing Portfolio Business Cover with Pocket & Stylus Holder, Compatible with Type Cover Keyboard, Ice Blue', 1, 'For Government Chemist', '2026-03-04 20:53:11'),
 (148, 132, 'Mobile Phone', 'Samsung Galaxy S25', 1, '', '2026-03-06 17:14:45'),
-(149, 132, 'Mobile Phone', 'Samsung Galaxy S25FE', 5, '', '2026-03-06 17:14:45');
+(149, 132, 'Mobile Phone', 'Samsung Galaxy S25FE', 5, '', '2026-03-06 17:14:45'),
+(150, 133, 'TEST Request', 'TEst', 1, '1', '2026-03-12 20:12:44'),
+(151, 134, 'TEST', 'Procurement getting Notifications', 1, 'Accept Request', '2026-03-16 14:20:03'),
+(152, 135, 'APC Smart‑UPS On‑Line SRT 5.4 kVA', 'SRT5KXLTUS ', 1, 'For HPLC system (Agilent 1260 DAD)', '2026-03-17 14:29:45'),
+(153, 136, 'APC Smart‑UPS On‑Line SRT 5.4 kVA', 'SRT5KXLTUS ', 1, 'For HPLC system (Agilent 1260 DAD)', '2026-03-17 15:53:09'),
+(154, 137, 'Microsoft Surface Pro 13\"', '3K 120Hz OLED Touch AI Laptop, 900nits, 12-Core Snapdragon, 45 Tops NPU, 16GB RAM, 512GB SSD, USB4, Wi-Fi 7, Backlit KB, Stylus, MS 365, Win 11 Pro', 1, 'For Government Chemist', '2026-03-17 15:59:36'),
+(155, 137, 'Fintie Case for 13 Inch Microsoft Surface Pro', 'Multiple Angle Viewing Portfolio Business Cover with Pocket & Stylus Holder, Compatible with Type Cover Keyboard, Ice Blue', 1, 'For Government Chemist', '2026-03-17 15:59:36'),
+(157, 138, 'APC Smart‑UPS On‑Line SRT 5.4 kVA', 'SRT5KXLTUS ', 1, 'For HPLC system (Agilent 1260 DAD)', '2026-03-17 17:14:28'),
+(158, 140, 'Epson Wireless', 'LAN Module - Network adapter - Wi-Fi', 1, 'For Projector', '2026-03-24 15:27:47'),
+(159, 141, 'Avaya Telephone', '9508 Model', 1, 'Public Procurement Officer', '2026-04-10 13:47:58'),
+(160, 142, 'Chloroform with Ethanol', 'ACS, HPLC ; 4 L Amber bottle', 4, '', '2026-04-17 17:07:55'),
+(161, 142, 'Methanol', 'HPLC  Grade 4 L', 6, '', '2026-04-17 17:07:55'),
+(162, 142, 'Acetonitrile', 'HPLC Grade 4 L', 2, '', '2026-04-17 17:07:55'),
+(163, 143, 'SSD Harddrive', '2.5 sata, 480gb', 1, 'For SMS restoration on primary server', '2026-04-22 20:12:26'),
+(164, 144, 'RAM', 'Dell 1Rx8 16GB DDR5 PC5-5600 UDIMM ECC RAM Memory		', 1, 'For Server Upgrades', '2026-04-27 17:00:15'),
+(169, 146, '3 in 1 Laptop Bag, 15.6 inch PU Leather Shoulder Bag Briefcase Messenger Satchel Laptop Backpack', '15-16 inch Computer Bags Handbag Bookbag, Black ', 1, 'For Gov Chem Surface Pro', '2026-04-30 19:48:45'),
+(170, 146, 'New for Microsoft Surface Docking Station 11-in-1 Surface Dock 2 4K@60HZ', 'HDMI USB C Travel Dock for Microsoft Surface Pro 12/11/10/9/8/X/7/6/5/4,Surface Laptop 6/5/4/3/2/1,Laptop Go 3/2/1,Surface Book ', 1, 'For Gov Chem Surface Pro', '2026-04-30 19:48:45'),
+(171, 146, '65W USB C Surface Pro Charger Compatible with Microsoft Type c Surface Pro Fast Charge', 'Compatible with Microsoft Surface Pro 11 10 9 8 7+ 7 Surface pro X Tablet & Laptop Type C Fast Charger ', 1, 'For Gov Chem Surface Pro', '2026-04-30 19:48:45'),
+(172, 146, '45W Super Fast Charger USB C, Type C Chargers Fast Charging Android Phone Charger Block Samsung Galaxy S25 Ultra Chargers', '10FT Fast Charging Cord for Samsung Galaxy S26 Ultra/S26//S25/S24/S23, 2Port ', 1, 'For Gov Chem Galaxy Ultra', '2026-04-30 19:48:45'),
+(173, 146, 'Privacy Screen for 13 Inch Surface Pro 11/10/9/8/X, MagicSuction™', 'Removable Anti Spy Black Protector, Glare Blue Light Filter for Microsoft Laptop Computer Monitor ', 1, 'For Gov Chem Surface Pro', '2026-04-30 19:48:45'),
+(174, 147, 'Sodium Oxalate', 'Reference Material for Titrimetry', 1, 'For standardization, 25g/ bottle', '2026-05-01 14:28:30'),
+(175, 147, 'Ammonium Oxalate', 'ACS Reagent', 1, 'For general lab, 50 g', '2026-05-01 14:28:30'),
+(176, 147, 'NN- Dimethyl p-phenylenediamine sulphate', 'Catalog No. 186384', 1, 'For general lab use, 25 g', '2026-05-01 14:28:30'),
+(177, 145, 'Hard Drive', 'SSD, Min. 480 GB', 1, 'For Agilent HPLC computer', '2026-05-01 17:50:20'),
+(178, 145, 'Memory Card', 'DDR4, 8GB', 1, 'For Agilent HPLC Computer', '2026-05-01 17:50:20'),
+(179, 145, '27\" Monitor', '90hz-120hz refresh rate', 1, 'For Deputy Government Chemist (brand can be Lenovo/HP/Samsung/LG,', '2026-05-01 17:50:20'),
+(180, 145, 'Printer', 'Wireless Black & White All-in-One Laser Printer, Scanner, Copier', 1, 'For Senior Chemist Office, HP Laserjet Pro MFP 4101fdw', '2026-05-01 17:50:20'),
+(190, 148, 'Copy Paper', 'Letter Size ', 50, 'Reams', '2026-05-04 21:30:09'),
+(191, 148, 'Copy Paper', 'Legal Size ', 20, 'Reams', '2026-05-04 21:30:09'),
+(192, 148, '4 Quire Book', 'Hard Cover', 6, '', '2026-05-04 21:30:09'),
+(193, 148, 'Flag Its', 'Sign Here', 20, '', '2026-05-04 21:30:09'),
+(194, 148, 'Sticky Notes', '3*3', 36, '3 packs', '2026-05-04 21:30:09'),
+(195, 148, 'Stenopad', '', 15, '', '2026-05-04 21:30:09'),
+(196, 148, 'Whiteboard', 'Length: 41 inches, width 41 inches', 1, 'closest approximate size to what is requested', '2026-05-04 21:30:09'),
+(197, 148, 'Whiteboard Markers', 'black, blue, red, green', 4, '4 single whiteboard markers of the colours listed', '2026-05-04 21:30:09'),
+(198, 148, 'Paper Clip ', 'Regular - 33mm', 10, 'boxes', '2026-05-04 21:30:09'),
+(199, 148, 'Paper Clip', 'Jumbo - 50mm', 10, '', '2026-05-04 21:30:09'),
+(200, 148, 'Scientific Calculator', '', 3, '', '2026-05-04 21:30:09'),
+(201, 148, 'Desktop Calculator ', '', 3, '', '2026-05-04 21:30:09'),
+(202, 148, 'Bull Dog Clip', '37mm', 24, '', '2026-05-04 21:30:09'),
+(203, 148, 'Bull Dog Clip', '51mm', 24, '', '2026-05-04 21:30:09'),
+(204, 148, 'Highlighter', '', 1, '2 packs - Assorted colours ', '2026-05-04 21:30:09'),
+(205, 148, 'Mesh Document Tray', '', 1, '', '2026-05-04 21:30:09'),
+(206, 148, 'Pen', 'Gel - blue - fine', 36, '3 Dozen', '2026-05-04 21:30:09'),
+(207, 148, 'Pen', 'BIC - Blue - Fine', 36, '3 Dozen', '2026-05-04 21:30:09'),
+(208, 148, 'Pen', 'BIC - Blue - Medium', 12, '1 Dozen', '2026-05-04 21:30:09'),
+(209, 148, 'Pen', 'BIC - Black- Fine', 36, '3 Dozen', '2026-05-04 21:30:09'),
+(219, 149, 'ID CARD CASE WITH RETRACTABLE CLIP', 'HEAVY DUTY', 50, '', '2026-05-07 16:47:14'),
+(261, 150, 'Box Cutter', '', 1, '', '2026-05-08 13:17:13'),
+(262, 150, 'Cement', '', 12, '', '2026-05-08 13:17:13'),
+(263, 150, 'Thinset ', '', 3, '', '2026-05-08 13:17:13'),
+(264, 150, 'Hose (Garden/Water)', '100 feet', 3, '', '2026-05-08 13:17:13'),
+(265, 150, 'Pole Saw', '20 feet or closest to, electric if possible', 1, 'To cut tall branches from trees', '2026-05-08 13:17:13'),
+(266, 150, 'Paint', 'White/Gallon', 2, '', '2026-05-08 13:17:13'),
+(267, 150, 'Corking Sylicone', 'White', 6, '', '2026-05-08 13:17:13'),
+(268, 150, 'Drywall Screw', '1 1/2inch', 500, '', '2026-05-08 13:17:13'),
+(269, 150, 'Tee PVC', '1 inch', 1, '', '2026-05-08 13:17:13'),
+(270, 150, 'Length of Pipe PVC', '1 inch', 5, '', '2026-05-08 13:17:13'),
+(271, 150, 'Elbow PVC', '1 inch', 9, '', '2026-05-08 13:17:13'),
+(272, 150, 'Coupling PVC', '1 inch', 9, '', '2026-05-08 13:17:13'),
+(273, 150, 'Turn of Valve PVC', '1 inch', 4, '', '2026-05-08 13:17:13'),
+(274, 150, 'Length of Pipe PVC', '1/2', 6, '', '2026-05-08 13:17:13'),
+(275, 150, 'Coupling PVC', '1/2 inch with thread (female)', 1, '', '2026-05-08 13:17:13'),
+(276, 150, 'Reducer PVC', '1 inch to 1/2 inch ', 3, '', '2026-05-08 13:17:13'),
+(277, 150, 'Pipe cock', 'Metal', 5, '', '2026-05-08 13:17:13'),
+(278, 150, 'Thread Tape', '6', 1, '', '2026-05-08 13:17:13'),
+(279, 150, 'Elbow PVC', '1/2 inch', 6, '', '2026-05-08 13:17:13'),
+(280, 150, 'Tee PVC', '1/2inch', 1, '', '2026-05-08 13:17:13'),
+(281, 150, 'Flood Light', '300 Watts, Solar', 15, '', '2026-05-08 13:17:13'),
+(282, 153, 'Gasoline 90', 'Gallon', 2, '', '2026-05-11 20:07:00'),
+(283, 153, 'Weed Eater Line', '', 2, '', '2026-05-11 20:07:00'),
+(284, 153, '2 Stroke Oil', '', 3, '', '2026-05-11 20:07:00'),
+(291, 155, 'LINEN PAPER', 'LEGAL SIZE', 2, 'CREAM', '2026-05-12 19:00:26'),
+(304, 154, 'Peppered steak', 'Large ', 4, '', '2026-05-12 19:49:44'),
+(305, 154, 'Chicken lunch', 'Large ', 4, '', '2026-05-12 19:49:44'),
+(306, 154, 'Fish meal ', 'Large ', 2, '', '2026-05-12 19:49:44'),
+(307, 154, 'Soda', '', 1, '', '2026-05-12 19:49:44'),
+(308, 154, 'Orange Juice', '', 1, '', '2026-05-12 19:49:44'),
+(309, 154, 'Natural Juice', '', 8, '', '2026-05-12 19:49:44'),
+(310, 156, 'CHAIR (OFFICE)', '', 2, 'B7-301BK Boss High Back Exec. Leather Plus Chair - Black', '2026-05-13 14:27:57'),
+(311, 156, 'CHAIR (EXECUTIVE)', '', 3, 'B9-91BK Boss H/Duty Double Plush High Back Chair (400lbs) - Black', '2026-05-13 14:27:57'),
+(312, 156, 'DESK (OFFICE)', '', 2, 'ED-0018BW Echo 1800x1800 Exec Desk w/Pedestal - Bk/Walnut', '2026-05-13 14:27:57'),
+(313, 156, 'DESK (EXECUTIVE)', '', 3, 'ET-E1818L W Elite 1800x1800 Exec Unit w/Hutch & Pedestal - Walnut', '2026-05-13 14:27:57'),
+(314, 156, 'CHAIRS (BOARD ROOM/CONFERENCE ROOM)', '', 12, 'B0-HAB72BK Boss Habanera Leather High Back Exec. Chair - Bk', '2026-05-13 14:27:57'),
+(315, 156, 'DESK (BOARD ROOM/CONFERENCE ROOM)', '', 1, 'CR-656 WW 00x1200 Conference Table WW', '2026-05-13 14:27:57'),
+(316, 158, 'Peppered Steak Lunch		 ', 'Large	', 4, 'Managers Training for Departmental Unit Plan', '2026-05-13 16:39:26'),
+(317, 158, 'Chicken Lunch', 'Large		 ', 4, 'Managers Training for Departmental Unit Plan', '2026-05-13 16:39:26'),
+(318, 158, 'Fish Lunch', 'Large		 ', 2, 'Managers Training for Departmental Unit Plan', '2026-05-13 16:39:26'),
+(319, 158, 'Soda			 ', '', 1, 'Managers Training for Departmental Unit Plan', '2026-05-13 16:39:26'),
+(320, 158, 'Orange Juice			 ', '', 1, 'Managers Training for Departmental Unit Plan', '2026-05-13 16:39:26'),
+(321, 158, 'Natural Juice			', '', 8, 'Managers Training for Departmental Unit Plan', '2026-05-13 16:39:26'),
+(322, 159, 'Installation of 110 volts - Circuit to facilitate printer in Accounts Department', '', 1, '', '2026-05-14 18:19:15');
 
 -- --------------------------------------------------------
 
@@ -2720,6 +3230,13 @@ CREATE TABLE `reimbursement_status_history` (
   `created_at` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Historical record of reimbursement request status changes';
 
+--
+-- Dumping data for table `reimbursement_status_history`
+--
+
+INSERT INTO `reimbursement_status_history` (`history_id`, `request_id`, `old_status`, `new_status`, `changed_by`, `change_date`, `change_notes`, `created_at`) VALUES
+(1, 151, 'SUBMITTED', 'FUNDS_VERIFIED', 34, '2026-05-13 12:44:43', 'Funds verified by Finance', '2026-05-13 12:44:43');
+
 -- --------------------------------------------------------
 
 --
@@ -2738,23 +3255,49 @@ CREATE TABLE `request_approvals` (
   `stage_order` int(11) NOT NULL DEFAULT 1,
   `rejection_reason` text DEFAULT NULL,
   `comments` text DEFAULT NULL,
-  `created_at` datetime DEFAULT current_timestamp()
+  `created_at` datetime DEFAULT current_timestamp(),
+  `notes` varchar(500) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `request_approvals`
 --
 
-INSERT INTO `request_approvals` (`id`, `request_id`, `role`, `approved_by`, `status`, `approved_at`, `entity_type`, `entity_id`, `stage_order`, `rejection_reason`, `comments`, `created_at`) VALUES
-(86, 123, 'Deputy Government Chemist', 33, 'approved', '2026-02-26 11:04:04', 'REQUEST', 123, 1, NULL, NULL, '2026-02-26 10:56:09'),
-(87, 124, 'Deputy Government Chemist', 33, 'approved', '2026-02-26 11:08:20', 'REQUEST', 124, 1, NULL, NULL, '2026-02-26 11:07:39'),
-(89, 126, 'Deputy Government Chemist', NULL, 'pending', NULL, 'REQUEST', 126, 1, NULL, NULL, '2026-02-26 11:18:43'),
-(91, 125, 'HOD', 32, 'approved', '2026-02-26 11:30:49', 'REQUEST', 125, 1, NULL, NULL, '2026-02-26 11:29:31'),
-(92, 128, 'Finance Officer', NULL, 'pending', NULL, 'REQUEST', 128, 1, NULL, NULL, '2026-03-04 09:46:56'),
-(95, 129, 'Director HRM&A', 35, 'approved', '2026-03-04 16:02:57', 'REQUEST', 129, 1, NULL, NULL, '2026-03-04 15:40:55'),
-(96, 130, 'Director HRM&A', 35, 'approved', '2026-03-04 16:03:50', 'REQUEST', 130, 1, NULL, NULL, '2026-03-04 15:43:04'),
-(97, 131, 'HOD', 32, 'approved', '2026-03-04 16:04:34', 'REQUEST', 131, 1, NULL, NULL, '2026-03-04 15:53:17'),
-(98, 132, 'Director HRM&A', 35, 'approved', '2026-03-06 12:24:09', 'REQUEST', 132, 1, NULL, NULL, '2026-03-06 12:15:29');
+INSERT INTO `request_approvals` (`id`, `request_id`, `role`, `approved_by`, `status`, `approved_at`, `entity_type`, `entity_id`, `stage_order`, `rejection_reason`, `comments`, `created_at`, `notes`) VALUES
+(86, 123, 'Deputy Government Chemist', 33, 'approved', '2026-02-26 11:04:04', 'REQUEST', 123, 1, NULL, NULL, '2026-02-26 10:56:09', NULL),
+(87, 124, 'Deputy Government Chemist', 33, 'approved', '2026-02-26 11:08:20', 'REQUEST', 124, 1, NULL, NULL, '2026-02-26 11:07:39', NULL),
+(89, 126, 'Deputy Government Chemist', NULL, 'pending', NULL, 'REQUEST', 126, 1, NULL, NULL, '2026-02-26 11:18:43', NULL),
+(91, 125, 'HOD', 32, 'approved', '2026-02-26 11:30:49', 'REQUEST', 125, 1, NULL, NULL, '2026-02-26 11:29:31', NULL),
+(92, 128, 'Finance Officer', 34, 'approved', '2026-05-13 12:22:12', 'REQUEST', 128, 1, NULL, NULL, '2026-03-04 09:46:56', NULL),
+(95, 129, 'Director HRM&A', 35, 'approved', '2026-03-04 16:02:57', 'REQUEST', 129, 1, NULL, NULL, '2026-03-04 15:40:55', NULL),
+(96, 130, 'Director HRM&A', 35, 'approved', '2026-03-04 16:03:50', 'REQUEST', 130, 1, NULL, NULL, '2026-03-04 15:43:04', NULL),
+(97, 131, 'HOD', 32, 'approved', '2026-03-04 16:04:34', 'REQUEST', 131, 1, NULL, NULL, '2026-03-04 15:53:17', NULL),
+(98, 132, 'Director HRM&A', 35, 'approved', '2026-03-06 12:24:09', 'REQUEST', 132, 1, NULL, NULL, '2026-03-06 12:15:29', NULL),
+(99, 133, 'Director HRM&A', 35, 'approved', '2026-03-12 15:17:12', 'REQUEST', 133, 1, NULL, NULL, '2026-03-12 15:12:51', NULL),
+(101, 135, 'Deputy Government Chemist', 33, 'approved', '2026-03-17 09:39:45', 'REQUEST', 135, 1, NULL, NULL, '2026-03-17 09:29:58', NULL),
+(104, 137, 'HOD', 32, 'approved', '2026-03-17 11:11:54', 'REQUEST', 137, 1, NULL, NULL, '2026-03-17 11:00:01', NULL),
+(107, 138, 'HOD', 32, 'approved', '2026-03-17 12:27:56', 'REQUEST', 138, 1, NULL, NULL, '2026-03-17 12:14:46', NULL),
+(108, 138, 'Deputy Government Chemist', 33, 'approved', '2026-03-17 12:59:29', 'REQUEST', 138, 2, NULL, NULL, '2026-03-17 12:14:46', NULL),
+(109, 139, 'HOD', 32, 'approved', '2026-05-01 17:37:33', 'REQUEST', 139, 1, NULL, NULL, '2026-03-17 15:15:42', NULL),
+(110, 140, 'Director HRM&A', 35, 'approved', '2026-03-24 11:33:26', 'REQUEST', 140, 1, NULL, NULL, '2026-03-24 10:27:55', NULL),
+(111, 141, 'Director HRM&A', 35, 'approved', '2026-04-10 09:14:16', 'REQUEST', 141, 1, NULL, NULL, '2026-04-10 08:48:31', NULL),
+(112, 142, 'Deputy Government Chemist', 33, 'approved', '2026-04-17 12:45:53', 'REQUEST', 142, 1, NULL, NULL, '2026-04-17 12:08:11', NULL),
+(113, 143, 'Director HRM&A', 35, 'approved', '2026-04-22 15:21:20', 'REQUEST', 143, 1, NULL, NULL, '2026-04-22 15:12:33', NULL),
+(114, 144, 'Director HRM&A', 35, 'approved', '2026-04-27 12:11:34', 'REQUEST', 144, 1, NULL, NULL, '2026-04-27 12:00:39', NULL),
+(115, 145, 'Deputy Government Chemist', 33, 'approved', '2026-05-01 09:20:35', 'REQUEST', 145, 1, NULL, NULL, '2026-04-30 13:41:45', NULL),
+(116, 146, 'HOD', 32, 'approved', '2026-05-01 17:36:38', 'REQUEST', 146, 1, NULL, NULL, '2026-04-30 14:49:04', NULL),
+(117, 147, 'Deputy Government Chemist', 33, 'approved', '2026-05-01 11:43:42', 'REQUEST', 147, 1, NULL, NULL, '2026-05-01 09:28:44', NULL),
+(118, 148, 'Director HRM&A', 35, 'approved', '2026-05-04 16:33:42', 'REQUEST', 148, 1, NULL, NULL, '2026-05-04 16:30:19', NULL),
+(119, 149, 'Director HRM&A', 35, 'approved', '2026-05-06 15:13:19', 'REQUEST', 149, 1, NULL, NULL, '2026-05-06 15:12:05', NULL),
+(121, 153, 'Director HRM&A', 35, 'approved', '2026-05-12 14:28:40', 'REQUEST', 153, 1, NULL, NULL, '2026-05-11 15:07:09', NULL),
+(122, 155, 'Director HRM&A', 35, 'approved', '2026-05-12 14:30:32', 'REQUEST', 155, 1, NULL, NULL, '2026-05-12 14:00:37', NULL),
+(124, 154, 'Director HRM&A', 35, 'approved', '2026-05-13 10:19:50', 'REQUEST', 154, 1, NULL, NULL, '2026-05-12 14:49:47', NULL),
+(125, 156, 'Director HRM&A', 35, 'approved', '2026-05-13 10:20:09', 'REQUEST', 156, 1, NULL, NULL, '2026-05-13 09:28:02', NULL),
+(126, 151, 'Finance Officer', 34, 'approved', '2026-05-13 12:44:43', 'REQUEST', 151, 1, NULL, NULL, '2026-05-13 10:15:01', ''),
+(127, 152, 'Finance Officer', 34, 'approved', '2026-05-13 12:43:36', 'REQUEST', 152, 1, NULL, NULL, '2026-05-13 10:16:00', ''),
+(128, 157, 'Finance Officer', 34, 'approved', '2026-05-13 12:44:24', 'REQUEST', 157, 1, NULL, NULL, '2026-05-13 10:16:32', ''),
+(129, 158, 'Director HRM&A', 35, 'approved', '2026-05-13 16:54:50', 'REQUEST', 158, 1, NULL, NULL, '2026-05-13 11:39:39', NULL),
+(130, 159, 'Director HRM&A', NULL, 'pending', NULL, 'REQUEST', 159, 1, NULL, NULL, '2026-05-14 13:20:01', NULL);
 
 -- --------------------------------------------------------
 
@@ -2772,6 +3315,20 @@ CREATE TABLE `request_documents` (
   `uploaded_at` timestamp NULL DEFAULT current_timestamp(),
   `notes` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `request_documents`
+--
+
+INSERT INTO `request_documents` (`document_id`, `request_id`, `document_type`, `document_name`, `document_path`, `uploaded_by`, `uploaded_at`, `notes`) VALUES
+(3, 127, '', 'FinMan Installation_Revised (1).pdf', '/uploads/signed_requests/SIGNED_REQUEST_127_1773764831_69b980dfe1b24.pdf', 27, '2026-03-17 16:27:11', 'Signed request uploaded by Technical & User Support Officer'),
+(4, 137, '', 'PR013.pdf', '/uploads/signed_requests/SIGNED_REQUEST_137_1773764983_69b98177a23d3.pdf', 32, '2026-03-17 16:29:43', 'Signed request uploaded by Yanique A. Fraser'),
+(5, 138, '', 'PR014.pdf', '/uploads/signed_requests/SIGNED_REQUEST_138_1773768670_69b98fde0b40b.pdf', 32, '2026-03-17 17:31:10', 'Signed request uploaded by Yanique A. Fraser'),
+(6, 143, '', 'Scan2026-04-22_152717.pdf', '/uploads/signed_requests/SIGNED_REQUEST_143_1776889680_69e92f5051dd1.pdf', 27, '2026-04-22 20:28:00', 'Signed request uploaded by Technical & User Support Officer'),
+(7, 144, '', 'Document_260427_121219.pdf', '/uploads/signed_requests/SIGNED_REQUEST_144_1777310322_69ef9a72b765c.pdf', 27, '2026-04-27 17:18:42', 'Signed request uploaded by Technical & User Support Officer'),
+(8, 145, '', 'PR021 .pdf', '/uploads/signed_requests/SIGNED_REQUEST_145_1777658424_69f4ea3896a07.pdf', 33, '2026-05-01 18:00:24', 'Signed request uploaded by Daneika Anderson'),
+(9, 147, '', 'PR023.pdf', '/uploads/signed_requests/SIGNED_REQUEST_147_1777658685_69f4eb3deef7e.pdf', 33, '2026-05-01 18:04:45', 'Signed request uploaded by Daneika Anderson'),
+(10, 146, '', 'PR22.pdf', '/uploads/signed_requests/SIGNED_REQUEST_146_1778620004_6a0396643df85.pdf', 27, '2026-05-12 21:06:44', 'Signed request uploaded by Technical & User Support Officer');
 
 -- --------------------------------------------------------
 
@@ -2797,6 +3354,25 @@ CREATE TABLE `rfqs` (
   `reviewed_at` datetime DEFAULT NULL,
   `acceptance_received_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `rfqs`
+--
+
+INSERT INTO `rfqs` (`rfq_id`, `request_id`, `rfq_number`, `rfq_date`, `submission_deadline`, `status`, `created_by`, `created_at`, `awarded_quote_id`, `letter_of_award_file`, `rfq_letter_file`, `acceptance_status`, `quote_review_status`, `reviewed_by`, `reviewed_at`, `acceptance_received_at`) VALUES
+(25, 131, 'RFQ-20260316-131', '2026-03-16', '2026-03-23 04:51:00', '', 44, '2026-03-16 17:51:59', NULL, NULL, '/uploads/rfq_letters/RFQ_LETTER_1773683519_69b8433fcf9c6.docx', 'PENDING', 'PENDING', NULL, NULL, NULL),
+(26, 132, 'RFQ-20260316-132', '2026-03-16', '2026-03-23 15:31:00', '', 44, '2026-03-16 20:31:08', NULL, NULL, '/uploads/rfq_letters/RFQ_LETTER_1773693068_69b8688cb1fc8.docx', 'PENDING', 'PENDING', NULL, NULL, NULL),
+(27, 137, 'RFQ-20260317-137', '2026-03-17', '2026-03-19 11:00:00', 'PUBLISHED', 44, '2026-03-17 16:53:40', NULL, NULL, '/uploads/rfq_letters/RFQ_LETTER_1773766420_69b987142ce58.pdf', 'PENDING', 'PENDING', NULL, NULL, NULL),
+(28, 138, 'RFQ-20260317-138', '2026-03-17', '2026-03-19 11:00:00', 'PUBLISHED', 44, '2026-03-17 19:12:55', NULL, NULL, '/uploads/rfq_letters/RFQ_LETTER_1773774775_69b9a7b773bb0.pdf', 'PENDING', 'PENDING', NULL, NULL, NULL),
+(29, 144, 'RFQ-20260427-144', '2026-04-08', '2026-04-15 11:00:00', 'PUBLISHED', 44, '2026-04-27 17:33:44', NULL, NULL, NULL, 'PENDING', 'PENDING', NULL, NULL, NULL),
+(30, 147, 'RFQ-20260504-147', '2026-05-01', '2026-05-08 11:00:00', '', 42, '2026-05-04 21:40:18', NULL, NULL, '/uploads/rfq_letters/RFQ_LETTER_1777930818_69f91242c36eb.pdf', 'PENDING', 'PENDING', NULL, NULL, NULL),
+(31, 146, 'RFQ-20260504-146', '2026-05-04', '2026-05-11 11:00:00', 'PUBLISHED', 42, '2026-05-04 22:08:29', NULL, NULL, '/uploads/rfq_letters/RFQ_LETTER_1777932509_69f918dd717ad.pdf', 'PENDING', 'PENDING', NULL, NULL, NULL),
+(32, 145, 'RFQ-20260504-145', '2026-05-04', '2026-05-11 11:00:00', 'PUBLISHED', 42, '2026-05-04 22:12:50', NULL, NULL, '/uploads/rfq_letters/RFQ_LETTER_1777932770_69f919e24c439.pdf', 'PENDING', 'PENDING', NULL, NULL, NULL),
+(33, 143, 'RFQ-20260504-143', '2026-04-29', '2026-05-26 11:00:00', 'PUBLISHED', 44, '2026-05-04 22:17:16', NULL, NULL, '/uploads/rfq_letters/RFQ_LETTER_1777933051_69f91afb50ac4.pdf', 'PENDING', 'PENDING', NULL, NULL, NULL),
+(34, 142, 'RFQ-20260505-142', '2026-04-29', '2026-05-06 11:00:00', 'PUBLISHED', 44, '2026-05-05 18:42:09', NULL, NULL, '/uploads/rfq_letters/RFQ_LETTER_1778006547_69fa3a13883e2.pdf', 'PENDING', 'PENDING', NULL, NULL, NULL),
+(35, 148, 'RFQ-20260505-148', '2026-05-05', '2026-05-12 11:00:00', 'PUBLISHED', 42, '2026-05-05 21:28:10', NULL, NULL, '/uploads/rfq_letters/RFQ_LETTER_1778016490_69fa60ea3edfe.pdf', 'PENDING', 'PENDING', NULL, NULL, NULL),
+(36, 149, 'RFQ-20260507-149', '2026-05-07', '2026-05-14 11:00:00', '', 42, '2026-05-07 16:39:25', NULL, NULL, '/uploads/rfq_letters/RFQ_LETTER_1778171965_69fcc03dd202a.pdf', 'PENDING', 'PENDING', NULL, NULL, NULL),
+(37, 155, 'RFQ-20260512-155', '2026-05-12', '2026-05-19 11:00:00', '', 42, '2026-05-12 20:48:45', NULL, NULL, '/uploads/rfq_letters/RFQ_LETTER_1778618925_6a03922d88e7f.pdf', 'PENDING', 'PENDING', NULL, NULL, NULL);
 
 --
 -- Triggers `rfqs`
@@ -2923,6 +3499,33 @@ CREATE TABLE `rfq_quotes` (
   `submitted_at` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `rfq_quotes`
+--
+
+INSERT INTO `rfq_quotes` (`quote_id`, `rfq_vendor_id`, `quote_amount`, `currency`, `usd_rate`, `gct_amount`, `validity_days`, `quote_file`, `is_selected`, `review_status`, `review_comments`, `submitted_at`) VALUES
+(65, 72, 355949.10, 'JMD', NULL, 46428.14, 30, '1773842527_Proforma Invoice -  MICROSOFT QUOTE (2).xlsx', 1, 'MEETS_REQUIREMENTS', NULL, '2026-03-18 09:02:07'),
+(66, 69, 676126.19, 'JMD', NULL, 88190.37, 30, '1774880270_AJL - MOH (Government Chemist) Estimate on APC SRT 5KVA UPS System (1).pdf', 1, 'MEETS_REQUIREMENTS', NULL, '2026-03-30 09:17:50'),
+(67, 69, 676126.19, 'JMD', NULL, 88190.37, 30, '1774880273_AJL - MOH (Government Chemist) Estimate on APC SRT 5KVA UPS System (1).pdf', 0, 'PENDING', NULL, '2026-03-30 09:17:53'),
+(68, 75, 184995.79, 'JMD', NULL, 24129.89, 30, '1777311319_Proforma Invoice -  KINGSTON RAM (2) (2).xlsx', 1, 'MEETS_REQUIREMENTS', NULL, '2026-04-27 12:35:19'),
+(69, 80, 40159.23, 'JMD', NULL, 5238.16, 30, '1777933316_Quotation - S06064.pdf', 0, 'PENDING', NULL, '2026-05-04 17:21:56'),
+(70, 79, 93768.11, 'JMD', NULL, 12230.62, 30, '1777933370_Proforma Invoice -  DELL SATA  (1).xlsx', 0, 'PENDING', NULL, '2026-05-04 17:22:50'),
+(71, 78, 40159.23, 'JMD', NULL, 5238.16, 30, '1777933416_QT-000052.pdf', 0, 'PENDING', NULL, '2026-05-04 17:23:36'),
+(72, 80, 29785.00, 'JMD', NULL, 3885.00, 30, '1777933472_Quotation - S06064.pdf', 1, 'MEETS_REQUIREMENTS', NULL, '2026-05-04 17:24:32'),
+(73, 80, 29785.00, 'JMD', NULL, 3885.00, 30, '1777933476_Quotation - S06064.pdf', 0, 'PENDING', NULL, '2026-05-04 17:24:36'),
+(74, 76, 199369.36, 'JMD', NULL, 24393.83, 30, '1777991005_QT-000054.pdf', 0, 'PENDING', NULL, '2026-05-05 09:23:25'),
+(75, 76, 199369.36, 'JMD', NULL, 24393.83, 30, '1777991006_QT-000054.pdf', 0, 'PENDING', NULL, '2026-05-05 09:23:26'),
+(76, 76, 199369.36, 'JMD', NULL, 24393.83, 30, '1777991006_QT-000054.pdf', 0, 'PENDING', NULL, '2026-05-05 09:23:26'),
+(77, 76, 199369.36, 'JMD', NULL, 24393.83, 30, '1777991007_QT-000054.pdf', 0, 'PENDING', NULL, '2026-05-05 09:23:27'),
+(78, 76, 199369.36, 'JMD', NULL, 24393.83, 30, '1777991009_QT-000054.pdf', 0, 'PENDING', NULL, '2026-05-05 09:23:29'),
+(79, 82, 114802.20, 'JMD', NULL, 14974.20, 30, '1778012929_quote#-18088-Gov Chem.pdf', 0, 'PENDING', NULL, '2026-05-05 15:28:49'),
+(80, 81, 323033.85, 'JMD', NULL, 42134.85, 30, '1778014042_quote#-18087-Gov Chem.pdf', 0, 'PENDING', NULL, '2026-05-05 15:47:22'),
+(81, 83, 105344.00, 'JMD', NULL, 15081.60, 30, '1778016593_Quotation - S06256.pdf', 1, 'MEETS_REQUIREMENTS', NULL, '2026-05-05 16:29:53'),
+(82, 83, 105344.00, 'JMD', NULL, 15081.60, 30, '1778016595_Quotation - S06256.pdf', 0, 'PENDING', NULL, '2026-05-05 16:29:55'),
+(83, 84, 299000.00, 'JMD', NULL, 39000.00, 30, '1778076483_No.35431.26 Government Chemist.xls', 0, 'PENDING', NULL, '2026-05-06 09:08:03'),
+(84, 85, 187493.07, 'JMD', NULL, 24351.27, 30, '1778596068_QT-000057.pdf', 0, 'PENDING', NULL, '2026-05-12 09:27:48'),
+(85, 86, 181438.95, 'JMD', NULL, 23665.95, 30, '1778596163_Quotation - S06329 (1).pdf', 0, 'PENDING', NULL, '2026-05-12 09:29:23');
+
 -- --------------------------------------------------------
 
 --
@@ -2955,6 +3558,25 @@ CREATE TABLE `rfq_vendors` (
   `response_status` enum('PENDING','WILL_SUBMIT','DECLINED','SUBMITTED','SELECTED') DEFAULT 'PENDING',
   `created_at` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `rfq_vendors`
+--
+
+INSERT INTO `rfq_vendors` (`rfq_vendor_id`, `rfq_id`, `vendor_id`, `vendor_name`, `email`, `response_status`, `created_at`) VALUES
+(69, 28, 2, '', NULL, 'SUBMITTED', '2026-03-17 19:13:46'),
+(72, 27, 9, '', NULL, 'SUBMITTED', '2026-03-18 13:48:42'),
+(75, 29, 9, '', NULL, 'SUBMITTED', '2026-04-27 17:34:39'),
+(76, 31, 7, '', NULL, 'SUBMITTED', '2026-05-04 22:09:19'),
+(78, 33, 7, '', NULL, 'SUBMITTED', '2026-05-04 22:17:39'),
+(79, 33, 9, '', NULL, 'SUBMITTED', '2026-05-04 22:17:51'),
+(80, 33, 12, '', NULL, 'SUBMITTED', '2026-05-04 22:18:57'),
+(81, 34, 10, '', NULL, 'SUBMITTED', '2026-05-05 18:43:26'),
+(82, 30, 10, '', NULL, 'SUBMITTED', '2026-05-05 20:26:45'),
+(83, 35, 12, '', NULL, 'SUBMITTED', '2026-05-05 21:28:31'),
+(84, 34, 11, '', NULL, 'SUBMITTED', '2026-05-06 14:07:33'),
+(85, 32, 7, '', NULL, 'SUBMITTED', '2026-05-11 15:49:34'),
+(86, 32, 12, '', NULL, 'SUBMITTED', '2026-05-11 15:50:19');
 
 -- --------------------------------------------------------
 
@@ -3466,9 +4088,11 @@ CREATE TABLE `system_config` (
 
 INSERT INTO `system_config` (`config_id`, `config_key`, `config_value`, `description`, `created_at`, `updated_at`) VALUES
 (1, 'petty_cash_limit', '5000', 'Maximum amount for petty cash procurement without formal approval (JMD)', '2026-02-17 02:30:11', '2026-02-18 00:00:42'),
-(2, 'direct_procurement_threshold', '500000', 'Threshold value for direct procurement eligibility (JMD)', '2026-02-17 02:30:11', '2026-02-18 00:00:42'),
+(2, 'direct_procurement_threshold', '3000000', 'Threshold value for direct procurement eligibility (JMD)', '2026-02-17 02:30:11', '2026-03-17 10:53:51'),
 (7, 'enable_notifications', '1', 'Enable/disable email notifications (1=enabled, 0=disabled)', '2026-02-17 21:32:44', '2026-02-26 10:02:41'),
-(19, 'usd_to_jmd_rate', '155.22', 'Current USD to JMD exchange rate for currency conversion', '2026-02-24 01:17:49', '2026-02-25 21:18:00');
+(19, 'usd_to_jmd_rate', '155.22', 'Current USD to JMD exchange rate for currency conversion', '2026-02-24 01:17:49', '2026-02-25 21:18:00'),
+(41, 'hod_approval_threshold', '500000', 'Procurement requests above this amount require HOD approval (JMD)', '2026-03-17 10:53:51', '2026-03-17 16:25:58'),
+(42, 'committee_review_threshold', '3000000', 'Procurement requests above this amount require committee review (JMD)', '2026-03-17 10:53:51', '2026-03-17 16:25:58');
 
 -- --------------------------------------------------------
 
@@ -3504,12 +4128,12 @@ INSERT INTO `users` (`user_id`, `full_name`, `email`, `role_id`, `password_hash`
 (34, 'Latoya Gayle', 'Latoya.Gayle@moh.gov.jm', 3, '$2y$10$JKmsjcSWwv4objXFXCjnzOfAIGG8LrbBTiBEzSaiXaeIp7RccKKZK', 1, '2026-02-26 15:29:48', 0, '2026-03-04 09:53:22', 0, NULL, NULL, NULL),
 (35, 'Nellesha Samuels', 'Nellesha.Samuels@moh.gov.jm', 10, '$2y$10$QUMu2jnAN3f52X8M3B/OeOvlcVvgCmzkm23Ej4myoHWoBcrYJf/am', 1, '2026-02-26 15:30:15', 0, '2026-03-04 09:59:46', 0, NULL, NULL, NULL),
 (36, 'Ryan Warburton', 'Ryan.Warburton@moh.gov.jm', 12, '$2y$10$PKQcRwWLT5v9G.9rEc9JqO9fnPleVqhd9qJLVJo2dySMCgGBCJKgK', 1, '2026-02-26 15:30:42', 0, '2026-02-26 11:12:42', 0, NULL, NULL, NULL),
-(37, 'Shermaine McKenzie', 'Shermaine.McKenzie@moh.gov.jm', 12, '$2y$10$3G/DCM0X7ZYB1QB3P4ZC..RyVbGUfH1yIsJeNJWxn9/spDzU3beVW', 1, '2026-02-26 15:31:09', 0, '2026-02-26 10:52:01', 0, NULL, NULL, NULL),
+(37, 'Shermaine McKenzie', 'Shermaine.McKenzie@moh.gov.jm', 12, '$2y$10$Mwx0A2LeS/8.ybVWoMQaBO/0TR6C3EazvOaujX4t5O1rrVaLrftoy', 1, '2026-02-26 15:31:09', 0, '2026-02-26 10:52:01', 0, NULL, NULL, NULL),
 (38, 'Waveney Warrick', 'Waveney.Warrick@moh.gov.jm', 12, '$2y$10$8Q/iPFz5x.13NbJrYg08BeNvu8CtafdCxAxJKqGOVDfle.qd7NG5y', 1, '2026-02-26 15:31:30', 0, '2026-02-26 11:00:39', 0, NULL, NULL, NULL),
 (39, 'Sancia Johnally Haynes', 'Sancia.Johnally-Haynes@moh.gov.jm', 12, '$2y$10$uEV/WQl0fMHBCesu26vvJOcWMwJlwFvRnDhNJLVp5wQ6/nuAZoKxO', 1, '2026-02-26 15:32:07', 0, '2026-03-04 15:10:33', 0, NULL, NULL, NULL),
 (40, 'Alfred Bryan', 'Alfred.Bryan@moh.gov.jm', 12, '$2y$10$AmmaNjQz8dQXGyipklEy6.BCa5qUC9vjiwLyZd4mJx77U2mOrZhIq', 1, '2026-02-26 15:32:30', 0, '2026-03-06 12:12:33', 0, NULL, NULL, NULL),
 (41, 'Fredricka Chung', 'Fredricka.Chung@moh.gov.jm', 12, '$2y$10$rB/iA9zKLWZOLivDI1efIOyOXQRW1hVsZDnXU.3MRuSXmXiIr4vLe', 1, '2026-02-26 15:33:18', 0, '2026-02-26 11:15:58', 0, NULL, NULL, NULL),
-(42, 'Yanique McKenzie', 'Yanique.McKenzie@moh.gov.jm', 12, '$2y$10$ATaBG8.wFpQ8HZHT.FtxS.phtDaieOT9bK2jvjYblgxDnNpIQSt3G', 1, '2026-02-26 15:33:44', 1, NULL, 0, NULL, NULL, NULL),
+(42, 'Yanique McKenzie', 'Yanique.McKenzie@moh.gov.jm', 2, '$2y$10$jIxD5ymo7QezPDzq7xFOsO.yeoyUfOUWo5QoQG1lWvigK4L9uPefm', 1, '2026-02-26 15:33:44', 0, '2026-04-07 09:50:15', 0, NULL, NULL, NULL),
 (43, 'Shenai McFarlane', 'Shenai.McFarlane@moh.gov.jm', 12, '$2y$10$F3ZoG92jf9GQSdj8TKtR8ey4f8uTEe.mTkh2tvaOtIlsso6t2mZhK', 1, '2026-02-26 15:34:07', 1, NULL, 0, NULL, NULL, NULL),
 (44, 'Gabrielle Green', 'Gabrielle.Green@moh.gov.jm', 2, '$2y$10$WQ8rgucFRH/gztETMZjUbOPZj/W8jOtujyoj6mWRC9YyERwzVkxCK', 1, '2026-02-26 15:34:42', 0, '2026-02-26 11:05:55', 0, NULL, NULL, NULL);
 
@@ -3730,7 +4354,9 @@ INSERT INTO `user_permissions` (`id`, `user_id`, `permission_id`, `is_granted`, 
 (518, 9, 175, 1, NULL, '2026-02-22 10:20:54'),
 (540, 32, 60, 1, NULL, '2026-03-04 09:45:15'),
 (541, 34, 107, 1, NULL, '2026-03-04 09:56:40'),
-(542, 34, 106, 1, NULL, '2026-03-04 09:56:40');
+(542, 34, 106, 1, NULL, '2026-03-04 09:56:40'),
+(543, 39, 103, 1, NULL, '2026-03-17 15:05:21'),
+(544, 37, 102, 1, NULL, '2026-04-17 11:47:11');
 
 -- --------------------------------------------------------
 
@@ -3757,8 +4383,16 @@ CREATE TABLE `vendors` (
 
 INSERT INTO `vendors` (`vendor_id`, `vendor_name`, `contact_person`, `email`, `phone`, `address`, `status`, `performance_rating`, `total_awards`, `created_at`) VALUES
 (1, 'Printers & Office Supplies Limited', '876-868-0934', 'psltd@printersofficesupplies.com', '876-123-8790', 'Kingston\r\nJamaica', 'ACTIVE', NULL, 3, '2026-02-14 15:52:41'),
-(2, 'Accu Power Limited', '876-235-4053', 'accu@accupower.com', '876-235-4053', 'Kingston \r\nJamaica', 'ACTIVE', NULL, 3, '2026-02-14 16:09:11'),
-(3, 'Intcomex Limited', '876-998-2232', 'infosupport@intcomex.com', '987-223-9922', 'Kingston \r\nJamaica', 'ACTIVE', NULL, 1, '2026-02-14 16:11:32');
+(2, 'Accu Power Limited', '876-235-4053', 'accu@accupower.com', '876-235-4053', 'Kingston \r\nJamaica', '', NULL, 3, '2026-02-14 16:09:11'),
+(4, 'MC System', 'Roget Hall', 'roget.hall@mcsystems.com', '', '', 'ACTIVE', NULL, 0, '2026-03-17 16:56:32'),
+(5, 'Advanced Integrated System', 'Richard Hutchinson', 'richard.hutchinson@aiswebnet.com', '', '', 'ACTIVE', NULL, 0, '2026-03-17 17:14:52'),
+(6, 'Printware', '', 'Ashley@printwareonline.com', '', '', 'ACTIVE', NULL, 0, '2026-03-17 17:16:54'),
+(7, 'D&S IT Services', 'Shanice Smith', 'ssmith@dsitservicesja.com', '', '', 'ACTIVE', NULL, 0, '2026-03-17 18:53:56'),
+(8, 'Demario Ewan', '', 'demario.ewan@moh.gov.jm', '', '', 'ACTIVE', NULL, 0, '2026-03-17 19:48:10'),
+(9, 'Royale Computers & Accessories Ltd', '', 'Shaquille.Murray@royalecomputers.com', '', '', 'ACTIVE', NULL, 0, '2026-03-18 13:48:28'),
+(10, 'BCB Sales and Services', '', '', '', '', 'ACTIVE', NULL, 0, '2026-05-04 21:44:20'),
+(11, 'Jam Labs', 'Ackelia Raymond', '', 'Phone: (876) 929-3513 Phone: (876) 968-5908 Phone:', '18C Lyndhurst Road, Kingston', 'ACTIVE', NULL, 0, '2026-05-04 21:47:29'),
+(12, 'Tech Pro Business Solution', '', '', '', '', 'ACTIVE', NULL, 0, '2026-05-04 22:18:36');
 
 -- --------------------------------------------------------
 
@@ -4185,13 +4819,13 @@ ALTER TABLE `workflow_notifications`
 -- AUTO_INCREMENT for table `acting_roles`
 --
 ALTER TABLE `acting_roles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `acting_role_log`
 --
 ALTER TABLE `acting_role_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
 
 --
 -- AUTO_INCREMENT for table `approval_rules`
@@ -4221,7 +4855,7 @@ ALTER TABLE `approval_workflows`
 -- AUTO_INCREMENT for table `audit_log`
 --
 ALTER TABLE `audit_log`
-  MODIFY `audit_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1848;
+  MODIFY `audit_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2175;
 
 --
 -- AUTO_INCREMENT for table `branches`
@@ -4233,7 +4867,7 @@ ALTER TABLE `branches`
 -- AUTO_INCREMENT for table `commitments`
 --
 ALTER TABLE `commitments`
-  MODIFY `commitment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+  MODIFY `commitment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
 
 --
 -- AUTO_INCREMENT for table `compliance_approvals`
@@ -4275,7 +4909,7 @@ ALTER TABLE `permissions`
 -- AUTO_INCREMENT for table `petty_cash_disbursements`
 --
 ALTER TABLE `petty_cash_disbursements`
-  MODIFY `disburse_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `disburse_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `petty_cash_reconciliations`
@@ -4311,19 +4945,19 @@ ALTER TABLE `po_warnings`
 -- AUTO_INCREMENT for table `pre_authorizations`
 --
 ALTER TABLE `pre_authorizations`
-  MODIFY `auth_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `auth_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `procurement_requests`
 --
 ALTER TABLE `procurement_requests`
-  MODIFY `request_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=133;
+  MODIFY `request_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=160;
 
 --
 -- AUTO_INCREMENT for table `procurement_request_items`
 --
 ALTER TABLE `procurement_request_items`
-  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=150;
+  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=323;
 
 --
 -- AUTO_INCREMENT for table `procurement_verifications`
@@ -4347,25 +4981,25 @@ ALTER TABLE `reimbursement_invoices`
 -- AUTO_INCREMENT for table `reimbursement_status_history`
 --
 ALTER TABLE `reimbursement_status_history`
-  MODIFY `history_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `history_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `request_approvals`
 --
 ALTER TABLE `request_approvals`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=131;
 
 --
 -- AUTO_INCREMENT for table `request_documents`
 --
 ALTER TABLE `request_documents`
-  MODIFY `document_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `document_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `rfqs`
 --
 ALTER TABLE `rfqs`
-  MODIFY `rfq_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `rfq_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `rfq_evaluation_committee`
@@ -4383,7 +5017,7 @@ ALTER TABLE `rfq_evaluation_reports`
 -- AUTO_INCREMENT for table `rfq_quotes`
 --
 ALTER TABLE `rfq_quotes`
-  MODIFY `quote_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+  MODIFY `quote_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 
 --
 -- AUTO_INCREMENT for table `rfq_scores`
@@ -4395,7 +5029,7 @@ ALTER TABLE `rfq_scores`
 -- AUTO_INCREMENT for table `rfq_vendors`
 --
 ALTER TABLE `rfq_vendors`
-  MODIFY `rfq_vendor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+  MODIFY `rfq_vendor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 
 --
 -- AUTO_INCREMENT for table `rfq_votes`
@@ -4419,7 +5053,7 @@ ALTER TABLE `system_alerts`
 -- AUTO_INCREMENT for table `system_config`
 --
 ALTER TABLE `system_config`
-  MODIFY `config_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `config_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -4431,13 +5065,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `user_permissions`
 --
 ALTER TABLE `user_permissions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=543;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=545;
 
 --
 -- AUTO_INCREMENT for table `vendors`
 --
 ALTER TABLE `vendors`
-  MODIFY `vendor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `vendor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `workflow_notifications`
