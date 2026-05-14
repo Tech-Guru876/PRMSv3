@@ -36,18 +36,28 @@ log()  { echo "[$(date '+%H:%M:%S')] $*"; }
 die()  { echo "ERROR: $*" >&2; exit 1; }
 
 git_operation_in_progress() {
-    [[ -f .git/MERGE_HEAD ]] || \
-    [[ -f .git/CHERRY_PICK_HEAD ]] || \
-    [[ -f .git/REVERT_HEAD ]] || \
-    [[ -f .git/REBASE_HEAD ]] || \
-    [[ -d .git/rebase-apply ]] || \
-    [[ -d .git/rebase-merge ]]
+    if [[ -f .git/MERGE_HEAD ]] || \
+       [[ -f .git/CHERRY_PICK_HEAD ]] || \
+       [[ -f .git/REVERT_HEAD ]] || \
+       [[ -f .git/REBASE_HEAD ]] || \
+       [[ -d .git/rebase-apply ]] || \
+       [[ -d .git/rebase-merge ]]; then
+        return 0
+    fi
+    return 1
 }
 
 has_local_changes() {
-    ! git diff --quiet || \
-    ! git diff --cached --quiet || \
-    [[ -n "$(git ls-files --others --exclude-standard)" ]]
+    if ! git diff --quiet; then
+        return 0
+    fi
+    if ! git diff --cached --quiet; then
+        return 0
+    fi
+    if [[ -n "$(git ls-files --others --exclude-standard)" ]]; then
+        return 0
+    fi
+    return 1
 }
 
 # ── Validate app directory ───────────────────────────────────
