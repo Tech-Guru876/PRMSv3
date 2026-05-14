@@ -23,10 +23,8 @@ foreach ($requiredDbKeys as $key) {
 
 if (!empty($missingDbKeys)) {
     $missingMsg = 'Required database configuration missing in .env: ' . implode(', ', $missingDbKeys);
-    if (!$isProd) {
-        error_log($missingMsg);
-    }
-    die($missingMsg);
+    error_log($missingMsg);
+    die($isProd ? 'Required database configuration missing in .env.' : $missingMsg);
 }
 
 $host   = env('DB_HOST');
