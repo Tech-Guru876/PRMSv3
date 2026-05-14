@@ -5,6 +5,8 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/config/db.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/config/helper.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/config/workflow.php';
 
+const RECONCILIATION_TOLERANCE = 0.0001;
+
 $requestId = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 if ($requestId <= 0) {
     pop("Invalid petty cash request reference.", "/petty_cash/list.php", 2200, 'error');
@@ -75,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($changeAmount < 0) {
             throw new Exception("Change amount cannot be negative.");
         }
-        if (($purchaseAmount + $changeAmount) - $authorizedAmount > 0.0001) {
+        if (($purchaseAmount + $changeAmount) - $authorizedAmount > RECONCILIATION_TOLERANCE) {
             throw new Exception("Purchase amount and change exceed the authorized petty cash amount.");
         }
 

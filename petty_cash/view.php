@@ -305,7 +305,7 @@ if ($disbursement) {
           <?php if (
             $disbursement
             && !$reconciliation
-            && $_SESSION['user_id'] == $request['created_by']
+            && (int)($_SESSION['user_id'] ?? 0) === (int)$request['created_by']
             && in_array($request['status'], ['FUNDS_VERIFIED', 'FINANCE_AUTHORIZED', 'DISBURSED', 'PENDING_RECONCILIATION'])
           ): ?>
             <a href="/petty_cash/reconcile.php?id=<?= $request_id ?>" class="btn btn-warning btn-sm">
