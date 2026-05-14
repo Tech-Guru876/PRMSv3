@@ -1,0 +1,94 @@
+/* Global modern polish layer */
+
+:root {
+  --modern-surface: #ffffff;
+  --modern-surface-alt: #f8fafc;
+  --modern-border: #e2e8f0;
+  --modern-text: #0f172a;
+  --modern-muted: #64748b;
+  --modern-shadow: 0 16px 36px rgba(15, 23, 42, 0.08);
+}
+
+body.prms-body {
+  background:
+    radial-gradient(1200px 500px at 100% 0%, rgba(16, 185, 129, 0.08), transparent 60%),
+    radial-gradient(900px 400px at 0% 100%, rgba(59, 130, 246, 0.06), transparent 60%),
+    #f8fafc;
+  color: var(--modern-text);
+}
+
+.card {
+  border: 1px solid var(--modern-border);
+  border-radius: 16px;
+  box-shadow: var(--modern-shadow);
+}
+
+.card-header {
+  border-bottom: 1px solid var(--modern-border);
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+}
+
+.btn {
+  border-radius: 10px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.btn-primary,
+.btn-success,
+.btn-info {
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.12);
+}
+
+.form-control,
+.form-select {
+  border-radius: 10px;
+  border-color: #cbd5e1;
+  background-color: var(--modern-surface);
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #22c55e;
+  box-shadow: 0 0 0 0.18rem rgba(34, 197, 94, 0.16);
+}
+
+.table {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.table > :not(caption) > * > * {
+  border-bottom-color: #e2e8f0;
+}
+
+.alert {
+  border-radius: 12px;
+  border: 1px solid transparent;
+}
+
+.alert-info {
+  border-color: #bfdbfe;
+}
+
+.alert-warning {
+  border-color: #fde68a;
+}
+
+.alert-success {
+  border-color: #86efac;
+}
+
+.alert-danger {
+  border-color: #fca5a5;
+}
+
+.modal-content {
+  border-radius: 16px;
+  border: 1px solid var(--modern-border);
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.16);
+}
+
+.text-muted {
+  color: var(--modern-muted) !important;
+}

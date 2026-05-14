@@ -301,6 +301,17 @@ if ($disbursement) {
               </button>
             </form>
           <?php endif; ?>
+
+          <?php if (
+            $disbursement
+            && !$reconciliation
+            && $_SESSION['user_id'] == $request['created_by']
+            && in_array($request['status'], ['FUNDS_VERIFIED', 'FINANCE_AUTHORIZED', 'DISBURSED', 'PENDING_RECONCILIATION'])
+          ): ?>
+            <a href="/petty_cash/reconcile.php?id=<?= $request_id ?>" class="btn btn-warning btn-sm">
+              <i class="bi bi-receipt me-1"></i>Submit Reconciliation
+            </a>
+          <?php endif; ?>
           
           <a href="/petty_cash/list.php" class="btn btn-outline-secondary btn-sm">
             <i class="bi bi-arrow-left"></i> Back to List

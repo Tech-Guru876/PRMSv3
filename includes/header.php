@@ -19,6 +19,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/config/auth.php";
   <link rel="stylesheet" href="/assets/css/app.css?v=<?= time() ?>">
   <link rel="stylesheet" href="/assets/css/dashboard.css?v=<?= time() ?>">
   <link rel="stylesheet" href="/assets/css/tables.css?v=<?= time() ?>">
+  <link rel="stylesheet" href="/assets/css/modern-ui.css?v=<?= time() ?>">
 </head>
 
 <body class="prms-body">

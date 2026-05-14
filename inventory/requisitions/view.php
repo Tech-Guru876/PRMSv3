@@ -208,7 +208,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
         <?php endif; ?>
 
         <?php if ($req['status'] === 'APPROVED' && has_permission('issue_stock')): ?>
-        <a href="/inventory/issues/add.php?requisition_id=<?= $reqId ?>" class="btn btn-dark w-100 btn-lg">
+        <a href="/inventory/issuing/add.php?requisition_id=<?= $reqId ?>" class="btn btn-dark w-100 btn-lg">
             <i class="bi bi-box-arrow-right"></i> Issue Stock
         </a>
         <?php endif; ?>
