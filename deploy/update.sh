@@ -81,14 +81,22 @@ if git ls-files --unmerged | grep -q .; then
     while IFS= read -r _f; do
         if git check-ignore -q "$_f" 2>/dev/null; then
             # File is now gitignored — remove it from the index entirely
-            git rm --cached -f "$_f" 2>/dev/null \
-                && log "    Removed ignored file from index: $_f"
+            if git rm --cached -f -- "$_f" 2>/dev/null; then
+                log "    Removed ignored file from index: $_f"
+            elif git update-index --force-remove -- "$_f" 2>/dev/null; then
+                log "    Force-removed ignored index entry: $_f"
+            fi
         else
             # Tracked file — reset to the HEAD version
-            git checkout HEAD -- "$_f" 2>/dev/null \
-                && log "    Reset to HEAD: $_f"
+            if git restore --source=HEAD --staged --worktree -- "$_f" 2>/dev/null; then
+                log "    Reset to HEAD: $_f"
+            fi
         fi
     done < <(git ls-files --unmerged | awk '{print $4}' | sort -u)
+
+    if git ls-files --unmerged | grep -q .; then
+        die "Unmerged files are still present; resolve manually before running update (git status)."
+    fi
 fi
 
 # Stash any local modifications so the pull never fails silently
