@@ -62,7 +62,9 @@ has_working_tree_changes() {
 
 has_unmerged_files() {
     local _unmerged
-    _unmerged="$(git ls-files --unmerged)" || return 1
+    if ! _unmerged="$(git ls-files --unmerged)"; then
+        die "Unable to inspect git unmerged files."
+    fi
     [[ -n "$_unmerged" ]]
 }
 
