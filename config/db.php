@@ -16,7 +16,7 @@ $requiredDbKeys = ['DB_HOST', 'DB_PORT', 'DB_NAME', 'DB_USER', 'DB_PASS'];
 $missingDbKeys = [];
 foreach ($requiredDbKeys as $key) {
     $value = env($key);
-    if ($value === null || trim((string) $value) === '') {
+    if ($value === null || (is_string($value) && trim($value) === '')) {
         $missingDbKeys[] = $key;
     }
 }
