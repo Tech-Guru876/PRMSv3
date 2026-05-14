@@ -606,6 +606,16 @@ $rfqId = $stmt->fetchColumn();
 </div>
 <?php endif; ?>
 
+<?php if ($current === 'DRAFT' && !empty($request['decline_reason'])): ?>
+<div class="alert alert-warning border-0 shadow-sm d-flex align-items-center gap-3 mb-4">
+    <i class="bi bi-arrow-counterclockwise fs-2"></i>
+    <div>
+        <strong>This request was sent back for edit.</strong>
+        <div class="mt-1"><?= nl2br(htmlspecialchars($request['decline_reason'])) ?></div>
+    </div>
+</div>
+<?php endif; ?>
+
 <!-- ═══════════════════════════════════════════════════════
      REQUEST DETAILS + ACTIONS (TWO-COLUMN)
 ═══════════════════════════════════════════════════════ -->
@@ -891,6 +901,10 @@ $rfqId = $stmt->fetchColumn();
                     $approvalEndpoint = null;
                     $approvalLabel = null;
                     $approvalIcon = null;
+                    $procurementEditableStatuses = ['SUBMITTED', 'HOD_APPROVED', 'FUNDS_VERIFIED', 'DIRECTOR_APPROVED', 
+                        'GC_APPROVED', 'RFQ_LETTER_AVAILABLE', 'PROCUREMENT_STAGE', 'EVALUATION_STAGE', 
+                        'QUOTE_REVIEW_PENDING', 'QUOTE_APPROVED', 'COMMITMENT_DECLINED'];
+                    $canSendBackForEdit = false;
                     
                     // Check if there's a pending approval for this user (regardless of current status)
                     if ($nextApproverRole && $nextApprovalId && hasPermission('approve_request')) {
@@ -944,6 +958,19 @@ $rfqId = $stmt->fetchColumn();
                             default => 'bi-check-circle'
                         };
                     }
+
+                    $canSendBackForEdit =
+                        (
+                            $nextApproverRole
+                            && $nextApprovalId
+                            && $userCanApprove
+                            && in_array($role, ['HOD', 'Branch Head', 'Director HRM&A', 'Deputy Government Chemist', 'Government Chemist', 'Admin', 'SuperAdmin'], true)
+                        )
+                        || (
+                            in_array($role, ['Procurement Officer', 'Admin', 'SuperAdmin'], true)
+                            && in_array($current, $procurementEditableStatuses, true)
+                            && !in_array($current, ['DRAFT', 'DECLINED', 'COMPLETED'], true)
+                        );
                     ?>
                     
                     <?php if ($nextApproverRole && $nextApprovalId && hasPermission('approve_request')): ?>
@@ -963,6 +990,13 @@ $rfqId = $stmt->fetchColumn();
                         <button type="button" class="btn btn-outline-danger"
                                 data-bs-toggle="modal" data-bs-target="#declineModal">
                             <i class="bi bi-x-octagon me-1"></i>Decline
+                        </button>
+                    <?php endif; ?>
+
+                    <?php if ($canSendBackForEdit): ?>
+                        <button type="button" class="btn btn-outline-warning"
+                                data-bs-toggle="modal" data-bs-target="#sendBackModal">
+                            <i class="bi bi-arrow-counterclockwise me-1"></i>Send Back for Edit
                         </button>
                     <?php endif; ?>
 
@@ -1633,6 +1667,30 @@ function timelineMeta(string $action): array {
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                 <button type="submit" class="btn btn-danger"><i class="bi bi-x-lg me-1"></i>Confirm Decline</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="modal fade" id="sendBackModal" tabindex="-1">
+    <div class="modal-dialog">
+        <form method="POST" action="/procurement/send_back.php" class="modal-content">
+            <div class="modal-header bg-warning text-dark">
+                <h5 class="modal-title"><i class="bi bi-arrow-counterclockwise me-2"></i>Send Back for Edit</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" name="id" value="<?= $request['request_id'] ?>">
+                <p class="text-muted small mb-3">This returns the request to draft so it can be updated and submitted again.</p>
+                <div class="mb-0">
+                    <label class="form-label fw-bold">Reason for sending back</label>
+                    <textarea name="reason" class="form-control" rows="4" required
+                              placeholder="State what needs to be corrected before resubmission..."></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-warning"><i class="bi bi-arrow-counterclockwise me-1"></i>Send Back</button>
             </div>
         </form>
     </div>

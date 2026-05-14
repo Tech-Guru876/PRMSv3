@@ -105,6 +105,7 @@ $stmt = $pdo->prepare("
     SELECT item_name, specification, quantity, remarks
     FROM procurement_request_items
     WHERE request_id = ?
+    ORDER BY item_id ASC
 ");
 $stmt->execute([$data['request_id']]);
 $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -292,28 +293,38 @@ $itemHtml = '
   th { background-color: #0b5e2b; color: #ffffff; font-weight: bold; padding: 8px; }
   td { padding: 8px; border-bottom: 1px solid #e9ecef; }
 </style>
-<table cellpadding="6" border="0" width="100%">
-  <tr>
-    <th width="8%" align="center">#</th>
-    <th width="32%">Item</th>
-    <th width="28%">Specification</th>
-    <th width="10%" align="center">Qty</th>
-    <th width="22%">Remarks</th>
-  </tr>';
+<table cellpadding="6" border="1" width="100%">
+  <thead>
+    <tr>
+      <th width="8%" align="center">#</th>
+      <th width="32%">Item</th>
+      <th width="28%">Specification</th>
+      <th width="10%" align="center">Qty</th>
+      <th width="22%">Remarks</th>
+    </tr>
+  </thead>
+  <tbody>';
 
-foreach ($items as $idx => $item) {
-    $bg = ($idx % 2 === 0) ? '#ffffff' : '#f8f9fa';
+if (empty($items)) {
     $itemHtml .= '
-    <tr style="background-color:'.$bg.';">
-        <td align="center" style="color:#6c757d;">'.($idx + 1).'</td>
-        <td>'.htmlspecialchars($item['item_name']).'</td>
-        <td style="color:#6c757d;">'.htmlspecialchars($item['specification'] ?? '—').'</td>
-        <td align="center"><b>'.htmlspecialchars($item['quantity']).'</b></td>
-        <td style="color:#6c757d;">'.htmlspecialchars($item['remarks'] ?? '—').'</td>
+    <tr>
+        <td colspan="5" align="center" style="color:#6c757d;">No request items were found for this RFQ.</td>
     </tr>';
+} else {
+    foreach ($items as $idx => $item) {
+        $bg = ($idx % 2 === 0) ? '#ffffff' : '#f8f9fa';
+        $itemHtml .= '
+        <tr style="background-color:'.$bg.';">
+            <td align="center" style="color:#6c757d;">'.($idx + 1).'</td>
+            <td>'.htmlspecialchars($item['item_name']).'</td>
+            <td style="color:#6c757d;">'.htmlspecialchars($item['specification'] ?? '—').'</td>
+            <td align="center"><b>'.htmlspecialchars((string)$item['quantity']).'</b></td>
+            <td style="color:#6c757d;">'.htmlspecialchars($item['remarks'] ?? '—').'</td>
+        </tr>';
+    }
 }
 
-$itemHtml .= '</table>';
+$itemHtml .= '</tbody></table>';
 
 $pdf->SetTextColor(33, 37, 41);
 $pdf->writeHTML($itemHtml, true, false, true, false, '');

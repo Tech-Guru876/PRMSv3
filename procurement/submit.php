@@ -49,7 +49,10 @@ if (strtoupper($request['status']) !== 'DRAFT') {
 $update = $pdo->prepare("
     UPDATE procurement_requests
     SET status = 'SUBMITTED',
-        updated_at = NOW()
+        updated_at = NOW(),
+        decline_reason = NULL,
+        approved_by = NULL,
+        approved_at = NULL
     WHERE request_id = ?
 ");
 $update->execute([$request_id]);

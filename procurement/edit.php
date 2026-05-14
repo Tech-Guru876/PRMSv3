@@ -211,7 +211,9 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/includes/header.php";
                 </h2>
                 <p class="text-muted mb-0">
                     Request #<?= htmlspecialchars($request['request_number']) ?> 
-                    <span class="badge bg-info ms-2">Draft Mode</span>
+                    <span class="badge <?= !empty($request['decline_reason']) && strtoupper($request['status']) === 'DRAFT' ? 'bg-warning text-dark' : 'bg-info' ?> ms-2">
+                        <?= !empty($request['decline_reason']) && strtoupper($request['status']) === 'DRAFT' ? 'Returned for Edit' : 'Draft Mode' ?>
+                    </span>
                 </p>
             </div>
             <div>
@@ -222,6 +224,16 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/includes/header.php";
             </div>
         </div>
     </div>
+
+    <?php if (!empty($request['decline_reason']) && strtoupper($request['status']) === 'DRAFT'): ?>
+        <div class="alert alert-warning border-0 shadow-sm d-flex align-items-start gap-3 mb-4">
+            <i class="bi bi-arrow-counterclockwise fs-3"></i>
+            <div>
+                <strong>This request was sent back for edits.</strong>
+                <div class="mt-1"><?= nl2br(htmlspecialchars($request['decline_reason'])) ?></div>
+            </div>
+        </div>
+    <?php endif; ?>
 
     <!-- REQUEST SUMMARY CARD -->
     <div class="card shadow-sm border-0 mb-4">
@@ -397,7 +409,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     const addItemBtn = document.getElementById('addItemBtn');
     const itemsContainer = document.getElementById('itemsContainer');
-    const itemsBody = document.getElementById('itemsBody');
     const editForm = document.getElementById('editForm');
     let itemIndex = <?= count($items) ?>;
 
@@ -434,6 +445,8 @@ document.addEventListener('DOMContentLoaded', function() {
             </td>
         `;
 
+        let itemsBody = document.getElementById('itemsBody');
+
         // Show table if it was hidden
         if (!itemsBody) {
             itemsContainer.innerHTML = `
@@ -452,10 +465,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     </table>
                 </div>
             `;
-            document.getElementById('itemsBody').appendChild(newRow);
-        } else {
-            itemsBody.appendChild(newRow);
+            itemsBody = document.getElementById('itemsBody');
         }
+
+        itemsBody.appendChild(newRow);
 
         itemIndex++;
         updateItemCount();

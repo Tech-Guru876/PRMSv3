@@ -287,6 +287,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/includes/header.php';
                 <strong>Current Stage:</strong> <span class="badge bg-warning text-dark"><?= htmlspecialchars($nextApproval['role']) ?></span>
             </div>
             <form method="post">
+                <input type="hidden" name="id" value="<?= (int)$id ?>">
                 <div class="mb-3">
                     <label class="form-label fw-bold">Rejection Reason <span class="text-danger">*</span> (Required if rejecting)</label>
                     <textarea 
@@ -308,6 +309,15 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/includes/header.php';
                     >
                         <i class="bi bi-x-circle me-1"></i> Reject
                     </button>
+                    <?php if (in_array($current_role, ['Director HRM&A', 'Admin', 'SuperAdmin'], true)): ?>
+                        <button type="submit"
+                            formaction="/procurement/send_back.php"
+                            formmethod="post"
+                            class="btn btn-warning"
+                            onclick="return confirm('Send this request back for editing?')">
+                            <i class="bi bi-arrow-counterclockwise me-1"></i>Send Back for Edit
+                        </button>
+                    <?php endif; ?>
                     <a href="/procurement/view.php?id=<?= (int)$id ?>"
                          class="btn btn-secondary">
                         <i class="bi bi-arrow-left me-1"></i> Cancel
@@ -319,4 +329,3 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/includes/header.php';
 </div>
 
 <?php require_once $_SERVER['DOCUMENT_ROOT'].'/includes/footer.php'; ?>
-
