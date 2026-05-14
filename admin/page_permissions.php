@@ -4,8 +4,45 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/config/page_guard.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/config/db.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/config/helper.php';
 
+$schemaError = null;
+$requiredColumns = ['id', 'page_path', 'page_title', 'permission_name', 'module', 'is_active'];
+
+try {
+    $tableExists = (int)$pdo->query("
+        SELECT COUNT(*)
+        FROM information_schema.TABLES
+        WHERE TABLE_SCHEMA = DATABASE()
+          AND TABLE_NAME = 'page_permissions'
+    ")->fetchColumn();
+
+    if (!$tableExists) {
+        $schemaError = 'Page permissions table is missing. Please run the latest database migrations.';
+    } else {
+        $in = implode(',', array_fill(0, count($requiredColumns), '?'));
+        $colStmt = $pdo->prepare("
+            SELECT COUNT(*)
+            FROM information_schema.COLUMNS
+            WHERE TABLE_SCHEMA = DATABASE()
+              AND TABLE_NAME = 'page_permissions'
+              AND COLUMN_NAME IN ($in)
+        ");
+        $colStmt->execute($requiredColumns);
+        $columnCount = (int)$colStmt->fetchColumn();
+
+        if ($columnCount < count($requiredColumns)) {
+            $schemaError = 'Page permissions table is outdated. Please run the latest database migrations.';
+        }
+    }
+} catch (\PDOException $e) {
+    $schemaError = 'Unable to verify page permissions schema at this time.';
+}
+
 /* ─── Handle AJAX / form actions ──────────────────────────────────── */
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if ($schemaError !== null) {
+        jsonError($schemaError);
+    }
+
     $action = $_POST['action'] ?? '';
 
     /* ── Update a page's required permission ── */
@@ -93,21 +130,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     jsonError('Unknown action.');
 }
 
-function jsonError(string $msg): never {
+function jsonError(string $msg) {
     http_response_code(400);
     echo json_encode(['ok' => false, 'message' => $msg]);
     exit;
 }
 
 /* ─── Fetch all page permissions grouped by module ─────────────────── */
-$pages = $pdo->query("
-    SELECT pp.id, pp.page_path, pp.page_title, pp.permission_name,
-           pp.module, pp.is_active,
-           p.description AS perm_description
-    FROM page_permissions pp
-    LEFT JOIN permissions p ON pp.permission_name = p.name
-    ORDER BY pp.module, pp.page_title
-")->fetchAll(PDO::FETCH_ASSOC);
+$pages = [];
+if ($schemaError === null) {
+    $pages = $pdo->query("
+        SELECT pp.id, pp.page_path, pp.page_title, pp.permission_name,
+               pp.module, pp.is_active,
+               p.description AS perm_description
+        FROM page_permissions pp
+        LEFT JOIN permissions p ON pp.permission_name = p.name
+        ORDER BY pp.module, pp.page_title
+    ")->fetchAll(PDO::FETCH_ASSOC);
+}
 
 $grouped = [];
 foreach ($pages as $pg) {
@@ -148,6 +188,11 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/includes/header.php';
             Users must then have the assigned permission (via their role or a user-level override) to access the page.
         </div>
     </div>
+    <?php if ($schemaError !== null): ?>
+    <div class="alert alert-warning mb-4">
+        <i class="bi bi-exclamation-triangle-fill me-1"></i><?= htmlspecialchars($schemaError) ?>
+    </div>
+    <?php endif; ?>
 
     <!-- Module filter tabs -->
     <ul class="nav nav-pills mb-3 flex-wrap gap-1" id="moduleTabs">
