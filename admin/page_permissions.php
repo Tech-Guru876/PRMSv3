@@ -10,11 +10,12 @@ $requiredColumns = ['id', 'page_path', 'page_title', 'permission_name', 'module'
 try {
     $dbStmt = $pdo->prepare("SELECT DATABASE()");
     $dbStmt->execute();
-    $currentDb = (string)$dbStmt->fetchColumn();
+    $dbNameResult = $dbStmt->fetchColumn();
 
-    if ($currentDb === '') {
+    if ($dbNameResult === false || $dbNameResult === '') {
         $schemaError = 'Database schema could not be determined. Please verify database configuration.';
     } else {
+        $currentDb = (string)$dbNameResult;
         $tblStmt = $pdo->prepare("
             SELECT COUNT(*)
             FROM information_schema.TABLES
@@ -142,7 +143,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 /**
- * @return void
+ * @return never
  */
 function jsonError(string $msg) {
     http_response_code(400);
