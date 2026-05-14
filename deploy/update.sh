@@ -61,7 +61,9 @@ has_working_tree_changes() {
 }
 
 has_unmerged_files() {
-    git ls-files --unmerged | grep -q .
+    local _unmerged
+    _unmerged="$(git ls-files --unmerged)" || return 1
+    [[ -n "$_unmerged" ]]
 }
 
 # ── Validate app directory ───────────────────────────────────
@@ -126,7 +128,7 @@ fi
 
 # Stash any local modifications so checkout/pull never fail silently
 if has_working_tree_changes; then
-    log "  Local modifications or untracked files detected — stashing before pull..."
+    log "  Local modifications or untracked files detected — stashing before checkout/pull..."
     git stash push --include-untracked -m "auto-stash before update $(date '+%Y-%m-%d %H:%M:%S')"
     STASHED=true
 else
