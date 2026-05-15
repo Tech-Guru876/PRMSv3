@@ -50,29 +50,30 @@ A web-based system for the Department of Government Chemistry (DGC), Jamaica, th
 ## Quick Start (Linux Server)
 
 ```bash
-# 1. Clone
-git clone https://github.com/dsitservicesja-lab/PRMSv3.git /var/www/prms/public
+# 1. Clone (into /var/www, requires sudo)
+sudo mkdir -p /var/www/prms
+sudo git clone https://github.com/dsitservicesja-lab/PRMSv3.git /var/www/prms/public
 cd /var/www/prms/public
 
 # 2. Install server software
 sudo bash deploy/install.sh
 
 # 3. Configure environment
-cp .env.example .env
-nano .env   # set DB credentials, SMTP, APP_URL
+sudo cp .env.example .env
+sudo nano .env   # set DB credentials, SMTP, APP_URL
 
-# 4. Install PHP dependencies
-composer install --no-dev --optimize-autoloader
-
-# 5. Create database and apply base schema
+# 4. Create database and apply base schema
 sudo bash deploy/deploy.sh --init-db
 
-# 6. Run migrations
+# 5. Run migrations (also installs Composer dependencies)
 sudo bash deploy/deploy.sh --run-migrations
 
-# 7. Configure your web server
+# 6. Configure your web server
 #    Apache:  sudo cp deploy/apache.conf /etc/apache2/sites-available/prms.conf
+#             sudo a2ensite prms && sudo systemctl reload apache2
 #    Nginx:   sudo cp deploy/nginx.conf /etc/nginx/sites-available/prms
+#             sudo ln -s /etc/nginx/sites-available/prms /etc/nginx/sites-enabled/
+#             sudo nginx -t && sudo systemctl reload nginx
 ```
 
 See [docs/LINUX_DEPLOYMENT_GUIDE.md](docs/LINUX_DEPLOYMENT_GUIDE.md) for the full guide.
