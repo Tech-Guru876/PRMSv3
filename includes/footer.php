@@ -21,7 +21,9 @@
 <script>
 let rowIndex = 1;
 
-document.getElementById('addRow').addEventListener('click', function () {
+const addRowBtn = document.getElementById('addRow');
+if (addRowBtn) {
+  addRowBtn.addEventListener('click', function () {
   const tbody = document.querySelector('#itemsTable tbody');
   if (!tbody) return;
 
@@ -39,7 +41,8 @@ document.getElementById('addRow').addEventListener('click', function () {
 
   tbody.appendChild(row);
   rowIndex++;
-});
+  });
+}
 
 document.addEventListener('click', function (e) {
   if (e.target.classList.contains('removeRow')) {

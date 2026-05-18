@@ -3,6 +3,7 @@ $REQUIRE_PERMISSION = 'manage_users';
 require_once $_SERVER['DOCUMENT_ROOT'].'/config/page_guard.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/config/db.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/config/helper.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/includes/pagination.php';
 
 /* ─── Only Admin / SuperAdmin may manage permissions ────────────────── */
 $canManage = in_array($_SESSION['role_name'] ?? '', ['Admin', 'SuperAdmin'], true);
@@ -129,12 +130,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit;
 }
 
-/* ─── Fetch all permissions ─────────────────────────────────────────── */
-$permissions = $pdo->query("
-    SELECT id, name, description
-    FROM permissions
-    ORDER BY name
-")->fetchAll(PDO::FETCH_ASSOC);
+/* ─── Pagination & search ────────────────────────────────────────────── */
+$search = trim($_GET['search'] ?? '');
+['perPage' => $perPage, 'page' => $page, 'offset' => $offset] = getPaginationParams(25);
+
+$searchWhere  = '';
+$searchParams = [];
+if ($search !== '') {
+    $searchWhere  = ' WHERE name LIKE ? OR description LIKE ?';
+    $searchParams = ["%$search%", "%$search%"];
+}
+
+/* ─── Total permission count ─────────────────────────────────────────── */
+$cntStmt = $pdo->prepare("SELECT COUNT(*) FROM permissions" . $searchWhere);
+$cntStmt->execute($searchParams);
+$totalPerms = (int)$cntStmt->fetchColumn();
+
+/* ─── Paginated permission list ─────────────────────────────────────── */
+$permStmt = $pdo->prepare(
+    "SELECT id, name, description FROM permissions" .
+    $searchWhere .
+    " ORDER BY name LIMIT ? OFFSET ?"
+);
+$permStmt->execute(array_merge($searchParams, [$perPage, $offset]));
+$permissions = $permStmt->fetchAll(PDO::FETCH_ASSOC);
+
+$permIds = array_column($permissions, 'id');
 
 /* ─── Fetch all roles ───────────────────────────────────────────────── */
 $roles = $pdo->query("
@@ -143,23 +164,33 @@ $roles = $pdo->query("
     ORDER BY name
 ")->fetchAll(PDO::FETCH_ASSOC);
 
-/* ─── Build role_permissions map: [perm_id][role_id] = true ─────────── */
-$rpRows = $pdo->query("SELECT role_id, permission_id FROM role_permissions")->fetchAll(PDO::FETCH_ASSOC);
-$rpMap  = [];
-foreach ($rpRows as $row) {
-    $rpMap[$row['permission_id']][$row['role_id']] = true;
+/* ─── Build role_permissions map for current-page permissions ────────── */
+$rpMap = [];
+if (!empty($permIds)) {
+    $holders = implode(',', array_fill(0, count($permIds), '?'));
+    $rpStmt  = $pdo->prepare(
+        "SELECT role_id, permission_id FROM role_permissions WHERE permission_id IN ($holders)"
+    );
+    $rpStmt->execute($permIds);
+    foreach ($rpStmt->fetchAll(PDO::FETCH_ASSOC) as $row) {
+        $rpMap[$row['permission_id']][$row['role_id']] = true;
+    }
 }
 
-/* ─── Per-permission stats: how many users have an active override ───── */
+/* ─── Per-permission override stats for current-page permissions ─────── */
 $overrideStats = [];
-$oRows = $pdo->query("
-    SELECT permission_id, COUNT(*) AS cnt
-    FROM user_permissions
-    WHERE is_granted = 1
-    GROUP BY permission_id
-")->fetchAll(PDO::FETCH_ASSOC);
-foreach ($oRows as $r) {
-    $overrideStats[$r['permission_id']] = (int)$r['cnt'];
+if (!empty($permIds)) {
+    $holders = implode(',', array_fill(0, count($permIds), '?'));
+    $oStmt   = $pdo->prepare(
+        "SELECT permission_id, COUNT(*) AS cnt
+         FROM user_permissions
+         WHERE is_granted = 1 AND permission_id IN ($holders)
+         GROUP BY permission_id"
+    );
+    $oStmt->execute($permIds);
+    foreach ($oStmt->fetchAll(PDO::FETCH_ASSOC) as $r) {
+        $overrideStats[$r['permission_id']] = (int)$r['cnt'];
+    }
 }
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/includes/header.php';
@@ -193,15 +224,36 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/includes/header.php';
         </div>
     </div>
 
-    <?php if (empty($permissions)): ?>
+    <!-- Search -->
+    <form method="get" class="row g-2 mb-3 align-items-end">
+        <div class="col-auto flex-grow-1">
+            <input type="text" name="search" class="form-control"
+                   placeholder="&#128269; Search permissions…"
+                   value="<?= htmlspecialchars($search) ?>">
+        </div>
+        <div class="col-auto">
+            <button class="btn btn-outline-secondary" type="submit">
+                <i class="bi bi-search me-1"></i>Search
+            </button>
+            <?php if ($search !== ''): ?>
+            <a href="?" class="btn btn-outline-danger ms-1">
+                <i class="bi bi-x-lg me-1"></i>Clear
+            </a>
+            <?php endif; ?>
+        </div>
+    </form>
+
+    <?php if ($totalPerms === 0 && $search === ''): ?>
     <div class="alert alert-warning">No permissions found. Create one to get started.</div>
+    <?php elseif ($totalPerms === 0): ?>
+    <div class="alert alert-warning">No permissions match "<strong><?= htmlspecialchars($search) ?></strong>".</div>
     <?php else: ?>
 
     <!-- Role×Permission Matrix -->
     <div class="card shadow-sm mb-4">
         <div class="card-header d-flex justify-content-between align-items-center">
             <span><i class="bi bi-grid-3x3-gap me-2"></i>Role Assignment Matrix</span>
-            <span class="badge bg-secondary"><?= count($permissions) ?> permissions &nbsp;·&nbsp; <?= count($roles) ?> roles</span>
+            <span class="badge bg-secondary"><?= $totalPerms ?> permissions &nbsp;·&nbsp; <?= count($roles) ?> roles</span>
         </div>
         <div class="card-body p-0">
             <div style="overflow-x: auto;">
@@ -273,7 +325,13 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/includes/header.php';
                 </table>
             </div>
         </div>
+    </div><!-- /.card -->
+
+    <div class="mt-3">
+        <?php renderShowingInfo($page, $perPage, $totalPerms); ?>
+        <?php renderPagination($totalPerms, $perPage, $page, array_filter(['search' => $search])); ?>
     </div>
+
     <?php endif; ?>
 
 </div><!-- /.container-fluid -->
