@@ -453,6 +453,10 @@ function isCollapsibleActive($urls, $currentPage) {
                href="/users/acting_roles.php">
                 <i class="bi bi-lightning me-2"></i>Acting Roles
             </a>
+            <a class="nav-link text-white sidebar-link <?= active('/admin/permissions', $currentPage) ?>"
+               href="/admin/permissions.php">
+                <i class="bi bi-key me-2"></i>Permissions
+            </a>
             <a class="nav-link text-white sidebar-link <?= active('/admin/page_permissions', $currentPage) ?>"
                href="/admin/page_permissions.php">
                 <i class="bi bi-shield-lock me-2"></i>Page Permissions
