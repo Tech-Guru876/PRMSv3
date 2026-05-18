@@ -141,56 +141,66 @@ if ($search !== '') {
     $searchParams = ["%$search%", "%$search%"];
 }
 
-/* ─── Total permission count ─────────────────────────────────────────── */
-$cntStmt = $pdo->prepare("SELECT COUNT(*) FROM permissions" . $searchWhere);
-$cntStmt->execute($searchParams);
-$totalPerms = (int)$cntStmt->fetchColumn();
-
-/* ─── Paginated permission list ─────────────────────────────────────── */
-$permStmt = $pdo->prepare(
-    "SELECT id, name, description FROM permissions" .
-    $searchWhere .
-    " ORDER BY name LIMIT ? OFFSET ?"
-);
-$permStmt->execute(array_merge($searchParams, [$perPage, $offset]));
-$permissions = $permStmt->fetchAll(PDO::FETCH_ASSOC);
-
-$permIds = array_column($permissions, 'id');
-
-/* ─── Fetch all roles ───────────────────────────────────────────────── */
-$roles = $pdo->query("
-    SELECT id, name
-    FROM roles
-    ORDER BY name
-")->fetchAll(PDO::FETCH_ASSOC);
-
-/* ─── Build role_permissions map for current-page permissions ────────── */
-$rpMap = [];
-if (!empty($permIds)) {
-    $holders = implode(',', array_fill(0, count($permIds), '?'));
-    $rpStmt  = $pdo->prepare(
-        "SELECT role_id, permission_id FROM role_permissions WHERE permission_id IN ($holders)"
-    );
-    $rpStmt->execute($permIds);
-    foreach ($rpStmt->fetchAll(PDO::FETCH_ASSOC) as $row) {
-        $rpMap[$row['permission_id']][$row['role_id']] = true;
-    }
-}
-
-/* ─── Per-permission override stats for current-page permissions ─────── */
+$totalPerms    = 0;
+$permissions   = [];
+$roles         = [];
+$rpMap         = [];
 $overrideStats = [];
-if (!empty($permIds)) {
-    $holders = implode(',', array_fill(0, count($permIds), '?'));
-    $oStmt   = $pdo->prepare(
-        "SELECT permission_id, COUNT(*) AS cnt
-         FROM user_permissions
-         WHERE is_granted = 1 AND permission_id IN ($holders)
-         GROUP BY permission_id"
+$pageError     = null;
+
+try {
+    /* ─── Total permission count ─────────────────────────────────────────── */
+    $cntStmt = $pdo->prepare("SELECT COUNT(*) FROM permissions" . $searchWhere);
+    $cntStmt->execute($searchParams);
+    $totalPerms = (int)$cntStmt->fetchColumn();
+
+    /* ─── Paginated permission list ─────────────────────────────────────── */
+    $permStmt = $pdo->prepare(
+        "SELECT id, name, description FROM permissions" .
+        $searchWhere .
+        " ORDER BY name LIMIT ? OFFSET ?"
     );
-    $oStmt->execute($permIds);
-    foreach ($oStmt->fetchAll(PDO::FETCH_ASSOC) as $r) {
-        $overrideStats[$r['permission_id']] = (int)$r['cnt'];
+    $permStmt->execute(array_merge($searchParams, [$perPage, $offset]));
+    $permissions = $permStmt->fetchAll(PDO::FETCH_ASSOC);
+
+    $permIds = array_column($permissions, 'id');
+
+    /* ─── Fetch all roles ───────────────────────────────────────────────── */
+    $roles = $pdo->query("
+        SELECT id, name
+        FROM roles
+        ORDER BY name
+    ")->fetchAll(PDO::FETCH_ASSOC);
+
+    /* ─── Build role_permissions map for current-page permissions ────────── */
+    if (!empty($permIds)) {
+        $holders = implode(',', array_fill(0, count($permIds), '?'));
+        $rpStmt  = $pdo->prepare(
+            "SELECT role_id, permission_id FROM role_permissions WHERE permission_id IN ($holders)"
+        );
+        $rpStmt->execute($permIds);
+        foreach ($rpStmt->fetchAll(PDO::FETCH_ASSOC) as $row) {
+            $rpMap[$row['permission_id']][$row['role_id']] = true;
+        }
     }
+
+    /* ─── Per-permission override stats for current-page permissions ─────── */
+    if (!empty($permIds)) {
+        $holders = implode(',', array_fill(0, count($permIds), '?'));
+        $oStmt   = $pdo->prepare(
+            "SELECT permission_id, COUNT(*) AS cnt
+             FROM user_permissions
+             WHERE is_granted = 1 AND permission_id IN ($holders)
+             GROUP BY permission_id"
+        );
+        $oStmt->execute($permIds);
+        foreach ($oStmt->fetchAll(PDO::FETCH_ASSOC) as $r) {
+            $overrideStats[$r['permission_id']] = (int)$r['cnt'];
+        }
+    }
+} catch (Throwable $e) {
+    $pageError = 'Permission data is temporarily unavailable. Please try again or contact your administrator.';
+    error_log('admin/permissions.php load error: ' . $e->getMessage());
 }
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/includes/header.php';
@@ -213,6 +223,13 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/includes/header.php';
         </button>
         <?php endif; ?>
     </div>
+
+    <?php if ($pageError !== null): ?>
+    <div class="alert alert-warning d-flex gap-2 align-items-start mb-4">
+        <i class="bi bi-exclamation-triangle-fill fs-5 mt-1"></i>
+        <div><?= htmlspecialchars($pageError) ?></div>
+    </div>
+    <?php endif; ?>
 
     <!-- Info alert -->
     <div class="alert alert-info d-flex gap-2 align-items-start mb-4">
@@ -243,11 +260,11 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/includes/header.php';
         </div>
     </form>
 
-    <?php if ($totalPerms === 0 && $search === ''): ?>
+    <?php if ($pageError === null && $totalPerms === 0 && $search === ''): ?>
     <div class="alert alert-warning">No permissions found. Create one to get started.</div>
-    <?php elseif ($totalPerms === 0): ?>
+    <?php elseif ($pageError === null && $totalPerms === 0): ?>
     <div class="alert alert-warning">No permissions match "<strong><?= htmlspecialchars($search) ?></strong>".</div>
-    <?php else: ?>
+    <?php elseif ($pageError === null): ?>
 
     <!-- Role×Permission Matrix -->
     <div class="card shadow-sm mb-4">

@@ -167,36 +167,50 @@ if ($schemaError === null) {
         $whereParams = [$activeModule];
     }
 
-    $cntStmt = $pdo->prepare("SELECT COUNT(*) FROM page_permissions pp" . $whereClause);
-    $cntStmt->execute($whereParams);
-    $totalCount = (int)$cntStmt->fetchColumn();
+    try {
+        $cntStmt = $pdo->prepare("SELECT COUNT(*) FROM page_permissions pp" . $whereClause);
+        $cntStmt->execute($whereParams);
+        $totalCount = (int)$cntStmt->fetchColumn();
 
-    $pgStmt = $pdo->prepare("
-        SELECT pp.id, pp.page_path, pp.page_title, pp.permission_name,
-               pp.module, pp.is_active,
-               p.description AS perm_description
-        FROM page_permissions pp
-        LEFT JOIN permissions p ON pp.permission_name = p.name
-        $whereClause
-        ORDER BY pp.module, pp.page_title
-        LIMIT ? OFFSET ?
-    ");
-    $pgStmt->execute(array_merge($whereParams, [$perPage, $offset]));
-    $pages = $pgStmt->fetchAll(PDO::FETCH_ASSOC);
+        $pgStmt = $pdo->prepare("
+            SELECT pp.id, pp.page_path, pp.page_title, pp.permission_name,
+                   pp.module, pp.is_active,
+                   p.description AS perm_description
+            FROM page_permissions pp
+            LEFT JOIN permissions p ON pp.permission_name = p.name
+            $whereClause
+            ORDER BY pp.module, pp.page_title
+            LIMIT ? OFFSET ?
+        ");
+        $pgStmt->execute(array_merge($whereParams, [$perPage, $offset]));
+        $pages = $pgStmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch (Throwable $e) {
+        $schemaError = 'Failed to load page permissions data. Please try again.';
+        error_log('admin/page_permissions.php list query error: ' . $e->getMessage());
+    }
 }
 
 /* ─── Distinct modules for tab bar ─────────────────────────────────── */
 $allModules = [];
 if ($schemaError === null) {
-    $allModules = $pdo->query(
-        "SELECT DISTINCT module FROM page_permissions ORDER BY module"
-    )->fetchAll(PDO::FETCH_COLUMN);
+    try {
+        $allModules = $pdo->query(
+            "SELECT DISTINCT module FROM page_permissions ORDER BY module"
+        )->fetchAll(PDO::FETCH_COLUMN);
+    } catch (Throwable $e) {
+        error_log('admin/page_permissions.php modules query error: ' . $e->getMessage());
+    }
 }
 
 /* ─── Fetch all permissions for the dropdown ───────────────────────── */
-$allPerms = $pdo->query("
-    SELECT name, description FROM permissions ORDER BY name
-")->fetchAll(PDO::FETCH_ASSOC);
+$allPerms = [];
+try {
+    $allPerms = $pdo->query("
+        SELECT name, description FROM permissions ORDER BY name
+    ")->fetchAll(PDO::FETCH_ASSOC);
+} catch (Throwable $e) {
+    error_log('admin/page_permissions.php allPerms query error: ' . $e->getMessage());
+}
 
 /* ─── Unique modules for the new-page form ─────────────────────────── */
 $modules = $allModules;
