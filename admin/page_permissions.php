@@ -152,37 +152,52 @@ function jsonError(string $msg) {
     exit;
 }
 
-/* ─── Pagination & module filter ────────────────────────────────────── */
+/* ─── Pagination, module filter & search ────────────────────────────── */
 $activeModule = trim($_GET['module'] ?? '');
+$search       = trim($_GET['search'] ?? '');
 ['perPage' => $perPage, 'page' => $page, 'offset' => $offset] = getPaginationParams(20);
 
-/* ─── Fetch all page permissions (paginated + optional module filter) ── */
+/* ─── Fetch all page permissions (paginated + optional module/search filter) ── */
 $pages      = [];
 $totalCount = 0;
 if ($schemaError === null) {
-    $whereClause = '';
+    $conditions  = [];
     $whereParams = [];
+
     if ($activeModule !== '') {
-        $whereClause = ' WHERE pp.module = ?';
-        $whereParams = [$activeModule];
+        $conditions[]  = 'pp.`module` = ?';
+        $whereParams[] = $activeModule;
     }
+    if ($search !== '') {
+        $conditions[]  = '(pp.page_path LIKE ? OR pp.page_title LIKE ? OR pp.permission_name LIKE ? OR pp.`module` LIKE ?)';
+        $whereParams[] = "%{$search}%";
+        $whereParams[] = "%{$search}%";
+        $whereParams[] = "%{$search}%";
+        $whereParams[] = "%{$search}%";
+    }
+
+    $whereClause = !empty($conditions) ? ' WHERE ' . implode(' AND ', $conditions) : '';
 
     try {
         $cntStmt = $pdo->prepare("SELECT COUNT(*) FROM page_permissions pp" . $whereClause);
         $cntStmt->execute($whereParams);
         $totalCount = (int)$cntStmt->fetchColumn();
 
+        /* Use direct integer interpolation for LIMIT/OFFSET to avoid driver
+           binding issues, values are already validated integers. */
+        $limitSql = ' LIMIT ' . (int)$perPage . ' OFFSET ' . (int)$offset;
+
         $pgStmt = $pdo->prepare("
             SELECT pp.id, pp.page_path, pp.page_title, pp.permission_name,
-                   pp.module, pp.is_active,
+                   pp.`module`, pp.is_active,
                    p.description AS perm_description
             FROM page_permissions pp
             LEFT JOIN permissions p ON pp.permission_name = p.name
-            $whereClause
-            ORDER BY pp.module, pp.page_title
-            LIMIT ? OFFSET ?
+            {$whereClause}
+            ORDER BY pp.`module`, pp.page_title
+            {$limitSql}
         ");
-        $pgStmt->execute(array_merge($whereParams, [$perPage, $offset]));
+        $pgStmt->execute($whereParams);
         $pages = $pgStmt->fetchAll(PDO::FETCH_ASSOC);
     } catch (Throwable $e) {
         $schemaError = 'Failed to load page permissions data. Please try again.';
@@ -195,7 +210,7 @@ $allModules = [];
 if ($schemaError === null) {
     try {
         $allModules = $pdo->query(
-            "SELECT DISTINCT module FROM page_permissions ORDER BY module"
+            "SELECT DISTINCT `module` FROM page_permissions ORDER BY `module`"
         )->fetchAll(PDO::FETCH_COLUMN);
     } catch (Throwable $e) {
         error_log('admin/page_permissions.php modules query error: ' . $e->getMessage());
@@ -255,22 +270,32 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/includes/header.php';
         ?>
         <li class="nav-item">
             <a class="nav-link <?= $activeModule === '' ? 'active' : '' ?>"
-               href="?module=">All (<?= $allCount ?>)</a>
+               href="?module=<?= $search !== '' ? '&search=' . urlencode($search) : '' ?>">All (<?= $allCount ?>)</a>
         </li>
         <?php foreach ($allModules as $mod): ?>
         <li class="nav-item">
             <a class="nav-link <?= $activeModule === $mod ? 'active' : '' ?>"
-               href="?module=<?= urlencode($mod) ?>">
+               href="?module=<?= urlencode($mod) ?><?= $search !== '' ? '&search=' . urlencode($search) : '' ?>">
                 <?= htmlspecialchars($mod) ?>
             </a>
         </li>
         <?php endforeach; ?>
     </ul>
 
-    <!-- Search box (filters rows within current page) -->
-    <div class="mb-3">
-        <input type="text" id="searchBox" class="form-control" placeholder="&#128269; Search pages or permissions…">
-    </div>
+    <!-- Search box (server-side + client-side instant filter) -->
+    <form method="get" class="mb-3 d-flex gap-2" id="searchForm">
+        <?php if ($activeModule !== ''): ?>
+        <input type="hidden" name="module" value="<?= htmlspecialchars($activeModule) ?>">
+        <?php endif; ?>
+        <input type="text" id="searchBox" name="search" class="form-control"
+               placeholder="&#128269; Search pages or permissions…"
+               value="<?= htmlspecialchars($search) ?>"
+               autocomplete="off">
+        <button type="submit" class="btn btn-outline-secondary">Search</button>
+        <?php if ($search !== ''): ?>
+        <a href="?module=<?= urlencode($activeModule) ?>" class="btn btn-outline-secondary">Clear</a>
+        <?php endif; ?>
+    </form>
 
     <!-- Table -->
     <div class="table-responsive mb-3">
@@ -344,7 +369,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/includes/header.php';
 
     <!-- Pagination -->
     <?php renderShowingInfo($page, $perPage, $totalCount); ?>
-    <?php renderPagination($totalCount, $perPage, $page, array_filter(['module' => $activeModule])); ?>
+    <?php renderPagination($totalCount, $perPage, $page, array_filter(['module' => $activeModule, 'search' => $search])); ?>
 
 </div>
 
@@ -440,7 +465,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/includes/header.php';
 <script>
 document.addEventListener('DOMContentLoaded', function () {
 
-/* ── Search (filters rows within current page) ── */
+/* ── Search (instant filter for current page rows; full search via form submit) ── */
 document.getElementById('searchBox').addEventListener('input', function () {
     const q = this.value.toLowerCase();
     document.querySelectorAll('.page-row').forEach(function (row) {

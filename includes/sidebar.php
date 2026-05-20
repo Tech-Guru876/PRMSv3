@@ -194,12 +194,16 @@ function isCollapsibleActive($urls, $currentPage) {
                href="/reimbursement/list.php">
                 <i class="bi bi-cash-stack me-2"></i>Reimbursements
                 <?php
-                $reimbPending = $pdo->query("
-                    SELECT COUNT(*)
-                    FROM procurement_requests
-                    WHERE request_type='REIMBURSEMENT'
-                    AND status = 'SUBMITTED'
-                ")->fetchColumn();
+                try {
+                    $reimbPending = $pdo->query("
+                        SELECT COUNT(*)
+                        FROM procurement_requests
+                        WHERE request_type='REIMBURSEMENT'
+                        AND status = 'SUBMITTED'
+                    ")->fetchColumn();
+                } catch (Throwable $e) {
+                    $reimbPending = 0;
+                }
                 if ($reimbPending > 0):
                 ?>
                     <span class="badge bg-warning text-dark ms-1" style="font-size:0.65rem;"><?= $reimbPending ?></span>
@@ -212,12 +216,16 @@ function isCollapsibleActive($urls, $currentPage) {
                href="/petty_cash/list.php">
                 <i class="bi bi-wallet2 me-2"></i>Petty Cash
                 <?php
-                $pettyCashPending = $pdo->query("
-                    SELECT COUNT(*)
-                    FROM procurement_requests
-                    WHERE request_type='PETTY_CASH'
-                    AND status = 'SUBMITTED'
-                ")->fetchColumn();
+                try {
+                    $pettyCashPending = $pdo->query("
+                        SELECT COUNT(*)
+                        FROM procurement_requests
+                        WHERE request_type='PETTY_CASH'
+                        AND status = 'SUBMITTED'
+                    ")->fetchColumn();
+                } catch (Throwable $e) {
+                    $pettyCashPending = 0;
+                }
                 if ($pettyCashPending > 0):
                 ?>
                     <span class="badge bg-danger ms-1" style="font-size:0.65rem;"><?= $pettyCashPending ?></span>
@@ -233,12 +241,16 @@ function isCollapsibleActive($urls, $currentPage) {
                href="/commitments/list.php">
                 <i class="bi bi-folder2-open me-2"></i>Commitments
                 <?php
-                $pending = $pdo->query("
-                    SELECT COUNT(*)
-                    FROM request_approvals
-                    WHERE entity_type='COMMITMENT'
-                    AND status='pending'
-                ")->fetchColumn();
+                try {
+                    $pending = $pdo->query("
+                        SELECT COUNT(*)
+                        FROM request_approvals
+                        WHERE entity_type='COMMITMENT'
+                        AND status='pending'
+                    ")->fetchColumn();
+                } catch (Throwable $e) {
+                    $pending = 0;
+                }
                 if ($pending > 0):
                 ?>
                     <span class="badge bg-danger ms-1" style="font-size:0.65rem;"><?= $pending ?></span>
