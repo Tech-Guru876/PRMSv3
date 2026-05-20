@@ -27,20 +27,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit;
         }
 
-        $chk = $pdo->prepare("SELECT COUNT(*) FROM permissions WHERE name = ?");
-        $chk->execute([$name]);
-        if ($chk->fetchColumn() > 0) {
-            modalPop('Duplicate', "A permission named '{$name}' already exists.", '/admin/permissions.php', 'error');
-            exit;
+        try {
+            $chk = $pdo->prepare("SELECT COUNT(*) FROM permissions WHERE name = ?");
+            $chk->execute([$name]);
+            if ($chk->fetchColumn() > 0) {
+                modalPop('Duplicate', "A permission named '{$name}' already exists.", '/admin/permissions.php', 'error');
+                exit;
+            }
+
+            $stmt = $pdo->prepare("INSERT INTO permissions (name, description) VALUES (?, ?)");
+            $stmt->execute([$name, $desc ?: null]);
+            $newId = (int)$pdo->lastInsertId();
+
+            try { logAudit($pdo, 'permissions', $newId, 'CREATE', "Permission '{$name}' created"); } catch (Throwable $e) { error_log('logAudit error: ' . $e->getMessage()); }
+
+            pop("Permission '{$name}' created successfully.", '/admin/permissions.php', 1200, 'success');
+        } catch (Throwable $e) {
+            error_log('permissions.php create error: ' . $e->getMessage());
+            modalPop('Error', 'Failed to create permission. Please try again.', '/admin/permissions.php', 'error');
         }
-
-        $stmt = $pdo->prepare("INSERT INTO permissions (name, description) VALUES (?, ?)");
-        $stmt->execute([$name, $desc ?: null]);
-        $newId = (int)$pdo->lastInsertId();
-
-        logAudit($pdo, 'permissions', $newId, 'CREATE', "Permission '{$name}' created");
-
-        pop("Permission '{$name}' created successfully.", '/admin/permissions.php', 1200, 'success');
         exit;
     }
 
@@ -53,23 +58,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit;
         }
 
-        $nameStmt = $pdo->prepare("SELECT name FROM permissions WHERE id = ?");
-        $nameStmt->execute([$id]);
-        $permName = $nameStmt->fetchColumn();
+        try {
+            $nameStmt = $pdo->prepare("SELECT name FROM permissions WHERE id = ?");
+            $nameStmt->execute([$id]);
+            $permName = $nameStmt->fetchColumn();
 
-        if (!$permName) {
-            modalPop('Error', 'Permission not found.', '/admin/permissions.php', 'error');
-            exit;
+            if (!$permName) {
+                modalPop('Error', 'Permission not found.', '/admin/permissions.php', 'error');
+                exit;
+            }
+
+            /* Remove role and user associations first */
+            $pdo->prepare("DELETE FROM role_permissions WHERE permission_id = ?")->execute([$id]);
+            $pdo->prepare("DELETE FROM user_permissions WHERE permission_id = ?")->execute([$id]);
+            $pdo->prepare("DELETE FROM permissions WHERE id = ?")->execute([$id]);
+
+            try { logAudit($pdo, 'permissions', $id, 'DELETE', "Permission '{$permName}' deleted"); } catch (Throwable $e) { error_log('logAudit error: ' . $e->getMessage()); }
+
+            pop("Permission '{$permName}' deleted.", '/admin/permissions.php', 1200, 'success');
+        } catch (Throwable $e) {
+            error_log('permissions.php delete error: ' . $e->getMessage());
+            modalPop('Error', 'Failed to delete permission. Please try again.', '/admin/permissions.php', 'error');
         }
-
-        /* Remove role and user associations first */
-        $pdo->prepare("DELETE FROM role_permissions WHERE permission_id = ?")->execute([$id]);
-        $pdo->prepare("DELETE FROM user_permissions WHERE permission_id = ?")->execute([$id]);
-        $pdo->prepare("DELETE FROM permissions WHERE id = ?")->execute([$id]);
-
-        logAudit($pdo, 'permissions', $id, 'DELETE', "Permission '{$permName}' deleted");
-
-        pop("Permission '{$permName}' deleted.", '/admin/permissions.php', 1200, 'success');
         exit;
     }
 
@@ -84,11 +94,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit;
         }
 
-        $pdo->prepare("UPDATE permissions SET description = ? WHERE id = ?")
-            ->execute([$desc ?: null, $id]);
+        try {
+            $pdo->prepare("UPDATE permissions SET description = ? WHERE id = ?")
+                ->execute([$desc ?: null, $id]);
 
-        logAudit($pdo, 'permissions', $id, 'UPDATE', "Description updated");
-        echo json_encode(['ok' => true]);
+            try { logAudit($pdo, 'permissions', $id, 'UPDATE', "Description updated"); } catch (Throwable $e) { error_log('logAudit error: ' . $e->getMessage()); }
+            echo json_encode(['ok' => true]);
+        } catch (Throwable $e) {
+            error_log('permissions.php update_desc error: ' . $e->getMessage());
+            http_response_code(500);
+            echo json_encode(['ok' => false, 'message' => 'Database error. Please try again.']);
+        }
         exit;
     }
 
@@ -103,25 +119,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit;
         }
 
-        /* Check current state */
-        $chk = $pdo->prepare("SELECT COUNT(*) FROM role_permissions WHERE role_id = ? AND permission_id = ?");
-        $chk->execute([$roleId, $permId]);
-        $exists = (bool)$chk->fetchColumn();
+        try {
+            /* Check current state */
+            $chk = $pdo->prepare("SELECT COUNT(*) FROM role_permissions WHERE role_id = ? AND permission_id = ?");
+            $chk->execute([$roleId, $permId]);
+            $exists = (bool)$chk->fetchColumn();
 
-        if ($exists) {
-            $pdo->prepare("DELETE FROM role_permissions WHERE role_id = ? AND permission_id = ?")
-                ->execute([$roleId, $permId]);
-            $granted = false;
-        } else {
-            $pdo->prepare("INSERT IGNORE INTO role_permissions (role_id, permission_id) VALUES (?, ?)")
-                ->execute([$roleId, $permId]);
-            $granted = true;
+            if ($exists) {
+                $pdo->prepare("DELETE FROM role_permissions WHERE role_id = ? AND permission_id = ?")
+                    ->execute([$roleId, $permId]);
+                $granted = false;
+            } else {
+                $pdo->prepare("INSERT IGNORE INTO role_permissions (role_id, permission_id) VALUES (?, ?)")
+                    ->execute([$roleId, $permId]);
+                $granted = true;
+            }
+
+            try {
+                logAudit($pdo, 'role_permissions', $permId, 'TOGGLE',
+                         "Role #{$roleId} " . ($granted ? 'granted' : 'revoked') . " permission #{$permId}");
+            } catch (Throwable $e) { error_log('logAudit error: ' . $e->getMessage()); }
+
+            echo json_encode(['ok' => true, 'granted' => $granted]);
+        } catch (Throwable $e) {
+            error_log('permissions.php toggle_role error: ' . $e->getMessage());
+            http_response_code(500);
+            echo json_encode(['ok' => false, 'message' => 'Database error. Please try again.']);
         }
-
-        logAudit($pdo, 'role_permissions', $permId, 'TOGGLE',
-                 "Role #{$roleId} " . ($granted ? 'granted' : 'revoked') . " permission #{$permId}");
-
-        echo json_encode(['ok' => true, 'granted' => $granted]);
         exit;
     }
 
