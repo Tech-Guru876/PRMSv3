@@ -451,6 +451,17 @@ function isCollapsibleActive($urls, $currentPage) {
         </li>
         <?php endif; ?>
 
+        <!-- ===== VENDORS SECTION ===== -->
+        <?php if (has_permission('view_vendors') || has_permission('manage_vendors')): ?>
+        <li class="nav-item mt-2">
+            <div class="sidebar-section-label">VENDORS</div>
+            <a class="nav-link text-white sidebar-link <?= active('/vendors', $currentPage) ?>"
+               href="/vendors/list.php">
+                <i class="bi bi-building me-2"></i>Vendors
+            </a>
+        </li>
+        <?php endif; ?>
+
         <!-- ===== ADMINISTRATION SECTION ===== -->
         <?php if (has_permission('manage_users') || has_permission('view_audit_logs')): ?>
         <li class="nav-item mt-2">
@@ -472,13 +483,6 @@ function isCollapsibleActive($urls, $currentPage) {
             <a class="nav-link text-white sidebar-link <?= active('/admin/page_permissions', $currentPage) ?>"
                href="/admin/page_permissions.php">
                 <i class="bi bi-shield-lock me-2"></i>Page Permissions
-            </a>
-            <?php endif; ?>
-
-            <?php if (has_permission('view_vendors') || has_permission('manage_vendors')): ?>
-            <a class="nav-link text-white sidebar-link <?= active('/vendors', $currentPage) ?>"
-               href="/vendors/list.php">
-                <i class="bi bi-building me-2"></i>Vendors
             </a>
             <?php endif; ?>
 
