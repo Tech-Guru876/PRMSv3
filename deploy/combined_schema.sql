@@ -5979,12 +5979,12 @@ DELIMITER ;
 
 -- =====================================================
 -- PRMS DATABASE MIGRATION: REIMBURSEMENT & PETTY CASH WORKFLOWS
--- Database Name: u153072617_prms
+-- Database Name: prms_ims
 -- Generated: 2026-02-17
 -- Purpose: Add tables for reimbursement and petty cash request workflows
 -- =====================================================
 
-USE `u153072617_prms`;
+USE `prms_ims`;
 
 -- =====================================================
 -- TABLE 1: pre_authorizations
@@ -6215,7 +6215,7 @@ ON petty_cash_reconciliations(submission_date, status);
 
 -- To verify all tables created successfully, run:
 -- SELECT TABLE_NAME FROM information_schema.TABLES 
--- WHERE TABLE_SCHEMA='u153072617_prms' 
+-- WHERE TABLE_SCHEMA='prms_ims' 
 -- AND TABLE_NAME IN ('pre_authorizations','reimbursement_invoices','procurement_verifications',
 --                     'petty_cash_disbursements','petty_cash_reconciliations',
 --                     'reimbursement_status_history','workflow_notifications');
@@ -10009,7 +10009,7 @@ ADD COLUMN IF NOT EXISTS `signed_by_user_id` INT(11) DEFAULT NULL COMMENT 'User 
 
 -- ============================================================================
 -- Migration: Fix request_type Enum in procurement_requests Table
--- Database: u153072617_prms
+-- Database: prms_ims
 -- Date: 2026-03-17
 -- Purpose: Ensure request_type enum supports REGULAR, REIMBURSEMENT, PETTY_CASH
 --          and remove incorrect EXPEDITED, EMERGENCY values
