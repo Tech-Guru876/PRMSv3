@@ -179,12 +179,15 @@ try {
     $totalPerms = (int)$cntStmt->fetchColumn();
 
     /* ─── Paginated permission list ─────────────────────────────────────── */
+    /* Use direct integer interpolation for LIMIT/OFFSET to avoid driver
+       binding issues; values are already validated integers. */
+    $limitSql = ' LIMIT ' . (int)$perPage . ' OFFSET ' . (int)$offset;
     $permStmt = $pdo->prepare(
         "SELECT id, name, description FROM permissions" .
         $searchWhere .
-        " ORDER BY name LIMIT ? OFFSET ?"
+        " ORDER BY name" . $limitSql
     );
-    $permStmt->execute(array_merge($searchParams, [$perPage, $offset]));
+    $permStmt->execute($searchParams);
     $permissions = $permStmt->fetchAll(PDO::FETCH_ASSOC);
 
     $permIds = array_column($permissions, 'id');
