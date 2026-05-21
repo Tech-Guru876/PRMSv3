@@ -302,7 +302,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/includes/header.php';
         <div class="card-body p-0">
             <div style="overflow-x: auto;">
                 <table class="table table-bordered table-sm mb-0 align-middle" id="matrixTable">
-                    <thead class="table-light">
+                    <thead>
                         <tr>
                             <th style="min-width:220px;">Permission</th>
                             <?php foreach ($roles as $role): ?>
