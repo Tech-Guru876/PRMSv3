@@ -3,7 +3,7 @@ $REQUIRE_PERMISSION = 'manage_returns';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/page_guard.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/db.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/pagination.php';
-require_once __DIR__ . '/../check_setup.php';
+require_once __DIR__ . '/../check_compliance_setup.php';
 
 $statusFilter = $_GET['status'] ?? '';
 $pagination = getPaginationParams();

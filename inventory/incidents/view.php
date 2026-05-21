@@ -2,7 +2,7 @@
 $REQUIRE_PERMISSION = 'manage_incidents';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/page_guard.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/db.php';
-require_once __DIR__ . '/../check_setup.php';
+require_once __DIR__ . '/../check_compliance_setup.php';
 
 $incidentId = (int) ($_GET['id'] ?? 0);
 if ($incidentId <= 0) { pop("Invalid incident.", "/inventory/incidents/list.php", 1800, 'warning'); exit; }

@@ -2,7 +2,7 @@
 $REQUIRE_PERMISSION = 'manage_incidents';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/page_guard.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/db.php';
-require_once __DIR__ . '/../check_setup.php';
+require_once __DIR__ . '/../check_compliance_setup.php';
 
 $items = $pdo->query("SELECT item_id, item_code, item_name, unit_of_measure FROM inv_items WHERE item_status='ACTIVE' ORDER BY item_name")->fetchAll(PDO::FETCH_ASSOC);
 $locations = $pdo->query("SELECT location_id, location_code, site_name FROM inv_locations WHERE is_active=1 ORDER BY site_name")->fetchAll(PDO::FETCH_ASSOC);

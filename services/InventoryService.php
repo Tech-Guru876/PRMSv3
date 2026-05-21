@@ -27,6 +27,23 @@ function inventoryTablesExist(PDO $pdo): bool
     }
 }
 
+/**
+ * Check whether the GoJ compliance tables (migration 019c) have been created.
+ * Returns true if inv_recalls (and the related compliance tables) exist.
+ */
+function inventoryComplianceTablesExist(PDO $pdo): bool
+{
+    try {
+        $pdo->query("SELECT 1 FROM inv_recalls LIMIT 1");
+        return true;
+    } catch (PDOException $e) {
+        if (strpos($e->getMessage(), '1146') !== false || strpos($e->getMessage(), '42S02') !== false) {
+            return false;
+        }
+        throw $e;
+    }
+}
+
 /* ================================================================
    NUMBER GENERATORS
 ================================================================ */

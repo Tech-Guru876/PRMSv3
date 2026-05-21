@@ -36,6 +36,41 @@ if (!inventoryTablesExist($pdo)) {
     exit;
 }
 
+/* Check if GoJ compliance tables exist (migration 019c) */
+if (($_GET['missing'] ?? '') === 'compliance' || !inventoryComplianceTablesExist($pdo)) {
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
+    ?>
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card border-warning shadow">
+                    <div class="card-header bg-warning text-dark fw-bold">
+                        <i class="bi bi-exclamation-triangle"></i> Inventory Module — Compliance Migration Required
+                    </div>
+                    <div class="card-body">
+                        <p>The GoJ compliance tables (Recalls, Returns, Incidents, Quarantine, Write-Downs) have not been created yet. A database administrator needs to run the migration script before these pages can be used.</p>
+                        <h6>Steps:</h6>
+                        <ol>
+                            <li>Locate the migration file: <code>migrations/019c_goj_compliance.sql</code></li>
+                            <li>Run it against the database using phpMyAdmin, MySQL CLI, or your preferred tool:
+                                <pre class="bg-light p-2 rounded mt-1 mb-2">mysql -u USERNAME -p DATABASE_NAME &lt; migrations/019c_goj_compliance.sql</pre>
+                            </li>
+                            <li>Alternatively, run all pending migrations via the deploy script:
+                                <pre class="bg-light p-2 rounded mt-1 mb-2">bash deploy/deploy.sh --run-migrations</pre>
+                            </li>
+                            <li>Refresh this page once the migration is complete.</li>
+                        </ol>
+                        <a href="/inventory/dashboard.php" class="btn btn-primary"><i class="bi bi-arrow-clockwise"></i> Refresh</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/footer.php';
+    exit;
+}
+
 /* KPI Queries */
 $stats = $pdo->query("SELECT
     (SELECT COUNT(*) FROM inv_items WHERE item_status='ACTIVE') AS active_items,
