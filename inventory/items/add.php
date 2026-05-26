@@ -9,6 +9,8 @@ $uoms = getUnitsOfMeasure($pdo);
 $critClasses = getCriticalityClasses($pdo);
 $acctClasses = getAccountingClasses($pdo);
 $riskClasses = getRiskClasses($pdo);
+$assetTypes = getAssetTypes($pdo);
+$invTypes    = getInventoryTypes($pdo);
 
 /* Handle POST */
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -42,7 +44,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 standard_cost, last_cost, average_cost, valuation_method,
                 funding_source, program_project_code, gl_account_code,
                 criticality_id, acct_class_id, item_status, issue_policy,
-                asset_inventory_boundary, created_by
+                asset_inventory_boundary, item_domain, asset_type_id, inventory_type_id,
+                created_by
             ) VALUES (
                 ?, ?, ?, ?, ?, ?,
                 ?, ?, ?, ?, ?, ?,
@@ -54,7 +57,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 ?, ?, ?, ?,
                 ?, ?, ?,
                 ?, ?, ?, ?,
-                ?, ?
+                ?, ?, ?, ?,
+                ?
             )
         ");
 
@@ -100,6 +104,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_POST['item_status'] ?? 'ACTIVE',
             $_POST['issue_policy'] ?? 'UNRESTRICTED',
             isset($_POST['asset_inventory_boundary']) ? 1 : 0,
+            $_POST['item_domain'] ?? 'INVENTORY',
+            ($_POST['asset_type_id'] ?? null) ?: null,
+            ($_POST['inventory_type_id'] ?? null) ?: null,
             $_SESSION['user_id'] ?? null,
         ]);
 
@@ -190,6 +197,39 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
                     <label class="form-label">Pack Size / Conversion</label>
                     <input type="number" step="0.01" name="pack_size" class="form-control" value="<?= $_POST['pack_size'] ?? '1.00' ?>">
                 </div>
+                <!-- Domain classification (migration 024) -->
+                <?php if (!empty($assetTypes) || !empty($invTypes)): ?>
+                <div class="col-md-4">
+                    <label class="form-label">Item Domain <span class="text-danger">*</span></label>
+                    <select name="item_domain" id="itemDomain" class="form-select" required>
+                        <option value="INVENTORY" <?= ($_POST['item_domain'] ?? 'INVENTORY') === 'INVENTORY' ? 'selected' : '' ?>>Inventory (Stock)</option>
+                        <option value="ASSET"     <?= ($_POST['item_domain'] ?? '') === 'ASSET'     ? 'selected' : '' ?>>Asset (Fixed/Movable)</option>
+                        <option value="BOTH"      <?= ($_POST['item_domain'] ?? '') === 'BOTH'      ? 'selected' : '' ?>>Both</option>
+                    </select>
+                </div>
+                <div class="col-md-4" id="assetTypeGroup" style="<?= in_array($_POST['item_domain'] ?? 'INVENTORY', ['ASSET','BOTH']) ? '' : 'display:none' ?>">
+                    <label class="form-label">Asset Type</label>
+                    <select name="asset_type_id" class="form-select">
+                        <option value="">— Select asset type —</option>
+                        <?php foreach ($assetTypes as $at): ?>
+                        <option value="<?= $at['asset_type_id'] ?>" <?= ($_POST['asset_type_id'] ?? '') == $at['asset_type_id'] ? 'selected' : '' ?>>
+                            <?= htmlspecialchars($at['type_name']) ?>
+                        </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+                <div class="col-md-4" id="invTypeGroup" style="<?= in_array($_POST['item_domain'] ?? 'INVENTORY', ['INVENTORY','BOTH']) ? '' : 'display:none' ?>">
+                    <label class="form-label">Inventory Type</label>
+                    <select name="inventory_type_id" class="form-select">
+                        <option value="">— Select inventory type —</option>
+                        <?php foreach ($invTypes as $it): ?>
+                        <option value="<?= $it['inventory_type_id'] ?>" <?= ($_POST['inventory_type_id'] ?? '') == $it['inventory_type_id'] ? 'selected' : '' ?>>
+                            <?= htmlspecialchars($it['type_name']) ?>
+                        </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+                <?php endif; ?>
             </div>
         </div>
     </div>
@@ -446,3 +486,18 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 </form>
 
 <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/footer.php'; ?>
+<script>
+(function () {
+    var domainSel = document.getElementById('itemDomain');
+    if (!domainSel) return;
+    function toggleTypeGroups() {
+        var v = domainSel.value;
+        var ag = document.getElementById('assetTypeGroup');
+        var ig = document.getElementById('invTypeGroup');
+        if (ag) ag.style.display = (v === 'ASSET' || v === 'BOTH') ? '' : 'none';
+        if (ig) ig.style.display = (v === 'INVENTORY' || v === 'BOTH') ? '' : 'none';
+    }
+    domainSel.addEventListener('change', toggleTypeGroups);
+    toggleTypeGroups();
+}());
+</script>

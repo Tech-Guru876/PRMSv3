@@ -25,6 +25,10 @@ if (!empty($_GET['criticality'])) {
     $where[] = "i.criticality_id = :crit";
     $params[':crit'] = (int) $_GET['criticality'];
 }
+if (!empty($_GET['domain'])) {
+    $where[] = "i.item_domain = :domain";
+    $params[':domain'] = $_GET['domain'];
+}
 
 $whereSQL = $where ? 'WHERE ' . implode(' AND ', $where) : '';
 
@@ -179,6 +183,15 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
                     <?php endforeach; ?>
                 </select>
             </div>
+            <div class="col-md-2">
+                <label class="form-label">Domain</label>
+                <select name="domain" class="form-select">
+                    <option value="">All</option>
+                    <option value="INVENTORY" <?= ($_GET['domain'] ?? '') === 'INVENTORY' ? 'selected' : '' ?>>Inventory</option>
+                    <option value="ASSET"     <?= ($_GET['domain'] ?? '') === 'ASSET'     ? 'selected' : '' ?>>Assets</option>
+                    <option value="BOTH"      <?= ($_GET['domain'] ?? '') === 'BOTH'      ? 'selected' : '' ?>>Both</option>
+                </select>
+            </div>
             <div class="col-md-1">
                 <button type="submit" class="btn btn-dark w-100">Filter</button>
             </div>
@@ -198,6 +211,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
                     <tr>
                         <th>Code</th>
                         <th>Item Name</th>
+                        <th>Domain</th>
                         <th>Category</th>
                         <th>UOM</th>
                         <th class="text-end">On Hand</th>
@@ -210,7 +224,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
                 </thead>
                 <tbody>
                     <?php if (empty($rows)): ?>
-                    <tr><td colspan="10" class="text-center text-muted py-4">No inventory items found.</td></tr>
+                    <tr><td colspan="11" class="text-center text-muted py-4">No inventory items found.</td></tr>
                     <?php endif; ?>
                     <?php foreach ($rows as $row): ?>
                     <tr>
@@ -222,6 +236,14 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
                             <?php if ($row['serial_number_flag']): ?><span class="badge bg-info ms-1" title="Serialized">SN</span><?php endif; ?>
                             <?php if ($row['hazard_class_flag']): ?><span class="badge bg-danger ms-1" title="Hazardous">⚠️</span><?php endif; ?>
                             <?php if ($row['expiry_date_flag']): ?><span class="badge bg-warning text-dark ms-1" title="Expiry Tracked">EXP</span><?php endif; ?>
+                        </td>
+                        <td>
+                            <?php
+                            $domainBadge = ['INVENTORY' => 'primary', 'ASSET' => 'success', 'BOTH' => 'info'];
+                            $domainLabel = ['INVENTORY' => 'Inventory', 'ASSET' => 'Asset', 'BOTH' => 'Both'];
+                            $d = $row['item_domain'] ?? 'INVENTORY';
+                            ?>
+                            <span class="badge bg-<?= $domainBadge[$d] ?? 'secondary' ?>"><?= $domainLabel[$d] ?? htmlspecialchars($d) ?></span>
                         </td>
                         <td><?= htmlspecialchars($row['category_name'] ?? '-') ?></td>
                         <td><?= htmlspecialchars($row['uom_code'] ?? '-') ?></td>

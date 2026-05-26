@@ -20,19 +20,29 @@ $assetRegistryReady = false;
 $serialCount = 0;
 
 if ($invReady) {
+    /* ─── Check whether item_domain column exists (migration 024) ─────── */
+    $domainReady = (int) $pdo->query("
+        SELECT COUNT(*) FROM information_schema.COLUMNS
+        WHERE TABLE_SCHEMA = DATABASE()
+          AND TABLE_NAME = 'inv_items'
+          AND COLUMN_NAME = 'item_domain'
+    ")->fetchColumn() > 0;
+
+    $assetFilter = $domainReady
+        ? "i.item_domain IN ('ASSET','BOTH')"
+        : "EXISTS (SELECT 1 FROM inv_categories c WHERE c.category_id = i.category_id AND c.category_code = 'ASSETS')";
+
     $stats = $pdo->query("
         SELECT
             (SELECT COUNT(*) FROM inv_items WHERE item_status = 'ACTIVE') AS active_items,
             (SELECT COUNT(*) FROM inv_items i
-               JOIN inv_categories c ON i.category_id = c.category_id
-               WHERE c.category_code = 'ASSETS' AND i.item_status = 'ACTIVE') AS asset_items,
+               WHERE $assetFilter AND i.item_status = 'ACTIVE') AS asset_items,
             (SELECT COUNT(*) FROM inv_items WHERE serial_number_flag = 1 AND item_status = 'ACTIVE') AS serialized_items,
             (SELECT COALESCE(SUM(sl.quantity_on_hand * sl.unit_cost), 0) FROM inv_stock sl) AS total_value,
             (SELECT COALESCE(SUM(sl.quantity_on_hand * sl.unit_cost), 0)
                FROM inv_stock sl
                JOIN inv_items i ON sl.item_id = i.item_id
-               JOIN inv_categories c ON i.category_id = c.category_id
-               WHERE c.category_code = 'ASSETS') AS asset_value,
+               WHERE $assetFilter) AS asset_value,
             (SELECT COUNT(DISTINCT i2.item_id)
                FROM inv_items i2
                LEFT JOIN (SELECT item_id, SUM(quantity_on_hand) AS qty FROM inv_stock GROUP BY item_id) s
@@ -173,7 +183,7 @@ if ($invReady) {
         FROM inv_stock sl
         JOIN inv_items i ON sl.item_id = i.item_id
         JOIN inv_categories c ON i.category_id = c.category_id
-        WHERE c.category_code = 'ASSETS'
+        WHERE $assetFilter
         GROUP BY i.item_id, i.item_code, i.item_name, c.category_name, i.serial_number_flag
         ORDER BY total_value DESC
         LIMIT 8
@@ -393,7 +403,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
                 <a href="/inventory/transfers/add.php" class="btn btn-outline-warning btn-sm"><i class="bi bi-arrow-left-right"></i> Transfer</a>
                 <a href="/inventory/disposal/add.php" class="btn btn-outline-danger btn-sm"><i class="bi bi-trash3"></i> Disposal Request</a>
                 <a href="/inventory/stocktake/add.php" class="btn btn-outline-secondary btn-sm"><i class="bi bi-clipboard-data"></i> Stock Count</a>
-                <a href="/inventory/items/list.php?category=ASSETS" class="btn btn-outline-primary btn-sm"><i class="bi bi-building-gear"></i> View Assets</a>
+                <a href="/inventory/items/list.php?domain=ASSET" class="btn btn-outline-primary btn-sm"><i class="bi bi-building-gear"></i> View Assets</a>
             </div>
         </div>
     </div>

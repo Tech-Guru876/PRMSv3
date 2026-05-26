@@ -159,18 +159,22 @@ function isItemBelowReorderLevel(PDO $pdo, int $itemId): bool
 }
 
 /**
- * Get a single inventory item.
+ * Get a single inventory item, including domain type names when available.
  */
 function getInventoryItem(PDO $pdo, int $itemId): ?array
 {
     $stmt = $pdo->prepare("
         SELECT i.*, c.category_name, u.uom_code, u.uom_name,
-               cr.criticality_name, ac.acct_class_name
+               cr.criticality_name, ac.acct_class_name,
+               atype.type_name  AS asset_type_name,
+               itype.type_name  AS inventory_type_name
         FROM inv_items i
-        LEFT JOIN inv_categories c ON i.category_id = c.category_id
-        LEFT JOIN inv_units_of_measure u ON i.uom_id = u.uom_id
+        LEFT JOIN inv_categories c       ON i.category_id        = c.category_id
+        LEFT JOIN inv_units_of_measure u ON i.uom_id             = u.uom_id
         LEFT JOIN inv_criticality_classes cr ON i.criticality_id = cr.criticality_id
-        LEFT JOIN inv_accounting_classes ac ON i.acct_class_id = ac.acct_class_id
+        LEFT JOIN inv_accounting_classes ac  ON i.acct_class_id  = ac.acct_class_id
+        LEFT JOIN asset_types     atype  ON i.asset_type_id      = atype.asset_type_id
+        LEFT JOIN inventory_types itype  ON i.inventory_type_id  = itype.inventory_type_id
         WHERE i.item_id = ?
     ");
     $stmt->execute([$itemId]);
@@ -459,6 +463,40 @@ function getAccountingClasses(PDO $pdo): array
 function getUnitsOfMeasure(PDO $pdo): array
 {
     return $pdo->query("SELECT * FROM inv_units_of_measure WHERE is_active = 1 ORDER BY uom_name")->fetchAll(PDO::FETCH_ASSOC);
+}
+
+/**
+ * Get all active asset types (from migration 024).
+ * Returns an empty array if the asset_types table does not yet exist.
+ */
+function getAssetTypes(PDO $pdo, bool $activeOnly = true): array
+{
+    try {
+        $where = $activeOnly ? "WHERE is_active = 1" : "";
+        return $pdo->query("SELECT * FROM asset_types $where ORDER BY sort_order, type_name")->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        if (strpos($e->getMessage(), '1146') !== false || strpos($e->getMessage(), '42S02') !== false) {
+            return [];
+        }
+        throw $e;
+    }
+}
+
+/**
+ * Get all active inventory types (from migration 024).
+ * Returns an empty array if the inventory_types table does not yet exist.
+ */
+function getInventoryTypes(PDO $pdo, bool $activeOnly = true): array
+{
+    try {
+        $where = $activeOnly ? "WHERE is_active = 1" : "";
+        return $pdo->query("SELECT * FROM inventory_types $where ORDER BY sort_order, type_name")->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        if (strpos($e->getMessage(), '1146') !== false || strpos($e->getMessage(), '42S02') !== false) {
+            return [];
+        }
+        throw $e;
+    }
 }
 
 function getActiveLocations(PDO $pdo): array
