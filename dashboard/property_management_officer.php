@@ -15,6 +15,8 @@ $stats = [
 $pendingReqs = $pendingGrn = $pendingTransfers = $pendingAdj = $pendingDisp = 0;
 $expiringCount = 0;
 $recentTxns = $topAssets = $lifecycleStats = [];
+$assetRegistryRows = [];
+$assetRegistryReady = false;
 $serialCount = 0;
 
 if ($invReady) {
@@ -84,6 +86,70 @@ if ($invReady) {
             ORDER BY sn.created_at DESC
             LIMIT 8
         ")->fetchAll(PDO::FETCH_ASSOC);
+
+        $assetRegistryColumns = [
+            'asset_status',
+            'condition_last_updated_at',
+            'next_condition_review_due_date',
+            'purchase_value',
+            'current_book_value',
+            'depreciation_last_updated_at',
+            'next_depreciation_review_due_date',
+        ];
+        $assetColsPlaceholders = implode(',', array_fill(0, count($assetRegistryColumns), '?'));
+        $assetColsStmt = $pdo->prepare("
+            SELECT COLUMN_NAME
+            FROM information_schema.COLUMNS
+            WHERE TABLE_SCHEMA = DATABASE()
+              AND TABLE_NAME = 'inv_serial_numbers'
+              AND COLUMN_NAME IN ($assetColsPlaceholders)
+        ");
+        $assetColsStmt->execute($assetRegistryColumns);
+        $availableAssetColumns = $assetColsStmt->fetchAll(PDO::FETCH_COLUMN);
+        $movementTableExists = (int) $pdo->query("
+            SELECT COUNT(*)
+            FROM information_schema.TABLES
+            WHERE TABLE_SCHEMA = DATABASE()
+              AND TABLE_NAME = 'inv_asset_movements'
+        ")->fetchColumn();
+        $assetRegistryReady = ($movementTableExists > 0) && (count($availableAssetColumns) === count($assetRegistryColumns));
+
+        if ($assetRegistryReady) {
+            $assetRegistryRows = $pdo->query("
+                SELECT
+                    sn.serial_id,
+                    sn.serial_number,
+                    sn.dgc_asset_number,
+                    sn.purchase_req_number,
+                    sn.po_number,
+                    sn.invoice_number,
+                    sn.grn_number,
+                    sn.asset_status,
+                    sn.current_condition,
+                    sn.condition_last_updated_at,
+                    sn.next_condition_review_due_date,
+                    sn.purchase_value,
+                    sn.current_book_value,
+                    sn.depreciation_last_updated_at,
+                    sn.next_depreciation_review_due_date,
+                    sn.bos_number,
+                    i.item_code,
+                    i.item_name,
+                    CONCAT_WS(' / ', l.building, l.room_storage_area) AS room_register,
+                    COALESCE(mv.move_count, 0) AS move_count,
+                    mv.last_moved_at
+                FROM inv_serial_numbers sn
+                JOIN inv_items i ON sn.item_id = i.item_id
+                LEFT JOIN inv_locations l ON sn.location_id = l.location_id
+                LEFT JOIN (
+                    SELECT serial_id, COUNT(*) AS move_count, MAX(moved_at) AS last_moved_at
+                    FROM inv_asset_movements
+                    GROUP BY serial_id
+                ) mv ON mv.serial_id = sn.serial_id
+                ORDER BY sn.created_at DESC
+                LIMIT 12
+            ")->fetchAll(PDO::FETCH_ASSOC);
+        }
     }
 
     /* Recent transactions */
@@ -165,6 +231,21 @@ $lifecycleLabels = [
     'TRANSFERRED' => ['label' => 'Transferred',  'color' => 'secondary'],
     'DISPOSED'    => ['label' => 'Disposed',     'color' => 'dark'],
     'LOST_STOLEN' => ['label' => 'Lost/Stolen',  'color' => 'danger'],
+];
+
+$assetStatusLabels = [
+    'NEW' => ['label' => 'New', 'color' => 'primary'],
+    'LIKE_NEW' => ['label' => 'Like New', 'color' => 'info'],
+    'USED' => ['label' => 'Used', 'color' => 'secondary'],
+    'POOR' => ['label' => 'Poor', 'color' => 'warning'],
+    'DAMAGED' => ['label' => 'Damaged', 'color' => 'danger'],
+    'GOOD' => ['label' => 'Good', 'color' => 'success'],
+    'REPAIRED' => ['label' => 'Repaired', 'color' => 'warning'],
+    'SERVICED' => ['label' => 'Serviced', 'color' => 'success'],
+    'TO_BE_DISPOSED' => ['label' => 'To Be Disposed', 'color' => 'dark'],
+    'BOARD_OF_SURVEY_ITEM' => ['label' => 'Board of Survey', 'color' => 'dark'],
+    'DONATED' => ['label' => 'Donated', 'color' => 'secondary'],
+    'SOLD' => ['label' => 'Sold', 'color' => 'secondary'],
 ];
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
@@ -444,6 +525,91 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
     </div>
 </div>
 <?php endif; ?>
+
+<!-- ── Procurement → Asset → Room Registry ────────────────────────────── -->
+<div class="card border-0 shadow-sm mb-4">
+    <div class="card-header bg-dark text-white">
+        <i class="bi bi-diagram-3-fill"></i> Procurement → Asset → Room Registry Placement
+    </div>
+    <div class="card-body p-0">
+        <?php if (!$assetRegistryReady): ?>
+            <div class="alert alert-info m-3 mb-0">
+                Run migration <code>migrations/2026_05_26_asset_room_registry_and_movement.sql</code> to enable room registry placement, movement history, and 6–12 month condition/depreciation review tracking.
+            </div>
+        <?php else: ?>
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0 small">
+                <thead class="table-light">
+                    <tr>
+                        <th>Asset</th>
+                        <th>Procurement Chain</th>
+                        <th>Room Register</th>
+                        <th>Movement</th>
+                        <th>Condition Review</th>
+                        <th>Depreciation Review</th>
+                        <th>Status</th>
+                        <th>BOS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php if (empty($assetRegistryRows)): ?>
+                        <tr><td colspan="8" class="text-center text-muted py-4">No serialized assets available.</td></tr>
+                    <?php endif; ?>
+                    <?php foreach ($assetRegistryRows as $ar):
+                        $assetStatus = $assetStatusLabels[$ar['asset_status'] ?? ''] ?? ['label' => ($ar['asset_status'] ?? 'Unknown'), 'color' => 'secondary'];
+                        $conditionDue = '-';
+                        if (!empty($ar['next_condition_review_due_date'])) {
+                            $conditionDue = date('Y-m-d', strtotime($ar['next_condition_review_due_date']));
+                        }
+                        $deprDue = '-';
+                        if (!empty($ar['next_depreciation_review_due_date'])) {
+                            $deprDue = date('Y-m-d', strtotime($ar['next_depreciation_review_due_date']));
+                        }
+                        $condClass = 'secondary';
+                        if (!empty($ar['next_condition_review_due_date'])) {
+                            $condClass = (strtotime($ar['next_condition_review_due_date']) < strtotime('today')) ? 'danger' : ((strtotime($ar['next_condition_review_due_date']) <= strtotime('+180 days')) ? 'warning' : 'success');
+                        }
+                        $deprClass = 'secondary';
+                        if (!empty($ar['next_depreciation_review_due_date'])) {
+                            $deprClass = (strtotime($ar['next_depreciation_review_due_date']) < strtotime('today')) ? 'danger' : ((strtotime($ar['next_depreciation_review_due_date']) <= strtotime('+180 days')) ? 'warning' : 'success');
+                        }
+                    ?>
+                    <tr>
+                        <td>
+                            <code><?= htmlspecialchars($ar['serial_number']) ?></code><br>
+                            <small class="text-muted"><?= htmlspecialchars($ar['item_code']) ?></small> <?= htmlspecialchars($ar['item_name']) ?><br>
+                            <small class="text-muted">DGC Asset: <?= htmlspecialchars($ar['dgc_asset_number'] ?? '—') ?></small>
+                        </td>
+                        <td>
+                            <small>PR: <strong><?= htmlspecialchars($ar['purchase_req_number'] ?? '—') ?></strong></small><br>
+                            <small>PO: <strong><?= htmlspecialchars($ar['po_number'] ?? '—') ?></strong></small><br>
+                            <small>Invoice: <strong><?= htmlspecialchars($ar['invoice_number'] ?? '—') ?></strong></small><br>
+                            <small>GRN: <strong><?= htmlspecialchars($ar['grn_number'] ?? '—') ?></strong></small>
+                        </td>
+                        <td><?= htmlspecialchars($ar['room_register'] ?: 'Unassigned') ?></td>
+                        <td>
+                            <span class="badge bg-secondary"><?= (int) $ar['move_count'] ?> move(s)</span><br>
+                            <small class="text-muted"><?= !empty($ar['last_moved_at']) ? date('Y-m-d', strtotime($ar['last_moved_at'])) : 'No movement logged' ?></small>
+                        </td>
+                        <td>
+                            <span class="badge bg-<?= $condClass ?>"><?= htmlspecialchars($ar['current_condition'] ?: 'Not set') ?></span><br>
+                            <small class="text-muted">Due: <?= $conditionDue ?></small>
+                        </td>
+                        <td>
+                            <small>Value: $<?= number_format((float) ($ar['current_book_value'] ?? 0), 2) ?></small><br>
+                            <small class="text-muted">Bought: $<?= number_format((float) ($ar['purchase_value'] ?? 0), 2) ?></small><br>
+                            <span class="badge bg-<?= $deprClass ?>">Due: <?= $deprDue ?></span>
+                        </td>
+                        <td><span class="badge bg-<?= $assetStatus['color'] ?>"><?= htmlspecialchars($assetStatus['label']) ?></span></td>
+                        <td><?= htmlspecialchars($ar['bos_number'] ?? '—') ?></td>
+                    </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+        <?php endif; ?>
+    </div>
+</div>
 
 <!-- ── Recent Transactions ───────────────────────────────────────────── -->
 <div class="card border-0 shadow-sm">
