@@ -270,6 +270,14 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
                                 <i class="bi bi-pencil"></i>
                             </a>
                             <?php endif; ?>
+                            <?php if (has_permission('delete_inventory_items')): ?>
+                            <form method="post" action="/inventory/items/delete.php" class="d-inline" onsubmit='return confirm(<?= json_encode("Delete {$row['item_name']}? This cannot be undone.") ?>);'>
+                                <input type="hidden" name="item_id" value="<?= (int) $row['item_id'] ?>">
+                                <button type="submit" class="btn btn-sm btn-outline-danger" title="Delete">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </form>
+                            <?php endif; ?>
                         </td>
                     </tr>
                     <?php endforeach; ?>

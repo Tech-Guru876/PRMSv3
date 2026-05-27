@@ -64,6 +64,12 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
                             <?php if (has_permission('manage_inventory_locations')): ?>
                             <a href="/inventory/locations/edit.php?id=<?= $loc['location_id'] ?>" class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil"></i></a>
                             <?php endif; ?>
+                            <?php if (has_permission('delete_inventory_locations')): ?>
+                            <form method="post" action="/inventory/locations/delete.php" class="d-inline" onsubmit='return confirm(<?= json_encode("Delete location {$loc['location_code']}? This cannot be undone.") ?>);'>
+                                <input type="hidden" name="location_id" value="<?= (int) $loc['location_id'] ?>">
+                                <button type="submit" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
+                            </form>
+                            <?php endif; ?>
                         </td>
                     </tr>
                     <?php endforeach; ?>

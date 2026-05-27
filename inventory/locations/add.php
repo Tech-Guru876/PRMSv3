@@ -18,7 +18,7 @@ if (!empty($_GET['id'])) {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
-        $code = trim($_POST['location_code'] ?? '');
+        $code = trim($_POST['location_code'] ?? ($loc['location_code'] ?? ''));
         if (empty($code)) throw new Exception("Location code is required.");
 
         $data = [
@@ -83,7 +83,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
                 <div class="col-md-3">
                     <label class="form-label">Location Code <span class="text-danger">*</span></label>
                     <input type="text" name="location_code" class="form-control" required
-                           value="<?= htmlspecialchars($f['location_code'] ?? '') ?>" <?= $editMode ? 'disabled' : '' ?>>
+                           value="<?= htmlspecialchars($f['location_code'] ?? '') ?>" <?= $editMode ? 'readonly' : '' ?>>
                 </div>
                 <div class="col-md-3">
                     <label class="form-label">Site / Campus</label>
