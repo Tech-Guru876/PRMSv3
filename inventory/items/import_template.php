@@ -11,7 +11,7 @@ $headers = [
     'Category', 'Condition', 'Description', 'Custodian', 'Delivery Date',
     'Placed-in-Service', 'Warranty Expiration', 'Title Deed Number', 'Address',
     'Serial Number', 'Revalued Cost', 'Revalued Date', 'Accumulated Depreciation',
-    'Depreciation Charge', 'Carring Value', 'Method & Rate of Depreciation',
+    'Depreciation Charge', 'Carrying Value', 'Method & Rate of Depreciation',
     'Impairment', 'Budget Code', 'Purchased or Donated', 'Insured Value',
     'Forced Sale Value', 'Disposal Date', 'Disposal Amount',
     'Disposal Authorization', 'Disposed', 'Attachments', 'Comments/Remarks',
