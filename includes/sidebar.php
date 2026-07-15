@@ -368,6 +368,12 @@ function isCollapsibleActive($urls, $currentPage) {
                href="/inventory/items/list.php">
                 <i class="bi bi-boxes me-2"></i>Items
             </a>
+            <?php if (has_permission('import_inventory_assets')): ?>
+            <a class="nav-link text-white sidebar-link <?= active('/inventory/items/import', $currentPage) ?>"
+               href="/inventory/items/import.php">
+                <i class="bi bi-file-earmark-arrow-up me-2"></i>Import Assets
+            </a>
+            <?php endif; ?>
             <a class="nav-link text-white sidebar-link <?= active('/inventory/locations', $currentPage) ?>"
                href="/inventory/locations/list.php">
                 <i class="bi bi-geo-alt me-2"></i>Locations
