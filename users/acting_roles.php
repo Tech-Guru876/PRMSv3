@@ -182,7 +182,7 @@ $logs = $pdo->query("
         <?php else: ?>
             <div style="overflow-x: auto;">
                 <table class="table table-hover mb-0" style="font-size: 0.875rem;">
-                    <thead class="table-light">
+                    <thead class="table-dark">
                         <tr>
                             <th>User</th>
                             <th>Acting As</th>
@@ -246,7 +246,7 @@ $logs = $pdo->query("
         <?php else: ?>
             <div style="overflow-x: auto;">
                 <table class="table table-sm mb-0" style="font-size: 0.8rem;">
-                    <thead class="table-light">
+                    <thead class="table-dark">
                         <tr>
                             <th>When</th>
                             <th>User</th>
