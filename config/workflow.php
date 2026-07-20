@@ -45,8 +45,37 @@ function allowedTransitions(): array {
 }
 
 function canTransition(string $current, string $next): bool {
+    $current = strtoupper($current);
+    $next = strtoupper($next);
+
+    // Cancellation is allowed from any stage except final/terminal states
+    if ($next === 'CANCELLED') {
+        return !in_array($current, ['COMPLETED', 'DECLINED', 'CANCELLED']);
+    }
+
     $map = allowedTransitions();
-    return in_array(strtoupper($next), $map[strtoupper($current)] ?? []);
+    return in_array($next, $map[$current] ?? []);
+}
+
+/**
+ * Signed request form gating
+ * ==========================
+ * Once a request is submitted, the Branch Head must not approve until the
+ * requester has printed, signed, and uploaded the signed request form.
+ *
+ * @param array $request Row from procurement_requests
+ * @return bool True when approval must be blocked pending signed request upload
+ */
+function signedRequestUploadPending(array $request): bool {
+    // Gate only applies to the first approval (while still SUBMITTED)
+    if (strtoupper($request['status'] ?? '') !== 'SUBMITTED') {
+        return false;
+    }
+    // Petty cash / reimbursement flows are not gated
+    if (in_array($request['request_type'] ?? 'REGULAR', ['PETTY_CASH', 'REIMBURSEMENT'], true)) {
+        return false;
+    }
+    return empty($request['signed_request_document_path']);
 }
 
 /**
@@ -63,7 +92,7 @@ function stageOwner(string $stage): array {
         'RFQ_LETTER_AVAILABLE'   => ['Requestor', 'HOD', 'Branch Head', 'Procurement Officer', 'Director HRM&A', 'Deputy Government Chemist'],
         'QUOTE_REVIEW_PENDING'   => ['Requestor', 'HOD', 'Branch Head', 'Procurement Officer'], // For quote review & approval
         'PROCUREMENT_STAGE'      => ['Procurement Officer', 'HOD'], // HOD can approve and transition to this
-        'QUOTE_APPROVED'         => ['Finance Officer'], // Finance reviews and approves/declines
+        'QUOTE_APPROVED'         => ['Branch Head', 'HOD'], // Branch Head approves RFQ quotations / recommendations
         'COMMITMENTS_PENDING'    => ['Finance Officer'], // Finance uploads commitment after Procurement submits form
         'COMMITMENT_APPROVED'    => ['Finance Officer'], // Finance approval with funds verification
         'COMMITMENT_DECLINED'    => ['Finance Officer'], // Finance declined due to fund constraints
@@ -370,7 +399,7 @@ function enforceTransition(array $request, string $nextStage) {
 
     // Terminal statuses (AWARDED, COMPLETED) don't need role checking
     // They can be reached by any role after their approval is complete
-    if (in_array(strtoupper($nextStage), ['AWARDED', 'COMPLETED', 'REIMBURSED', 'DECLINED'])) {
+    if (in_array(strtoupper($nextStage), ['AWARDED', 'COMPLETED', 'REIMBURSED', 'DECLINED', 'CANCELLED'])) {
         return;
     }
 
@@ -795,6 +824,7 @@ function getStatusLabel(string $status): array {
         'AWARDED' => ['label' => 'Awarded', 'description' => 'Contract/order awarded to vendor', 'color' => 'success'],
         'COMPLETED' => ['label' => 'Completed', 'description' => 'Procurement process completed', 'color' => 'dark'],
         'DECLINED' => ['label' => 'Declined', 'description' => 'Request has been declined', 'color' => 'danger'],
+        'CANCELLED' => ['label' => 'Cancelled', 'description' => 'Request has been cancelled', 'color' => 'danger'],
     ];
     
     return $labels[$status] ?? [

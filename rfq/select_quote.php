@@ -2,7 +2,7 @@
 /**
  * Select Quote
  * ============
- * Finance Officer selects a quote from reviewed quotes
+ * Branch Head (or HOD equivalent) approves and selects a quote from reviewed quotes
  * This marks the quote as selected and transitions request to QUOTE_APPROVED
  */
 require_once $_SERVER['DOCUMENT_ROOT'].'/config/page_guard.php';
@@ -20,9 +20,10 @@ $stmt = $pdo->prepare("SELECT name FROM roles WHERE id = ?");
 $stmt->execute([$userRole['role_id'] ?? 0]);
 $roleName = $stmt->fetchColumn();
 
-// Only Finance Officer can select quotes
-if ($roleName !== 'Finance Officer') {
-    pop("Only Finance Officers can select quotes. Your role: {$roleName}", '/rfq/list.php', POP_DEFAULT_DELAY_MS, 'error');
+// Branch Heads approve RFQ quotations and quote recommendations
+$quoteApproverRoles = ['Branch Head', 'HOD', 'Admin', 'SuperAdmin'];
+if (!in_array($roleName, $quoteApproverRoles, true)) {
+    pop("Only Branch Heads can approve/select quotes. Your role: {$roleName}", '/rfq/list.php', POP_DEFAULT_DELAY_MS, 'error');
     exit;
 }
 
@@ -99,7 +100,7 @@ try {
         INSERT INTO audit_log (table_name, action, notes, change_date)
         VALUES ('rfq_quotes', 'SELECT', ?, NOW())
     ")->execute([
-        "Quote {$quote_id} selected by Finance Officer {$_SESSION['full_name']} - Vendor: {$quote['vendor_name']}, Amount: \${$quote['quote_amount']}"
+        "Quote {$quote_id} selected/approved by {$roleName} {$_SESSION['full_name']} - Vendor: {$quote['vendor_name']}, Amount: \${$quote['quote_amount']}"
     ]);
 
     $pdo->commit();

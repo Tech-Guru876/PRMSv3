@@ -1257,6 +1257,8 @@ $requestDocuments = $docStmt->fetchAll(PDO::FETCH_ASSOC);
                             $typeLabelsDoc = [
                                 'SIGNED_PO' => '<span class="badge bg-primary">Signed PO</span>',
                                 'SIGNED_COMMITMENT' => '<span class="badge bg-success">Signed Commitment</span>',
+                                'SIGNED_REQUEST' => '<span class="badge bg-info text-dark">Signed Request</span>',
+                                'MEMO' => '<span class="badge bg-warning text-dark">Supporting Memo</span>',
                                 'OTHER' => '<span class="badge bg-secondary">Other</span>',
                             ];
                             echo $typeLabelsDoc[$doc['document_type']] ?? '<span class="badge bg-secondary">Other</span>';
@@ -1289,6 +1291,7 @@ $requestDocuments = $docStmt->fetchAll(PDO::FETCH_ASSOC);
                     <div class="col-md-3">
                         <label class="form-label small">Document Type</label>
                         <select name="document_type" class="form-select form-select-sm" required>
+                            <option value="MEMO">Supporting Memo</option>
                             <option value="SIGNED_PO">Signed Purchase Order</option>
                             <option value="SIGNED_COMMITMENT">Signed Commitment</option>
                             <option value="OTHER">Other</option>

@@ -106,6 +106,61 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ]);
         }
 
+        /* ---------- Optional supporting memo upload ---------- */
+        if (isset($_FILES['memo_file']) && $_FILES['memo_file']['error'] !== UPLOAD_ERR_NO_FILE) {
+            $memoFile = $_FILES['memo_file'];
+            if ($memoFile['error'] !== UPLOAD_ERR_OK) {
+                throw new Exception("Memo upload failed. Please try again.");
+            }
+
+            $allowedMemoTypes = [
+                'application/pdf',
+                'application/msword',
+                'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                'image/jpeg',
+                'image/png'
+            ];
+            $finfo = finfo_open(FILEINFO_MIME_TYPE);
+            $memoMime = finfo_file($finfo, $memoFile['tmp_name']);
+            finfo_close($finfo);
+            if (!in_array($memoMime, $allowedMemoTypes)) {
+                throw new Exception("Invalid memo file type. Only PDF, Word, and image files are allowed.");
+            }
+            if ($memoFile['size'] > 25 * 1024 * 1024) {
+                throw new Exception("Memo file size exceeds 25 MB limit.");
+            }
+
+            $memoDir = $_SERVER['DOCUMENT_ROOT'] . '/uploads/request_documents/';
+            if (!is_dir($memoDir)) {
+                mkdir($memoDir, 0755, true);
+            }
+            $memoExt = pathinfo($memoFile['name'], PATHINFO_EXTENSION);
+            $memoName = 'MEMO_' . $requestId . '_' . time() . '_' . uniqid() . '.' . $memoExt;
+            if (!move_uploaded_file($memoFile['tmp_name'], $memoDir . $memoName)) {
+                throw new Exception("Failed to save memo file.");
+            }
+
+            $memoStmt = $pdo->prepare("
+                INSERT INTO request_documents
+                (request_id, document_type, document_name, document_path, uploaded_by, notes)
+                VALUES (?, 'MEMO', ?, ?, ?, 'Supporting memo attached at request creation')
+            ");
+            $memoStmt->execute([
+                $requestId,
+                $memoFile['name'],
+                '/uploads/request_documents/' . $memoName,
+                $_SESSION['user_id']
+            ]);
+
+            logAudit(
+                $pdo,
+                'request_documents',
+                (int)$pdo->lastInsertId(),
+                'CREATE',
+                'Supporting memo uploaded with new request ' . $requestNumber
+            );
+        }
+
         /* ---------- Audit ---------- */
         logAudit(
             $pdo,
@@ -173,7 +228,7 @@ $jsUsdRate = (float)($sysRateStmt->fetchColumn() ?: 155.00);
         </div>
         <?php unset($_SESSION['flash']); ?>
       <?php endif; ?>
-      <form method="post">
+      <form method="post" enctype="multipart/form-data">
         <div class="row g-3 mb-3">
           <div class="col-md-4">
             <label class="form-label fw-bold">Currency <span class="text-danger">*</span></label>
@@ -256,6 +311,11 @@ $jsUsdRate = (float)($sysRateStmt->fetchColumn() ?: 155.00);
         <button type="button" class="btn btn-outline-primary btn-sm mb-3" id="addRow">
           <i class="bi bi-plus-circle"></i> Add Item
         </button>
+        <div class="mb-3">
+          <label class="form-label"><i class="bi bi-paperclip me-1"></i> Supporting Memo (optional)</label>
+          <input type="file" name="memo_file" class="form-control" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png">
+          <small class="text-muted">Attach a supporting memo (PDF, Word, or image). It will remain accessible throughout the request lifecycle.</small>
+        </div>
         <div class="d-flex gap-2">
           <button class="btn btn-success"><i class="bi bi-save me-1"></i> Save</button>
           <a href="/procurement/list.php" class="btn btn-secondary"><i class="bi bi-arrow-left me-1"></i> Cancel</a>

@@ -31,7 +31,7 @@ if (!$request) {
 try {
     // Validate document type
     $documentType = $_POST['document_type'] ?? 'OTHER';
-    if (!in_array($documentType, ['SIGNED_PO', 'SIGNED_COMMITMENT', 'OTHER'])) {
+    if (!in_array($documentType, ['SIGNED_PO', 'SIGNED_COMMITMENT', 'MEMO', 'OTHER'])) {
         throw new Exception("Invalid document type.");
     }
 
@@ -106,6 +106,7 @@ try {
     $typeLabels = [
         'SIGNED_PO' => 'Signed PO',
         'SIGNED_COMMITMENT' => 'Signed Commitment',
+        'MEMO' => 'Supporting Memo',
         'OTHER' => 'Document'
     ];
     $typeLabel = $typeLabels[$documentType] ?? 'Document';

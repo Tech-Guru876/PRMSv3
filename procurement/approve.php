@@ -72,6 +72,20 @@ if (in_array(strtoupper($request['status']), ['COMPLETED', 'DECLINED', 'AWARDED'
 }
 
 /* ===============================
+   Signed request form must be uploaded
+   before the first approval can occur
+================================ */
+if (signedRequestUploadPending($request)) {
+    modalPop(
+        "Signed Request Form Required",
+        "This request cannot be approved yet. The requester must print the request form, sign it, and upload the signed copy before approval becomes available.",
+        "/procurement/view.php?id=" . $id,
+        "warning"
+    );
+    exit;
+}
+
+/* ===============================
    Get next pending approval stage
 ================================ */
 $stmt = $pdo->prepare("

@@ -29,6 +29,20 @@ if (!$request) {
 $user_id = $_SESSION['user_id'];
 
 /* ===============================
+   Signed request form must be uploaded
+   before the first approval can occur
+================================ */
+if (signedRequestUploadPending($request)) {
+    pop(
+        'This request cannot be approved yet. The requester must print, sign, and upload the signed request form first.',
+        '/procurement/view.php?id='.$id,
+        POP_DEFAULT_DELAY_MS,
+        'warning'
+    );
+    exit;
+}
+
+/* ===============================
    Handle POST (Approve / Reject)
 ================================ */
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
