@@ -2656,4 +2656,249 @@ HTML;
     }
 }
 
+/**
+ * Check if RFQ auto-email distribution is enabled
+ * Configurable by Procurement/administrators via Admin → Settings
+ */
+function rfqAutoEmailEnabled(): bool {
+    global $pdo;
+    try {
+        $stmt = $pdo->prepare("SELECT config_value FROM system_config WHERE config_key = ?");
+        $stmt->execute(['enable_rfq_auto_email']);
+        $value = $stmt->fetchColumn();
+        return $value !== false ? (bool)(int)$value : true; // Default: enabled
+    } catch (Exception $e) {
+        error_log("RFQ auto-email check error: {$e->getMessage()}");
+        return true;
+    }
+}
+
+/**
+ * Notify relevant stakeholders that a request has been cancelled
+ * Recipients: requestor, procurement officers, and branch approvers (HOD)
+ */
+function notifyRequestCancelled(int $requestId, string $cancelReason, string $previousStatus = ''): bool {
+    global $pdo;
+
+    if (!notificationsEnabled()) {
+        return false;
+    }
+
+    try {
+        $stmt = $pdo->prepare("
+            SELECT pr.request_number, pr.estimated_value, pr.currency, pr.request_type, pr.description,
+                   u.full_name as requestor_name, u.email as requestor_email,
+                   c.full_name as cancelled_by_name, b.branch_name
+            FROM procurement_requests pr
+            LEFT JOIN users u ON pr.created_by = u.user_id
+            LEFT JOIN users c ON pr.cancelled_by = c.user_id
+            LEFT JOIN branches b ON pr.branch_id = b.branch_id
+            WHERE pr.request_id = ?
+        ");
+        $stmt->execute([$requestId]);
+        $request = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$request) {
+            return false;
+        }
+
+        $appUrl = getAppUrl();
+        $currency = normalizeCurrency($request['currency'] ?? 'JMD');
+        $estimatedValue = number_format((float)($request['estimated_value'] ?? 0), 2);
+
+        $safeRequestNumber = he($request['request_number']);
+        $safeBranchName = he($request['branch_name'] ?? 'N/A');
+        $safeDescription = he($request['description'] ?? '');
+        $safeReason = he($cancelReason);
+        $safeCancelledBy = he($request['cancelled_by_name'] ?? 'Unknown');
+        $safePreviousStatus = he($previousStatus !== '' ? $previousStatus : 'N/A');
+
+        $subject = "Request Cancelled: {$request['request_number']}";
+
+        $html = <<<HTML
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+        .container { max-width: 600px; margin: 0 auto; }
+        .header { background: #6c757d; color: white; padding: 20px; text-align: center; border-radius: 4px 4px 0 0; }
+        .content { background: #f9f9f9; padding: 20px; }
+        .alert { background: #fff3e0; border-left: 4px solid #ff9800; padding: 12px; margin: 15px 0; }
+        .details { background: white; padding: 15px; margin: 15px 0; border: 1px solid #ddd; border-radius: 4px; }
+        .detail-row { padding: 8px 0; border-bottom: 1px solid #eee; }
+        .label { font-weight: bold; color: #555; }
+        .footer { background: #f0f0f0; padding: 15px; text-align: center; font-size: 12px; color: #666; }
+        .button { display: inline-block; background: #2196F3; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px; margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2 style="margin: 0;">Request Cancelled</h2>
+            <p style="margin: 5px 0 0 0;">Government Chemist - PRMS</p>
+        </div>
+        <div class="content">
+            <div class="alert">
+                <strong>&#9888; Procurement request {$safeRequestNumber} has been cancelled.</strong>
+            </div>
+            <div class="details">
+                <div class="detail-row"><span class="label">Request Number:</span> <strong>{$safeRequestNumber}</strong></div>
+                <div class="detail-row"><span class="label">Branch:</span> {$safeBranchName}</div>
+                <div class="detail-row"><span class="label">Estimated Value:</span> <strong>{$currency} {$estimatedValue}</strong></div>
+                <div class="detail-row"><span class="label">Description:</span> {$safeDescription}</div>
+                <div class="detail-row"><span class="label">Stage at Cancellation:</span> {$safePreviousStatus}</div>
+                <div class="detail-row"><span class="label">Cancelled By:</span> {$safeCancelledBy}</div>
+            </div>
+            <h3 style="color: #ff9800; margin-top: 20px;">Reason for Cancellation:</h3>
+            <p style="background: #fff3e0; padding: 12px; border-left: 4px solid #ff9800; line-height: 1.8;">{$safeReason}</p>
+            <p><a href="{$appUrl}/procurement/view.php?id={$requestId}" class="button">View Request</a></p>
+            <p style="margin-top: 30px; font-size: 12px; color: #777;">This is an automated notification from the Procurement Request Management System.</p>
+        </div>
+        <div class="footer"><p>&copy; Government Chemist &middot; PRMS &middot; Confidential</p></div>
+    </div>
+</body>
+</html>
+HTML;
+
+        $sent = false;
+
+        // Requestor
+        if (!empty($request['requestor_email'])) {
+            $sent = sendMail($request['requestor_email'], $subject, $html) || $sent;
+        }
+
+        // Procurement officers and branch heads (HOD)
+        foreach (['Procurement Officer', 'HOD'] as $roleName) {
+            foreach (getUsersByRole($roleName) as $user) {
+                if (!empty($user['email']) && $user['email'] !== ($request['requestor_email'] ?? '')) {
+                    $sent = sendMail($user['email'], $subject, $html) || $sent;
+                }
+            }
+        }
+
+        return $sent;
+
+    } catch (Exception $e) {
+        error_log("Notify request cancelled error: {$e->getMessage()}");
+        return false;
+    }
+}
+
+/**
+ * Escalating reminder for missing post-completion documents
+ * (Signed Commitment Document — Finance; Signed Purchase Order — Procurement Officer)
+ *
+ * @param int    $requestId       Request ID
+ * @param array  $missingDocs     List of missing document labels
+ * @param int    $daysOverdue     Days since workflow completion
+ * @param int    $escalationLevel 1 = responsible person only, 2 = + Branch Head(s), 3 = + HOD (urgent)
+ * @param array  $recipients      List of recipient emails
+ * @param string $responsibleParty Label of the responsible role
+ * @return bool
+ */
+function notifyMissingDocumentReminder(
+    int $requestId,
+    array $missingDocs,
+    int $daysOverdue,
+    int $escalationLevel,
+    array $recipients,
+    string $responsibleParty
+): bool {
+    global $pdo;
+
+    if (!notificationsEnabled() || empty($recipients)) {
+        return false;
+    }
+
+    try {
+        $stmt = $pdo->prepare("
+            SELECT pr.request_number, pr.description, pr.status, pr.approved_at,
+                   a.full_name as approved_by_name
+            FROM procurement_requests pr
+            LEFT JOIN users a ON pr.approved_by = a.user_id
+            WHERE pr.request_id = ?
+        ");
+        $stmt->execute([$requestId]);
+        $request = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$request) {
+            return false;
+        }
+
+        $appUrl = getAppUrl();
+        $isUrgent = $escalationLevel >= 3;
+        $urgentPrefix = $isUrgent ? '[URGENT] ' : '';
+        $subject = $urgentPrefix . "Outstanding Documents: {$request['request_number']} ({$daysOverdue} day(s) overdue)";
+
+        $safeRequestNumber = he($request['request_number']);
+        $safeTitle = he($request['description'] ?? '');
+        $safeDocs = he(implode(', ', $missingDocs));
+        $safeResponsible = he($responsibleParty);
+        $safeApprovedBy = he($request['approved_by_name'] ?? 'N/A');
+        $safeCompletedAt = he(!empty($request['approved_at']) ? date('d M Y', strtotime($request['approved_at'])) : 'N/A');
+        $headerColor = $isUrgent ? '#d32f2f' : ($escalationLevel === 2 ? '#f57c00' : '#1976d2');
+        $urgentBanner = $isUrgent
+            ? '<div style="background:#ffebee;border-left:4px solid #d32f2f;padding:12px;margin:15px 0;"><strong>&#9888; URGENT: These documents remain outstanding after repeated reminders.</strong></div>'
+            : '';
+
+        $html = <<<HTML
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+        .container { max-width: 600px; margin: 0 auto; }
+        .header { background: {$headerColor}; color: white; padding: 20px; text-align: center; border-radius: 4px 4px 0 0; }
+        .content { background: #f9f9f9; padding: 20px; }
+        .details { background: white; padding: 15px; margin: 15px 0; border: 1px solid #ddd; border-radius: 4px; }
+        .detail-row { padding: 8px 0; border-bottom: 1px solid #eee; }
+        .label { font-weight: bold; color: #555; }
+        .footer { background: #f0f0f0; padding: 15px; text-align: center; font-size: 12px; color: #666; }
+        .button { display: inline-block; background: #2196F3; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px; margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2 style="margin: 0;">{$urgentPrefix}Outstanding Document Reminder</h2>
+            <p style="margin: 5px 0 0 0;">Government Chemist - PRMS</p>
+        </div>
+        <div class="content">
+            {$urgentBanner}
+            <p>The following required document(s) have not yet been uploaded for a completed request:</p>
+            <div class="details">
+                <div class="detail-row"><span class="label">Request Number:</span> <strong>{$safeRequestNumber}</strong></div>
+                <div class="detail-row"><span class="label">Request Title:</span> {$safeTitle}</div>
+                <div class="detail-row"><span class="label">Outstanding Document(s):</span> <strong>{$safeDocs}</strong></div>
+                <div class="detail-row"><span class="label">Days Overdue:</span> <strong>{$daysOverdue}</strong></div>
+                <div class="detail-row"><span class="label">Responsible Party:</span> {$safeResponsible}</div>
+                <div class="detail-row"><span class="label">Approved By:</span> {$safeApprovedBy}</div>
+                <div class="detail-row"><span class="label">Approval/Completion Date:</span> {$safeCompletedAt}</div>
+            </div>
+            <p><a href="{$appUrl}/procurement/view.php?id={$requestId}" class="button">Upload Document</a></p>
+            <p style="margin-top: 30px; font-size: 12px; color: #777;">This is an automated notification from the Procurement Request Management System.</p>
+        </div>
+        <div class="footer"><p>&copy; Government Chemist &middot; PRMS &middot; Confidential</p></div>
+    </div>
+</body>
+</html>
+HTML;
+
+        $sent = false;
+        foreach (array_unique($recipients) as $email) {
+            if (!empty($email)) {
+                $sent = sendMail($email, $subject, $html) || $sent;
+            }
+        }
+        return $sent;
+
+    } catch (Exception $e) {
+        error_log("Notify missing document reminder error: {$e->getMessage()}");
+        return false;
+    }
+}
+
 ?>

@@ -368,6 +368,7 @@ $badgeMap = [
     'AWARDED'               => ['success',            'bi-trophy'],
     'COMPLETED'             => ['success',            'bi-check-circle'],
     'DECLINED'              => ['danger',             'bi-x-octagon'],
+    'CANCELLED'             => ['danger',             'bi-slash-circle'],
     'DISBURSED'             => ['success text-dark',  'bi-wallet2'],
     'FINANCE_AUTHORIZED'    => ['success text-dark',  'bi-cash-coin'],
 ];
@@ -973,8 +974,14 @@ $rfqId = $stmt->fetchColumn();
                         );
                     ?>
                     
+                    <?php $signedRequestPending = signedRequestUploadPending($request); ?>
                     <?php if ($nextApproverRole && $nextApprovalId && hasPermission('approve_request')): ?>
-                        <?php if ($userCanApprove): ?>
+                        <?php if ($signedRequestPending): ?>
+                            <button type="button" class="btn btn-outline-warning" disabled
+                                    title="The requester must print, sign, and upload the signed request form before approval becomes available.">
+                                <i class="bi bi-file-earmark-lock me-1"></i>Awaiting Signed Request Form
+                            </button>
+                        <?php elseif ($userCanApprove): ?>
                             <a href="<?= $approvalEndpoint ?>?id=<?= $request['request_id'] ?>"
                                class="btn btn-success" onclick="return confirm('Approve this <?= strtolower(trim($typeLabel, '💰💵📋 ')) ?>?')">
                                 <i class="bi <?= $approvalIcon ?> me-1"></i><?= $approvalLabel ?>
@@ -997,6 +1004,22 @@ $rfqId = $stmt->fetchColumn();
                         <button type="button" class="btn btn-outline-warning"
                                 data-bs-toggle="modal" data-bs-target="#sendBackModal">
                             <i class="bi bi-arrow-counterclockwise me-1"></i>Send Back for Edit
+                        </button>
+                    <?php endif; ?>
+
+                    <?php
+                    // Request cancellation — allowed at any non-terminal stage
+                    $canCancelRequest = canTransition($current, 'CANCELLED')
+                        && (
+                            $request['created_by'] == $_SESSION['user_id']
+                            || hasPermission('approve_request')
+                            || in_array($role, ['Admin', 'SuperAdmin', 'Procurement Officer'], true)
+                        );
+                    ?>
+                    <?php if ($canCancelRequest): ?>
+                        <button type="button" class="btn btn-outline-secondary"
+                                data-bs-toggle="modal" data-bs-target="#cancelRequestModal">
+                            <i class="bi bi-slash-circle me-1"></i>Cancel Request
                         </button>
                     <?php endif; ?>
 
@@ -1670,6 +1693,33 @@ function timelineMeta(string $action): array {
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                 <button type="submit" class="btn btn-danger"><i class="bi bi-x-lg me-1"></i>Confirm Decline</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     CANCEL REQUEST MODAL
+═══════════════════════════════════════════════════════ -->
+<div class="modal fade" id="cancelRequestModal" tabindex="-1">
+    <div class="modal-dialog">
+        <form method="POST" action="/procurement/cancel.php" class="modal-content">
+            <div class="modal-header bg-secondary text-white">
+                <h5 class="modal-title"><i class="bi bi-slash-circle me-2"></i>Cancel Procurement Request</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" name="id" value="<?= $request['request_id'] ?>">
+                <p class="text-muted small mb-3">Cancellation stops this request permanently. The reason will be recorded in the audit trail and stakeholders will be notified.</p>
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Reason for cancellation <span class="text-danger">*</span></label>
+                    <textarea name="reason" class="form-control" rows="4" required
+                              placeholder="Provide a detailed reason for cancelling this request..."></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-danger"><i class="bi bi-slash-circle me-1"></i>Confirm Cancellation</button>
             </div>
         </form>
     </div>

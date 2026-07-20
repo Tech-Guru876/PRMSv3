@@ -66,7 +66,7 @@ $genTime = date('g:i A');
 // Build items list HTML
 $itemsHtml = '';
 if (!empty($items)) {
-    $itemsHtml = '<table width="100%" cellspacing="0" cellpadding="0" style="border-collapse:collapse;margin-top:8px;">';
+    $itemsHtml = '<table class="items-table" width="100%" cellspacing="0" cellpadding="0">';
     $itemsHtml .= '<thead><tr style="background:#0b5e2b;"><th style="padding:8px;color:#fff;text-align:left;font-size:11px;">Item Name</th><th style="padding:8px;color:#fff;text-align:left;font-size:11px;">Specification</th><th style="padding:8px;color:#fff;text-align:center;font-size:11px;">Qty</th><th style="padding:8px;color:#fff;text-align:left;font-size:11px;">Remarks</th></tr></thead>';
     $itemsHtml .= '<tbody>';
     foreach ($items as $idx => $item) {
@@ -102,6 +102,13 @@ $html = <<<HTML
     padding: 0;
   }
   .page-break { page-break-after: always; }
+  /* Allow long item listings to flow onto additional pages
+     without truncating rows; repeat the header on each page */
+  table.items-table { page-break-inside: auto; border-collapse: collapse; margin-top: 8px; width: 100%; }
+  table.items-table thead { display: table-header-group; }
+  table.items-table tr { page-break-inside: avoid; page-break-after: auto; }
+  table.items-table td { word-wrap: break-word; }
+  .signature-section { page-break-inside: avoid; }
 </style>
 </head>
 <body>
@@ -192,34 +199,42 @@ $html = <<<HTML
 </div>
 
 <!-- Signature Section -->
-<div style="padding:20px 20px;margin-top:20px;border-top:2px solid #e9ecef;">
+<div class="signature-section" style="padding:20px 20px;margin-top:20px;border-top:2px solid #e9ecef;">
   <h4 style="font-size:11px;color:#0b5e2b;margin:0 0 20px;font-weight:700;text-transform:uppercase;">Authorization By Branch Head</h4>
   
   <!-- Signature Block -->
   <table width="100%" cellspacing="0" cellpadding="0">
     <tr>
-      <td width="45%">
-        <div style="border-bottom:2px solid #212529;height:50px;margin-bottom:4px;"></div>
-        <table cellspacing="0" cellpadding="0" style="font-size:9px;">
+      <td width="60%">
+        <table cellspacing="0" cellpadding="0" style="font-size:9px;width:100%;">
           <tr>
-            <td style="color:#6c757d;font-weight:600;">Signature</td>
+            <td style="border-bottom:2px solid #212529;height:50px;"></td>
           </tr>
           <tr>
-            <td style="color:#adb5bd;font-size:8px;height:12px;"></td>
+            <td style="color:#6c757d;font-weight:600;padding-top:2px;">Signature</td>
           </tr>
           <tr>
-            <td style="border-top:1px solid #212529;color:#6c757d;font-weight:600;padding-top:2px;">Print Name</td>
+            <td style="height:34px;"></td>
           </tr>
           <tr>
-            <td style="color:#adb5bd;font-size:8px;height:12px;"></td>
+            <td style="border-bottom:2px solid #212529;height:0;"></td>
           </tr>
           <tr>
-            <td style="border-top:1px solid #212529;color:#6c757d;font-weight:600;padding-top:2px;">Date</td>
+            <td style="color:#6c757d;font-weight:600;padding-top:2px;">Printed Name</td>
+          </tr>
+          <tr>
+            <td style="height:34px;"></td>
+          </tr>
+          <tr>
+            <td style="border-bottom:2px solid #212529;height:0;"></td>
+          </tr>
+          <tr>
+            <td style="color:#6c757d;font-weight:600;padding-top:2px;">Date</td>
           </tr>
         </table>
       </td>
-      <td width="10%"></td>
-      <td width="45%">
+      <td width="5%"></td>
+      <td width="35%" style="vertical-align:top;">
         <div style="background:#fff3cd;border-left:3px solid #ffc107;padding:8px;border-radius:4px;font-size:9px;">
           <strong>Important:</strong> By signing below, you confirm that you have reviewed this procurement request and approve its proceed to procurement processing.
         </div>

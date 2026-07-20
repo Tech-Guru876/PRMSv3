@@ -210,6 +210,7 @@ function reqBadgeClass(string $status): string {
         'PROCUREMENT_STAGE', 'EVALUATION_STAGE' => 'dark',
         'COMMITTEE_RECOMMENDED' => 'info',
         'DECLINED'              => 'danger',
+        'CANCELLED'             => 'danger',
         'DRAFT'                 => 'secondary',
         default                 => 'secondary',
     };
@@ -235,6 +236,7 @@ function reqLabel(string $status): string {
         'AWARDED'               => 'Awarded',
         'COMPLETED'             => 'Completed',
         'DECLINED'              => 'Declined',
+        'CANCELLED'             => 'Cancelled',
         default                 => $status,
     };
 }
@@ -286,6 +288,7 @@ $statusOptions = [
     'AWARDED'               => 'Awarded',
     'COMPLETED'             => 'Completed',
     'DECLINED'              => 'Declined',
+    'CANCELLED'             => 'Cancelled',
 ];
 
 $hasFilters = !empty($_GET['q']) || !empty($_GET['request_status']) || !empty($_GET['po_status']) || !empty($_GET['from']) || !empty($_GET['to']);
