@@ -1430,10 +1430,8 @@ $requestDocuments = $docStmt->fetchAll(PDO::FETCH_ASSOC);
                             <?php
                             // RFQ is optional for requests at or below the JMD threshold —
                             // Procurement may proceed without an RFQ where appropriate.
-                            $jmdEstimate = ($request['currency'] ?? 'JMD') === 'USD'
-                                ? $estimatedValue * (float)($request['usd_rate'] ?: 155.00)
-                                : $estimatedValue;
-                            $rfqOptional = $jmdEstimate <= getDirectProcurementThreshold($pdo);
+                            // $estimatedValue is already converted to JMD above.
+                            $rfqOptional = $estimatedValue <= getDirectProcurementThreshold($pdo);
                             ?>
                             <?php if ($rfqOptional && $current !== 'SUBMITTED' && in_array($role, ['Procurement Officer', 'Admin', 'SuperAdmin'], true)): ?>
                                 <a href="/procurement/skip_rfq.php?id=<?= $request['request_id'] ?>"
