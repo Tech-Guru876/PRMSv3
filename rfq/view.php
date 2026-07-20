@@ -499,8 +499,8 @@ $canAward = ($committeeCount >= 3 && $reportCount > 0 && $majorityMet);
                                         </button>
                                         <?php endif; ?>
                                         
-                                        <!-- SELECT QUOTE BUTTON: Finance Officer at QUOTE_REVIEW_PENDING -->
-                                        <?php if ($rfq['request_status'] === 'QUOTE_REVIEW_PENDING' && $userRoleName === 'Finance Officer'): ?>
+                                        <!-- SELECT QUOTE BUTTON: Branch Head/HOD at QUOTE_REVIEW_PENDING -->
+                                        <?php if ($rfq['request_status'] === 'QUOTE_REVIEW_PENDING' && in_array($userRoleName, ['Branch Head', 'HOD'])): ?>
                                             <?php if ($quote['is_selected']): ?>
                                             <button class="btn btn-sm btn-success rounded-pill" disabled>
                                                 <i class="bi bi-check-circle me-1"></i>Selected
@@ -715,12 +715,31 @@ $canAward = ($committeeCount >= 3 && $reportCount > 0 && $majorityMet);
         </div>
         <?php endif; ?>
         
-        <!-- Finance Quote Selection Alert -->
-        <?php if ($rfq['request_status'] === 'QUOTE_REVIEW_PENDING' && $userRoleName === 'Finance Officer'): ?>
+        <!-- Branch Head Quote Selection Alert -->
+        <?php if ($rfq['request_status'] === 'QUOTE_REVIEW_PENDING' && in_array($userRoleName, ['Branch Head', 'HOD'])): ?>
         <div class="alert alert-success border-0 rounded-3 d-flex align-items-start gap-2 mb-4">
             <i class="bi bi-star-fill fs-5 flex-shrink-0 mt-1" style="color:#198754;"></i>
             <div>
-                <strong>Select Best Quote</strong> — Review the approved quotes and select the one that offers the best value. Click <strong>Select</strong> to approve the quote and proceed to commitment creation. Only quotes marked as "Approved" by requestor/HOD can be selected.
+                <strong>Approve &amp; Select Best Quote</strong> — As Branch Head, review the quotes and quote recommendations, then select the one that offers the best value. Click <strong>Select</strong> to approve the quote and proceed to funds verification and commitment creation.
+            </div>
+        </div>
+        <?php endif; ?>
+
+        <!-- Procurement Options After Quote Upload -->
+        <?php if ($rfq['request_status'] === 'QUOTE_REVIEW_PENDING' && in_array($userRoleName, ['Procurement Officer', 'Admin', 'SuperAdmin'])): ?>
+        <div class="alert alert-primary border-0 rounded-3 d-flex align-items-start gap-2 mb-4">
+            <i class="bi bi-signpost-split fs-5 flex-shrink-0 mt-1"></i>
+            <div>
+                <strong>Procurement Options</strong> — Quotations have been uploaded. You can either
+                <strong>Award</strong> the quotation/vendor, or
+                <strong>Send directly to Accounts for Funds Verification</strong>.
+                <div class="mt-2">
+                    <a href="/rfq/send_to_funds_verification.php?rfq_id=<?= $rfq_id ?>"
+                       class="btn btn-sm btn-outline-primary"
+                       onclick="return confirm('Send this request directly to Accounts for funds verification?')">
+                        <i class="bi bi-cash-coin me-1"></i>Send to Accounts for Funds Verification
+                    </a>
+                </div>
             </div>
         </div>
         <?php endif; ?>
@@ -730,7 +749,7 @@ $canAward = ($committeeCount >= 3 && $reportCount > 0 && $majorityMet);
         <div class="alert alert-info border-0 rounded-3 d-flex align-items-start gap-2 mb-4" style="background: linear-gradient(135deg, rgba(13, 202, 240, 0.1) 0%, rgba(31, 194, 111, 0.1) 100%); border-left: 4px solid #0dcaf0;">
             <i class="bi bi-info-circle-fill fs-5 flex-shrink-0 mt-1" style="color:#0dcaf0;"></i>
             <div>
-                <strong>Under-Threshold RFQ Workflow</strong> — This is an under-threshold RFQ (Est. value: $<?= number_format($estimatedValue, 2) ?>). Finance Officer will select the best quote directly without committee evaluation. No award action is needed for this RFQ.
+                <strong>Under-Threshold RFQ Workflow</strong> — This is an under-threshold RFQ (Est. value: $<?= number_format($estimatedValue, 2) ?>). The Branch Head will select the best quote directly without committee evaluation. No award action is needed for this RFQ.
             </div>
         </div>
         <?php endif; ?>

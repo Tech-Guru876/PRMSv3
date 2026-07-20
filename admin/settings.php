@@ -9,6 +9,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/config/workflow.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
         $enable_notifications = isset($_POST['enable_notifications']) ? 1 : 0;
+        $enable_rfq_auto_email = isset($_POST['enable_rfq_auto_email']) ? 1 : 0;
         
         // Update notification setting
         $stmt = $pdo->prepare("
@@ -17,6 +18,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ON DUPLICATE KEY UPDATE config_value = VALUES(config_value)
         ");
         $stmt->execute([$enable_notifications]);
+
+        // Update RFQ auto-email setting
+        $stmt = $pdo->prepare("
+            INSERT INTO system_config (config_key, config_value, description, created_at)
+            VALUES ('enable_rfq_auto_email', ?, 'Enable/disable automatic RFQ email distribution to vendors', NOW())
+            ON DUPLICATE KEY UPDATE config_value = VALUES(config_value)
+        ");
+        $stmt->execute([$enable_rfq_auto_email]);
 
         // Update procurement threshold if provided
         if (isset($_POST['direct_procurement_threshold'])) {
@@ -80,6 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             0,
             'UPDATE',
             'System settings updated: enable_notifications=' . ($enable_notifications ? 'ON' : 'OFF')
+                . ', enable_rfq_auto_email=' . ($enable_rfq_auto_email ? 'ON' : 'OFF')
                 . (isset($newThreshold) ? ', threshold=' . number_format($newThreshold, 2) : '')
                 . (isset($newPCLimit)  ? ', petty_cash_limit=' . number_format($newPCLimit, 2) : '')
                 . (isset($newUsdRate)  ? ', usd_to_jmd_rate=' . number_format($newUsdRate, 4) : '')
@@ -110,6 +120,16 @@ try {
     $notificationsEnabled = $value !== false ? (bool)(int)$value : true;
 } catch (Exception $e) {
     $notificationsEnabled = true;
+}
+
+// Get current RFQ auto-email setting
+try {
+    $stmt = $pdo->prepare("SELECT config_value FROM system_config WHERE config_key = ?");
+    $stmt->execute(['enable_rfq_auto_email']);
+    $value = $stmt->fetchColumn();
+    $rfqAutoEmailEnabled = $value !== false ? (bool)(int)$value : true;
+} catch (Exception $e) {
+    $rfqAutoEmailEnabled = true;
 }
 
 // Get current threshold settings
@@ -255,6 +275,22 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/includes/header.php';
                                         </label>
                                         <p class="text-muted small mt-2 mb-0">
                                             When enabled, the system will send automated email notifications to stakeholders at key workflow stages.
+                                        </p>
+                                    </div>
+                                    <div class="form-check form-switch py-2">
+                                        <input 
+                                            class="form-check-input" 
+                                            type="checkbox" 
+                                            id="enable_rfq_auto_email" 
+                                            name="enable_rfq_auto_email"
+                                            value="1"
+                                            <?= $rfqAutoEmailEnabled ? 'checked' : '' ?>
+                                        >
+                                        <label class="form-check-label fw-bold" for="enable_rfq_auto_email">
+                                            Enable RFQ Auto-Email Distribution
+                                        </label>
+                                        <p class="text-muted small mt-2 mb-0">
+                                            When enabled, RFQ details are automatically emailed to vendors. Disable to suppress RFQ vendor emails without affecting other notifications.
                                         </p>
                                     </div>
                                 </div>

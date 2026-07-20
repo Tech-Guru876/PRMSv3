@@ -33,7 +33,13 @@ if (!$rfq) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
         $rfqService = new RFQService($pdo);
-        
+
+        if (!$rfqService->autoEmailEnabled()) {
+            $_SESSION['popup_error'] = "RFQ auto-email distribution is disabled. An administrator can enable it under Admin → Settings.";
+            header("Location: view.php?id=" . $rfq_id);
+            exit;
+        }
+
         // Send to all vendors
         $results = $rfqService->sendRFQToAllVendors($rfq_id);
 

@@ -17,6 +17,23 @@ class RFQService
     }
 
     /**
+     * Check whether RFQ auto-email distribution is enabled
+     * Controlled by Procurement/administrators via system_config (enable_rfq_auto_email)
+     */
+    public function autoEmailEnabled(): bool
+    {
+        try {
+            $stmt = $this->pdo->prepare("SELECT config_value FROM system_config WHERE config_key = 'enable_rfq_auto_email'");
+            $stmt->execute();
+            $value = $stmt->fetchColumn();
+            return $value !== false ? (bool)(int)$value : true; // Default: enabled
+        } catch (Exception $e) {
+            error_log("RFQService: auto-email config check failed: {$e->getMessage()}");
+            return true;
+        }
+    }
+
+    /**
      * Send RFQ notification email to vendor
      * 
      * @param int $rfq_id RFQ ID
@@ -26,6 +43,11 @@ class RFQService
      */
     public function sendRFQToVendor(int $rfq_id, int $vendor_id, string $vendor_email): bool
     {
+        if (!$this->autoEmailEnabled()) {
+            error_log("RFQService: RFQ auto-email is disabled; skipping email to vendor $vendor_id for RFQ $rfq_id");
+            return false;
+        }
+
         try {
             // Fetch RFQ details
             $rfqStmt = $this->pdo->prepare("
@@ -123,6 +145,11 @@ class RFQService
         ];
 
         try {
+            if (!$this->autoEmailEnabled()) {
+                $results['errors'][] = 'RFQ auto-email distribution is disabled in system settings.';
+                return $results;
+            }
+
             // Fetch all vendors for this RFQ
             $stmt = $this->pdo->prepare("
                 SELECT 
