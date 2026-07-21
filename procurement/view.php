@@ -631,12 +631,12 @@ $rfqId = $stmt->fetchColumn();
             <div class="card-body p-0">
                 <div class="table-responsive">
                     <table class="table table-sm table-hover mb-0">
-                        <thead class="table-light text-dark">
+                        <thead class="table-dark">
                             <tr>
-                                <th class="ps-3" style="color:#000;">Item</th>
-                                <th style="color:#000;">Specification</th>
-                                <th class="text-center" width="70" style="color:#000;">Qty</th>
-                                <th style="color:#000;">Remarks</th>
+                                <th class="ps-3" >Item</th>
+                                <th >Specification</th>
+                                <th class="text-center" width="70" >Qty</th>
+                                <th>Remarks</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -1132,7 +1132,7 @@ $rfqId = $stmt->fetchColumn();
         <h6 class="fw-bold text-muted mt-4 mb-3"><i class="bi bi-plus-circle me-1"></i>Supplementary Commitments</h6>
         <div class="table-responsive">
             <table class="table table-sm table-hover mb-0">
-                <thead class="table-light">
+                <thead class="table-dark">
                     <tr>
                         <th class="ps-3">Commitment #</th>
                         <th>Amount</th>
@@ -1177,7 +1177,7 @@ $rfqId = $stmt->fetchColumn();
         <h6 class="fw-bold text-muted mt-4 mb-3"><i class="bi bi-arrow-left-right me-1"></i>Purchase Order Variations</h6>
         <div class="table-responsive">
             <table class="table table-sm table-hover mb-0">
-                <thead class="table-light">
+                <thead class="table-dark">
                     <tr>
                         <th class="ps-3">PO #</th>
                         <th>Variation Amount</th>
@@ -1262,14 +1262,14 @@ $requestDocuments = $docStmt->fetchAll(PDO::FETCH_ASSOC);
         <?php if (count($requestDocuments) > 0): ?>
         <div class="table-responsive mb-3">
             <table class="table table-sm table-hover align-middle">
-                <thead class="table-light">
+                <thead class="table-dark">
                     <tr>
-                        <th style="color:#000;">Type</th>
-                        <th style="color:#000;">File</th>
-                        <th style="color:#000;">Uploaded By</th>
-                        <th style="color:#000;">Date</th>
-                        <th style="color:#000;">Notes</th>
-                        <th style="color:#000;"></th>
+                        <th >Type</th>
+                        <th >File</th>
+                        <th >Uploaded By</th>
+                        <th>Date</th>
+                        <th >Notes</th>
+                        <th ></th>
                     </tr>
                 </thead>
                 <tbody>

@@ -23,7 +23,7 @@ function isCollapsibleActive($urls, $currentPage) {
     <div class="sidebar-brand text-center mb-2 pb-3 border-bottom border-secondary">
         <a href="/dashboard/index.php" class="text-decoration-none text-white d-flex align-items-center justify-content-center gap-2">
             <img src="/logo/cropped-Logo.png" alt="Logo" style="height:30px; filter: brightness(0) invert(1);">
-            <span class="fw-bold fs-5 tracking-wide">DGC PRMS</span>
+            <span class="fw-bold fs-5 tracking-wide">DGC IPAMS</span>
         </a>
     </div>
 

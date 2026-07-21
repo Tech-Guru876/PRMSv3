@@ -300,7 +300,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/includes/header.php';
     <!-- Table -->
     <div class="table-responsive mb-3">
         <table class="table table-hover table-sm align-middle">
-            <thead class="table-light">
+            <thead class="table-dark">
                 <tr>
                     <th style="width:28%">Page</th>
                     <th style="width:12%">Module</th>

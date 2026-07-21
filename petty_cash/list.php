@@ -59,7 +59,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/includes/header.php";
     <div class="card shadow-sm">
       <div class="table-responsive">
         <table class="table table-hover mb-0">
-          <thead class="table-light">
+          <thead class="table-dark">
             <tr>
               <th>Request #</th>
               <th>Branch</th>

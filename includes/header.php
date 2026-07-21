@@ -6,7 +6,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/config/auth.php";
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>DGC PRMS</title>
+  <title>DGC IPAMS</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/png" href="/logo/cropped-Logo.png">
   <link rel="shortcut icon" type="image/png" href="/logo/cropped-Logo.png">
