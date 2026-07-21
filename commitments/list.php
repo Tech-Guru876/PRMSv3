@@ -44,7 +44,7 @@ $whereSQL = $where ? 'WHERE '.implode(' AND ', $where) : '';
 /* ================================
    Pagination params
 ================================ */
-extract(getPaginationParams(10));
+extract(getPaginationParams(20));
 
 /* ================================
    Data query (PAGINATED)
@@ -409,65 +409,19 @@ require_once $_SERVER['DOCUMENT_ROOT']."/config/helper.php";
     <?php endif; ?>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════
-     PAGINATION
-═══════════════════════════════════════════════════════ -->
-<?php if ($totalRows > $perPage): ?>
-<nav aria-label="Page navigation" class="mb-4">
-    <ul class="pagination justify-content-center" style="gap: 0.5rem;">
-        <!-- Previous Button -->
-        <li class="page-item <?= $page === 1 ? 'disabled' : '' ?>">
-            <a class="page-link" href="/commitments/list.php?page=<?= max(1, $page - 1) ?>&q=<?= htmlspecialchars($_GET['q'] ?? '') ?>&from=<?= htmlspecialchars($_GET['from'] ?? '') ?>&to=<?= htmlspecialchars($_GET['to'] ?? '') ?>" style="border-radius: 6px; border: none; background-color: #f5f5f5; color: #667eea;">
-                <i class="bi bi-chevron-left"></i> Previous
-            </a>
-        </li>
-
-        <!-- Page Numbers -->
-        <?php
-        $maxPages = ceil($totalRows / $perPage);
-        $startPage = max(1, $page - 2);
-        $endPage = min($maxPages, $page + 2);
-
-        if ($startPage > 1) {
-            echo '<li class="page-item"><a class="page-link" href="/commitments/list.php?page=1" style="border-radius: 6px; border: none; background-color: #f5f5f5; color: #667eea;">1</a></li>';
-            if ($startPage > 2) {
-                echo '<li class="page-item disabled"><span class="page-link" style="border-radius: 6px; border: none; background-color: transparent;">...</span></li>';
-            }
-        }
-
-        for ($p = $startPage; $p <= $endPage; $p++) {
-            if ($p === $page) {
-                echo '<li class="page-item active"><span class="page-link" style="border-radius: 6px; border: none; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">' . $p . '</span></li>';
-            } else {
-                echo '<li class="page-item"><a class="page-link" href="/commitments/list.php?page=' . $p . '&q=' . htmlspecialchars($_GET['q'] ?? '') . '&from=' . htmlspecialchars($_GET['from'] ?? '') . '&to=' . htmlspecialchars($_GET['to'] ?? '') . '" style="border-radius: 6px; border: none; background-color: #f5f5f5; color: #667eea;">' . $p . '</a></li>';
-            }
-        }
-
-        if ($endPage < $maxPages) {
-            if ($endPage < $maxPages - 1) {
-                echo '<li class="page-item disabled"><span class="page-link" style="border-radius: 6px; border: none; background-color: transparent;">...</span></li>';
-            }
-            echo '<li class="page-item"><a class="page-link" href="/commitments/list.php?page=' . $maxPages . '&q=' . htmlspecialchars($_GET['q'] ?? '') . '&from=' . htmlspecialchars($_GET['from'] ?? '') . '&to=' . htmlspecialchars($_GET['to'] ?? '') . '" style="border-radius: 6px; border: none; background-color: #f5f5f5; color: #667eea;">' . $maxPages . '</a></li>';
-        }
-        ?>
-
-        <!-- Next Button -->
-        <li class="page-item <?= $page === $maxPages ? 'disabled' : '' ?>">
-            <a class="page-link" href="/commitments/list.php?page=<?= min($maxPages, $page + 1) ?>&q=<?= htmlspecialchars($_GET['q'] ?? '') ?>&from=<?= htmlspecialchars($_GET['from'] ?? '') ?>&to=<?= htmlspecialchars($_GET['to'] ?? '') ?>" style="border-radius: 6px; border: none; background-color: #f5f5f5; color: #667eea;">
-                Next <i class="bi bi-chevron-right"></i>
-            </a>
-        </li>
-    </ul>
-</nav>
-<?php endif; ?>
-
 <div style="text-align: center; margin-top: 2rem; padding: 1rem; background-color: #f8f9fa; border-radius: 8px; border: 1px solid #e0e0e0;">
     <small style="color: #666; font-weight: 500;">
-        📊 Total: <strong><?= number_format($totalRows) ?></strong> commitment(s) 
-        | Page <strong><?= $page ?>/<?= max(1, ceil($totalRows / $perPage)) ?></strong>
+        📊 Total: <strong><?= number_format($totalRows) ?></strong> commitment(s)
         | Value: <strong><?= money((float)$kpi['total_value']) ?></strong>
     </small>
 </div>
+
+<?php if ($totalRows > 0): ?>
+<div class="mt-3">
+    <?php renderShowingInfo($page, $perPage, $totalRows); ?>
+    <?php renderPagination($totalRows, $perPage, $page, $_GET); ?>
+</div>
+<?php endif; ?>
 
 </div>
 

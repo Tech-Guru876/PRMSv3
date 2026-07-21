@@ -2,19 +2,51 @@
 $REQUIRE_PERMISSION = 'view_requests';
 require_once $_SERVER['DOCUMENT_ROOT'].'/config/page_guard.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/config/db.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/includes/pagination.php';
 
 // Branch filtering: Director HRM&A sees only branch 5, Deputy GC sees only branch 6
 $currentRole = $_SESSION['role'] ?? $_SESSION['role_name'] ?? '';
 $branchFilter = '';
 $branchParams = [];
 if ($currentRole === 'Director HRM&A') {
-    $branchFilter = 'WHERE pr.branch_id = ?';
-    $branchParams = [5];
+    $branchFilter = 'WHERE pr.branch_id = :branch_id';
+    $branchParams = [':branch_id' => 5];
 } elseif ($currentRole === 'Deputy Government Chemist') {
-    $branchFilter = 'WHERE pr.branch_id = ?';
-    $branchParams = [6];
+    $branchFilter = 'WHERE pr.branch_id = :branch_id';
+    $branchParams = [':branch_id' => 6];
 }
 
+// KPI aggregate query (all records, no paging)
+$kpiStmt = $pdo->prepare("
+    SELECT
+        COUNT(*) AS total_rfqs,
+        SUM(CASE WHEN r.status = 'AWARDED' THEN 1 ELSE 0 END) AS awarded,
+        SUM(CASE WHEN r.status IN ('OPEN','EVALUATION','PUBLISHED') THEN 1 ELSE 0 END) AS open_count
+    FROM rfqs r
+    JOIN procurement_requests pr ON r.request_id = pr.request_id
+    $branchFilter
+");
+$kpiStmt->execute($branchParams);
+$kpi = $kpiStmt->fetch(PDO::FETCH_ASSOC);
+
+$totalRfqs = (int)$kpi['total_rfqs'];
+$awarded   = (int)$kpi['awarded'];
+$open      = (int)$kpi['open_count'];
+
+// Unique status count
+$statusCountStmt = $pdo->prepare("
+    SELECT COUNT(DISTINCT r.status) AS unique_statuses
+    FROM rfqs r
+    JOIN procurement_requests pr ON r.request_id = pr.request_id
+    $branchFilter
+");
+$statusCountStmt->execute($branchParams);
+$uniqueStatuses = (int)$statusCountStmt->fetchColumn();
+
+// Pagination
+extract(getPaginationParams(20));
+
+// Paginated results
 $stmt = $pdo->prepare("
     SELECT r.rfq_id, r.rfq_number, r.status, r.created_at,
            pr.request_number,
@@ -23,21 +55,15 @@ $stmt = $pdo->prepare("
     JOIN procurement_requests pr ON r.request_id = pr.request_id
     $branchFilter
     ORDER BY r.created_at DESC
+    LIMIT :limit OFFSET :offset
 ");
-$stmt->execute($branchParams);
-$rfqs = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-// KPI calculations
-$totalRfqs    = count($rfqs);
-$awarded      = 0;
-$open         = 0;
-$statusCounts = [];
-foreach ($rfqs as $r) {
-    $s = $r['status'];
-    $statusCounts[$s] = ($statusCounts[$s] ?? 0) + 1;
-    if ($s === 'AWARDED') $awarded++;
-    elseif (in_array($s, ['OPEN','EVALUATION','PUBLISHED'])) $open++;
+foreach ($branchParams as $key => $val) {
+    $stmt->bindValue($key, $val);
 }
+$stmt->bindValue(':limit',  $perPage, PDO::PARAM_INT);
+$stmt->bindValue(':offset', $offset,  PDO::PARAM_INT);
+$stmt->execute();
+$rfqs = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 require_once $_SERVER['DOCUMENT_ROOT'] . "/includes/header.php";
 ?>
@@ -85,7 +111,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/includes/header.php";
         <div class="card border-0 shadow-sm rounded-4 h-100">
             <div class="card-body text-center py-3">
                 <div class="text-muted small mb-1">Unique Statuses</div>
-                <div class="fs-3 fw-bold" style="color:#6f42c1;"><?= count($statusCounts) ?></div>
+                <div class="fs-3 fw-bold" style="color:#6f42c1;"><?= $uniqueStatuses ?></div>
             </div>
         </div>
     </div>
@@ -132,7 +158,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/includes/header.php";
                         $sm = $statusMap[$r['status']] ?? ['bg' => 'bg-secondary', 'icon' => 'bi-question-circle'];
                     ?>
                     <tr>
-                        <td class="ps-4 text-muted"><?= $idx + 1 ?></td>
+                        <td class="ps-4 text-muted"><?= $offset + $idx + 1 ?></td>
                         <td class="fw-semibold"><?= htmlspecialchars($r['rfq_number']) ?></td>
                         <td>
                             <span class="text-muted"><?= htmlspecialchars($r['request_number']) ?></span>
@@ -161,6 +187,12 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/includes/header.php";
             </table>
         </div>
     </div>
+    <?php if ($totalRfqs > 0): ?>
+    <div class="card-footer bg-white border-0 pt-0 pb-3 px-3">
+        <?php renderShowingInfo($page, $perPage, $totalRfqs); ?>
+        <?php renderPagination($totalRfqs, $perPage, $page, $_GET); ?>
+    </div>
+    <?php endif; ?>
 </div>
 
 <?php require_once $_SERVER['DOCUMENT_ROOT'] . "/includes/footer.php"; ?>

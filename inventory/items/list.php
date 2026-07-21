@@ -287,17 +287,11 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
     </div>
 </div>
 
-<?php
-$paginationData = [
-    'currentPage' => $page ?? 1,
-    'totalPages' => ceil($totalRows / $perPage),
-    'totalRows' => $totalRows,
-    'baseUrl' => '/inventory/items/list.php',
-    'params' => array_filter($_GET, fn($k) => $k !== 'page', ARRAY_FILTER_USE_KEY),
-];
-if ($totalRows > $perPage) {
-    renderPagination($paginationData);
-}
-?>
+<?php if ($totalRows > 0): ?>
+<div class="mt-3">
+    <?php renderShowingInfo($page, $perPage, $totalRows); ?>
+    <?php renderPagination($totalRows, $perPage, $page, $_GET); ?>
+</div>
+<?php endif; ?>
 
 <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/footer.php'; ?>

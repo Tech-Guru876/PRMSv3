@@ -1,6 +1,6 @@
 <?php
 
-function getPaginationParams(int $defaultPerPage = 10): array
+function getPaginationParams(int $defaultPerPage = 20): array
 {
     $perPage = isset($_GET['per_page']) && is_numeric($_GET['per_page'])
         ? max(1, (int)$_GET['per_page'])
@@ -25,19 +25,25 @@ function renderPagination(
     $totalPages = (int)ceil($totalRows / $perPage);
     if ($totalPages <= 1) return;
 
-    echo '<nav><ul class="pagination justify-content-center">';
+    echo '<nav aria-label="Page navigation"><ul class="pagination justify-content-center flex-wrap">';
 
     $range = 2; // pages before & after current
     $start = max(1, $currentPage - $range);
     $end   = min($totalPages, $currentPage + $range);
 
+    // First button
+    $queryParams['page'] = 1;
+    echo '<li class="page-item '.($currentPage <= 1 ? 'disabled' : '').'">
+            <a class="page-link" href="?'.http_build_query($queryParams).'" aria-label="First">&laquo;&laquo;</a>
+          </li>';
+
     // Previous button
     $queryParams['page'] = max(1, $currentPage - 1);
     echo '<li class="page-item '.($currentPage <= 1 ? 'disabled' : '').'">
-            <a class="page-link" href="?'.http_build_query($queryParams).'">Previous</a>
+            <a class="page-link" href="?'.http_build_query($queryParams).'" aria-label="Previous">&laquo; Previous</a>
           </li>';
 
-    // First page
+    // Leading ellipsis
     if ($start > 1) {
         $queryParams['page'] = 1;
         echo '<li class="page-item">
@@ -45,7 +51,7 @@ function renderPagination(
               </li>';
 
         if ($start > 2) {
-            echo '<li class="page-item disabled"><span class="page-link">...</span></li>';
+            echo '<li class="page-item disabled"><span class="page-link">&hellip;</span></li>';
         }
     }
 
@@ -57,11 +63,10 @@ function renderPagination(
               </li>';
     }
 
-    // Last page
+    // Trailing ellipsis
     if ($end < $totalPages) {
-
         if ($end < $totalPages - 1) {
-            echo '<li class="page-item disabled"><span class="page-link">...</span></li>';
+            echo '<li class="page-item disabled"><span class="page-link">&hellip;</span></li>';
         }
 
         $queryParams['page'] = $totalPages;
@@ -73,7 +78,13 @@ function renderPagination(
     // Next button
     $queryParams['page'] = min($totalPages, $currentPage + 1);
     echo '<li class="page-item '.($currentPage >= $totalPages ? 'disabled' : '').'">
-            <a class="page-link" href="?'.http_build_query($queryParams).'">Next</a>
+            <a class="page-link" href="?'.http_build_query($queryParams).'" aria-label="Next">Next &raquo;</a>
+          </li>';
+
+    // Last button
+    $queryParams['page'] = $totalPages;
+    echo '<li class="page-item '.($currentPage >= $totalPages ? 'disabled' : '').'">
+            <a class="page-link" href="?'.http_build_query($queryParams).'" aria-label="Last">&raquo;&raquo;</a>
           </li>';
 
     echo '</ul></nav>';

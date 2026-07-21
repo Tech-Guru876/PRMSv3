@@ -2,16 +2,28 @@
 $REQUIRE_PERMISSION = 'view_inventory';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/page_guard.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/db.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/pagination.php';
 require_once __DIR__ . '/../check_setup.php';
 
-$locations = $pdo->query("
+// Pagination
+extract(getPaginationParams(20));
+
+// Total count
+$totalRows = (int)$pdo->query("SELECT COUNT(*) FROM inv_locations")->fetchColumn();
+
+$locations = $pdo->prepare("
     SELECT l.*, u.full_name AS custodian_name,
            (SELECT COUNT(*) FROM inv_stock s WHERE s.location_id = l.location_id AND s.quantity_on_hand > 0) AS item_count,
            (SELECT COALESCE(SUM(s.quantity_on_hand), 0) FROM inv_stock s WHERE s.location_id = l.location_id) AS total_qty
     FROM inv_locations l
     LEFT JOIN users u ON l.custodian_user_id = u.user_id
     ORDER BY l.site_campus, l.building, l.floor, l.room_storage_area
-")->fetchAll(PDO::FETCH_ASSOC);
+    LIMIT :limit OFFSET :offset
+");
+$locations->bindValue(':limit',  $perPage, PDO::PARAM_INT);
+$locations->bindValue(':offset', $offset,  PDO::PARAM_INT);
+$locations->execute();
+$locations = $locations->fetchAll(PDO::FETCH_ASSOC);
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 ?>
@@ -78,5 +90,12 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
         </div>
     </div>
 </div>
+
+<?php if ($totalRows > 0): ?>
+<div class="mt-3">
+    <?php renderShowingInfo($page, $perPage, $totalRows); ?>
+    <?php renderPagination($totalRows, $perPage, $page, $_GET); ?>
+</div>
+<?php endif; ?>
 
 <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/footer.php'; ?>

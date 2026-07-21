@@ -4,6 +4,17 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/config/page_guard.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . "/config/db.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/config/helper.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/config/workflow.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/includes/pagination.php";
+
+// Pagination
+extract(getPaginationParams(20));
+
+// Total count
+$countStmt = $pdo->prepare("
+    SELECT COUNT(*) FROM procurement_requests WHERE request_type = 'REIMBURSEMENT'
+");
+$countStmt->execute();
+$totalRows = (int)$countStmt->fetchColumn();
 
 /* Fetch reimbursement requests */
 $stmt = $pdo->prepare("
@@ -29,7 +40,10 @@ $stmt = $pdo->prepare("
     WHERE pr.request_type = 'REIMBURSEMENT'
     GROUP BY pr.request_id
     ORDER BY pr.created_at DESC
+    LIMIT :limit OFFSET :offset
 ");
+$stmt->bindValue(':limit',  $perPage, PDO::PARAM_INT);
+$stmt->bindValue(':offset', $offset,  PDO::PARAM_INT);
 $stmt->execute();
 $requests = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -112,6 +126,12 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/includes/header.php";
         </table>
       </div>
     </div>
+  <?php endif; ?>
+  <?php if ($totalRows > 0): ?>
+  <div class="mt-3 px-2">
+    <?php renderShowingInfo($page, $perPage, $totalRows); ?>
+    <?php renderPagination($totalRows, $perPage, $page, $_GET); ?>
+  </div>
   <?php endif; ?>
 </div>
 

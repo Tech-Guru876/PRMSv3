@@ -39,7 +39,7 @@ $whereSQL = $where ? 'WHERE '.implode(' AND ', $where) : '';
 /* ================================
    Pagination params
 ================================ */
-extract(getPaginationParams(10));
+extract(getPaginationParams(20));
 
 /* ================================
    Data query (PAGINATED)

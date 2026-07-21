@@ -2,7 +2,7 @@
 $REQUIRE_PERMISSION = 'view_vendors';
 require_once $_SERVER['DOCUMENT_ROOT'].'/config/page_guard.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/config/db.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/includes/header.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/includes/pagination.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/config/helper.php';
 
 /* ===============================
@@ -27,7 +27,7 @@ if (!empty($status)) {
 $whereSQL = $where ? "WHERE " . implode(" AND ", $where) : "";
 
 /* ===============================
-   Stats
+   Stats (all vendors, unfiltered)
 ================================ */
 $statsStmt = $pdo->prepare("
     SELECT 
@@ -39,6 +39,14 @@ $statsStmt = $pdo->prepare("
 $statsStmt->execute();
 $stats = $statsStmt->fetch(PDO::FETCH_ASSOC);
 
+// Pagination
+extract(getPaginationParams(20));
+
+// Filtered count
+$countStmt = $pdo->prepare("SELECT COUNT(*) FROM vendors $whereSQL");
+$countStmt->execute($params);
+$totalRows = (int)$countStmt->fetchColumn();
+
 /* ===============================
    Vendors List
 ================================ */
@@ -47,9 +55,17 @@ $stmt = $pdo->prepare("
     FROM vendors
     $whereSQL
     ORDER BY vendor_name ASC
+    LIMIT :limit OFFSET :offset
 ");
-$stmt->execute($params);
+foreach ($params as $key => $val) {
+    $stmt->bindValue($key, $val);
+}
+$stmt->bindValue(':limit',  $perPage, PDO::PARAM_INT);
+$stmt->bindValue(':offset', $offset,  PDO::PARAM_INT);
+$stmt->execute();
 $vendors = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+require_once $_SERVER['DOCUMENT_ROOT'].'/includes/header.php';
 ?>
 
 <style>
@@ -279,9 +295,16 @@ $vendors = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <div style="text-align: center; margin-top: 2rem; padding: 1rem; background-color: #f8f9fa; border-radius: 8px; border: 1px solid #e0e0e0;">
     <small style="color: #666; font-weight: 500;">
-        📊 Showing: <strong><?= count($vendors) ?></strong> vendor(s) | Total: <strong><?= (int)$stats['total'] ?></strong> | Active: <strong><?= (int)$stats['active'] ?></strong>
+        📊 Total: <strong><?= (int)$stats['total'] ?></strong> | Active: <strong><?= (int)$stats['active'] ?></strong>
     </small>
 </div>
+
+<?php if ($totalRows > 0): ?>
+<div class="mt-3">
+    <?php renderShowingInfo($page, $perPage, $totalRows); ?>
+    <?php renderPagination($totalRows, $perPage, $page, $_GET); ?>
+</div>
+<?php endif; ?>
 
 </div>
 

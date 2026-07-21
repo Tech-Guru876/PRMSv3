@@ -2,7 +2,7 @@
 $REQUIRE_PERMISSION = 'manage_users';
 require_once $_SERVER['DOCUMENT_ROOT'].'/config/page_guard.php';
 require_once $_SERVER['DOCUMENT_ROOT']."/config/db.php";
-require_once $_SERVER['DOCUMENT_ROOT']."/includes/header.php";
+require_once $_SERVER['DOCUMENT_ROOT']."/includes/pagination.php";
 require_once $_SERVER['DOCUMENT_ROOT']."/config/helper.php";
 
 /* ================================
@@ -37,6 +37,17 @@ if (isset($_GET['status']) && $_GET['status'] !== '') {
 
 $whereSQL = $where ? 'WHERE '.implode(' AND ', $where) : '';
 
+// Pagination
+extract(getPaginationParams(20));
+
+/* ================================
+   Count filtered users
+================================ */
+$countSql = "SELECT COUNT(*) FROM users u LEFT JOIN roles r ON u.role_id = r.id $whereSQL";
+$countStmt = $pdo->prepare($countSql);
+$countStmt->execute($params);
+$totalRows = (int)$countStmt->fetchColumn();
+
 /* ================================
    Fetch users
 ================================ */
@@ -54,10 +65,16 @@ $sql = "
     LEFT JOIN roles r ON u.role_id = r.id
     $whereSQL
     ORDER BY u.full_name
+    LIMIT :limit OFFSET :offset
 ";
 
 $stmt = $pdo->prepare($sql);
-$stmt->execute($params);
+foreach ($params as $key => $val) {
+    $stmt->bindValue($key, $val);
+}
+$stmt->bindValue(':limit',  $perPage, PDO::PARAM_INT);
+$stmt->bindValue(':offset', $offset,  PDO::PARAM_INT);
+$stmt->execute();
 $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 /* Calculate stats */
@@ -73,6 +90,8 @@ $rolesCountStmt = $pdo->query("
     SELECT COUNT(DISTINCT role_id) as role_count FROM users WHERE role_id IS NOT NULL
 ");
 $roleCount = $rolesCountStmt->fetch()['role_count'];
+
+require_once $_SERVER['DOCUMENT_ROOT']."/includes/header.php";
 ?>
 
 <style>
@@ -365,9 +384,16 @@ $roleCount = $rolesCountStmt->fetch()['role_count'];
 
 <div style="text-align: center; margin-top: 2rem; padding: 1rem; background-color: #f8f9fa; border-radius: 8px; border: 1px solid #e0e0e0;">
     <small style="color: #666; font-weight: 500;">
-        👥 Showing: <strong><?= count($users) ?></strong> user(s) | Total: <strong><?= $totalUsers ?></strong> | Active: <strong><?= $activeUsers ?></strong> | Roles: <strong><?= $roleCount ?></strong>
+        👥 Total: <strong><?= $totalUsers ?></strong> | Active: <strong><?= $activeUsers ?></strong> | Roles: <strong><?= $roleCount ?></strong>
     </small>
 </div>
+
+<?php if ($totalRows > 0): ?>
+<div class="mt-3">
+    <?php renderShowingInfo($page, $perPage, $totalRows); ?>
+    <?php renderPagination($totalRows, $perPage, $page, $_GET); ?>
+</div>
+<?php endif; ?>
 
 </div>
 

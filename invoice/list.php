@@ -35,7 +35,7 @@ $whereSQL = $where ? 'WHERE ' . implode(' AND ', $where) : '';
 /* ================================
    Pagination params
 ================================ */
-extract(getPaginationParams(10));
+extract(getPaginationParams(20));
 
 /* ================================
    Data query (paginated)
@@ -327,48 +327,14 @@ $stats = $statsStmt->fetch(PDO::FETCH_ASSOC);
                 </tbody>
             </table>
         </div>
-        <!-- Pagination Footer -->
-        <?php if (!empty($rows)): ?>
-        <div style="background: #f8f9fa; padding: 1.5rem; border-top: 1px solid #e0e0e0; display: flex; justify-content: space-between; align-items: center;">
-            <small style="color: #666;">
-                <?php renderShowingInfo($page, $perPage, $totalRows); ?>
-            </small>
-            <div style="display: flex; gap: 0.5rem;">
-                <?php
-                $queryParams = $_GET;
-                unset($queryParams['page']);
-                
-                // Calculate pagination
-                $totalPages = ceil($totalRows / $perPage);
-                $startPage = max(1, $page - 2);
-                $endPage = min($totalPages, $page + 2);
-                
-                // Previous button
-                if ($page > 1) {
-                    $prevUrl = '/invoice/list.php?' . http_build_query([...$queryParams, 'page' => $page - 1]);
-                    echo '<a href="' . htmlspecialchars($prevUrl) . '" style="padding: 0.4rem 0.8rem; background: white; color: #667eea; border: 1px solid #e0e0e0; border-radius: 5px; text-decoration: none; font-weight: 500; transition: all 0.2s ease;" onmouseover="this.style.background=\"#667eea\"; this.style.color=\"white\";" onmouseout="this.style.background=\"white\"; this.style.color=\"#667eea\";"><i class="bi bi-chevron-left"></i></a>';
-                }
-                
-                // Page numbers
-                for ($i = $startPage; $i <= $endPage; $i++) {
-                    if ($i == $page) {
-                        echo '<button type="button" disabled style="padding: 0.4rem 0.8rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 5px; font-weight: 500; cursor: default; font-size: 0.9rem;">' . $i . '</button>';
-                    } else {
-                        $pageUrl = '/invoice/list.php?' . http_build_query([...$queryParams, 'page' => $i]);
-                        echo '<a href="' . htmlspecialchars($pageUrl) . '" style="padding: 0.4rem 0.8rem; background: white; color: #667eea; border: 1px solid #e0e0e0; border-radius: 5px; text-decoration: none; font-weight: 500; transition: all 0.2s ease;" onmouseover="this.style.background=\"#667eea\"; this.style.color=\"white\";" onmouseout="this.style.background=\"white\"; this.style.color=\"#667eea\";"><strong>' . $i . '</strong></a>';
-                    }
-                }
-                
-                // Next button
-                if ($page < $totalPages) {
-                    $nextUrl = '/invoice/list.php?' . http_build_query([...$queryParams, 'page' => $page + 1]);
-                    echo '<a href="' . htmlspecialchars($nextUrl) . '" style="padding: 0.4rem 0.8rem; background: white; color: #667eea; border: 1px solid #e0e0e0; border-radius: 5px; text-decoration: none; font-weight: 500; transition: all 0.2s ease;" onmouseover="this.style.background=\"#667eea\"; this.style.color=\"white\";" onmouseout="this.style.background=\"white\"; this.style.color=\"#667eea\";"><i class="bi bi-chevron-right"></i></a>';
-                }
-                ?>
-            </div>
-        </div>
-        <?php endif; ?>
     </div>
 </div>
+
+<?php if ($totalRows > 0): ?>
+<div class="mt-3">
+    <?php renderShowingInfo($page, $perPage, $totalRows); ?>
+    <?php renderPagination($totalRows, $perPage, $page, $_GET); ?>
+</div>
+<?php endif; ?>
 
 <?php require_once $_SERVER['DOCUMENT_ROOT']."/includes/footer.php"; ?>
