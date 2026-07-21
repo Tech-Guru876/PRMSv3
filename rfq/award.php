@@ -231,7 +231,7 @@ try {
 } catch (Exception $e) {
 
     $pdo->rollBack();
-    pop($e->getMessage(), '/rfq/view.php?id='.$rfq_id, POP_DEFAULT_DELAY_MS, 'error');
+    pop(extractDbMessage($e), '/rfq/view.php?id='.$rfq_id, POP_DEFAULT_DELAY_MS, 'error');
     exit;
 }
 

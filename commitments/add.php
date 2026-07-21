@@ -449,7 +449,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($pdo->inTransaction()) {
             $pdo->rollBack();
         }
-        pop($e->getMessage(), "/commitments/add.php?request_id=" . $request_id, 2500, "error");
+        pop(extractDbMessage($e), "/commitments/add.php?request_id=" . $request_id, 2500, "error");
         exit;
     }
 }

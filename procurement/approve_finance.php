@@ -75,6 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         enforceTransition($request, $nextStatus);
 
+        try {
         /* Mark the pending Finance approval as approved */
         $pdo->prepare("
             UPDATE request_approvals
@@ -114,6 +115,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             "success"
         );
         exit;
+        } catch (Throwable $e) {
+            pop(extractDbMessage($e), "/procurement/view.php?id=" . $id, POP_DEFAULT_DELAY_MS, 'error');
+            exit;
+        }
     }
 
     /* ===============================
@@ -133,6 +138,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit;
         }
 
+        try {
         /* Mark request as Declined */
         $pdo->prepare("
             UPDATE procurement_requests
@@ -168,6 +174,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             "warning"
         );
         exit;
+        } catch (Throwable $e) {
+            pop(extractDbMessage($e), "/procurement/view.php?id=" . $id, POP_DEFAULT_DELAY_MS, 'error');
+            exit;
+        }
     }
 }
 

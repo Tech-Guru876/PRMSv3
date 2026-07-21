@@ -113,6 +113,6 @@ try {
     if ($pdo->inTransaction()) {
         $pdo->rollBack();
     }
-    pop('Error skipping RFQ: ' . $e->getMessage(), '/procurement/view.php?id=' . $id, POP_DEFAULT_DELAY_MS, 'error');
+    pop('Error skipping RFQ: ' . extractDbMessage($e), '/procurement/view.php?id=' . $id, POP_DEFAULT_DELAY_MS, 'error');
     exit;
 }

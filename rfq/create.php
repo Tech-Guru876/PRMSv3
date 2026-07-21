@@ -138,7 +138,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
         
     } catch (Throwable $e) {
-        $error = $e->getMessage();
+        $error = extractDbMessage($e);
     }
 }
 

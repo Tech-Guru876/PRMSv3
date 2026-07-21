@@ -202,7 +202,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($pdo->inTransaction()) {
             $pdo->rollBack();
         }
-        pop($e->getMessage(), "/po/upload.php?commitment_id=" . $commitment_id, POP_DEFAULT_DELAY_MS);
+        pop(extractDbMessage($e), "/po/upload.php?commitment_id=" . $commitment_id, POP_DEFAULT_DELAY_MS, 'error');
         exit;
     }
 }

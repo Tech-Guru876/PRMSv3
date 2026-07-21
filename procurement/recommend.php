@@ -53,7 +53,12 @@ $stmt = $pdo->prepare("
     SET status = 'COMMITTEE_RECOMMENDED'
     WHERE request_id = ?
 ");
-$stmt->execute([$id]);
+try {
+    $stmt->execute([$id]);
+} catch (Throwable $e) {
+    pop(extractDbMessage($e), '/procurement/view.php?id='.$id, POP_DEFAULT_DELAY_MS, 'error');
+    exit;
+}
 
 logAudit($pdo, 'procurement_requests', $id, 'STATUS_CHANGE', 'Committee Recommended — Status changed to COMMITTEE_RECOMMENDED');
 logRequestTimeline($pdo, $id, 'COMMITTEE_RECOMMENDED', 'Committee recommendation by ' . ($_SESSION['full_name'] ?? 'Unknown'));

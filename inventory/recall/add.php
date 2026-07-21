@@ -64,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     } catch (Exception $e) {
         $pdo->rollBack();
-        $error = $e->getMessage();
+        $error = extractDbMessage($e);
     }
 }
 

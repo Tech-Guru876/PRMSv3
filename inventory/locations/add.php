@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         exit;
     } catch (Exception $e) {
-        $error = $e->getMessage();
+        $error = extractDbMessage($e);
     }
 }
 

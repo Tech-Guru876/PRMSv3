@@ -124,5 +124,5 @@ try {
     );
 
 } catch (Exception $e) {
-    pop($e->getMessage(), "/procurement/view.php?id=" . $request_id, 2500, "error");
+    pop(extractDbMessage($e), "/procurement/view.php?id=" . $request_id, 2500, "error");
 }
