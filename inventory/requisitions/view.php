@@ -112,7 +112,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && has_permission('approve_stock_requi
         }
     } catch (Exception $e) {
         $pdo->rollBack();
-        $error = $e->getMessage();
+        $error = extractDbMessage($e);
     }
 }
 

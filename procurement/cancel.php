@@ -121,7 +121,7 @@ try {
         $pdo->rollBack();
     }
 
-    $_SESSION['error'] = "Error cancelling request: " . $e->getMessage();
+    $_SESSION['error'] = "Error cancelling request: " . extractDbMessage($e);
     header("Location: /procurement/view.php?id=" . $id);
     exit;
 }

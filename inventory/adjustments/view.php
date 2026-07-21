@@ -85,7 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && has_permission('approve_adjustment'
         exit;
     } catch (Exception $e) {
         $pdo->rollBack();
-        $error = $e->getMessage();
+        $error = extractDbMessage($e);
     }
 }
 

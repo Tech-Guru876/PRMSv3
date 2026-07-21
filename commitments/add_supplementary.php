@@ -146,7 +146,7 @@ logRequestTimeline(
     if ($pdo->inTransaction()) {
         $pdo->rollBack();
     }
-    modalPop('Error', 'Failed to create supplementary commitment.', '', 'error');
+    modalPop('Error', extractDbMessage($e), '', 'error');
     exit;
 }
 

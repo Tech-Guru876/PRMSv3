@@ -141,6 +141,6 @@ try {
     pop('Committee evaluation complete. Submitted for GC Approval (SOP Step 10).', '/rfq/view.php?id='.$rfq_id, POP_DEFAULT_DELAY_MS, 'success');
 } catch (Exception $e) {
     $pdo->rollBack();
-    pop('Error: '.$e->getMessage(), '/rfq/view.php?id='.$rfq_id, POP_DEFAULT_DELAY_MS, 'error');
+    pop('Error: '.extractDbMessage($e), '/rfq/view.php?id='.$rfq_id, POP_DEFAULT_DELAY_MS, 'error');
 }
 exit;

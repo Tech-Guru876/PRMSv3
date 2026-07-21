@@ -89,6 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     ================================ */
     if ($action === 'approve') {
 
+        try {
         // Determine the next status dynamically based on approval chain
         $nextStatus = getNextStatusAfterApproval($pdo, $id, $nextApproval['role']);
         
@@ -144,6 +145,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             "success"
         );
         exit;
+        } catch (Throwable $e) {
+            pop(extractDbMessage($e), "/procurement/view.php?id=" . $id, POP_DEFAULT_DELAY_MS, 'error');
+            exit;
+        }
     }
 
     /* ===============================
@@ -163,6 +168,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit;
         }
 
+        try {
         // Mark approval stage as rejected
         $pdo->prepare("
             UPDATE request_approvals
@@ -198,6 +204,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             "warning"
         );
         exit;
+        } catch (Throwable $e) {
+            pop(extractDbMessage($e), "/procurement/view.php?id=" . $id, POP_DEFAULT_DELAY_MS, 'error');
+            exit;
+        }
     }
 }
 

@@ -313,9 +313,10 @@ notifyPOAction($request_id, $po_number, 'CREATED', 'Purchase Order created and a
     }
 
     pop(
-        $e->getMessage(),
+        extractDbMessage($e),
         "/po/add.php?commitment_id=" . $commitment_id,
-        POP_DEFAULT_DELAY_MS
+        POP_DEFAULT_DELAY_MS,
+        'error'
     );
     exit;
 }

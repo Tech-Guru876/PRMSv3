@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $importTablesReady) {
                 $fileName, $summary['total_rows'], $summary['created'],
                 $summary['updated'], $summary['skipped'], $summary['errors']));
     } catch (Exception $e) {
-        $error = $e->getMessage();
+        $error = extractDbMessage($e);
     }
 }
 

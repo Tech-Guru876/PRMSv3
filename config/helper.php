@@ -126,6 +126,20 @@ function generatePONumber(PDO $pdo): string
 }
 
 /* ================================
+   extractDbMessage() — Clean DB exception message
+   Strips the PDO/MySQL prefix (e.g. "SQLSTATE[45000]: <HY000>: 1644 ")
+   from trigger SIGNAL errors, returning just the human-readable MESSAGE_TEXT.
+================================ */
+function extractDbMessage(Throwable $e): string {
+    $msg = $e->getMessage();
+    // PDO trigger error format: "SQLSTATE[XXXXX]: <YYYYY>: NNNN Actual message"
+    if (preg_match('/SQLSTATE\[[^\]]*\]:\s*<[^>]*>:\s*\d+\s+(.+)$/s', $msg, $matches)) {
+        return trim($matches[1]);
+    }
+    return $msg;
+}
+
+/* ================================
    pop() — SIMPLE ALERT
 ================================ */
 
@@ -221,10 +235,12 @@ setTimeout(function () {
 HTML;
 
     if ($redirect !== '') {
-      echo "<script>
+        $msgJs      = json_encode($message,  JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT);
+        $redirectJs = json_encode($redirect, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT);
+        echo "<script>
         document.addEventListener('DOMContentLoaded', function () {
-            alert('{$message}');
-            window.location.replace('{$redirect}');
+            alert({$msgJs});
+            window.location.replace({$redirectJs});
         });
         </script>";
     }

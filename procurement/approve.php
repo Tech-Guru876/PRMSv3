@@ -138,6 +138,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     ================================ */
     if ($action === 'approve') {
 
+        try {
         $pdo->prepare("
             UPDATE request_approvals
             SET status = 'approved',
@@ -207,6 +208,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             "success"
         );
         exit;
+        } catch (Throwable $e) {
+            pop(extractDbMessage($e), "/procurement/view.php?id=" . $id, POP_DEFAULT_DELAY_MS, 'error');
+            exit;
+        }
     }
 
     /* ===============================
@@ -226,6 +231,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit;
         }
 
+        try {
         $pdo->prepare("
             UPDATE request_approvals
             SET status = 'rejected',
@@ -279,6 +285,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             "warning"
         );
         exit;
+        } catch (Throwable $e) {
+            pop(extractDbMessage($e), "/procurement/view.php?id=" . $id, POP_DEFAULT_DELAY_MS, 'error');
+            exit;
+        }
     }
 }
 
