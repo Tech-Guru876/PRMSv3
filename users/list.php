@@ -254,13 +254,13 @@ $roleCount = $rolesCountStmt->fetch()['role_count'];
 <div class="card border-0 shadow-sm mb-4">
     <div style="overflow: auto;">
         <table class="table table-hover mb-0" style="border-collapse: collapse;">
-            <thead style="background-color: #f8f9fa; border-bottom: 2px solid #e0e0e0;">
+            <thead class="table-dark">
                 <tr>
-                    <th style="padding: 1rem; font-weight: 600; color: #1a1a1a; border: none;">Name</th>
-                    <th style="padding: 1rem; font-weight: 600; color: #1a1a1a; border: none;">Email</th>
-                    <th style="padding: 1rem; font-weight: 600; color: #1a1a1a; border: none;">Role</th>
-                    <th style="padding: 1rem; font-weight: 600; color: #1a1a1a; border: none;">Status</th>
-                    <th style="padding: 1rem; font-weight: 600; color: #1a1a1a; border: none; text-align: center; width: 100px;">Actions</th>
+                    <th >Name</th>
+                    <th >Email</th>
+                    <th >Role</th>
+                    <th >Status</th>
+                    <th >Actions</th>
                 </tr>
             </thead>
             <tbody>

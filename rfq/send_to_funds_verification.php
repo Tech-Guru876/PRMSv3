@@ -126,6 +126,6 @@ try {
     if ($pdo->inTransaction()) {
         $pdo->rollBack();
     }
-    pop('Error sending for funds verification: ' . extractDbMessage($e), '/rfq/view.php?id=' . $rfq_id, POP_DEFAULT_DELAY_MS, 'error');
+    pop('Error sending for funds verification: ' . $e->getMessage(), '/rfq/view.php?id=' . $rfq_id, POP_DEFAULT_DELAY_MS, 'error');
     exit;
 }

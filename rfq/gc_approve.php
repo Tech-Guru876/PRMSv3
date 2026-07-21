@@ -138,7 +138,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             pop('GC Approval granted. RFQ can now be awarded.', '/rfq/view.php?id='.$rfq_id, 1500, 'success');
         } catch (Exception $e) {
             $pdo->rollBack();
-            pop('Error: '.extractDbMessage($e), '/rfq/gc_approve.php?id='.$rfq_id, POP_DEFAULT_DELAY_MS, 'error');
+            pop('Error: '.$e->getMessage(), '/rfq/gc_approve.php?id='.$rfq_id, POP_DEFAULT_DELAY_MS, 'error');
         }
         exit;
     }
@@ -185,7 +185,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 '/rfq/view.php?id='.$rfq_id, 2000, 'warning');
         } catch (Exception $e) {
             $pdo->rollBack();
-            pop('Error: '.extractDbMessage($e), '/rfq/gc_approve.php?id='.$rfq_id, POP_DEFAULT_DELAY_MS, 'error');
+            pop('Error: '.$e->getMessage(), '/rfq/gc_approve.php?id='.$rfq_id, POP_DEFAULT_DELAY_MS, 'error');
         }
         exit;
     }

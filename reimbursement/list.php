@@ -60,17 +60,17 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/includes/header.php";
     <div class="card shadow-sm">
       <div class="table-responsive">
         <table class="table table-hover mb-0">
-          <thead class="table-light">
+          <thead class="table-dark">
             <tr>
-              <th  style="color:#000;">Request #</th>
-              <th  style="color:#000;">Branch</th>
-              <th  style="color:#000;">Requestor</th>
-              <th  style="color:#000;">Description</th>
-              <th  style="color:#000;">Amount</th>
-              <th  style="color:#000;">Status</th>
-              <th  style="color:#000;">Invoices</th>
-              <th  style="color:#000;">Created</th>
-              <th  style="color:#000;">Actions</th>
+              <th  >Request #</th>
+              <th> Branch</th>
+              <th> Requestor</th>
+              <th> Description</th>
+              <th> Amount</th>
+              <th> Status</th>
+              <th> Invoices</th>
+              <th> Created</th>
+              <th  >Actions</th>
             </tr>
           </thead>
           <tbody>

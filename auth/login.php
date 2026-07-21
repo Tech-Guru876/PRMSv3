@@ -410,9 +410,9 @@ if (strtolower($_SESSION['role_name']) === 'admin') {
       <img src="/logo/cropped-Logo.png"
            alt="Government Chemist Logo"
            class="hero-logo">
-      <h1>DGC Procurement Portal</h1>
+      <h1>DGC Inventory, Procurement & Assets Management System Portal</h1>
       <p class="hero-sub">
-        Streamlined procurement management for the Department of the Government Chemist.
+        Streamlined inventory, procurement & assets management for the Department of the Government Chemist.
       </p>
       <span class="hero-badge">Secure &bull; Audited &bull; Compliant</span>
     </div>

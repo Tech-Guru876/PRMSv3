@@ -355,12 +355,12 @@ $canAward = ($committeeCount >= 3 && $reportCount > 0 && $majorityMet);
             <div class="card-body p-0">
                 <div class="table-responsive">
                     <table class="table table-hover align-middle mb-0">
-                        <thead>
-                            <tr style="background:#f8f9fa;">
-                                <th class="ps-4 text-muted small fw-semibold">Name</th>
-                                <th class="text-muted small fw-semibold">Email</th>
-                                <th class="text-muted small fw-semibold">Status</th>
-                                <th class="text-muted small fw-semibold text-end pe-4">Action</th>
+                     <thead class="table-dark">
+                            <tr >
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Status</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -437,14 +437,14 @@ $canAward = ($committeeCount >= 3 && $reportCount > 0 && $majorityMet);
 
                 <div class="table-responsive">
                     <table class="table table-hover align-middle mb-0">
-                        <thead>
-                            <tr style="background:#f8f9fa;">
-                                <th class="ps-4 text-muted small fw-semibold">Vendor</th>
-                                <th class="text-muted small fw-semibold text-end">Amount</th>
-                                <th class="text-muted small fw-semibold text-end">GCT</th>
-                                <th class="text-muted small fw-semibold text-center">Review</th>
-                                <th class="text-muted small fw-semibold text-center">File</th>
-                                <th class="text-muted small fw-semibold text-end pe-4">Actions</th>
+                       <thead class="table-dark">
+                            <tr >
+                                <th >Vendor</th>
+                                <th>Amount</th>
+                                <th>GCT</th>
+                                <th>Review</th>
+                                <th >File</th>
+                                <th >Actions</th>
                             </tr>
                         </thead>
                         <tbody>

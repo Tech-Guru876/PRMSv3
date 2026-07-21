@@ -84,6 +84,6 @@ try {
     exit;
     
 } catch (Throwable $e) {
-    pop(extractDbMessage($e), '/rfq/view.php?id='.$rfq_id, 2500, 'error');
+    pop($e->getMessage(), '/rfq/view.php?id='.$rfq_id, 2500, 'error');
     exit;
 }

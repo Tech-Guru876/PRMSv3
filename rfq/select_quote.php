@@ -117,6 +117,6 @@ try {
 
 } catch (Exception $e) {
     $pdo->rollBack();
-    pop('Error selecting quote: ' . extractDbMessage($e), '/rfq/view.php?id=' . $rfq_id, POP_DEFAULT_DELAY_MS, 'error');
+    pop('Error selecting quote: ' . $e->getMessage(), '/rfq/view.php?id=' . $rfq_id, POP_DEFAULT_DELAY_MS, 'error');
     exit;
 }
