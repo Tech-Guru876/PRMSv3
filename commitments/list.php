@@ -324,18 +324,18 @@ require_once $_SERVER['DOCUMENT_ROOT']."/config/helper.php";
 <div class="card border-0 shadow-sm mb-4">
     <div style="overflow: auto;">
         <table class="table table-hover mb-0" style="border-collapse: collapse;">
-            <thead style="background-color: #f8f9fa; border-bottom: 2px solid #e0e0e0;">
+            <thead class="table-dark">
                 <tr>
-                    <th style="padding: 1rem; font-weight: 600; color: #1a1a1a; border: none;">Commitment #</th>
-                    <th style="padding: 1rem; font-weight: 600; color: #1a1a1a; border: none;">Date</th>
-                    <th style="padding: 1rem; font-weight: 600; color: #1a1a1a; border: none;">Request #</th>
-                    <th style="padding: 1rem; font-weight: 600; color: #1a1a1a; border: none; text-align: right;">Total</th>
-                    <th style="padding: 1rem; font-weight: 600; color: #1a1a1a; border: none;">Branch</th>
-                    <th style="padding: 1rem; font-weight: 600; color: #1a1a1a; border: none;">Purchase Order</th>
-                    <th style="padding: 1rem; font-weight: 600; color: #1a1a1a; border: none; text-align: center;">GFMS #</th>
-                    <th style="padding: 1rem; font-weight: 600; color: #1a1a1a; border: none; text-align: center;">Status</th>
-                    <th style="padding: 1rem; font-weight: 600; color: #1a1a1a; border: none; text-align: center;">Doc</th>
-                    <th style="padding: 1rem; font-weight: 600; color: #1a1a1a; border: none; text-align: center; width: 80px;">Actions</th>
+                    <th >Commitment #</th>
+                    <th >Date</th>
+                    <th >Request #</th>
+                    <th >Total</th>
+                    <th >Branch</th>
+                    <th >Purchase Order</th>
+                    <th >GFMS #</th>
+                    <th >Status</th>
+                    <th >Doc</th>
+                    <th >Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -426,4 +426,3 @@ require_once $_SERVER['DOCUMENT_ROOT']."/config/helper.php";
 </div>
 
 <?php require_once $_SERVER['DOCUMENT_ROOT']."/includes/footer.php"; ?>
-
