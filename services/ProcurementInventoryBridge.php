@@ -34,11 +34,14 @@ class ProcurementInventoryBridge
     public static function getPOForGrn(PDO $pdo, int $poId): ?array
     {
         $stmt = $pdo->prepare("
-            SELECT po.po_id, po.po_number, po.vendor_id, po.po_total,
+            SELECT po.po_id, po.po_number, po.po_total,
                    po.status, po.created_at,
-                   v.vendor_name
+                   v.vendor_id, v.vendor_name
             FROM purchase_orders po
-            LEFT JOIN vendors v ON po.vendor_id = v.vendor_id
+            LEFT JOIN commitments c ON po.commitment_id = c.commitment_id
+            LEFT JOIN rfq_quotes rq ON c.selected_quote_id = rq.quote_id
+            LEFT JOIN rfq_vendors rv ON rq.rfq_vendor_id = rv.rfq_vendor_id
+            LEFT JOIN vendors v ON rv.vendor_id = v.vendor_id
             WHERE po.po_id = ?
         ");
         $stmt->execute([$poId]);
