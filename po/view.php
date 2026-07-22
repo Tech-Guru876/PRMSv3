@@ -50,6 +50,7 @@ try {
     $warnStmt->execute([$po_id]);
     $warning = $warnStmt->fetch(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
+    error_log("PO view warning query failed (po_id=$po_id): " . $e->getMessage());
     $warning = false;
 }
 
@@ -221,6 +222,7 @@ if ($inventoryModuleReady) {
         $linkedGrns = ProcurementInventoryBridge::getGrnsForPo($pdo, $po_id);
     } catch (PDOException $e) {
         // Column procurement_po_id may not exist if migration 020 hasn't been applied
+        error_log("PO view GRN query failed (po_id=$po_id): " . $e->getMessage());
         $linkedGrns = [];
         $inventoryModuleReady = false;
     }
