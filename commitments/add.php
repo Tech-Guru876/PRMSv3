@@ -76,8 +76,14 @@ if ($existingCommitment && !empty($existingCommitment['document_path']) && $exis
 
 // Role access control per step
 if ($currentStep === 'verify_funds' && !$isFinance) {
-    pop("Funds have not been verified yet. Finance Officers must verify funds first.", "/procurement/view.php?id=" . $request_id, 2500, "warning");
-    exit;
+    if ($requestStatus === 'AWARDED') {
+        // For requests that proceeded without RFQ, Procurement Officers can upload the
+        // optional commitment form while Finance verifies funds and creates the commitment.
+        $currentStep = 'upload_form';
+    } else {
+        pop("Funds have not been verified yet. Finance Officers must verify funds first.", "/procurement/view.php?id=" . $request_id, 2500, "warning");
+        exit;
+    }
 }
 if ($currentStep === 'upload_form' && !$isProcurement && !$isFinance) {
     // Only Procurement and Finance can upload commitment forms
@@ -634,8 +640,13 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/includes/header.php";
             <div class="card-body">
                 <div class="alert alert-success mb-4">
                     <i class="bi bi-check-circle me-2"></i>
-                    <strong>Funds verified by Finance!</strong> You can now upload a scanned copy of the commitment form (optional), or proceed without uploading.
-                    <?= $isFinance ? 'You can then proceed to create the commitment in GFMS.' : 'Finance will create the commitment in GFMS and upload the commitment document.' ?>
+                    <?php if ($requestStatus === 'AWARDED'): ?>
+                        <strong>Request is in Awarded stage.</strong> You may upload the optional commitment form now, or proceed without one.
+                        <?= $isFinance ? 'You can then proceed to verify funds and create the commitment in GFMS.' : 'Finance will verify funds, create the commitment in GFMS, and upload the commitment document.' ?>
+                    <?php else: ?>
+                        <strong>Funds verified by Finance!</strong> You can now upload a scanned copy of the commitment form (optional), or proceed without uploading.
+                        <?= $isFinance ? 'You can then proceed to create the commitment in GFMS.' : 'Finance will create the commitment in GFMS and upload the commitment document.' ?>
+                    <?php endif; ?>
                 </div>
 
                 <form method="post" enctype="multipart/form-data">
