@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 14, 2026 at 09:37 PM
--- Server version: 11.8.6-MariaDB-log
+-- Generation Time: Jul 22, 2026 at 03:26 AM
+-- Server version: 11.8.8-MariaDB-log
 -- PHP Version: 7.2.34
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `u153072617_prms`
+-- Database: `u153072617_ipams`
 --
 
 -- --------------------------------------------------------
@@ -46,10 +46,17 @@ CREATE TABLE `acting_roles` (
 INSERT INTO `acting_roles` (`id`, `user_id`, `acting_role_id`, `assigned_by`, `reason`, `starts_at`, `ends_at`, `is_active`, `created_at`) VALUES
 (10, 27, 4, 27, NULL, '2026-03-17 11:51:00', NULL, 0, '2026-03-17 11:51:15'),
 (11, 30, 3, 27, NULL, '2026-03-18 09:47:00', NULL, 0, '2026-03-18 09:48:06'),
-(12, 27, 3, 27, NULL, '2026-03-18 09:48:00', NULL, 0, '2026-03-18 09:48:48'),
-(13, 27, 11, 27, NULL, '2026-03-18 12:55:00', NULL, 0, '2026-03-18 12:56:09'),
+(12, 27, 3, 27, NULL, '2026-07-16 10:58:00', NULL, 1, '2026-03-18 09:48:48'),
+(13, 27, 11, 27, NULL, '2026-07-13 15:48:00', NULL, 0, '2026-03-18 12:56:09'),
 (14, 42, 2, 27, 'acting procurement officer', '2026-04-07 09:52:00', '2026-08-28 09:53:00', 1, '2026-04-07 09:51:58'),
-(16, 40, 5, 27, NULL, '2026-05-13 10:11:00', NULL, 0, '2026-05-13 10:13:56');
+(16, 40, 5, 27, NULL, '2026-05-18 11:53:00', NULL, 0, '2026-05-13 10:13:56'),
+(18, 27, 9, 27, NULL, '2026-06-05 10:57:00', NULL, 0, '2026-06-05 10:57:27'),
+(20, 46, 3, 27, 'Cover for Director Finance (Ms. L. Gayle)', '2026-06-15 10:34:00', NULL, 0, '2026-06-15 10:35:23'),
+(22, 27, 2, 27, NULL, '2026-07-16 11:06:00', NULL, 1, '2026-07-13 16:05:18'),
+(24, 27, 13, 30, 'TEST', '2026-07-16 08:22:00', NULL, 1, '2026-07-16 08:23:03'),
+(27, 32, 6, 27, NULL, '2026-07-20 16:44:00', NULL, 0, '2026-07-20 16:44:41'),
+(28, 30, 10, 27, 'TEST RFQ Flow', '2026-07-21 21:09:00', NULL, 1, '2026-07-21 09:07:27'),
+(29, 27, 10, 27, 'TEST RFQ Flow', '2026-07-21 09:08:00', '2026-07-24 09:08:00', 1, '2026-07-21 09:08:17');
 
 -- --------------------------------------------------------
 
@@ -103,7 +110,56 @@ INSERT INTO `acting_role_log` (`id`, `user_id`, `switched_from_role_id`, `switch
 (70, 27, 6, 4, 1, '67.213.150.200', '2026-05-01 17:16:34'),
 (71, 27, 6, 3, 1, '67.213.149.6', '2026-05-04 17:48:22'),
 (72, 27, 3, 6, 0, '67.213.149.6', '2026-05-04 17:48:48'),
-(73, 40, 12, 5, 1, '67.230.76.197', '2026-05-13 10:14:22');
+(73, 40, 12, 5, 1, '67.230.76.197', '2026-05-13 10:14:22'),
+(74, 40, 12, 5, 1, '67.230.76.197', '2026-05-18 11:53:57'),
+(75, 40, 5, 12, 0, '67.230.76.197', '2026-05-18 12:15:02'),
+(76, 40, 12, 5, 1, '67.230.76.197', '2026-05-20 12:54:39'),
+(77, 40, 12, 5, 1, '67.230.76.197', '2026-05-21 09:17:32'),
+(78, 40, 12, 5, 1, '67.230.76.197', '2026-05-27 16:09:06'),
+(79, 40, 12, 5, 1, '67.230.76.197', '2026-06-01 16:30:47'),
+(80, 27, 6, 9, 1, '67.230.76.197', '2026-06-05 10:57:30'),
+(81, 27, 6, 9, 1, '67.230.76.197', '2026-06-05 12:58:09'),
+(82, 46, 12, 3, 1, '67.230.76.197', '2026-06-15 11:27:39'),
+(83, 46, 12, 3, 1, '67.230.76.197', '2026-06-17 11:47:46'),
+(84, 46, 3, 12, 0, '67.230.76.197', '2026-06-17 11:48:07'),
+(85, 46, 12, 3, 1, '67.230.76.197', '2026-06-17 11:48:16'),
+(86, 46, 12, 3, 1, '67.230.76.197', '2026-06-30 11:57:32'),
+(87, 46, 3, 12, 0, '67.230.76.197', '2026-06-30 11:57:36'),
+(88, 46, 12, 3, 1, '67.230.76.197', '2026-06-30 11:57:49'),
+(89, 27, 6, 11, 1, '67.230.76.197', '2026-07-13 15:48:53'),
+(90, 27, 11, 6, 0, '67.230.76.197', '2026-07-13 15:50:39'),
+(91, 27, 6, 11, 1, '67.230.76.197', '2026-07-13 15:53:42'),
+(92, 27, 11, 6, 0, '67.230.76.197', '2026-07-13 15:59:19'),
+(93, 27, 6, 2, 1, '67.230.76.197', '2026-07-13 16:06:08'),
+(94, 27, 2, 6, 0, '67.230.76.197', '2026-07-13 16:11:52'),
+(95, 27, 6, 2, 1, '67.230.76.197', '2026-07-13 16:24:15'),
+(96, 27, 2, 6, 0, '67.230.76.197', '2026-07-13 16:24:17'),
+(97, 27, 6, 3, 1, '67.230.76.197', '2026-07-13 16:24:39'),
+(98, 27, 6, 13, 1, '67.230.76.197', '2026-07-16 08:28:40'),
+(99, 27, 6, 3, 1, '67.230.76.197', '2026-07-16 10:59:14'),
+(100, 27, 3, 6, 0, '67.230.76.197', '2026-07-16 11:02:17'),
+(101, 27, 6, 3, 1, '67.230.76.197', '2026-07-16 11:03:33'),
+(102, 27, 3, 6, 0, '67.230.76.197', '2026-07-16 11:06:42'),
+(103, 27, 6, 2, 1, '67.230.76.197', '2026-07-16 11:07:00'),
+(104, 27, 2, 6, 0, '67.230.76.197', '2026-07-16 11:10:14'),
+(105, 27, 6, 2, 1, '67.230.76.197', '2026-07-16 11:11:07'),
+(106, 27, 2, 6, 0, '67.230.76.197', '2026-07-16 11:21:43'),
+(107, 27, 6, 13, 1, '67.230.76.197', '2026-07-17 09:50:20'),
+(108, 27, 13, 6, 0, '67.230.76.197', '2026-07-17 09:51:27'),
+(109, 32, 4, 6, 1, '67.230.76.197', '2026-07-20 16:45:42'),
+(110, 27, 6, 3, 1, '67.230.76.197', '2026-07-21 09:07:39'),
+(111, 27, 3, 13, 1, '67.230.76.197', '2026-07-21 09:07:45'),
+(112, 27, 13, 6, 0, '67.230.76.197', '2026-07-21 09:07:53'),
+(113, 27, 6, 10, 1, '67.230.76.197', '2026-07-21 09:08:21'),
+(114, 27, 10, 2, 1, '67.230.76.197', '2026-07-21 09:10:02'),
+(115, 27, 2, 3, 1, '67.230.76.197', '2026-07-21 09:12:07'),
+(116, 27, 6, 10, 1, '67.230.76.197', '2026-07-21 15:33:38'),
+(117, 27, 10, 6, 0, '67.230.76.197', '2026-07-21 15:35:40'),
+(118, 30, 6, 10, 1, '72.252.187.192', '2026-07-21 21:10:47'),
+(119, 27, 6, 3, 1, '72.252.187.192', '2026-07-21 21:52:11'),
+(120, 27, 3, 2, 1, '72.252.187.192', '2026-07-21 21:55:49'),
+(121, 27, 2, 6, 0, '72.252.187.192', '2026-07-21 21:58:10'),
+(122, 30, 6, 10, 1, '72.252.187.192', '2026-07-21 22:23:33');
 
 -- --------------------------------------------------------
 
@@ -186,6 +242,166 @@ INSERT INTO `approval_workflows` (`workflow_id`, `entity_type`, `min_amount`, `m
 (1, 'PROCUREMENT_REQUEST', 0.00, 3000000.00, 'Single Source Workflow', 1),
 (2, 'PROCUREMENT_REQUEST', 3000000.01, 20000000.00, 'Restricted Bidding Workflow', 1),
 (3, 'PROCUREMENT_REQUEST', 20000000.01, NULL, 'National Competitive Workflow', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `asset_types`
+--
+
+CREATE TABLE `asset_types` (
+  `asset_type_id` int(11) NOT NULL,
+  `type_code` varchar(30) NOT NULL,
+  `type_name` varchar(100) NOT NULL,
+  `description` text DEFAULT NULL,
+  `is_active` tinyint(1) NOT NULL DEFAULT 1,
+  `sort_order` int(11) NOT NULL DEFAULT 0,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Named types of fixed and movable assets';
+
+--
+-- Dumping data for table `asset_types`
+--
+
+INSERT INTO `asset_types` (`asset_type_id`, `type_code`, `type_name`, `description`, `is_active`, `sort_order`, `created_at`) VALUES
+(1, 'IT_EQUIPMENT', 'IT Equipment', 'Computers, servers, network hardware, peripherals', 1, 1, '2026-05-26 17:46:20'),
+(2, 'FURNITURE', 'Furniture', 'Desks, chairs, shelving, filing cabinets', 1, 2, '2026-05-26 17:46:20'),
+(3, 'VEHICLES', 'Vehicles', 'Motor vehicles, motorcycles, boats', 1, 3, '2026-05-26 17:46:20'),
+(4, 'MACHINERY', 'Machinery', 'Heavy machinery, industrial equipment', 1, 4, '2026-05-26 17:46:20'),
+(5, 'TOOLS', 'Tools & Instruments', 'Hand tools, power tools, measuring instruments', 1, 5, '2026-05-26 17:46:20'),
+(6, 'BUILDING_FIXTURES', 'Building Fixtures', 'Installed fixtures, HVAC, electrical fittings', 1, 6, '2026-05-26 17:46:20'),
+(7, 'MEDICAL_EQUIPMENT', 'Medical Equipment', 'Clinical and laboratory equipment', 1, 7, '2026-05-26 17:46:20'),
+(8, 'AV_COMMUNICATIONS', 'AV / Communications', 'Audio-visual, radio, telecommunications equipment', 1, 8, '2026-05-26 17:46:20'),
+(9, 'OTHER', 'Other Assets', 'Assets not classified elsewhere', 1, 9, '2026-05-26 17:46:20'),
+(10, 'HW_COMPUTING', 'IT Hardware - Computing', 'Mainframes, Blade Servers, Rack Servers, Tower Servers, Workstations, Desktop PCs, Laptops, Tablets, Smartphones, Thin Clients.', 1, 101, '2026-05-26 21:14:21'),
+(11, 'HW_NET_STORAGE', 'IT Hardware - Networking & Storage', 'Network Attached Storage (NAS), Storage Area Networks (SAN), Network Switches, Routers, Hardware Firewalls, Wireless Access Points, Modems, Load Balancers, Fiber Optic Transceivers.', 1, 102, '2026-05-26 21:14:21'),
+(12, 'HW_PERIPH_AV', 'IT Hardware - Peripherals & AV', 'Laser Printers, Inkjet Printers, 3D Printers, Plotters, Scanners, Copiers, Projectors, Interactive Whiteboards, Monitors, KVM Switches, Uninterruptible Power Supplies (UPS), DSLR Cameras, Video Cameras, PA Systems, Microphones.', 1, 103, '2026-05-26 21:14:21'),
+(13, 'HW_SPECIAL_SEC', 'IT Hardware - Specialized/Security', 'Biometric Scanners, Barcode Scanners, RFID Readers, Point of Sale (POS) Terminals, DVR/NVR Systems, Security Cameras (CCTV/IP).', 1, 104, '2026-05-26 21:14:21'),
+(14, 'SW_INTANGIBLES', 'Software & Intangibles', 'ERP Platform Licenses, CRM Licenses, HRIS Platforms, Operating System Licenses, Database Management Systems (DBMS), CAD Software, Proprietary Source Code, Patents, Trademarks, Copyrights, Domain Names, SSL Certificates.', 1, 105, '2026-05-26 21:14:21'),
+(15, 'FURN_SEAT_DESK', 'Furniture - Seating & Desks', 'Executive Desks, Standing Desks, Cubicle Partitions, Drafting Tables, Conference Tables, Ergonomic Task Chairs, Conference Chairs, Reception Seating, Sofas, Breakroom Seating.', 1, 106, '2026-05-26 21:14:21'),
+(16, 'FURN_STORE_FIX', 'Furniture - Storage & Fixtures', 'Lateral Filing Cabinets, Vertical Filing Cabinets, Bookcases, Storage Lockers, Credenzas, Safes, Whiteboards, Bulletin Boards, Window Treatments, High-Value Artwork/Decor.', 1, 107, '2026-05-26 21:14:21'),
+(17, 'FAC_BUILD_EQUIP', 'Facilities & Building Equipment', 'HVAC Units, Chillers, Boilers, Air Handlers, Exhaust Fans, Standby Generators, Portable Generators, Solar Panels, Wind Turbines, Water Heaters, Sump Pumps, Water Filtration Systems, Fire Alarm Control Panels, Turnstiles, Elevators, Escalators, Illuminated Signage, Commercial Soap Dispensers.', 1, 108, '2026-05-26 21:14:21'),
+(18, 'MACH_PROCESS', 'Machinery & Industrial - Processing', 'Conveyor Belts, Packaging Machines, Palletizers, Industrial Mixers, Industrial Ovens, Centrifuges, Heavy-Duty Transformers.', 1, 109, '2026-05-26 21:14:21'),
+(19, 'MED_LAB_EQUIP', 'Medical & Laboratory Equipment', 'Electron Microscopes, Optical Microscopes, Spectrophotometers, Autoclaves, Fume Hoods, Biosafety Cabinets, Incubators, Ultra-Low Temp Refrigerators, Chromatography Systems (HPLC/GC), Defibrillators, X-Ray Machines, MRI Machines, Ultrasound Scanners, Surgical Tables.', 1, 110, '2026-05-26 21:14:21'),
+(30, 'LCD', 'LCD', 'Auto-created during asset import (category: Laptop)', 1, 0, '2026-07-16 00:31:05'),
+(31, 'ANALYTICAL', 'Analytical', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:26:33'),
+(32, 'N_A', 'N/A', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:26:33'),
+(33, 'FLAMMABLE', 'Flammable', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:26:33'),
+(34, 'METAL_WOOD', 'Metal & Wood', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:26:33'),
+(35, 'METAL_FABRIC_ARMS', 'Metal & Fabric - Arms', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:26:33'),
+(36, 'PRIZM_24000_BTU', 'Prizm, 24000 BTU', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:26:33'),
+(37, 'STANDING', 'Standing', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:26:33'),
+(38, 'UP_RIGHT_FRIGIDAIRE', 'Up-Right, Frigidaire', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:26:33'),
+(39, 'WHIRLPOOL', 'Whirlpool', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:26:33'),
+(40, 'FRIGIDAIRE', 'Frigidaire', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:26:33'),
+(41, 'WIRED', 'Wired', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:26:33'),
+(42, 'ALUMINUM_4FT', 'Aluminum - 4Ft.', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:26:33'),
+(43, 'LEATHER', 'Leather', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:22'),
+(44, 'JUNIOR_EXECUTIVE', 'Junior Executive', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:22'),
+(45, 'LENOVO', 'Lenovo', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:22'),
+(46, 'APC', 'APC', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:22'),
+(47, '4_DRAWER', '4 Drawer', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:22'),
+(48, 'SWIVEL', 'Swivel', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:22'),
+(49, 'MESH_METAL', 'Mesh/Metal', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:22'),
+(50, 'COMPRESSED_BOARD', 'Compressed Board', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:22'),
+(51, 'WITH_PEDESTOL', 'With Pedestol', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:22'),
+(52, 'HP', 'HP', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:22'),
+(53, 'BROTHER', 'Brother', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:22'),
+(54, 'AVAYA', 'Avaya', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:22'),
+(55, 'INFARED', 'Infared', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:22'),
+(56, '850_UA', '850 UA', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:22'),
+(57, '1500_UAC', '1500 UAC', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:22'),
+(58, 'APC_2200', 'APC, 2200', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:22'),
+(59, 'FUJITSU', 'FUJITSU', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:22'),
+(60, 'WOOD_ARMS', 'Wood - Arms', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:22'),
+(61, 'PANASONIC', 'Panasonic', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:22'),
+(62, '2_DOOR', '2 Door', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:22'),
+(63, 'DOUBLE', 'Double', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:22'),
+(64, 'PLASTIC_SWIVEL', 'Plastic/Swivel', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:22'),
+(65, 'SPLIT_24_000_BTU', 'Split - 24,000 BTU', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:22'),
+(66, 'WINDOW_UNIT', 'Window Unit', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:22'),
+(67, 'GSP', 'GSP', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:22'),
+(68, 'LINE_R_APC', 'Line-R APC', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:22'),
+(69, 'JSW_32', 'JSW 32\"', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:22'),
+(70, 'KONICA_MINOLTA', 'Konica Minolta', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:22'),
+(71, 'DESK_JET_INK_ADVANTAGE', 'Desk Jet, Ink Advantage', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:22'),
+(72, 'CASIO', 'Casio', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:22'),
+(73, 'WOODEN', 'Wooden', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:22'),
+(74, 'WINTEK', 'Wintek', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:22'),
+(75, 'WOODEN_METAL', 'Wooden/Metal', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:22'),
+(76, 'FELLOWES', 'Fellowes', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:22'),
+(77, 'MESH_BACK_ARMS', 'Mesh Back - Arms', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:22'),
+(78, 'TOP_LOADING', 'Top Loading', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:22'),
+(79, 'PRINTER_ROLL_TAPE', 'Printer (Roll Tape)', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:22'),
+(80, 'HANGING', 'Hanging', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:22'),
+(81, 'WODDEN', 'Wodden', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:22'),
+(82, 'CONFERENCE_DESK', 'Conference Desk', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:22'),
+(83, 'SWIVEL_ARMS', 'Swivel - Arms', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:22'),
+(84, 'EPSON', 'Epson', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:22'),
+(85, 'SAMSUNG_50', 'Samsung, 50\"', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:22'),
+(86, 'PORTABLE', 'Portable', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:22'),
+(87, 'PLASTIC_SWIVEL_ARMS', 'Plastic/Swivel - Arms', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:22'),
+(88, 'PLASTIC', 'Plastic', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:22'),
+(89, 'METAL', 'Metal', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:22'),
+(90, 'LENOVO_LCD', 'Lenovo, LCD', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:22'),
+(91, 'ACCUTEK_STANDING', 'Accutek, Standing', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:22'),
+(92, 'OVAL', 'Oval', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:22'),
+(93, 'EXECUTIVE_WITH_PEDESTOL', 'Executive with Pedestol', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:22'),
+(94, 'MESH', 'Mesh', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:22'),
+(95, '2_DOOR_1', '2 - Door', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:22'),
+(96, 'APC_POWER_STRIP', 'APC (Power Strip)', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:22'),
+(97, 'SPLIT_12_000_BTU', 'Split - 12,000 BTU', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:22'),
+(98, 'A_P_C', 'A.P.C', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:22'),
+(99, 'DELL', 'Dell', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:22'),
+(100, 'HP_COLOR_LASERJET_PRO_MFP_4', 'HP Color LaserJet Pro MFP 4303', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:22'),
+(101, 'EXECUTIVE_LEATHER', 'Executive, Leather', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:22'),
+(102, 'PLASTIC_MESH', 'Plastic/Mesh', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:22'),
+(103, 'FOR_MILK', 'For Milk', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:22'),
+(104, 'CASETTE_TYPE', 'Casette Type', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:22'),
+(105, 'CASSETTE_TYPE', 'Cassette Type', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:22'),
+(106, 'MAYTAG', 'MAYTAG', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:22'),
+(107, 'WOOD_3_SHELVES', 'Wood - 3 Shelves', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:23'),
+(108, '1800_BTU', '1800 BTU', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:23'),
+(109, 'HP_LASERJET_PRO_MFP_4303DW', 'HP LaserJet Pro MFP 4303dw', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:23'),
+(110, 'VARIABLE', 'Variable', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:23'),
+(111, 'HERMLE', 'Hermle', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:23'),
+(112, '2_DOOR_SAMSUNG_SILVER', '2 Door, Samsung, Silver', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:23'),
+(113, '36_000_BTU', '36,000 BTU', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:23'),
+(114, 'HERATHERM', 'Heratherm', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:23'),
+(115, 'CARBOLITE', 'Carbolite', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:23'),
+(116, 'WOOD', 'Wood', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:23'),
+(117, 'NEXXT_SOLUTIONS', 'Nexxt Solutions', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:23'),
+(118, 'BOSTITCH', 'Bostitch', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:23'),
+(119, 'KYOCERA', 'Kyocera', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:23'),
+(120, 'BROTHER_MFC_L2750DW', 'Brother, MFC-L2750DW', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:23'),
+(121, 'AGILENT_TECHNOLOGIES', 'Agilent Technologies', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:23'),
+(122, 'METAL_GLASS', 'Metal/Glass', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:23'),
+(123, '24_000_BTU_PRIZM', '24,000 BTU, Prizm', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:23'),
+(124, 'APC_1500', 'APC, 1500', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:23'),
+(125, 'LASER_JET_PRO', 'Laser Jet Pro', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:23'),
+(126, 'AGILENT_1260_INFINITY_III', 'Agilent 1260 Infinity III', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:23'),
+(127, 'ROLL_TAPE_PRINTER', 'Roll Tape Printer', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:23'),
+(128, 'PRISM_INVERTER', 'Prism Inverter', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:23'),
+(129, 'UPS', 'UPS', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:23'),
+(130, '3000_UAC', '3000 UAC', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:23'),
+(131, 'MFC_L2750DW', 'MFC-L2750DW', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:23'),
+(132, 'HP_OFFICEJET_PRO_9130', 'HP OfficeJet Pro 9130', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:23'),
+(133, 'STOOL', 'Stool', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:23'),
+(134, 'FABOSO', 'Faboso', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:23'),
+(135, 'DESK', 'Desk', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:23'),
+(136, '6_FEET', '6 Feet', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:23'),
+(137, '2_TIERED', '2 Tiered', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:23'),
+(138, 'TRAY', 'Tray', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:23'),
+(139, 'PLASTIC_LEATHER', 'Plastic/Leather', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:23'),
+(140, 'EXECUTIVE', 'Executive', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:23'),
+(141, 'JUNIOR', 'Junior', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:23'),
+(142, 'LCD_HP', 'LCD (HP)', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:23'),
+(143, 'LCD_DELL', 'LCD (DELL)', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:23'),
+(144, 'BV650', 'BV650', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:23'),
+(145, 'HP_LASER_JET_MFP_M578', 'HP Laser Jet MFP M578', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:23'),
+(146, '18000_BTU_PRIZM', '18000 BTU, Prizm', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:23'),
+(147, 'HP_LASERJET_PRO_MFP_4103DW', 'HP, LaserJet Pro MFP 4103dw', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:23'),
+(148, 'POWER_STRIP_G_E', 'Power Strip (G.E)', 'Auto-created during asset import (category: Asset)', 1, 0, '2026-07-21 19:42:23');
 
 -- --------------------------------------------------------
 
@@ -2323,7 +2539,553 @@ INSERT INTO `audit_log` (`audit_id`, `table_name`, `record_id`, `action`, `chang
 (2172, 'procurement_requests', 159, 'CREATE', 'Alfred Bryan', '2026-05-14 18:19:15', 'Procurement request created'),
 (2173, 'procurement_requests', 159, 'STATUS_CHANGE', 'Alfred Bryan', '2026-05-14 18:20:01', 'Draft → Submitted'),
 (2174, 'procurement_requests', 159, 'APPROVAL_CHAIN_CREAT', 'Alfred Bryan', '2026-05-14 18:20:01', 'Approval chain created: Director HRM&A'),
-(2175, 'MIGRATION', NULL, 'SCHEMA_FIX', 'system', '2026-05-14 21:37:14', '2026_05_14_ensure_notes_columns applied');
+(2175, 'MIGRATION', NULL, 'SCHEMA_FIX', 'system', '2026-05-14 21:37:14', '2026_05_14_ensure_notes_columns applied'),
+(2176, 'user_permissions', 44, 'PERMISSION_OVERRIDE', 'Technical & User Support Officer', '2026-05-19 00:49:07', 'Permission 59 updated (granted=1)'),
+(2177, 'user_permissions', 44, 'PERMISSION_OVERRIDE', 'Technical & User Support Officer', '2026-05-19 00:49:07', 'Permission 58 updated (granted=1)'),
+(2178, 'user_permissions', 44, 'PERMISSION_OVERRIDE', 'Technical & User Support Officer', '2026-05-19 00:49:07', 'Permission 103 updated (granted=1)'),
+(2179, 'user_permissions', 44, 'PERMISSION_OVERRIDE', 'Technical & User Support Officer', '2026-05-19 00:49:07', 'Permission 102 updated (granted=1)'),
+(2180, 'procurement_requests', 159, 'UPDATE', 'Nellesha Samuels', '2026-05-19 14:49:02', 'Signed request uploaded: Document_260519_094642.pdf'),
+(2181, 'procurement_requests', 159, 'SIGNED_REQUEST_UPLOA', 'Nellesha Samuels', '2026-05-19 14:49:02', 'Signed request uploaded by Nellesha Samuels: Document_260519_094642.pdf'),
+(2182, 'request_approvals', 130, 'APPROVE_STAGE', 'Nellesha Samuels', '2026-05-19 14:49:18', 'Approved by Director HRM&A'),
+(2183, 'procurement_requests', 159, 'STATUS_CHANGE', 'Nellesha Samuels', '2026-05-19 14:49:18', 'Approved → RFQ_LETTER_AVAILABLE (funds certified) by Director HRM&A'),
+(2184, 'procurement_requests', 159, 'RFQ_LETTER_AVAILABLE', 'Nellesha Samuels', '2026-05-19 14:49:18', 'Approval by Director HRM&A'),
+(2185, 'procurement_requests', 160, 'CREATE', 'Shermaine McKenzie', '2026-05-19 15:14:20', 'Procurement request created'),
+(2186, 'procurement_requests', 160, 'STATUS_CHANGE', 'Shermaine McKenzie', '2026-05-19 15:14:31', 'Draft → Submitted'),
+(2187, 'procurement_requests', 160, 'APPROVAL_CHAIN_CREAT', 'Shermaine McKenzie', '2026-05-19 15:14:31', 'Approval chain created: Deputy Government Chemist'),
+(2188, 'procurement_requests', 160, 'STATUS_CHANGE', 'Daneika Anderson', '2026-05-19 15:36:53', 'Submitted → Declined'),
+(2189, 'request_approvals', 131, 'REJECT_STAGE', 'Daneika Anderson', '2026-05-19 15:36:53', 'Rejected by Deputy Government Chemist - price quoted too low'),
+(2190, 'procurement_requests', 160, 'DECLINED', 'Daneika Anderson', '2026-05-19 15:36:55', 'Request declined by Deputy Government Chemist at Deputy Government Chemist stage'),
+(2191, 'procurement_requests', 160, 'STATUS_CHANGE', 'Shermaine McKenzie', '2026-05-19 15:37:19', 'Declined → Draft (Resubmitted by Shermaine McKenzie)'),
+(2192, 'procurement_requests', 160, 'RESUBMITTED', 'Shermaine McKenzie', '2026-05-19 15:37:19', 'Request resubmitted after decline by Shermaine McKenzie'),
+(2193, 'procurement_requests', 160, 'EDIT', 'Shermaine McKenzie', '2026-05-19 15:37:34', 'Procurement Request #160 edited.\n\nOLD ITEMS:\n- Agilent Enterprise Edition Caffeine Standard Kit | Qty: 1 | Part No. 5190-0488\n\nNEW ITEMS:\n- Agilent Enterprise Edition Caffeine Standard Kit | Qty: 1 | Part No. 5190-0488\n'),
+(2194, 'procurement_requests', 160, 'STATUS_CHANGE', 'Shermaine McKenzie', '2026-05-19 15:37:38', 'Draft → Submitted'),
+(2195, 'procurement_requests', 160, 'APPROVAL_CHAIN_CREAT', 'Shermaine McKenzie', '2026-05-19 15:37:38', 'Approval chain created: Deputy Government Chemist'),
+(2196, 'procurement_requests', 160, 'STATUS_CHANGE', 'Daneika Anderson', '2026-05-19 15:37:58', 'Submitted → Declined'),
+(2197, 'request_approvals', 132, 'REJECT_STAGE', 'Daneika Anderson', '2026-05-19 15:37:58', 'Rejected by Deputy Government Chemist - price quoted too low'),
+(2198, 'procurement_requests', 160, 'DECLINED', 'Daneika Anderson', '2026-05-19 15:38:00', 'Request declined by Deputy Government Chemist at Deputy Government Chemist stage'),
+(2199, 'procurement_requests', 160, 'STATUS_CHANGE', 'Shermaine McKenzie', '2026-05-19 15:39:45', 'Declined → Draft (Resubmitted by Shermaine McKenzie)'),
+(2200, 'procurement_requests', 160, 'RESUBMITTED', 'Shermaine McKenzie', '2026-05-19 15:39:45', 'Request resubmitted after decline by Shermaine McKenzie'),
+(2201, 'procurement_requests', 160, 'EDIT', 'Shermaine McKenzie', '2026-05-19 15:39:53', 'Procurement Request #160 edited.\n\nOLD ITEMS:\n- Agilent Enterprise Edition Caffeine Standard Kit | Qty: 1 | Part No. 5190-0488\n\nNEW ITEMS:\n- Agilent Enterprise Edition Caffeine Standard Kit | Qty: 1 | Part No. 5190-0488\n'),
+(2202, 'procurement_requests', 160, 'STATUS_CHANGE', 'Shermaine McKenzie', '2026-05-19 15:39:56', 'Draft → Submitted'),
+(2203, 'procurement_requests', 160, 'APPROVAL_CHAIN_CREAT', 'Shermaine McKenzie', '2026-05-19 15:39:56', 'Approval chain created: Deputy Government Chemist'),
+(2204, 'procurement_requests', 160, 'STATUS_CHANGE', 'Daneika Anderson', '2026-05-19 15:40:40', 'GC Approved (funds certified) — Status changed to RFQ_LETTER_AVAILABLE'),
+(2205, 'procurement_requests', 160, 'RFQ_LETTER_AVAILABLE', 'Daneika Anderson', '2026-05-19 15:40:40', 'GC approval by Daneika Anderson'),
+(2206, 'procurement_requests', 160, 'UPDATE', 'Daneika Anderson', '2026-05-19 16:21:51', 'Signed request uploaded: Caffteine srtandard procurement request.pdf'),
+(2207, 'procurement_requests', 160, 'SIGNED_REQUEST_UPLOA', 'Daneika Anderson', '2026-05-19 16:21:51', 'Signed request uploaded by Daneika Anderson: Caffteine srtandard procurement request.pdf'),
+(2208, 'procurement_requests', 160, 'UPDATE', 'Daneika Anderson', '2026-05-19 16:21:52', 'Signed request uploaded: Caffteine srtandard procurement request.pdf'),
+(2209, 'procurement_requests', 160, 'SIGNED_REQUEST_UPLOA', 'Daneika Anderson', '2026-05-19 16:21:52', 'Signed request uploaded by Daneika Anderson: Caffteine srtandard procurement request.pdf'),
+(2210, 'procurement_requests', 161, 'CREATE', 'Shermaine McKenzie', '2026-05-20 13:36:48', 'Procurement request created'),
+(2211, 'procurement_requests', 161, 'STATUS_CHANGE', 'Shermaine McKenzie', '2026-05-20 13:37:08', 'Draft → Submitted'),
+(2212, 'procurement_requests', 161, 'APPROVAL_CHAIN_CREAT', 'Shermaine McKenzie', '2026-05-20 13:37:08', 'Approval chain created: Deputy Government Chemist'),
+(2213, 'procurement_requests', 162, 'CREATE', 'Shermaine McKenzie', '2026-05-20 17:08:19', 'Procurement request created'),
+(2214, 'procurement_requests', 162, 'STATUS_CHANGE', 'Shermaine McKenzie', '2026-05-20 17:08:25', 'Draft → Submitted'),
+(2215, 'procurement_requests', 162, 'APPROVAL_CHAIN_CREAT', 'Shermaine McKenzie', '2026-05-20 17:08:25', 'Approval chain created: Deputy Government Chemist'),
+(2216, 'vendors', 13, 'CREATE', '42', '2026-05-20 22:03:25', 'Vendor \'Century Business Machines Limited\' created'),
+(2217, 'rfq_vendors', 87, 'CREATE', '42', '2026-05-20 22:04:16', 'Vendor \'Century Business Machines Limited\' added to RFQ RFQ-20260512-155 - RFQ notification email sent to jgordon@cbmja.com'),
+(2218, 'procurement_requests', 163, 'CREATE', 'Alfred Bryan', '2026-05-21 14:17:21', 'Reimbursement request created'),
+(2219, 'pre_authorizations', 2218, 'CREATE', 'Alfred Bryan', '2026-05-21 14:17:21', 'Pre-authorization created for reimbursement'),
+(2220, 'procurement_requests', 163, 'STATUS_CHANGE', 'Alfred Bryan', '2026-05-21 14:29:44', 'Reimbursement Request: Draft → Submitted'),
+(2221, 'procurement_requests', 163, 'APPROVAL_CHAIN_CREAT', 'Alfred Bryan', '2026-05-21 14:29:44', 'Reimbursement approval chain created: Finance Officer'),
+(2222, 'request_approvals', 136, 'APPROVE_STAGE', 'Latoya Gayle', '2026-05-21 18:25:28', 'Approved by Finance Officer'),
+(2223, 'procurement_requests', 163, 'STATUS_CHANGE', 'Latoya Gayle', '2026-05-21 18:25:28', 'Approved → AWARDED (funds certified) by Finance Officer'),
+(2224, 'procurement_requests', 163, 'AWARDED', 'Latoya Gayle', '2026-05-21 18:25:28', 'Approval by Finance Officer'),
+(2225, 'users', 45, 'CREATE', 'Technical & User Support Officer', '2026-05-22 14:45:17', 'User \'Troxel Orboine\' (troxel.orboine@moh.gov.jm) created by admin.'),
+(2226, 'procurement_requests', 164, 'CREATE', 'Alfred Bryan', '2026-05-26 13:38:08', 'Procurement request created'),
+(2227, 'procurement_requests', 164, 'STATUS_CHANGE', 'Alfred Bryan', '2026-05-26 13:38:20', 'Draft → Submitted'),
+(2228, 'procurement_requests', 164, 'APPROVAL_CHAIN_CREAT', 'Alfred Bryan', '2026-05-26 13:38:20', 'Approval chain created: HOD → Director HRM&A'),
+(2229, 'users', 45, 'PASSWORD_CHANGE', 'Troxel Orboine', '2026-05-26 16:18:29', 'Password updated'),
+(2230, 'rfqs', 38, 'CREATE', 'Gabrielle Green', '2026-05-27 19:56:33', 'RFQ created for request ID 161. Date: 2026-05-20, Deadline: 2026-05-27T11:00'),
+(2231, 'rfq_vendors', 88, 'CREATE', '44', '2026-05-27 19:56:42', 'Vendor \'Jam Labs\' added to RFQ RFQ-20260527-161 - No email address on file'),
+(2232, 'rfq_quotes', NULL, 'UPLOAD', NULL, '2026-05-27 19:59:25', 'Quote uploaded for RFQ ID 38'),
+(2233, 'procurement_requests', 165, 'CREATE', 'Alfred Bryan', '2026-05-27 21:09:01', 'Petty cash request created'),
+(2234, 'procurement_requests', 165, 'STATUS_CHANGE', 'Alfred Bryan', '2026-05-27 21:09:28', 'Petty Cash Request: Draft → Submitted'),
+(2235, 'procurement_requests', 165, 'APPROVAL_CHAIN_CREAT', 'Alfred Bryan', '2026-05-27 21:09:28', 'Petty cash approval chain created: Finance Officer'),
+(2236, 'request_approvals', 139, 'APPROVE_STAGE', 'Latoya Gayle', '2026-05-27 21:36:33', 'Approved by Finance Officer'),
+(2237, 'procurement_requests', 165, 'STATUS_CHANGE', 'Latoya Gayle', '2026-05-27 21:36:33', 'Approved → AWARDED (funds certified) by Finance Officer'),
+(2238, 'procurement_requests', 165, 'AWARDED', 'Latoya Gayle', '2026-05-27 21:36:33', 'Approval by Finance Officer'),
+(2239, 'users', 38, 'ADMIN_PASSWORD_RESET', '27', '2026-05-28 21:15:17', 'Admin reset user password'),
+(2240, 'rfqs', 39, 'CREATE', 'Gabrielle Green', '2026-05-29 14:25:59', 'RFQ created for request ID 162. Date: 2026-05-27, Deadline: 2026-06-03T11:00'),
+(2241, 'vendors', 7, 'UPDATE', '44', '2026-05-29 14:26:16', 'Updated: Email: ssmith@dsitservicesja.com → '),
+(2242, 'rfq_vendors', 89, 'CREATE', '44', '2026-05-29 14:26:42', 'Vendor \'D&S IT Services\' added to RFQ RFQ-20260529-162 - No email address on file'),
+(2243, 'rfq_quotes', NULL, 'UPLOAD', NULL, '2026-05-29 14:27:31', 'Quote uploaded for RFQ ID 39'),
+(2244, 'procurement_requests', 166, 'CREATE', 'Alfred Bryan', '2026-05-31 17:17:11', 'Procurement request created'),
+(2245, 'procurement_requests', 166, 'EDIT', 'Alfred Bryan', '2026-05-31 17:17:52', 'Procurement Request #166 edited.\n\nOLD ITEMS:\n- Assessment and Repair to leaking drain pipe in Toxicology Lab, Emerald Room & Main Stores  | Qty: 1 | \n- Water Filter Installation for Pharmaceutical lab  | Qty: 1 | \n\nNEW ITEMS:\n- Assessment and Repair to leaking drain pipe in Toxicology Lab, Emerald Room & Main Stores  | Qty: 1 | \n- Water Filter Installation for Pharmaceutical lab  | Qty: 1 | \n'),
+(2246, 'procurement_requests', 166, 'STATUS_CHANGE', 'Alfred Bryan', '2026-05-31 17:17:55', 'Draft → Submitted'),
+(2247, 'procurement_requests', 166, 'APPROVAL_CHAIN_CREAT', 'Alfred Bryan', '2026-05-31 17:17:55', 'Approval chain created: Director HRM&A'),
+(2248, 'procurement_requests', 161, 'STATUS_CHANGE', 'Daneika Anderson', '2026-06-01 14:27:23', 'GC Approved (funds certified) — Status changed to RFQ_LETTER_AVAILABLE'),
+(2249, 'procurement_requests', 161, 'RFQ_LETTER_AVAILABLE', 'Daneika Anderson', '2026-06-01 14:27:23', 'GC approval by Daneika Anderson'),
+(2250, 'procurement_requests', 167, 'CREATE', 'Alfred Bryan', '2026-06-01 17:23:20', 'Procurement request created'),
+(2251, 'procurement_requests', 167, 'STATUS_CHANGE', 'Alfred Bryan', '2026-06-01 17:23:26', 'Draft → Submitted'),
+(2252, 'procurement_requests', 167, 'APPROVAL_CHAIN_CREAT', 'Alfred Bryan', '2026-06-01 17:23:26', 'Approval chain created: Director HRM&A'),
+(2253, 'procurement_requests', 168, 'CREATE', 'Alfred Bryan', '2026-06-01 17:31:22', 'Procurement request created'),
+(2254, 'procurement_requests', 168, 'STATUS_CHANGE', 'Alfred Bryan', '2026-06-01 17:31:28', 'Draft → Submitted'),
+(2255, 'procurement_requests', 168, 'APPROVAL_CHAIN_CREAT', 'Alfred Bryan', '2026-06-01 17:31:28', 'Approval chain created: Director HRM&A'),
+(2256, 'users', 38, 'PASSWORD_CHANGE', 'Waveney Warrick', '2026-06-01 17:39:45', 'Password updated'),
+(2257, 'procurement_requests', 169, 'CREATE', 'Waveney Warrick', '2026-06-01 17:44:08', 'Procurement request created'),
+(2258, 'procurement_requests', 169, 'STATUS_CHANGE', 'Waveney Warrick', '2026-06-01 17:44:16', 'Draft → Submitted'),
+(2259, 'procurement_requests', 169, 'APPROVAL_CHAIN_CREAT', 'Waveney Warrick', '2026-06-01 17:44:16', 'Approval chain created: Deputy Government Chemist'),
+(2260, 'procurement_requests', 170, 'CREATE', 'Alfred Bryan', '2026-06-01 21:33:10', 'Reimbursement request created'),
+(2261, 'pre_authorizations', 2260, 'CREATE', 'Alfred Bryan', '2026-06-01 21:33:10', 'Pre-authorization created for reimbursement'),
+(2262, 'procurement_requests', 170, 'STATUS_CHANGE', 'Alfred Bryan', '2026-06-01 21:33:13', 'Reimbursement Request: Draft → Submitted'),
+(2263, 'procurement_requests', 170, 'APPROVAL_CHAIN_CREAT', 'Alfred Bryan', '2026-06-01 21:33:13', 'Reimbursement approval chain created: Finance Officer'),
+(2264, 'vendors', 14, 'CREATE', '42', '2026-06-02 14:27:11', 'Vendor \'Minott Equipment and Chemicals\' created'),
+(2265, 'procurement_requests', 164, 'UPDATE', 'Nellesha Samuels', '2026-06-02 16:12:36', 'Signed request uploaded: Document_260602_111021.pdf'),
+(2266, 'procurement_requests', 164, 'SIGNED_REQUEST_UPLOA', 'Nellesha Samuels', '2026-06-02 16:12:36', 'Signed request uploaded by Nellesha Samuels: Document_260602_111021.pdf');
+INSERT INTO `audit_log` (`audit_id`, `table_name`, `record_id`, `action`, `changed_by`, `change_date`, `notes`) VALUES
+(2267, 'request_approvals', 142, 'APPROVE_STAGE', 'Nellesha Samuels', '2026-06-02 16:20:10', 'Approved by Director HRM&A'),
+(2268, 'procurement_requests', 168, 'STATUS_CHANGE', 'Nellesha Samuels', '2026-06-02 16:20:10', 'Approved → RFQ_LETTER_AVAILABLE (funds certified) by Director HRM&A'),
+(2269, 'procurement_requests', 168, 'RFQ_LETTER_AVAILABLE', 'Nellesha Samuels', '2026-06-02 16:20:10', 'Approval by Director HRM&A'),
+(2270, 'procurement_requests', 168, 'UPDATE', 'Nellesha Samuels', '2026-06-02 16:20:33', 'Signed request uploaded: Document_260602_111629.pdf'),
+(2271, 'procurement_requests', 168, 'SIGNED_REQUEST_UPLOA', 'Nellesha Samuels', '2026-06-02 16:20:33', 'Signed request uploaded by Nellesha Samuels: Document_260602_111629.pdf'),
+(2272, 'procurement_requests', 166, 'STATUS_CHANGE', 'Nellesha Samuels', '2026-06-02 16:29:39', 'Submitted → Declined by Nellesha Samuels'),
+(2273, 'procurement_requests', 166, 'DECLINED', 'Nellesha Samuels', '2026-06-02 16:29:39', 'Request declined: Please revisit quotation. — by Nellesha Samuels'),
+(2274, 'procurement_requests', 167, 'STATUS_CHANGE', 'Nellesha Samuels', '2026-06-02 16:30:25', 'Submitted → Declined by Nellesha Samuels'),
+(2275, 'procurement_requests', 167, 'DECLINED', 'Nellesha Samuels', '2026-06-02 16:30:25', 'Request declined: Please redo — by Nellesha Samuels'),
+(2276, 'procurement_requests', 171, 'CREATE', 'Alfred Bryan', '2026-06-02 16:43:32', 'Procurement request created'),
+(2277, 'procurement_requests', 171, 'STATUS_CHANGE', 'Alfred Bryan', '2026-06-02 16:43:38', 'Draft → Submitted'),
+(2278, 'procurement_requests', 171, 'APPROVAL_CHAIN_CREAT', 'Alfred Bryan', '2026-06-02 16:43:38', 'Approval chain created: Director HRM&A'),
+(2279, 'rfqs', 40, 'CREATE', 'Yanique McKenzie', '2026-06-02 16:43:50', 'RFQ created for request ID 168. Date: 2026-06-01, Deadline: 2026-06-08T11:00'),
+(2280, 'procurement_requests', 172, 'CREATE', 'Alfred Bryan', '2026-06-02 16:57:30', 'Procurement request created'),
+(2281, 'procurement_requests', 172, 'STATUS_CHANGE', 'Alfred Bryan', '2026-06-02 16:57:41', 'Draft → Submitted'),
+(2282, 'procurement_requests', 172, 'APPROVAL_CHAIN_CREAT', 'Alfred Bryan', '2026-06-02 16:57:41', 'Approval chain created: Director HRM&A'),
+(2283, 'procurement_requests', 173, 'CREATE', 'Alfred Bryan', '2026-06-02 17:50:28', 'Procurement request created'),
+(2284, 'procurement_requests', 173, 'STATUS_CHANGE', 'Alfred Bryan', '2026-06-02 17:52:19', 'Draft → Submitted'),
+(2285, 'procurement_requests', 173, 'APPROVAL_CHAIN_CREAT', 'Alfred Bryan', '2026-06-02 17:52:19', 'Approval chain created: Director HRM&A'),
+(2286, 'procurement_requests', 172, 'UPDATE', 'Nellesha Samuels', '2026-06-02 18:25:35', 'Signed request uploaded: Document_260602_132109.pdf'),
+(2287, 'procurement_requests', 172, 'SIGNED_REQUEST_UPLOA', 'Nellesha Samuels', '2026-06-02 18:25:35', 'Signed request uploaded by Nellesha Samuels: Document_260602_132109.pdf'),
+(2288, 'request_approvals', 146, 'APPROVE_STAGE', 'Nellesha Samuels', '2026-06-02 18:25:55', 'Approved by Director HRM&A'),
+(2289, 'procurement_requests', 172, 'STATUS_CHANGE', 'Nellesha Samuels', '2026-06-02 18:25:55', 'Approved → RFQ_LETTER_AVAILABLE (funds certified) by Director HRM&A'),
+(2290, 'procurement_requests', 172, 'RFQ_LETTER_AVAILABLE', 'Nellesha Samuels', '2026-06-02 18:25:55', 'Approval by Director HRM&A'),
+(2291, 'vendors', 14, 'UPDATE', '42', '2026-06-02 19:30:41', 'Updated: Email: customerservice1@minottchem.com → '),
+(2292, 'rfq_vendors', 90, 'CREATE', '42', '2026-06-02 19:31:08', 'Vendor \'Minott Equipment and Chemicals\' added to RFQ RFQ-20260602-168 - No email address on file'),
+(2293, 'rfq_quotes', NULL, 'UPLOAD', NULL, '2026-06-02 19:34:04', 'Quote uploaded for RFQ ID 40'),
+(2294, 'rfq_quotes', NULL, 'UPLOAD', NULL, '2026-06-02 19:34:04', 'Quote uploaded for RFQ ID 40'),
+(2295, 'rfq_quotes', NULL, 'UPLOAD', NULL, '2026-06-02 19:34:05', 'Quote uploaded for RFQ ID 40'),
+(2296, 'rfq_quotes', NULL, 'UPLOAD', NULL, '2026-06-02 19:34:05', 'Quote uploaded for RFQ ID 40'),
+(2297, 'rfq_quotes', NULL, 'UPLOAD', NULL, '2026-06-02 19:34:05', 'Quote uploaded for RFQ ID 40'),
+(2298, 'rfq_quotes', NULL, 'UPLOAD', NULL, '2026-06-02 19:34:09', 'Quote uploaded for RFQ ID 40'),
+(2299, 'rfq_quotes', NULL, 'UPLOAD', NULL, '2026-06-02 19:34:09', 'Quote uploaded for RFQ ID 40'),
+(2300, 'rfq_quotes', NULL, 'UPLOAD', NULL, '2026-06-02 19:34:09', 'Quote uploaded for RFQ ID 40'),
+(2301, 'rfq_quotes', NULL, 'UPLOAD', NULL, '2026-06-02 19:34:09', 'Quote uploaded for RFQ ID 40'),
+(2302, 'procurement_requests', 173, 'UPDATE', 'Nellesha Samuels', '2026-06-03 16:01:54', 'Signed request uploaded: Document_260603_110100.pdf'),
+(2303, 'procurement_requests', 173, 'SIGNED_REQUEST_UPLOA', 'Nellesha Samuels', '2026-06-03 16:01:54', 'Signed request uploaded by Nellesha Samuels: Document_260603_110100.pdf'),
+(2304, 'request_approvals', 147, 'APPROVE_STAGE', 'Nellesha Samuels', '2026-06-03 16:02:07', 'Approved by Director HRM&A'),
+(2305, 'procurement_requests', 173, 'STATUS_CHANGE', 'Nellesha Samuels', '2026-06-03 16:02:07', 'Approved → RFQ_LETTER_AVAILABLE (funds certified) by Director HRM&A'),
+(2306, 'procurement_requests', 173, 'RFQ_LETTER_AVAILABLE', 'Nellesha Samuels', '2026-06-03 16:02:07', 'Approval by Director HRM&A'),
+(2307, 'rfqs', 41, 'CREATE', 'Gabrielle Green', '2026-06-03 16:06:13', 'RFQ created for request ID 172. Date: 2026-06-02, Deadline: 2026-06-09T11:00'),
+(2308, 'procurement_requests', 171, 'UPDATE', 'Nellesha Samuels', '2026-06-03 16:17:11', 'Signed request uploaded: Document_260603_111143.pdf'),
+(2309, 'procurement_requests', 171, 'SIGNED_REQUEST_UPLOA', 'Nellesha Samuels', '2026-06-03 16:17:11', 'Signed request uploaded by Nellesha Samuels: Document_260603_111143.pdf'),
+(2310, 'request_approvals', 145, 'APPROVE_STAGE', 'Nellesha Samuels', '2026-06-03 16:17:21', 'Approved by Director HRM&A'),
+(2311, 'procurement_requests', 171, 'STATUS_CHANGE', 'Nellesha Samuels', '2026-06-03 16:17:21', 'Approved → RFQ_LETTER_AVAILABLE (funds certified) by Director HRM&A'),
+(2312, 'procurement_requests', 171, 'RFQ_LETTER_AVAILABLE', 'Nellesha Samuels', '2026-06-03 16:17:21', 'Approval by Director HRM&A'),
+(2313, 'procurement_requests', 174, 'CREATE', 'Shermaine McKenzie', '2026-06-03 18:16:21', 'Petty cash request created'),
+(2314, 'procurement_requests', 175, 'CREATE', 'Shermaine McKenzie', '2026-06-03 18:17:12', 'Petty cash request created'),
+(2315, 'user_permissions', 37, 'PERMISSION_OVERRIDE', 'Technical & User Support Officer', '2026-06-03 19:44:22', 'Permission 103 updated (granted=1)'),
+(2316, 'user_permissions', 37, 'PERMISSION_OVERRIDE', 'Technical & User Support Officer', '2026-06-03 19:44:22', 'Permission 102 updated (granted=1)'),
+(2317, 'procurement_requests', 174, 'STATUS_CHANGE', 'Shermaine McKenzie', '2026-06-03 19:45:51', 'Petty Cash Request: Draft → Submitted'),
+(2318, 'procurement_requests', 174, 'APPROVAL_CHAIN_CREAT', 'Shermaine McKenzie', '2026-06-03 19:45:51', 'Petty cash approval chain created: Finance Officer'),
+(2319, 'procurement_requests', 176, 'CREATE', 'Alfred Bryan', '2026-06-03 19:59:50', 'Procurement request created'),
+(2320, 'procurement_requests', 162, 'STATUS_CHANGE', 'Daneika Anderson', '2026-06-04 17:01:15', 'Submitted → Declined by Daneika Anderson'),
+(2321, 'procurement_requests', 162, 'DECLINED', 'Daneika Anderson', '2026-06-04 17:01:15', 'Request declined: No budgetary support — by Daneika Anderson'),
+(2322, 'procurement_requests', 169, 'STATUS_CHANGE', 'Daneika Anderson', '2026-06-04 17:01:51', 'GC Approved (funds certified) — Status changed to RFQ_LETTER_AVAILABLE'),
+(2323, 'procurement_requests', 169, 'RFQ_LETTER_AVAILABLE', 'Daneika Anderson', '2026-06-04 17:01:51', 'GC approval by Daneika Anderson'),
+(2324, 'procurement_requests', 161, 'UPDATE', 'Daneika Anderson', '2026-06-04 17:32:25', 'Signed request uploaded: PR037.pdf'),
+(2325, 'procurement_requests', 161, 'SIGNED_REQUEST_UPLOA', 'Daneika Anderson', '2026-06-04 17:32:25', 'Signed request uploaded by Daneika Anderson: PR037.pdf'),
+(2326, 'procurement_requests', 169, 'UPDATE', 'Daneika Anderson', '2026-06-04 17:37:20', 'Signed request uploaded: PR047.pdf'),
+(2327, 'procurement_requests', 169, 'SIGNED_REQUEST_UPLOA', 'Daneika Anderson', '2026-06-04 17:37:20', 'Signed request uploaded by Daneika Anderson: PR047.pdf'),
+(2328, 'procurement_requests', 177, 'CREATE', 'Alfred Bryan', '2026-06-04 20:20:27', 'Procurement request created'),
+(2329, 'vendors', 15, 'CREATE', '44', '2026-06-04 20:45:55', 'Vendor \'Sanmerna Paper Products\' created'),
+(2330, 'rfq_vendors', 91, 'CREATE', '44', '2026-06-04 20:46:07', 'Vendor \'Sanmerna Paper Products\' added to RFQ RFQ-20260603-172 - No email address on file'),
+(2331, 'rfq_quotes', NULL, 'UPLOAD', NULL, '2026-06-04 20:52:26', 'Quote uploaded for RFQ ID 41'),
+(2332, 'vendors', 8, 'DELETE', 'Technical & User Support Officer', '2026-06-05 02:33:12', 'Vendor \"Demario Ewan\" deleted from master list'),
+(2333, 'procurement_requests', 176, 'EDIT', 'Alfred Bryan', '2026-06-05 15:06:01', 'Procurement Request #176 edited.\n\nOLD ITEMS:\n- Biometric Fingerprint Clock | Qty: 1 | \n- Label Generator for Assets | Qty: 1 | \n\nNEW ITEMS:\n- Biometric Fingerprint Clock | Qty: 1 | \n- Label Generator for Assets | Qty: 1 | \n'),
+(2334, 'procurement_requests', 176, 'STATUS_CHANGE', 'Alfred Bryan', '2026-06-05 15:06:05', 'Draft → Submitted'),
+(2335, 'procurement_requests', 176, 'APPROVAL_CHAIN_CREAT', 'Alfred Bryan', '2026-06-05 15:06:05', 'Approval chain created: Director HRM&A'),
+(2336, 'procurement_requests', 177, 'EDIT', 'Alfred Bryan', '2026-06-05 15:07:27', 'Procurement Request #177 edited.\n\nOLD ITEMS:\n- Samsung Galaxy A14 | Qty: 8 | Phone Case\n- Samsung Galaxy A14 | Qty: 8 | Screen Protector\n- Samsung Galaxy A14 | Qty: 8 | Charger\n\nNEW ITEMS:\n- Samsung Galaxy A14 | Qty: 8 | Phone Case\n- Samsung Galaxy A14 | Qty: 8 | Screen Protector\n- Samsung Galaxy A14 | Qty: 8 | Charger\n- SAMSUNG A04e  | Qty: 1 | Phone Case\n'),
+(2337, 'system_config', 0, 'UPDATE', 'Technical & User Support Officer', '2026-06-05 15:07:55', 'System settings updated: enable_notifications=ON, threshold=3,000,000.00, petty_cash_limit=5,000.00, usd_to_jmd_rate=155.2200, hod_approval_threshold=1,500,000.00, committee_review_threshold=3,000,000.00'),
+(2338, 'request_approvals', 149, 'APPROVE_STAGE', 'Nellesha Samuels', '2026-06-05 15:11:34', 'Approved by Director HRM&A'),
+(2339, 'procurement_requests', 176, 'STATUS_CHANGE', 'Nellesha Samuels', '2026-06-05 15:11:34', 'Approved → RFQ_LETTER_AVAILABLE (funds certified) by Director HRM&A'),
+(2340, 'procurement_requests', 176, 'RFQ_LETTER_AVAILABLE', 'Nellesha Samuels', '2026-06-05 15:11:34', 'Approval by Director HRM&A'),
+(2341, 'procurement_requests', 176, 'UPDATE', 'Nellesha Samuels', '2026-06-05 15:40:33', 'Signed request uploaded: Document_260605_103855.pdf'),
+(2342, 'procurement_requests', 176, 'SIGNED_REQUEST_UPLOA', 'Nellesha Samuels', '2026-06-05 15:40:33', 'Signed request uploaded by Nellesha Samuels: Document_260605_103855.pdf'),
+(2343, 'system_config', 0, 'UPDATE', 'Technical & User Support Officer', '2026-06-05 16:33:55', 'System settings updated: enable_notifications=ON, threshold=3,000,000.00, petty_cash_limit=5,000.00, usd_to_jmd_rate=155.2200, hod_approval_threshold=500,000.00, committee_review_threshold=3,000,000.00'),
+(2344, 'system_config', 0, 'UPDATE', 'Technical & User Support Officer', '2026-06-05 16:37:05', 'System settings updated: enable_notifications=ON, threshold=3,000,000.00, petty_cash_limit=5,000.00, usd_to_jmd_rate=155.2200, hod_approval_threshold=500,000.00, committee_review_threshold=3,000,000.00'),
+(2345, 'procurement_requests', 178, 'CREATE', 'Technical & User Support Officer', '2026-06-05 17:52:59', 'Procurement request created'),
+(2346, 'procurement_requests', 178, 'STATUS_CHANGE', 'Technical & User Support Officer', '2026-06-05 17:53:10', 'Draft → Submitted'),
+(2347, 'procurement_requests', 178, 'APPROVAL_CHAIN_CREAT', 'Technical & User Support Officer', '2026-06-05 17:53:10', 'Approval chain created: Director HRM&A'),
+(2348, 'procurement_requests', 178, 'STATUS_CHANGE', 'Technical & User Support Officer', '2026-06-05 17:53:29', 'SUBMITTED → Cancelled'),
+(2349, 'procurement_requests', 178, 'CANCELLED', 'Technical & User Support Officer', '2026-06-05 17:53:29', 'Request cancelled: TEsting Feature'),
+(2350, 'vendors', 16, 'CREATE', '42', '2026-06-05 20:59:17', 'Vendor \'All Power\' created'),
+(2351, 'vendors', 17, 'CREATE', '42', '2026-06-05 21:07:57', 'Vendor \'Roger Clayton\' created'),
+(2352, 'procurement_requests', 179, 'CREATE', 'Shermaine McKenzie', '2026-06-08 15:48:35', 'Reimbursement request created'),
+(2353, 'pre_authorizations', 2352, 'CREATE', 'Shermaine McKenzie', '2026-06-08 15:48:35', 'Pre-authorization created for reimbursement'),
+(2354, 'procurement_requests', 180, 'CREATE', 'Shermaine McKenzie', '2026-06-08 15:56:26', 'Reimbursement request created'),
+(2355, 'pre_authorizations', 2354, 'CREATE', 'Shermaine McKenzie', '2026-06-08 15:56:26', 'Pre-authorization created for reimbursement'),
+(2356, 'procurement_requests', 181, 'CREATE', 'Shermaine McKenzie', '2026-06-08 16:01:24', 'Reimbursement request created'),
+(2357, 'pre_authorizations', 2356, 'CREATE', 'Shermaine McKenzie', '2026-06-08 16:01:24', 'Pre-authorization created for reimbursement'),
+(2358, 'procurement_requests', 182, 'CREATE', 'Shermaine McKenzie', '2026-06-08 16:14:44', 'Procurement request created'),
+(2359, 'procurement_requests', 182, 'EDIT', 'Shermaine McKenzie', '2026-06-08 16:15:06', 'Procurement Request #182 edited.\n\nOLD ITEMS:\n- Thermal Paper 57 mmx 13m, 10 roll per pk | Qty: 1 | Item Code: G7910-87002\n- PTFE Frits, 5 pK | Qty: 2 | Lot Code: 01018-22707\n- 708-DS Printer Upgrade Kit | Qty: 1 | Lot Code: G7910-68025\n\nNEW ITEMS:\n- Thermal Paper 57 mmx 13m, 10 roll per pk | Qty: 1 | Item Code: G7910-87002\n- PTFE Frits, 5 pK | Qty: 2 | Lot Code: 01018-22707\n- 708-DS Printer Upgrade Kit | Qty: 1 | Lot Code: G7910-68025\n'),
+(2360, 'procurement_requests', 182, 'EDIT', 'Shermaine McKenzie', '2026-06-08 16:15:24', 'Procurement Request #182 edited.\n\nOLD ITEMS:\n- Thermal Paper 57 mmx 13m, 10 roll per pk | Qty: 1 | Item Code: G7910-87002\n- PTFE Frits, 5 pK | Qty: 2 | Lot Code: 01018-22707\n- 708-DS Printer Upgrade Kit | Qty: 1 | Lot Code: G7910-68025\n\nNEW ITEMS:\n- Thermal Paper 57 mmx 13m, 10 roll per pk | Qty: 1 | Item Code: G7910-87002\n- PTFE Frits, 5 pK | Qty: 2 | Lot Code: 01018-22707\n- 708-DS Printer Upgrade Kit | Qty: 1 | Lot Code: G7910-68025\n'),
+(2361, 'procurement_requests', 182, 'STATUS_CHANGE', 'Shermaine McKenzie', '2026-06-08 16:15:53', 'Draft → Submitted'),
+(2362, 'procurement_requests', 182, 'APPROVAL_CHAIN_CREAT', 'Shermaine McKenzie', '2026-06-08 16:15:53', 'Approval chain created: Deputy Government Chemist'),
+(2363, 'procurement_requests', 181, 'STATUS_CHANGE', 'Shermaine McKenzie', '2026-06-08 16:17:16', 'Reimbursement Request: Draft → Submitted'),
+(2364, 'procurement_requests', 181, 'APPROVAL_CHAIN_CREAT', 'Shermaine McKenzie', '2026-06-08 16:17:16', 'Reimbursement approval chain created: Finance Officer'),
+(2365, 'procurement_requests', 180, 'STATUS_CHANGE', 'Shermaine McKenzie', '2026-06-08 16:17:37', 'Reimbursement Request: Draft → Submitted'),
+(2366, 'procurement_requests', 180, 'APPROVAL_CHAIN_CREAT', 'Shermaine McKenzie', '2026-06-08 16:17:37', 'Reimbursement approval chain created: Finance Officer'),
+(2367, 'procurement_requests', 179, 'STATUS_CHANGE', 'Shermaine McKenzie', '2026-06-08 16:17:55', 'Reimbursement Request: Draft → Submitted'),
+(2368, 'procurement_requests', 179, 'APPROVAL_CHAIN_CREAT', 'Shermaine McKenzie', '2026-06-08 16:17:55', 'Reimbursement approval chain created: Finance Officer'),
+(2369, 'rfqs', 42, 'CREATE', 'Gabrielle Green', '2026-06-08 18:53:37', 'RFQ created for request ID 176. Date: 2026-06-08, Deadline: 2026-06-15T11:00'),
+(2370, 'procurement_requests', 183, 'CREATE', 'Alfred Bryan', '2026-06-09 20:39:46', 'Petty cash request created'),
+(2371, 'procurement_requests', 184, 'CREATE', 'Alfred Bryan', '2026-06-09 21:32:17', 'Procurement request created'),
+(2372, 'procurement_requests', 184, 'STATUS_CHANGE', 'Alfred Bryan', '2026-06-09 21:32:38', 'Draft → Submitted'),
+(2373, 'procurement_requests', 184, 'APPROVAL_CHAIN_CREAT', 'Alfred Bryan', '2026-06-09 21:32:38', 'Approval chain created: Director HRM&A'),
+(2374, 'user_permissions', 40, 'PERMISSION_OVERRIDE', 'Technical & User Support Officer', '2026-06-11 13:45:01', 'Permission 103 updated (granted=1)'),
+(2375, 'user_permissions', 40, 'PERMISSION_OVERRIDE', 'Technical & User Support Officer', '2026-06-11 13:45:01', 'Permission 102 updated (granted=1)'),
+(2376, 'procurement_requests', 183, 'STATUS_CHANGE', 'Alfred Bryan', '2026-06-11 13:59:16', 'Petty Cash Request: Draft → Submitted'),
+(2377, 'procurement_requests', 183, 'APPROVAL_CHAIN_CREAT', 'Alfred Bryan', '2026-06-11 13:59:16', 'Petty cash approval chain created: Finance Officer'),
+(2378, 'procurement_requests', 177, 'EDIT', 'Alfred Bryan', '2026-06-11 14:01:40', 'Procurement Request #177 edited.\n\nOLD ITEMS:\n- Samsung Galaxy A14 | Qty: 8 | Phone Case\n- Samsung Galaxy A14 | Qty: 8 | Screen Protector\n- Samsung Galaxy A14 | Qty: 8 | Charger\n- SAMSUNG A04e  | Qty: 1 | Phone Case\n\nNEW ITEMS:\n- Samsung Galaxy A14 | Qty: 8 | Screen Protector\n- Samsung Galaxy A14 | Qty: 8 | Screen Protector\n- Samsung Galaxy A14 | Qty: 8 | Charger - Fast Charge\n- Samsung A04e  | Qty: 1 | Phone Case\n- Samsung A04e  | Qty: 1 | Screen Protector\n- Samsung A04e  | Qty: 1 | Charger - Fast Charge\n'),
+(2379, 'procurement_requests', 177, 'STATUS_CHANGE', 'Alfred Bryan', '2026-06-11 14:01:47', 'Draft → Submitted'),
+(2380, 'procurement_requests', 177, 'APPROVAL_CHAIN_CREAT', 'Alfred Bryan', '2026-06-11 14:01:47', 'Approval chain created: Director HRM&A'),
+(2383, 'procurement_requests', 177, 'STATUS_CHANGE', 'Nellesha Samuels', '2026-06-11 14:29:01', 'Submitted → Declined by Nellesha Samuels'),
+(2384, 'procurement_requests', 177, 'DECLINED', 'Nellesha Samuels', '2026-06-11 14:29:01', 'Request declined: Error in request. — by Nellesha Samuels'),
+(2385, 'procurement_requests', 184, 'UPDATE', 'Nellesha Samuels', '2026-06-11 15:13:47', 'Signed request uploaded: Document_260611_101227.pdf'),
+(2386, 'procurement_requests', 184, 'SIGNED_REQUEST_UPLOA', 'Nellesha Samuels', '2026-06-11 15:13:47', 'Signed request uploaded by Nellesha Samuels: Document_260611_101227.pdf'),
+(2387, 'request_approvals', 155, 'APPROVE_STAGE', 'Nellesha Samuels', '2026-06-11 15:13:58', 'Approved by Director HRM&A'),
+(2388, 'procurement_requests', 184, 'STATUS_CHANGE', 'Nellesha Samuels', '2026-06-11 15:13:58', 'Approved → RFQ_LETTER_AVAILABLE (funds certified) by Director HRM&A'),
+(2389, 'procurement_requests', 184, 'RFQ_LETTER_AVAILABLE', 'Nellesha Samuels', '2026-06-11 15:13:58', 'Approval by Director HRM&A'),
+(2390, 'procurement_requests', 180, 'UPDATE', 'Daneika Anderson', '2026-06-11 16:09:00', 'Signed request uploaded: PRO signed request.pdf'),
+(2391, 'procurement_requests', 180, 'SIGNED_REQUEST_UPLOA', 'Daneika Anderson', '2026-06-11 16:09:00', 'Signed request uploaded by Daneika Anderson: PRO signed request.pdf'),
+(2392, 'procurement_requests', 181, 'UPDATE', 'Daneika Anderson', '2026-06-11 16:16:09', 'Signed request uploaded: PR057 signed procurement request.pdf'),
+(2393, 'procurement_requests', 181, 'SIGNED_REQUEST_UPLOA', 'Daneika Anderson', '2026-06-11 16:16:09', 'Signed request uploaded by Daneika Anderson: PR057 signed procurement request.pdf'),
+(2394, 'procurement_requests', 182, 'STATUS_CHANGE', 'Daneika Anderson', '2026-06-11 16:42:19', 'GC Approved (funds certified) — Status changed to RFQ_LETTER_AVAILABLE'),
+(2395, 'procurement_requests', 182, 'RFQ_LETTER_AVAILABLE', 'Daneika Anderson', '2026-06-11 16:42:19', 'GC approval by Daneika Anderson'),
+(2396, 'users', 37, 'LOCKOUT', '37', '2026-06-11 16:56:02', 'Account locked after failed attempts'),
+(2397, 'users', 37, 'ACCOUNT_UNLOCKED', 'Demario Ewan', '2026-06-11 16:59:39', 'Account unlocked by admin (User ID: 30). Previous failed attempts: 5'),
+(2398, 'users', 37, 'ADMIN_PASSWORD_RESET', '27', '2026-06-11 17:08:08', 'Admin reset user password'),
+(2399, 'users', 37, 'PASSWORD_CHANGE', 'Shermaine McKenzie', '2026-06-11 20:37:10', 'Password updated'),
+(2400, 'rfq_quotes', NULL, 'REVIEW', NULL, '2026-06-15 14:16:32', 'Quote 96 reviewed: MEETS_REQUIREMENTS by Alfred Bryan'),
+(2401, 'procurement_requests', 168, 'QUOTE_APPROVED', 'Alfred Bryan', '2026-06-15 14:16:32', 'Quote from Minott Equipment and Chemicals approved by Alfred Bryan. Finance notified to verify funds.'),
+(2402, 'procurement_requests', 185, 'CREATE', 'Alfred Bryan', '2026-06-15 14:21:59', 'Procurement request created'),
+(2403, 'procurement_requests', 185, 'EDIT', 'Alfred Bryan', '2026-06-15 14:23:15', 'Procurement Request #185 edited.\n\nOLD ITEMS:\n- Samsung Galaxy A14 | Qty: 8 | Screen Protector\n- Samsung Galaxy A14 | Qty: 8 | Phone Case\n- Samsung Galaxy A04e | Qty: 1 | Phone Case\n- Samsung Galaxy A04e | Qty: 1 | Screen Protector\n\nNEW ITEMS:\n- Samsung Galaxy A14 | Qty: 8 | Screen Protector\n- Samsung Galaxy A14 | Qty: 8 | Phone Case\n- Samsung Galaxy A04e | Qty: 1 | Phone Case\n- Samsung Galaxy A04e | Qty: 1 | Screen Protector\n'),
+(2404, 'procurement_requests', 185, 'STATUS_CHANGE', 'Alfred Bryan', '2026-06-15 14:23:25', 'Draft → Submitted'),
+(2405, 'procurement_requests', 185, 'APPROVAL_CHAIN_CREAT', 'Alfred Bryan', '2026-06-15 14:23:25', 'Approval chain created: Director HRM&A'),
+(2406, 'users', 34, 'STATUS_TOGGLE', '27', '2026-06-15 15:31:42', 'User disabled'),
+(2407, 'users', 46, 'CREATE', 'Technical & User Support Officer', '2026-06-15 15:34:37', 'User \'Ackelia McLaren\' (ackelia.mclaren@moh.gov.jm) created by admin.'),
+(2408, 'users', 46, 'PASSWORD_CHANGE', 'Ackelia McLaren', '2026-06-15 16:27:25', 'Password updated'),
+(2409, 'procurement_requests', 185, 'UPDATE', 'Nellesha Samuels', '2026-06-15 16:36:25', 'Signed request uploaded: Procurement Request PR061_260615_113517.pdf'),
+(2410, 'procurement_requests', 185, 'SIGNED_REQUEST_UPLOA', 'Nellesha Samuels', '2026-06-15 16:36:25', 'Signed request uploaded by Nellesha Samuels: Procurement Request PR061_260615_113517.pdf'),
+(2411, 'request_approvals', 158, 'APPROVE_STAGE', 'Nellesha Samuels', '2026-06-15 16:36:36', 'Approved by Director HRM&A'),
+(2412, 'procurement_requests', 185, 'STATUS_CHANGE', 'Nellesha Samuels', '2026-06-15 16:36:36', 'Approved → RFQ_LETTER_AVAILABLE (funds certified) by Director HRM&A'),
+(2413, 'procurement_requests', 185, 'RFQ_LETTER_AVAILABLE', 'Nellesha Samuels', '2026-06-15 16:36:36', 'Approval by Director HRM&A'),
+(2414, 'rfqs', 43, 'CREATE', 'Gabrielle Green', '2026-06-15 21:18:32', 'RFQ created for request ID 169. Date: 2026-06-01, Deadline: 2026-06-08T11:00'),
+(2415, 'vendors', 18, 'CREATE', '44', '2026-06-15 21:19:21', 'Vendor \'Recharged Distributors Ltd\' created'),
+(2416, 'rfq_vendors', 92, 'CREATE', '44', '2026-06-15 21:19:32', 'Vendor \'Recharged Distributors Ltd\' added to RFQ RFQ-20260615-169 - No email address on file'),
+(2417, 'rfq_quotes', NULL, 'UPLOAD', NULL, '2026-06-15 21:27:22', 'Quote uploaded for RFQ ID 43'),
+(2418, 'rfqs', 44, 'CREATE', 'Gabrielle Green', '2026-06-15 21:35:57', 'RFQ created for request ID 182. Date: 2026-06-09, Deadline: 2026-06-16T11:00'),
+(2419, 'vendors', 19, 'CREATE', '44', '2026-06-15 21:38:51', 'Vendor \'Analogic Solution\' created'),
+(2420, 'rfq_vendors', 93, 'CREATE', '44', '2026-06-15 21:39:58', 'Vendor \'Analogic Solution\' added to RFQ RFQ-20260615-182 - No email address on file'),
+(2421, 'rfq_quotes', NULL, 'UPLOAD', NULL, '2026-06-15 21:40:41', 'Quote uploaded for RFQ ID 44'),
+(2422, 'user_permissions', 42, 'PERMISSION_OVERRIDE', 'Technical & User Support Officer', '2026-06-17 13:58:32', 'Permission 103 updated (granted=1)'),
+(2423, 'user_permissions', 42, 'PERMISSION_OVERRIDE', 'Technical & User Support Officer', '2026-06-17 13:58:32', 'Permission 102 updated (granted=1)'),
+(2424, 'user_permissions', 42, 'PERMISSION_OVERRIDE', 'Technical & User Support Officer', '2026-06-17 13:59:23', 'Permission 103 updated (granted=1)'),
+(2425, 'user_permissions', 42, 'PERMISSION_OVERRIDE', 'Technical & User Support Officer', '2026-06-17 13:59:23', 'Permission 102 updated (granted=1)'),
+(2426, 'procurement_requests', 186, 'CREATE', 'Ryan Warburton', '2026-06-17 14:50:29', 'Procurement request created'),
+(2427, 'procurement_requests', 186, 'EDIT', 'Ryan Warburton', '2026-06-17 14:50:59', 'Procurement Request #186 edited.\n\nOLD ITEMS:\n- Servicing of AC units | Qty: 12 | Solvent Stores, Pharmaceutical Laboratory, HPLC Room, Senior Chemist Office (PHARM), Emerald Office, Main Stores, Balance Room, Food1, Food 2, Dissolution Room, Instrument Room, Server Room\n\nNEW ITEMS:\n- Servicing of AC units | Qty: 12 | Solvent Stores, Pharmaceutical Laboratory, HPLC Room, Senior Chemist Office (PHARM), Emerald Office, Main Stores, Balance Room, Food1, Food 2, Dissolution Room, Instrument Room, Server Room\n'),
+(2428, 'procurement_requests', 186, 'EDIT', 'Ryan Warburton', '2026-06-17 14:51:11', 'Procurement Request #186 edited.\n\nOLD ITEMS:\n- Servicing of AC units | Qty: 12 | Solvent Stores, Pharmaceutical Laboratory, HPLC Room, Senior Chemist Office (PHARM), Emerald Office, Main Stores, Balance Room, Food1, Food 2, Dissolution Room, Instrument Room, Server Room\n\nNEW ITEMS:\n- Servicing of AC units | Qty: 12 | Solvent Stores, Pharmaceutical Laboratory, HPLC Room, Senior Chemist Office (PHARM), Emerald Office, Main Stores, Balance Room, Food1, Food 2, Dissolution Room, Instrument Room, Server Room\n'),
+(2429, 'procurement_requests', 186, 'STATUS_CHANGE', 'Ryan Warburton', '2026-06-17 14:51:22', 'Draft → Submitted'),
+(2430, 'procurement_requests', 186, 'APPROVAL_CHAIN_CREAT', 'Ryan Warburton', '2026-06-17 14:51:22', 'Approval chain created: HOD'),
+(2431, 'procurement_requests', 187, 'CREATE', 'Alfred Bryan', '2026-06-17 15:54:16', 'Procurement request created'),
+(2432, 'procurement_requests', 187, 'EDIT', 'Alfred Bryan', '2026-06-17 15:56:11', 'Procurement Request #187 edited.\n\nOLD ITEMS:\n- Spiral Binding Machine | Qty: 1 | \n\nNEW ITEMS:\n- Spiral Binding Machine | Qty: 1 | \n'),
+(2433, 'procurement_requests', 187, 'STATUS_CHANGE', 'Alfred Bryan', '2026-06-17 15:56:17', 'Draft → Submitted'),
+(2434, 'procurement_requests', 187, 'APPROVAL_CHAIN_CREAT', 'Alfred Bryan', '2026-06-17 15:56:17', 'Approval chain created: Director HRM&A'),
+(2435, 'user_permissions', 46, 'PERMISSION_OVERRIDE', 'Technical & User Support Officer', '2026-06-17 16:45:10', 'Permission 111 updated (granted=1)'),
+(2436, 'user_permissions', 46, 'PERMISSION_OVERRIDE', 'Technical & User Support Officer', '2026-06-17 16:45:10', 'Permission 103 updated (granted=1)'),
+(2437, 'procurement_requests', 183, 'STATUS_CHANGE', 'Ackelia McLaren', '2026-06-17 16:48:36', 'Petty Cash Request: SUBMITTED → FUNDS_VERIFIED by Finance Officer'),
+(2438, 'users', 47, 'CREATE', 'Technical & User Support Officer', '2026-06-17 17:02:32', 'User \'Amekie Anson\' (amekie.anson@moh.gov.jm) created by admin.'),
+(2439, 'users', 47, 'PASSWORD_CHANGE', 'Amekie Anson', '2026-06-17 17:11:08', 'Password updated'),
+(2440, 'procurement_requests', 187, 'STATUS_CHANGE', 'Nellesha Samuels', '2026-06-17 19:31:19', 'Submitted → Declined by Nellesha Samuels'),
+(2441, 'procurement_requests', 187, 'DECLINED', 'Nellesha Samuels', '2026-06-17 19:31:19', 'Request declined: Too expensive. We can get one on Amazon when we get our credit card. Or, you may buy from Amazon, and be reimbursed. — by Nellesha Samuels'),
+(2442, 'procurement_requests', 188, 'CREATE', 'Alfred Bryan', '2026-06-18 13:00:14', 'Petty cash request created'),
+(2443, 'procurement_requests', 188, 'STATUS_CHANGE', 'Alfred Bryan', '2026-06-18 13:10:44', 'Petty Cash Request: Draft → Submitted'),
+(2444, 'procurement_requests', 188, 'APPROVAL_CHAIN_CREAT', 'Alfred Bryan', '2026-06-18 13:10:44', 'Petty cash approval chain created: Finance Officer'),
+(2445, 'procurement_requests', 186, 'STATUS_CHANGE', 'Yanique A. Fraser', '2026-06-18 15:21:03', 'Approved — Funds certified & Status changed to RFQ_LETTER_AVAILABLE by HOD'),
+(2446, 'procurement_requests', 186, 'RFQ_LETTER_AVAILABLE', 'Yanique A. Fraser', '2026-06-18 15:21:03', 'Approval by Yanique A. Fraser - HOD'),
+(2447, 'procurement_requests', 189, 'CREATE', 'Troxel Orboine', '2026-06-18 15:49:52', 'Procurement request created'),
+(2448, 'procurement_requests', 189, 'STATUS_CHANGE', 'Troxel Orboine', '2026-06-18 15:50:36', 'Draft → Submitted'),
+(2449, 'procurement_requests', 189, 'APPROVAL_CHAIN_CREAT', 'Troxel Orboine', '2026-06-18 15:50:36', 'Approval chain created: Director HRM&A'),
+(2450, 'procurement_requests', 190, 'CREATE', 'Alfred Bryan', '2026-06-18 21:15:56', 'Procurement request created'),
+(2451, 'procurement_requests', 177, 'STATUS_CHANGE', 'Alfred Bryan', '2026-06-22 14:03:54', 'DECLINED → Cancelled'),
+(2452, 'procurement_requests', 177, 'CANCELLED', 'Alfred Bryan', '2026-06-22 14:03:54', 'Request cancelled: Redone'),
+(2453, 'procurement_requests', 167, 'STATUS_CHANGE', 'Alfred Bryan', '2026-06-22 14:09:15', 'DECLINED → Cancelled'),
+(2454, 'procurement_requests', 167, 'CANCELLED', 'Alfred Bryan', '2026-06-22 14:09:15', 'Request cancelled: Redone'),
+(2455, 'procurement_requests', 191, 'CREATE', 'Shermaine McKenzie', '2026-06-26 19:21:04', 'Procurement request created'),
+(2456, 'procurement_requests', 191, 'STATUS_CHANGE', 'Shermaine McKenzie', '2026-06-26 19:21:26', 'Draft → Submitted'),
+(2457, 'procurement_requests', 191, 'APPROVAL_CHAIN_CREAT', 'Shermaine McKenzie', '2026-06-26 19:21:26', 'Approval chain created: Deputy Government Chemist'),
+(2458, 'procurement_requests', 191, 'STATUS_CHANGE', 'Daneika Anderson', '2026-06-26 20:14:46', 'GC Approved (funds certified) — Status changed to RFQ_LETTER_AVAILABLE'),
+(2459, 'procurement_requests', 191, 'RFQ_LETTER_AVAILABLE', 'Daneika Anderson', '2026-06-26 20:14:46', 'GC approval by Daneika Anderson'),
+(2460, 'procurement_requests', 192, 'CREATE', 'Alfred Bryan', '2026-06-29 21:21:42', 'Petty cash request created'),
+(2461, 'procurement_requests', 192, 'STATUS_CHANGE', 'Alfred Bryan', '2026-06-29 21:21:45', 'Petty Cash Request: Draft → Submitted'),
+(2462, 'procurement_requests', 192, 'APPROVAL_CHAIN_CREAT', 'Alfred Bryan', '2026-06-29 21:21:45', 'Petty cash approval chain created: Finance Officer'),
+(2463, 'request_approvals', 162, 'APPROVE_STAGE', 'Nellesha Samuels', '2026-06-30 16:44:13', 'Approved by Director HRM&A'),
+(2464, 'procurement_requests', 189, 'STATUS_CHANGE', 'Nellesha Samuels', '2026-06-30 16:44:13', 'Approved → RFQ_LETTER_AVAILABLE (funds certified) by Director HRM&A'),
+(2465, 'procurement_requests', 189, 'RFQ_LETTER_AVAILABLE', 'Nellesha Samuels', '2026-06-30 16:44:13', 'Approval by Director HRM&A'),
+(2466, 'procurement_requests', 189, 'UPDATE', 'Nellesha Samuels', '2026-06-30 16:50:41', 'Signed request uploaded: Document_260630_114714.pdf'),
+(2467, 'procurement_requests', 189, 'SIGNED_REQUEST_UPLOA', 'Nellesha Samuels', '2026-06-30 16:50:41', 'Signed request uploaded by Nellesha Samuels: Document_260630_114714.pdf'),
+(2468, 'procurement_requests', 188, 'STATUS_CHANGE', 'Ackelia McLaren', '2026-06-30 16:58:48', 'Petty Cash Request: SUBMITTED → FUNDS_VERIFIED by Finance Officer'),
+(2469, 'procurement_requests', 192, 'STATUS_CHANGE', 'Ackelia McLaren', '2026-06-30 16:59:10', 'Petty Cash Request: SUBMITTED → FUNDS_VERIFIED by Finance Officer'),
+(2470, 'procurement_requests', 192, 'UPDATE', 'Technical & User Support Officer', '2026-06-30 17:50:38', 'Signed request uploaded: Document_260630_124536.pdf'),
+(2471, 'procurement_requests', 192, 'SIGNED_REQUEST_UPLOA', 'Technical & User Support Officer', '2026-06-30 17:50:38', 'Signed request uploaded by Technical & User Support Officer: Document_260630_124536.pdf'),
+(2472, 'procurement_requests', 193, 'CREATE', 'Alfred Bryan', '2026-07-02 13:04:07', 'Procurement request created'),
+(2473, 'procurement_requests', 193, 'STATUS_CHANGE', 'Alfred Bryan', '2026-07-02 13:06:00', 'Draft → Submitted'),
+(2474, 'procurement_requests', 193, 'APPROVAL_CHAIN_CREAT', 'Alfred Bryan', '2026-07-02 13:06:00', 'Approval chain created: Director HRM&A'),
+(2475, 'procurement_requests', 194, 'CREATE', 'Alfred Bryan', '2026-07-02 16:33:03', 'Procurement request created'),
+(2476, 'procurement_requests', 195, 'CREATE', 'Alfred Bryan', '2026-07-02 18:34:55', 'Procurement request created'),
+(2477, 'procurement_requests', 196, 'CREATE', 'Alfred Bryan', '2026-07-06 13:19:26', 'Procurement request created'),
+(2478, 'procurement_requests', 196, 'EDIT', 'Alfred Bryan', '2026-07-06 13:22:25', 'Procurement Request #196 edited.\n\nOLD ITEMS:\n- Advil Liquid Capsules | Qty: 1 | \n- Advil Cold and Sinus | Qty: 1 | \n- Cetamol Cold and Flu | Qty: 1 | \n- Panadol Cold and Flu (multi symptom) | Qty: 1 | \n- Pepto-Bismol Capsules | Qty: 1 | \n- Pandaol Extra Strength 500    | Qty: 1 | \n- Cetamol Menstrual | Qty: 1 | \n- Sanitary Napkins | Qty: 1 | with wings\n- Hydrogen Peroxide  | Qty: 1 | Small\n- Ice pack | Qty: 1 | \n\nNEW ITEMS:\n- Advil Liquid Capsules | Qty: 1 | \n- Advil Cold and Sinus | Qty: 1 | \n- Cetamol Cold and Flu | Qty: 1 | \n- Panadol Cold and Flu (multi symptom) | Qty: 1 | \n- Pepto-Bismol Capsules | Qty: 1 | \n- Pandaol Extra Strength 500    | Qty: 1 | \n- Cetamol Menstrual | Qty: 1 | \n- Sanitary Napkins | Qty: 1 | with wings\n- Hydrogen Peroxide  | Qty: 1 | Small\n- Ice pack | Qty: 1 | \n'),
+(2479, 'procurement_requests', 196, 'STATUS_CHANGE', 'Alfred Bryan', '2026-07-06 13:22:32', 'Draft → Submitted'),
+(2480, 'procurement_requests', 196, 'APPROVAL_CHAIN_CREAT', 'Alfred Bryan', '2026-07-06 13:22:32', 'Approval chain created: Director HRM&A'),
+(2481, 'procurement_requests', 197, 'CREATE', 'Alfred Bryan', '2026-07-06 13:27:39', 'Procurement request created'),
+(2482, 'procurement_requests', 197, 'STATUS_CHANGE', 'Alfred Bryan', '2026-07-06 13:27:44', 'Draft → Submitted'),
+(2483, 'procurement_requests', 197, 'APPROVAL_CHAIN_CREAT', 'Alfred Bryan', '2026-07-06 13:27:44', 'Approval chain created: Director HRM&A'),
+(2484, 'procurement_requests', 195, 'EDIT', 'Alfred Bryan', '2026-07-07 15:52:49', 'Procurement Request #195 edited.\n\nOLD ITEMS:\n- Konica TN‑328K - Black  | Qty: 1 | \n- Konica TN‑328C - Cyan | Qty: 1 | \n- Konica TN‑328M - Magenta  | Qty: 1 | \n- Konica TN‑328Y - Yellow  | Qty: 1 | \n- Brother\'s Toner Cartridge TN-730 Black  | Qty: 4 | \n- HP Toner Cartridge 212A Yellow  | Qty: 3 | \n- HP Toner Cartridge 212A Magenta | Qty: 3 | \n- HP Toner Cartridge 212A Cyan  | Qty: 3 | \n- HP Toner Cartridge 212A Black | Qty: 3 | \n- HP Toner Cartridge 230A Magenta  | Qty: 2 | \n- HP Toner Cartridge 230A Black  | Qty: 2 | \n- HP Toner Cartridge 230A Yellow  | Qty: 2 | \n- HP Toner Cartridge 230A Cyan  | Qty: 2 | \n- HP Toner Cartridge 151A Black  | Qty: 1 | \n\nNEW ITEMS:\n- Konica TN‑328K - Black  | Qty: 1 | \n- Konica TN‑328C - Cyan | Qty: 1 | \n- Konica TN‑328M - Magenta  | Qty: 1 | \n- Konica TN‑328Y - Yellow  | Qty: 1 | \n- Brother\'s Toner Cartridge TN-730 Black  | Qty: 4 | \n- HP Toner Cartridge 212A Yellow  | Qty: 3 | \n- HP Toner Cartridge 212A Magenta | Qty: 3 | \n- HP Toner Cartridge 212A Cyan  | Qty: 3 | \n- HP Toner Cartridge 212A Black | Qty: 3 | \n- HP Toner Cartridge 230A Magenta  | Qty: 2 | \n- HP Toner Cartridge 230A Black  | Qty: 2 | \n- HP Toner Cartridge 230A Yellow  | Qty: 2 | \n- HP Toner Cartridge 230A Cyan  | Qty: 2 | \n- HP Toner Cartridge 151A Black  | Qty: 2 | \n'),
+(2485, 'procurement_requests', 198, 'CREATE', 'Waveney Warrick', '2026-07-08 18:26:44', 'Procurement request created'),
+(2486, 'procurement_requests', 198, 'STATUS_CHANGE', 'Waveney Warrick', '2026-07-08 18:26:56', 'Draft → Submitted'),
+(2487, 'procurement_requests', 198, 'APPROVAL_CHAIN_CREAT', 'Waveney Warrick', '2026-07-08 18:26:56', 'Approval chain created: Deputy Government Chemist'),
+(2488, 'procurement_requests', 199, 'CREATE', 'Shermaine McKenzie', '2026-07-08 18:44:50', 'Procurement request created'),
+(2489, 'procurement_requests', 199, 'STATUS_CHANGE', 'Shermaine McKenzie', '2026-07-08 18:45:01', 'Draft → Submitted'),
+(2490, 'procurement_requests', 199, 'APPROVAL_CHAIN_CREAT', 'Shermaine McKenzie', '2026-07-08 18:45:01', 'Approval chain created: HOD → Deputy Government Chemist'),
+(2491, 'procurement_requests', 199, 'STATUS_CHANGE', 'Yanique A. Fraser', '2026-07-08 21:29:13', 'Approved — Funds certified & Status changed to HOD_APPROVED by HOD'),
+(2492, 'procurement_requests', 199, 'HOD_APPROVED', 'Yanique A. Fraser', '2026-07-08 21:29:13', 'Approval by Yanique A. Fraser - HOD'),
+(2493, 'request_approvals', 170, 'APPROVE_STAGE', 'Daneika Anderson', '2026-07-08 21:30:18', 'Approved by Deputy Government Chemist'),
+(2494, 'procurement_requests', 199, 'STATUS_CHANGE', 'Daneika Anderson', '2026-07-08 21:30:18', 'Approved → RFQ_LETTER_AVAILABLE (funds certified) by Deputy Government Chemist'),
+(2495, 'procurement_requests', 199, 'RFQ_LETTER_AVAILABLE', 'Daneika Anderson', '2026-07-08 21:30:18', 'Approval by Deputy Government Chemist'),
+(2496, 'procurement_requests', 197, 'STATUS_CHANGE', 'Alfred Bryan', '2026-07-09 14:40:31', 'SUBMITTED → Cancelled'),
+(2497, 'procurement_requests', 197, 'CANCELLED', 'Alfred Bryan', '2026-07-09 14:40:31', 'Request cancelled: To edit list of items'),
+(2498, 'procurement_requests', 200, 'CREATE', 'Alfred Bryan', '2026-07-09 15:13:10', 'Procurement request created'),
+(2499, 'procurement_requests', 200, 'STATUS_CHANGE', 'Alfred Bryan', '2026-07-09 15:13:15', 'Draft → Submitted'),
+(2500, 'procurement_requests', 200, 'APPROVAL_CHAIN_CREAT', 'Alfred Bryan', '2026-07-09 15:13:15', 'Approval chain created: Director HRM&A'),
+(2501, 'procurement_requests', 195, 'EDIT', 'Alfred Bryan', '2026-07-09 16:09:23', 'Procurement Request #195 edited.\n\nOLD ITEMS:\n- Konica TN‑328K - Black  | Qty: 1 | \n- Konica TN‑328C - Cyan | Qty: 1 | \n- Konica TN‑328M - Magenta  | Qty: 1 | \n- Konica TN‑328Y - Yellow  | Qty: 1 | \n- Brother\'s Toner Cartridge TN-730 Black  | Qty: 4 | \n- HP Toner Cartridge 212A Yellow  | Qty: 3 | \n- HP Toner Cartridge 212A Magenta | Qty: 3 | \n- HP Toner Cartridge 212A Cyan  | Qty: 3 | \n- HP Toner Cartridge 212A Black | Qty: 3 | \n- HP Toner Cartridge 230A Magenta  | Qty: 2 | \n- HP Toner Cartridge 230A Black  | Qty: 2 | \n- HP Toner Cartridge 230A Yellow  | Qty: 2 | \n- HP Toner Cartridge 230A Cyan  | Qty: 2 | \n- HP Toner Cartridge 151A Black  | Qty: 2 | \n\nNEW ITEMS:\n- Konica TN‑328K - Black  | Qty: 1 | \n- Konica TN‑328C - Cyan | Qty: 1 | \n- Konica TN‑328M - Magenta  | Qty: 1 | \n- Konica TN‑328Y - Yellow  | Qty: 1 | \n- Brother\'s Toner Cartridge TN-730 Black  | Qty: 4 | \n- HP Toner Cartridge 212A Yellow  | Qty: 3 | \n- HP Toner Cartridge 212A Magenta | Qty: 3 | \n- HP Toner Cartridge 212A Cyan  | Qty: 3 | \n- HP Toner Cartridge 212A Black | Qty: 3 | \n- HP Toner Cartridge 230A Magenta  | Qty: 2 | \n- HP Toner Cartridge 230A Black  | Qty: 2 | \n- HP Toner Cartridge 230A Yellow  | Qty: 2 | \n- HP Toner Cartridge 230A Cyan  | Qty: 2 | \n- HP Toner Cartridge 151A Black  | Qty: 2 | \n- HP 938e/938 | Qty: 2 | Magenta, Yellow, Cyan, Black\n'),
+(2502, 'procurement_requests', 195, 'STATUS_CHANGE', 'Alfred Bryan', '2026-07-09 16:09:40', 'Draft → Submitted'),
+(2503, 'procurement_requests', 195, 'APPROVAL_CHAIN_CREAT', 'Alfred Bryan', '2026-07-09 16:09:40', 'Approval chain created: Director HRM&A'),
+(2504, 'procurement_requests', 201, 'CREATE', 'Alfred Bryan', '2026-07-09 16:16:01', 'Procurement request created'),
+(2505, 'procurement_requests', 201, 'STATUS_CHANGE', 'Alfred Bryan', '2026-07-09 16:16:09', 'Draft → Submitted'),
+(2506, 'procurement_requests', 201, 'APPROVAL_CHAIN_CREAT', 'Alfred Bryan', '2026-07-09 16:16:09', 'Approval chain created: Director HRM&A'),
+(2507, 'request_approvals', 165, 'APPROVE_STAGE', 'Nellesha Samuels', '2026-07-13 20:25:46', 'Approved by Director HRM&A'),
+(2508, 'procurement_requests', 193, 'STATUS_CHANGE', 'Nellesha Samuels', '2026-07-13 20:25:46', 'Approved → RFQ_LETTER_AVAILABLE (funds certified) by Director HRM&A'),
+(2509, 'procurement_requests', 193, 'RFQ_LETTER_AVAILABLE', 'Nellesha Samuels', '2026-07-13 20:25:46', 'Approval by Director HRM&A'),
+(2510, 'procurement_requests', 193, 'UPDATE', 'Nellesha Samuels', '2026-07-13 20:26:07', 'Signed request uploaded: Document_260713_152326.pdf'),
+(2511, 'procurement_requests', 193, 'SIGNED_REQUEST_UPLOA', 'Nellesha Samuels', '2026-07-13 20:26:07', 'Signed request uploaded by Nellesha Samuels: Document_260713_152326.pdf'),
+(2512, 'procurement_requests', 164, 'STATUS_CHANGE', 'Nellesha Samuels', '2026-07-13 20:30:04', 'Submitted → Declined by Nellesha Samuels'),
+(2513, 'procurement_requests', 164, 'DECLINED', 'Nellesha Samuels', '2026-07-13 20:30:04', 'Request declined: No longer needed — by Nellesha Samuels'),
+(2514, 'procurement_requests', 202, 'CREATE', 'Alfred Bryan', '2026-07-13 20:54:27', 'Procurement request created'),
+(2515, 'procurement_requests', 202, 'STATUS_CHANGE', 'Alfred Bryan', '2026-07-13 20:54:32', 'Draft → Submitted'),
+(2516, 'procurement_requests', 202, 'APPROVAL_CHAIN_CREAT', 'Alfred Bryan', '2026-07-13 20:54:32', 'Approval chain created: Director HRM&A'),
+(2517, 'vendors', 7, 'UPDATE', '27', '2026-07-13 20:55:32', 'Updated: Name: D&S IT Services → D&S IT Services Limited; Email:  → sales@dsitservicesja.com; Phone:  → 8762354053; Address updated'),
+(2518, 'request_approvals', 174, 'APPROVE_STAGE', 'Nellesha Samuels', '2026-07-13 20:56:20', 'Approved by Director HRM&A'),
+(2519, 'procurement_requests', 202, 'STATUS_CHANGE', 'Nellesha Samuels', '2026-07-13 20:56:20', 'Approved → RFQ_LETTER_AVAILABLE (funds certified) by Director HRM&A'),
+(2520, 'procurement_requests', 202, 'RFQ_LETTER_AVAILABLE', 'Nellesha Samuels', '2026-07-13 20:56:20', 'Approval by Director HRM&A'),
+(2521, 'procurement_requests', 202, 'UPDATE', 'Nellesha Samuels', '2026-07-13 20:56:50', 'Signed request uploaded: Document_260713_152326.pdf'),
+(2522, 'procurement_requests', 202, 'SIGNED_REQUEST_UPLOA', 'Nellesha Samuels', '2026-07-13 20:56:50', 'Signed request uploaded by Nellesha Samuels: Document_260713_152326.pdf'),
+(2523, 'rfqs', 45, 'CREATE', 'Technical & User Support Officer', '2026-07-13 20:58:41', 'RFQ created for request ID 202. Date: 2026-07-13, Deadline: 2026-07-17T12:00'),
+(2524, 'rfq_vendors', 94, 'CREATE', '27', '2026-07-13 20:59:02', 'Vendor \'D&S IT Services Limited\' added to RFQ RFQ-20260713-202 - RFQ notification email sent to sales@dsitservicesja.com'),
+(2525, 'rfq_quotes', NULL, 'UPLOAD', NULL, '2026-07-13 21:00:46', 'Quote uploaded for RFQ ID 45'),
+(2526, 'user_permissions', 40, 'PERMISSION_OVERRIDE', 'Technical & User Support Officer', '2026-07-13 21:15:21', 'Permission 173 updated (granted=1)'),
+(2527, 'user_permissions', 40, 'PERMISSION_OVERRIDE', 'Technical & User Support Officer', '2026-07-13 21:15:21', 'Permission 46 updated (granted=1)'),
+(2528, 'user_permissions', 40, 'PERMISSION_OVERRIDE', 'Technical & User Support Officer', '2026-07-13 21:15:21', 'Permission 103 updated (granted=1)'),
+(2529, 'user_permissions', 40, 'PERMISSION_OVERRIDE', 'Technical & User Support Officer', '2026-07-13 21:15:21', 'Permission 102 updated (granted=1)'),
+(2530, 'user_permissions', 40, 'PERMISSION_OVERRIDE', 'Technical & User Support Officer', '2026-07-13 21:15:21', 'Permission 114 updated (granted=1)'),
+(2531, 'rfq_quotes', NULL, 'REVIEW', NULL, '2026-07-13 21:19:56', 'Quote 100 reviewed: MEETS_REQUIREMENTS by Alfred Bryan'),
+(2532, 'procurement_requests', 202, 'QUOTE_APPROVED', 'Alfred Bryan', '2026-07-13 21:19:56', 'Quote from D&S IT Services Limited approved by Alfred Bryan. Finance notified to verify funds.'),
+(2533, 'procurement_requests', 202, 'FUNDS_VERIFIED', 'Technical & User Support Officer', '2026-07-13 21:20:21', 'Funds verified by Finance Officer'),
+(2534, 'procurement_requests', 202, 'FUNDS_VERIFIED', 'Technical & User Support Officer', '2026-07-13 21:20:21', 'Finance Officer verified funds are available. Procurement Officer to fill commitment form.'),
+(2535, 'procurement_requests', 202, 'FORM_UPLOADED', 'Technical & User Support Officer', '2026-07-13 21:21:01', 'Commitment form uploaded by Finance Officer: /uploads/commitments/COMMIT_FORM_1783977661_6a5556bda13e9.pdf'),
+(2536, 'procurement_requests', 202, 'COMMITMENTS_PENDING', 'Technical & User Support Officer', '2026-07-13 21:21:01', 'Finance Officer uploaded commitment form. Finance to create commitment in GFMS.'),
+(2537, 'commitments', 88, 'CREATE', 'Technical & User Support Officer', '2026-07-13 21:21:13', 'Commitment created by Finance Officer from GFMS and document uploaded'),
+(2538, 'procurement_requests', 202, 'COMMITMENT_APPROVED', 'Technical & User Support Officer', '2026-07-13 21:21:13', 'Finance Officer created commitment CM002 in GFMS and uploaded commitment document. Ready for PO creation.'),
+(2539, 'purchase_orders', 66, 'CREATE', 'Technical & User Support Officer', '2026-07-13 21:22:40', 'Purchase Order created'),
+(2540, 'procurement_requests', 202, 'PO_CREATED', 'Technical & User Support Officer', '2026-07-13 21:22:40', 'PO PO-2026-0001 created and auto-approved'),
+(2541, 'procurement_requests', 146, 'EDIT', 'Technical & User Support Officer', '2026-07-14 16:42:08', 'Procurement Request #146 edited.\n\nOLD ITEMS:\n- 3 in 1 Laptop Bag, 15.6 inch PU Leather Shoulder Bag Briefcase Messenger Satchel Laptop Backpack | Qty: 1 | 15-16 inch Computer Bags Handbag Bookbag, Black \n- New for Microsoft Surface Docking Station 11-in-1 Surface Dock 2 4K@60HZ | Qty: 1 | HDMI USB C Travel Dock for Microsoft Surface Pro 12/11/10/9/8/X/7/6/5/4,Surface Laptop 6/5/4/3/2/1,Laptop Go 3/2/1,Surface Book \n- 65W USB C Surface Pro Charger Compatible with Microsoft Type c Surface Pro Fast Charge | Qty: 1 | Compatible with Microsoft Surface Pro 11 10 9 8 7+ 7 Surface pro X Tablet & Laptop Type C Fast Charger \n- 45W Super Fast Charger USB C, Type C Chargers Fast Charging Android Phone Charger Block Samsung Galaxy S25 Ultra Chargers | Qty: 1 | 10FT Fast Charging Cord for Samsung Galaxy S26 Ultra/S26//S25/S24/S23, 2Port \n- Privacy Screen for 13 Inch Surface Pro 11/10/9/8/X, MagicSuction™ | Qty: 1 | Removable Anti Spy Black Protector, Glare Blue Light Filter for Microsoft Laptop Computer Monitor \n\nNEW ITEMS:\n- New for Microsoft Surface Docking Station 11-in-1 Surface Dock 2 4K@60HZ | Qty: 1 | HDMI USB C Travel Dock for Microsoft Surface Pro 12/11/10/9/8/X/7/6/5/4,Surface Laptop 6/5/4/3/2/1,Laptop Go 3/2/1,Surface Book \n- 65W USB C Surface Pro Charger Compatible with Microsoft Type c Surface Pro Fast Charge | Qty: 1 | Compatible with Microsoft Surface Pro 11 10 9 8 7+ 7 Surface pro X Tablet & Laptop Type C Fast Charger \n- 45W Super Fast Charger USB C, Type C Chargers Fast Charging Android Phone Charger Block Samsung Galaxy S25 Ultra Chargers | Qty: 1 | 10FT Fast Charging Cord for Samsung Galaxy S26 Ultra/S26//S25/S24/S23, 2Port \n- Privacy Screen for 13 Inch Surface Pro 11/10/9/8/X, MagicSuction™ | Qty: 1 | Removable Anti Spy Black Protector, Glare Blue Light Filter for Microsoft Laptop Computer Monitor \n'),
+(2542, 'procurement_requests', 202, 'DELETE', 'Technical & User Support Officer', '2026-07-15 16:27:39', 'Request deleted by admin'),
+(2543, 'procurement_requests', 202, 'DELETE', 'Technical & User Support Officer', '2026-07-15 16:27:39', 'Request deleted by admin'),
+(2544, 'role_permissions', 212, 'TOGGLE', 'Technical & User Support Officer', '2026-07-15 17:16:20', 'Role #5 granted permission #212'),
+(2545, 'inv_import_batches', 1, 'IMPORT', 'Technical & User Support Officer', '2026-07-16 00:31:05', 'Asset import \"asset_import_template.xlsx\": 976 rows, 7 created, 0 updated, 0 skipped, 969 errors'),
+(2546, 'inv_import_batches', 2, 'IMPORT', 'Technical & User Support Officer', '2026-07-16 00:35:59', 'Asset import \"asset_import_template.xlsx\": 976 rows, 0 created, 0 updated, 7 skipped, 969 errors'),
+(2547, 'inv_requisitions', 3, 'CREATE', 'Technical & User Support Officer', '2026-07-16 00:52:06', 'Requisition SRQ-00003 created (SUBMITTED)'),
+(2548, 'inv_import_batches', 3, 'IMPORT', 'Technical & User Support Officer', '2026-07-16 12:56:32', 'Asset import \"asset_import_template.csv\": 101 rows, 0 created, 0 updated, 0 skipped, 101 errors'),
+(2549, 'users', 40, 'ROLE_CHANGE', 'Demario Ewan', '2026-07-16 13:22:37', 'Role updated to Property Management Officer'),
+(2550, 'users', 46, 'ROLE_CHANGE', 'Technical & User Support Officer', '2026-07-16 15:58:51', 'Role updated to Finance Officer'),
+(2551, 'role_permissions', 188, 'TOGGLE', 'Technical & User Support Officer', '2026-07-17 14:22:38', 'Role #5 granted permission #188'),
+(2552, 'role_permissions', 188, 'TOGGLE', 'Technical & User Support Officer', '2026-07-17 14:22:47', 'Role #6 granted permission #188'),
+(2553, 'request_approvals', 173, 'APPROVE_STAGE', 'Nellesha Samuels', '2026-07-17 16:43:46', 'Approved by Director HRM&A'),
+(2554, 'procurement_requests', 201, 'STATUS_CHANGE', 'Nellesha Samuels', '2026-07-17 16:43:46', 'Approved → RFQ_LETTER_AVAILABLE (funds certified) by Director HRM&A'),
+(2555, 'procurement_requests', 201, 'RFQ_LETTER_AVAILABLE', 'Nellesha Samuels', '2026-07-17 16:43:46', 'Approval by Director HRM&A'),
+(2556, 'procurement_requests', 201, 'UPDATE', 'Nellesha Samuels', '2026-07-17 16:56:40', 'Signed request uploaded: Document_260717_114837.pdf'),
+(2557, 'procurement_requests', 201, 'SIGNED_REQUEST_UPLOA', 'Nellesha Samuels', '2026-07-17 16:56:40', 'Signed request uploaded by Nellesha Samuels: Document_260717_114837.pdf'),
+(2558, 'request_approvals', 166, 'APPROVE_STAGE', 'Nellesha Samuels', '2026-07-17 16:57:53', 'Approved by Director HRM&A'),
+(2559, 'procurement_requests', 196, 'STATUS_CHANGE', 'Nellesha Samuels', '2026-07-17 16:57:53', 'Approved → RFQ_LETTER_AVAILABLE (funds certified) by Director HRM&A'),
+(2560, 'procurement_requests', 196, 'RFQ_LETTER_AVAILABLE', 'Nellesha Samuels', '2026-07-17 16:57:53', 'Approval by Director HRM&A'),
+(2561, 'procurement_requests', 196, 'UPDATE', 'Nellesha Samuels', '2026-07-17 17:12:51', 'Signed request uploaded: Document_260717_120909.pdf'),
+(2562, 'procurement_requests', 196, 'SIGNED_REQUEST_UPLOA', 'Nellesha Samuels', '2026-07-17 17:12:51', 'Signed request uploaded by Nellesha Samuels: Document_260717_120909.pdf');
+INSERT INTO `audit_log` (`audit_id`, `table_name`, `record_id`, `action`, `changed_by`, `change_date`, `notes`) VALUES
+(2563, 'branches', 10, 'TOGGLE', 'Demario Ewan', '2026-07-18 14:14:36', 'Branch \'Pharmaceutical Laboratory (HPLC)\' set inactive'),
+(2564, 'branches', 8, 'TOGGLE', 'Demario Ewan', '2026-07-18 14:14:38', 'Branch \'Instrument Room\' set inactive'),
+(2565, 'procurement_requests', 203, 'CREATE', 'Technical & User Support Officer', '2026-07-20 17:19:22', 'Procurement request created'),
+(2566, 'procurement_requests', 203, 'STATUS_CHANGE', 'Technical & User Support Officer', '2026-07-20 17:19:33', 'Draft → Submitted'),
+(2567, 'procurement_requests', 203, 'APPROVAL_CHAIN_CREAT', 'Technical & User Support Officer', '2026-07-20 17:19:33', 'Approval chain created: Director HRM&A'),
+(2568, 'procurement_requests', 203, 'STATUS_CHANGE', 'Technical & User Support Officer', '2026-07-20 17:19:49', 'SUBMITTED → Cancelled'),
+(2569, 'procurement_requests', 203, 'CANCELLED', 'Technical & User Support Officer', '2026-07-20 17:19:49', 'Request cancelled: FOrget to add SSD'),
+(2570, 'procurement_requests', 204, 'CREATE', 'Technical & User Support Officer', '2026-07-20 17:21:57', 'Procurement request created'),
+(2571, 'procurement_requests', 204, 'STATUS_CHANGE', 'Technical & User Support Officer', '2026-07-20 17:22:04', 'Draft → Submitted'),
+(2572, 'procurement_requests', 204, 'APPROVAL_CHAIN_CREAT', 'Technical & User Support Officer', '2026-07-20 17:22:04', 'Approval chain created: Director HRM&A'),
+(2573, 'users', 40, 'ROLE_CHANGE', 'Technical & User Support Officer', '2026-07-20 17:27:03', 'Role updated to Viewer'),
+(2574, 'procurement_requests', 198, 'STATUS_CHANGE', 'Daneika Anderson', '2026-07-20 17:40:56', 'GC Approved (funds certified) — Status changed to RFQ_LETTER_AVAILABLE'),
+(2575, 'procurement_requests', 198, 'RFQ_LETTER_AVAILABLE', 'Daneika Anderson', '2026-07-20 17:40:56', 'GC approval by Daneika Anderson'),
+(2576, 'procurement_requests', 193, 'STATUS_CHANGE', 'Alfred Bryan', '2026-07-20 17:40:59', 'RFQ_LETTER_AVAILABLE → Cancelled'),
+(2577, 'procurement_requests', 193, 'CANCELLED', 'Alfred Bryan', '2026-07-20 17:40:59', 'Request cancelled: Adding/making change to request'),
+(2578, 'user_permissions', 40, 'PERMISSION_OVERRIDE', 'Technical & User Support Officer', '2026-07-20 17:44:40', 'Permission 61 updated (granted=1)'),
+(2579, 'user_permissions', 40, 'PERMISSION_OVERRIDE', 'Technical & User Support Officer', '2026-07-20 17:44:40', 'Permission 60 updated (granted=1)'),
+(2580, 'user_permissions', 40, 'PERMISSION_OVERRIDE', 'Technical & User Support Officer', '2026-07-20 17:44:40', 'Permission 1 updated (granted=1)'),
+(2581, 'user_permissions', 40, 'PERMISSION_OVERRIDE', 'Technical & User Support Officer', '2026-07-20 17:44:40', 'Permission 173 updated (granted=1)'),
+(2582, 'user_permissions', 40, 'PERMISSION_OVERRIDE', 'Technical & User Support Officer', '2026-07-20 17:44:40', 'Permission 46 updated (granted=1)'),
+(2583, 'user_permissions', 40, 'PERMISSION_OVERRIDE', 'Technical & User Support Officer', '2026-07-20 17:44:40', 'Permission 103 updated (granted=1)'),
+(2584, 'user_permissions', 40, 'PERMISSION_OVERRIDE', 'Technical & User Support Officer', '2026-07-20 17:44:40', 'Permission 102 updated (granted=1)'),
+(2585, 'user_permissions', 40, 'PERMISSION_OVERRIDE', 'Technical & User Support Officer', '2026-07-20 17:44:40', 'Permission 114 updated (granted=1)'),
+(2586, 'procurement_requests', 205, 'CREATE', 'Alfred Bryan', '2026-07-20 17:47:20', 'Procurement request created'),
+(2587, 'procurement_requests', 205, 'EDIT', 'Alfred Bryan', '2026-07-20 17:48:00', 'Procurement Request #205 edited.\n\nOLD ITEMS:\n- Labour and pruning  | Qty: 1 | \n\nNEW ITEMS:\n- Labour and pruning  | Qty: 1 | \n'),
+(2588, 'procurement_requests', 205, 'EDIT', 'Alfred Bryan', '2026-07-20 17:49:00', 'Procurement Request #205 edited.\n\nOLD ITEMS:\n- Labour and pruning  | Qty: 1 | \n\nNEW ITEMS:\n- Labour and pruning  | Qty: 1 | \n- Diazion | Qty: 1 | \n- Labour for spraying  | Qty: 1 | \n- Truck - Disposal of Tree Cutting | Qty: 1 | \n'),
+(2589, 'procurement_requests', 206, 'CREATE', 'Technical & User Support Officer', '2026-07-20 17:55:29', 'Procurement request created'),
+(2590, 'procurement_requests', 206, 'STATUS_CHANGE', 'Technical & User Support Officer', '2026-07-20 17:55:49', 'Draft → Submitted'),
+(2591, 'procurement_requests', 206, 'APPROVAL_CHAIN_CREAT', 'Technical & User Support Officer', '2026-07-20 17:55:49', 'Approval chain created: Director HRM&A'),
+(2592, 'user_permissions', 40, 'PERMISSION_OVERRIDE', 'Technical & User Support Officer', '2026-07-20 17:57:36', 'Permission 61 updated (granted=1)'),
+(2593, 'user_permissions', 40, 'PERMISSION_OVERRIDE', 'Technical & User Support Officer', '2026-07-20 17:57:36', 'Permission 60 updated (granted=1)'),
+(2594, 'user_permissions', 40, 'PERMISSION_OVERRIDE', 'Technical & User Support Officer', '2026-07-20 17:57:36', 'Permission 1 updated (granted=1)'),
+(2595, 'user_permissions', 40, 'PERMISSION_OVERRIDE', 'Technical & User Support Officer', '2026-07-20 17:57:36', 'Permission 105 updated (granted=1)'),
+(2596, 'user_permissions', 40, 'PERMISSION_OVERRIDE', 'Technical & User Support Officer', '2026-07-20 17:57:36', 'Permission 173 updated (granted=1)'),
+(2597, 'user_permissions', 40, 'PERMISSION_OVERRIDE', 'Technical & User Support Officer', '2026-07-20 17:57:36', 'Permission 104 updated (granted=1)'),
+(2598, 'user_permissions', 40, 'PERMISSION_OVERRIDE', 'Technical & User Support Officer', '2026-07-20 17:57:36', 'Permission 2 updated (granted=1)'),
+(2599, 'user_permissions', 40, 'PERMISSION_OVERRIDE', 'Technical & User Support Officer', '2026-07-20 17:57:36', 'Permission 46 updated (granted=1)'),
+(2600, 'user_permissions', 40, 'PERMISSION_OVERRIDE', 'Technical & User Support Officer', '2026-07-20 17:57:36', 'Permission 103 updated (granted=1)'),
+(2601, 'user_permissions', 40, 'PERMISSION_OVERRIDE', 'Technical & User Support Officer', '2026-07-20 17:57:36', 'Permission 102 updated (granted=1)'),
+(2602, 'user_permissions', 40, 'PERMISSION_OVERRIDE', 'Technical & User Support Officer', '2026-07-20 17:57:36', 'Permission 114 updated (granted=1)'),
+(2603, 'procurement_requests', 205, 'STATUS_CHANGE', 'Alfred Bryan', '2026-07-20 17:57:56', 'Draft → Submitted'),
+(2604, 'procurement_requests', 205, 'APPROVAL_CHAIN_CREAT', 'Alfred Bryan', '2026-07-20 17:57:56', 'Approval chain created: Director HRM&A'),
+(2605, 'request_approvals', 177, 'APPROVE_STAGE', 'Nellesha Samuels', '2026-07-20 17:59:58', 'Approved by Director HRM&A'),
+(2606, 'procurement_requests', 206, 'STATUS_CHANGE', 'Nellesha Samuels', '2026-07-20 17:59:58', 'Approved → RFQ_LETTER_AVAILABLE (funds certified) by Director HRM&A'),
+(2607, 'procurement_requests', 206, 'RFQ_LETTER_AVAILABLE', 'Nellesha Samuels', '2026-07-20 17:59:58', 'Approval by Director HRM&A'),
+(2608, 'procurement_requests', 206, 'RETURN_FOR_EDIT', 'Technical & User Support Officer', '2026-07-20 18:00:26', 'Returned for edit by Technical & User Support Officer (SuperAdmin). Reason: test'),
+(2609, 'procurement_requests', 206, 'RETURNED_FOR_EDIT', 'Technical & User Support Officer', '2026-07-20 18:00:26', 'Returned for edit by Technical & User Support Officer (SuperAdmin). Reason: test'),
+(2610, 'procurement_requests', 206, 'EDIT', 'Technical & User Support Officer', '2026-07-20 18:00:41', 'Procurement Request #206 edited.\n\nOLD ITEMS:\n- TEST | Qty: 1 | TEST APRROVAL\n\nNEW ITEMS:\n- TEST | Qty: 1 | TEST APRROVAL\n'),
+(2611, 'procurement_requests', 206, 'STATUS_CHANGE', 'Technical & User Support Officer', '2026-07-20 18:01:23', 'Draft → Submitted'),
+(2612, 'procurement_requests', 206, 'APPROVAL_CHAIN_CREAT', 'Technical & User Support Officer', '2026-07-20 18:01:23', 'Approval chain created: Director HRM&A'),
+(2613, 'procurement_requests', 206, 'UPDATE', 'Nellesha Samuels', '2026-07-20 18:15:27', 'Signed request uploaded: procurement_request_206_for_signing.pdf'),
+(2614, 'procurement_requests', 206, 'SIGNED_REQUEST_UPLOA', 'Nellesha Samuels', '2026-07-20 18:15:27', 'Signed request uploaded by Nellesha Samuels: procurement_request_206_for_signing.pdf'),
+(2615, 'procurement_requests', 141, 'UPDATE', 'Nellesha Samuels', '2026-07-20 20:09:13', 'Signed request uploaded: Document_260720_150724.pdf'),
+(2616, 'procurement_requests', 141, 'SIGNED_REQUEST_UPLOA', 'Nellesha Samuels', '2026-07-20 20:09:13', 'Signed request uploaded by Nellesha Samuels: Document_260720_150724.pdf'),
+(2617, 'request_approvals', 179, 'APPROVE_STAGE', 'Nellesha Samuels', '2026-07-20 20:11:28', 'Approved by Director HRM&A'),
+(2618, 'procurement_requests', 206, 'STATUS_CHANGE', 'Nellesha Samuels', '2026-07-20 20:11:28', 'Approved → RFQ_LETTER_AVAILABLE (funds certified) by Director HRM&A'),
+(2619, 'procurement_requests', 206, 'RFQ_LETTER_AVAILABLE', 'Nellesha Samuels', '2026-07-20 20:11:28', 'Approval by Director HRM&A'),
+(2620, 'procurement_requests', 205, 'UPDATE', 'Nellesha Samuels', '2026-07-20 20:14:47', 'Signed request uploaded: Document_260720_151338.pdf'),
+(2621, 'procurement_requests', 205, 'SIGNED_REQUEST_UPLOA', 'Nellesha Samuels', '2026-07-20 20:14:47', 'Signed request uploaded by Nellesha Samuels: Document_260720_151338.pdf'),
+(2622, 'request_approvals', 178, 'APPROVE_STAGE', 'Nellesha Samuels', '2026-07-20 20:15:10', 'Approved by Director HRM&A'),
+(2623, 'procurement_requests', 205, 'STATUS_CHANGE', 'Nellesha Samuels', '2026-07-20 20:15:10', 'Approved → RFQ_LETTER_AVAILABLE (funds certified) by Director HRM&A'),
+(2624, 'procurement_requests', 205, 'RFQ_LETTER_AVAILABLE', 'Nellesha Samuels', '2026-07-20 20:15:10', 'Approval by Director HRM&A'),
+(2625, 'users', 40, 'ROLE_CHANGE', 'Technical & User Support Officer', '2026-07-20 20:24:43', 'Role updated to Property Management Officer'),
+(2626, 'procurement_requests', 198, 'UPDATE', 'Daneika Anderson', '2026-07-20 20:29:21', 'Signed request uploaded: Procurement request FormB.P. 2026.docx'),
+(2627, 'procurement_requests', 198, 'SIGNED_REQUEST_UPLOA', 'Daneika Anderson', '2026-07-20 20:29:21', 'Signed request uploaded by Daneika Anderson: Procurement request FormB.P. 2026.docx'),
+(2628, 'procurement_requests', 198, 'UPDATE', 'Daneika Anderson', '2026-07-20 20:30:29', 'Signed request uploaded: Procurement Request.pdf'),
+(2629, 'procurement_requests', 198, 'SIGNED_REQUEST_UPLOA', 'Daneika Anderson', '2026-07-20 20:30:29', 'Signed request uploaded by Daneika Anderson: Procurement Request.pdf'),
+(2630, 'inv_requisitions', 3, 'APPROVED', 'Yanique A. Fraser', '2026-07-20 21:36:58', 'Requisition approved'),
+(2631, 'inv_requisitions', 4, 'CREATE', 'Yanique A. Fraser', '2026-07-20 21:52:37', 'Requisition SRQ-00004 created (SUBMITTED)'),
+(2632, 'inv_requisitions', 4, 'REJECTED', 'Yanique A. Fraser', '2026-07-20 21:54:23', 'Rejected: ngjg'),
+(2633, 'inv_requisitions', 5, 'CREATE', 'Yanique A. Fraser', '2026-07-20 21:54:53', 'Requisition SRQ-00005 created (SUBMITTED)'),
+(2634, 'procurement_requests', 206, 'STATUS_CHANGE', 'Technical & User Support Officer', '2026-07-21 02:13:02', 'RFQ_LETTER_AVAILABLE → Awarded (proceeded without RFQ — under JMD threshold) by Technical & User Support Officer'),
+(2635, 'procurement_requests', 206, 'RFQ_SKIPPED', 'Technical & User Support Officer', '2026-07-21 02:13:02', 'Procurement proceeded without RFQ (optional for requests at or below JMD $3,000,000.00)'),
+(2636, 'system_config', 0, 'UPDATE', 'Technical & User Support Officer', '2026-07-21 02:14:06', 'System settings updated: enable_notifications=OFF, enable_rfq_auto_email=OFF, threshold=3,000,000.00, petty_cash_limit=5,000.00, usd_to_jmd_rate=155.2200, hod_approval_threshold=500,000.00, committee_review_threshold=3,000,000.00'),
+(2637, 'POLICY', NULL, 'BACKDATED_REQUEST_AT', '38', '2026-07-21 12:04:59', 'Back-dating of procurement request was attempted'),
+(2638, 'request_documents', 37, 'CREATE', 'Waveney Warrick', '2026-07-21 12:05:39', 'Supporting memo uploaded with new request PR082'),
+(2639, 'procurement_requests', 207, 'CREATE', 'Waveney Warrick', '2026-07-21 12:05:39', 'Procurement request created'),
+(2640, 'procurement_requests', 207, 'STATUS_CHANGE', 'Waveney Warrick', '2026-07-21 12:05:55', 'Draft → Submitted'),
+(2641, 'procurement_requests', 207, 'APPROVAL_CHAIN_CREAT', 'Waveney Warrick', '2026-07-21 12:05:55', 'Approval chain created: Deputy Government Chemist'),
+(2642, 'procurement_requests', 208, 'CREATE', 'Alfred Bryan', '2026-07-21 13:22:31', 'Procurement request created'),
+(2643, 'procurement_requests', 208, 'EDIT', 'Alfred Bryan', '2026-07-21 13:32:52', 'Procurement Request #208 edited.\n\nOLD ITEMS:\n- Drinking water supply for 3 months | Qty: 1 | 5 Gallon, 12ox., 16.9oz\n\nNEW ITEMS:\n- Drinking water supply for 3 months | Qty: 1 | 5 Gallon, 12oz, 16.9oz\n'),
+(2644, 'procurement_requests', 208, 'EDIT', 'Alfred Bryan', '2026-07-21 13:33:19', 'Procurement Request #208 edited.\n\nOLD ITEMS:\n- Drinking water supply for 3 months | Qty: 1 | 5 Gallon, 12oz, 16.9oz\n\nNEW ITEMS:\n- Drinking water supply for 3 months | Qty: 1 | 5 Gallon, 12oz, 16.9oz\n'),
+(2645, 'procurement_requests', 208, 'STATUS_CHANGE', 'Alfred Bryan', '2026-07-21 13:38:42', 'Draft → Submitted'),
+(2646, 'procurement_requests', 208, 'APPROVAL_CHAIN_CREAT', 'Alfred Bryan', '2026-07-21 13:38:42', 'Approval chain created: Director HRM&A'),
+(2647, 'system_config', 0, 'UPDATE', 'Technical & User Support Officer', '2026-07-21 13:50:24', 'System settings updated: enable_notifications=ON, enable_rfq_auto_email=OFF, threshold=3,000,000.00, petty_cash_limit=5,000.00, usd_to_jmd_rate=155.2200, hod_approval_threshold=500,000.00, committee_review_threshold=3,000,000.00'),
+(2648, 'role_permissions', 186, 'TOGGLE', 'Technical & User Support Officer', '2026-07-21 13:51:02', 'Role #6 granted permission #186'),
+(2649, 'procurement_requests', 206, 'COMMITMENT_DECLINED', 'Technical & User Support Officer', '2026-07-21 14:04:35', 'Finance declined - Reason: TEST for rfq settings'),
+(2650, 'procurement_requests', 206, 'COMMITMENT_DECLINED', 'Technical & User Support Officer', '2026-07-21 14:04:35', 'Finance Officer: Funds not available. Reason: TEST for rfq settings'),
+(2651, 'procurement_requests', 206, 'RETURN_FOR_EDIT', 'Technical & User Support Officer', '2026-07-21 14:05:11', 'Returned for edit by Technical & User Support Officer (SuperAdmin). Reason: TEST'),
+(2652, 'procurement_requests', 206, 'RETURNED_FOR_EDIT', 'Technical & User Support Officer', '2026-07-21 14:05:11', 'Returned for edit by Technical & User Support Officer (SuperAdmin). Reason: TEST'),
+(2653, 'procurement_requests', 206, 'EDIT', 'Technical & User Support Officer', '2026-07-21 14:06:32', 'Procurement Request #206 edited.\n\nOLD ITEMS:\n- TEST | Qty: 1 | TEST APRROVAL\n\nNEW ITEMS:\n- TEST | Qty: 1 | TEST APRROVAL\n- TEST | Qty: 1 | TEST RFQ FLOW\n'),
+(2654, 'procurement_requests', 206, 'STATUS_CHANGE', 'Technical & User Support Officer', '2026-07-21 14:06:39', 'Draft → Submitted'),
+(2655, 'procurement_requests', 206, 'APPROVAL_CHAIN_CREAT', 'Technical & User Support Officer', '2026-07-21 14:06:39', 'Approval chain created: Director HRM&A'),
+(2656, 'request_approvals', 182, 'APPROVE_STAGE', 'Nellesha Samuels', '2026-07-21 14:09:46', 'Approved by Director HRM&A'),
+(2657, 'procurement_requests', 206, 'STATUS_CHANGE', 'Nellesha Samuels', '2026-07-21 14:09:46', 'Approved → RFQ_LETTER_AVAILABLE (funds certified) by Director HRM&A'),
+(2658, 'procurement_requests', 206, 'RFQ_LETTER_AVAILABLE', 'Nellesha Samuels', '2026-07-21 14:09:46', 'Approval by Director HRM&A'),
+(2659, 'procurement_requests', 206, 'STATUS_CHANGE', 'Technical & User Support Officer', '2026-07-21 14:11:45', 'RFQ_LETTER_AVAILABLE → Awarded (proceeded without RFQ — under JMD threshold) by Technical & User Support Officer'),
+(2660, 'procurement_requests', 206, 'RFQ_SKIPPED', 'Technical & User Support Officer', '2026-07-21 14:11:45', 'Procurement proceeded without RFQ (optional for requests at or below JMD $3,000,000.00)'),
+(2661, 'procurement_requests', 200, 'UPDATE', 'Nellesha Samuels', '2026-07-21 14:52:51', 'Signed request uploaded: Document_260721_095118.pdf'),
+(2662, 'procurement_requests', 200, 'SIGNED_REQUEST_UPLOA', 'Nellesha Samuels', '2026-07-21 14:52:51', 'Signed request uploaded by Nellesha Samuels: Document_260721_095118.pdf'),
+(2663, 'request_approvals', 171, 'APPROVE_STAGE', 'Nellesha Samuels', '2026-07-21 14:53:01', 'Approved by Director HRM&A'),
+(2664, 'procurement_requests', 200, 'STATUS_CHANGE', 'Nellesha Samuels', '2026-07-21 14:53:01', 'Approved → RFQ_LETTER_AVAILABLE (funds certified) by Director HRM&A'),
+(2665, 'procurement_requests', 200, 'RFQ_LETTER_AVAILABLE', 'Nellesha Samuels', '2026-07-21 14:53:01', 'Approval by Director HRM&A'),
+(2666, 'procurement_requests', 204, 'UPDATE', 'Nellesha Samuels', '2026-07-21 15:19:15', 'Signed request uploaded: Document_260721_100029.pdf'),
+(2667, 'procurement_requests', 204, 'SIGNED_REQUEST_UPLOA', 'Nellesha Samuels', '2026-07-21 15:19:15', 'Signed request uploaded by Nellesha Samuels: Document_260721_100029.pdf'),
+(2668, 'request_approvals', 176, 'APPROVE_STAGE', 'Nellesha Samuels', '2026-07-21 15:21:54', 'Approved by Director HRM&A'),
+(2669, 'procurement_requests', 204, 'STATUS_CHANGE', 'Nellesha Samuels', '2026-07-21 15:21:54', 'Approved → RFQ_LETTER_AVAILABLE (funds certified) by Director HRM&A'),
+(2670, 'procurement_requests', 204, 'RFQ_LETTER_AVAILABLE', 'Nellesha Samuels', '2026-07-21 15:21:54', 'Approval by Director HRM&A'),
+(2671, 'procurement_requests', 208, 'UPDATE', 'Nellesha Samuels', '2026-07-21 15:23:08', 'Signed request uploaded: Document_260721_095951.pdf'),
+(2672, 'procurement_requests', 208, 'SIGNED_REQUEST_UPLOA', 'Nellesha Samuels', '2026-07-21 15:23:08', 'Signed request uploaded by Nellesha Samuels: Document_260721_095951.pdf'),
+(2673, 'request_approvals', 181, 'APPROVE_STAGE', 'Nellesha Samuels', '2026-07-21 15:23:22', 'Approved by Director HRM&A'),
+(2674, 'procurement_requests', 208, 'STATUS_CHANGE', 'Nellesha Samuels', '2026-07-21 15:23:22', 'Approved → RFQ_LETTER_AVAILABLE (funds certified) by Director HRM&A'),
+(2675, 'procurement_requests', 208, 'RFQ_LETTER_AVAILABLE', 'Nellesha Samuels', '2026-07-21 15:23:22', 'Approval by Director HRM&A'),
+(2676, 'inv_items', 35, 'UPDATE', 'Technical & User Support Officer', '2026-07-21 18:08:20', 'Item updated: G.C.1B/OM5/1'),
+(2677, 'request_documents', 41, 'CREATE', 'Yanique McKenzie', '2026-07-21 18:41:03', 'Supporting Memo uploaded for request PR079'),
+(2678, 'procurement_requests', 204, 'DOCUMENT_UPLOADED', 'Yanique McKenzie', '2026-07-21 18:41:03', 'Supporting Memo uploaded: RFQ Program and Hard Ware.pdf'),
+(2679, 'inv_import_batches', 4, 'IMPORT', 'Technical & User Support Officer', '2026-07-21 19:26:33', 'Asset import \"tt.xlsx\": 22 rows, 22 created, 0 updated, 0 skipped, 0 errors'),
+(2680, 'inv_import_batches', 5, 'IMPORT', 'Technical & User Support Officer', '2026-07-21 19:42:23', 'Asset import \"tt.xlsx\": 462 rows, 403 created, 0 updated, 48 skipped, 11 errors'),
+(2681, 'inv_import_batches', 6, 'IMPORT', 'Technical & User Support Officer', '2026-07-21 19:43:37', 'Asset import \"tt.xlsx\": 462 rows, 0 created, 0 updated, 451 skipped, 11 errors'),
+(2682, 'system_config', 0, 'UPDATE', 'Technical & User Support Officer', '2026-07-22 01:32:17', 'System settings updated: enable_notifications=OFF, enable_rfq_auto_email=OFF, threshold=3,000,000.00, petty_cash_limit=5,000.00, usd_to_jmd_rate=155.2200, hod_approval_threshold=500,000.00, committee_review_threshold=3,000,000.00'),
+(2683, 'branches', 13, 'TOGGLE', 'Technical & User Support Officer', '2026-07-22 01:58:35', 'Branch \'Balance Room\' set inactive'),
+(2684, 'branches', 14, 'TOGGLE', 'Technical & User Support Officer', '2026-07-22 01:58:37', 'Branch \'Conference Room\' set inactive'),
+(2685, 'branches', 20, 'TOGGLE', 'Technical & User Support Officer', '2026-07-22 01:58:39', 'Branch \'Dissolution Room\' set inactive'),
+(2686, 'branches', 19, 'TOGGLE', 'Technical & User Support Officer', '2026-07-22 01:58:40', 'Branch \'Emerald Office\' set inactive'),
+(2687, 'branches', 16, 'TOGGLE', 'Technical & User Support Officer', '2026-07-22 01:58:43', 'Branch \'Food Laboratory\' set inactive'),
+(2688, 'branches', 5, 'TOGGLE', 'Technical & User Support Officer', '2026-07-22 01:58:47', 'Branch \'HRM&A\' set inactive'),
+(2689, 'branches', 18, 'TOGGLE', 'Technical & User Support Officer', '2026-07-22 01:58:55', 'Branch \'Pharmaceutical Laboratory\' set inactive'),
+(2690, 'branches', 11, 'TOGGLE', 'Technical & User Support Officer', '2026-07-22 01:58:59', 'Branch \'Toxicology Laboratory\' set inactive'),
+(2691, 'branches', 23, 'TOGGLE', 'Technical & User Support Officer', '2026-07-22 01:59:01', 'Branch \'Senior Chemist Toxicology\' set inactive'),
+(2692, 'branches', 21, 'TOGGLE', 'Technical & User Support Officer', '2026-07-22 01:59:04', 'Branch \'Senior Chemist Pharmaceutical\' set inactive'),
+(2693, 'branches', 17, 'TOGGLE', 'Technical & User Support Officer', '2026-07-22 01:59:07', 'Branch \'Senior Chemist Food\' set inactive'),
+(2694, 'branches', 12, 'TOGGLE', 'Technical & User Support Officer', '2026-07-22 01:59:26', 'Branch \'Quality Assurance Branch\' set inactive'),
+(2695, 'branches', 15, 'TOGGLE', 'Technical & User Support Officer', '2026-07-22 01:59:33', 'Branch \'Government Chemist Office\' set inactive'),
+(2696, 'branches', 5, 'TOGGLE', 'Technical & User Support Officer', '2026-07-22 02:00:00', 'Branch \'HRM&A\' set active'),
+(2697, 'branches', 22, 'TOGGLE', 'Technical & User Support Officer', '2026-07-22 02:00:03', 'Branch \'HRMA / Administration Branch\' set inactive'),
+(2698, 'procurement_requests', 206, 'COMMITMENT_DECLINED', 'Technical & User Support Officer', '2026-07-22 02:08:43', 'Finance declined - Reason: procurement/list.php'),
+(2699, 'procurement_requests', 206, 'COMMITMENT_DECLINED', 'Technical & User Support Officer', '2026-07-22 02:08:43', 'Finance Officer: Funds not available. Reason: procurement/list.php'),
+(2700, 'procurement_requests', 206, 'RETURN_FOR_EDIT', 'Technical & User Support Officer', '2026-07-22 02:09:04', 'Returned for edit by Technical & User Support Officer (SuperAdmin). Reason: procurement/list.php'),
+(2701, 'procurement_requests', 206, 'RETURNED_FOR_EDIT', 'Technical & User Support Officer', '2026-07-22 02:09:04', 'Returned for edit by Technical & User Support Officer (SuperAdmin). Reason: procurement/list.php'),
+(2702, 'procurement_requests', 206, 'EDIT', 'Technical & User Support Officer', '2026-07-22 02:09:12', 'Procurement Request #206 edited.\n\nOLD ITEMS:\n- TEST | Qty: 1 | TEST APRROVAL\n- TEST | Qty: 1 | TEST RFQ FLOW\n\nNEW ITEMS:\n- TEST | Qty: 1 | TEST APRROVAL\n- TEST | Qty: 1 | TEST RFQ FLOW\n'),
+(2703, 'procurement_requests', 206, 'STATUS_CHANGE', 'Technical & User Support Officer', '2026-07-22 02:09:17', 'Draft → Submitted'),
+(2704, 'procurement_requests', 206, 'APPROVAL_CHAIN_CREAT', 'Technical & User Support Officer', '2026-07-22 02:09:17', 'Approval chain created: Director HRM&A'),
+(2705, 'request_approvals', 183, 'APPROVE_STAGE', 'Demario Ewan', '2026-07-22 02:11:02', 'Approved by Director HRM&A'),
+(2706, 'procurement_requests', 206, 'STATUS_CHANGE', 'Demario Ewan', '2026-07-22 02:11:02', 'Approved → RFQ_LETTER_AVAILABLE (funds certified) by Director HRM&A'),
+(2707, 'procurement_requests', 206, 'RFQ_LETTER_AVAILABLE', 'Demario Ewan', '2026-07-22 02:11:02', 'Approval by Director HRM&A'),
+(2708, 'procurement_requests', 206, 'STATUS_CHANGE', 'Technical & User Support Officer', '2026-07-22 02:11:58', 'RFQ_LETTER_AVAILABLE → Awarded (proceeded without RFQ — under JMD threshold) by Technical & User Support Officer'),
+(2709, 'procurement_requests', 206, 'RFQ_SKIPPED', 'Technical & User Support Officer', '2026-07-22 02:11:58', 'Procurement proceeded without RFQ (optional for requests at or below JMD $3,000,000.00)'),
+(2710, 'procurement_requests', 206, 'DELETE', 'Technical & User Support Officer', '2026-07-22 02:58:20', 'Request deleted by admin'),
+(2711, 'procurement_requests', 206, 'DELETE', 'Technical & User Support Officer', '2026-07-22 02:58:20', 'Request deleted by admin'),
+(2712, 'procurement_requests', 209, 'CREATE', 'Technical & User Support Officer', '2026-07-22 02:59:05', 'Procurement request created'),
+(2713, 'procurement_requests', 209, 'STATUS_CHANGE', 'Technical & User Support Officer', '2026-07-22 02:59:30', 'Draft → Submitted'),
+(2714, 'procurement_requests', 209, 'APPROVAL_CHAIN_CREAT', 'Technical & User Support Officer', '2026-07-22 02:59:30', 'Approval chain created: Director HRM&A'),
+(2715, 'procurement_requests', 209, 'UPDATE', 'Technical & User Support Officer', '2026-07-22 03:22:56', 'Signed request uploaded: procurement_request_209_for_signing.pdf'),
+(2716, 'procurement_requests', 209, 'SIGNED_REQUEST_UPLOA', 'Technical & User Support Officer', '2026-07-22 03:22:56', 'Signed request uploaded by Technical & User Support Officer: procurement_request_209_for_signing.pdf'),
+(2717, 'request_approvals', 184, 'APPROVE_STAGE', 'Demario Ewan', '2026-07-22 03:23:39', 'Approved by Director HRM&A'),
+(2718, 'procurement_requests', 209, 'STATUS_CHANGE', 'Demario Ewan', '2026-07-22 03:23:39', 'Approved → RFQ_LETTER_AVAILABLE (funds certified) by Director HRM&A'),
+(2719, 'procurement_requests', 209, 'RFQ_LETTER_AVAILABLE', 'Demario Ewan', '2026-07-22 03:23:39', 'Approval by Director HRM&A'),
+(2720, 'procurement_requests', 209, 'STATUS_CHANGE', 'Technical & User Support Officer', '2026-07-22 03:24:14', 'RFQ_LETTER_AVAILABLE → Awarded (proceeded without RFQ — under JMD threshold) by Technical & User Support Officer'),
+(2721, 'procurement_requests', 209, 'RFQ_SKIPPED', 'Technical & User Support Officer', '2026-07-22 03:24:14', 'Procurement proceeded without RFQ (optional for requests at or below JMD $3,000,000.00)');
 
 -- --------------------------------------------------------
 
@@ -2344,7 +3106,23 @@ CREATE TABLE `branches` (
 INSERT INTO `branches` (`branch_id`, `branch_name`, `is_active`) VALUES
 (1, 'Executive Branch', 1),
 (5, 'HRM&A', 1),
-(6, 'Analytical & Advisory', 1);
+(6, 'Analytical & Advisory', 1),
+(8, 'Instrument Room', 0),
+(9, 'Accounts / Finance Branch', 1),
+(10, 'Pharmaceutical Laboratory (HPLC)', 0),
+(11, 'Toxicology Laboratory', 0),
+(12, 'Quality Assurance Branch', 0),
+(13, 'Balance Room', 0),
+(14, 'Conference Room', 0),
+(15, 'Government Chemist Office', 0),
+(16, 'Food Laboratory', 0),
+(17, 'Senior Chemist Food', 0),
+(18, 'Pharmaceutical Laboratory', 0),
+(19, 'Emerald Office', 0),
+(20, 'Dissolution Room', 0),
+(21, 'Senior Chemist Pharmaceutical', 0),
+(22, 'HRMA / Administration Branch', 0),
+(23, 'Senior Chemist Toxicology', 0);
 
 -- --------------------------------------------------------
 
@@ -2376,7 +3154,8 @@ CREATE TABLE `commitments` (
 --
 
 INSERT INTO `commitments` (`commitment_id`, `request_id`, `commitment_number`, `commitment_date`, `commitment_total`, `created_at`, `approved_at`, `status`, `parent_commitment_id`, `commitment_type`, `rfq_id`, `selected_quote_id`, `quote_approved_at`, `gfms_generated`, `gfms_commitment_number`, `document_path`) VALUES
-(87, 137, 'CM001', '2026-03-19', 355949.10, '2026-03-19 17:21:22', '2026-03-19 12:21:22', 'closed', NULL, 'ORIGINAL', NULL, NULL, NULL, 0, 'CO7111504', '/uploads/commitments/COMMITMENT_1773940882_69bc3092de07d.pdf');
+(87, 137, 'CM001', '2026-03-19', 355949.10, '2026-03-19 17:21:22', '2026-03-19 12:21:22', 'closed', NULL, 'ORIGINAL', NULL, NULL, NULL, 0, 'CO7111504', '/uploads/commitments/COMMITMENT_1773940882_69bc3092de07d.pdf'),
+(88, 202, 'CM002', '2026-07-13', 8000.00, '2026-07-13 21:21:13', '2026-07-13 16:21:13', 'closed', NULL, 'ORIGINAL', NULL, NULL, NULL, 0, NULL, '/uploads/commitments/COMMITMENT_1783977673_6a5556c9e87ce.pdf');
 
 --
 -- Triggers `commitments`
@@ -2483,6 +3262,22 @@ CREATE TABLE `compliance_approvals` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `document_reminder_log`
+--
+
+CREATE TABLE `document_reminder_log` (
+  `reminder_id` int(11) NOT NULL,
+  `request_id` int(11) NOT NULL,
+  `document_type` enum('SIGNED_PO','SIGNED_COMMITMENT') NOT NULL,
+  `escalation_level` tinyint(1) NOT NULL DEFAULT 1 COMMENT '1=responsible only, 2=+Branch Head, 3=+HOD (urgent)',
+  `days_overdue` int(11) NOT NULL DEFAULT 0,
+  `sent_to` varchar(500) DEFAULT NULL COMMENT 'Comma separated recipient emails',
+  `sent_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `external_approvals`
 --
 
@@ -2493,6 +3288,49 @@ CREATE TABLE `external_approvals` (
   `approval_file` varchar(255) DEFAULT NULL,
   `approved_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inventory_types`
+--
+
+CREATE TABLE `inventory_types` (
+  `inventory_type_id` int(11) NOT NULL,
+  `type_code` varchar(30) NOT NULL,
+  `type_name` varchar(100) NOT NULL,
+  `description` text DEFAULT NULL,
+  `is_active` tinyint(1) NOT NULL DEFAULT 1,
+  `sort_order` int(11) NOT NULL DEFAULT 0,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Named types of consumable/stock inventory items';
+
+--
+-- Dumping data for table `inventory_types`
+--
+
+INSERT INTO `inventory_types` (`inventory_type_id`, `type_code`, `type_name`, `description`, `is_active`, `sort_order`, `created_at`) VALUES
+(1, 'CONSUMABLES', 'Consumables', 'General consumable items used in operations', 1, 1, '2026-05-26 17:46:20'),
+(2, 'OFFICE_SUPPLIES', 'Office Supplies', 'Stationery, paper, toner, pens, files', 1, 2, '2026-05-26 17:46:20'),
+(3, 'CLEANING', 'Cleaning Supplies', 'Detergents, mops, bins, cleaning chemicals', 1, 3, '2026-05-26 17:46:20'),
+(4, 'LAB_SUPPLIES', 'Laboratory Supplies', 'Lab reagents, glassware, disposable consumables', 1, 4, '2026-05-26 17:46:20'),
+(5, 'CHEMICALS', 'Chemicals & Reagents', 'Chemicals, reagents, standards, solvents', 1, 5, '2026-05-26 17:46:20'),
+(6, 'PPE', 'PPE & Safety', 'Personal protective equipment, safety gear', 1, 6, '2026-05-26 17:46:20'),
+(7, 'SPARE_PARTS', 'Spare Parts', 'Replacement parts for equipment and machinery', 1, 7, '2026-05-26 17:46:20'),
+(8, 'UNIFORMS', 'Uniforms & Workwear', 'Staff uniforms, work clothes, protective clothing', 1, 8, '2026-05-26 17:46:20'),
+(9, 'DIST_GOODS', 'Distribution Goods', 'Items held for distribution to clients or the public', 1, 9, '2026-05-26 17:46:20'),
+(10, 'PRINTED_FORMS', 'Printed Forms', 'Controlled stationery, pre-printed numbered forms', 1, 10, '2026-05-26 17:46:20'),
+(11, 'OTHER', 'Other Stock', 'Stock items not classified elsewhere', 1, 11, '2026-05-26 17:46:20'),
+(12, 'MRO_TOOLS_ABR', 'MRO - Tools & Abrasives', 'Masking Tape, Duct Tape, Electrical Tape, Sandpaper (Various Grits), Grinding Discs, Circular Saw Blades, Band Saw Blades, Drill Bits (Masonry/Wood/Metal), Welding Wire, Solder.', 1, 101, '2026-05-26 21:14:21'),
+(13, 'MRO_FAC_ELEC', 'MRO - Facilities & Electrical', 'LED Lightbulbs, Fluorescent Tubes, AA Batteries, 9V Batteries, HVAC Air Filters, Water Filters, Extension Cords, Circuit Breakers, Fuses, Wall Outlets, Light Switches.', 1, 102, '2026-05-26 21:14:21'),
+(14, 'MRO_SAFE_PPE', 'MRO - Safety & PPE', 'Safety Glasses, Goggles, Foam Earplugs, Earmuffs, Hard Hats, Bump Caps, N95 Respirators, Half-Face Respirators, Nitrile Gloves, Leather Work Gloves, Cut-Resistant Gloves, High-Vis Safety Vests, Steel-Toe Boots, Fall Protection Harnesses, First Aid Kits.', 1, 103, '2026-05-26 21:14:21'),
+(15, 'OFF_PAPER_WRITE', 'Office Consumables - Paper & Writing', 'Printer Paper (Letter/A4), Cardstock, Photo Paper, Toner Cartridges, Inkjet Cartridges, Ballpoint Pens, Gel Pens, Pencils, Highlighters, Dry Erase Markers, Permanent Markers.', 1, 104, '2026-05-26 21:14:21'),
+(16, 'OFF_ORGANIZATION', 'Office Consumables - Organization', 'Staples, Paperclips, Binder Clips, Push Pins, Rubber Bands, Sticky Notes, Legal Pads, Envelopes, File Folders, Hanging Folders, Ring Binders, Sheet Protectors, Filing Labels, Correction Fluid.', 1, 105, '2026-05-26 21:14:21'),
+(17, 'PACK_SHIPPING', 'Packaging & Shipping', 'Corrugated Cardboard Boxes (Various Dimensions), Poly Mailers, Bubble Mailers, Packing Peanuts, Bubble Wrap Rolls, Kraft Paper Rolls, Shrink Wrap, Stretch Film, Wood Pallets, Plastic Pallets, Plastic Strapping, Packing Tape, Shipping Labels, Edge Protectors.', 1, 106, '2026-05-26 21:14:21'),
+(18, 'RAW_AGRI_TEXT', 'Raw Materials - Agricultural & Textiles', 'Cotton Yarn, Silk, Wool, Polyester Fabric, Nylon Fabric, Leather, Hardwood Lumber, Softwood Lumber, Plywood, MDF, Wheat, Corn, Sugar, Coffee Beans.', 1, 107, '2026-05-26 21:14:21'),
+(19, 'MRO_FASTENERS', 'MRO (Maintenance, Repair, Ops) - Fasteners', 'Wood Screws, Machine Screws, Sheet Metal Screws, Nails, Hex Bolts, Carriage Bolts, Hex Nuts, Lock Washers, Flat Washers, Rivets, Drywall Anchors.', 1, 108, '2026-05-26 21:14:21'),
+(20, 'MRO_HW_MECH', 'MRO - Hardware & Mechanical', 'Hinges, Drawer Glides, Door Handles, Padlocks, Deadbolts, Tension Springs, Compression Springs, Ball Bearings, Roller Bearings, Gears, V-Belts, Timing Belts, Pulleys, Sprockets.', 1, 109, '2026-05-26 21:14:21'),
+(21, 'MRO_JANITORIAL', 'MRO - Janitorial Supplies', '4% Liquid Bleach (4% Sun Brite Bleach 4L), 9\" Jumbo Tissue, 16oz Industrial Mop, 24x33 Garbage Bag BLK 14MIC, 30L Metal Garbage Bin, 32oz Professional Spray Bottle, 38x60 Garbage Bag BLK 17MIC, 4oz Toss in Deodorizer Blocks (Pink), Air Freshener Spray variants, All-Purpose Cleaner (Multipurpose Soap 4L), Anti-Bacteria Soap (4L), Bleach, Brooms, Bulk Instant Hand Sanitizer (4L), Color-Coded Microfibre Cloths, Dishwashing Liquid (4L), Domestic Mops (18\"), Domestic Plunger, Festival Broom W/Metal, Floor Wax, Glass Cleaner, Hand Sanitizer, Hand Soap, Heavy Duty Garbage Bags, Industrial Disinfectants, Mop Heads, Paper Towels, Porcelain Cleaner, ScotchBrite W Sponge, Sponges, Toilet Bowl Cleaner (1L), Toilet Brush Set Beige, Toilet Paper, Trash Bags (Various Gallon Sizes), Waste Baskets & Lids, Wooden IND Stick W/Plastic Bottom.', 1, 110, '2026-05-26 21:14:21');
 
 -- --------------------------------------------------------
 
@@ -2512,6 +3350,5117 @@ CREATE TABLE `invoices` (
   `gfms_generated` tinyint(1) DEFAULT 0,
   `invoice_source` enum('VENDOR_UPLOADED','SYSTEM_GENERATED','MANUAL') DEFAULT 'VENDOR_UPLOADED'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inv_accounting_classes`
+--
+
+CREATE TABLE `inv_accounting_classes` (
+  `acct_class_id` int(11) NOT NULL,
+  `acct_class_code` varchar(30) NOT NULL,
+  `acct_class_name` varchar(100) NOT NULL,
+  `description` text DEFAULT NULL,
+  `sort_order` int(11) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `inv_accounting_classes`
+--
+
+INSERT INTO `inv_accounting_classes` (`acct_class_id`, `acct_class_code`, `acct_class_name`, `description`, `sort_order`) VALUES
+(1, 'EXCHANGE', 'Exchange-Purchased Inventory', 'Purchased through normal procurement', 1),
+(2, 'NON_EXCHANGE', 'Non-Exchange Inventory', 'Received via donations or grants', 2),
+(3, 'NOMINAL_DIST', 'Inventory for Nominal/No-Charge Distribution', 'Distributed free or at nominal cost', 3),
+(4, 'WRITE_DOWN', 'Write-Down Candidates', 'Items flagged for potential write-down', 4),
+(5, 'DAMAGED_LOST', 'Damaged/Lost/Shrinkage Stock', 'Items damaged, lost, or shrunk', 5),
+(6, 'DISPOSAL', 'Disposal Stock', 'Items designated for disposal', 6);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inv_adjustments`
+--
+
+CREATE TABLE `inv_adjustments` (
+  `adjustment_id` int(11) NOT NULL,
+  `adjustment_number` varchar(30) NOT NULL,
+  `adjustment_type` enum('GAIN','LOSS') NOT NULL,
+  `reason_code` enum('DAMAGE','EXPIRY','COUNT_VARIANCE','BREAKAGE','THEFT','ADMIN_CORRECTION','OTHER') NOT NULL,
+  `reason_detail` text DEFAULT NULL,
+  `location_id` int(11) DEFAULT NULL,
+  `requested_by` int(11) NOT NULL,
+  `supervisor_approved_by` int(11) DEFAULT NULL,
+  `supervisor_approved_at` datetime DEFAULT NULL,
+  `review_required` tinyint(1) DEFAULT 0 COMMENT 'For high-value/controlled items',
+  `reviewed_by` int(11) DEFAULT NULL,
+  `reviewed_at` datetime DEFAULT NULL,
+  `investigation_notes` text DEFAULT NULL,
+  `status` enum('DRAFT','PENDING_APPROVAL','APPROVED','UNDER_INVESTIGATION','REJECTED','COMPLETED') DEFAULT 'DRAFT',
+  `total_value_impact` decimal(14,2) DEFAULT 0.00,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inv_adjustment_items`
+--
+
+CREATE TABLE `inv_adjustment_items` (
+  `adj_item_id` int(11) NOT NULL,
+  `adjustment_id` int(11) NOT NULL,
+  `item_id` int(11) NOT NULL,
+  `quantity_system` decimal(14,4) DEFAULT NULL,
+  `quantity_actual` decimal(14,4) DEFAULT NULL,
+  `quantity_variance` decimal(14,4) DEFAULT NULL,
+  `stock_id` int(11) DEFAULT NULL,
+  `quantity` decimal(14,4) NOT NULL,
+  `unit_cost` decimal(14,2) DEFAULT 0.00,
+  `total_cost` decimal(14,2) DEFAULT 0.00,
+  `batch_lot_number` varchar(50) DEFAULT NULL,
+  `serial_number` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inv_approval_log`
+--
+
+CREATE TABLE `inv_approval_log` (
+  `approval_log_id` int(11) NOT NULL,
+  `reference_type` varchar(50) NOT NULL COMMENT 'inv_requisitions, inv_transfers, etc.',
+  `reference_id` int(11) NOT NULL,
+  `approval_level` int(11) NOT NULL DEFAULT 1,
+  `required_role_code` varchar(30) DEFAULT NULL,
+  `approved_by` int(11) DEFAULT NULL,
+  `approved_at` datetime DEFAULT NULL,
+  `status` enum('PENDING','APPROVED','REJECTED','SKIPPED') DEFAULT 'PENDING',
+  `notes` text DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inv_approval_matrix`
+--
+
+CREATE TABLE `inv_approval_matrix` (
+  `matrix_id` int(11) NOT NULL,
+  `transaction_type` enum('REQUISITION','RECEIVING','ISSUE','TRANSFER','ADJUSTMENT','DISPOSAL','WRITE_OFF') NOT NULL,
+  `item_class` varchar(30) DEFAULT NULL COMMENT 'Category or risk class code filter',
+  `min_value` decimal(14,2) DEFAULT 0.00,
+  `max_value` decimal(14,2) DEFAULT 999999999.99,
+  `department_id` int(11) DEFAULT NULL,
+  `is_emergency` tinyint(1) DEFAULT 0,
+  `required_role_code` varchar(30) NOT NULL COMMENT 'inv_roles.role_code required to approve',
+  `approval_level` int(11) DEFAULT 1 COMMENT 'Sequence in multi-level approval',
+  `is_active` tinyint(1) DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `inv_approval_matrix`
+--
+
+INSERT INTO `inv_approval_matrix` (`matrix_id`, `transaction_type`, `item_class`, `min_value`, `max_value`, `department_id`, `is_emergency`, `required_role_code`, `approval_level`, `is_active`) VALUES
+(1, 'REQUISITION', NULL, 0.00, 50000.00, NULL, 0, 'STOCK_CONTROLLER', 1, 1),
+(2, 'REQUISITION', NULL, 50000.01, 500000.00, NULL, 0, 'INVENTORY_MANAGER', 1, 1),
+(3, 'REQUISITION', NULL, 500000.01, 999999999.99, NULL, 0, 'STORES_SUPERINTENDENT', 1, 1),
+(4, 'REQUISITION', NULL, 0.00, 999999999.99, NULL, 1, 'STOCK_CONTROLLER', 1, 1),
+(5, 'DISPOSAL', NULL, 0.00, 100000.00, NULL, 0, 'INVENTORY_MANAGER', 1, 1),
+(6, 'DISPOSAL', NULL, 100000.01, 999999999.99, NULL, 0, 'STORES_SUPERINTENDENT', 1, 1),
+(7, 'ADJUSTMENT', NULL, 0.00, 50000.00, NULL, 0, 'STOCK_CONTROLLER', 1, 1),
+(8, 'ADJUSTMENT', NULL, 50000.01, 999999999.99, NULL, 0, 'INVENTORY_MANAGER', 1, 1),
+(9, 'TRANSFER', NULL, 0.00, 999999999.99, NULL, 0, 'INVENTORY_MANAGER', 1, 1),
+(10, 'ISSUE', NULL, 0.00, 50000.00, NULL, 0, 'STOCK_CONTROLLER', 1, 1),
+(11, 'ISSUE', NULL, 50000.01, 999999999.99, NULL, 0, 'INVENTORY_MANAGER', 1, 1),
+(12, 'REQUISITION', NULL, 0.00, 50000.00, NULL, 0, 'STOCK_CONTROLLER', 1, 1),
+(13, 'REQUISITION', NULL, 50000.01, 500000.00, NULL, 0, 'INVENTORY_MANAGER', 1, 1),
+(14, 'REQUISITION', NULL, 500000.01, 999999999.99, NULL, 0, 'STORES_SUPERINTENDENT', 1, 1),
+(15, 'REQUISITION', NULL, 0.00, 999999999.99, NULL, 1, 'STOCK_CONTROLLER', 1, 1),
+(16, 'DISPOSAL', NULL, 0.00, 100000.00, NULL, 0, 'INVENTORY_MANAGER', 1, 1),
+(17, 'DISPOSAL', NULL, 100000.01, 999999999.99, NULL, 0, 'STORES_SUPERINTENDENT', 1, 1),
+(18, 'ADJUSTMENT', NULL, 0.00, 50000.00, NULL, 0, 'STOCK_CONTROLLER', 1, 1),
+(19, 'ADJUSTMENT', NULL, 50000.01, 999999999.99, NULL, 0, 'INVENTORY_MANAGER', 1, 1),
+(20, 'TRANSFER', NULL, 0.00, 999999999.99, NULL, 0, 'INVENTORY_MANAGER', 1, 1),
+(21, 'ISSUE', NULL, 0.00, 50000.00, NULL, 0, 'STOCK_CONTROLLER', 1, 1),
+(22, 'ISSUE', NULL, 50000.01, 999999999.99, NULL, 0, 'INVENTORY_MANAGER', 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inv_asset_details`
+--
+
+CREATE TABLE `inv_asset_details` (
+  `asset_detail_id` int(11) NOT NULL,
+  `item_id` int(11) NOT NULL,
+  `asset_code` varchar(50) DEFAULT NULL,
+  `reference_number` varchar(100) DEFAULT NULL,
+  `make` varchar(150) DEFAULT NULL,
+  `serial_number` varchar(100) DEFAULT NULL,
+  `acquired_date` date DEFAULT NULL,
+  `department_branch_id` int(11) DEFAULT NULL,
+  `custodian_user_id` int(11) DEFAULT NULL,
+  `custodian_name` varchar(150) DEFAULT NULL,
+  `asset_status` varchar(100) DEFAULT NULL,
+  `asset_condition` varchar(100) DEFAULT NULL,
+  `bos_value` decimal(15,2) DEFAULT NULL,
+  `increase_value` decimal(15,2) DEFAULT NULL,
+  `balance_value` decimal(15,2) DEFAULT NULL,
+  `decrease_value` decimal(15,2) DEFAULT NULL,
+  `delivery_date` date DEFAULT NULL,
+  `placed_in_service_date` date DEFAULT NULL,
+  `warranty_expiration` date DEFAULT NULL,
+  `title_deed_number` varchar(100) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `revalued_cost` decimal(15,2) DEFAULT NULL,
+  `revalued_date` date DEFAULT NULL,
+  `accumulated_depreciation` decimal(15,2) DEFAULT NULL,
+  `depreciation_charge` decimal(15,2) DEFAULT NULL,
+  `carrying_value` decimal(15,2) DEFAULT NULL,
+  `depreciation_method_rate` varchar(150) DEFAULT NULL,
+  `impairment` decimal(15,2) DEFAULT NULL,
+  `budget_code` varchar(50) DEFAULT NULL,
+  `acquisition_method` varchar(30) DEFAULT NULL COMMENT 'Purchased or Donated',
+  `insured_value` decimal(15,2) DEFAULT NULL,
+  `forced_sale_value` decimal(15,2) DEFAULT NULL,
+  `disposal_date` date DEFAULT NULL,
+  `disposal_amount` decimal(15,2) DEFAULT NULL,
+  `disposal_authorization` varchar(150) DEFAULT NULL,
+  `is_disposed` tinyint(1) NOT NULL DEFAULT 0,
+  `attachments_note` text DEFAULT NULL,
+  `comments` text DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Extended fixed-asset register details for imported assets';
+
+--
+-- Dumping data for table `inv_asset_details`
+--
+
+INSERT INTO `inv_asset_details` (`asset_detail_id`, `item_id`, `asset_code`, `reference_number`, `make`, `serial_number`, `acquired_date`, `department_branch_id`, `custodian_user_id`, `custodian_name`, `asset_status`, `asset_condition`, `bos_value`, `increase_value`, `balance_value`, `decrease_value`, `delivery_date`, `placed_in_service_date`, `warranty_expiration`, `title_deed_number`, `address`, `revalued_cost`, `revalued_date`, `accumulated_depreciation`, `depreciation_charge`, `carrying_value`, `depreciation_method_rate`, `impairment`, `budget_code`, `acquisition_method`, `insured_value`, `forced_sale_value`, `disposal_date`, `disposal_amount`, `disposal_authorization`, `is_disposed`, `attachments_note`, `comments`, `created_at`, `updated_at`) VALUES
+(1, 35, 'G.C.1B/OM5/1', '100222', 'Hurricane', NULL, '2008-03-31', 8, NULL, 'DGC', 'In Service', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, NULL, 'Purchased', 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'BOS', '2026-07-16 00:31:05', '2026-07-16 00:31:05'),
+(2, 36, 'G.C.5/OM5/2', 'N/A', 'Xtech', NULL, NULL, 8, NULL, 'DGC', 'In Service', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Moved to Instrument Room', '2026-07-16 00:31:05', '2026-07-16 00:31:05'),
+(3, 37, 'G.C.10a/OM5/3', '100222', 'Hurricane', NULL, '2008-03-31', 8, NULL, 'DGC', 'In Service', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'BOS', '2026-07-16 00:31:05', '2026-07-16 00:31:05'),
+(4, 38, 'G.C.10a/OM5/4', '100222', 'Hurricane', NULL, '2008-03-31', 9, NULL, 'DGC', 'In Service', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Moved To Instrument Room', '2026-07-16 00:31:05', '2026-07-16 00:31:05'),
+(5, 39, 'G.C.5/OM5/10', 'N/A', 'Hewlett Packard', NULL, NULL, 8, NULL, 'DGC', 'In Service', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Moved To Instrument Room', '2026-07-16 00:31:05', '2026-07-16 00:31:05'),
+(6, 40, 'G.C.13c/OM5/12', 'N/A', 'Lenovo', NULL, NULL, 10, NULL, 'DGC', 'In Service', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Not Found', '2026-07-16 00:31:05', '2026-07-16 00:31:05'),
+(7, 41, 'G.C.10a/OM5/18', 'PP2111028', 'Lenovo', NULL, '2020-05-26', 9, NULL, 'DGC', 'In Service', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Moved to Emerald Office', '2026-07-16 00:31:05', '2026-07-16 00:31:05'),
+(8, 42, 'CRL/PH8/260/2', NULL, NULL, NULL, NULL, 11, NULL, 'DGC', 'Not Found', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Not Found', '2026-07-21 19:26:33', '2026-07-21 19:26:33'),
+(9, 43, 'G.C.6C/E40/1', 'PP (1101047)', 'Selectra Pros', NULL, '2014-07-16', 11, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:26:33', '2026-07-21 19:26:33'),
+(10, 44, 'G.C.7A/E15/3', 'N/A', 'Lab Line Instruments', NULL, NULL, 11, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:26:33', '2026-07-21 19:26:33'),
+(11, 45, 'G.C.7A/E19/1', NULL, NULL, NULL, NULL, 11, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:26:33', '2026-07-21 19:26:33'),
+(12, 46, 'G.C.7A/E22/2', NULL, 'Barnstead/Thermolyne', NULL, NULL, 11, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:26:33', '2026-07-21 19:26:33'),
+(13, 47, 'G.C.7A/E25/1', 'N/A', 'Boekel', NULL, NULL, 11, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:26:33', '2026-07-21 19:26:33'),
+(14, 48, 'G.C.7A/OF15/15', NULL, NULL, NULL, NULL, 11, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:26:33', '2026-07-21 19:26:33'),
+(15, 49, 'G.C.7A/OF15/5', NULL, NULL, NULL, NULL, 11, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:26:33', '2026-07-21 19:26:33'),
+(16, 50, 'G.C.7A/OF15/8', 'N/A', 'N/A', NULL, NULL, 11, NULL, 'DGC', 'In Use', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:26:33', '2026-07-21 19:26:33'),
+(17, 51, 'G.C.7A/OF23/3', 'N/A', 'N/A', NULL, NULL, 11, NULL, 'DGC', 'In Use', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:26:33', '2026-07-21 19:26:33'),
+(18, 52, 'G.C.7A/OM20/5', NULL, NULL, NULL, NULL, 11, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:26:33', '2026-07-21 19:26:33'),
+(19, 53, 'G.C.7A/OM20/6', NULL, NULL, NULL, NULL, 11, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:26:33', '2026-07-21 19:26:33'),
+(20, 54, 'G.C.7A/OM21/2', 'N/A', 'South Clock', NULL, NULL, 11, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:26:33', '2026-07-21 19:26:33'),
+(21, 55, 'G.C.7A/OM24/14', 'PP (1111021)', 'Accu-Tek', NULL, '2016-08-18', 11, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:26:33', '2026-07-21 19:26:33'),
+(22, 56, 'G.C.7A/OM31/1', 'PP (2101250)', 'Frigidaire', NULL, '2011-04-01', 11, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:26:33', '2026-07-21 19:26:33'),
+(23, 57, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'DGC', 'Needs To Be Marked', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'Needs To Be Marked', '2026-07-21 19:26:33', '2026-07-21 19:26:33'),
+(24, 58, 'G.C.7A/OM31/2', 'N/A', 'N/A', NULL, NULL, 11, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:26:33', '2026-07-21 19:26:33'),
+(25, 59, 'G.C.7A/OM49/1', NULL, NULL, NULL, NULL, 11, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:26:33', '2026-07-21 19:26:33'),
+(26, 60, 'G.C.7A/OM6/26', 'PP (2111010)', 'Lenovo', NULL, '2017-05-12', 11, NULL, 'DGC', 'Moved to Emerald Office', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Moved to Emerald Office', '2026-07-21 19:26:33', '2026-07-21 19:26:33'),
+(27, 61, 'G.C.7a/OM8/25', 'PP2111010', 'Lenovo', NULL, '2017-05-12', 11, NULL, 'DGC', 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:26:33', '2026-07-21 19:26:33'),
+(28, 62, 'G.C.7A/OM9/25', 'PP (2111010)', 'Lenovo', NULL, '2017-05-12', 11, NULL, NULL, 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:26:33', '2026-07-21 19:26:33'),
+(29, 63, 'G.C.7A/TEM5/2', 'PP (31110023)', 'N/A', NULL, '2021-01-16', 11, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:26:33', '2026-07-21 19:26:33'),
+(30, 64, 'G.C.12/OF25/21', NULL, NULL, NULL, NULL, 12, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(31, 65, 'G.C.12/OF40/3', NULL, NULL, NULL, NULL, 12, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(32, 66, 'G.C.12/OM5/30', NULL, NULL, NULL, NULL, 12, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(33, 67, 'G.C.12/OM5/31', NULL, NULL, NULL, NULL, 12, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(34, 68, 'G.C.12/OM5/33', NULL, NULL, NULL, NULL, 12, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(35, 69, 'G.C.12/OM6/39', NULL, NULL, NULL, NULL, 12, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(36, 70, 'G.C.2/OM6/47', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(37, 71, 'G.C.12/OM6/43', NULL, NULL, NULL, NULL, 12, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(38, 72, 'G.C.12/OM6/45', NULL, NULL, NULL, NULL, 12, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(39, 73, 'G.C.12/OM8/33', NULL, NULL, NULL, NULL, 12, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(40, 74, 'G.C.12/OM8/34', NULL, NULL, NULL, NULL, 12, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(41, 75, 'G.C.12/OM8/35', NULL, NULL, NULL, NULL, 12, NULL, 'DGC', 'Not Found', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Not Found', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(42, 76, 'G.C.12/OM9/33', NULL, NULL, NULL, NULL, 12, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(43, 77, 'G.C.12/OM9/34', NULL, NULL, NULL, NULL, 12, NULL, 'DGC', 'In use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(44, 78, 'G.C.12/OM9/35', NULL, NULL, NULL, NULL, 12, NULL, 'DGC', 'Not Found', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Not Found', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(45, 79, 'G.C.1A/OM38/1', NULL, NULL, NULL, NULL, 12, NULL, 'DGC', 'Moved to Quality Assurance Branch', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Moved to Quality Assurance Branch', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(46, 80, 'G.C.2/OF19/19', NULL, NULL, NULL, NULL, 12, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(47, 81, 'G.C.2/OF25/19', NULL, NULL, NULL, NULL, 12, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(48, 82, 'G.C.2/OF25/25', NULL, NULL, NULL, NULL, 12, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(49, 83, 'G.C.2/OF49/11', NULL, NULL, NULL, NULL, 12, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(50, 84, 'G.C.2/OF52/5', NULL, NULL, NULL, NULL, 12, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(51, 85, 'G.C.2/OF52/6', NULL, NULL, NULL, NULL, 12, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(52, 86, 'G.C.2/OF52/7', NULL, NULL, NULL, NULL, 12, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(53, 87, 'G.C.2/OF52/8', NULL, NULL, NULL, NULL, 12, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(54, 88, 'G.C.2/OF53/4', 'PP (4111112)', 'Echo', NULL, '2022-11-29', 12, NULL, 'DGC', 'Not Found', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Not Found', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(55, 89, 'G.C.2/OF7/5', NULL, NULL, NULL, NULL, 12, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(56, 90, 'G.C.2/OF7/6', NULL, NULL, NULL, NULL, 12, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(57, 91, 'G.C.2/OF7/7', NULL, NULL, NULL, NULL, 12, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(58, 92, 'G.C.2/OM5/36', 'PP4111168', 'Lenovo', NULL, '2023-03-22', 12, NULL, 'DGC', 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(59, 93, 'G.C.2/OM50/4', NULL, NULL, NULL, NULL, 12, NULL, 'DGC', 'Not Found', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Not Found', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(60, 94, 'G.C.2/OM50/10', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(61, 95, 'G.C.2/OM50/9', NULL, NULL, NULL, NULL, 12, NULL, 'DGC', 'In U', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In U', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(62, 96, 'G.C.2/OM52/1', NULL, NULL, NULL, NULL, 12, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(63, 97, 'G.C.2/OM7/25', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(64, 98, 'G.C.2/OM7/23', NULL, NULL, NULL, NULL, 12, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(65, 99, 'G.C.2/OM8/37', 'PP4111168', 'Lenovo', NULL, '2023-03-22', 12, NULL, 'DGC', 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(66, 100, 'G.C.2/OM8/50', NULL, NULL, NULL, NULL, 12, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(67, 101, 'G.C.2/OM9//50', NULL, NULL, NULL, NULL, 12, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(68, 102, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'At desk (G.C.12/OF40/3)Needs To be marked', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'At desk (G.C.12/OF40/3)Needs To be marked', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(69, 103, 'G.C.2/OM9/42', 'PP (4111168)', 'Lenovo', NULL, '2023-03-22', 12, NULL, 'DGC', 'Not Foud', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Not Foud', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(70, 104, 'MF-HCMES51-31/1376', NULL, NULL, NULL, NULL, 12, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(71, 105, 'G.C.10a/OM8/15', 'SP3101133', 'Lenovo', NULL, '2011-11-08', 8, NULL, 'DGC', 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(72, 106, 'G.C.13C/OM6/22', 'N/A', 'HP', NULL, NULL, 8, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(73, 107, 'G.C.5/E3/4', NULL, NULL, NULL, NULL, 8, NULL, 'DGC', 'In Use', 'x', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(74, 108, 'G.C.5/E36/1', 'CHQ (006383) - SP (4101228)', 'Carver', NULL, '2013-03-28', 8, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(75, 109, 'G.C.5/E6/1', 'N/A', 'Loom\'s Engineering MFG Company', NULL, NULL, 8, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(76, 110, 'G.C.5/OM39/3', 'PP (1111238)', 'APC', NULL, '2019-03-26', 8, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(77, 111, 'G.C.5/OM5/38', NULL, NULL, NULL, NULL, 8, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(78, 112, 'G.C.5/OM6/15', 'N/A', 'Agilent Technologies', NULL, NULL, 8, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(79, 113, 'G.C.5/OM6/28', 'PP (2111118)', 'Lenovo', NULL, '2018-03-23', 8, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(80, 114, 'G.C.5/OM6/49', NULL, NULL, NULL, NULL, 8, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(81, 115, 'G.C.5/OM7/4', 'N/A', 'HP', NULL, NULL, 8, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(82, 116, 'G.C.5/OM8/44', NULL, NULL, NULL, NULL, 8, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(83, 117, 'G.C.5/OM9/26', 'PP (2111010)', 'Lenovo', NULL, '2017-05-12', 8, NULL, NULL, 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(84, 118, 'G.C.5/OM9/44', NULL, NULL, NULL, NULL, 8, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(85, 119, 'G.C.5c/OM5/22', 'N/A', 'Lenovo', NULL, NULL, 8, NULL, 'DGC', 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(86, 120, 'G.C.6C/OM23/2', 'PP (3101132)', 'G.E', NULL, '2011-11-08', 8, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(87, 121, 'MF-HCMES-51-6/48', NULL, NULL, NULL, NULL, 8, NULL, 'DGC', 'Moved to Instrument Room', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Moved to Instrument Room', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(88, 122, 'MF-HCMES-69-1/75', NULL, NULL, NULL, NULL, 8, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(89, 123, 'G.C.10A/OF10/8', 'N/A', 'N/A', NULL, NULL, 9, NULL, 'DGC', 'Not Found', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Not Found', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(90, 124, 'G.C.10A/OF15/11', 'N/A', 'N/A', NULL, NULL, 9, NULL, 'DGC', 'Not Found', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Not Found', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(91, 125, 'G.C.10A/OM15/1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(92, 126, 'G.C.10A/OF13/8', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(93, 127, 'G.C.10A/OF19/14', NULL, NULL, NULL, NULL, 9, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(94, 128, 'G.C.10A/OF19/20', NULL, NULL, NULL, NULL, 9, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(95, 129, 'G.C.10A/OF21/1', 'N/A', 'N/A', NULL, '2010-03-10', 9, NULL, 'DGC', 'Not Found', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Not Found', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(96, 130, 'G.C.10A/OF21/2', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(97, 131, 'G.C.10A/OF21/3', 'N/A', 'N/A', NULL, NULL, 9, NULL, 'DGC', 'Not Found', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Not Found', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(98, 132, 'G.C.10A/OF25/14', 'PP (1111427)', 'N/A', NULL, '2019-03-26', 9, NULL, 'DGC', 'Not Found', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Not Found', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(99, 133, 'G.C.10A/OF25/16', NULL, NULL, NULL, NULL, 9, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(100, 134, 'G.C.10A/OF25/17', NULL, NULL, NULL, NULL, 9, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(101, 135, 'G.C.10A/OF25/18', NULL, NULL, NULL, NULL, 9, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(102, 136, 'G.C.10A/OF25/20', NULL, NULL, NULL, NULL, 9, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(103, 137, 'G.C.10A/OF48/1', NULL, NULL, NULL, NULL, 9, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(104, 138, 'G.C.10A/OF7/8', NULL, NULL, NULL, NULL, 9, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(105, 139, 'G.C.10A/OF7/9', NULL, NULL, NULL, NULL, 9, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(106, 140, 'G.C.10A/OM16/1', 'PP (100122)', 'Brother', NULL, '2008-09-11', 9, NULL, 'DGC', 'Not Found', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Not Found', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(107, 141, 'G.C.10A/OM20/10', 'PP (1111207)', 'Prizm', NULL, '2020-03-25', 9, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(108, 142, 'G.C.10A/OM22/2', 'N/A', 'Panasonic', NULL, NULL, 9, NULL, 'DGC', 'Not Found', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Not Found', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(109, 143, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Needs to be marked', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'Needs to be marked', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(110, 144, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Needs to be marked', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'Needs to be marked', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(111, 145, 'G.C.10A/OM23/3', 'PP (3101132)', 'APC', NULL, '2011-11-08', 9, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(112, 146, 'G.C.10A/OM45/1', NULL, NULL, NULL, NULL, 9, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(113, 147, 'G.C.10a/OM5/14', 'PP2101055', 'Dell', NULL, '2016-03-18', 9, NULL, 'DGC', 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(114, 148, 'G.C.10A/OM5/39', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(115, 149, 'G.C.10a/OM5/19', 'PP2111028', 'Lenovo', NULL, '2020-05-26', 9, NULL, 'DGC', 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(116, 150, 'G.C10A/OM5/43', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(117, 151, 'G.C.10A/OM5/20', NULL, NULL, NULL, NULL, 9, NULL, 'DGC', 'Not found', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Not found', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(118, 152, 'G.C.10A/OM6/51', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(119, 153, 'G.C.10A/OM6/33', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(120, 154, 'G.C.10A/OM6/32', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(121, 155, 'G.C.10A/OM6/31', NULL, 'Lenovo', NULL, NULL, 9, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(122, 156, 'G.C.10A.OM8/46', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(123, 157, 'G.C.10A/OM7/14', 'N/A', 'HP', NULL, NULL, 9, NULL, 'DGC', 'Not Found', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Not Found', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(124, 158, 'G.C.10A/OM7/17', 'PP (2101057)', 'Canon', NULL, '2016-03-22', 9, NULL, 'DGC', 'Not Found', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Not Found', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(125, 159, 'G.C.10A/OM7/30', NULL, NULL, NULL, NULL, 9, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(126, 160, 'G.C.10A/OM8/27', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'In use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'In use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(127, 161, 'G.C.10a/OM8/21', 'PP2101055', 'Dell', NULL, '2016-03-18', 9, NULL, 'DGC', 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(128, 162, 'G.C.10a/OM8/29', 'PP2111028', 'Lenovo', NULL, '2020-05-26', 9, NULL, 'DGC', 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(129, 163, 'G.C.10A/OM9/27', 'P (2111028)', 'Lenovo', NULL, '2020-05-26', 9, NULL, NULL, 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(130, 164, 'G.C.10A/OM9/28', 'P (2111028)', 'Lenovo', NULL, '2020-05-26', 9, NULL, NULL, 'Needs to be marked', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Needs to be marked', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(131, 165, 'G.C.10A/OM9/46', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(132, 166, 'G.C.10A/OM9/29', 'P (2111028)', 'Lenovo', NULL, '2020-05-26', 9, NULL, NULL, 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(133, 167, 'G.C.10A/OM9/9', 'N/A', 'N/A', NULL, NULL, 9, NULL, NULL, 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(134, 168, 'G.C.10A/OM13/4', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'In use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'In use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(135, 169, 'G.C.13A/OM13/6', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(136, 170, 'G.C.13A/OM13/3', NULL, NULL, NULL, NULL, 9, NULL, 'DGC', 'Not Found', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Not Found', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(137, 171, 'G.C.2/OF8/2', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(138, 172, 'G.C.10A/OM37/2', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(139, 173, 'G.C.10A/OF24/3', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(140, 174, 'G.C.15/OF14/8', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(141, 175, 'G.C.13B/OF15/19', NULL, NULL, NULL, NULL, 9, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(142, 176, 'G.C10B/OM42/2', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(143, 177, 'G.C.10B/OF38/4', NULL, NULL, NULL, NULL, 13, NULL, 'DGC', 'Not Found', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Not Found', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(144, 178, 'G.C.6A/OF15/6', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(145, 179, 'G.C.13B/E18/3', 'N/A', 'Mettler Toledo', NULL, NULL, 13, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(146, 180, 'G.C.13B/E23/1', NULL, NULL, NULL, NULL, 13, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(147, 181, 'G.C.7/E18/1', 'N/A', 'Mettler Toledo', NULL, NULL, 13, NULL, 'DGC', 'Not Found', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Not Found', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(148, 182, 'G.C.7/E18/2', 'N/A', 'Mettler Toledo', NULL, NULL, 13, NULL, 'DGC', 'Not Found', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Not Found', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(149, 183, 'G.C.7/E18/5', 'SP ( 1111095)', 'N/A', NULL, '2019-11-12', 13, NULL, 'DGC', 'Not Found', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Not Found', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(150, 184, 'G.C.7/E18/6', 'SP ( 1111095)', 'Mettler Toledo', NULL, '2019-11-12', 13, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(151, 185, 'G.C.7/E23/2', 'N/A', 'Mettler Toledo', NULL, NULL, 13, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(152, 186, 'G.C.7/E23/3', 'N/A', 'Mettler Toledo', NULL, NULL, 13, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(153, 187, 'G.C.7/E23/4', 'N/A', 'Mettler Toledo', NULL, NULL, 13, NULL, 'DGC', 'Out of Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Out of Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(154, 188, 'G.C.7/E23/5', 'N/A', 'Mettler Toledo', NULL, NULL, 13, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(155, 189, 'G.C.7/E44/1', NULL, NULL, NULL, NULL, 13, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(156, 190, 'G.C.7/E44/2', NULL, NULL, NULL, NULL, 13, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(157, 191, 'G.C.7/OM1/10', 'PP (2101058)', 'APC', NULL, '2016-03-22', 13, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(158, 192, 'G.C.7/OM20/9', 'PP (1111209)', 'Prizm', NULL, '2020-03-25', 13, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(159, 193, 'G.C.10B/OF11/1', NULL, NULL, NULL, NULL, 14, NULL, 'DGC', 'Not Found', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Not Found', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(160, 194, 'G.C.10B/OF32/1', NULL, NULL, NULL, NULL, 14, NULL, 'DGC', '0', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(161, 195, 'G.C.10B/OF36/1', NULL, NULL, NULL, NULL, 14, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(162, 196, 'G.C.10B/OF37/1', NULL, NULL, NULL, NULL, 14, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(163, 197, 'G.C.10B/OF38/1', NULL, NULL, NULL, NULL, 14, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(164, 198, 'G.C.10B/OF38/11', NULL, NULL, NULL, NULL, 14, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(165, 199, 'G.C.10B/OF38/12', NULL, NULL, NULL, NULL, 14, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(166, 200, 'G.C.10B/OF38/13', NULL, NULL, NULL, NULL, 14, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22');
+INSERT INTO `inv_asset_details` (`asset_detail_id`, `item_id`, `asset_code`, `reference_number`, `make`, `serial_number`, `acquired_date`, `department_branch_id`, `custodian_user_id`, `custodian_name`, `asset_status`, `asset_condition`, `bos_value`, `increase_value`, `balance_value`, `decrease_value`, `delivery_date`, `placed_in_service_date`, `warranty_expiration`, `title_deed_number`, `address`, `revalued_cost`, `revalued_date`, `accumulated_depreciation`, `depreciation_charge`, `carrying_value`, `depreciation_method_rate`, `impairment`, `budget_code`, `acquisition_method`, `insured_value`, `forced_sale_value`, `disposal_date`, `disposal_amount`, `disposal_authorization`, `is_disposed`, `attachments_note`, `comments`, `created_at`, `updated_at`) VALUES
+(167, 201, 'G.C.10B/OF38/14', NULL, NULL, NULL, NULL, 14, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(168, 202, 'G.C.10B/OF38/15', NULL, NULL, NULL, NULL, 14, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(169, 203, 'G.C.10B/OF38/16', NULL, NULL, NULL, NULL, 14, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(170, 204, 'G.C.10B/OF38/9', NULL, NULL, NULL, NULL, 14, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(171, 205, 'G.C.10B/OF45/1', 'PP (1111246)', 'Klip Xtreme', NULL, '2019-03-26', 14, NULL, 'DGC', 'In Use', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(172, 206, 'G.C.10B/OF46/1', NULL, NULL, NULL, NULL, 14, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(173, 207, 'G.C.10B/OF59/1', NULL, NULL, NULL, NULL, 14, NULL, NULL, 'In Use', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(174, 208, 'G.C.10B/OF59/10', NULL, NULL, NULL, NULL, 14, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(175, 209, 'G.C.10B/OF59/11', NULL, NULL, NULL, NULL, 14, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(176, 210, 'G.C.10B/OF59/12', NULL, NULL, NULL, NULL, 14, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(177, 211, 'G.C.10B/OF59/3', NULL, NULL, NULL, NULL, 14, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(178, 212, 'G.C.10B/OF59/4', NULL, NULL, NULL, NULL, 14, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(179, 213, 'G.C.10B/OF59/5', NULL, NULL, NULL, NULL, 14, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(180, 214, 'G.C.10B/OF59/6', NULL, NULL, NULL, NULL, 14, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(181, 215, 'G.C.10B/OF59/7', NULL, NULL, NULL, NULL, 14, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(182, 216, 'G.C.10B/OF59/8', NULL, NULL, NULL, NULL, 14, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(183, 217, 'G.C.10B/OM20/14', 'PP (4111170)', 'Prizm', NULL, '2023-03-22', 14, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(184, 218, 'G.C.10B/OM24/16', NULL, NULL, NULL, NULL, 14, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(185, 219, 'G.C.10B/OM43/1', 'PP (1111233)', 'Epson', NULL, '2023-03-26', 14, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(186, 220, 'G.C.10B/OM45/2', NULL, 'Samsung', NULL, NULL, 14, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(187, 221, 'G.C.10B/OM53/1', NULL, NULL, NULL, NULL, 14, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(188, 222, 'G.C.13A/OF38/28', NULL, NULL, NULL, NULL, 14, NULL, 'DGC', 'Moved to Conference Room', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Moved to Conference Room', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(189, 223, 'G.C.24/OF50/1', NULL, NULL, NULL, NULL, 14, NULL, 'DGC', 'Moved to Conference Room', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Moved to Conference Room', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(190, 224, 'G.C.7A/OM5/16', NULL, NULL, NULL, NULL, 14, NULL, 'DGC', 'Move To Conference Room', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Move To Conference Room', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(191, 225, 'G.C.7B/OM38/2', NULL, NULL, NULL, NULL, 14, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(192, 226, 'MF-HCMES-51-1174', NULL, NULL, NULL, NULL, 14, NULL, 'DGC', 'Moved to Conference Room', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Moved to Conference Room', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(193, 227, 'MF-HCMES-51-1332', NULL, NULL, NULL, NULL, 14, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(194, 228, 'MF-HCMES-51-1515', NULL, NULL, NULL, NULL, 14, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(195, 229, 'G.C.13B/OM24/13', NULL, NULL, NULL, NULL, 15, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(196, 230, 'G.C.1A/OF18/1', 'N/A', 'N/A', NULL, NULL, 15, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(197, 231, 'G.C.1A/OF19/1', 'N/A', 'Art Metal', NULL, NULL, 15, NULL, 'DGC', 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(198, 232, 'G.C.1A/OF33/2', NULL, NULL, NULL, NULL, 15, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(199, 233, 'G.C.1A/OF38/18', 'PP (111193)', 'N/A', NULL, '2020-03-24', 15, NULL, 'DGC', 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(200, 234, 'G.C.1A/OF38/19', NULL, NULL, NULL, NULL, 15, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(201, 235, 'G.C.1A/OF38/20', NULL, NULL, NULL, NULL, 15, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(202, 236, 'G.C.1A/OF38/21', NULL, NULL, NULL, NULL, 15, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(203, 237, 'G.C.1A/OF38/22', NULL, NULL, NULL, NULL, 15, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(204, 238, 'G.C.1A/OF40/4', NULL, NULL, NULL, NULL, 15, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(205, 239, 'G.C.1A/OF52/1', NULL, NULL, NULL, NULL, 15, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(206, 240, 'G.C.1B/OF19/2', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(207, 241, 'G.C./OF19/3', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(208, 242, 'G.C./1B/OF19/4', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(209, 243, 'G.C.1A/OF60/1', NULL, NULL, NULL, NULL, 15, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(210, 244, 'G.C.1A/OM12/3', NULL, NULL, NULL, NULL, 15, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(211, 245, 'G.C.1A/OM20/1', 'N/A', 'Prizm', NULL, '2008-03-04', 15, NULL, 'DGC', 'Not Found', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Not Found', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(212, 246, 'G.C.1A/OM36/1', NULL, NULL, NULL, NULL, 15, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(213, 247, 'G.C.1A/OM39/3', 'PP (2111112)', 'APC', NULL, '2018-03-23', 15, NULL, 'DGC', 'In Use', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(214, 248, 'G.C.1A/OM45/2', NULL, NULL, NULL, NULL, 15, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(215, 249, 'G.C.1A/OM7/19', 'N/A', 'HP', NULL, NULL, 15, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(216, 250, 'G.C.1A/OM7/26', NULL, NULL, NULL, NULL, 15, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(217, 251, 'G.C.1A/OM9/22', 'N/A', 'Dell', NULL, NULL, 15, NULL, NULL, 'Not Found', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Not Found', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(218, 252, 'G.C.6B/OF25/23', NULL, NULL, NULL, NULL, 15, NULL, 'DGC', 'Moved to Government Chemist\'s Office', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Moved to Government Chemist\'s Office', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(219, 253, 'G.C.6B/OM45/3', NULL, NULL, NULL, NULL, 15, NULL, 'DGC', 'Moved to Government Chemist Office', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Moved to Government Chemist Office', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(220, 254, 'G.C.6B/OM6/49', NULL, NULL, NULL, NULL, 15, NULL, 'DGC', 'Moved to Government Chemist Office', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Moved to Government Chemist Office', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(221, 255, 'G.C.6B/OM8/43', NULL, NULL, NULL, NULL, 15, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(222, 256, 'G.C.6B/OM9/45', NULL, NULL, NULL, NULL, 15, NULL, 'DGC', 'Moved to Government Chemist Office', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Moved to Government Chemist Office', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(223, 257, 'G.C.7A/OF15/13', NULL, NULL, NULL, NULL, 15, NULL, 'DGC', 'Moved to Government Chemist Office', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Moved to Government Chemist Office', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(224, 258, 'G.C.10B/OF/28/2', NULL, NULL, NULL, NULL, 16, NULL, 'DGC', 'Moved to Food Laboratory', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Moved to Food Laboratory', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(225, 259, 'G.C.10B/OF/38/7', NULL, NULL, NULL, NULL, 16, NULL, 'DGC', 'Moved to Food Laboratory', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Moved to Food Laboratory', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(226, 260, 'G.C.10B/OF38/2', NULL, NULL, NULL, NULL, 16, NULL, 'DGC', 'Moved to Food Laboratory', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Moved to Food Laboratory', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(227, 261, 'G.C.13A/E22/1', NULL, NULL, NULL, NULL, 16, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(228, 262, 'G.C.6A/E11/1', 'N/A', 'N/A', NULL, NULL, 16, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(229, 263, 'G.C.6A/E13/1', 'N/A', 'Burrell', NULL, NULL, 16, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(230, 264, 'G.C.6A/E16/1', 'N/A', 'Thomas Hoover', NULL, NULL, 16, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(231, 265, 'G.C.6A/E17/1', 'N/A', 'Astell', NULL, '2010-03-10', 16, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(232, 266, 'G.C.6A/E25/3', NULL, NULL, NULL, NULL, 16, NULL, 'DGC', 'Moved to Food Laboratory', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Moved to Food Laboratory', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(233, 267, 'G.C.6A/E37/1', 'CHQ (005735) - SP (4101048)', 'Shel Lab', NULL, '2012-06-20', 16, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(234, 268, 'G.C.6A/E9/1', 'N/A', 'Luda', NULL, NULL, 16, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(235, 269, 'G.C.6A/E9/2', 'SP (1101200)', 'Cole Parmer', NULL, '2010-02-25', 16, NULL, 'DGC', 'Out of use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Out of use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(236, 270, 'G.C.6A/OF38/25', 'PP (111193)', 'N/A', NULL, '2020-03-24', 16, NULL, 'DGC', 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(237, 271, 'G.C.6A/OM44/2', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(238, 272, 'G.C.6A/OM44/1', 'PP (1111207)', 'Prizm', NULL, '2020-03-05', 16, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(239, 273, 'G.C.6A/TEM5/1', 'PP (31110023)', 'N/A', NULL, '2021-01-16', 16, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(240, 274, 'G.C.6B/OM32/1', NULL, NULL, NULL, NULL, 16, NULL, 'DGC', 'Moved to Food Laboratory', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Moved to Food Laboratory', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(241, 275, 'G.C.7/OM39/2', NULL, 'APC', NULL, NULL, 16, NULL, 'DGC', 'Need to be Serviced', 'Not Working', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Need to be Serviced', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(242, 276, 'G.C.7A/OF/23/3', NULL, NULL, NULL, NULL, 16, NULL, 'DGC', 'Moved to Food Laboratory', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Moved to Food Laboratory', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(243, 277, 'G.C.6B/OF25/7', 'PP (1111242)', 'N/A', NULL, '2019-03-06', 17, NULL, 'DGC', 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(244, 278, 'G.C.6B/OF54/1', 'PP (3111027)', 'Torch', NULL, '2021-06-02', 17, NULL, 'DGC', 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(245, 279, 'G.C.6B/OF53/1', 'PP (3111027)', 'Echo', NULL, '2021-06-01', 17, NULL, 'DGC', 'In Use', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(246, 280, 'G.C.6B/OF8/4', 'N/A', 'N/A', NULL, NULL, 17, NULL, 'DGC', 'In Use', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(247, 281, 'G.C.13A/OF38/29', NULL, NULL, NULL, NULL, 17, NULL, 'DGC', 'Moved to Senior Chemist Food', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Moved to Senior Chemist Food', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(248, 282, 'G.C.6A/OF38/26', NULL, NULL, NULL, NULL, 17, NULL, 'DGC', 'Moved to Senior Chemist Food', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Moved to Senior Chemist Food', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(249, 283, 'G.C.6B/OF35/2', NULL, NULL, NULL, NULL, 17, NULL, 'DGC', 'Moved to Senior Chemist Food', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Moved to Senior Chemist Food', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(250, 284, 'G.C.7B/OF8/5', NULL, NULL, NULL, NULL, 17, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(251, 285, 'G.C.6B/OM7/24', NULL, NULL, NULL, NULL, 17, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(252, 286, 'MF-HCMES51-3/1464', NULL, NULL, NULL, NULL, 17, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(253, 287, 'G.C.13B/OF25/8', NULL, NULL, NULL, NULL, 17, NULL, 'DGC', 'Moved to Senior Chemist Food', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Moved to Senior Chemist Food', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(254, 288, 'G.C.13B/OM6/14', NULL, NULL, NULL, NULL, 17, NULL, 'DGC', 'Moved to Senior Chemist Food', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Moved to Senior Chemist Food', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(255, 289, 'G.C.6B/OF18/', NULL, NULL, NULL, NULL, 17, NULL, 'DGC', 'Moved to Senior Chemist Food', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Moved to Senior Chemist Food', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(256, 290, 'G.C.13B/OM9/37', NULL, NULL, NULL, NULL, 17, NULL, 'DGC', 'Moved to Senior Chemist Food', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Moved to Senior Chemist Food', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(257, 291, 'G.C.13B/OM8/39', NULL, NULL, NULL, NULL, 17, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(258, 292, 'G.C.13A/E19/2', 'N/A', 'N/A', NULL, NULL, 18, NULL, 'DGC', 'Not Found', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Not Found', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(259, 293, 'G.C.13A/E21/2', 'N/A', 'Lab Line Instruments', NULL, NULL, 18, NULL, 'DGC', 'Not Found', '\\', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Not Found', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(260, 294, 'G.C.13A/E25/4', NULL, NULL, NULL, NULL, 18, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(261, 295, 'G.C.13A/E31/1', NULL, NULL, NULL, NULL, 18, NULL, 'DGC', 'In Use', 'Decent', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(262, 296, 'G.C.13A/E39/1', 'CHQ (005654) - SP (4101021)', 'Thermo', NULL, '2012-05-10', 18, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(263, 297, 'G.C.13A/E43/1', NULL, NULL, NULL, NULL, 18, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(264, 298, 'G.C.13A/E5/3', NULL, NULL, NULL, NULL, 18, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(265, 299, 'G.C.13A/OM32/4', NULL, NULL, NULL, NULL, 18, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(266, 300, 'G.C.13A/OM40/1', 'PP (1111016)', 'Prizm', NULL, '2018-06-11', 18, NULL, 'DGC', 'Not found', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Not found', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(267, 301, 'G.C.13A/OM40/2', 'PP (1111016)', 'Prizm', NULL, '2018-06-11', 18, NULL, 'DGC', 'Not found', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Not found', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(268, 302, 'G.C.13A/OM50/7', NULL, NULL, NULL, NULL, 18, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(269, 303, 'G.C.13A/TEM5/3', 'PP (31110023)', 'N/A', NULL, '2021-01-16', 18, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(270, 304, 'G.C.14/OF18/14', NULL, NULL, NULL, NULL, 18, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(271, 305, 'G.C.3/E1/1', 'N/A', 'Carbolite', NULL, NULL, 18, NULL, 'DGC', 'Not found', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Not found', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(272, 306, 'G.C.13A/E15/4', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'In use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'In use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(273, 307, 'GC/13A/SC1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Rusting', 'Decent', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'Rusting', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(274, 308, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Need to be marked', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'Need to be marked', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(275, 309, 'G.C.3/OF14/2', 'N/A', 'N/A', NULL, NULL, 18, NULL, 'DGC', 'Not found', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Not found', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(276, 310, 'G.C.12/OM50/6', NULL, NULL, NULL, NULL, 19, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(277, 311, 'G.C.12/OM11/1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(278, 312, 'G.CA/OM11/6', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(279, 313, 'G.C14/OF41/3', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(280, 314, 'G.C.13A/OF38/27', 'PP (111193)', 'N/A', NULL, '2020-03-24', 19, NULL, 'DGC', 'Not Found', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Not Found', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(281, 315, 'G.C.13A/OM1/8', NULL, NULL, NULL, NULL, 19, NULL, 'DGC', 'Not Found', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Not Found', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(282, 316, 'G.C.14/OF15/27', 'N/A', 'N/A', NULL, NULL, 19, NULL, 'DGC', 'Not Found', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Not Found', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(283, 317, 'G.C.14/OF25/12', 'PP (1111427)', 'N/A', NULL, '2019-03-26', 19, NULL, 'DGC', 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(284, 318, 'G.C.14/OF25/13', 'PP (1111427)', 'N/A', NULL, '2019-03-26', 19, NULL, 'DGC', 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(285, 319, 'G.C.14/OF25/14', NULL, NULL, NULL, NULL, 19, NULL, 'DGC', 'Not Found', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Not Found', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(286, 320, 'G.C.14/OF48/2', NULL, NULL, NULL, NULL, 19, NULL, 'DGC', 'In Use', 'v', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(287, 321, 'G.C.14/OF48/3', NULL, NULL, NULL, NULL, 19, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(288, 322, 'G.C.14/OF48/4', NULL, NULL, NULL, NULL, 19, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(289, 323, 'G.C.14/OF48/5', NULL, NULL, NULL, NULL, 19, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(290, 324, 'G.C.14/OF48/6', NULL, NULL, NULL, NULL, 19, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(291, 325, 'G.C.14/OF48/7', NULL, NULL, NULL, NULL, 19, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(292, 326, 'G.C.14/OF49/2', NULL, NULL, NULL, NULL, 19, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(293, 327, 'G.C.14/OF49/3', NULL, NULL, NULL, NULL, 19, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(294, 328, 'G.C.14/OF49/4', NULL, NULL, NULL, NULL, 19, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(295, 329, 'G.C.2/OF50/4', NULL, NULL, NULL, NULL, 19, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(296, 330, 'G.C.14/OF49/5', NULL, NULL, NULL, NULL, 19, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(297, 331, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Mr.Newland\'s modem needs to be remarked', 'good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'Mr.Newland\'s modem needs to be remarked', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(298, 332, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Mr.Newland\'s staplr needs to be remarked', 'good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'Mr.Newland\'s staplr needs to be remarked', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(299, 333, 'G.C.14/OF49/6', NULL, NULL, NULL, NULL, 19, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(300, 334, 'G.C.14/OF49/7', NULL, NULL, NULL, NULL, 19, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(301, 335, 'G.C.14/OF25/15', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(302, 336, 'G.C.14/OF25/10', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(303, 337, 'G.C.14/OF51/3', NULL, NULL, NULL, NULL, 19, NULL, 'DGC', 'Not found', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Not found', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(304, 338, 'G.C.14/OM20/7', 'PP (1111222)', 'Prizm', NULL, '2019-03-21', 19, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(305, 339, 'G.C.14/OM5/17', 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(306, 340, 'G.C.14/OM5/29', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(307, 341, 'G.C.14/OM5/26', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(308, 342, 'G.C.14/OM5/24', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(309, 343, 'G.C.14/OM5/35', 'PP4111099', 'Lenovo', NULL, '2022-11-01', 19, NULL, 'DGC', 'Not found', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Not found', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(310, 344, 'G.C.14/OM50/2', NULL, NULL, NULL, NULL, 19, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(311, 345, 'G.C.14/OM6/36', NULL, NULL, NULL, NULL, 19, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(312, 346, 'G.C.14/OM6/37', NULL, NULL, NULL, NULL, 19, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(313, 347, 'G.C.14/OM6/42', NULL, NULL, NULL, NULL, 19, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(314, 348, 'G.C.14/OM8/35', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(315, 349, 'G.C.14/OM9/51', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(316, 350, 'G.C.14/OM8/51', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(317, 351, 'G.C.14/OM9/40', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(318, 352, 'G.C.14/OM6/46', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(319, 353, 'G.C14/OM6/55', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(320, 354, 'G.C5/OM6/27', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(321, 355, 'G.C.14/OM6/54', NULL, NULL, NULL, NULL, 19, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(322, 356, 'G.C.14/OM7/28', NULL, NULL, NULL, NULL, 19, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(323, 357, 'G.C.14/OM8/26', 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(324, 358, 'G.C.14/OM8/31', NULL, NULL, NULL, NULL, 19, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(325, 359, 'G.C.14/OM8/42', 'PP4111099', 'Lenovo', NULL, '2022-11-01', 19, NULL, 'DGC', 'Not found', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Not found', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(326, 360, 'G.C14/OM9/15', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(327, 361, 'G.C.14/OM9/31', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Ms. Addiman\'s mouse needs to be remarked', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'Ms. Addiman\'s mouse needs to be remarked', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(328, 362, 'G.C.14/OM9/32', 'N/A', 'N/A', NULL, NULL, 19, NULL, NULL, 'Not found', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Not found', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(329, 363, 'G.C.14/OM9/38', 'N/A', 'Lenovo', NULL, NULL, 19, NULL, NULL, 'Not found', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Not found', '2026-07-21 19:42:23', '2026-07-21 19:42:23');
+INSERT INTO `inv_asset_details` (`asset_detail_id`, `item_id`, `asset_code`, `reference_number`, `make`, `serial_number`, `acquired_date`, `department_branch_id`, `custodian_user_id`, `custodian_name`, `asset_status`, `asset_condition`, `bos_value`, `increase_value`, `balance_value`, `decrease_value`, `delivery_date`, `placed_in_service_date`, `warranty_expiration`, `title_deed_number`, `address`, `revalued_cost`, `revalued_date`, `accumulated_depreciation`, `depreciation_charge`, `carrying_value`, `depreciation_method_rate`, `impairment`, `budget_code`, `acquisition_method`, `insured_value`, `forced_sale_value`, `disposal_date`, `disposal_amount`, `disposal_authorization`, `is_disposed`, `attachments_note`, `comments`, `created_at`, `updated_at`) VALUES
+(330, 364, 'G.C10A/OM2/2', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'In Use', 'Poor', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(331, 365, 'G.C14/OM49/2', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(332, 366, 'G.C/B/OM14/8', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(333, 367, 'CRL/PH4/803/2', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'In Use', 'good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(334, 368, 'G.C/39/OF18/12', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'In Use', 'good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(335, 369, 'G.C.14/OM9/41', 'P (4111099)', 'Lenovo', NULL, '2022-11-01', 19, NULL, 'DGC', 'Not found', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Not found', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(336, 370, 'G.C.13B/OF13/6', NULL, NULL, NULL, NULL, 10, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(337, 371, 'G.C.13B/OF25/4', NULL, NULL, NULL, NULL, 10, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(338, 372, 'G.C.13C/E20/3', 'N/A', 'Agilent Technologies', NULL, NULL, 10, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(339, 373, 'G.C.13C/E20/4', 'N/A', 'Jasco', NULL, '2019-07-25', 10, NULL, 'DGC', 'In Use', 'Not found', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(340, 374, 'G.C.13C/OF13/5', NULL, NULL, NULL, NULL, 10, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(341, 375, 'G.C.13C/OF39/1', 'N/A', 'N/A', NULL, NULL, 10, NULL, 'DGC', 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(342, 376, 'G.C.13C/OM20/3', NULL, NULL, NULL, NULL, 10, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(343, 377, 'G.C.13C/OM23/4', NULL, NULL, NULL, NULL, 10, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(344, 378, 'G.C.13C/OM5/13', NULL, NULL, NULL, NULL, 10, NULL, NULL, 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(345, 379, 'G.C.13C/OM5/21', NULL, NULL, NULL, NULL, 10, NULL, NULL, 'Not found', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'Not found', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(346, 380, 'G.C.13C/OM51/3', NULL, NULL, NULL, NULL, 10, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(347, 381, 'G.C.13C/OM6/34', NULL, NULL, NULL, NULL, 10, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(348, 382, 'G.C.13C/OM6/35', NULL, NULL, NULL, NULL, 10, NULL, 'DGC', 'Not found', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Not found', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(349, 383, 'G.C.13C/OM7/20', NULL, NULL, NULL, NULL, 10, NULL, NULL, 'Not found', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'Not found', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(350, 384, 'G.C.13c/OM8/20', 'N/A', 'H.P.', NULL, NULL, 10, NULL, 'DGC', 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(351, 385, 'G.C.13c/OM8/30', 'N/A', 'Dell', NULL, '2019-07-25', 10, NULL, 'DGC', 'Not found', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Not found', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(352, 386, 'G.C.13C/OM9/20', NULL, NULL, NULL, NULL, 10, NULL, NULL, 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(353, 387, 'G.C.13C/OM9/30', NULL, NULL, NULL, NULL, 10, NULL, NULL, 'Not found', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'Not found', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(354, 388, 'G.C.5/OF15/4', 'N/A', 'N/A', NULL, NULL, 10, NULL, 'DGC', 'In Use', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(355, 389, 'G.C.13C', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(356, 390, 'G.C.6C/E23/6', 'N/A', 'Ohaus', NULL, NULL, 20, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(357, 391, 'G.C.6C/E33/1', NULL, NULL, NULL, NULL, 20, NULL, 'DGC', 'Out of Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Out of Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(358, 392, 'G.C.6C/E33/2', NULL, NULL, NULL, NULL, 20, NULL, 'DGC', 'Moved to Balance Room', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Moved to Balance Room', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(359, 393, 'G.C.6C/E34/1', NULL, NULL, NULL, NULL, 20, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(360, 394, 'G.C.6C/E44/3', NULL, NULL, NULL, NULL, 20, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(361, 395, 'G.C.6c/OM35/5', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(362, 396, 'G.C.6C/OM20/3', 'PP (3101131)', 'Prizm', NULL, '2011-11-08', 20, NULL, 'DGC', 'Not Foud', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Not Foud', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(363, 397, 'G.C.6C/OM36/2', NULL, NULL, NULL, NULL, 20, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(364, 398, 'G.C.6C/OM36/3', 'PP (1111202)', 'Eaton', NULL, '2019-03-07', 20, NULL, 'DGC', 'Not Found', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Not Found', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(365, 399, 'G.C.13B/OF19/13', NULL, NULL, NULL, NULL, 21, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(366, 400, 'G.C.13B/OF5/4', NULL, NULL, NULL, NULL, 21, NULL, 'DGC', 'Not Found', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Not Found', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(367, 401, 'G.C.13B/OF51/3', NULL, NULL, NULL, NULL, 21, NULL, 'DGC', 'Not found', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Not found', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(368, 402, 'G.C.13B/OM3/1', NULL, NULL, NULL, NULL, 21, NULL, 'DGC', 'In Use', 'Good Condition', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(369, 403, 'G.C.13B/OM7/29', NULL, NULL, NULL, NULL, 21, NULL, 'DGC', 'Not in use', 'Good Condition', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Not in use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(370, 404, 'G.C.13B/OF8/7', 'N/A', 'N/A', NULL, NULL, 21, NULL, 'DGC', 'In Use', 'Good Condition', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(371, 405, 'G.C.14/OM51/2', NULL, NULL, NULL, NULL, 21, NULL, 'DGC', 'Moved From Emerald Office', 'Good Condition', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Moved From Emerald Office', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(372, 406, 'G.C130/OF15/14', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'In use', 'Good Condition', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'In use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(373, 407, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Needs to be marked', 'Good Condition', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'Needs to be marked', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(374, 408, 'G.C.12/', NULL, 'Avaya', NULL, NULL, 22, NULL, 'DGC', 'Mr.Bryan\'s phone needs to be marked', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Mr.Bryan\'s phone needs to be marked', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(375, 409, 'G.C.12/OF13/9', NULL, 'Metal', NULL, NULL, 22, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(376, 410, 'G.C.12/OF19/15', NULL, 'Metal', NULL, NULL, 22, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(377, 411, 'G.C.12/OF19/17', NULL, 'Metal', NULL, NULL, 22, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(378, 412, 'G.C.12/OF21/4', NULL, 'Metal/Mesh', NULL, NULL, 22, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(379, 413, 'G.C.12/OF21/5', NULL, 'Plastic', NULL, NULL, 22, NULL, 'DGC', 'Moved Fom Accounts/Finance Branch', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Moved Fom Accounts/Finance Branch', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(380, 414, 'G.C.12/OF21/6', NULL, NULL, NULL, NULL, 22, NULL, NULL, 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(381, 415, 'G.C.12/OF25/16', 'N/A', 'N/A', NULL, NULL, 22, NULL, 'DGC', 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(382, 416, 'G.C.12/OF25/17', 'PP (4111097)', 'N/A', NULL, '2022-10-27', 22, NULL, 'DGC', 'Not Found', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Not Found', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(383, 417, 'G.C.12/OF25/18', 'PP (4111097)', 'N/A', NULL, '2022-10-27', 22, NULL, 'DGC', 'Not Found', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Not Found', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(384, 418, 'G.C.12/OF25/19', 'PP (4111097)', 'N/A', NULL, '2022-10-27', 22, NULL, 'DGC', 'Move to Quality Assurance Branch', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Move to Quality Assurance Branch', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(385, 419, 'G.C.12/OF25/20', 'PP (4111097)', 'N/A', NULL, '2022-10-27', 22, NULL, 'DGC', 'Not Found', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Not Found', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(386, 420, 'G.C.12/OF25/22', 'PP (4111097)', 'N/A', NULL, '2022-10-27', 22, NULL, 'DGC', 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(387, 421, 'G.C.12/OF25/23', NULL, NULL, NULL, NULL, 22, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(388, 422, 'G.C.12/OF25/24', NULL, NULL, NULL, NULL, 22, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(389, 423, 'G.C.12/OF25/25', NULL, NULL, NULL, NULL, 22, NULL, 'DGC', 'In Use', 'Good Condition', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(390, 424, 'G.C.12/OF40/2', NULL, 'Wooden', NULL, NULL, 22, NULL, 'DGC', 'In Use', 'Good Condition', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(391, 425, 'G.C.12/OF48/2', NULL, 'Wooden', NULL, NULL, 22, NULL, 'DGC', 'In Use', 'Good Condition', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(392, 426, 'G.C.12/OF53/2', NULL, 'Wooden', NULL, NULL, 22, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(393, 427, 'G.C.12/OF53/3', NULL, 'Wooden', NULL, NULL, 22, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(394, 428, 'G.C.12/OM20/12', 'PP (4111040)', 'Prizm', NULL, '2022-06-08', 22, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(395, 429, 'G.C.12/OM5/32', 'PP4111099', 'Lenovo', NULL, '2022-11-01', 22, NULL, 'DGC', 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(396, 430, 'G.C.12/OM5/34', 'PP4111099', 'Lenovo', NULL, '2022-11-01', 22, NULL, 'DGC', 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(397, 431, 'G.C.12/OM5/40', NULL, 'Dell', NULL, NULL, 22, NULL, 'DGC', 'In Use', 'Good Condition', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(398, 432, 'G.C.12/OM5/41', NULL, 'HP', NULL, NULL, 22, NULL, 'DGC', 'In Use', 'Good Condition', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(399, 433, 'G.C.12/OM50/1', NULL, 'APC', NULL, NULL, 22, NULL, 'DGC', 'In Use', 'Good Condition', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(400, 434, 'G.C.12/OM50/10', NULL, 'APC', NULL, NULL, 22, NULL, 'DGC', 'Not Found', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Not Found', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(401, 435, 'G.C.12/OM50/3', NULL, 'APC', NULL, NULL, 22, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(402, 436, 'G.C.12/OM50/5', NULL, 'APC', NULL, NULL, 22, NULL, 'DGC', 'Not Found', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Not Found', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(403, 437, 'G.C.12/OM6/44', NULL, 'Lenovo', NULL, NULL, 22, NULL, 'DGC', 'In Use', 'Good Condition', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(404, 438, 'G.C.12/OM6/52', NULL, 'HP', NULL, NULL, 22, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(405, 439, 'G.C.12/OM6/53', NULL, 'Dell', NULL, NULL, 22, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(406, 440, 'G.C.12/OM7/25', NULL, 'HP', NULL, NULL, 22, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(407, 441, 'G.C.12/OM8/36', NULL, 'Lenovo', NULL, NULL, 22, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(408, 442, 'G.C.12/OM8/41', NULL, 'Lenovo', NULL, NULL, 22, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(409, 443, 'G.C.12/OM8/47', NULL, 'Dell', NULL, NULL, 22, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(410, 444, 'G.C.12/OM8/48', NULL, 'HP', NULL, NULL, 22, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(411, 445, 'G.C.12/OM9/39', NULL, 'Lenovo', NULL, NULL, 22, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(412, 446, 'G.C.12/OM9/40', NULL, 'Lenovo', NULL, NULL, 22, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(413, 447, 'G.C.12/OM9/47', NULL, 'Dell', NULL, NULL, 22, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(414, 448, 'G.C.12/OM9/48', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'In Use', 'Good Condition', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(415, 449, 'G.C.1O6/OF38/6', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'In Use', 'Good Condition', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(416, 450, 'G.C.106/OF59/9', NULL, 'HP', NULL, NULL, 22, NULL, 'DGC', 'In Use', 'Good Condition', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(417, 451, 'G.C.7b/OM5/37', 'PP4111099', 'Lenovo', NULL, '2022-11-01', 23, NULL, 'DGC', 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(418, 452, 'G.C.7b/OM8/43', 'PP4111099', 'Lenovo', NULL, '2022-11-01', 23, NULL, 'DGC', 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(419, 453, 'G.C.1A/OF8/1', 'N/A', 'N/A', NULL, NULL, 23, NULL, 'DGC', 'Moved to Senior Chemist Toxicology', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Moved to Senior Chemist Toxicology', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(420, 454, 'G.C.7B/OM9/43', 'P (4111099)', 'Lenovo', NULL, '2022-11-01', 23, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(421, 455, 'G.C.7B/OM35/4', NULL, NULL, NULL, NULL, 23, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(422, 456, 'G.C.7B/OM7/27', NULL, NULL, NULL, NULL, 23, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(423, 457, 'G.C.7B/OF25/10', NULL, NULL, NULL, NULL, 23, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(424, 458, 'G.C.7B/OM6/48', NULL, NULL, NULL, NULL, 23, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(425, 459, 'G.C.5/OM11/3', NULL, NULL, NULL, NULL, 23, NULL, 'DGC', 'Not Found', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Not Found', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(426, 460, 'G.C.7B/OF19/18', NULL, NULL, NULL, NULL, 23, NULL, 'DGC', 'In Use', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(427, 461, 'G.C.7B/OF5/3', NULL, NULL, NULL, NULL, 23, NULL, 'DGC', 'Not Found', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Not Found', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(428, 462, 'G.C.6A/OF38/24', NULL, NULL, NULL, NULL, 23, NULL, 'DGC', 'Moved to Senior Chemist Toxicology', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Moved to Senior Chemist Toxicology', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(429, 463, 'G.C.1/OF40/4', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(430, 464, 'G.C.10A/OF43/1', NULL, NULL, NULL, NULL, 23, NULL, 'DGC', 'Not Found', NULL, NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'Not Found', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(431, 465, 'G.C.5/OM11/2', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'In Use', 'Good', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(432, 466, 'G.C.7B/OM12/5', NULL, NULL, NULL, NULL, 23, NULL, 'DGC', 'In Use', 'Good', NULL, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, 0.00, NULL, NULL, 0.00, 0.00, NULL, NULL, NULL, NULL, 0.00, 0.00, NULL, 0.00, NULL, 0, NULL, 'In Use', '2026-07-21 19:42:23', '2026-07-21 19:42:23');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inv_asset_movements`
+--
+
+CREATE TABLE `inv_asset_movements` (
+  `movement_id` int(11) NOT NULL,
+  `serial_id` int(11) NOT NULL,
+  `from_location_id` int(11) DEFAULT NULL,
+  `to_location_id` int(11) DEFAULT NULL,
+  `moved_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `movement_reason` varchar(255) DEFAULT NULL,
+  `moved_by` int(11) DEFAULT NULL,
+  `notes` text DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Movement history of serialized assets between room/location registers';
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inv_categories`
+--
+
+CREATE TABLE `inv_categories` (
+  `category_id` int(11) NOT NULL,
+  `category_name` varchar(100) NOT NULL,
+  `category_code` varchar(20) NOT NULL,
+  `description` text DEFAULT NULL,
+  `parent_category_id` int(11) DEFAULT NULL,
+  `is_active` tinyint(1) DEFAULT 1,
+  `sort_order` int(11) DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `inv_categories`
+--
+
+INSERT INTO `inv_categories` (`category_id`, `category_name`, `category_code`, `description`, `parent_category_id`, `is_active`, `sort_order`, `created_at`, `updated_at`) VALUES
+(1, 'Consumables', 'CONSUMABLES', 'General consumable items', NULL, 1, 1, '2026-03-11 00:47:21', '2026-03-11 00:47:21'),
+(2, 'Office Supplies', 'OFFICE_SUP', 'Stationery, paper, toner, etc.', NULL, 1, 2, '2026-03-11 00:47:21', '2026-03-11 00:47:21'),
+(3, 'Cleaning Supplies', 'CLEANING', 'Cleaning compounds, equipment', NULL, 1, 3, '2026-03-11 00:47:21', '2026-03-11 00:47:21'),
+(4, 'Laboratory Supplies', 'LAB_SUP', 'Lab reagents, glassware, disposables', NULL, 1, 4, '2026-03-11 00:47:21', '2026-03-11 00:47:21'),
+(5, 'Chemicals and Reagents', 'CHEM_REAG', 'Chemicals, reagents, standards', NULL, 1, 5, '2026-03-11 00:47:21', '2026-03-11 00:47:21'),
+(6, 'PPE and Safety Items', 'PPE_SAFETY', 'Protective gear, safety equipment', NULL, 1, 6, '2026-03-11 00:47:21', '2026-03-11 00:47:21'),
+(7, 'Spare Parts', 'SPARE_PARTS', 'Equipment and machinery spare parts', NULL, 1, 7, '2026-03-11 00:47:21', '2026-03-11 00:47:21'),
+(8, 'Maintenance Stock', 'MAINT_STOCK', 'Maintenance and repair supplies', NULL, 1, 8, '2026-03-11 00:47:21', '2026-03-11 00:47:21'),
+(9, 'Uniforms', 'UNIFORMS', 'Staff uniforms and workwear', NULL, 1, 9, '2026-03-11 00:47:21', '2026-03-11 00:47:21'),
+(10, 'IT Consumables', 'IT_CONSUM', 'Cables, drives, peripherals', NULL, 1, 10, '2026-03-11 00:47:21', '2026-03-11 00:47:21'),
+(11, 'Printed Forms and Controlled Stationery', 'PRINT_FORMS', 'Pre-printed forms, numbered stationery', NULL, 1, 11, '2026-03-11 00:47:21', '2026-03-11 00:47:21'),
+(12, 'Goods Held for Distribution', 'DIST_GOODS', 'Items for distribution to clients/public', NULL, 1, 12, '2026-03-11 00:47:21', '2026-03-11 00:47:21'),
+(13, 'Goods Held for Resale', 'RESALE', 'Items held for resale where applicable', NULL, 1, 13, '2026-03-11 00:47:21', '2026-03-11 00:47:21'),
+(14, 'Work-in-Progress / Service-Related Stock', 'WIP_SERVICE', 'Service-related stock and WIP items', NULL, 1, 14, '2026-03-11 00:47:21', '2026-03-11 00:47:21'),
+(29, 'Assets', 'ASSETS', 'Fixed and movable assets tracked by serial number (equipment, furniture, IT hardware, vehicles, etc.)', NULL, 1, 15, '2026-05-26 15:15:37', '2026-05-26 15:15:37'),
+(30, 'Laptop', 'LAPTOP', 'Auto-created during asset import', NULL, 1, 0, '2026-07-16 00:31:05', '2026-07-16 00:31:05'),
+(31, 'Monitor', 'MONITOR', 'Auto-created during asset import', NULL, 1, 0, '2026-07-16 00:31:05', '2026-07-16 00:31:05'),
+(32, 'Asset', 'ASSET', 'Auto-created during asset import', NULL, 1, 0, '2026-07-21 19:26:33', '2026-07-21 19:26:33');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inv_criticality_classes`
+--
+
+CREATE TABLE `inv_criticality_classes` (
+  `criticality_id` int(11) NOT NULL,
+  `criticality_code` varchar(30) NOT NULL,
+  `criticality_name` varchar(100) NOT NULL,
+  `description` text DEFAULT NULL,
+  `sort_order` int(11) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `inv_criticality_classes`
+--
+
+INSERT INTO `inv_criticality_classes` (`criticality_id`, `criticality_code`, `criticality_name`, `description`, `sort_order`) VALUES
+(1, 'CRITICAL', 'Critical / Mission Essential', 'Items essential for core operations', 1),
+(2, 'ESSENTIAL', 'Essential', 'Important items needed for normal operations', 2),
+(3, 'ROUTINE', 'Routine', 'Standard items with no special urgency', 3),
+(4, 'OBSOLETE', 'Obsolete / Pending Disposal', 'Items no longer needed or to be disposed', 4),
+(5, 'QUARANTINE', 'Quarantined / Under Investigation', 'Items under review or investigation', 5);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inv_delegations`
+--
+
+CREATE TABLE `inv_delegations` (
+  `delegation_id` int(11) NOT NULL,
+  `delegator_user_id` int(11) NOT NULL,
+  `delegate_user_id` int(11) NOT NULL,
+  `inv_role_id` int(11) NOT NULL,
+  `effective_from` datetime NOT NULL,
+  `effective_to` datetime NOT NULL,
+  `reason` text DEFAULT NULL,
+  `is_active` tinyint(1) DEFAULT 1,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `created_by` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inv_disposals`
+--
+
+CREATE TABLE `inv_disposals` (
+  `disposal_id` int(11) NOT NULL,
+  `disposal_number` varchar(30) NOT NULL,
+  `disposal_method` enum('DESTRUCTION','AUCTION','TRANSFER','DONATION','RETURN_TO_SUPPLIER','SCRAP','OTHER','SALE','RECYCLING','TRADE_IN','CANNIBALIZATION') NOT NULL,
+  `reason` text NOT NULL,
+  `survey_assessment` text DEFAULT NULL,
+  `survey_notes` text DEFAULT NULL,
+  `survey_completed_by` int(11) DEFAULT NULL,
+  `survey_completed_at` datetime DEFAULT NULL,
+  `location_id` int(11) DEFAULT NULL,
+  `requested_by` int(11) NOT NULL,
+  `recommended_by` int(11) DEFAULT NULL,
+  `recommended_at` datetime DEFAULT NULL,
+  `approved_by` int(11) DEFAULT NULL,
+  `approved_at` datetime DEFAULT NULL,
+  `committee_review_required` tinyint(1) DEFAULT 0,
+  `committee_reviewed_by` varchar(200) DEFAULT NULL,
+  `committee_reviewed_at` datetime DEFAULT NULL,
+  `committee_decision` text DEFAULT NULL,
+  `status` enum('DRAFT','RECOMMENDED','PENDING_APPROVAL','APPROVED','COMMITTEE_REVIEW','COMPLETED','REJECTED','CANCELLED','PENDING_SURVEY','IN_PROGRESS') DEFAULT 'DRAFT',
+  `proceeds_amount` decimal(14,2) DEFAULT 0.00,
+  `actual_proceeds` decimal(14,2) DEFAULT 0.00,
+  `proceeds_reference` varchar(100) DEFAULT NULL,
+  `total_write_off_value` decimal(14,2) DEFAULT 0.00,
+  `evidence_notes` text DEFAULT NULL,
+  `completed_at` datetime DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inv_disposal_items`
+--
+
+CREATE TABLE `inv_disposal_items` (
+  `disp_item_id` int(11) NOT NULL,
+  `disposal_id` int(11) NOT NULL,
+  `item_id` int(11) NOT NULL,
+  `stock_id` int(11) DEFAULT NULL,
+  `quantity` decimal(14,4) NOT NULL,
+  `unit_cost` decimal(14,2) DEFAULT 0.00,
+  `total_value` decimal(14,2) DEFAULT 0.00,
+  `estimated_value` decimal(14,2) DEFAULT 0.00,
+  `serial_number` varchar(100) DEFAULT NULL,
+  `batch_lot_number` varchar(50) DEFAULT NULL,
+  `condition_description` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inv_documents`
+--
+
+CREATE TABLE `inv_documents` (
+  `document_id` int(11) NOT NULL,
+  `document_number` varchar(30) NOT NULL,
+  `document_type` enum('REQUISITION','PURCHASE_REQUEST','PURCHASE_ORDER','GOODS_RECEIVED_NOTE','INSPECTION_REPORT','BIN_CARD','STOCK_ISSUE_VOUCHER','TRANSFER_NOTE','ADJUSTMENT_NOTE','STOCK_COUNT_SHEET','VARIANCE_REPORT','QUARANTINE_NOTE','DISPOSAL_FORM','RETURN_TO_SUPPLIER','DONATION_ACCEPTANCE','INCIDENT_REPORT') NOT NULL,
+  `reference_table` varchar(50) DEFAULT NULL,
+  `reference_id` int(11) DEFAULT NULL,
+  `version` int(11) DEFAULT 1,
+  `status` enum('DRAFT','PENDING','APPROVED','REJECTED','CANCELLED','CLOSED') DEFAULT 'DRAFT',
+  `created_by` int(11) DEFAULT NULL,
+  `approved_by` int(11) DEFAULT NULL,
+  `approved_at` datetime DEFAULT NULL,
+  `digital_signature` text DEFAULT NULL COMMENT 'Approval evidence',
+  `notes` text DEFAULT NULL,
+  `is_locked` tinyint(1) DEFAULT 0 COMMENT 'Locked after approval - no edits',
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `inv_documents`
+--
+
+INSERT INTO `inv_documents` (`document_id`, `document_number`, `document_type`, `reference_table`, `reference_id`, `version`, `status`, `created_by`, `approved_by`, `approved_at`, `digital_signature`, `notes`, `is_locked`, `created_at`, `updated_at`) VALUES
+(1, 'DOC-REQ-00001', 'REQUISITION', 'inv_requisitions', 1, 1, 'DRAFT', 40, NULL, NULL, NULL, NULL, 0, '2026-03-11 19:39:04', '2026-03-11 19:39:04'),
+(2, 'DOC-REQ-00002', 'REQUISITION', 'inv_requisitions', 2, 1, 'APPROVED', 27, 30, '2026-07-14 10:48:08', NULL, NULL, 1, '2026-07-14 14:50:29', '2026-07-14 15:48:08'),
+(3, 'DOC-REQ-00003', 'REQUISITION', 'inv_requisitions', 3, 1, 'APPROVED', 27, 32, '2026-07-20 16:36:58', NULL, NULL, 1, '2026-07-16 00:52:06', '2026-07-20 21:36:58'),
+(4, 'DOC-REQ-00004', 'REQUISITION', 'inv_requisitions', 4, 1, 'DRAFT', 32, NULL, NULL, NULL, NULL, 0, '2026-07-20 21:52:37', '2026-07-20 21:52:37'),
+(5, 'DOC-REQ-00005', 'REQUISITION', 'inv_requisitions', 5, 1, 'DRAFT', 32, NULL, NULL, NULL, NULL, 0, '2026-07-20 21:54:53', '2026-07-20 21:54:53');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inv_document_attachments`
+--
+
+CREATE TABLE `inv_document_attachments` (
+  `attachment_id` int(11) NOT NULL,
+  `document_id` int(11) NOT NULL,
+  `file_name` varchar(255) NOT NULL,
+  `file_path` varchar(500) NOT NULL,
+  `file_type` varchar(50) DEFAULT NULL,
+  `file_size` int(11) DEFAULT NULL,
+  `uploaded_by` int(11) DEFAULT NULL,
+  `uploaded_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inv_fiscal_periods`
+--
+
+CREATE TABLE `inv_fiscal_periods` (
+  `period_id` int(11) NOT NULL,
+  `period_name` varchar(50) NOT NULL COMMENT 'e.g. 2024-Q1, 2024-APR',
+  `fiscal_year` varchar(10) NOT NULL,
+  `period_start` date NOT NULL,
+  `period_end` date NOT NULL,
+  `status` enum('OPEN','CLOSING','CLOSED','LOCKED') DEFAULT 'OPEN',
+  `closed_by` int(11) DEFAULT NULL,
+  `closed_at` datetime DEFAULT NULL,
+  `notes` text DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inv_goods_received`
+--
+
+CREATE TABLE `inv_goods_received` (
+  `grn_id` int(11) NOT NULL,
+  `grn_number` varchar(30) NOT NULL,
+  `po_reference` varchar(50) DEFAULT NULL COMMENT 'Link to purchase_orders.po_number',
+  `contract_reference` varchar(100) DEFAULT NULL,
+  `donation_reference` varchar(100) DEFAULT NULL,
+  `supplier_vendor_id` int(11) DEFAULT NULL,
+  `supplier_name` varchar(200) DEFAULT NULL,
+  `donor_source` varchar(200) DEFAULT NULL COMMENT 'For non-exchange transactions',
+  `delivery_note_number` varchar(50) DEFAULT NULL,
+  `invoice_number` varchar(50) DEFAULT NULL,
+  `receiving_location_id` int(11) DEFAULT NULL,
+  `is_non_exchange_transaction` tinyint(1) DEFAULT 0,
+  `is_donation` tinyint(1) DEFAULT 0,
+  `acceptance_certificate_number` varchar(50) DEFAULT NULL,
+  `received_by` int(11) NOT NULL,
+  `received_date` date NOT NULL,
+  `status` enum('DRAFT','RECEIVED','INSPECTED','ACCEPTED','PARTIAL','REJECTED','QUARANTINE','COMPLETED','INSPECTION') DEFAULT 'DRAFT',
+  `inspected_by` int(11) DEFAULT NULL,
+  `inspection_date` date DEFAULT NULL,
+  `inspection_result` enum('PASS','FAIL','CONDITIONAL','PENDING') DEFAULT 'PENDING',
+  `inspection_notes` text DEFAULT NULL,
+  `fair_value_basis` varchar(200) DEFAULT NULL COMMENT 'IPSAS 12: valuation for donated inventory',
+  `fair_value_assessor` varchar(200) DEFAULT NULL,
+  `notes` text DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inv_grn_items`
+--
+
+CREATE TABLE `inv_grn_items` (
+  `grn_item_id` int(11) NOT NULL,
+  `grn_id` int(11) NOT NULL,
+  `item_id` int(11) NOT NULL,
+  `quantity_ordered` decimal(14,4) DEFAULT 0.0000,
+  `quantity_received` decimal(14,4) NOT NULL,
+  `quantity_accepted` decimal(14,4) DEFAULT 0.0000,
+  `quantity_rejected` decimal(14,4) DEFAULT 0.0000,
+  `quantity_short` decimal(14,4) DEFAULT 0.0000,
+  `quantity_over` decimal(14,4) DEFAULT 0.0000,
+  `quantity_damaged` decimal(14,4) DEFAULT 0.0000,
+  `batch_lot_number` varchar(50) DEFAULT NULL,
+  `lot_number` varchar(50) DEFAULT NULL,
+  `batch_number` varchar(50) DEFAULT NULL,
+  `serial_number` varchar(100) DEFAULT NULL,
+  `expiry_date` date DEFAULT NULL,
+  `manufacturer_date` date DEFAULT NULL,
+  `unit_cost` decimal(14,2) DEFAULT 0.00,
+  `destination_location_id` int(11) DEFAULT NULL,
+  `inspection_status` enum('PENDING','PASS','FAIL','CONDITIONAL') DEFAULT 'PENDING',
+  `quality_notes` text DEFAULT NULL,
+  `condition_on_receipt` varchar(30) DEFAULT 'GOOD'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inv_import_batches`
+--
+
+CREATE TABLE `inv_import_batches` (
+  `batch_id` int(11) NOT NULL,
+  `source_file_name` varchar(255) NOT NULL,
+  `file_hash` char(64) DEFAULT NULL COMMENT 'SHA-256 of uploaded file',
+  `imported_by` int(11) DEFAULT NULL,
+  `update_existing` tinyint(1) NOT NULL DEFAULT 0,
+  `auto_create_lookups` tinyint(1) NOT NULL DEFAULT 0,
+  `total_rows` int(11) NOT NULL DEFAULT 0,
+  `created_count` int(11) NOT NULL DEFAULT 0,
+  `updated_count` int(11) NOT NULL DEFAULT 0,
+  `skipped_count` int(11) NOT NULL DEFAULT 0,
+  `error_count` int(11) NOT NULL DEFAULT 0,
+  `status` varchar(20) NOT NULL DEFAULT 'RUNNING' COMMENT 'RUNNING / COMPLETED / FAILED',
+  `started_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `completed_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='History of inventory asset spreadsheet imports';
+
+--
+-- Dumping data for table `inv_import_batches`
+--
+
+INSERT INTO `inv_import_batches` (`batch_id`, `source_file_name`, `file_hash`, `imported_by`, `update_existing`, `auto_create_lookups`, `total_rows`, `created_count`, `updated_count`, `skipped_count`, `error_count`, `status`, `started_at`, `completed_at`) VALUES
+(1, 'asset_import_template.xlsx', '3176152b068cb640e5a5022ae83ef37eebc982df710e8add3cfbb7ee84f9dafb', 27, 0, 1, 976, 7, 0, 0, 969, 'COMPLETED', '2026-07-16 00:31:05', '2026-07-16 00:31:05'),
+(2, 'asset_import_template.xlsx', '3176152b068cb640e5a5022ae83ef37eebc982df710e8add3cfbb7ee84f9dafb', 27, 0, 1, 976, 0, 0, 7, 969, 'COMPLETED', '2026-07-16 00:35:59', '2026-07-16 00:35:59'),
+(3, 'asset_import_template.csv', 'c7c11bebb7cb8727058fc43f2715d7d6f107e891bc92ca84bb63629037e126ed', 27, 0, 1, 101, 0, 0, 0, 101, 'COMPLETED', '2026-07-16 12:56:32', '2026-07-16 12:56:32'),
+(4, 'tt.xlsx', '8ac020c26576c826e1ed4d6d84247473918404fefd1f284279d27bd79bf288ba', 27, 0, 1, 22, 22, 0, 0, 0, 'COMPLETED', '2026-07-21 19:26:33', '2026-07-21 19:26:33'),
+(5, 'tt.xlsx', '6195181e2b9e740a4255b5456051b86e51b0404e9a09e0ea729e916e4439fed6', 27, 0, 1, 462, 403, 0, 48, 11, 'COMPLETED', '2026-07-21 19:42:22', '2026-07-21 19:42:23'),
+(6, 'tt.xlsx', 'e3d2f6eb430fad3805b2b4dccf155e6bb0059a1e67515d5eb52b52198e2a95d8', 27, 0, 1, 462, 0, 0, 451, 11, 'COMPLETED', '2026-07-21 19:43:37', '2026-07-21 19:43:37');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inv_import_errors`
+--
+
+CREATE TABLE `inv_import_errors` (
+  `error_id` int(11) NOT NULL,
+  `batch_id` int(11) NOT NULL,
+  `row_number` int(11) NOT NULL,
+  `asset_code` varchar(50) DEFAULT NULL,
+  `field` varchar(100) DEFAULT NULL,
+  `message` varchar(500) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Row-level validation errors per import batch';
+
+--
+-- Dumping data for table `inv_import_errors`
+--
+
+INSERT INTO `inv_import_errors` (`error_id`, `batch_id`, `row_number`, `asset_code`, `field`, `message`, `created_at`) VALUES
+(1, 1, 6, 'G.C.10a/OM5/5', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(2, 1, 7, 'G.C.13b/OM5/6', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(3, 1, 8, 'G.C.13c/OM5/7', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(4, 1, 9, 'G.C.13b/OM5/8', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(5, 1, 10, 'G.C.1a/OM5/9', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(6, 1, 12, 'G.C.13c/OM5/11', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(7, 1, 14, 'G.C.13c/OM5/13', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(8, 1, 15, 'G.C.10a/OM5/14', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(9, 1, 16, 'G.C.5/OM5/15', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(10, 1, 17, 'G.C.7a/OM5/16', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(11, 1, 18, 'G.C.5/OM5/17', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(12, 1, 20, 'G.C.10a/OM5/19', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(13, 1, 21, 'G.C.13c/OM5/20', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(14, 1, 22, 'G.C.13c/OM5/21', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(15, 1, 23, 'G.C.5c/OM5/22', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(16, 1, 24, 'G.C.5c/OM5/23', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(17, 1, 25, 'G.C.5c/OM5/24', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(18, 1, 26, 'G.C.14/OM5/25', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(19, 1, 27, 'G.C.14/OM5/26', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(20, 1, 28, 'G.C.1b/OM5/27', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(21, 1, 29, 'G.C.13b/OM5/28', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(22, 1, 30, 'G.C.14/OM5/29', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(23, 1, 31, 'G.C.11/OM5/30', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(24, 1, 32, 'G.C.12/OM5/31', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(25, 1, 33, 'G.C.12/OM5/32', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(26, 1, 34, 'G.C.12/OM5/33', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(27, 1, 35, 'G.C.12/OM5/34', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(28, 1, 36, 'G.C.14/OM5/35', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(29, 1, 37, 'G.C.2/OM5/36', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(30, 1, 38, 'G.C.7b/OM5/37', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(31, 1, 39, 'G.C.1a/OM8/1', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(32, 1, 40, 'G.C.1b/OM8/2', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(33, 1, 41, 'G.C.5/OM8/3', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(34, 1, 42, 'G.C.5/OM8/4', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(35, 1, 43, 'G.C.5/OM8/5', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(36, 1, 44, 'G.C.10a/Om8/6', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(37, 1, 45, 'G.C.10a/Om8/7', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(38, 1, 46, 'G.C.10a/OM8/8', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(39, 1, 47, 'G.C.10a/OM8/9', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(40, 1, 48, 'G.C.13b/OM8/10', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(41, 1, 49, 'G.C.13c/OM8/11', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(42, 1, 50, 'G.C.13c/OM8/12', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(43, 1, 51, 'G.C.13b/OM8/13', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(44, 1, 52, 'G.C.5/OM8/14', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(45, 1, 53, 'G.C.10a/OM8/15', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(46, 1, 54, 'G.C.10a/OM8/16', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(47, 1, 55, 'G.C.10a/OM8/17', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(48, 1, 56, 'G.C.13c/OM8/18', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(49, 1, 57, 'G.C.13c/OM8/19', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(50, 1, 58, 'G.C.13c/OM8/20', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(51, 1, 59, 'G.C.10a/OM8/21', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(52, 1, 60, 'G.C.1a/OM8/22', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(53, 1, 61, 'G.C.1b/OM8/23', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(54, 1, 62, 'G.C.5/OM8/24', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(55, 1, 63, 'CRL/PH8/260/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(56, 1, 64, 'G.C.5/OM8/26', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(57, 1, 65, 'G.C.10a/OM8/27', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(58, 1, 66, 'G.C.10a/OM8/29', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(59, 1, 67, 'G.C10a/OM8/29', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(60, 1, 68, 'G.C.13c/OM8/30', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(61, 1, 69, 'G.C.14/OM8/31', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(62, 1, 70, 'G.C.14/OM8/32', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(63, 1, 71, 'G.C.11/OM8/33', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(64, 1, 72, 'G.C.11/OM8/34', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(65, 1, 73, 'G.C.11/OM8/35', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(66, 1, 74, 'G.C.11/OM8/36', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(67, 1, 75, 'G.C.13b/OM8/39', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(68, 1, 76, 'G.C.14/OM9/40', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(69, 1, 77, 'G.C.11/OM8/41', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(70, 1, 78, 'G.C.14/OM8/42', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(71, 1, 79, 'G.C.2/OM8/37', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(72, 1, 80, 'G.C.7b/OM8/43', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(73, 1, 81, 'G.C.10A/OF25/1', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(74, 1, 82, 'G.C.10A/OF25/2', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(75, 1, 83, 'G.C.10A/OF25/3', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(76, 1, 84, 'G.C.13B/OF25/4', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(77, 1, 85, 'G.C.10A/OF25/5', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(78, 1, 86, 'G.C.10A/OF25/6', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(79, 1, 87, 'G.C.6B/OF25/7', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(80, 1, 88, 'G.C.13B/OF25/8', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(81, 1, 89, 'G.C.14/OF25/9', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(82, 1, 90, 'G.C.14/OF25/10', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(83, 1, 91, 'G.C.14/OF25/11', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(84, 1, 92, 'G.C.14/OF25/12', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(85, 1, 93, 'G.C.14/OF25/13', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(86, 1, 94, 'G.C.10A/OF25/14', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(87, 1, 95, 'G.C.14/OF25/15', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(88, 1, 96, 'G.C.12/OF25/16', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(89, 1, 97, 'G.C.12/OF25/17', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(90, 1, 98, 'G.C.12/OF25/18', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(91, 1, 99, 'G.C.12/OF25/19', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(92, 1, 100, 'G.C.12/OF25/20', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(93, 1, 101, 'G.C.12/OF25/21', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(94, 1, 102, 'G.C.12/OF25/22', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(95, 1, 103, 'G.C.13A/OM37/1', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(96, 1, 104, 'G.C.10A/OM37/2', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(97, 1, 105, 'G.C.9/OM37/3', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(98, 1, 106, 'G.C.9/OM37/4', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(99, 1, 107, 'G.C.24/OM37/5', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(100, 1, 108, 'G.C.6B/OF54/1', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(101, 1, 109, 'G.C.10B/OF38/2', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(102, 1, 110, 'G.C.10B/OF38/3', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(103, 1, 111, 'G.C.10B/OF38/4', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(104, 1, 112, 'G.C.10B/OF38/5', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(105, 1, 113, 'G.C.10B/OF38/6', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(106, 1, 114, 'G.C.10B/OF38/7', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(107, 1, 115, 'G.C.10B/OF38/8', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(108, 1, 116, 'G.C.10B/OF38/9', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(109, 1, 117, 'G.C.10B/OF38/10', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(110, 1, 118, 'G.C.10B/OF38/11', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(111, 1, 119, 'G.C.10B/OF38/12', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(112, 1, 120, 'G.C.10B/OF38/13', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(113, 1, 121, 'G.C.10B/OF38/14', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(114, 1, 122, 'G.C.10B/OF38/15', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(115, 1, 123, 'G.C.10B/OF38/16', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(116, 1, 124, 'G.C.10B/OF38/17', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(117, 1, 125, 'G.C.1A/OF38/18', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(118, 1, 126, 'G.C.10B/OF38/19', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(119, 1, 127, 'G.C.10B/OF38/20', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(120, 1, 128, 'G.C.10B/OF38/22', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(121, 1, 129, 'G.C.10B/OF38/23', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(122, 1, 130, 'G.C.6A/OF38/24', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(123, 1, 131, 'G.C.6A/OF38/25', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(124, 1, 132, 'G.C.6A/OF38/26', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(125, 1, 133, 'G.C.13A/OF38/27', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(126, 1, 134, 'G.C.13A/OF38/28', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(127, 1, 135, 'G.C.13A/OF38/29', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(128, 1, 136, 'G.C.10B/OF47/1', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(129, 1, 137, 'G.C.24/OF5B/1', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(130, 1, 138, 'G.C.24/OF57/1', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(131, 1, 139, 'G.C.24/OF56/1', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(132, 1, 140, 'G.C.24/OF55/1', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(133, 1, 141, 'G.C.1A/OF19/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(134, 1, 142, 'G.C.1B/OF19/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(135, 1, 143, 'G.C.1B/OF19/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(136, 1, 144, 'G.C.1B/OF19/4', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(137, 1, 145, 'G.C.1B/OF19/5', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(138, 1, 146, 'G.C.Lobby/OF19/6', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(139, 1, 147, 'G.C.Lobby/OF19/7', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(140, 1, 148, 'G.C.Lobby/OF19/8', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(141, 1, 149, 'G.C.Lobby/OF19/9', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(142, 1, 150, 'G.C.Lobby/OF19/10', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(143, 1, 151, 'G.C.Lobby/OF19/11', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(144, 1, 152, 'G.C.10A/OF19/12', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(145, 1, 153, 'G.C.Lobby/OF19/13', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(146, 1, 154, 'G.C.6C/OF41/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(147, 1, 155, 'G.C.10B/OF46/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(148, 1, 156, 'G.C.10B/OF45/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(149, 1, 157, 'G.C.6B/OF53/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(150, 1, 158, 'G.C.11/OF53/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(151, 1, 159, 'G.C.11/OF53/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(152, 1, 160, 'G.C.2/OF53/4', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(153, 1, 161, 'G.C.1B/OM23/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(154, 1, 162, 'G.C.1B//OM23/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(155, 1, 163, 'G.C.13A/OF29/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(156, 1, 164, 'G.C.15/OF29/4', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(157, 1, 165, 'G.C.15/OF29/5', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(158, 1, 166, 'G.C.1A/OM39/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(159, 1, 167, 'G.C.7B/OM39/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(160, 1, 168, 'G.C.1A/OM39/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(161, 1, 169, 'G.C.9/OF44/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(162, 1, 170, 'G.C.9/OF44/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(163, 1, 171, 'G.C.9/OF44/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(164, 1, 172, 'G.C.9/OF44/4', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(165, 1, 173, 'G.C.9/OF44/5', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(166, 1, 174, 'G.C.9/OF44/6', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(167, 1, 175, 'G.C.9/OF44/7', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(168, 1, 176, 'G.C.9/OF44/8', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(169, 1, 177, 'G.C.9/OF44/9', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(170, 1, 178, 'G.C.9/OF4/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(171, 1, 179, 'G.C.9/OF4/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(172, 1, 180, 'G.C.Lobby/OF27/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(173, 1, 181, 'G.C.Lobby/OF27/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(174, 1, 182, 'G.C.Lobby/OF27/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(175, 1, 183, 'G.C.2/OF34/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(176, 1, 184, 'G.C.1A/OF8/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(177, 1, 185, 'G.C.2/OF8/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(178, 1, 186, 'G.C.6B/OF8/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(179, 1, 187, 'G.C.6B/OF8/4', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(180, 1, 188, 'G.C.6C/OF8/5', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(181, 1, 189, 'G.C.7B/OF8/6', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(182, 1, 190, 'G.C.13BOF8/7', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(183, 1, 191, 'G.C.15/OF33/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(184, 1, 192, 'G.C.15/OF33/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(185, 1, 193, 'G.C.15/OF33/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(186, 1, 194, 'G.C.1B//OM22/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(187, 1, 195, 'G.C.1B//OM22/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(188, 1, 196, 'G.C.6A/OF23/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(189, 1, 197, 'G.C.6A/OF23/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(190, 1, 198, 'G.C.6C/E40/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(191, 1, 199, 'G.C.10A/OF23/4', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(192, 1, 200, 'G.C.7A/OF23/5', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(193, 1, 201, 'G.C.1A/OF10/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(194, 1, 202, 'G.C.1A/OF10/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(195, 1, 203, 'G.C.2/OF10/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(196, 1, 204, 'G.C.2/OF10/4', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(197, 1, 205, 'G.C.2/OF10/5', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(198, 1, 206, 'G.C.2/OF10/6', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(199, 1, 207, 'G.C.7B/OF10/7', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(200, 1, 208, 'G.C.10A/OF10/8', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(201, 1, 209, 'G.C.Lobby/OF28/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(202, 1, 210, 'G.C.10B/OF28/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(203, 1, 211, 'G.C.2/OF11/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(204, 1, 212, 'G.C.1A/OF9/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(205, 1, 213, 'G.C.1B/OF12/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(206, 1, 214, 'G.C.6A/OF12/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(207, 1, 215, 'G.C.6B/OF12/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(208, 1, 216, 'G.C.6C/OF12/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(209, 1, 217, 'G.C.15/OF30/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(210, 1, 218, 'G.C.10A/OF1/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(211, 1, 219, 'G.C.1A/OF10/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(212, 1, 220, 'G.C.1A/OF10/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(213, 1, 221, 'G.C.2/OF10/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(214, 1, 222, 'G.C.2/OF10/4', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(215, 1, 223, 'G.C.2/OF10/5', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(216, 1, 224, 'G.C.2/OF10/6', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(217, 1, 225, 'G.C.10A/OF10/8', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(218, 1, 226, 'G.C.Lobby/OF10/9', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(219, 1, 227, 'G.C.1B/OF6/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(220, 1, 228, 'G.C.1B/OF7/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(221, 1, 229, 'G.C.Lobby/OF7/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(222, 1, 230, 'G.C.6C/OF7/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(223, 1, 231, 'G.C.10A/OF2/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(224, 1, 232, 'G.C.1A/OF3/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(225, 1, 233, 'G.C.10A/OF3/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(226, 1, 234, 'G.C.10A/OF20/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(227, 1, 235, 'G.C.10A/OF26/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(228, 1, 236, 'G.C.10B/OF26/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(229, 1, 237, 'G.C.1A/OF5/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(230, 1, 238, 'G.C.1A/OF5/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(231, 1, 239, 'G.C.1A/OF5/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(232, 1, 240, 'G.C.1A/OF5/4', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(233, 1, 241, 'G.C.10B/OF31/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(234, 1, 242, 'G.C.1A/OF16/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(235, 1, 243, 'G.C.1A/OF16/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(236, 1, 244, 'G.C.10A/OF21/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(237, 1, 245, 'G.C.10A/OF21/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(238, 1, 246, 'G.C.10A/OF21/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(239, 1, 247, 'G.C.13C/OF39/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(240, 1, 248, 'G.C.2/OF14/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(241, 1, 249, 'G.C.3/OF14/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(242, 1, 250, 'G.C.3/OF14/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(243, 1, 251, 'G.C.5/OF14/4', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(244, 1, 252, 'G.C.14/OF14/5', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(245, 1, 253, 'G.C.15/OF14/6', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(246, 1, 254, 'G.C.15/OF14/7', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(247, 1, 255, 'G.C.15/OF14/8', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(248, 1, 256, 'G.C.10A/OF22/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(249, 1, 257, 'G.C.6A/OF24/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(250, 1, 258, 'G.C.8/OF24/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(251, 1, 259, 'G.C.10A/OF24/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(252, 1, 260, 'G.C.10A/OF24/4', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(253, 1, 261, 'G.C.13A/OF24/5', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(254, 1, 262, 'G.C.13C/OF24/6', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(255, 1, 263, 'G.C.13C/OF24/7', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(256, 1, 264, 'G.C.1A/OF17/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(257, 1, 265, 'G.C.9/OF17/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(258, 1, 266, 'G.C.Lobby/OF17/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(259, 1, 267, 'G.C.10B/OF17/4', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(260, 1, 268, 'G.C.2/OF17/5', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(261, 1, 269, 'G.C.2/OF15/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(262, 1, 270, 'G.C.5/OF15/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(263, 1, 271, 'G.C.5/OF15/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(264, 1, 272, 'G.C.5/OF15/4', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(265, 1, 273, 'G.C.6AOF15/5', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(266, 1, 274, 'G.C.6A/OF15/6', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(267, 1, 275, 'G.C.6A/OF15/7', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(268, 1, 276, 'G.C.7A/E15/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(269, 1, 277, 'G.C.7B/OF15/9', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(270, 1, 278, 'G.C.10A/OF15/10', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(271, 1, 279, 'G.C.10A/OF15/11', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(272, 1, 280, 'G.C.Lobby/OF15/12', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(273, 1, 281, 'G.C.Lobby/OF15/13', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(274, 1, 282, 'G.C.13A/OF15/14', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(275, 1, 283, 'G.C.13A/OF15/15', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(276, 1, 284, 'G.C.13A/OF15/16', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(277, 1, 285, 'G.C.13A/OF15/17', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(278, 1, 286, 'G.C.13B/OF15/18', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(279, 1, 287, 'G.C.13B/OF15/19', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(280, 1, 288, 'G.C.13C/OF15/20', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(281, 1, 289, 'G.C.13C/OF15/21', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(282, 1, 290, 'G.C.13C/OF15/22', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(283, 1, 291, 'G.C.14/OF15/23', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(284, 1, 292, 'G.C.14/OF15/24', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(285, 1, 293, 'G.C.14/OF15/25', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(286, 1, 294, 'G.C.14/OF15/26', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(287, 1, 295, 'G.C.14/OF15/27', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(288, 1, 296, 'G.C.15/OF15/28', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(289, 1, 297, 'G.C.1A/OF18/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(290, 1, 298, 'G.C.1B/OF18/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(291, 1, 299, 'G.C.4/OF18/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(292, 1, 300, 'G.C.6A/OF18/4', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(293, 1, 301, 'G.C.6B/OF18/5', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(294, 1, 302, 'G.C.10A/OF18/6', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(295, 1, 303, 'G.C.10A/OF18/7', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(296, 1, 304, 'G.C.10A/OF18/8', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(297, 1, 305, 'G.C.10A/OF18/9', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(298, 1, 306, 'G.C.13A/OF18/10', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(299, 1, 307, 'G.C.13A/OF18/11', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(300, 1, 308, 'G.C.13A/OF18/12', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(301, 1, 309, 'G.C.13B/OF18/13', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(302, 1, 310, 'G.C.4A/OF18/14', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(303, 1, 311, 'G.C.10A/OF18/15', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(304, 1, 312, 'G.C.7A/OF18/16', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(305, 1, 313, 'G.C.1A/OM6/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(306, 1, 314, 'G.C.1B/OM6/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(307, 1, 315, 'G.C.5/OM6/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(308, 1, 316, 'G.C.5/OM6/4', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(309, 1, 317, 'G.C.5/OM6/5', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(310, 1, 318, 'G.C.10A/OM6/6', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(311, 1, 319, 'G.C.10A/OM6/7', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(312, 1, 320, 'G.C.10A/OM6/8', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(313, 1, 321, 'G.C.10A/OM6/9', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(314, 1, 322, 'G.C.13B/OM6/10', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(315, 1, 323, 'G.C.13C/OM6/11', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(316, 1, 324, 'G.C.13C/OM6/12', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(317, 1, 325, 'G.C.13C/OM6/13', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(318, 1, 326, 'G.C.13/OM6/14', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(319, 1, 327, 'G.C.5/OM6/15', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(320, 1, 328, 'G.C.10A/OM6/16', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(321, 1, 329, 'G.C.10A/OM6/17', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(322, 1, 330, 'G.C.10A/OM6/18', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(323, 1, 331, 'G.C.13C/OM6/19', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(324, 1, 332, 'G.C.13C/OM6/20', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(325, 1, 333, 'G.C.5/OM6/21', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(326, 1, 334, 'G.C.13C/OM6/22', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(327, 1, 335, 'G.C.10A/OM6/33', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(328, 1, 336, 'G.C.1A/OM6/24', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(329, 1, 337, 'G.C.1B/OM6/25', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(330, 1, 338, 'G.C.7A/E19/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(331, 1, 339, 'G.C.5/OM6/27', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(332, 1, 340, 'G.C.5/OM6/28', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(333, 1, 341, 'G.C.10/OM6/29', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(334, 1, 342, 'G.C.10/OM6/30', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(335, 1, 343, 'G.C.10/OM6/31', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(336, 1, 344, 'G.C.10/OM6/32', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(337, 1, 345, 'G.C.10/OM6/33', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(338, 1, 346, 'G.C.10/OM6/34', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(339, 1, 347, 'G.C.10/OM6/35', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(340, 1, 348, 'G.C.10/OM6/36', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(341, 1, 349, 'G.C.10/OM6/37', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(342, 1, 350, 'G.C.10/OM6/38', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(343, 1, 351, 'G.C.10/OM6/39', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(344, 1, 352, 'G.C.10/OM6/40', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(345, 1, 353, 'G.C.10/OM6/41', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(346, 1, 354, 'G.C.10/OM6/42', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(347, 1, 355, 'G.C.10/OM6/43', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(348, 1, 356, 'G.C.10/OM6/44', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(349, 1, 357, 'G.C.10/OM6/45', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(350, 1, 358, 'G.C.10/OM6/46', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(351, 1, 359, 'G.C.10/OM6/47', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(352, 1, 360, 'G.C.10/OM6/48', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(353, 1, 361, 'G.C.1A/OM9/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(354, 1, 362, 'G.C.1BOM9/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(355, 1, 363, 'G.C.5/OM9/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(356, 1, 364, 'G.C.5/OM9/4', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(357, 1, 365, 'G.C.5/OM9/5', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(358, 1, 366, 'G.C.10A/OM9/6', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(359, 1, 367, 'G.C.10A/OM9/7', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(360, 1, 368, 'G.C.10A/OM9/8', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(361, 1, 369, 'G.C.10A/OM9/9', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(362, 1, 370, 'G.C.13B/OM9/10', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(363, 1, 371, 'G.C.13C/OM9/11', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(364, 1, 372, 'G.C.13C/OM9/12', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(365, 1, 373, 'G.C.13B/OM9/13', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(366, 1, 374, 'G.C.5/OM9/14', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(367, 1, 375, 'G.C.10A/OM9/15', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(368, 1, 376, 'G.C.10A/OM9/16', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(369, 1, 377, 'G.C.10A/OM9/17', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(370, 1, 378, 'G.C.13C/OM9/18', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(371, 1, 379, 'G.C.13C/OM9/19', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(372, 1, 380, 'G.C.13C/OM9/20', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(373, 1, 381, 'G.C.10A/OM9/21', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(374, 1, 382, 'G.C.1A/OM9/22', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(375, 1, 383, 'G.C.1B/OM9/23', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(376, 1, 384, 'G.C.5/OM9/24', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(377, 1, 385, 'G.C.7A/E22/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(378, 1, 386, 'G.C.5/OM9/26', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(379, 1, 387, 'G.C.10A/OM9/27', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(380, 1, 388, 'G.C.10A/OM9/28', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(381, 1, 389, 'G.C.10A/OM9/29', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(382, 1, 390, 'G.C.13C/OM9/30', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(383, 1, 391, 'G.C.14/OM9/31', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(384, 1, 392, 'G.C.14/OM9/32', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(385, 1, 393, 'G.C.11/OM9/33', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(386, 1, 394, 'G.C.11/OM9/34', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(387, 1, 395, 'G.C.11/OM9/35', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(388, 1, 396, 'G.C.16/OM9/36', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(389, 1, 397, 'G.C.13B/OM9/37', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(390, 1, 398, 'G.C.14/OM9/38', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(391, 1, 399, 'G.C.11/OM9/39', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(392, 1, 400, 'G.C.11/OM9/40', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(393, 1, 401, 'G.C.14/OM9/41', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(394, 1, 402, 'G.C.2/OM9/42', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(395, 1, 403, 'G.C.7B/OM9/43', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(396, 1, 404, 'G.C.1A/OM7/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(397, 1, 405, 'G.C.1B/OM7/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(398, 1, 406, 'G.C.5/OM7/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(399, 1, 407, 'G.C.5/OM7/4', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(400, 1, 408, 'G.C.5/OM7/5', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(401, 1, 409, 'G.C.10A/OM7/6', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(402, 1, 410, 'G.C.10A/OM7/7', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(403, 1, 411, 'G.C.10A/OM7/8', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(404, 1, 412, 'G.C.10A/OM7/9', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(405, 1, 413, 'G.C.13B/OM7/10', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(406, 1, 414, 'G.C.13C/OM7/11', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(407, 1, 415, 'G.C.13C/OM7/12', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(408, 1, 416, 'G.C.5/OM7/13', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(409, 1, 417, 'G.C.10A/OM7/14', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(410, 1, 418, 'G.C.1B/OM7/15', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(411, 1, 419, 'G.C.13C/OM7/16', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(412, 1, 420, 'G.C.10A/OM7/17', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(413, 1, 421, 'G.C.5/OM7/18', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(414, 1, 422, 'G.C.1A/OM7/19', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(415, 1, 423, 'G.C.13C/OM7/20', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(416, 1, 424, 'G.C.13C/OM7/21', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(417, 1, 425, 'G.C.13C/OM7/22', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(418, 1, 426, 'G.C.5/OM7/23', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(419, 1, 427, 'G.C. /OM36/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(420, 1, 428, 'G.C. /OM36/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(421, 1, 429, 'G.C.10B/OM43/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(422, 1, 430, 'G.C.13A/OM40/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(423, 1, 431, 'G.C.13A/OM40/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(424, 1, 432, 'G.C.1A/OM20/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(425, 1, 433, 'G.C.5/OM20/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(426, 1, 434, 'G.C.6C/OM20/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(427, 1, 435, 'G.C.5/OM20/4', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(428, 1, 436, 'G.C.7/OM20/5', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(429, 1, 437, 'G.C.7/OM20/6', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(430, 1, 438, 'G.C.14/OM20/7', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(431, 1, 439, 'G.C.15/OM20/8', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(432, 1, 440, 'G.C.7/OM20/9', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(433, 1, 441, 'G.C.10A/OM20/10', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(434, 1, 442, 'G.C.11/OM20/11', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(435, 1, 443, 'G.C.12/OM20/12', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(436, 1, 444, 'G.C.10B/OM20/14', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(437, 1, 445, 'G.C.5/OM39/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(438, 1, 446, 'G.C.5/OM39/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(439, 1, 447, 'G.C.5/OM39/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(440, 1, 448, 'G.C.6A/OM44/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(441, 1, 449, 'G.C.13B/OM3/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(442, 1, 450, 'G.C.Lobby/OM48/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(443, 1, 451, 'G.C.9/OM48/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(444, 1, 452, 'G.C.6C/OM35/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(445, 1, 453, 'G.C.6C/OM35/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(446, 1, 454, 'G.C.6C/OM35/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(447, 1, 455, 'G.C.6C/OM35/4', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(448, 1, 456, 'G.C.5/OM34/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(449, 1, 457, 'G.C.1A/OM34/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(450, 1, 458, 'G.C.10A/OM34/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(451, 1, 459, 'G.C.5/OM30/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(452, 1, 460, 'G.C.10A/OM13/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(453, 1, 461, 'G.C.10A/OM13/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(454, 1, 462, 'G.C.10A/OM13/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(455, 1, 463, 'G.C.13C/OM22/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(456, 1, 464, 'G.C.10A/OM22/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(457, 1, 465, 'G.C.Lobby/OM22/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(458, 1, 466, 'G.C.6A/OM21/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(459, 1, 467, 'G.C.7A/E25/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(460, 1, 468, 'G.C.Lobby/OM21/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(461, 1, 469, 'G.C.13A/OM21/4', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(462, 1, 470, 'G.C.1A/OM4/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(463, 1, 471, 'G.C.5/OM4/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(464, 1, 472, 'G.C.5/OM4/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(465, 1, 473, 'G.C.10A/OM4/4', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(466, 1, 474, 'G.C.13C/OM4/5', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(467, 1, 475, 'G.C.10/OM14/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(468, 1, 476, 'G.C.5/OM14/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(469, 1, 477, 'G.C.5/OM14/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(470, 1, 478, 'G.C.10A/OM14/4', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(471, 1, 479, 'G.C.10A/OM14/5', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(472, 1, 480, 'G.C.10A/OM14/6', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(473, 1, 481, 'G.C.10A/OM14/7', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(474, 1, 482, 'G.C.1B/OM14/7', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(475, 1, 483, 'G.C.5/OM29/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(476, 1, 484, 'G.C.1A/OM18/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(477, 1, 485, 'G.C.1B/OM24/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(478, 1, 486, 'G.C.2/OM24/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(479, 1, 487, 'G.C.6A/OM24/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(480, 1, 488, 'G.C.7A/OM24/4', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(481, 1, 489, 'G.C.13A/OM24/5', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(482, 1, 490, 'G.C.13A/OM24/6', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(483, 1, 491, 'G.C.13B/OM24/7', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(484, 1, 492, 'G.C.10B/OM24/8', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(485, 1, 493, 'G.C.15/OM24/9', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(486, 1, 494, 'G.C.7A/OM24/10', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(487, 1, 495, 'G.C.10B/OM24/11', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(488, 1, 496, 'G.C.13A/OM24/12', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(489, 1, 497, 'G.C.13B/OM24/13', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(490, 1, 498, 'G.C.7A/OF15/15', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(491, 1, 499, 'G.C.1B/OM24/15', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(492, 1, 500, 'G.C.2A/OM24/16', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(493, 1, 501, 'G.C.10A/OM16/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(494, 1, 502, 'G.C.7A/OF15/5', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(495, 1, 503, 'G.C.7A/OF15/8', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(496, 1, 504, 'G.C.8/OM17/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(497, 1, 505, 'G.C.8/OM17/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(498, 1, 506, 'G.C.10A/OM15/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(499, 1, 507, 'G.C.10A/OM2/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(500, 1, 508, 'G.C.10A/OM2/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(501, 1, 509, 'G.C.6B/OM32/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(502, 1, 510, 'G.C.8/OM32/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(503, 1, 511, 'G.C.8/OM32/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(504, 1, 512, 'G.C.13/OM32/4', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(505, 1, 513, 'G.C.5/OM1/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(506, 1, 514, 'G.C.5/OM1/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(507, 1, 515, 'G.C.10A/OM1/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(508, 1, 516, 'G.C.13B/OM1/4', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(509, 1, 517, 'G.C.13C/OM1/5', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(510, 1, 518, 'G.C.13C/OM1/6', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(511, 1, 519, 'G.C.13C/OM1/7', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(512, 1, 520, 'G.C.13/OM1/8', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(513, 1, 521, 'G.C.5/OM1/9', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(514, 1, 522, 'G.C.7/OM1/10', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(515, 1, 523, 'G.C.16/OM25/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(516, 1, 524, 'G.C.1A/OM10/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(517, 1, 525, 'G.C.13C/OM20/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(518, 1, 526, 'G.C.10A/OM11/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(519, 1, 527, 'G.C.13C/OM11/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(520, 1, 528, 'G.C.5/OM11/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(521, 1, 529, 'G.C.13C/OM11/4', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(522, 1, 530, 'G.C.13C/OM11/5', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(523, 1, 531, 'G.C.10A/OM11/6', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(524, 1, 532, 'G.C.1B/OM26/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(525, 1, 533, 'G.C.5/OM26/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(526, 1, 534, 'G.C.10A/OM26/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(527, 1, 535, 'G.C.10A/OM26/4', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(528, 1, 536, 'G.C.10A/OM26/5', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(529, 1, 537, 'G.C.13B/OM26/6', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(530, 1, 538, 'G.C.13C/OM26/7', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(531, 1, 539, 'G.C.5/OM33/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(532, 1, 540, 'G.C.Lobby/OM19/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(533, 1, 541, 'G.C.2/OM28/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(534, 1, 542, 'G.C.1B/OM12/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(535, 1, 543, 'G.C.6B/OM12/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(536, 1, 544, 'G.C.13C/OM23/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(537, 1, 545, 'G.C.6C/OM23/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(538, 1, 546, 'G.C.10A/OM23/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(539, 1, 547, 'G.C.13C/OM23/4', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(540, 1, 548, 'G.C.1A/OM36/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(541, 1, 549, 'G.C.6C/OM36/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(542, 1, 550, 'G.C.6C/OM36/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(543, 1, 551, 'G.C.6A/TEM5/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(544, 1, 552, 'G.C.7A/OF23/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(545, 1, 553, 'G.C.13A/TEM5/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(546, 1, 554, 'G.C.15/TEM5/4', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(547, 1, 555, 'G.C.Lobby/TEM1/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(548, 1, 556, 'G.C.Lobby/TEM1/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(549, 1, 557, 'G.C.Lobby/TEM2/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(550, 1, 558, 'G.C.Lobby/TEM2/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(551, 1, 559, 'G.C.Lobby/TEM4/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(552, 1, 560, 'G.C.Lobby/TEM3/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(553, 1, 561, 'G.C.13A/E23/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(554, 1, 562, 'G.C.7/E23/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(555, 1, 563, 'G.C.7/E23/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(556, 1, 564, 'G.C.7/E23/4', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(557, 1, 565, 'G.C.7/E23/5', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(558, 1, 566, 'G.C.6C/E23/6', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(559, 1, 567, 'G.C.7/E18/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(560, 1, 568, 'G.C.7/E18/2', 'category', 'Category is required.', '2026-07-16 00:31:05');
+INSERT INTO `inv_import_errors` (`error_id`, `batch_id`, `row_number`, `asset_code`, `field`, `message`, `created_at`) VALUES
+(561, 1, 569, 'G.C.13B/E18/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(562, 1, 570, 'G.C.6/E18/4', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(563, 1, 571, 'G.C.7/E18/5', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(564, 1, 572, 'G.C.7/E18/6', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(565, 1, 573, 'G.C.7/E18/7', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(566, 1, 574, 'G.C.6C/E18/8', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(567, 1, 575, 'G.C.6A/E15/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(568, 1, 576, 'G.C.13A/E15/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(569, 1, 577, 'G.C.7A/OM20/5', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(570, 1, 578, 'G.C.13A/E15/4', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(571, 1, 579, 'G.C.13C/E29/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(572, 1, 580, 'G.C.13C/E29/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(573, 1, 581, 'G.C.13A/E29/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(574, 1, 582, 'G.C.13A/E22/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(575, 1, 583, 'G.C.7A/OM20/6', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(576, 1, 584, 'G.C.13A/E27/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(577, 1, 585, 'G.C.7A/OM21/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(578, 1, 586, 'G.C.5/E6/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(579, 1, 587, 'G.C.6A/E16/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(580, 1, 588, 'G.C.7A/E5/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(581, 1, 589, 'G.C.13A/E5/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(582, 1, 590, 'G.C.6A/E11/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(583, 1, 591, 'G.C.7A/E26/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(584, 1, 592, 'G.C.7A/E26/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(585, 1, 593, 'G.C.76C/E34/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(586, 1, 594, 'G.C.6A/E10/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(587, 1, 595, 'G.C.7/E19/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(588, 1, 596, 'G.C.13A/E19/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(589, 1, 597, 'G.C.5/E35/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(590, 1, 598, 'G.C.3/E1/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(591, 1, 599, 'G.C.13A/E1/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(592, 1, 600, 'G.C.5/E4/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(593, 1, 601, 'G.C.13C/E20/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(594, 1, 602, 'G.C.13C/E20/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(595, 1, 603, 'G.C.13C/E20/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(596, 1, 604, 'G.C.13C/E20/4', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(597, 1, 605, 'G.C.5/E36/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(598, 1, 606, 'G.C.6A/E17/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(599, 1, 607, 'G.C.7A/E24/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(600, 1, 608, 'G.C.13A/E24/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(601, 1, 609, 'G.C.6A/E12/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(602, 1, 610, 'G.C.7A/E23/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(603, 1, 611, 'G.C.13A/E23/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(604, 1, 612, 'G.C.13A/E23/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(605, 1, 613, 'G.C.13C/E23/4', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(606, 1, 614, 'G.C.13A/E21/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(607, 1, 615, 'G.C.13A/E21/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(608, 1, 616, 'G.C.5/E3/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(609, 1, 617, 'G.C.5/E3/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(610, 1, 618, 'G.C.6A/E14/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(611, 1, 619, 'G.C.5/E8/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(612, 1, 620, 'G.C.3/E7/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(613, 1, 621, 'G.C.5/E2/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(614, 1, 622, 'G.C.6A/E38/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(615, 1, 623, 'G.C.6A/E37/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(616, 1, 624, 'G.C.6A/E13/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(617, 1, 625, 'G.C.7A/OM24/14', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(618, 1, 626, 'G.C.15/E25/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(619, 1, 627, 'G.C.6A/E31/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(620, 1, 628, 'G.C.6A/E9/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(621, 1, 629, 'G.C.6A/E9/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(622, 1, 630, 'G.C.13A/E39/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(623, 1, 631, 'G.C.13C/OM5/7', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(624, 1, 632, 'G.C.1A/OM8/22', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(625, 1, 633, 'G.C.1A/OM5/9', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(626, 1, 634, 'G.C.10A/OM8/15', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(627, 1, 635, 'G.C.13B/OM8/13', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(628, 1, 636, 'G.C.13B/OM9/13', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(629, 1, 637, 'G.C.10A/OM9/13', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(630, 1, 638, 'G.C.10A/OM9/13', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(631, 1, 639, 'G.C.13B/OM5/8', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(632, 1, 640, 'G.C.10A/OM6/17', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(633, 1, 641, 'G.C.10A/OM5/5', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(634, 1, 642, 'G.C.10A/OM8/16', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(635, 1, 643, 'G.C.13C/OM8/19', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(636, 1, 644, 'G.C.10A/OM6/18', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(637, 1, 645, 'G.C.13C/OM9/18', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(638, 1, 646, 'G.C.13C/OM6/12', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(639, 1, 647, 'G.C.10A/OM5/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(640, 1, 648, 'G.C.13C/OM6/22', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(641, 1, 649, 'G.C.13B/OM6/14', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(642, 1, 650, 'G.C.1A/OM6/24', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(643, 1, 651, 'G.C.13B/OM6/14', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(644, 1, 652, 'G.C.12/OM8/47', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(645, 1, 653, 'G.C.12/OM8/41', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(646, 1, 654, 'G.C.12/OM8/48', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(647, 1, 655, 'G.C.12/OM8/36', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(648, 1, 656, 'G.C.12/OM9/47', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(649, 1, 657, 'G.C.12/OM9/39', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(650, 1, 658, 'G.C.12/OM9/48', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(651, 1, 659, 'G.C.12/OM9/40', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(652, 1, 660, 'G.C.12/OM6/53', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(653, 1, 661, 'G.C.12/OM6/52', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(654, 1, 662, 'G.C.12/OM6/44', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(655, 1, 663, 'G.C.12/OM6/45', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(656, 1, 664, 'G.C.12/OM50/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(657, 1, 665, 'G.C.12/OM50/5', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(658, 1, 666, 'G.C.12/OM50/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(659, 1, 667, 'G.C.12/OM50/10', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(660, 1, 668, 'G.C.12/', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(661, 1, 669, 'G.C.12/', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(662, 1, 670, 'G.C.12/', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(663, 1, 671, 'G.C.12/', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(664, 1, 672, 'G.C.12/', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(665, 1, 673, 'G.C.12/', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(666, 1, 674, 'G.C.12/', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(667, 1, 675, 'G.C.12/OM5/40', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(668, 1, 676, 'G.C.12/OM5/41', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(669, 1, 677, 'G.C.12/OF48/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(670, 1, 678, 'G.C.12/OF53/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(671, 1, 679, 'G.C.12/OF53/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(672, 1, 680, 'G.C.12/OF40/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(673, 1, 681, 'G.C.12/OF49/12', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(674, 1, 682, 'G.C.12/OF49/9', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(675, 1, 683, 'G.C.12/OF49/10', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(676, 1, 684, 'G.C.12/OF25/25', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(677, 1, 685, 'G.C.12/OF25/23', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(678, 1, 686, 'G.C.12/OF25/24', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(679, 1, 687, 'G.C.12/OM7/25', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(680, 1, 688, 'G.C.12/OF19/17', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(681, 1, 689, 'G.C.12/OF19/15', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(682, 1, 690, 'G.C.12/OF13/9', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(683, 1, 691, 'G.C.12/OF21/4', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(684, 1, 692, 'G.C.12/OF21/6', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(685, 1, 693, 'G.C.12/OF21/5', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(686, 1, 694, 'G.C.10A/OF21/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(687, 1, 695, 'G.C.10B/OF38/6', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(688, 1, 696, 'G.C.13A/OF18/11', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(689, 1, 697, 'G.C.6B/OF5/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(690, 1, 698, 'G.C.10A/OM26/7', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(691, 1, 699, 'G.C.5/OM1/24', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(692, 1, 700, 'G.C.10A/OM8/21', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(693, 1, 701, 'G.C.1A/OM6/30', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(694, 1, 702, 'G.C.1A/OM5/14', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(695, 1, 703, 'G.C.10B/OF/28/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(696, 1, 704, 'G.C.6B/OM32/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(697, 1, 705, 'G.C.7/OM39/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(698, 1, 706, 'G.C.6A/E25/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(699, 1, 707, 'G.C.10B/OF/38/7', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(700, 1, 708, 'G.C.7A/OF/23/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(701, 1, 709, 'G.C.8/OM32/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(702, 1, 710, 'G.C.10B/OF38/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(703, 1, 711, 'G.C.10B.OF10/9', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(704, 1, 712, 'G.C.13A/E22/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(705, 1, 713, 'G.C.6C/E34/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(706, 1, 714, 'G.C.6C/OM36/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(707, 1, 715, 'G.C.6C/OM36/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(708, 1, 716, 'G.C.6C/E33/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(709, 1, 717, 'G.C.6C/E33/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(710, 1, 718, 'G.C.13B/E23/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(711, 1, 719, 'G.C.7/E18/5', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(712, 1, 720, 'G.C.7/E18/6', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(713, 1, 721, 'G.C.10B/OF38/4', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(714, 1, 722, 'G.C.7/E44/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(715, 1, 723, 'G.C.7/', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(716, 1, 724, 'G.C.10C/', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(717, 1, 725, 'G.C.8/OF', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(718, 1, 726, 'G.C.10A/OM5/20', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(719, 1, 727, 'G.C.10A/OM7/30', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(720, 1, 728, 'G.C.10A/OF25/16', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(721, 1, 729, 'G.C.10A/OF25/17', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(722, 1, 730, 'G.C.10A/OF25/18', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(723, 1, 731, 'G.C.10A/OF25/20', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(724, 1, 732, 'G.C.10A/OF25/16', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(725, 1, 733, 'G.C.10B/OM42/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(726, 1, 734, 'G.C.13A/OM13/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(727, 1, 735, 'G.C.13A/OM13/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(728, 1, 736, 'G.C.13A/OM13/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(729, 1, 737, 'G.C.10A/OF13/8', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(730, 1, 738, 'G.C.10A/OF13/4', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(731, 1, 739, 'G.C.10A/OF13/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(732, 1, 740, 'G.C.10A/OF13/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(733, 1, 741, 'G.C.10A/OF19/14', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(734, 1, 742, 'G.C.10A/OF19/20', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(735, 1, 743, 'G.C.10A/OF48/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(736, 1, 744, 'G.C.10A/OM6/32', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(737, 1, 745, 'G.C.10A/OM6/31', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(738, 1, 746, 'G.C.10A/OM46/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(739, 1, 747, 'G.C.10A/OM8/46', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(740, 1, 748, 'G.C.10A/OM9/39', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(741, 1, 749, 'G.C.10A/OM5/39', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(742, 1, 750, 'G.C.10A/OM6/51', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(743, 1, 751, 'G.C.10A/OF7/8', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(744, 1, 752, 'G.C.10A/OF7/9', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(745, 1, 753, 'G.C.10A/OM21/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(746, 1, 754, 'G.C.13A/OF15/14', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(747, 1, 755, 'G.C.13B/OF15/19', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(748, 1, 756, 'G.C.10A/OM45/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(749, 1, 757, 'G.C.10B/OM53/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(750, 1, 758, 'G.C.10B/OM45/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(751, 1, 759, 'G.C.10B/OM24/16', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(752, 1, 760, 'G.C.10B/OF11/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(753, 1, 761, 'G.C.10B/OF32/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(754, 1, 762, 'G.C.10B/OF38/12', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(755, 1, 763, 'G.C.10B/OF38/13', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(756, 1, 764, 'G.C.10B/OF38/9', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(757, 1, 765, 'G.C.10B/OF38/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(758, 1, 766, 'G.C.10B/OF38/15', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(759, 1, 767, 'G.C.10B/OF38/14', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(760, 1, 768, 'G.C.10B/OF38/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(761, 1, 769, 'G.C.10B/OF38/11', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(762, 1, 770, 'G.C.10B/OF89/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(763, 1, 771, 'G.C.10B/OF89/12', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(764, 1, 772, 'G.C.10B/OF89/7', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(765, 1, 773, 'G.C.10B/OF89/5', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(766, 1, 774, 'G.C.10B/OF89/11', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(767, 1, 775, 'G.C.10B/OF89/8', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(768, 1, 776, 'G.C.10B/OF89/6', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(769, 1, 777, 'G.C.10B/OF89/10', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(770, 1, 778, 'G.C.10B/OF89/4', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(771, 1, 779, 'G.C.10B/OF36/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(772, 1, 780, 'G.C.10B/OF38/28', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(773, 1, 781, 'G.C.24/OF50/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(774, 1, 782, 'G.C.13A/OF38/28', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(775, 1, 783, 'G.C.10B/OF46/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(776, 1, 784, 'G.C.7A/OM5/16', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(777, 1, 785, 'MF-HCMES-51-1332', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(778, 1, 786, 'MF-HCMES-51-1515', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(779, 1, 787, 'MF-HCMES-51-1174', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(780, 1, 788, 'G.C.7B/OM38/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(781, 1, 789, 'G.C.10B/OF37/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(782, 1, 790, 'G.C.13A/OF38/9', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(783, 1, 791, 'G.C.6A/OF38/26', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(784, 1, 792, 'G.C.6B/OF35/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(785, 1, 793, 'G.C.7B/OF8/5', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(786, 1, 794, 'G.C.6B/OM7/24', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(787, 1, 795, 'MF-HCMES51-3/1464', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(788, 1, 796, NULL, 'item_name', 'Item Name is required.', '2026-07-16 00:31:05'),
+(789, 1, 797, 'G.C.13B/OF25/8', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(790, 1, 798, 'G.C.13B/OM5/28', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(791, 1, 799, 'G.C.6B/', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(792, 1, 800, 'G.C.6B/OF18/', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(793, 1, 801, 'G.C.13B/OM9/37', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(794, 1, 802, 'G.C.13B/OM8/39', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(795, 1, 803, 'G.C.7A/OM31/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(796, 1, 804, NULL, 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(797, 1, 805, 'G.C.7A/OM31/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(798, 1, 806, 'G.C.7A/OM49/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(799, 1, 807, 'G.C.7A/OM6/26', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(800, 1, 808, 'G.C.7a/OM8/25', 'status', 'Status is required.', '2026-07-16 00:31:05'),
+(801, 1, 809, 'G.C.7A/OM9/25', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(802, 1, 810, 'G.C.7A/OM20/5', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(803, 1, 811, 'CRL/MB3/385/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(804, 1, 812, 'G.C.7A/TEM5/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(805, 1, 813, 'G.C.7B/OM35/4', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(806, 1, 814, 'G.C.7B/OM7/27', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(807, 1, 815, 'G.C.7B/OF25/10', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(808, 1, 816, 'G.C.7B/OM6/48', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(809, 1, 817, 'G.C.5/OM11/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(810, 1, 818, 'G.C.7B/OF19/18', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(811, 1, 819, 'G.C.7B/OF5/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(812, 1, 820, 'G.C.6A/OF38/24', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(813, 1, 821, 'G.C.10A/OF43/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(814, 1, 822, 'G.C.2/OF7/7', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(815, 1, 823, 'G.C.2/OM9//50', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(816, 1, 824, 'G.C.2/OM8/50', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(817, 1, 825, 'G.C.2/OM52/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(818, 1, 826, 'G.C.2/OM6/28', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(819, 1, 827, 'MF-HCMES51-31/1376', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(820, 1, 828, 'G.C.2/OM7/23', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(821, 1, 829, 'G.C.2/OF25/19', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(822, 1, 830, 'G.C.2/OM6/47', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(823, 1, 831, 'G.C.2/OM50/4', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(824, 1, 832, 'G.C.2/OF49/11', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(825, 1, 833, 'G.C.2/OF19/9', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(826, 1, 834, 'G.C.2/OF25/25', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(827, 1, 835, 'G.C.12/OM5/31', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(828, 1, 836, 'G.C.12/OM6/39', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(829, 1, 837, 'G.C.2/OF7/6', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(830, 1, 838, 'G.C.12/OM8/33', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(831, 1, 839, 'G.C.12/OM9/33', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(832, 1, 840, 'G.C.2/OF7/5', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(833, 1, 841, 'G.C.12/OM5/30', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(834, 1, 842, 'G.C.12/OM6/43', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(835, 1, 843, 'G.C.12/OM8/34', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(836, 1, 844, 'G.C.12/OM9/34', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(837, 1, 845, 'G.C.12/OF25/21', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(838, 1, 846, 'G.C.12/OF40/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(839, 1, 847, 'G.C.12/OM5/33', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(840, 1, 848, 'G.C.12/OM6/45', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(841, 1, 849, 'G.C.12/OM8/35', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(842, 1, 850, 'G.C.12/OM9/35', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(843, 1, 851, 'G.C.2/OF52/5', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(844, 1, 852, 'G.C.2/OF52/6', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(845, 1, 853, 'G.C.2/OF52/7', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(846, 1, 854, 'G.C.2/OF52/8', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(847, 1, 855, 'G.C.2/OM50/9', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(848, 1, 856, 'G.C.1A/OM38/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(849, 1, 857, 'G.C.13C/OM5/11', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(850, 1, 858, 'MF-HCNES89-1/59', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(851, 1, 859, 'G.C.1A/OM7/21', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(852, 1, 860, 'G.C.1B/OM8/38', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(853, 1, 861, 'G.C.1B/OF7/10', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(854, 1, 862, 'G.C.1B/OM35/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(855, 1, 863, 'G.C.1B/OM6/40', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(856, 1, 864, 'G.C.1B/OM50/8', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(857, 1, 865, 'G.C.1B/OF25/26', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(858, 1, 866, 'G.C.1A/OF38/19', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(859, 1, 867, 'G.C.1A/OF38/20', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(860, 1, 868, 'G.C.1A/OF38/21', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(861, 1, 869, 'G.C.1A/OF38/22', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(862, 1, 870, 'G.C.1A/OF40/4', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(863, 1, 871, 'G.C.1A/OF60/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(864, 1, 872, 'G.C.1A/OF33/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(865, 1, 873, 'G.C.6B/OF25/23', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(866, 1, 874, 'G.C.6B/OM45/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(867, 1, 875, 'G.C.1A/OM45/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(868, 1, 876, 'G.C.6B/OM8/43', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(869, 1, 877, 'G.C.6B/OM9/45', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(870, 1, 878, 'G.C.6B/OM6/49', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(871, 1, 879, 'G.C.1A/OM7/26', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(872, 1, 880, 'G.C.7A/OF15/13', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(873, 1, 881, 'G.C.13B/OM24/13', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(874, 1, 882, 'G.C.1A/OM36/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(875, 1, 883, 'G.C.1A/OM12/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(876, 1, 884, 'G.C.1A/OF52/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(877, 1, 885, 'G.C.14/OM6/37', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(878, 1, 886, 'G.C.14/OM20/7', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(879, 1, 887, 'G.C.14/OF49/6', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(880, 1, 888, 'G.C.14/OF48/6', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(881, 1, 889, 'G.C.14/OM20/7', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(882, 1, 890, 'G.C.13A/OM1/8', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(883, 1, 891, 'G.C.12/OM50/6', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(884, 1, 892, 'G.C.14/OM50/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(885, 1, 893, 'G.C.14/OF48/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(886, 1, 894, 'G.C.14/OF49/7', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(887, 1, 895, 'G.C.14/OF48/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(888, 1, 896, 'G.C.14/OF49/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(889, 1, 897, 'G.C.14/OF51/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(890, 1, 898, 'G.C.14/OM7/28', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(891, 1, 899, 'G.C.14/OF49/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(892, 1, 900, 'G.C.14/OF48/7', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(893, 1, 901, 'G.C.14/OM6/42', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(894, 1, 902, 'G.C.14/OF48/4', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(895, 1, 903, 'G.C.14/OF49/4', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(896, 1, 904, 'G.C.14/OM8/31', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(897, 1, 905, 'G.C.14/OM6/36', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(898, 1, 906, 'G.C.14/OF48/5', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(899, 1, 907, 'G.C.14/OF49/5', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(900, 1, 908, 'G.C.14/OF25/14', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(901, 1, 909, 'G.C.13C/OM1/5', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(902, 1, 910, 'G.C.14/OM5/42', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(903, 1, 911, 'G.C.14/OM9/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(904, 1, 912, 'G.C.14/OM8/49', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(905, 1, 913, 'G.C.14/OM6/54', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(906, 1, 914, 'G.C.13B/OF51/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(907, 1, 915, 'G.C.13B/OM5/4', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(908, 1, 916, 'G.C.13B/OF19/13', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(909, 1, 917, 'G.C.14/OM5/35', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(910, 1, 918, 'G.C.14/OM6/46', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(911, 1, 919, 'G.C.14/OM51/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(912, 1, 920, 'G.C.13B/OM3/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(913, 1, 921, 'G.C.14/OM8/42', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(914, 1, 922, 'G.C.14/OM9/41', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(915, 1, 923, 'G.C.13B/OM7/29', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(916, 1, 924, 'G.C.13A/E5/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(917, 1, 925, 'G.C.13A/E31/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(918, 1, 926, 'G.C.13A/E25/4', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(919, 1, 927, 'G.C.13A/OM32/4', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(920, 1, 928, 'G.C.13A/E43/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(921, 1, 929, 'G.C.13A/OM50/7', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(922, 1, 930, 'G.C.14/OF18/14', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(923, 1, 931, 'G.C.13C/OM6/34', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(924, 1, 932, 'G.C.13C/OM20/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(925, 1, 933, 'G.C.13C/OM6/35', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(926, 1, 934, 'G.C.13C/OM51/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(927, 1, 935, 'G.C.13C/OM23/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(928, 1, 936, 'G.C.13C/OF13/5', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(929, 1, 937, 'G.C.13C/OF13/6', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(930, 1, 938, 'G.C.13C/OF25/4', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(931, 1, 939, 'G.C.5/OM8/44', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(932, 1, 940, 'G.C.5/OM9/44', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(933, 1, 941, 'G.C.5/OM5/38', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(934, 1, 942, 'G.C.5/OM6/49', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(935, 1, 943, 'G.C.5/E3/4', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(936, 1, 944, 'MF-HCMES-51-6/48', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(937, 1, 945, 'MF-HCMES-69-1/75', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(938, 1, 946, 'G.C.5/E3/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(939, 1, 947, 'G.C.10A/OM6/16', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(940, 1, 948, 'G.C.5/E42/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(941, 1, 949, 'G.C.10A/OM6/23', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(942, 1, 950, 'CRL/MB6/225/24', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(943, 1, 951, NULL, 'item_name', 'Item Name is required.', '2026-07-16 00:31:05'),
+(944, 1, 952, 'G.C.24/OF51/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(945, 1, 953, 'G.C.1A/OF13/7', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(946, 1, 954, 'G.C.24/OF19/16', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(947, 1, 955, 'G.C.24/OF58/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(948, 1, 956, 'G.C.24/OF57/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(949, 1, 957, 'G.C.24/OM37/5', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(950, 1, 958, 'G.C.24/OF55/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(951, 1, 959, 'G.C.14/OF49/4', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(952, 1, 960, 'G.C.14/OF49/5', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(953, 1, 961, 'G.C.1A/OM3/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(954, 1, 962, 'G.C.2/OF25/25', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(955, 1, 963, 'G.C.6C/E44/3', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(956, 1, 964, 'G.C.6D/OM54/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(957, 1, 965, 'G.C.6D/OM55/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(958, 1, 966, 'G.C.6D/OM12/4', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(959, 1, 967, 'G.C.7B/OM12/5', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(960, 1, 968, 'G.C.10B/OF52/1', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(961, 1, 969, 'G.C.5/OM6/15', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(962, 1, 970, 'G.C.10A/OM8/15', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(963, 1, 971, 'G.C.13B/OM9/13', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(964, 1, 972, 'G.C.1A/OM5/9', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(965, 1, 973, 'MF-G3W-101-1/36', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(966, 1, 974, 'G.C.6D/OM12/4', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(967, 1, 975, 'MF-HCMES-51-1/14', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(968, 1, 976, 'G.C.13C/OF24/6', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(969, 1, 977, 'G.C.7/E44/2', 'category', 'Category is required.', '2026-07-16 00:31:05'),
+(970, 2, 2, 'G.C.1B/OM5/1', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-16 00:35:59'),
+(971, 2, 3, 'G.C.5/OM5/2', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-16 00:35:59'),
+(972, 2, 4, 'G.C.10a/OM5/3', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-16 00:35:59'),
+(973, 2, 5, 'G.C.10a/OM5/4', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-16 00:35:59'),
+(974, 2, 6, 'G.C.10a/OM5/5', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(975, 2, 7, 'G.C.13b/OM5/6', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(976, 2, 8, 'G.C.13c/OM5/7', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(977, 2, 9, 'G.C.13b/OM5/8', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(978, 2, 10, 'G.C.1a/OM5/9', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(979, 2, 11, 'G.C.5/OM5/10', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-16 00:35:59'),
+(980, 2, 12, 'G.C.13c/OM5/11', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(981, 2, 13, 'G.C.13c/OM5/12', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-16 00:35:59'),
+(982, 2, 14, 'G.C.13c/OM5/13', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(983, 2, 15, 'G.C.10a/OM5/14', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(984, 2, 16, 'G.C.5/OM5/15', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(985, 2, 17, 'G.C.7a/OM5/16', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(986, 2, 18, 'G.C.5/OM5/17', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(987, 2, 19, 'G.C.10a/OM5/18', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-16 00:35:59'),
+(988, 2, 20, 'G.C.10a/OM5/19', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(989, 2, 21, 'G.C.13c/OM5/20', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(990, 2, 22, 'G.C.13c/OM5/21', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(991, 2, 23, 'G.C.5c/OM5/22', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(992, 2, 24, 'G.C.5c/OM5/23', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(993, 2, 25, 'G.C.5c/OM5/24', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(994, 2, 26, 'G.C.14/OM5/25', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(995, 2, 27, 'G.C.14/OM5/26', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(996, 2, 28, 'G.C.1b/OM5/27', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(997, 2, 29, 'G.C.13b/OM5/28', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(998, 2, 30, 'G.C.14/OM5/29', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(999, 2, 31, 'G.C.11/OM5/30', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1000, 2, 32, 'G.C.12/OM5/31', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1001, 2, 33, 'G.C.12/OM5/32', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1002, 2, 34, 'G.C.12/OM5/33', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1003, 2, 35, 'G.C.12/OM5/34', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1004, 2, 36, 'G.C.14/OM5/35', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1005, 2, 37, 'G.C.2/OM5/36', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1006, 2, 38, 'G.C.7b/OM5/37', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1007, 2, 39, 'G.C.1a/OM8/1', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1008, 2, 40, 'G.C.1b/OM8/2', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1009, 2, 41, 'G.C.5/OM8/3', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1010, 2, 42, 'G.C.5/OM8/4', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1011, 2, 43, 'G.C.5/OM8/5', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1012, 2, 44, 'G.C.10a/Om8/6', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1013, 2, 45, 'G.C.10a/Om8/7', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1014, 2, 46, 'G.C.10a/OM8/8', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1015, 2, 47, 'G.C.10a/OM8/9', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1016, 2, 48, 'G.C.13b/OM8/10', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1017, 2, 49, 'G.C.13c/OM8/11', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1018, 2, 50, 'G.C.13c/OM8/12', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1019, 2, 51, 'G.C.13b/OM8/13', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1020, 2, 52, 'G.C.5/OM8/14', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1021, 2, 53, 'G.C.10a/OM8/15', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1022, 2, 54, 'G.C.10a/OM8/16', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1023, 2, 55, 'G.C.10a/OM8/17', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1024, 2, 56, 'G.C.13c/OM8/18', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1025, 2, 57, 'G.C.13c/OM8/19', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1026, 2, 58, 'G.C.13c/OM8/20', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1027, 2, 59, 'G.C.10a/OM8/21', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1028, 2, 60, 'G.C.1a/OM8/22', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1029, 2, 61, 'G.C.1b/OM8/23', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1030, 2, 62, 'G.C.5/OM8/24', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1031, 2, 63, 'CRL/PH8/260/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1032, 2, 64, 'G.C.5/OM8/26', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1033, 2, 65, 'G.C.10a/OM8/27', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1034, 2, 66, 'G.C.10a/OM8/29', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1035, 2, 67, 'G.C10a/OM8/29', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1036, 2, 68, 'G.C.13c/OM8/30', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1037, 2, 69, 'G.C.14/OM8/31', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1038, 2, 70, 'G.C.14/OM8/32', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1039, 2, 71, 'G.C.11/OM8/33', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1040, 2, 72, 'G.C.11/OM8/34', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1041, 2, 73, 'G.C.11/OM8/35', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1042, 2, 74, 'G.C.11/OM8/36', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1043, 2, 75, 'G.C.13b/OM8/39', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1044, 2, 76, 'G.C.14/OM9/40', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1045, 2, 77, 'G.C.11/OM8/41', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1046, 2, 78, 'G.C.14/OM8/42', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1047, 2, 79, 'G.C.2/OM8/37', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1048, 2, 80, 'G.C.7b/OM8/43', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1049, 2, 81, 'G.C.10A/OF25/1', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1050, 2, 82, 'G.C.10A/OF25/2', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1051, 2, 83, 'G.C.10A/OF25/3', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1052, 2, 84, 'G.C.13B/OF25/4', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1053, 2, 85, 'G.C.10A/OF25/5', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1054, 2, 86, 'G.C.10A/OF25/6', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1055, 2, 87, 'G.C.6B/OF25/7', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1056, 2, 88, 'G.C.13B/OF25/8', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1057, 2, 89, 'G.C.14/OF25/9', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1058, 2, 90, 'G.C.14/OF25/10', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1059, 2, 91, 'G.C.14/OF25/11', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1060, 2, 92, 'G.C.14/OF25/12', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1061, 2, 93, 'G.C.14/OF25/13', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1062, 2, 94, 'G.C.10A/OF25/14', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1063, 2, 95, 'G.C.14/OF25/15', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1064, 2, 96, 'G.C.12/OF25/16', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1065, 2, 97, 'G.C.12/OF25/17', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1066, 2, 98, 'G.C.12/OF25/18', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1067, 2, 99, 'G.C.12/OF25/19', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1068, 2, 100, 'G.C.12/OF25/20', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1069, 2, 101, 'G.C.12/OF25/21', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1070, 2, 102, 'G.C.12/OF25/22', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1071, 2, 103, 'G.C.13A/OM37/1', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1072, 2, 104, 'G.C.10A/OM37/2', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1073, 2, 105, 'G.C.9/OM37/3', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1074, 2, 106, 'G.C.9/OM37/4', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1075, 2, 107, 'G.C.24/OM37/5', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1076, 2, 108, 'G.C.6B/OF54/1', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1077, 2, 109, 'G.C.10B/OF38/2', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1078, 2, 110, 'G.C.10B/OF38/3', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1079, 2, 111, 'G.C.10B/OF38/4', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1080, 2, 112, 'G.C.10B/OF38/5', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1081, 2, 113, 'G.C.10B/OF38/6', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1082, 2, 114, 'G.C.10B/OF38/7', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1083, 2, 115, 'G.C.10B/OF38/8', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1084, 2, 116, 'G.C.10B/OF38/9', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1085, 2, 117, 'G.C.10B/OF38/10', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1086, 2, 118, 'G.C.10B/OF38/11', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1087, 2, 119, 'G.C.10B/OF38/12', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1088, 2, 120, 'G.C.10B/OF38/13', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1089, 2, 121, 'G.C.10B/OF38/14', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1090, 2, 122, 'G.C.10B/OF38/15', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1091, 2, 123, 'G.C.10B/OF38/16', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1092, 2, 124, 'G.C.10B/OF38/17', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1093, 2, 125, 'G.C.1A/OF38/18', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1094, 2, 126, 'G.C.10B/OF38/19', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1095, 2, 127, 'G.C.10B/OF38/20', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1096, 2, 128, 'G.C.10B/OF38/22', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1097, 2, 129, 'G.C.10B/OF38/23', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1098, 2, 130, 'G.C.6A/OF38/24', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1099, 2, 131, 'G.C.6A/OF38/25', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1100, 2, 132, 'G.C.6A/OF38/26', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1101, 2, 133, 'G.C.13A/OF38/27', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1102, 2, 134, 'G.C.13A/OF38/28', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1103, 2, 135, 'G.C.13A/OF38/29', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1104, 2, 136, 'G.C.10B/OF47/1', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1105, 2, 137, 'G.C.24/OF5B/1', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1106, 2, 138, 'G.C.24/OF57/1', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1107, 2, 139, 'G.C.24/OF56/1', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1108, 2, 140, 'G.C.24/OF55/1', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1109, 2, 141, 'G.C.1A/OF19/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1110, 2, 142, 'G.C.1B/OF19/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1111, 2, 143, 'G.C.1B/OF19/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1112, 2, 144, 'G.C.1B/OF19/4', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1113, 2, 145, 'G.C.1B/OF19/5', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1114, 2, 146, 'G.C.Lobby/OF19/6', 'category', 'Category is required.', '2026-07-16 00:35:59');
+INSERT INTO `inv_import_errors` (`error_id`, `batch_id`, `row_number`, `asset_code`, `field`, `message`, `created_at`) VALUES
+(1115, 2, 147, 'G.C.Lobby/OF19/7', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1116, 2, 148, 'G.C.Lobby/OF19/8', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1117, 2, 149, 'G.C.Lobby/OF19/9', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1118, 2, 150, 'G.C.Lobby/OF19/10', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1119, 2, 151, 'G.C.Lobby/OF19/11', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1120, 2, 152, 'G.C.10A/OF19/12', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1121, 2, 153, 'G.C.Lobby/OF19/13', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1122, 2, 154, 'G.C.6C/OF41/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1123, 2, 155, 'G.C.10B/OF46/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1124, 2, 156, 'G.C.10B/OF45/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1125, 2, 157, 'G.C.6B/OF53/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1126, 2, 158, 'G.C.11/OF53/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1127, 2, 159, 'G.C.11/OF53/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1128, 2, 160, 'G.C.2/OF53/4', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1129, 2, 161, 'G.C.1B/OM23/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1130, 2, 162, 'G.C.1B//OM23/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1131, 2, 163, 'G.C.13A/OF29/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1132, 2, 164, 'G.C.15/OF29/4', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1133, 2, 165, 'G.C.15/OF29/5', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1134, 2, 166, 'G.C.1A/OM39/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1135, 2, 167, 'G.C.7B/OM39/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1136, 2, 168, 'G.C.1A/OM39/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1137, 2, 169, 'G.C.9/OF44/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1138, 2, 170, 'G.C.9/OF44/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1139, 2, 171, 'G.C.9/OF44/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1140, 2, 172, 'G.C.9/OF44/4', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1141, 2, 173, 'G.C.9/OF44/5', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1142, 2, 174, 'G.C.9/OF44/6', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1143, 2, 175, 'G.C.9/OF44/7', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1144, 2, 176, 'G.C.9/OF44/8', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1145, 2, 177, 'G.C.9/OF44/9', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1146, 2, 178, 'G.C.9/OF4/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1147, 2, 179, 'G.C.9/OF4/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1148, 2, 180, 'G.C.Lobby/OF27/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1149, 2, 181, 'G.C.Lobby/OF27/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1150, 2, 182, 'G.C.Lobby/OF27/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1151, 2, 183, 'G.C.2/OF34/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1152, 2, 184, 'G.C.1A/OF8/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1153, 2, 185, 'G.C.2/OF8/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1154, 2, 186, 'G.C.6B/OF8/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1155, 2, 187, 'G.C.6B/OF8/4', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1156, 2, 188, 'G.C.6C/OF8/5', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1157, 2, 189, 'G.C.7B/OF8/6', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1158, 2, 190, 'G.C.13BOF8/7', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1159, 2, 191, 'G.C.15/OF33/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1160, 2, 192, 'G.C.15/OF33/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1161, 2, 193, 'G.C.15/OF33/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1162, 2, 194, 'G.C.1B//OM22/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1163, 2, 195, 'G.C.1B//OM22/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1164, 2, 196, 'G.C.6A/OF23/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1165, 2, 197, 'G.C.6A/OF23/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1166, 2, 198, 'G.C.6C/E40/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1167, 2, 199, 'G.C.10A/OF23/4', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1168, 2, 200, 'G.C.7A/OF23/5', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1169, 2, 201, 'G.C.1A/OF10/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1170, 2, 202, 'G.C.1A/OF10/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1171, 2, 203, 'G.C.2/OF10/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1172, 2, 204, 'G.C.2/OF10/4', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1173, 2, 205, 'G.C.2/OF10/5', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1174, 2, 206, 'G.C.2/OF10/6', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1175, 2, 207, 'G.C.7B/OF10/7', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1176, 2, 208, 'G.C.10A/OF10/8', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1177, 2, 209, 'G.C.Lobby/OF28/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1178, 2, 210, 'G.C.10B/OF28/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1179, 2, 211, 'G.C.2/OF11/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1180, 2, 212, 'G.C.1A/OF9/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1181, 2, 213, 'G.C.1B/OF12/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1182, 2, 214, 'G.C.6A/OF12/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1183, 2, 215, 'G.C.6B/OF12/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1184, 2, 216, 'G.C.6C/OF12/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1185, 2, 217, 'G.C.15/OF30/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1186, 2, 218, 'G.C.10A/OF1/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1187, 2, 219, 'G.C.1A/OF10/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1188, 2, 220, 'G.C.1A/OF10/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1189, 2, 221, 'G.C.2/OF10/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1190, 2, 222, 'G.C.2/OF10/4', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1191, 2, 223, 'G.C.2/OF10/5', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1192, 2, 224, 'G.C.2/OF10/6', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1193, 2, 225, 'G.C.10A/OF10/8', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1194, 2, 226, 'G.C.Lobby/OF10/9', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1195, 2, 227, 'G.C.1B/OF6/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1196, 2, 228, 'G.C.1B/OF7/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1197, 2, 229, 'G.C.Lobby/OF7/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1198, 2, 230, 'G.C.6C/OF7/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1199, 2, 231, 'G.C.10A/OF2/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1200, 2, 232, 'G.C.1A/OF3/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1201, 2, 233, 'G.C.10A/OF3/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1202, 2, 234, 'G.C.10A/OF20/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1203, 2, 235, 'G.C.10A/OF26/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1204, 2, 236, 'G.C.10B/OF26/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1205, 2, 237, 'G.C.1A/OF5/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1206, 2, 238, 'G.C.1A/OF5/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1207, 2, 239, 'G.C.1A/OF5/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1208, 2, 240, 'G.C.1A/OF5/4', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1209, 2, 241, 'G.C.10B/OF31/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1210, 2, 242, 'G.C.1A/OF16/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1211, 2, 243, 'G.C.1A/OF16/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1212, 2, 244, 'G.C.10A/OF21/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1213, 2, 245, 'G.C.10A/OF21/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1214, 2, 246, 'G.C.10A/OF21/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1215, 2, 247, 'G.C.13C/OF39/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1216, 2, 248, 'G.C.2/OF14/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1217, 2, 249, 'G.C.3/OF14/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1218, 2, 250, 'G.C.3/OF14/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1219, 2, 251, 'G.C.5/OF14/4', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1220, 2, 252, 'G.C.14/OF14/5', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1221, 2, 253, 'G.C.15/OF14/6', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1222, 2, 254, 'G.C.15/OF14/7', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1223, 2, 255, 'G.C.15/OF14/8', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1224, 2, 256, 'G.C.10A/OF22/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1225, 2, 257, 'G.C.6A/OF24/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1226, 2, 258, 'G.C.8/OF24/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1227, 2, 259, 'G.C.10A/OF24/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1228, 2, 260, 'G.C.10A/OF24/4', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1229, 2, 261, 'G.C.13A/OF24/5', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1230, 2, 262, 'G.C.13C/OF24/6', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1231, 2, 263, 'G.C.13C/OF24/7', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1232, 2, 264, 'G.C.1A/OF17/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1233, 2, 265, 'G.C.9/OF17/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1234, 2, 266, 'G.C.Lobby/OF17/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1235, 2, 267, 'G.C.10B/OF17/4', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1236, 2, 268, 'G.C.2/OF17/5', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1237, 2, 269, 'G.C.2/OF15/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1238, 2, 270, 'G.C.5/OF15/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1239, 2, 271, 'G.C.5/OF15/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1240, 2, 272, 'G.C.5/OF15/4', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1241, 2, 273, 'G.C.6AOF15/5', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1242, 2, 274, 'G.C.6A/OF15/6', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1243, 2, 275, 'G.C.6A/OF15/7', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1244, 2, 276, 'G.C.7A/E15/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1245, 2, 277, 'G.C.7B/OF15/9', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1246, 2, 278, 'G.C.10A/OF15/10', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1247, 2, 279, 'G.C.10A/OF15/11', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1248, 2, 280, 'G.C.Lobby/OF15/12', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1249, 2, 281, 'G.C.Lobby/OF15/13', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1250, 2, 282, 'G.C.13A/OF15/14', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1251, 2, 283, 'G.C.13A/OF15/15', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1252, 2, 284, 'G.C.13A/OF15/16', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1253, 2, 285, 'G.C.13A/OF15/17', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1254, 2, 286, 'G.C.13B/OF15/18', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1255, 2, 287, 'G.C.13B/OF15/19', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1256, 2, 288, 'G.C.13C/OF15/20', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1257, 2, 289, 'G.C.13C/OF15/21', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1258, 2, 290, 'G.C.13C/OF15/22', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1259, 2, 291, 'G.C.14/OF15/23', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1260, 2, 292, 'G.C.14/OF15/24', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1261, 2, 293, 'G.C.14/OF15/25', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1262, 2, 294, 'G.C.14/OF15/26', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1263, 2, 295, 'G.C.14/OF15/27', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1264, 2, 296, 'G.C.15/OF15/28', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1265, 2, 297, 'G.C.1A/OF18/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1266, 2, 298, 'G.C.1B/OF18/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1267, 2, 299, 'G.C.4/OF18/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1268, 2, 300, 'G.C.6A/OF18/4', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1269, 2, 301, 'G.C.6B/OF18/5', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1270, 2, 302, 'G.C.10A/OF18/6', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1271, 2, 303, 'G.C.10A/OF18/7', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1272, 2, 304, 'G.C.10A/OF18/8', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1273, 2, 305, 'G.C.10A/OF18/9', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1274, 2, 306, 'G.C.13A/OF18/10', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1275, 2, 307, 'G.C.13A/OF18/11', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1276, 2, 308, 'G.C.13A/OF18/12', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1277, 2, 309, 'G.C.13B/OF18/13', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1278, 2, 310, 'G.C.4A/OF18/14', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1279, 2, 311, 'G.C.10A/OF18/15', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1280, 2, 312, 'G.C.7A/OF18/16', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1281, 2, 313, 'G.C.1A/OM6/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1282, 2, 314, 'G.C.1B/OM6/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1283, 2, 315, 'G.C.5/OM6/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1284, 2, 316, 'G.C.5/OM6/4', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1285, 2, 317, 'G.C.5/OM6/5', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1286, 2, 318, 'G.C.10A/OM6/6', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1287, 2, 319, 'G.C.10A/OM6/7', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1288, 2, 320, 'G.C.10A/OM6/8', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1289, 2, 321, 'G.C.10A/OM6/9', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1290, 2, 322, 'G.C.13B/OM6/10', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1291, 2, 323, 'G.C.13C/OM6/11', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1292, 2, 324, 'G.C.13C/OM6/12', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1293, 2, 325, 'G.C.13C/OM6/13', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1294, 2, 326, 'G.C.13/OM6/14', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1295, 2, 327, 'G.C.5/OM6/15', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1296, 2, 328, 'G.C.10A/OM6/16', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1297, 2, 329, 'G.C.10A/OM6/17', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1298, 2, 330, 'G.C.10A/OM6/18', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1299, 2, 331, 'G.C.13C/OM6/19', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1300, 2, 332, 'G.C.13C/OM6/20', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1301, 2, 333, 'G.C.5/OM6/21', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1302, 2, 334, 'G.C.13C/OM6/22', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1303, 2, 335, 'G.C.10A/OM6/33', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1304, 2, 336, 'G.C.1A/OM6/24', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1305, 2, 337, 'G.C.1B/OM6/25', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1306, 2, 338, 'G.C.7A/E19/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1307, 2, 339, 'G.C.5/OM6/27', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1308, 2, 340, 'G.C.5/OM6/28', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1309, 2, 341, 'G.C.10/OM6/29', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1310, 2, 342, 'G.C.10/OM6/30', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1311, 2, 343, 'G.C.10/OM6/31', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1312, 2, 344, 'G.C.10/OM6/32', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1313, 2, 345, 'G.C.10/OM6/33', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1314, 2, 346, 'G.C.10/OM6/34', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1315, 2, 347, 'G.C.10/OM6/35', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1316, 2, 348, 'G.C.10/OM6/36', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1317, 2, 349, 'G.C.10/OM6/37', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1318, 2, 350, 'G.C.10/OM6/38', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1319, 2, 351, 'G.C.10/OM6/39', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1320, 2, 352, 'G.C.10/OM6/40', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1321, 2, 353, 'G.C.10/OM6/41', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1322, 2, 354, 'G.C.10/OM6/42', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1323, 2, 355, 'G.C.10/OM6/43', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1324, 2, 356, 'G.C.10/OM6/44', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1325, 2, 357, 'G.C.10/OM6/45', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1326, 2, 358, 'G.C.10/OM6/46', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1327, 2, 359, 'G.C.10/OM6/47', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1328, 2, 360, 'G.C.10/OM6/48', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1329, 2, 361, 'G.C.1A/OM9/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1330, 2, 362, 'G.C.1BOM9/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1331, 2, 363, 'G.C.5/OM9/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1332, 2, 364, 'G.C.5/OM9/4', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1333, 2, 365, 'G.C.5/OM9/5', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1334, 2, 366, 'G.C.10A/OM9/6', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1335, 2, 367, 'G.C.10A/OM9/7', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1336, 2, 368, 'G.C.10A/OM9/8', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1337, 2, 369, 'G.C.10A/OM9/9', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1338, 2, 370, 'G.C.13B/OM9/10', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1339, 2, 371, 'G.C.13C/OM9/11', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1340, 2, 372, 'G.C.13C/OM9/12', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1341, 2, 373, 'G.C.13B/OM9/13', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1342, 2, 374, 'G.C.5/OM9/14', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1343, 2, 375, 'G.C.10A/OM9/15', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1344, 2, 376, 'G.C.10A/OM9/16', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1345, 2, 377, 'G.C.10A/OM9/17', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1346, 2, 378, 'G.C.13C/OM9/18', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1347, 2, 379, 'G.C.13C/OM9/19', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1348, 2, 380, 'G.C.13C/OM9/20', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1349, 2, 381, 'G.C.10A/OM9/21', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1350, 2, 382, 'G.C.1A/OM9/22', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1351, 2, 383, 'G.C.1B/OM9/23', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1352, 2, 384, 'G.C.5/OM9/24', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1353, 2, 385, 'G.C.7A/E22/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1354, 2, 386, 'G.C.5/OM9/26', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1355, 2, 387, 'G.C.10A/OM9/27', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1356, 2, 388, 'G.C.10A/OM9/28', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1357, 2, 389, 'G.C.10A/OM9/29', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1358, 2, 390, 'G.C.13C/OM9/30', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1359, 2, 391, 'G.C.14/OM9/31', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1360, 2, 392, 'G.C.14/OM9/32', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1361, 2, 393, 'G.C.11/OM9/33', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1362, 2, 394, 'G.C.11/OM9/34', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1363, 2, 395, 'G.C.11/OM9/35', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1364, 2, 396, 'G.C.16/OM9/36', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1365, 2, 397, 'G.C.13B/OM9/37', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1366, 2, 398, 'G.C.14/OM9/38', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1367, 2, 399, 'G.C.11/OM9/39', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1368, 2, 400, 'G.C.11/OM9/40', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1369, 2, 401, 'G.C.14/OM9/41', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1370, 2, 402, 'G.C.2/OM9/42', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1371, 2, 403, 'G.C.7B/OM9/43', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1372, 2, 404, 'G.C.1A/OM7/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1373, 2, 405, 'G.C.1B/OM7/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1374, 2, 406, 'G.C.5/OM7/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1375, 2, 407, 'G.C.5/OM7/4', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1376, 2, 408, 'G.C.5/OM7/5', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1377, 2, 409, 'G.C.10A/OM7/6', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1378, 2, 410, 'G.C.10A/OM7/7', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1379, 2, 411, 'G.C.10A/OM7/8', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1380, 2, 412, 'G.C.10A/OM7/9', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1381, 2, 413, 'G.C.13B/OM7/10', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1382, 2, 414, 'G.C.13C/OM7/11', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1383, 2, 415, 'G.C.13C/OM7/12', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1384, 2, 416, 'G.C.5/OM7/13', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1385, 2, 417, 'G.C.10A/OM7/14', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1386, 2, 418, 'G.C.1B/OM7/15', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1387, 2, 419, 'G.C.13C/OM7/16', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1388, 2, 420, 'G.C.10A/OM7/17', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1389, 2, 421, 'G.C.5/OM7/18', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1390, 2, 422, 'G.C.1A/OM7/19', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1391, 2, 423, 'G.C.13C/OM7/20', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1392, 2, 424, 'G.C.13C/OM7/21', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1393, 2, 425, 'G.C.13C/OM7/22', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1394, 2, 426, 'G.C.5/OM7/23', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1395, 2, 427, 'G.C. /OM36/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1396, 2, 428, 'G.C. /OM36/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1397, 2, 429, 'G.C.10B/OM43/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1398, 2, 430, 'G.C.13A/OM40/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1399, 2, 431, 'G.C.13A/OM40/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1400, 2, 432, 'G.C.1A/OM20/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1401, 2, 433, 'G.C.5/OM20/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1402, 2, 434, 'G.C.6C/OM20/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1403, 2, 435, 'G.C.5/OM20/4', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1404, 2, 436, 'G.C.7/OM20/5', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1405, 2, 437, 'G.C.7/OM20/6', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1406, 2, 438, 'G.C.14/OM20/7', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1407, 2, 439, 'G.C.15/OM20/8', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1408, 2, 440, 'G.C.7/OM20/9', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1409, 2, 441, 'G.C.10A/OM20/10', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1410, 2, 442, 'G.C.11/OM20/11', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1411, 2, 443, 'G.C.12/OM20/12', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1412, 2, 444, 'G.C.10B/OM20/14', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1413, 2, 445, 'G.C.5/OM39/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1414, 2, 446, 'G.C.5/OM39/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1415, 2, 447, 'G.C.5/OM39/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1416, 2, 448, 'G.C.6A/OM44/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1417, 2, 449, 'G.C.13B/OM3/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1418, 2, 450, 'G.C.Lobby/OM48/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1419, 2, 451, 'G.C.9/OM48/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1420, 2, 452, 'G.C.6C/OM35/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1421, 2, 453, 'G.C.6C/OM35/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1422, 2, 454, 'G.C.6C/OM35/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1423, 2, 455, 'G.C.6C/OM35/4', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1424, 2, 456, 'G.C.5/OM34/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1425, 2, 457, 'G.C.1A/OM34/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1426, 2, 458, 'G.C.10A/OM34/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1427, 2, 459, 'G.C.5/OM30/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1428, 2, 460, 'G.C.10A/OM13/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1429, 2, 461, 'G.C.10A/OM13/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1430, 2, 462, 'G.C.10A/OM13/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1431, 2, 463, 'G.C.13C/OM22/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1432, 2, 464, 'G.C.10A/OM22/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1433, 2, 465, 'G.C.Lobby/OM22/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1434, 2, 466, 'G.C.6A/OM21/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1435, 2, 467, 'G.C.7A/E25/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1436, 2, 468, 'G.C.Lobby/OM21/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1437, 2, 469, 'G.C.13A/OM21/4', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1438, 2, 470, 'G.C.1A/OM4/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1439, 2, 471, 'G.C.5/OM4/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1440, 2, 472, 'G.C.5/OM4/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1441, 2, 473, 'G.C.10A/OM4/4', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1442, 2, 474, 'G.C.13C/OM4/5', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1443, 2, 475, 'G.C.10/OM14/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1444, 2, 476, 'G.C.5/OM14/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1445, 2, 477, 'G.C.5/OM14/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1446, 2, 478, 'G.C.10A/OM14/4', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1447, 2, 479, 'G.C.10A/OM14/5', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1448, 2, 480, 'G.C.10A/OM14/6', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1449, 2, 481, 'G.C.10A/OM14/7', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1450, 2, 482, 'G.C.1B/OM14/7', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1451, 2, 483, 'G.C.5/OM29/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1452, 2, 484, 'G.C.1A/OM18/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1453, 2, 485, 'G.C.1B/OM24/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1454, 2, 486, 'G.C.2/OM24/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1455, 2, 487, 'G.C.6A/OM24/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1456, 2, 488, 'G.C.7A/OM24/4', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1457, 2, 489, 'G.C.13A/OM24/5', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1458, 2, 490, 'G.C.13A/OM24/6', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1459, 2, 491, 'G.C.13B/OM24/7', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1460, 2, 492, 'G.C.10B/OM24/8', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1461, 2, 493, 'G.C.15/OM24/9', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1462, 2, 494, 'G.C.7A/OM24/10', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1463, 2, 495, 'G.C.10B/OM24/11', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1464, 2, 496, 'G.C.13A/OM24/12', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1465, 2, 497, 'G.C.13B/OM24/13', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1466, 2, 498, 'G.C.7A/OF15/15', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1467, 2, 499, 'G.C.1B/OM24/15', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1468, 2, 500, 'G.C.2A/OM24/16', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1469, 2, 501, 'G.C.10A/OM16/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1470, 2, 502, 'G.C.7A/OF15/5', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1471, 2, 503, 'G.C.7A/OF15/8', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1472, 2, 504, 'G.C.8/OM17/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1473, 2, 505, 'G.C.8/OM17/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1474, 2, 506, 'G.C.10A/OM15/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1475, 2, 507, 'G.C.10A/OM2/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1476, 2, 508, 'G.C.10A/OM2/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1477, 2, 509, 'G.C.6B/OM32/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1478, 2, 510, 'G.C.8/OM32/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1479, 2, 511, 'G.C.8/OM32/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1480, 2, 512, 'G.C.13/OM32/4', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1481, 2, 513, 'G.C.5/OM1/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1482, 2, 514, 'G.C.5/OM1/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1483, 2, 515, 'G.C.10A/OM1/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1484, 2, 516, 'G.C.13B/OM1/4', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1485, 2, 517, 'G.C.13C/OM1/5', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1486, 2, 518, 'G.C.13C/OM1/6', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1487, 2, 519, 'G.C.13C/OM1/7', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1488, 2, 520, 'G.C.13/OM1/8', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1489, 2, 521, 'G.C.5/OM1/9', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1490, 2, 522, 'G.C.7/OM1/10', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1491, 2, 523, 'G.C.16/OM25/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1492, 2, 524, 'G.C.1A/OM10/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1493, 2, 525, 'G.C.13C/OM20/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1494, 2, 526, 'G.C.10A/OM11/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1495, 2, 527, 'G.C.13C/OM11/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1496, 2, 528, 'G.C.5/OM11/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1497, 2, 529, 'G.C.13C/OM11/4', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1498, 2, 530, 'G.C.13C/OM11/5', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1499, 2, 531, 'G.C.10A/OM11/6', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1500, 2, 532, 'G.C.1B/OM26/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1501, 2, 533, 'G.C.5/OM26/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1502, 2, 534, 'G.C.10A/OM26/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1503, 2, 535, 'G.C.10A/OM26/4', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1504, 2, 536, 'G.C.10A/OM26/5', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1505, 2, 537, 'G.C.13B/OM26/6', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1506, 2, 538, 'G.C.13C/OM26/7', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1507, 2, 539, 'G.C.5/OM33/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1508, 2, 540, 'G.C.Lobby/OM19/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1509, 2, 541, 'G.C.2/OM28/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1510, 2, 542, 'G.C.1B/OM12/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1511, 2, 543, 'G.C.6B/OM12/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1512, 2, 544, 'G.C.13C/OM23/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1513, 2, 545, 'G.C.6C/OM23/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1514, 2, 546, 'G.C.10A/OM23/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1515, 2, 547, 'G.C.13C/OM23/4', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1516, 2, 548, 'G.C.1A/OM36/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1517, 2, 549, 'G.C.6C/OM36/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1518, 2, 550, 'G.C.6C/OM36/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1519, 2, 551, 'G.C.6A/TEM5/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1520, 2, 552, 'G.C.7A/OF23/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1521, 2, 553, 'G.C.13A/TEM5/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1522, 2, 554, 'G.C.15/TEM5/4', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1523, 2, 555, 'G.C.Lobby/TEM1/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1524, 2, 556, 'G.C.Lobby/TEM1/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1525, 2, 557, 'G.C.Lobby/TEM2/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1526, 2, 558, 'G.C.Lobby/TEM2/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1527, 2, 559, 'G.C.Lobby/TEM4/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1528, 2, 560, 'G.C.Lobby/TEM3/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1529, 2, 561, 'G.C.13A/E23/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1530, 2, 562, 'G.C.7/E23/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1531, 2, 563, 'G.C.7/E23/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1532, 2, 564, 'G.C.7/E23/4', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1533, 2, 565, 'G.C.7/E23/5', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1534, 2, 566, 'G.C.6C/E23/6', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1535, 2, 567, 'G.C.7/E18/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1536, 2, 568, 'G.C.7/E18/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1537, 2, 569, 'G.C.13B/E18/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1538, 2, 570, 'G.C.6/E18/4', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1539, 2, 571, 'G.C.7/E18/5', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1540, 2, 572, 'G.C.7/E18/6', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1541, 2, 573, 'G.C.7/E18/7', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1542, 2, 574, 'G.C.6C/E18/8', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1543, 2, 575, 'G.C.6A/E15/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1544, 2, 576, 'G.C.13A/E15/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1545, 2, 577, 'G.C.7A/OM20/5', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1546, 2, 578, 'G.C.13A/E15/4', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1547, 2, 579, 'G.C.13C/E29/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1548, 2, 580, 'G.C.13C/E29/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1549, 2, 581, 'G.C.13A/E29/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1550, 2, 582, 'G.C.13A/E22/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1551, 2, 583, 'G.C.7A/OM20/6', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1552, 2, 584, 'G.C.13A/E27/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1553, 2, 585, 'G.C.7A/OM21/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1554, 2, 586, 'G.C.5/E6/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1555, 2, 587, 'G.C.6A/E16/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1556, 2, 588, 'G.C.7A/E5/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1557, 2, 589, 'G.C.13A/E5/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1558, 2, 590, 'G.C.6A/E11/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1559, 2, 591, 'G.C.7A/E26/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1560, 2, 592, 'G.C.7A/E26/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1561, 2, 593, 'G.C.76C/E34/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1562, 2, 594, 'G.C.6A/E10/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1563, 2, 595, 'G.C.7/E19/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1564, 2, 596, 'G.C.13A/E19/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1565, 2, 597, 'G.C.5/E35/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1566, 2, 598, 'G.C.3/E1/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1567, 2, 599, 'G.C.13A/E1/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1568, 2, 600, 'G.C.5/E4/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1569, 2, 601, 'G.C.13C/E20/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1570, 2, 602, 'G.C.13C/E20/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1571, 2, 603, 'G.C.13C/E20/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1572, 2, 604, 'G.C.13C/E20/4', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1573, 2, 605, 'G.C.5/E36/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1574, 2, 606, 'G.C.6A/E17/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1575, 2, 607, 'G.C.7A/E24/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1576, 2, 608, 'G.C.13A/E24/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1577, 2, 609, 'G.C.6A/E12/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1578, 2, 610, 'G.C.7A/E23/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1579, 2, 611, 'G.C.13A/E23/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1580, 2, 612, 'G.C.13A/E23/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1581, 2, 613, 'G.C.13C/E23/4', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1582, 2, 614, 'G.C.13A/E21/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1583, 2, 615, 'G.C.13A/E21/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1584, 2, 616, 'G.C.5/E3/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1585, 2, 617, 'G.C.5/E3/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1586, 2, 618, 'G.C.6A/E14/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1587, 2, 619, 'G.C.5/E8/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1588, 2, 620, 'G.C.3/E7/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1589, 2, 621, 'G.C.5/E2/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1590, 2, 622, 'G.C.6A/E38/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1591, 2, 623, 'G.C.6A/E37/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1592, 2, 624, 'G.C.6A/E13/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1593, 2, 625, 'G.C.7A/OM24/14', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1594, 2, 626, 'G.C.15/E25/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1595, 2, 627, 'G.C.6A/E31/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1596, 2, 628, 'G.C.6A/E9/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1597, 2, 629, 'G.C.6A/E9/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1598, 2, 630, 'G.C.13A/E39/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1599, 2, 631, 'G.C.13C/OM5/7', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1600, 2, 632, 'G.C.1A/OM8/22', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1601, 2, 633, 'G.C.1A/OM5/9', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1602, 2, 634, 'G.C.10A/OM8/15', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1603, 2, 635, 'G.C.13B/OM8/13', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1604, 2, 636, 'G.C.13B/OM9/13', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1605, 2, 637, 'G.C.10A/OM9/13', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1606, 2, 638, 'G.C.10A/OM9/13', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1607, 2, 639, 'G.C.13B/OM5/8', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1608, 2, 640, 'G.C.10A/OM6/17', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1609, 2, 641, 'G.C.10A/OM5/5', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1610, 2, 642, 'G.C.10A/OM8/16', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1611, 2, 643, 'G.C.13C/OM8/19', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1612, 2, 644, 'G.C.10A/OM6/18', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1613, 2, 645, 'G.C.13C/OM9/18', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1614, 2, 646, 'G.C.13C/OM6/12', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1615, 2, 647, 'G.C.10A/OM5/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1616, 2, 648, 'G.C.13C/OM6/22', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1617, 2, 649, 'G.C.13B/OM6/14', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1618, 2, 650, 'G.C.1A/OM6/24', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1619, 2, 651, 'G.C.13B/OM6/14', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1620, 2, 652, 'G.C.12/OM8/47', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1621, 2, 653, 'G.C.12/OM8/41', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1622, 2, 654, 'G.C.12/OM8/48', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1623, 2, 655, 'G.C.12/OM8/36', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1624, 2, 656, 'G.C.12/OM9/47', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1625, 2, 657, 'G.C.12/OM9/39', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1626, 2, 658, 'G.C.12/OM9/48', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1627, 2, 659, 'G.C.12/OM9/40', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1628, 2, 660, 'G.C.12/OM6/53', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1629, 2, 661, 'G.C.12/OM6/52', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1630, 2, 662, 'G.C.12/OM6/44', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1631, 2, 663, 'G.C.12/OM6/45', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1632, 2, 664, 'G.C.12/OM50/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1633, 2, 665, 'G.C.12/OM50/5', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1634, 2, 666, 'G.C.12/OM50/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1635, 2, 667, 'G.C.12/OM50/10', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1636, 2, 668, 'G.C.12/', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1637, 2, 669, 'G.C.12/', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1638, 2, 670, 'G.C.12/', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1639, 2, 671, 'G.C.12/', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1640, 2, 672, 'G.C.12/', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1641, 2, 673, 'G.C.12/', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1642, 2, 674, 'G.C.12/', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1643, 2, 675, 'G.C.12/OM5/40', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1644, 2, 676, 'G.C.12/OM5/41', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1645, 2, 677, 'G.C.12/OF48/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1646, 2, 678, 'G.C.12/OF53/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1647, 2, 679, 'G.C.12/OF53/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1648, 2, 680, 'G.C.12/OF40/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1649, 2, 681, 'G.C.12/OF49/12', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1650, 2, 682, 'G.C.12/OF49/9', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1651, 2, 683, 'G.C.12/OF49/10', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1652, 2, 684, 'G.C.12/OF25/25', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1653, 2, 685, 'G.C.12/OF25/23', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1654, 2, 686, 'G.C.12/OF25/24', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1655, 2, 687, 'G.C.12/OM7/25', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1656, 2, 688, 'G.C.12/OF19/17', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1657, 2, 689, 'G.C.12/OF19/15', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1658, 2, 690, 'G.C.12/OF13/9', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1659, 2, 691, 'G.C.12/OF21/4', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1660, 2, 692, 'G.C.12/OF21/6', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1661, 2, 693, 'G.C.12/OF21/5', 'category', 'Category is required.', '2026-07-16 00:35:59');
+INSERT INTO `inv_import_errors` (`error_id`, `batch_id`, `row_number`, `asset_code`, `field`, `message`, `created_at`) VALUES
+(1662, 2, 694, 'G.C.10A/OF21/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1663, 2, 695, 'G.C.10B/OF38/6', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1664, 2, 696, 'G.C.13A/OF18/11', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1665, 2, 697, 'G.C.6B/OF5/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1666, 2, 698, 'G.C.10A/OM26/7', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1667, 2, 699, 'G.C.5/OM1/24', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1668, 2, 700, 'G.C.10A/OM8/21', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1669, 2, 701, 'G.C.1A/OM6/30', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1670, 2, 702, 'G.C.1A/OM5/14', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1671, 2, 703, 'G.C.10B/OF/28/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1672, 2, 704, 'G.C.6B/OM32/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1673, 2, 705, 'G.C.7/OM39/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1674, 2, 706, 'G.C.6A/E25/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1675, 2, 707, 'G.C.10B/OF/38/7', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1676, 2, 708, 'G.C.7A/OF/23/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1677, 2, 709, 'G.C.8/OM32/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1678, 2, 710, 'G.C.10B/OF38/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1679, 2, 711, 'G.C.10B.OF10/9', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1680, 2, 712, 'G.C.13A/E22/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1681, 2, 713, 'G.C.6C/E34/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1682, 2, 714, 'G.C.6C/OM36/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1683, 2, 715, 'G.C.6C/OM36/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1684, 2, 716, 'G.C.6C/E33/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1685, 2, 717, 'G.C.6C/E33/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1686, 2, 718, 'G.C.13B/E23/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1687, 2, 719, 'G.C.7/E18/5', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1688, 2, 720, 'G.C.7/E18/6', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1689, 2, 721, 'G.C.10B/OF38/4', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1690, 2, 722, 'G.C.7/E44/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1691, 2, 723, 'G.C.7/', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1692, 2, 724, 'G.C.10C/', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1693, 2, 725, 'G.C.8/OF', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1694, 2, 726, 'G.C.10A/OM5/20', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1695, 2, 727, 'G.C.10A/OM7/30', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1696, 2, 728, 'G.C.10A/OF25/16', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1697, 2, 729, 'G.C.10A/OF25/17', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1698, 2, 730, 'G.C.10A/OF25/18', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1699, 2, 731, 'G.C.10A/OF25/20', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1700, 2, 732, 'G.C.10A/OF25/16', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1701, 2, 733, 'G.C.10B/OM42/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1702, 2, 734, 'G.C.13A/OM13/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1703, 2, 735, 'G.C.13A/OM13/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1704, 2, 736, 'G.C.13A/OM13/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1705, 2, 737, 'G.C.10A/OF13/8', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1706, 2, 738, 'G.C.10A/OF13/4', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1707, 2, 739, 'G.C.10A/OF13/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1708, 2, 740, 'G.C.10A/OF13/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1709, 2, 741, 'G.C.10A/OF19/14', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1710, 2, 742, 'G.C.10A/OF19/20', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1711, 2, 743, 'G.C.10A/OF48/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1712, 2, 744, 'G.C.10A/OM6/32', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1713, 2, 745, 'G.C.10A/OM6/31', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1714, 2, 746, 'G.C.10A/OM46/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1715, 2, 747, 'G.C.10A/OM8/46', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1716, 2, 748, 'G.C.10A/OM9/39', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1717, 2, 749, 'G.C.10A/OM5/39', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1718, 2, 750, 'G.C.10A/OM6/51', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1719, 2, 751, 'G.C.10A/OF7/8', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1720, 2, 752, 'G.C.10A/OF7/9', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1721, 2, 753, 'G.C.10A/OM21/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1722, 2, 754, 'G.C.13A/OF15/14', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1723, 2, 755, 'G.C.13B/OF15/19', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1724, 2, 756, 'G.C.10A/OM45/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1725, 2, 757, 'G.C.10B/OM53/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1726, 2, 758, 'G.C.10B/OM45/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1727, 2, 759, 'G.C.10B/OM24/16', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1728, 2, 760, 'G.C.10B/OF11/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1729, 2, 761, 'G.C.10B/OF32/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1730, 2, 762, 'G.C.10B/OF38/12', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1731, 2, 763, 'G.C.10B/OF38/13', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1732, 2, 764, 'G.C.10B/OF38/9', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1733, 2, 765, 'G.C.10B/OF38/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1734, 2, 766, 'G.C.10B/OF38/15', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1735, 2, 767, 'G.C.10B/OF38/14', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1736, 2, 768, 'G.C.10B/OF38/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1737, 2, 769, 'G.C.10B/OF38/11', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1738, 2, 770, 'G.C.10B/OF89/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1739, 2, 771, 'G.C.10B/OF89/12', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1740, 2, 772, 'G.C.10B/OF89/7', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1741, 2, 773, 'G.C.10B/OF89/5', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1742, 2, 774, 'G.C.10B/OF89/11', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1743, 2, 775, 'G.C.10B/OF89/8', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1744, 2, 776, 'G.C.10B/OF89/6', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1745, 2, 777, 'G.C.10B/OF89/10', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1746, 2, 778, 'G.C.10B/OF89/4', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1747, 2, 779, 'G.C.10B/OF36/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1748, 2, 780, 'G.C.10B/OF38/28', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1749, 2, 781, 'G.C.24/OF50/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1750, 2, 782, 'G.C.13A/OF38/28', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1751, 2, 783, 'G.C.10B/OF46/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1752, 2, 784, 'G.C.7A/OM5/16', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1753, 2, 785, 'MF-HCMES-51-1332', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1754, 2, 786, 'MF-HCMES-51-1515', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1755, 2, 787, 'MF-HCMES-51-1174', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1756, 2, 788, 'G.C.7B/OM38/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1757, 2, 789, 'G.C.10B/OF37/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1758, 2, 790, 'G.C.13A/OF38/9', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1759, 2, 791, 'G.C.6A/OF38/26', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1760, 2, 792, 'G.C.6B/OF35/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1761, 2, 793, 'G.C.7B/OF8/5', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1762, 2, 794, 'G.C.6B/OM7/24', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1763, 2, 795, 'MF-HCMES51-3/1464', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1764, 2, 796, NULL, 'item_name', 'Item Name is required.', '2026-07-16 00:35:59'),
+(1765, 2, 797, 'G.C.13B/OF25/8', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1766, 2, 798, 'G.C.13B/OM5/28', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1767, 2, 799, 'G.C.6B/', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1768, 2, 800, 'G.C.6B/OF18/', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1769, 2, 801, 'G.C.13B/OM9/37', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1770, 2, 802, 'G.C.13B/OM8/39', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1771, 2, 803, 'G.C.7A/OM31/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1772, 2, 804, NULL, 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1773, 2, 805, 'G.C.7A/OM31/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1774, 2, 806, 'G.C.7A/OM49/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1775, 2, 807, 'G.C.7A/OM6/26', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1776, 2, 808, 'G.C.7a/OM8/25', 'status', 'Status is required.', '2026-07-16 00:35:59'),
+(1777, 2, 809, 'G.C.7A/OM9/25', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1778, 2, 810, 'G.C.7A/OM20/5', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1779, 2, 811, 'CRL/MB3/385/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1780, 2, 812, 'G.C.7A/TEM5/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1781, 2, 813, 'G.C.7B/OM35/4', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1782, 2, 814, 'G.C.7B/OM7/27', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1783, 2, 815, 'G.C.7B/OF25/10', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1784, 2, 816, 'G.C.7B/OM6/48', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1785, 2, 817, 'G.C.5/OM11/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1786, 2, 818, 'G.C.7B/OF19/18', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1787, 2, 819, 'G.C.7B/OF5/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1788, 2, 820, 'G.C.6A/OF38/24', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1789, 2, 821, 'G.C.10A/OF43/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1790, 2, 822, 'G.C.2/OF7/7', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1791, 2, 823, 'G.C.2/OM9//50', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1792, 2, 824, 'G.C.2/OM8/50', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1793, 2, 825, 'G.C.2/OM52/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1794, 2, 826, 'G.C.2/OM6/28', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1795, 2, 827, 'MF-HCMES51-31/1376', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1796, 2, 828, 'G.C.2/OM7/23', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1797, 2, 829, 'G.C.2/OF25/19', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1798, 2, 830, 'G.C.2/OM6/47', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1799, 2, 831, 'G.C.2/OM50/4', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1800, 2, 832, 'G.C.2/OF49/11', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1801, 2, 833, 'G.C.2/OF19/9', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1802, 2, 834, 'G.C.2/OF25/25', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1803, 2, 835, 'G.C.12/OM5/31', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1804, 2, 836, 'G.C.12/OM6/39', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1805, 2, 837, 'G.C.2/OF7/6', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1806, 2, 838, 'G.C.12/OM8/33', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1807, 2, 839, 'G.C.12/OM9/33', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1808, 2, 840, 'G.C.2/OF7/5', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1809, 2, 841, 'G.C.12/OM5/30', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1810, 2, 842, 'G.C.12/OM6/43', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1811, 2, 843, 'G.C.12/OM8/34', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1812, 2, 844, 'G.C.12/OM9/34', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1813, 2, 845, 'G.C.12/OF25/21', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1814, 2, 846, 'G.C.12/OF40/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1815, 2, 847, 'G.C.12/OM5/33', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1816, 2, 848, 'G.C.12/OM6/45', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1817, 2, 849, 'G.C.12/OM8/35', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1818, 2, 850, 'G.C.12/OM9/35', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1819, 2, 851, 'G.C.2/OF52/5', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1820, 2, 852, 'G.C.2/OF52/6', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1821, 2, 853, 'G.C.2/OF52/7', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1822, 2, 854, 'G.C.2/OF52/8', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1823, 2, 855, 'G.C.2/OM50/9', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1824, 2, 856, 'G.C.1A/OM38/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1825, 2, 857, 'G.C.13C/OM5/11', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1826, 2, 858, 'MF-HCNES89-1/59', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1827, 2, 859, 'G.C.1A/OM7/21', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1828, 2, 860, 'G.C.1B/OM8/38', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1829, 2, 861, 'G.C.1B/OF7/10', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1830, 2, 862, 'G.C.1B/OM35/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1831, 2, 863, 'G.C.1B/OM6/40', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1832, 2, 864, 'G.C.1B/OM50/8', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1833, 2, 865, 'G.C.1B/OF25/26', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1834, 2, 866, 'G.C.1A/OF38/19', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1835, 2, 867, 'G.C.1A/OF38/20', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1836, 2, 868, 'G.C.1A/OF38/21', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1837, 2, 869, 'G.C.1A/OF38/22', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1838, 2, 870, 'G.C.1A/OF40/4', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1839, 2, 871, 'G.C.1A/OF60/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1840, 2, 872, 'G.C.1A/OF33/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1841, 2, 873, 'G.C.6B/OF25/23', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1842, 2, 874, 'G.C.6B/OM45/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1843, 2, 875, 'G.C.1A/OM45/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1844, 2, 876, 'G.C.6B/OM8/43', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1845, 2, 877, 'G.C.6B/OM9/45', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1846, 2, 878, 'G.C.6B/OM6/49', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1847, 2, 879, 'G.C.1A/OM7/26', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1848, 2, 880, 'G.C.7A/OF15/13', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1849, 2, 881, 'G.C.13B/OM24/13', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1850, 2, 882, 'G.C.1A/OM36/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1851, 2, 883, 'G.C.1A/OM12/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1852, 2, 884, 'G.C.1A/OF52/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1853, 2, 885, 'G.C.14/OM6/37', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1854, 2, 886, 'G.C.14/OM20/7', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1855, 2, 887, 'G.C.14/OF49/6', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1856, 2, 888, 'G.C.14/OF48/6', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1857, 2, 889, 'G.C.14/OM20/7', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1858, 2, 890, 'G.C.13A/OM1/8', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1859, 2, 891, 'G.C.12/OM50/6', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1860, 2, 892, 'G.C.14/OM50/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1861, 2, 893, 'G.C.14/OF48/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1862, 2, 894, 'G.C.14/OF49/7', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1863, 2, 895, 'G.C.14/OF48/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1864, 2, 896, 'G.C.14/OF49/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1865, 2, 897, 'G.C.14/OF51/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1866, 2, 898, 'G.C.14/OM7/28', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1867, 2, 899, 'G.C.14/OF49/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1868, 2, 900, 'G.C.14/OF48/7', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1869, 2, 901, 'G.C.14/OM6/42', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1870, 2, 902, 'G.C.14/OF48/4', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1871, 2, 903, 'G.C.14/OF49/4', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1872, 2, 904, 'G.C.14/OM8/31', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1873, 2, 905, 'G.C.14/OM6/36', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1874, 2, 906, 'G.C.14/OF48/5', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1875, 2, 907, 'G.C.14/OF49/5', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1876, 2, 908, 'G.C.14/OF25/14', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1877, 2, 909, 'G.C.13C/OM1/5', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1878, 2, 910, 'G.C.14/OM5/42', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1879, 2, 911, 'G.C.14/OM9/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1880, 2, 912, 'G.C.14/OM8/49', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1881, 2, 913, 'G.C.14/OM6/54', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1882, 2, 914, 'G.C.13B/OF51/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1883, 2, 915, 'G.C.13B/OM5/4', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1884, 2, 916, 'G.C.13B/OF19/13', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1885, 2, 917, 'G.C.14/OM5/35', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1886, 2, 918, 'G.C.14/OM6/46', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1887, 2, 919, 'G.C.14/OM51/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1888, 2, 920, 'G.C.13B/OM3/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1889, 2, 921, 'G.C.14/OM8/42', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1890, 2, 922, 'G.C.14/OM9/41', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1891, 2, 923, 'G.C.13B/OM7/29', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1892, 2, 924, 'G.C.13A/E5/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1893, 2, 925, 'G.C.13A/E31/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1894, 2, 926, 'G.C.13A/E25/4', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1895, 2, 927, 'G.C.13A/OM32/4', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1896, 2, 928, 'G.C.13A/E43/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1897, 2, 929, 'G.C.13A/OM50/7', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1898, 2, 930, 'G.C.14/OF18/14', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1899, 2, 931, 'G.C.13C/OM6/34', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1900, 2, 932, 'G.C.13C/OM20/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1901, 2, 933, 'G.C.13C/OM6/35', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1902, 2, 934, 'G.C.13C/OM51/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1903, 2, 935, 'G.C.13C/OM23/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1904, 2, 936, 'G.C.13C/OF13/5', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1905, 2, 937, 'G.C.13C/OF13/6', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1906, 2, 938, 'G.C.13C/OF25/4', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1907, 2, 939, 'G.C.5/OM8/44', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1908, 2, 940, 'G.C.5/OM9/44', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1909, 2, 941, 'G.C.5/OM5/38', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1910, 2, 942, 'G.C.5/OM6/49', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1911, 2, 943, 'G.C.5/E3/4', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1912, 2, 944, 'MF-HCMES-51-6/48', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1913, 2, 945, 'MF-HCMES-69-1/75', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1914, 2, 946, 'G.C.5/E3/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1915, 2, 947, 'G.C.10A/OM6/16', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1916, 2, 948, 'G.C.5/E42/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1917, 2, 949, 'G.C.10A/OM6/23', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1918, 2, 950, 'CRL/MB6/225/24', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1919, 2, 951, NULL, 'item_name', 'Item Name is required.', '2026-07-16 00:35:59'),
+(1920, 2, 952, 'G.C.24/OF51/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1921, 2, 953, 'G.C.1A/OF13/7', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1922, 2, 954, 'G.C.24/OF19/16', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1923, 2, 955, 'G.C.24/OF58/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1924, 2, 956, 'G.C.24/OF57/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1925, 2, 957, 'G.C.24/OM37/5', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1926, 2, 958, 'G.C.24/OF55/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1927, 2, 959, 'G.C.14/OF49/4', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1928, 2, 960, 'G.C.14/OF49/5', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1929, 2, 961, 'G.C.1A/OM3/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1930, 2, 962, 'G.C.2/OF25/25', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1931, 2, 963, 'G.C.6C/E44/3', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1932, 2, 964, 'G.C.6D/OM54/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1933, 2, 965, 'G.C.6D/OM55/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1934, 2, 966, 'G.C.6D/OM12/4', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1935, 2, 967, 'G.C.7B/OM12/5', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1936, 2, 968, 'G.C.10B/OF52/1', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1937, 2, 969, 'G.C.5/OM6/15', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1938, 2, 970, 'G.C.10A/OM8/15', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1939, 2, 971, 'G.C.13B/OM9/13', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1940, 2, 972, 'G.C.1A/OM5/9', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1941, 2, 973, 'MF-G3W-101-1/36', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1942, 2, 974, 'G.C.6D/OM12/4', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1943, 2, 975, 'MF-HCMES-51-1/14', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1944, 2, 976, 'G.C.13C/OF24/6', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1945, 2, 977, 'G.C.7/E44/2', 'category', 'Category is required.', '2026-07-16 00:35:59'),
+(1946, 3, 2, 'G.C.2/OM5/36', 'status', 'Status is required.', '2026-07-16 12:56:32'),
+(1947, 3, 3, 'G.C.2/OM8/37', 'status', 'Status is required.', '2026-07-16 12:56:32'),
+(1948, 3, 4, 'G.C.2/OF53/4', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(1949, 3, 5, 'G.C.2/OM9/42', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(1950, 3, 6, 'G.C.2/OF7/7', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(1951, 3, 7, 'G.C.2/OM9//50', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(1952, 3, 8, 'G.C.2/OM8/50', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(1953, 3, 9, 'G.C.2/OM52/1', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(1954, 3, 10, 'MF-HCMES51-31/1376', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(1955, 3, 11, 'G.C.2/OM7/23', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(1956, 3, 12, 'G.C.2/OF25/19', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(1957, 3, 13, 'G.C.2/OM6/47', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(1958, 3, 14, 'G.C.2/OM50/4', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(1959, 3, 15, 'G.C.2/OF49/11', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(1960, 3, 16, 'G.C.2/OF19/9', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(1961, 3, 17, 'G.C.12/OM5/31', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(1962, 3, 18, 'G.C.12/OM6/39', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(1963, 3, 19, 'G.C.2/OF7/6', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(1964, 3, 20, 'G.C.12/OM8/33', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(1965, 3, 21, 'G.C.12/OM9/33', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(1966, 3, 22, 'G.C.2/OF7/5', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(1967, 3, 23, 'G.C.12/OM5/30', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(1968, 3, 24, 'G.C.12/OM6/43', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(1969, 3, 25, 'G.C.12/OM8/34', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(1970, 3, 26, 'G.C.12/OM9/34', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(1971, 3, 27, 'G.C.12/OF25/21', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(1972, 3, 28, 'G.C.12/OF40/3', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(1973, 3, 29, 'G.C.12/OM5/33', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(1974, 3, 30, 'G.C.12/OM6/45', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(1975, 3, 31, 'G.C.12/OM8/35', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(1976, 3, 32, 'G.C.12/OM9/35', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(1977, 3, 33, 'G.C.2/OF52/5', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(1978, 3, 34, 'G.C.2/OF52/6', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(1979, 3, 35, 'G.C.2/OF52/7', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(1980, 3, 36, 'G.C.2/OF52/8', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(1981, 3, 37, 'G.C.2/OM50/9', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(1982, 3, 38, 'G.C.1A/OM38/1', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(1983, 3, 39, 'G.C.2/OF25/25', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(1984, 3, 40, 'G.C.10A/OF10/8', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(1985, 3, 41, 'G.C.10A/OF15/11', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(1986, 3, 42, 'G.C.10A/OM15/1', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(1987, 3, 43, 'G.C.10A/OF13/8', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(1988, 3, 44, 'G.C.10A/OF19/14', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(1989, 3, 45, 'G.C.10A/OF19/20', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(1990, 3, 46, 'G.C.10A/OF21/1', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(1991, 3, 47, 'G.C.10A/OF21/2', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(1992, 3, 48, 'G.C.10A/OF21/3', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(1993, 3, 49, 'G.C.10A/OF25/1', 'status', 'Status is required.', '2026-07-16 12:56:32'),
+(1994, 3, 50, 'G.C.10A/OF25/14', 'status', 'Status is required.', '2026-07-16 12:56:32'),
+(1995, 3, 51, 'G.C.10A/OF25/16', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(1996, 3, 52, 'G.C.10A/OF25/17', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(1997, 3, 53, 'G.C.10A/OF25/18', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(1998, 3, 54, 'G.C.10A/OF25/20', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(1999, 3, 55, 'G.C.10A/OF48/1', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(2000, 3, 56, 'G.C.10A/OF7/8', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(2001, 3, 57, 'G.C.10A/OF40/1', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(2002, 3, 58, 'G.C.10A/OF7/9', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(2003, 3, 59, 'G.C.10A/OM16/1', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(2004, 3, 60, 'G.C.10A/OM20/10', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(2005, 3, 61, 'G.C.10A/OM22/2', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(2006, 3, 62, NULL, 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(2007, 3, 63, NULL, 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(2008, 3, 64, 'G.C.10A/OM23/3', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(2009, 3, 65, 'G.C.10A/OM45/1', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(2010, 3, 66, 'G.C.10a/OM5/14', 'status', 'Status is required.', '2026-07-16 12:56:32'),
+(2011, 3, 67, 'G.C.10A/OM5/39', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(2012, 3, 68, 'G.C.10a/OM5/18', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(2013, 3, 69, 'G.C.10a/OM5/19', 'status', 'Status is required.', '2026-07-16 12:56:32'),
+(2014, 3, 70, 'G.C10A/OM5/43', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(2015, 3, 71, 'G.C.10A/OM5/20', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(2016, 3, 72, 'G.C.10A/OM6/51', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(2017, 3, 73, 'G.C.10A/OM6/33', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(2018, 3, 74, 'G.C.10A/OM6/32', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(2019, 3, 75, 'G.C.10A/OM6/31', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(2020, 3, 76, 'G.C.10A.OM8/46', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(2021, 3, 77, 'G.C.10A/OM6/32', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(2022, 3, 78, 'G.C.10A/OM6/51', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(2023, 3, 79, 'G.C.10A/OM7/14', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(2024, 3, 80, 'G.C.10A/OM7/17', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(2025, 3, 81, NULL, 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(2026, 3, 82, 'G.C.10A/OM7/30', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(2027, 3, 83, 'G.C.10A/OM8/27', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(2028, 3, 84, 'G.C.10a/OM8/21', 'status', 'Status is required.', '2026-07-16 12:56:32'),
+(2029, 3, 85, 'G.C.10a/OM8/29', 'status', 'Status is required.', '2026-07-16 12:56:32'),
+(2030, 3, 86, 'G.C.10A/OM9/27', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(2031, 3, 87, 'G.C.10A/OM9/28', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(2032, 3, 88, 'G.C.10A/OM9/46', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(2033, 3, 89, 'G.C.10A/OM9/29', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(2034, 3, 90, 'G.C.10A/OM9/9', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(2035, 3, 91, 'G.C.10A/OM13/4', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(2036, 3, 92, 'G.C.13A/OM13/6', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(2037, 3, 93, 'G.C.13A/OM13/3', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(2038, 3, 94, 'G.C.2/OF8/2', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(2039, 3, 95, 'G.C.10A/OM37/2', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(2040, 3, 96, 'G.C.10A/OF24/3', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(2041, 3, 97, 'G.C.15/OF14/8', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(2042, 3, 98, NULL, 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(2043, 3, 99, NULL, 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(2044, 3, 100, NULL, 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(2045, 3, 101, 'G.C.13B/OF15/19', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(2046, 3, 102, 'G.C10B/OM42/2', 'category', 'Category is required.', '2026-07-16 12:56:32'),
+(2047, 5, 18, NULL, NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:42:23'),
+(2048, 5, 21, 'G.C.9/OF44/8', 'asset_type', 'Type is required.', '2026-07-21 19:42:23'),
+(2049, 5, 23, 'G.C2/OF25/19', 'asset_type', 'Type is required.', '2026-07-21 19:42:23'),
+(2050, 5, 28, NULL, NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:42:23'),
+(2051, 5, 39, 'G.C.2/OM6/47', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:42:23'),
+(2052, 5, 46, NULL, NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:42:23'),
+(2053, 5, 47, NULL, NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:42:23'),
+(2054, 5, 52, 'G.C.5/E3/1', 'bos_value', 'Invalid numeric value \'BOS\'.', '2026-07-21 19:42:23'),
+(2055, 5, 63, 'G.C.5/OM8/5', 'bos_value', 'Invalid numeric value \'BOS\'.', '2026-07-21 19:42:23'),
+(2056, 5, 79, 'G.C.10A/OF25/1', 'bos_value', 'Invalid numeric value \'BOS\'.', '2026-07-21 19:42:23'),
+(2057, 5, 87, 'G.C.10A/OF40/1', 'asset_type', 'Type is required.', '2026-07-21 19:42:23'),
+(2058, 5, 98, 'G.C.10a/OM5/18', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:42:23'),
+(2059, 5, 107, 'G.C.10A/OM6/32', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:42:23'),
+(2060, 5, 108, 'G.C.10A/OM6/51', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:42:23'),
+(2061, 5, 111, NULL, NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:42:23'),
+(2062, 5, 128, NULL, NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:42:23'),
+(2063, 5, 129, NULL, NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:42:23'),
+(2064, 5, 130, NULL, NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:42:23'),
+(2065, 5, 137, 'G.C.6A/OF15/6', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:42:23'),
+(2066, 5, 148, NULL, NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:42:23'),
+(2067, 5, 150, NULL, NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:42:23'),
+(2068, 5, 182, 'G.C.13A/OF38/28', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:42:23'),
+(2069, 5, 205, NULL, NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:42:23'),
+(2070, 5, 220, NULL, NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:42:23'),
+(2071, 5, 237, 'G.C.7/OM1/10', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:42:23'),
+(2072, 5, 255, 'G.C.10B/OF38/16', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:42:23'),
+(2073, 5, 278, 'G.C.13A/0F38/28', 'asset_type', 'Type is required.', '2026-07-21 19:42:23'),
+(2074, 5, 298, 'G.C.14/OM9/49', 'asset_type', 'Type is required.', '2026-07-21 19:42:23'),
+(2075, 5, 299, NULL, NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:42:23'),
+(2076, 5, 306, 'G.C.14/OM20/7', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:42:23'),
+(2077, 5, 307, 'G.C.14/OM20/7', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:42:23'),
+(2078, 5, 313, 'G.C.13A/OM1/8', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:42:23'),
+(2079, 5, 358, NULL, NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:42:23'),
+(2080, 5, 359, NULL, NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:42:23'),
+(2081, 5, 360, NULL, NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:42:23'),
+(2082, 5, 361, NULL, NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:42:23'),
+(2083, 5, 362, NULL, NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:42:23'),
+(2084, 5, 373, NULL, NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:42:23'),
+(2085, 5, 376, 'G.C.13B/OF25/4', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:42:23'),
+(2086, 5, 383, 'G.C.14/OM6/46', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:42:23'),
+(2087, 5, 384, 'G.C.14/OM8/42', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:42:23'),
+(2088, 5, 385, NULL, NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:42:23'),
+(2089, 5, 388, 'G.C.14/OM9/41', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:42:23'),
+(2090, 5, 390, 'G.C.12/', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:42:23'),
+(2091, 5, 391, 'G.C.12/', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:42:23'),
+(2092, 5, 392, 'G.C.12/', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:42:23'),
+(2093, 5, 393, 'G.C.12/', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:42:23'),
+(2094, 5, 394, 'G.C.12/', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:42:23'),
+(2095, 5, 395, 'G.C.12/', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:42:23'),
+(2096, 5, 402, 'G.C.12/', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:42:23'),
+(2097, 5, 408, 'G.C.12/OF25/21', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:42:23'),
+(2098, 5, 415, 'G.C.12/OF49/10', 'asset_type', 'Type is required.', '2026-07-21 19:42:23'),
+(2099, 5, 416, 'G.C.12/OF49/12', 'asset_type', 'Type is required.', '2026-07-21 19:42:23'),
+(2100, 5, 417, 'G.C.12/OF49/9', 'asset_type', 'Type is required.', '2026-07-21 19:42:23'),
+(2101, 5, 421, 'G.C.12/OM5/31', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:42:23'),
+(2102, 5, 423, 'G.C.12/OM5/33', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:42:23'),
+(2103, 5, 432, 'G.C.12/OM6/45', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:42:23'),
+(2104, 5, 458, NULL, NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:42:23'),
+(2105, 5, 462, NULL, NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:42:23'),
+(2106, 6, 2, 'G.C.12/OF25/21', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2107, 6, 3, 'G.C.12/OF40/3', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2108, 6, 4, 'G.C.12/OM5/30', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2109, 6, 5, 'G.C.12/OM5/31', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2110, 6, 6, 'G.C.12/OM5/33', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2111, 6, 7, 'G.C.12/OM6/39', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2112, 6, 8, 'G.C.2/OM6/47', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2113, 6, 9, 'G.C.12/OM6/43', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2114, 6, 10, 'G.C.12/OM6/45', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2115, 6, 11, 'G.C.12/OM8/33', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2116, 6, 12, 'G.C.12/OM8/34', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2117, 6, 13, 'G.C.12/OM8/35', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2118, 6, 14, 'G.C.12/OM9/33', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2119, 6, 15, 'G.C.12/OM9/34', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2120, 6, 16, 'G.C.12/OM9/35', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2121, 6, 17, 'G.C.1A/OM38/1', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2122, 6, 18, NULL, NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2123, 6, 19, 'G.C.2/OF19/19', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2124, 6, 20, 'G.C.2/OF25/19', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2125, 6, 21, 'G.C.9/OF44/8', 'asset_type', 'Type is required.', '2026-07-21 19:43:37'),
+(2126, 6, 22, 'G.C.2/OF25/25', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2127, 6, 23, 'G.C2/OF25/19', 'asset_type', 'Type is required.', '2026-07-21 19:43:37'),
+(2128, 6, 24, 'G.C.2/OF49/11', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2129, 6, 25, 'G.C.2/OF52/5', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2130, 6, 26, 'G.C.2/OF52/6', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2131, 6, 27, 'G.C.2/OF52/7', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2132, 6, 28, NULL, NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2133, 6, 29, 'G.C.2/OF52/8', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2134, 6, 30, 'G.C.2/OF53/4', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2135, 6, 31, 'G.C.2/OF7/5', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2136, 6, 32, 'G.C.2/OF7/6', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2137, 6, 33, 'G.C.2/OF7/7', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2138, 6, 34, 'G.C.2/OM5/36', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2139, 6, 35, 'G.C.2/OM50/4', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2140, 6, 36, 'G.C.2/OM50/10', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2141, 6, 37, 'G.C.2/OM50/9', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2142, 6, 38, 'G.C.2/OM52/1', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2143, 6, 39, 'G.C.2/OM6/47', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2144, 6, 40, 'G.C.2/OM7/25', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2145, 6, 41, 'G.C.2/OM7/23', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2146, 6, 42, 'G.C.2/OM8/37', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2147, 6, 43, 'G.C.2/OM8/50', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2148, 6, 44, 'G.C.2/OM9//50', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2149, 6, 45, NULL, NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2150, 6, 46, NULL, NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2151, 6, 47, NULL, NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37');
+INSERT INTO `inv_import_errors` (`error_id`, `batch_id`, `row_number`, `asset_code`, `field`, `message`, `created_at`) VALUES
+(2152, 6, 48, 'G.C.2/OM9/42', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2153, 6, 49, 'MF-HCMES51-31/1376', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2154, 6, 50, 'G.C.10a/OM8/15', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2155, 6, 51, 'G.C.13C/OM6/22', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2156, 6, 52, 'G.C.5/E3/1', 'bos_value', 'Invalid numeric value \'BOS\'.', '2026-07-21 19:43:37'),
+(2157, 6, 53, 'G.C.5/E3/4', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2158, 6, 54, 'G.C.5/E36/1', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2159, 6, 55, 'G.C.5/E6/1', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2160, 6, 56, 'G.C.5/OM39/3', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2161, 6, 57, 'G.C.5/OM5/38', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2162, 6, 58, 'G.C.5/OM6/15', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2163, 6, 59, 'G.C.5/OM6/28', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2164, 6, 60, 'G.C.5/OM6/49', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2165, 6, 61, 'G.C.5/OM7/4', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2166, 6, 62, 'G.C.5/OM8/44', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2167, 6, 63, 'G.C.5/OM8/5', 'bos_value', 'Invalid numeric value \'BOS\'.', '2026-07-21 19:43:37'),
+(2168, 6, 64, 'G.C.5/OM9/26', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2169, 6, 65, 'G.C.5/OM9/44', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2170, 6, 66, 'G.C.5c/OM5/22', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2171, 6, 67, 'G.C.6C/OM23/2', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2172, 6, 68, 'MF-HCMES-51-6/48', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2173, 6, 69, 'MF-HCMES-69-1/75', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2174, 6, 70, 'G.C.10A/OF10/8', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2175, 6, 71, 'G.C.10A/OF15/11', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2176, 6, 72, 'G.C.10A/OM15/1', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2177, 6, 73, 'G.C.10A/OF13/8', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2178, 6, 74, 'G.C.10A/OF19/14', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2179, 6, 75, 'G.C.10A/OF19/20', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2180, 6, 76, 'G.C.10A/OF21/1', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2181, 6, 77, 'G.C.10A/OF21/2', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2182, 6, 78, 'G.C.10A/OF21/3', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2183, 6, 79, 'G.C.10A/OF25/1', 'bos_value', 'Invalid numeric value \'BOS\'.', '2026-07-21 19:43:37'),
+(2184, 6, 80, 'G.C.10A/OF25/14', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2185, 6, 81, 'G.C.10A/OF25/16', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2186, 6, 82, 'G.C.10A/OF25/17', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2187, 6, 83, 'G.C.10A/OF25/18', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2188, 6, 84, 'G.C.10A/OF25/20', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2189, 6, 85, 'G.C.10A/OF48/1', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2190, 6, 86, 'G.C.10A/OF7/8', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2191, 6, 87, 'G.C.10A/OF40/1', 'asset_type', 'Type is required.', '2026-07-21 19:43:37'),
+(2192, 6, 88, 'G.C.10A/OF7/9', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2193, 6, 89, 'G.C.10A/OM16/1', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2194, 6, 90, 'G.C.10A/OM20/10', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2195, 6, 91, 'G.C.10A/OM22/2', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2196, 6, 92, NULL, NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2197, 6, 93, NULL, NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2198, 6, 94, 'G.C.10A/OM23/3', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2199, 6, 95, 'G.C.10A/OM45/1', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2200, 6, 96, 'G.C.10a/OM5/14', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2201, 6, 97, 'G.C.10A/OM5/39', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2202, 6, 98, 'G.C.10a/OM5/18', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2203, 6, 99, 'G.C.10a/OM5/19', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2204, 6, 100, 'G.C10A/OM5/43', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2205, 6, 101, 'G.C.10A/OM5/20', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2206, 6, 102, 'G.C.10A/OM6/51', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2207, 6, 103, 'G.C.10A/OM6/33', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2208, 6, 104, 'G.C.10A/OM6/32', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2209, 6, 105, 'G.C.10A/OM6/31', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2210, 6, 106, 'G.C.10A.OM8/46', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2211, 6, 107, 'G.C.10A/OM6/32', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2212, 6, 108, 'G.C.10A/OM6/51', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2213, 6, 109, 'G.C.10A/OM7/14', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2214, 6, 110, 'G.C.10A/OM7/17', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2215, 6, 111, NULL, NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2216, 6, 112, 'G.C.10A/OM7/30', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2217, 6, 113, 'G.C.10A/OM8/27', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2218, 6, 114, 'G.C.10a/OM8/21', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2219, 6, 115, 'G.C.10a/OM8/29', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2220, 6, 116, 'G.C.10A/OM9/27', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2221, 6, 117, 'G.C.10A/OM9/28', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2222, 6, 118, 'G.C.10A/OM9/46', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2223, 6, 119, 'G.C.10A/OM9/29', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2224, 6, 120, 'G.C.10A/OM9/9', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2225, 6, 121, 'G.C.10A/OM13/4', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2226, 6, 122, 'G.C.13A/OM13/6', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2227, 6, 123, 'G.C.13A/OM13/3', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2228, 6, 124, 'G.C.2/OF8/2', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2229, 6, 125, 'G.C.10A/OM37/2', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2230, 6, 126, 'G.C.10A/OF24/3', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2231, 6, 127, 'G.C.15/OF14/8', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2232, 6, 128, NULL, NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2233, 6, 129, NULL, NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2234, 6, 130, NULL, NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2235, 6, 131, 'G.C.13B/OF15/19', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2236, 6, 132, 'G.C10B/OM42/2', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2237, 6, 133, 'G.C.10B/OF38/4', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2238, 6, 134, 'G.C.6A/OF15/6', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2239, 6, 135, 'G.C.13B/E18/3', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2240, 6, 136, 'G.C.13B/E23/1', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2241, 6, 137, 'G.C.6A/OF15/6', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2242, 6, 138, 'G.C.7/E18/1', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2243, 6, 139, 'G.C.7/E18/2', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2244, 6, 140, 'G.C.7/E18/5', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2245, 6, 141, 'G.C.7/E18/6', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2246, 6, 142, 'G.C.7/E23/2', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2247, 6, 143, 'G.C.7/E23/3', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2248, 6, 144, 'G.C.7/E23/4', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2249, 6, 145, 'G.C.7/E23/5', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2250, 6, 146, 'G.C.7/E44/1', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2251, 6, 147, 'G.C.7/E44/2', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2252, 6, 148, NULL, NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2253, 6, 149, 'G.C.7/OM1/10', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2254, 6, 150, NULL, NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2255, 6, 151, 'G.C.7/OM20/9', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2256, 6, 152, 'G.C.10B/OF11/1', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2257, 6, 153, 'G.C.10B/OF32/1', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2258, 6, 154, 'G.C.10B/OF36/1', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2259, 6, 155, 'G.C.10B/OF37/1', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2260, 6, 156, 'G.C.10B/OF38/1', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2261, 6, 157, 'G.C.10B/OF38/11', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2262, 6, 158, 'G.C.10B/OF38/12', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2263, 6, 159, 'G.C.10B/OF38/13', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2264, 6, 160, 'G.C.10B/OF38/14', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2265, 6, 161, 'G.C.10B/OF38/15', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2266, 6, 162, 'G.C.10B/OF38/16', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2267, 6, 163, 'G.C.10B/OF38/9', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2268, 6, 164, 'G.C.10B/OF45/1', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2269, 6, 165, 'G.C.10B/OF46/1', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2270, 6, 166, 'G.C.10B/OF59/1', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2271, 6, 167, 'G.C.10B/OF59/10', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2272, 6, 168, 'G.C.10B/OF59/11', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2273, 6, 169, 'G.C.10B/OF59/12', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2274, 6, 170, 'G.C.10B/OF59/3', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2275, 6, 171, 'G.C.10B/OF59/4', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2276, 6, 172, 'G.C.10B/OF59/5', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2277, 6, 173, 'G.C.10B/OF59/6', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2278, 6, 174, 'G.C.10B/OF59/7', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2279, 6, 175, 'G.C.10B/OF59/8', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2280, 6, 176, 'G.C.10B/OM20/14', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2281, 6, 177, 'G.C.10B/OM24/16', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2282, 6, 178, 'G.C.10B/OM43/1', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2283, 6, 179, 'G.C.10B/OM45/2', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2284, 6, 180, 'G.C.10B/OM53/1', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2285, 6, 181, 'G.C.13A/OF38/28', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2286, 6, 182, 'G.C.13A/OF38/28', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2287, 6, 183, 'G.C.24/OF50/1', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2288, 6, 184, 'G.C.7A/OM5/16', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2289, 6, 185, 'G.C.7B/OM38/2', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2290, 6, 186, 'MF-HCMES-51-1174', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2291, 6, 187, 'MF-HCMES-51-1332', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2292, 6, 188, 'MF-HCMES-51-1515', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2293, 6, 189, 'G.C.13B/OM24/13', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2294, 6, 190, 'G.C.1A/OF18/1', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2295, 6, 191, 'G.C.1A/OF19/1', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2296, 6, 192, 'G.C.1A/OF33/2', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2297, 6, 193, 'G.C.1A/OF38/18', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2298, 6, 194, 'G.C.1A/OF38/19', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2299, 6, 195, 'G.C.1A/OF38/20', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2300, 6, 196, 'G.C.1A/OF38/21', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2301, 6, 197, 'G.C.1A/OF38/22', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2302, 6, 198, 'G.C.1A/OF40/4', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2303, 6, 199, 'G.C.1A/OF52/1', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2304, 6, 200, 'G.C.1B/OF19/2', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2305, 6, 201, 'G.C./OF19/3', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2306, 6, 202, 'G.C./1B/OF19/4', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2307, 6, 203, 'G.C.1A/OF60/1', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2308, 6, 204, 'G.C.1A/OM12/3', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2309, 6, 205, NULL, NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2310, 6, 206, 'G.C.1A/OM20/1', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2311, 6, 207, 'G.C.1A/OM36/1', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2312, 6, 208, 'G.C.1A/OM39/3', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2313, 6, 209, 'G.C.1A/OM45/2', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2314, 6, 210, 'G.C.1A/OM7/19', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2315, 6, 211, 'G.C.1A/OM7/26', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2316, 6, 212, 'G.C.1A/OM9/22', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2317, 6, 213, 'G.C.6B/OF25/23', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2318, 6, 214, 'G.C.6B/OM45/3', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2319, 6, 215, 'G.C.6B/OM6/49', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2320, 6, 216, 'G.C.6B/OM8/43', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2321, 6, 217, 'G.C.6B/OM9/45', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2322, 6, 218, 'G.C.7A/OF15/13', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2323, 6, 219, 'G.C.10B/OF/28/2', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2324, 6, 220, NULL, NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2325, 6, 221, 'G.C.10B/OF/38/7', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2326, 6, 222, 'G.C.10B/OF38/2', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2327, 6, 223, 'G.C.13A/E22/1', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2328, 6, 224, 'G.C.6A/E11/1', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2329, 6, 225, 'G.C.6A/E13/1', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2330, 6, 226, 'G.C.6A/E16/1', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2331, 6, 227, 'G.C.6A/E17/1', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2332, 6, 228, 'G.C.6A/E25/3', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2333, 6, 229, 'G.C.6A/E37/1', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2334, 6, 230, 'G.C.6A/E9/1', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2335, 6, 231, 'G.C.6A/E9/2', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2336, 6, 232, 'G.C.6A/OF38/25', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2337, 6, 233, 'G.C.6A/OM44/2', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2338, 6, 234, 'G.C.6A/OM44/1', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2339, 6, 235, 'G.C.6A/TEM5/1', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2340, 6, 236, 'G.C.6B/OM32/1', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2341, 6, 237, 'G.C.7/OM1/10', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2342, 6, 238, 'G.C.7/OM39/2', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2343, 6, 239, 'G.C.7A/OF/23/3', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2344, 6, 240, 'G.C.6B/OF25/7', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2345, 6, 241, 'G.C.6B/OF54/1', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2346, 6, 242, 'G.C.6B/OF53/1', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2347, 6, 243, 'G.C.6B/OF8/4', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2348, 6, 244, 'G.C.13A/OF38/29', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2349, 6, 245, 'G.C.6A/OF38/26', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2350, 6, 246, 'G.C.6B/OF35/2', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2351, 6, 247, 'G.C.7B/OF8/5', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2352, 6, 248, 'G.C.6B/OM7/24', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2353, 6, 249, 'MF-HCMES51-3/1464', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2354, 6, 250, 'G.C.13B/OF25/8', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2355, 6, 251, 'G.C.13B/OM6/14', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2356, 6, 252, 'G.C.6B/OF18/', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2357, 6, 253, 'G.C.13B/OM9/37', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2358, 6, 254, 'G.C.13B/OM8/39', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2359, 6, 255, 'G.C.10B/OF38/16', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2360, 6, 256, 'G.C.13A/E19/2', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2361, 6, 257, 'G.C.13A/E21/2', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2362, 6, 258, 'G.C.13A/E25/4', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2363, 6, 259, 'G.C.13A/E31/1', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2364, 6, 260, 'G.C.13A/E39/1', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2365, 6, 261, 'G.C.13A/E43/1', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2366, 6, 262, 'G.C.13A/E5/3', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2367, 6, 263, 'G.C.13A/OM32/4', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2368, 6, 264, 'G.C.13A/OM40/1', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2369, 6, 265, 'G.C.13A/OM40/2', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2370, 6, 266, 'G.C.13A/OM50/7', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2371, 6, 267, 'G.C.13A/TEM5/3', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2372, 6, 268, 'G.C.14/OF18/14', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2373, 6, 269, 'G.C.3/E1/1', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2374, 6, 270, 'G.C.13A/E15/4', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2375, 6, 271, 'GC/13A/SC1', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2376, 6, 272, NULL, NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2377, 6, 273, 'G.C.3/OF14/2', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2378, 6, 274, 'G.C.12/OM50/6', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2379, 6, 275, 'G.C.12/OM11/1', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2380, 6, 276, 'G.CA/OM11/6', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2381, 6, 277, 'G.C14/OF41/3', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2382, 6, 278, 'G.C.13A/0F38/28', 'asset_type', 'Type is required.', '2026-07-21 19:43:37'),
+(2383, 6, 279, 'G.C.13A/OF38/27', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2384, 6, 280, 'G.C.13A/OM1/8', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2385, 6, 281, 'G.C.14/OF15/27', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2386, 6, 282, 'G.C.14/OF25/12', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2387, 6, 283, 'G.C.14/OF25/13', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2388, 6, 284, 'G.C.14/OF25/14', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2389, 6, 285, 'G.C.14/OF48/2', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2390, 6, 286, 'G.C.14/OF48/3', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2391, 6, 287, 'G.C.14/OF48/4', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2392, 6, 288, 'G.C.14/OF48/5', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2393, 6, 289, 'G.C.14/OF48/6', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2394, 6, 290, 'G.C.14/OF48/7', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2395, 6, 291, 'G.C.14/OF49/2', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2396, 6, 292, 'G.C.14/OF49/3', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2397, 6, 293, 'G.C.14/OF49/4', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2398, 6, 294, 'G.C.2/OF50/4', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2399, 6, 295, 'G.C.14/OF49/5', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2400, 6, 296, NULL, NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2401, 6, 297, NULL, NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2402, 6, 298, 'G.C.14/OM9/49', 'asset_type', 'Type is required.', '2026-07-21 19:43:37'),
+(2403, 6, 299, NULL, NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2404, 6, 300, 'G.C.14/OF49/6', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2405, 6, 301, 'G.C.14/OF49/7', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2406, 6, 302, 'G.C.14/OF25/15', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2407, 6, 303, 'G.C.14/OF25/10', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2408, 6, 304, 'G.C.14/OF51/3', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2409, 6, 305, 'G.C.14/OM20/7', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2410, 6, 306, 'G.C.14/OM20/7', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2411, 6, 307, 'G.C.14/OM20/7', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2412, 6, 308, 'G.C.14/OM5/17', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2413, 6, 309, 'G.C.14/OM5/29', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2414, 6, 310, 'G.C.14/OM5/26', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2415, 6, 311, 'G.C.14/OM5/24', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2416, 6, 312, 'G.C.14/OM5/35', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2417, 6, 313, 'G.C.13A/OM1/8', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2418, 6, 314, 'G.C.14/OM50/2', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2419, 6, 315, 'G.C.14/OM6/36', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2420, 6, 316, 'G.C.14/OM6/37', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2421, 6, 317, 'G.C.14/OM6/42', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2422, 6, 318, 'G.C.14/OM8/35', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2423, 6, 319, 'G.C.14/OM9/51', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2424, 6, 320, 'G.C.14/OM8/51', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2425, 6, 321, 'G.C.14/OM9/40', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2426, 6, 322, 'G.C.14/OM6/46', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2427, 6, 323, 'G.C14/OM6/55', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2428, 6, 324, 'G.C5/OM6/27', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2429, 6, 325, 'G.C.14/OM6/54', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2430, 6, 326, 'G.C.14/OM7/28', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2431, 6, 327, 'G.C.14/OM8/26', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2432, 6, 328, 'G.C.14/OM8/31', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2433, 6, 329, 'G.C.14/OM8/42', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2434, 6, 330, 'G.C14/OM9/15', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2435, 6, 331, 'G.C.14/OM9/31', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2436, 6, 332, 'G.C.14/OM9/32', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2437, 6, 333, 'G.C.14/OM9/38', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2438, 6, 334, 'G.C10A/OM2/2', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2439, 6, 335, 'G.C14/OM49/2', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2440, 6, 336, 'G.C/B/OM14/8', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2441, 6, 337, 'CRL/PH4/803/2', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2442, 6, 338, 'G.C/39/OF18/12', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2443, 6, 339, 'G.C.14/OM9/41', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2444, 6, 340, 'G.C.13B/OF13/6', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2445, 6, 341, 'G.C.13B/OF25/4', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2446, 6, 342, 'G.C.13C/E20/3', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2447, 6, 343, 'G.C.13C/E20/4', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2448, 6, 344, 'G.C.13C/OF13/5', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2449, 6, 345, 'G.C.13C/OF39/1', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2450, 6, 346, 'G.C.13C/OM20/3', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2451, 6, 347, 'G.C.13C/OM23/4', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2452, 6, 348, 'G.C.13C/OM5/13', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2453, 6, 349, 'G.C.13C/OM5/21', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2454, 6, 350, 'G.C.13C/OM51/3', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2455, 6, 351, 'G.C.13C/OM6/34', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2456, 6, 352, 'G.C.13C/OM6/35', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2457, 6, 353, 'G.C.13C/OM7/20', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2458, 6, 354, 'G.C.13c/OM8/20', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2459, 6, 355, 'G.C.13c/OM8/30', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2460, 6, 356, 'G.C.13C/OM9/20', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2461, 6, 357, 'G.C.13C/OM9/30', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2462, 6, 358, NULL, NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2463, 6, 359, NULL, NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2464, 6, 360, NULL, NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2465, 6, 361, NULL, NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2466, 6, 362, NULL, NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2467, 6, 363, 'G.C.5/OF15/4', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2468, 6, 364, 'G.C.13C', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2469, 6, 365, 'G.C.6C/E23/6', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2470, 6, 366, 'G.C.6C/E33/1', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2471, 6, 367, 'G.C.6C/E33/2', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2472, 6, 368, 'G.C.6C/E34/1', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2473, 6, 369, 'G.C.6C/E44/3', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2474, 6, 370, 'G.C.6c/OM35/5', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2475, 6, 371, 'G.C.6C/OM20/3', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2476, 6, 372, 'G.C.6C/OM36/2', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2477, 6, 373, NULL, NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2478, 6, 374, 'G.C.6C/OM36/3', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2479, 6, 375, 'G.C.13B/OF19/13', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2480, 6, 376, 'G.C.13B/OF25/4', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37');
+INSERT INTO `inv_import_errors` (`error_id`, `batch_id`, `row_number`, `asset_code`, `field`, `message`, `created_at`) VALUES
+(2481, 6, 377, 'G.C.13B/OF5/4', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2482, 6, 378, 'G.C.13B/OF51/3', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2483, 6, 379, 'G.C.13B/OM3/1', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2484, 6, 380, 'G.C.13B/OM7/29', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2485, 6, 381, 'G.C.13B/OF8/7', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2486, 6, 382, 'G.C.14/OM51/2', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2487, 6, 383, 'G.C.14/OM6/46', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2488, 6, 384, 'G.C.14/OM8/42', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2489, 6, 385, NULL, NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2490, 6, 386, 'G.C130/OF15/14', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2491, 6, 387, NULL, NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2492, 6, 388, 'G.C.14/OM9/41', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2493, 6, 389, 'G.C.12/', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2494, 6, 390, 'G.C.12/', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2495, 6, 391, 'G.C.12/', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2496, 6, 392, 'G.C.12/', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2497, 6, 393, 'G.C.12/', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2498, 6, 394, 'G.C.12/', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2499, 6, 395, 'G.C.12/', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2500, 6, 396, 'G.C.12/OF13/9', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2501, 6, 397, 'G.C.12/OF19/15', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2502, 6, 398, 'G.C.12/OF19/17', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2503, 6, 399, 'G.C.12/OF21/4', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2504, 6, 400, 'G.C.12/OF21/5', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2505, 6, 401, 'G.C.12/OF21/6', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2506, 6, 402, 'G.C.12/', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2507, 6, 403, 'G.C.12/OF25/16', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2508, 6, 404, 'G.C.12/OF25/17', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2509, 6, 405, 'G.C.12/OF25/18', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2510, 6, 406, 'G.C.12/OF25/19', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2511, 6, 407, 'G.C.12/OF25/20', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2512, 6, 408, 'G.C.12/OF25/21', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2513, 6, 409, 'G.C.12/OF25/22', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2514, 6, 410, 'G.C.12/OF25/23', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2515, 6, 411, 'G.C.12/OF25/24', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2516, 6, 412, 'G.C.12/OF25/25', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2517, 6, 413, 'G.C.12/OF40/2', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2518, 6, 414, 'G.C.12/OF48/2', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2519, 6, 415, 'G.C.12/OF49/10', 'asset_type', 'Type is required.', '2026-07-21 19:43:37'),
+(2520, 6, 416, 'G.C.12/OF49/12', 'asset_type', 'Type is required.', '2026-07-21 19:43:37'),
+(2521, 6, 417, 'G.C.12/OF49/9', 'asset_type', 'Type is required.', '2026-07-21 19:43:37'),
+(2522, 6, 418, 'G.C.12/OF53/2', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2523, 6, 419, 'G.C.12/OF53/3', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2524, 6, 420, 'G.C.12/OM20/12', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2525, 6, 421, 'G.C.12/OM5/31', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2526, 6, 422, 'G.C.12/OM5/32', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2527, 6, 423, 'G.C.12/OM5/33', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2528, 6, 424, 'G.C.12/OM5/34', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2529, 6, 425, 'G.C.12/OM5/40', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2530, 6, 426, 'G.C.12/OM5/41', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2531, 6, 427, 'G.C.12/OM50/1', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2532, 6, 428, 'G.C.12/OM50/10', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2533, 6, 429, 'G.C.12/OM50/3', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2534, 6, 430, 'G.C.12/OM50/5', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2535, 6, 431, 'G.C.12/OM6/44', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2536, 6, 432, 'G.C.12/OM6/45', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2537, 6, 433, 'G.C.12/OM6/52', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2538, 6, 434, 'G.C.12/OM6/53', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2539, 6, 435, 'G.C.12/OM7/25', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2540, 6, 436, 'G.C.12/OM8/36', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2541, 6, 437, 'G.C.12/OM8/41', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2542, 6, 438, 'G.C.12/OM8/47', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2543, 6, 439, 'G.C.12/OM8/48', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2544, 6, 440, 'G.C.12/OM9/39', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2545, 6, 441, 'G.C.12/OM9/40', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2546, 6, 442, 'G.C.12/OM9/47', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2547, 6, 443, 'G.C.12/OM9/48', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2548, 6, 444, 'G.C.1O6/OF38/6', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2549, 6, 445, 'G.C.106/OF59/9', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2550, 6, 446, 'G.C.7b/OM5/37', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2551, 6, 447, 'G.C.7b/OM8/43', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2552, 6, 448, 'G.C.1A/OF8/1', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2553, 6, 449, 'G.C.7B/OM9/43', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2554, 6, 450, 'G.C.7B/OM35/4', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2555, 6, 451, 'G.C.7B/OM7/27', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2556, 6, 452, 'G.C.7B/OF25/10', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2557, 6, 453, 'G.C.7B/OM6/48', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2558, 6, 454, 'G.C.5/OM11/3', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2559, 6, 455, 'G.C.7B/OF19/18', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2560, 6, 456, 'G.C.7B/OF5/3', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2561, 6, 457, 'G.C.6A/OF38/24', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2562, 6, 458, NULL, NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2563, 6, 459, 'G.C.1/OF40/4', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2564, 6, 460, 'G.C.10A/OF43/1', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2565, 6, 461, 'G.C.5/OM11/2', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2566, 6, 462, NULL, NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37'),
+(2567, 6, 463, 'G.C.7B/OM12/5', NULL, 'Duplicate: asset already exists (skipped — enable \"Update existing records\" to update).', '2026-07-21 19:43:37');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inv_incidents`
+--
+
+CREATE TABLE `inv_incidents` (
+  `incident_id` int(11) NOT NULL,
+  `incident_number` varchar(30) NOT NULL,
+  `incident_type` enum('THEFT','DAMAGE','BREAKAGE','FIRE','FLOOD','VANDALISM','LOSS','OTHER') NOT NULL,
+  `incident_date` date NOT NULL,
+  `location_id` int(11) DEFAULT NULL,
+  `description` text NOT NULL,
+  `status` enum('REPORTED','UNDER_INVESTIGATION','RESOLVED','CLOSED') DEFAULT 'REPORTED',
+  `reported_by` int(11) NOT NULL,
+  `reported_at` datetime DEFAULT current_timestamp(),
+  `investigator_id` int(11) DEFAULT NULL,
+  `investigation_notes` text DEFAULT NULL,
+  `investigation_completed_at` datetime DEFAULT NULL,
+  `police_reference` varchar(100) DEFAULT NULL,
+  `insurance_reference` varchar(100) DEFAULT NULL,
+  `insurance_claim_amount` decimal(14,2) DEFAULT NULL,
+  `total_estimated_loss` decimal(14,2) DEFAULT 0.00,
+  `adjustment_id` int(11) DEFAULT NULL COMMENT 'Link to stock adjustment created from this incident',
+  `notes` text DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inv_incident_items`
+--
+
+CREATE TABLE `inv_incident_items` (
+  `incident_item_id` int(11) NOT NULL,
+  `incident_id` int(11) NOT NULL,
+  `item_id` int(11) NOT NULL,
+  `quantity_lost` decimal(14,4) NOT NULL,
+  `unit_cost` decimal(14,2) DEFAULT 0.00,
+  `total_value` decimal(14,2) DEFAULT 0.00,
+  `batch_lot_number` varchar(50) DEFAULT NULL,
+  `serial_number` varchar(100) DEFAULT NULL,
+  `condition_notes` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inv_issues`
+--
+
+CREATE TABLE `inv_issues` (
+  `issue_id` int(11) NOT NULL,
+  `issue_number` varchar(30) NOT NULL,
+  `requisition_id` int(11) DEFAULT NULL,
+  `requisition_number` varchar(30) DEFAULT NULL,
+  `issued_to_user_id` int(11) DEFAULT NULL,
+  `issued_to_department` int(11) DEFAULT NULL COMMENT 'branch_id',
+  `issued_to_department_id` int(11) DEFAULT NULL,
+  `issued_to_project` varchar(100) DEFAULT NULL,
+  `issued_to_event` varchar(100) DEFAULT NULL,
+  `issued_to_vehicle` varchar(50) DEFAULT NULL,
+  `issued_to_building_room` varchar(100) DEFAULT NULL,
+  `from_location_id` int(11) DEFAULT NULL,
+  `cost_centre` varchar(50) DEFAULT NULL,
+  `issue_date` date NOT NULL,
+  `issued_by` int(11) NOT NULL,
+  `status` enum('DRAFT','PENDING_APPROVAL','APPROVED','ISSUED','PARTIAL','CANCELLED','COMPLETED') DEFAULT 'DRAFT',
+  `approved_by` int(11) DEFAULT NULL,
+  `approved_at` datetime DEFAULT NULL,
+  `acknowledgement_signature` text DEFAULT NULL COMMENT 'Digital signature or evidence',
+  `acknowledged_at` datetime DEFAULT NULL,
+  `delivery_note_number` varchar(50) DEFAULT NULL,
+  `dispatch_confirmed` tinyint(1) DEFAULT 0,
+  `expense_recognition_event` varchar(50) DEFAULT NULL COMMENT 'IPSAS 12: event triggering expense',
+  `notes` text DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inv_issue_items`
+--
+
+CREATE TABLE `inv_issue_items` (
+  `issue_item_id` int(11) NOT NULL,
+  `issue_id` int(11) NOT NULL,
+  `item_id` int(11) NOT NULL,
+  `quantity_requested` decimal(14,4) DEFAULT NULL,
+  `stock_id` int(11) DEFAULT NULL COMMENT 'Specific stock record (batch/location)',
+  `quantity_issued` decimal(14,4) NOT NULL,
+  `unit_cost` decimal(14,2) DEFAULT 0.00,
+  `total_cost` decimal(14,2) DEFAULT 0.00,
+  `batch_lot_number` varchar(50) DEFAULT NULL,
+  `lot_number` varchar(50) DEFAULT NULL,
+  `batch_number` varchar(50) DEFAULT NULL,
+  `serial_number` varchar(100) DEFAULT NULL,
+  `is_substitute` tinyint(1) DEFAULT 0,
+  `original_item_id` int(11) DEFAULT NULL COMMENT 'If substitute, the originally requested item'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inv_items`
+--
+
+CREATE TABLE `inv_items` (
+  `item_id` int(11) NOT NULL,
+  `item_code` varchar(50) NOT NULL COMMENT 'Unique SKU / internal stock code / asset code',
+  `item_name` varchar(200) NOT NULL,
+  `description` text DEFAULT NULL,
+  `category_id` int(11) NOT NULL,
+  `subcategory_id` int(11) DEFAULT NULL,
+  `uom_id` int(11) NOT NULL,
+  `pack_size` decimal(10,2) DEFAULT 1.00 COMMENT 'Pack size / conversion factor',
+  `barcode` varchar(50) DEFAULT NULL COMMENT 'Barcode / QR / GS1 identifier',
+  `manufacturer` varchar(150) DEFAULT NULL,
+  `brand` varchar(100) DEFAULT NULL,
+  `model` varchar(100) DEFAULT NULL,
+  `part_number` varchar(100) DEFAULT NULL COMMENT 'Part number / catalogue number',
+  `serial_number_flag` tinyint(1) DEFAULT 0,
+  `batch_lot_flag` tinyint(1) DEFAULT 0,
+  `expiry_date_flag` tinyint(1) DEFAULT 0,
+  `hazard_class_flag` tinyint(1) DEFAULT 0,
+  `storage_conditions` varchar(255) DEFAULT NULL,
+  `shelf_life_days` int(11) DEFAULT NULL,
+  `inspection_required` tinyint(1) DEFAULT 0,
+  `receiving_tolerance_pct` decimal(5,2) DEFAULT 0.00,
+  `preferred_supplier_ids` text DEFAULT NULL COMMENT 'JSON array of vendor IDs',
+  `contract_reference` varchar(100) DEFAULT NULL,
+  `procurement_method` varchar(100) DEFAULT NULL,
+  `reorder_level` decimal(12,2) DEFAULT 0.00,
+  `reorder_quantity` decimal(12,2) DEFAULT 0.00,
+  `min_level` decimal(12,2) DEFAULT 0.00,
+  `max_level` decimal(12,2) DEFAULT 0.00,
+  `safety_stock` decimal(12,2) DEFAULT 0.00,
+  `lead_time_days` int(11) DEFAULT 0,
+  `economic_order_qty` decimal(12,2) DEFAULT NULL,
+  `standard_cost` decimal(14,2) DEFAULT 0.00,
+  `last_cost` decimal(14,2) DEFAULT 0.00,
+  `average_cost` decimal(14,2) DEFAULT 0.00,
+  `unit_cost` decimal(14,2) DEFAULT 0.00,
+  `nrv` decimal(14,2) DEFAULT NULL COMMENT 'Net Realisable Value (IPSAS 12)',
+  `nrv_last_assessed` date DEFAULT NULL,
+  `nrv_assessed_by` int(11) DEFAULT NULL,
+  `valuation_method` enum('AVERAGE','FIFO','STANDARD','SPECIFIC') DEFAULT 'AVERAGE',
+  `funding_source` varchar(100) DEFAULT NULL,
+  `program_project_code` varchar(50) DEFAULT NULL,
+  `gl_account_code` varchar(50) DEFAULT NULL,
+  `criticality_id` int(11) DEFAULT NULL,
+  `acct_class_id` int(11) DEFAULT NULL,
+  `item_status` enum('ACTIVE','BLOCKED','OBSOLETE','QUARANTINED','DISPOSAL') DEFAULT 'ACTIVE',
+  `issue_policy` enum('UNRESTRICTED','APPROVAL_REQUIRED','CONTROLLED') DEFAULT 'UNRESTRICTED',
+  `asset_inventory_boundary` tinyint(1) DEFAULT 0 COMMENT 'Flag if item straddles asset/inventory line',
+  `item_domain` enum('INVENTORY','ASSET','BOTH') NOT NULL DEFAULT 'INVENTORY' COMMENT 'Operational domain: INVENTORY=consumable stock, ASSET=tracked fixed/movable asset, BOTH=straddles both',
+  `asset_type_id` int(11) DEFAULT NULL COMMENT 'FK to asset_types; set when item_domain = ASSET or BOTH',
+  `inventory_type_id` int(11) DEFAULT NULL COMMENT 'FK to inventory_types; set when item_domain = INVENTORY or BOTH',
+  `created_by` int(11) DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `inv_items`
+--
+
+INSERT INTO `inv_items` (`item_id`, `item_code`, `item_name`, `description`, `category_id`, `subcategory_id`, `uom_id`, `pack_size`, `barcode`, `manufacturer`, `brand`, `model`, `part_number`, `serial_number_flag`, `batch_lot_flag`, `expiry_date_flag`, `hazard_class_flag`, `storage_conditions`, `shelf_life_days`, `inspection_required`, `receiving_tolerance_pct`, `preferred_supplier_ids`, `contract_reference`, `procurement_method`, `reorder_level`, `reorder_quantity`, `min_level`, `max_level`, `safety_stock`, `lead_time_days`, `economic_order_qty`, `standard_cost`, `last_cost`, `average_cost`, `unit_cost`, `nrv`, `nrv_last_assessed`, `nrv_assessed_by`, `valuation_method`, `funding_source`, `program_project_code`, `gl_account_code`, `criticality_id`, `acct_class_id`, `item_status`, `issue_policy`, `asset_inventory_boundary`, `item_domain`, `asset_type_id`, `inventory_type_id`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(2, 'PC001', 'Laptop', 'ASUS ROG Strix G16 (2025)', 2, NULL, 1, 1.00, 'GCOFC2F1', 'ASUS', 'ASUS', 'ROG Strix G16 (2025)', 'NA', 1, 0, 0, 0, NULL, NULL, 1, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 2400.23, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 1, 'INVENTORY', NULL, NULL, 40, 40, '2026-03-11 19:29:21', '2026-03-11 19:33:21'),
+(6, 'SOAP-ANTI-LQD-GAL', 'Antibacterial Soap', '', 3, NULL, 14, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 1, 'Dry Storage', NULL, 0, 0.00, NULL, NULL, NULL, 4.00, 32.00, 0.00, 50.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'INVENTORY', NULL, 3, 40, NULL, '2026-06-15 19:48:52', '2026-06-15 19:48:52'),
+(7, 'BLEACH-LQD-GAL', 'Bleach', 'Bulk Bleach', 3, NULL, 14, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 1, 'Dry Storage', NULL, 0, 0.00, NULL, NULL, NULL, 4.00, 32.00, 0.00, 50.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'INVENTORY', NULL, 3, 40, NULL, '2026-06-15 19:51:40', '2026-06-15 19:51:40'),
+(8, 'SOAP-DISH-LQD-GAL', 'Dishwashing Soap', 'Dishwashing Soap', 3, NULL, 14, 1.00, NULL, 'Generic', 'Generic', 'Generic', 'Generic', 0, 0, 0, 1, 'Dry Storage', NULL, 0, 0.00, NULL, NULL, NULL, 4.00, 32.00, 0.00, 50.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'INVENTORY', NULL, 3, 40, NULL, '2026-06-15 19:55:29', '2026-06-15 19:55:29'),
+(9, 'DISINF-LQD-GAL', 'Disinfectant', 'Disinfectant', 3, NULL, 14, 1.00, NULL, 'Generic', 'Generic', 'Generic', 'Generic', 0, 0, 0, 1, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 4.00, 32.00, 0.00, 50.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'INVENTORY', NULL, 3, 40, NULL, '2026-06-15 19:58:43', '2026-06-15 19:58:43'),
+(10, 'FLRPOL-LQD-GAL', 'Floor Polish', 'Floor Polish', 3, NULL, 14, 1.00, NULL, 'Generic', 'Generic', 'Generic', 'Generic', 0, 0, 0, 1, 'Dry Storage', NULL, 0, 0.00, NULL, NULL, NULL, 4.00, 32.00, 0.00, 40.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'INVENTORY', NULL, 3, 40, NULL, '2026-06-15 20:01:41', '2026-06-15 20:01:41'),
+(11, 'SOAP-MULTI-LQD-GAL', 'Multi-Purpose Soap', 'Multi-Purpose Soap', 3, NULL, 14, 1.00, NULL, 'Generic', 'Generic', 'Generic', 'Generic', 0, 0, 0, 1, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 4.00, 15.00, 0.00, 30.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'INVENTORY', NULL, 3, 40, NULL, '2026-06-15 20:38:32', '2026-06-15 20:38:32'),
+(12, 'BAG-PLASTIC-BIG', 'Garbage Bag 38*60', 'Garbage Bag 38*60', 3, NULL, 5, 1.00, NULL, 'Generic', 'Generic', 'Generic', 'Generic', 0, 0, 0, 1, 'Dry Storage', NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'INVENTORY', NULL, 3, 40, NULL, '2026-06-15 20:43:51', '2026-06-15 20:43:51'),
+(13, 'TISSUE-JUN-ROLL', 'Tissue - Junior Roll', 'Tissue - Junior Roll', 3, NULL, 5, 1.00, NULL, 'Generic', 'Generic', 'Generic', 'Generic', 0, 0, 0, 0, 'Dry Storage', NULL, 0, 0.00, NULL, NULL, NULL, 6.00, 54.00, 0.00, 80.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'INVENTORY', NULL, 3, 40, NULL, '2026-06-16 15:33:47', '2026-06-16 15:33:47'),
+(14, 'TISSUE-REG-ROLL', 'Tissue - Regular', 'Tissue - Regular', 3, NULL, 5, 1.00, NULL, 'Generic', 'Generic', 'Generic', 'Generic', 0, 0, 0, 0, 'Dry Storage', NULL, 0, 0.00, NULL, NULL, NULL, 12.00, 48.00, 12.00, 50.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'INVENTORY', NULL, 3, 40, NULL, '2026-06-16 15:44:13', '2026-06-16 15:44:13'),
+(15, 'TISSUE-JUMBO-ROLL', 'Tissue - 9\" Jumbo Roll', 'Tissue - 9\" Jumbo Roll', 3, NULL, 5, 1.00, NULL, 'Generic', 'Generic', 'Generic', 'Generic', 0, 0, 0, 0, 'Dry Storage', NULL, 0, 0.00, NULL, NULL, NULL, 12.00, 54.00, 12.00, 80.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'BLOCKED', 'UNRESTRICTED', 0, 'INVENTORY', NULL, 3, 40, NULL, '2026-06-16 15:48:19', '2026-06-16 15:48:19'),
+(17, 'TONER-INK-01', 'HP 230A (W2300A) - Black Toner', 'TONER-INK', 2, NULL, 1, 1.00, NULL, 'HP', 'HP', 'Generic', 'Generic', 0, 0, 0, 0, 'Dry Storage', NULL, 0, 0.00, NULL, NULL, NULL, 2.00, 6.00, 0.00, 8.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'INVENTORY', NULL, 2, 40, NULL, '2026-06-16 16:30:29', '2026-06-16 16:30:29'),
+(18, 'TONER-INK-02', 'HP 230A (W2301A) - Cyan Toner', 'HP 230A (W2301A) - Cyan Toner', 2, NULL, 1, 1.00, NULL, 'HP', 'HP', 'Generic', 'Generic', 0, 0, 0, 0, 'Dry Storage', NULL, 0, 0.00, NULL, NULL, NULL, 2.00, 6.00, 0.00, 8.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'INVENTORY', NULL, 2, 40, NULL, '2026-06-16 16:31:41', '2026-06-16 16:31:41'),
+(19, 'TONER-INK-03', 'HP 230A (W2302A) - Yellow Toner', 'HP 230A (W2302A) - Yellow Toner', 2, NULL, 1, 1.00, NULL, 'HP', 'HP', 'Generic', 'Generic', 0, 0, 0, 0, 'Dry Storage', NULL, 0, 0.00, NULL, NULL, NULL, 2.00, 6.00, 0.00, 8.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'INVENTORY', NULL, 2, 40, NULL, '2026-06-16 16:32:12', '2026-06-16 16:32:12'),
+(20, 'TONER-INK-04', 'HP 230A (W2303A) - Magenta Toner', 'HP 230A (W2303A) - Magenta Toner', 2, NULL, 1, 1.00, NULL, 'HP', 'HP', 'Generic', 'Generic', 0, 0, 0, 0, 'Dry Storage', NULL, 0, 0.00, NULL, NULL, NULL, 2.00, 6.00, 0.00, 8.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'INVENTORY', NULL, 2, 40, NULL, '2026-06-16 16:32:50', '2026-06-16 16:32:50'),
+(21, 'TONER-INK-05', 'HP 212A (W2120A) - Black Toner', 'HP 212A (W2120A) - Black Toner', 2, NULL, 1, 1.00, NULL, 'HP', 'HP', 'Generic', 'Generic', 0, 0, 0, 0, 'Dry Storage', NULL, 0, 0.00, NULL, NULL, NULL, 1.00, 3.00, 0.00, 5.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'INVENTORY', NULL, 2, 40, NULL, '2026-06-16 16:35:45', '2026-06-16 16:35:45'),
+(22, 'TONER-INK-06', 'HP 212A (W2121A) - Cyan Toner', 'HP 212A (W2121A) - Cyan Toner', 2, NULL, 1, 1.00, NULL, 'HP', 'HP', 'Generic', 'Generic', 0, 0, 0, 0, 'Dry Storage', NULL, 0, 0.00, NULL, NULL, NULL, 1.00, 3.00, 0.00, 5.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'INVENTORY', NULL, 2, 40, NULL, '2026-06-16 16:36:29', '2026-06-16 16:36:29'),
+(23, 'TONER-INK-07', 'HP 212A (W2122A) - Yellow Toner', 'HP 212A (W2122A) - Yellow Toner', 2, NULL, 1, 1.00, NULL, 'HP', 'HP', 'Generic', 'Generic', 0, 0, 0, 0, 'Dry Storage', NULL, 0, 0.00, NULL, NULL, NULL, 1.00, 3.00, 0.00, 5.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'INVENTORY', NULL, 2, 40, NULL, '2026-06-16 16:37:08', '2026-06-16 16:37:08'),
+(24, 'TONER-INK-08', 'HP 212A (W2123A) - Magenta Toner', 'HP 212A (W2123A) - Magenta Toner', 2, NULL, 1, 1.00, NULL, 'HP', 'HP', 'Generic', 'Generic', 0, 0, 0, 0, 'Dry Storage', NULL, 0, 0.00, NULL, NULL, NULL, 1.00, 3.00, 0.00, 5.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'INVENTORY', NULL, 2, 40, NULL, '2026-06-16 16:37:38', '2026-06-16 16:37:38'),
+(25, 'TONER-INK-09', 'HP 151A (W1510A) - Black Toner', 'HP 151A (W1510A) - Black Toner', 2, NULL, 1, 1.00, NULL, 'HP', 'HP', 'Generic', 'Generic', 0, 0, 0, 0, 'Dry Storage', NULL, 0, 0.00, NULL, NULL, NULL, 1.00, 3.00, 0.00, 5.00, 0.00, 0, NULL, 11500.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'INVENTORY', NULL, 2, 40, 40, '2026-06-16 16:39:11', '2026-06-16 17:08:12'),
+(26, 'TONER-INK-010', 'HP 202A (CF500A) - Black Toner', 'HP 202A (CF500A) - Black Toner', 2, NULL, 1, 1.00, NULL, 'HP', 'HP', 'Generic', 'Generic', 0, 0, 0, 0, 'Dry Storage', NULL, 0, 0.00, NULL, NULL, NULL, 1.00, 3.00, 0.00, 5.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'INVENTORY', NULL, 2, 40, NULL, '2026-06-16 16:40:42', '2026-06-16 16:40:42'),
+(27, 'TONER-INK-011', 'HP 202A (CF501A) - Cyan Toner', 'HP 202A (CF501A) - Cyan Toner', 2, NULL, 1, 1.00, NULL, 'HP', 'HP', 'Generic', 'Generic', 0, 0, 0, 0, 'Dry Storage', NULL, 0, 0.00, NULL, NULL, NULL, 1.00, 3.00, 0.00, 5.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'INVENTORY', NULL, 2, 40, NULL, '2026-06-16 16:49:21', '2026-06-16 16:49:21'),
+(28, 'TONER-INK-012', 'HP 202A (CF502A) - Yellow Toner', 'HP 202A (CF502A) - Yellow Toner', 2, NULL, 1, 1.00, NULL, 'HP', 'HP', 'Generic', 'Generic', 0, 0, 0, 0, 'Dry Storage', NULL, 0, 0.00, NULL, NULL, NULL, 1.00, 3.00, 0.00, 5.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'INVENTORY', NULL, 2, 40, NULL, '2026-06-16 16:50:28', '2026-06-16 16:50:28'),
+(29, 'TONER-INK-013', 'HP 202A (CF503A) - Magenta Toner', 'HP 202A (CF503A) - Magenta Toner', 2, NULL, 1, 1.00, NULL, 'HP', 'HP', 'Generic', 'Generic', 0, 0, 0, 0, 'Dry Storage', NULL, 0, 0.00, NULL, NULL, NULL, 1.00, 3.00, 0.00, 5.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'INVENTORY', NULL, 2, 40, NULL, '2026-06-16 16:50:51', '2026-06-16 16:50:51'),
+(30, 'TONER-INK-014', 'Brother TN730 - Black Toner', 'Brother TN730 - Black Toner', 2, NULL, 1, 1.00, NULL, 'Brother', 'Brother', 'Generic', 'Generic', 0, 0, 0, 0, 'Dry Storage', NULL, 0, 0.00, NULL, NULL, NULL, 3.00, 8.00, 0.00, 10.00, 0.00, 0, NULL, 11500.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'INVENTORY', NULL, 2, 40, 40, '2026-06-16 16:53:10', '2026-06-16 17:07:07'),
+(31, 'TONER-INK-015', 'Konica Minolta (TN‑328K) - Black Toner', 'Konica Minolta (TN‑328K) - Black Toner\r\nC361i \r\nKonica Minolta Part No: AAV8130', 2, NULL, 1, 1.00, NULL, 'Konica', 'Konica', 'Generic', 'Generic', 0, 0, 0, 0, 'Dry Storage', NULL, 0, 0.00, NULL, NULL, NULL, 1.00, 4.00, 0.00, 4.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'INVENTORY', NULL, 2, 40, NULL, '2026-06-16 17:00:45', '2026-06-16 17:00:45'),
+(32, 'TONER-INK-016', 'Konica Minolta (TN‑328C) - Cyan Toner', 'Konica Minolta (TN‑328C) - Cyan Toner\r\nC361i \r\nKonica Minolta Part No: AAV8430', 2, NULL, 1, 1.00, NULL, 'Konica', 'Konica', 'Generic', 'Generic', 0, 0, 0, 0, 'Dry Storage', NULL, 0, 0.00, NULL, NULL, NULL, 1.00, 4.00, 0.00, 4.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'INVENTORY', NULL, 2, 40, NULL, '2026-06-16 17:01:35', '2026-06-16 17:01:35'),
+(33, 'TONER-INK-017', 'Konica Minolta (TN‑328M) - Magenta Toner', 'Konica Minolta (TN‑328M) - Magenta Toner\r\nC361i \r\nKonica Minolta Part No: AAV8330', 2, NULL, 1, 1.00, NULL, 'Konica', 'Konica', 'Generic', 'Generic', 0, 0, 0, 0, 'Dry Storage', NULL, 0, 0.00, NULL, NULL, NULL, 1.00, 4.00, 0.00, 4.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'INVENTORY', NULL, 2, 40, NULL, '2026-06-16 17:02:27', '2026-06-16 17:02:27'),
+(34, 'TONER-INK-018', 'Konica Minolta (TN‑328Y) - Yellow Toner', 'Konica Minolta (TN‑328Y) - Yellow Toner\r\nC361i \r\nKonica Minolta Part No: AAV8230', 2, NULL, 1, 1.00, NULL, 'Konica', 'Konica', 'Generic', 'Generic', 0, 0, 0, 0, 'Dry Storage', NULL, 0, 0.00, NULL, NULL, NULL, 1.00, 4.00, 0.00, 4.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'INVENTORY', NULL, 2, 40, NULL, '2026-06-16 17:03:16', '2026-06-16 17:03:16'),
+(35, 'G.C.1B/OM5/1', 'Computer Monitor', '', 30, NULL, 1, 1.00, NULL, 'Hurricane', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, 'Leagcy', 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'CONTROLLED', 0, 'ASSET', 30, NULL, 27, 27, '2026-07-16 00:31:05', '2026-07-21 18:08:20'),
+(36, 'G.C.5/OM5/2', 'Computer Monitor', NULL, 30, NULL, 1, 1.00, NULL, 'Xtech', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 30, NULL, 27, NULL, '2026-07-16 00:31:05', '2026-07-16 00:31:05'),
+(37, 'G.C.10a/OM5/3', 'Computer Monitor', NULL, 30, NULL, 1, 1.00, NULL, 'Hurricane', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 30, NULL, 27, NULL, '2026-07-16 00:31:05', '2026-07-16 00:31:05'),
+(38, 'G.C.10a/OM5/4', 'Computer Monitor', NULL, 31, NULL, 1, 1.00, NULL, 'Hurricane', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 30, NULL, 27, NULL, '2026-07-16 00:31:05', '2026-07-16 00:31:05'),
+(39, 'G.C.5/OM5/10', 'Computer Monitor', NULL, 31, NULL, 1, 1.00, NULL, 'Hewlett Packard', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 30, NULL, 27, NULL, '2026-07-16 00:31:05', '2026-07-16 00:31:05'),
+(40, 'G.C.13c/OM5/12', 'Computer Monitor', NULL, 31, NULL, 1, 1.00, NULL, 'Lenovo', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 30, NULL, 27, NULL, '2026-07-16 00:31:05', '2026-07-16 00:31:05'),
+(41, 'G.C.10a/OM5/18', 'Computer Monitor', NULL, 31, NULL, 1, 1.00, NULL, 'Lenovo', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 30, NULL, 27, NULL, '2026-07-16 00:31:05', '2026-07-16 00:31:05'),
+(42, 'CRL/PH8/260/2', 'Balance', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 31, NULL, 27, NULL, '2026-07-21 19:26:33', '2026-07-21 19:26:33'),
+(43, 'G.C.6C/E40/1', 'Clinical Chemical Analyser', NULL, 32, NULL, 1, 1.00, NULL, 'Selectra Pros', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:26:33', '2026-07-21 19:26:33'),
+(44, 'G.C.7A/E15/3', 'Oven', NULL, 32, NULL, 1, 1.00, NULL, 'Lab Line Instruments', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:26:33', '2026-07-21 19:26:33'),
+(45, 'G.C.7A/E19/1', 'Cabinet', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 33, NULL, 27, NULL, '2026-07-21 19:26:33', '2026-07-21 19:26:33'),
+(46, 'G.C.7A/E22/2', 'Distillator', NULL, 32, NULL, 1, 1.00, NULL, 'Barnstead/Thermolyne', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:26:33', '2026-07-21 19:26:33'),
+(47, 'G.C.7A/E25/1', 'Water Bath', NULL, 32, NULL, 1, 1.00, NULL, 'Boekel', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:26:33', '2026-07-21 19:26:33'),
+(48, 'G.C.7A/OF15/15', 'Stool', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 34, NULL, 27, NULL, '2026-07-21 19:26:33', '2026-07-21 19:26:33'),
+(49, 'G.C.7A/OF15/5', 'Stool', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 34, NULL, 27, NULL, '2026-07-21 19:26:33', '2026-07-21 19:26:33'),
+(50, 'G.C.7A/OF15/8', 'Stool', NULL, 32, NULL, 1, 1.00, NULL, 'N/A', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 34, NULL, 27, NULL, '2026-07-21 19:26:33', '2026-07-21 19:26:33'),
+(51, 'G.C.7A/OF23/3', 'Chair', NULL, 32, NULL, 1, 1.00, NULL, 'N/A', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 35, NULL, 27, NULL, '2026-07-21 19:26:33', '2026-07-21 19:26:33'),
+(52, 'G.C.7A/OM20/5', 'Air Conditioner', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 36, NULL, 27, NULL, '2026-07-21 19:26:33', '2026-07-21 19:26:33'),
+(53, 'G.C.7A/OM20/6', 'Air Conditioner', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 36, NULL, 27, NULL, '2026-07-21 19:26:33', '2026-07-21 19:26:33'),
+(54, 'G.C.7A/OM21/2', 'Clock', NULL, 32, NULL, 1, 1.00, NULL, 'South Clock', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:26:33', '2026-07-21 19:26:33'),
+(55, 'G.C.7A/OM24/14', 'Fan', NULL, 32, NULL, 1, 1.00, NULL, 'Accu-Tek', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 37, NULL, 27, NULL, '2026-07-21 19:26:33', '2026-07-21 19:26:33'),
+(56, 'G.C.7A/OM31/1', 'Freezer', NULL, 32, NULL, 1, 1.00, NULL, 'Frigidaire', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 38, NULL, 27, NULL, '2026-07-21 19:26:33', '2026-07-21 19:26:33'),
+(57, 'ITM-00001', 'Freezer', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 39, NULL, 27, NULL, '2026-07-21 19:26:33', '2026-07-21 19:26:33'),
+(58, 'G.C.7A/OM31/2', 'Freezer', NULL, 32, NULL, 1, 1.00, NULL, 'N/A', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 39, NULL, 27, NULL, '2026-07-21 19:26:33', '2026-07-21 19:26:33'),
+(59, 'G.C.7A/OM49/1', 'Deep Freeze', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 40, NULL, 27, NULL, '2026-07-21 19:26:33', '2026-07-21 19:26:33'),
+(60, 'G.C.7A/OM6/26', 'Computer (CPU)', NULL, 32, NULL, 1, 1.00, NULL, 'Lenovo', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:26:33', '2026-07-21 19:26:33'),
+(61, 'G.C.7a/OM8/25', 'Keyboard', NULL, 32, NULL, 1, 1.00, NULL, 'Lenovo', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:26:33', '2026-07-21 19:26:33'),
+(62, 'G.C.7A/OM9/25', 'Computer Mouse', NULL, 32, NULL, 1, 1.00, NULL, 'Lenovo', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 41, NULL, 27, NULL, '2026-07-21 19:26:33', '2026-07-21 19:26:33'),
+(63, 'G.C.7A/TEM5/2', 'Step Ladder', NULL, 32, NULL, 1, 1.00, NULL, 'N/A', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 42, NULL, 27, NULL, '2026-07-21 19:26:33', '2026-07-21 19:26:33'),
+(64, 'G.C.12/OF25/21', 'Chair', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 43, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(65, 'G.C.12/OF40/3', 'Desk', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 44, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(66, 'G.C.12/OM5/30', 'Monitor', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 45, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(67, 'G.C.12/OM5/31', 'Monitor', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 45, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(68, 'G.C.12/OM5/33', 'Monitor', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 45, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(69, 'G.C.12/OM6/39', 'Computer (CPU)', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 45, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(70, 'G.C.2/OM6/47', 'Computer (CPU)', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 45, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(71, 'G.C.12/OM6/43', 'Computer (CPU)', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 45, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(72, 'G.C.12/OM6/45', 'Computer (CPU)', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 45, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(73, 'G.C.12/OM8/33', 'Keyboard', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 45, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(74, 'G.C.12/OM8/34', 'Keyboard', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 45, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(75, 'G.C.12/OM8/35', 'Keyboard', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 45, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(76, 'G.C.12/OM9/33', 'Mouse', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 45, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(77, 'G.C.12/OM9/34', 'Mouse', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 45, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(78, 'G.C.12/OM9/35', 'Mouse', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 45, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(79, 'G.C.1A/OM38/1', 'U.P.S', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 46, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(80, 'G.C.2/OF19/19', 'Cabinet', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 47, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(81, 'G.C.2/OF25/19', 'Chair', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 43, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(82, 'G.C.2/OF25/25', 'Chair', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 48, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(83, 'G.C.2/OF49/11', 'Pedestol', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(84, 'G.C.2/OF52/5', 'Trash Bin', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 49, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(85, 'G.C.2/OF52/6', 'Trash Bin', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 49, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(86, 'G.C.2/OF52/7', 'Trash Bin', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 49, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(87, 'G.C.2/OF52/8', 'Trash Bin', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 49, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(88, 'G.C.2/OF53/4', 'Desk', NULL, 32, NULL, 1, 1.00, NULL, 'Echo', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 50, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(89, 'G.C.2/OF7/5', 'Desk', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 51, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(90, 'G.C.2/OF7/6', 'Desk', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 51, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(91, 'G.C.2/OF7/7', 'Desk', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 51, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(92, 'G.C.2/OM5/36', 'Computer Monitor', NULL, 32, NULL, 1, 1.00, NULL, 'Lenovo', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 30, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(93, 'G.C.2/OM50/4', 'U.P.S', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 46, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(94, 'G.C.2/OM50/10', 'U.P.S', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 46, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(95, 'G.C.2/OM50/9', 'U.P.S', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 46, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(96, 'G.C.2/OM52/1', 'Scanner', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 52, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(97, 'G.C.2/OM7/25', 'Printer', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 52, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(98, 'G.C.2/OM7/23', 'Printer', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 53, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(99, 'G.C.2/OM8/37', 'Keyboard', NULL, 32, NULL, 1, 1.00, NULL, 'Lenovo', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(100, 'G.C.2/OM8/50', 'Keyboard', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 45, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(101, 'G.C.2/OM9//50', 'Mouse', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 45, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(102, 'ITM-00002', 'Telephone', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 54, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(103, 'G.C.2/OM9/42', 'Computer Mouse', NULL, 32, NULL, 1, 1.00, NULL, 'Lenovo', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 41, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(104, 'MF-HCMES51-31/1376', 'Monitor', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 52, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(105, 'G.C.10a/OM8/15', 'Keyboard', NULL, 32, NULL, 1, 1.00, NULL, 'Lenovo', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(106, 'G.C.13C/OM6/22', 'Computer (CPU)', NULL, 32, NULL, 1, 1.00, NULL, 'HP', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(107, 'G.C.5/E3/4', 'Spectrometer', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 55, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(108, 'G.C.5/E36/1', 'Manual Top Bench', NULL, 32, NULL, 1, 1.00, NULL, 'Carver', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(109, 'G.C.5/E6/1', 'Clamp Stand', NULL, 32, NULL, 1, 1.00, NULL, 'Loom\'s Engineering MFG Company', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(110, 'G.C.5/OM39/3', 'U.P.S', NULL, 32, NULL, 1, 1.00, NULL, 'APC', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 56, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(111, 'G.C.5/OM5/38', 'Monitor', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 52, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(112, 'G.C.5/OM6/15', 'Computer (CPU)', NULL, 32, NULL, 1, 1.00, NULL, 'Agilent Technologies', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(113, 'G.C.5/OM6/28', 'Computer (CPU)', NULL, 32, NULL, 1, 1.00, NULL, 'Lenovo', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(114, 'G.C.5/OM6/49', 'Computer (CPU)', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 52, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(115, 'G.C.5/OM7/4', 'Computer Printer', NULL, 32, NULL, 1, 1.00, NULL, 'HP', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(116, 'G.C.5/OM8/44', 'Keyboard', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 52, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(117, 'G.C.5/OM9/26', 'Computer Mouse', NULL, 32, NULL, 1, 1.00, NULL, 'Lenovo', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 41, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(118, 'G.C.5/OM9/44', 'Mouse', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 52, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(119, 'G.C.5c/OM5/22', 'Computer Monitor', NULL, 32, NULL, 1, 1.00, NULL, 'Lenovo', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 30, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(120, 'G.C.6C/OM23/2', 'U.P.S', NULL, 32, NULL, 1, 1.00, NULL, 'G.E', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 57, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(121, 'MF-HCMES-51-6/48', 'U.P.S', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 58, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(122, 'MF-HCMES-69-1/75', 'Scanner', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 59, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(123, 'G.C.10A/OF10/8', 'Chair', NULL, 32, NULL, 1, 1.00, NULL, 'N/A', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 60, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(124, 'G.C.10A/OF15/11', 'Stool', NULL, 32, NULL, 1, 1.00, NULL, 'N/A', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 34, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(125, 'G.C.10A/OM15/1', 'Mechanical Pencil Sharpener', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 61, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(126, 'G.C.10A/OF13/8', 'Cabinet', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 62, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(127, 'G.C.10A/OF19/14', 'Filling Cabinet', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 47, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(128, 'G.C.10A/OF19/20', 'Filling Cabinet', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 47, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(129, 'G.C.10A/OF21/1', 'Plastic Tray', NULL, 32, NULL, 1, 1.00, NULL, 'N/A', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 63, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(130, 'G.C.10A/OF21/2', 'Plastic Tray', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 63, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(131, 'G.C.10A/OF21/3', 'Plastic Tray', NULL, 32, NULL, 1, 1.00, NULL, 'N/A', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 63, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(132, 'G.C.10A/OF25/14', 'Chair', NULL, 32, NULL, 1, 1.00, NULL, 'N/A', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 64, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22');
+INSERT INTO `inv_items` (`item_id`, `item_code`, `item_name`, `description`, `category_id`, `subcategory_id`, `uom_id`, `pack_size`, `barcode`, `manufacturer`, `brand`, `model`, `part_number`, `serial_number_flag`, `batch_lot_flag`, `expiry_date_flag`, `hazard_class_flag`, `storage_conditions`, `shelf_life_days`, `inspection_required`, `receiving_tolerance_pct`, `preferred_supplier_ids`, `contract_reference`, `procurement_method`, `reorder_level`, `reorder_quantity`, `min_level`, `max_level`, `safety_stock`, `lead_time_days`, `economic_order_qty`, `standard_cost`, `last_cost`, `average_cost`, `unit_cost`, `nrv`, `nrv_last_assessed`, `nrv_assessed_by`, `valuation_method`, `funding_source`, `program_project_code`, `gl_account_code`, `criticality_id`, `acct_class_id`, `item_status`, `issue_policy`, `asset_inventory_boundary`, `item_domain`, `asset_type_id`, `inventory_type_id`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(133, 'G.C.10A/OF25/16', 'Chair', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 64, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(134, 'G.C.10A/OF25/17', 'Chair', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 64, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(135, 'G.C.10A/OF25/18', 'Chair', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 64, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(136, 'G.C.10A/OF25/20', 'Chair', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 43, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(137, 'G.C.10A/OF48/1', 'Junior Desk', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 51, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(138, 'G.C.10A/OF7/8', 'Junior Desk', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 51, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(139, 'G.C.10A/OF7/9', 'Junior Desk', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 51, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(140, 'G.C.10A/OM16/1', 'Fax', NULL, 32, NULL, 1, 1.00, NULL, 'Brother', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(141, 'G.C.10A/OM20/10', 'Air Conditioner', NULL, 32, NULL, 1, 1.00, NULL, 'Prizm', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 65, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(142, 'G.C.10A/OM22/2', 'Air Conditioner', NULL, 32, NULL, 1, 1.00, NULL, 'Panasonic', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 66, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(143, 'ITM-00003', 'Surge Protector', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 67, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(144, 'ITM-00004', 'UPS', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 68, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(145, 'G.C.10A/OM23/3', 'U.P.S', NULL, 32, NULL, 1, 1.00, NULL, 'APC', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 57, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(146, 'G.C.10A/OM45/1', 'TV', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 69, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(147, 'G.C.10a/OM5/14', 'Computer Monitor', NULL, 32, NULL, 1, 1.00, NULL, 'Dell', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 30, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(148, 'G.C.10A/OM5/39', 'Computer Monitor', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 45, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(149, 'G.C.10a/OM5/19', 'Computer Monitor', NULL, 32, NULL, 1, 1.00, NULL, 'Lenovo', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 30, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(150, 'G.C10A/OM5/43', 'Computer Monitor', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 45, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(151, 'G.C.10A/OM5/20', 'Computer Monitor', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 30, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(152, 'G.C.10A/OM6/51', 'Computer (CPU)', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 52, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(153, 'G.C.10A/OM6/33', 'Computer (CPU)', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 45, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(154, 'G.C.10A/OM6/32', 'Computer (CPU)', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 45, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(155, 'G.C.10A/OM6/31', 'Computer (CPU)', NULL, 32, NULL, 1, 1.00, NULL, 'Lenovo', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 45, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(156, 'G.C.10A.OM8/46', 'Keyboard', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(157, 'G.C.10A/OM7/14', 'Computer Printer', NULL, 32, NULL, 1, 1.00, NULL, 'HP', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(158, 'G.C.10A/OM7/17', 'Computer Printer', NULL, 32, NULL, 1, 1.00, NULL, 'Canon', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(159, 'G.C.10A/OM7/30', 'Printer (MFP 281 fdw)', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 71, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(160, 'G.C.10A/OM8/27', 'Keyboard', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(161, 'G.C.10a/OM8/21', 'Keyboard', NULL, 32, NULL, 1, 1.00, NULL, 'Dell', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(162, 'G.C.10a/OM8/29', 'Keyboard', NULL, 32, NULL, 1, 1.00, NULL, 'Lenovo', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(163, 'G.C.10A/OM9/27', 'Computer Mouse', NULL, 32, NULL, 1, 1.00, NULL, 'Lenovo', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 41, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(164, 'G.C.10A/OM9/28', 'Computer Mouse', NULL, 32, NULL, 1, 1.00, NULL, 'Lenovo', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 41, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(165, 'G.C.10A/OM9/46', 'Computer Mouse', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 41, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(166, 'G.C.10A/OM9/29', 'Computer Mouse', NULL, 32, NULL, 1, 1.00, NULL, 'Lenovo', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 41, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(167, 'G.C.10A/OM9/9', 'Computer Mouse', NULL, 32, NULL, 1, 1.00, NULL, 'N/A', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 41, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(168, 'G.C.10A/OM13/4', 'CaLCULATOR', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 72, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(169, 'G.C.13A/OM13/6', 'Calculator', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 72, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(170, 'G.C.13A/OM13/3', 'Calculator', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 72, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(171, 'G.C.2/OF8/2', 'Book Shelf', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 73, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(172, 'G.C.10A/OM37/2', 'Fan', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 74, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(173, 'G.C.10A/OF24/3', 'Pedestal', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 73, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(174, 'G.C.15/OF14/8', 'Stool', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 73, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(175, 'G.C.13B/OF15/19', 'Stool', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 75, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(176, 'G.C10B/OM42/2', 'Paper Shedder', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 76, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(177, 'G.C.10B/OF38/4', 'Chair', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 77, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(178, 'G.C.6A/OF15/6', 'Stool', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 75, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(179, 'G.C.13B/E18/3', 'Balance', NULL, 32, NULL, 1, 1.00, NULL, 'Mettler Toledo', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 31, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(180, 'G.C.13B/E23/1', 'Balance', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 78, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(181, 'G.C.7/E18/1', 'Balance', NULL, 32, NULL, 1, 1.00, NULL, 'Mettler Toledo', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 31, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(182, 'G.C.7/E18/2', 'Balance', NULL, 32, NULL, 1, 1.00, NULL, 'Mettler Toledo', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 31, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(183, 'G.C.7/E18/5', 'Balance', NULL, 32, NULL, 1, 1.00, NULL, 'N/A', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 31, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(184, 'G.C.7/E18/6', 'Balance', NULL, 32, NULL, 1, 1.00, NULL, 'Mettler Toledo', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 31, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(185, 'G.C.7/E23/2', 'Balance', NULL, 32, NULL, 1, 1.00, NULL, 'Mettler Toledo', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 78, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(186, 'G.C.7/E23/3', 'Balance', NULL, 32, NULL, 1, 1.00, NULL, 'Mettler Toledo', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 78, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(187, 'G.C.7/E23/4', 'Balance', NULL, 32, NULL, 1, 1.00, NULL, 'Mettler Toledo', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 78, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(188, 'G.C.7/E23/5', 'Balance', NULL, 32, NULL, 1, 1.00, NULL, 'Mettler Toledo', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 78, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(189, 'G.C.7/E44/1', 'Epson Printer', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 79, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(190, 'G.C.7/E44/2', 'Epson Printer', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 79, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(191, 'G.C.7/OM1/10', 'Surge Protector', NULL, 32, NULL, 1, 1.00, NULL, 'APC', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(192, 'G.C.7/OM20/9', 'Air Conditioner', NULL, 32, NULL, 1, 1.00, NULL, 'Prizm', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 65, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(193, 'G.C.10B/OF11/1', 'Projector Screen', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 80, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(194, 'G.C.10B/OF32/1', 'Stand', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 81, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(195, 'G.C.10B/OF36/1', 'Pedestol', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 73, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(196, 'G.C.10B/OF37/1', 'Desk', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 82, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(197, 'G.C.10B/OF38/1', 'Chair', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 77, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(198, 'G.C.10B/OF38/11', 'Chair', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 77, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(199, 'G.C.10B/OF38/12', 'Chair', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 77, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(200, 'G.C.10B/OF38/13', 'Chair', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 77, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(201, 'G.C.10B/OF38/14', 'Chair', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 77, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(202, 'G.C.10B/OF38/15', 'Chair', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 77, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(203, 'G.C.10B/OF38/16', 'Chair', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 77, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(204, 'G.C.10B/OF38/9', 'Chair', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 77, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(205, 'G.C.10B/OF45/1', 'Retainer Bar Easel (Whiteboard Stand)', NULL, 32, NULL, 1, 1.00, NULL, 'Klip Xtreme', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(206, 'G.C.10B/OF46/1', 'White Board', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(207, 'G.C.10B/OF59/1', 'Chair', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 83, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(208, 'G.C.10B/OF59/10', 'Chair', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 83, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(209, 'G.C.10B/OF59/11', 'Chair', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 83, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(210, 'G.C.10B/OF59/12', 'Chair', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 83, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(211, 'G.C.10B/OF59/3', 'Chair', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 83, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(212, 'G.C.10B/OF59/4', 'Chair', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 83, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(213, 'G.C.10B/OF59/5', 'Chair', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 83, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(214, 'G.C.10B/OF59/6', 'Chair', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 83, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(215, 'G.C.10B/OF59/7', 'Chair', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 83, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(216, 'G.C.10B/OF59/8', 'Chair', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 83, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(217, 'G.C.10B/OM20/14', 'Air Conditioner', NULL, 32, NULL, 1, 1.00, NULL, 'Prizm', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 65, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(218, 'G.C.10B/OM24/16', 'Fan', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 37, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(219, 'G.C.10B/OM43/1', 'Projector', NULL, 32, NULL, 1, 1.00, NULL, 'Epson', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 84, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(220, 'G.C.10B/OM45/2', 'TV', NULL, 32, NULL, 1, 1.00, NULL, 'Samsung', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 85, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(221, 'G.C.10B/OM53/1', 'Projector Screen', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 86, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(222, 'G.C.13A/OF38/28', 'Chair', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 87, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(223, 'G.C.24/OF50/1', 'Round Table', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 89, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(224, 'G.C.7A/OM5/16', 'Monitor', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 90, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(225, 'G.C.7B/OM38/2', 'U.P.S', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 46, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(226, 'MF-HCMES-51-1174', 'Computer (CPU)', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 52, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(227, 'MF-HCMES-51-1332', 'Keyboard', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 41, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(228, 'MF-HCMES-51-1515', 'Mouse', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 41, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(229, 'G.C.13B/OM24/13', 'Fan', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 91, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(230, 'G.C.1A/OF18/1', 'Rubbish Bin', NULL, 32, NULL, 1, 1.00, NULL, 'N/A', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 88, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(231, 'G.C.1A/OF19/1', 'Filing Cabinet', NULL, 32, NULL, 1, 1.00, NULL, 'Art Metal', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 47, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(232, 'G.C.1A/OF33/2', 'Desk', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 92, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(233, 'G.C.1A/OF38/18', 'Chair', NULL, 32, NULL, 1, 1.00, NULL, 'N/A', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 77, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(234, 'G.C.1A/OF38/19', 'Chair', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 77, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(235, 'G.C.1A/OF38/20', 'Chair', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 77, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(236, 'G.C.1A/OF38/21', 'Chair', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 77, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(237, 'G.C.1A/OF38/22', 'Chair', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 77, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(238, 'G.C.1A/OF40/4', 'Desk', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 93, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(239, 'G.C.1A/OF52/1', 'Trash Bin', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 94, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(240, 'G.C.1B/OF19/2', 'Cabinet', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 47, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(241, 'G.C./OF19/3', 'Cabinet', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 47, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(242, 'G.C./1B/OF19/4', 'Cabinet', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 47, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(243, 'G.C.1A/OF60/1', 'Cabinet', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 95, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(244, 'G.C.1A/OM12/3', 'Surge Protector', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 96, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(245, 'G.C.1A/OM20/1', 'Air Conditioner', NULL, 32, NULL, 1, 1.00, NULL, 'Prizm', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 97, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(246, 'G.C.1A/OM36/1', 'U.P.S', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 46, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(247, 'G.C.1A/OM39/3', 'U.P.S', NULL, 32, NULL, 1, 1.00, NULL, 'APC', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 98, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(248, 'G.C.1A/OM45/2', 'Monitor', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 99, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(249, 'G.C.1A/OM7/19', 'Computer Printer', NULL, 32, NULL, 1, 1.00, NULL, 'HP', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(250, 'G.C.1A/OM7/26', 'Printer', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 100, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(251, 'G.C.1A/OM9/22', 'Computer Mouse', NULL, 32, NULL, 1, 1.00, NULL, 'Dell', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 41, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(252, 'G.C.6B/OF25/23', 'Chair', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 101, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(253, 'G.C.6B/OM45/3', 'Monitor', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 99, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(254, 'G.C.6B/OM6/49', 'Computer (CPU)', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 99, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(255, 'G.C.6B/OM8/43', 'Keyboard', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 99, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(256, 'G.C.6B/OM9/45', 'Mouse', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 99, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(257, 'G.C.7A/OF15/13', 'Stool', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 34, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(258, 'G.C.10B/OF/28/2', 'Cabinet', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 73, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(259, 'G.C.10B/OF/38/7', 'Chair', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 102, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(260, 'G.C.10B/OF38/2', 'Chair', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 77, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(261, 'G.C.13A/E22/1', 'Water Still', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(262, 'G.C.6A/E11/1', 'Centrifuge', NULL, 32, NULL, 1, 1.00, NULL, 'N/A', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 103, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(263, 'G.C.6A/E13/1', 'Wrist Action Shaker', NULL, 32, NULL, 1, 1.00, NULL, 'Burrell', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(264, 'G.C.6A/E16/1', 'Capillary Melting Point Apparatus', NULL, 32, NULL, 1, 1.00, NULL, 'Thomas Hoover', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22');
+INSERT INTO `inv_items` (`item_id`, `item_code`, `item_name`, `description`, `category_id`, `subcategory_id`, `uom_id`, `pack_size`, `barcode`, `manufacturer`, `brand`, `model`, `part_number`, `serial_number_flag`, `batch_lot_flag`, `expiry_date_flag`, `hazard_class_flag`, `storage_conditions`, `shelf_life_days`, `inspection_required`, `receiving_tolerance_pct`, `preferred_supplier_ids`, `contract_reference`, `procurement_method`, `reorder_level`, `reorder_quantity`, `min_level`, `max_level`, `safety_stock`, `lead_time_days`, `economic_order_qty`, `standard_cost`, `last_cost`, `average_cost`, `unit_cost`, `nrv`, `nrv_last_assessed`, `nrv_assessed_by`, `valuation_method`, `funding_source`, `program_project_code`, `gl_account_code`, `criticality_id`, `acct_class_id`, `item_status`, `issue_policy`, `asset_inventory_boundary`, `item_domain`, `asset_type_id`, `inventory_type_id`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(265, 'G.C.6A/E17/1', 'Milk Calculator', NULL, 32, NULL, 1, 1.00, NULL, 'Astell', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(266, 'G.C.6A/E25/3', 'Water Bath', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(267, 'G.C.6A/E37/1', 'Vacuum Oven', NULL, 32, NULL, 1, 1.00, NULL, 'Shel Lab', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(268, 'G.C.6A/E9/1', 'Water Bath & Circulator', NULL, 32, NULL, 1, 1.00, NULL, 'Luda', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(269, 'G.C.6A/E9/2', 'Water Bath & Circulator', NULL, 32, NULL, 1, 1.00, NULL, 'Cole Parmer', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(270, 'G.C.6A/OF38/25', 'Chair', NULL, 32, NULL, 1, 1.00, NULL, 'N/A', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 77, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(271, 'G.C.6A/OM44/2', 'Air Conditioner', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 104, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(272, 'G.C.6A/OM44/1', 'Air Conditioner', NULL, 32, NULL, 1, 1.00, NULL, 'Prizm', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 105, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(273, 'G.C.6A/TEM5/1', 'Step Ladder', NULL, 32, NULL, 1, 1.00, NULL, 'N/A', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 42, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(274, 'G.C.6B/OM32/1', '2 Door Fridge', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 106, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(275, 'G.C.7/OM39/2', 'APC UPS', NULL, 32, NULL, 1, 1.00, NULL, 'APC', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 46, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(276, 'G.C.7A/OF/23/3', 'Chair', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(277, 'G.C.6B/OF25/7', 'Chair', NULL, 32, NULL, 1, 1.00, NULL, 'N/A', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 64, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(278, 'G.C.6B/OF54/1', 'Cupboard - 2 Shelves', NULL, 32, NULL, 1, 1.00, NULL, 'Torch', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:42:22', '2026-07-21 19:42:22'),
+(279, 'G.C.6B/OF53/1', 'Desk', NULL, 32, NULL, 1, 1.00, NULL, 'Echo', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 50, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(280, 'G.C.6B/OF8/4', 'Book Rack', NULL, 32, NULL, 1, 1.00, NULL, 'N/A', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 107, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(281, 'G.C.13A/OF38/29', 'Chair', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 77, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(282, 'G.C.6A/OF38/26', 'Chair', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 77, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(283, 'G.C.6B/OF35/2', 'Air Conditioner', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 108, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(284, 'G.C.7B/OF8/5', 'Book Rack', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 107, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(285, 'G.C.6B/OM7/24', 'Printer', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 109, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(286, 'MF-HCMES51-3/1464', 'Monitor', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 52, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(287, 'G.C.13B/OF25/8', 'Chair', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 64, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(288, 'G.C.13B/OM6/14', 'Computer (CPU)', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 45, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(289, 'G.C.6B/OF18/', 'Trash Bin', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 49, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(290, 'G.C.13B/OM9/37', 'Mouse', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 45, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(291, 'G.C.13B/OM8/39', 'Keyboard', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 45, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(292, 'G.C.13A/E19/2', 'Flammable Cabinet', NULL, 32, NULL, 1, 1.00, NULL, 'N/A', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(293, 'G.C.13A/E21/2', 'Scientific Refrigerator', NULL, 32, NULL, 1, 1.00, NULL, 'Lab Line Instruments', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(294, 'G.C.13A/E25/4', 'Water Bath', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(295, 'G.C.13A/E31/1', 'Branson Sonicator', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(296, 'G.C.13A/E39/1', 'Water Bath', NULL, 32, NULL, 1, 1.00, NULL, 'Thermo', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 110, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(297, 'G.C.13A/E43/1', 'Purification System', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(298, 'G.C.13A/E5/3', 'Centrifuge', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 111, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(299, 'G.C.13A/OM32/4', 'Refrigerator', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 112, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(300, 'G.C.13A/OM40/1', 'Air Conditioner', NULL, 32, NULL, 1, 1.00, NULL, 'Prizm', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 113, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(301, 'G.C.13A/OM40/2', 'Air Conditioner', NULL, 32, NULL, 1, 1.00, NULL, 'Prizm', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 113, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(302, 'G.C.13A/OM50/7', 'U.P.S', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 46, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(303, 'G.C.13A/TEM5/3', 'Step Ladder', NULL, 32, NULL, 1, 1.00, NULL, 'N/A', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 42, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(304, 'G.C.14/OF18/14', 'Rubbish Bin', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 94, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(305, 'G.C.3/E1/1', 'Furnace', NULL, 32, NULL, 1, 1.00, NULL, 'Carbolite', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(306, 'G.C.13A/E15/4', 'Oven', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 114, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(307, 'GC/13A/SC1', 'Flammable Cabinet', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(308, 'ITM-00005', 'Furnace', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 115, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(309, 'G.C.3/OF14/2', 'Stool', NULL, 32, NULL, 1, 1.00, NULL, 'N/A', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 116, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(310, 'G.C.12/OM50/6', 'U.P.S', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 46, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(311, 'G.C.12/OM11/1', 'U.P.S', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 46, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(312, 'G.CA/OM11/6', 'U.P.S', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 46, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(313, 'G.C14/OF41/3', 'Chair', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(314, 'G.C.13A/OF38/27', 'Chair', NULL, 32, NULL, 1, 1.00, NULL, 'N/A', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 77, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(315, 'G.C.13A/OM1/8', 'Surge Protector', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 46, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(316, 'G.C.14/OF15/27', 'Stool', NULL, 32, NULL, 1, 1.00, NULL, 'N/A', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 34, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(317, 'G.C.14/OF25/12', 'Chair', NULL, 32, NULL, 1, 1.00, NULL, 'N/A', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 64, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(318, 'G.C.14/OF25/13', 'Chair', NULL, 32, NULL, 1, 1.00, NULL, 'N/A', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 64, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(319, 'G.C.14/OF25/14', 'Chair', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 48, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(320, 'G.C.14/OF48/2', 'Desk', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(321, 'G.C.14/OF48/3', 'Desk', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(322, 'G.C.14/OF48/4', 'Desk', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(323, 'G.C.14/OF48/5', 'Desk', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(324, 'G.C.14/OF48/6', 'Pedestol', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(325, 'G.C.14/OF48/7', 'Desk', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(326, 'G.C.14/OF49/2', 'Pedestol', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(327, 'G.C.14/OF49/3', 'Pedestol', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(328, 'G.C.14/OF49/4', 'Pedestol', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(329, 'G.C.2/OF50/4', 'UPS', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 46, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(330, 'G.C.14/OF49/5', 'Pedestol', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(331, 'ITM-00006', 'Modem', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 117, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(332, 'ITM-00007', 'Stapler', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 118, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(333, 'G.C.14/OF49/6', 'Desk', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(334, 'G.C.14/OF49/7', 'Pedestol', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(335, 'G.C.14/OF25/15', 'Chair', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(336, 'G.C.14/OF25/10', 'Chair', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(337, 'G.C.14/OF51/3', 'Chair', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(338, 'G.C.14/OM20/7', 'Air Conditioner', NULL, 32, NULL, 1, 1.00, NULL, 'Prizm', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 65, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(339, 'G.C.14/OM5/17', 'Computer Monitor', NULL, 32, NULL, 1, 1.00, NULL, 'Good', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 45, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(340, 'G.C.14/OM5/29', 'Computer Monitor', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 45, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(341, 'G.C.14/OM5/26', 'Computer Monitor', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 45, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(342, 'G.C.14/OM5/24', 'Computer Monitor', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 45, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(343, 'G.C.14/OM5/35', 'Computer Monitor', NULL, 32, NULL, 1, 1.00, NULL, 'Lenovo', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 30, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(344, 'G.C.14/OM50/2', 'U.P.S', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 46, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(345, 'G.C.14/OM6/36', 'Computer (CPU)', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 45, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(346, 'G.C.14/OM6/37', 'Computer (CPU)', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(347, 'G.C.14/OM6/42', 'Computer (CPU)', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 45, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(348, 'G.C.14/OM8/35', 'Keyboard', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 41, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(349, 'G.C.14/OM9/51', 'Computer Mouse', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 41, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(350, 'G.C.14/OM8/51', 'Keyboard', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 41, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(351, 'G.C.14/OM9/40', 'Keyboard', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 41, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(352, 'G.C.14/OM6/46', 'Computer Monitor', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 45, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(353, 'G.C14/OM6/55', 'Computer (CPU)', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 45, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(354, 'G.C5/OM6/27', 'Computer (CPU)', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 45, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(355, 'G.C.14/OM6/54', 'Computer (CPU)', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 99, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(356, 'G.C.14/OM7/28', 'Printer', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 120, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(357, 'G.C.14/OM8/26', 'Keyboard', NULL, 32, NULL, 1, 1.00, NULL, 'Good', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(358, 'G.C.14/OM8/31', 'Keyboard', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 45, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(359, 'G.C.14/OM8/42', 'Keyboard', NULL, 32, NULL, 1, 1.00, NULL, 'Lenovo', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(360, 'G.C14/OM9/15', 'Computer Mouse', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 41, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(361, 'G.C.14/OM9/31', 'Computer Mouse', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 41, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(362, 'G.C.14/OM9/32', 'Computer Mouse', NULL, 32, NULL, 1, 1.00, NULL, 'N/A', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 41, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(363, 'G.C.14/OM9/38', 'Computer Mouse', NULL, 32, NULL, 1, 1.00, NULL, 'Lenovo', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 41, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(364, 'G.C10A/OM2/2', 'Printer', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 119, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(365, 'G.C14/OM49/2', 'Keyboard', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 99, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(366, 'G.C/B/OM14/8', 'Spearke', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 41, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(367, 'CRL/PH4/803/2', 'Chair', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(368, 'G.C/39/OF18/12', 'Trash Bin', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 88, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(369, 'G.C.14/OM9/41', 'Computer Mouse', NULL, 32, NULL, 1, 1.00, NULL, 'Lenovo', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 41, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(370, 'G.C.13B/OF13/6', 'Cabinet', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 95, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(371, 'G.C.13B/OF25/4', 'Chair', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(372, 'G.C.13C/E20/3', 'HPLC', NULL, 32, NULL, 1, 1.00, NULL, 'Agilent Technologies', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 121, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(373, 'G.C.13C/E20/4', 'HPLC', NULL, 32, NULL, 1, 1.00, NULL, 'Jasco', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(374, 'G.C.13C/OF13/5', 'Cabinet', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 95, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(375, 'G.C.13C/OF39/1', 'Storage Cabinet', NULL, 32, NULL, 1, 1.00, NULL, 'N/A', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 122, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(376, 'G.C.13C/OM20/3', 'Air Conditioner', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 123, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(377, 'G.C.13C/OM23/4', 'U.P.S', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 124, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(378, 'G.C.13C/OM5/13', 'Computer Monitor', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 30, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(379, 'G.C.13C/OM5/21', 'Computer Monitor', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 30, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(380, 'G.C.13C/OM51/3', 'U.P.S', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 46, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(381, 'G.C.13C/OM6/34', 'Computer (CPU)', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 52, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(382, 'G.C.13C/OM6/35', 'Computer (CPU)', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 99, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(383, 'G.C.13C/OM7/20', 'Computer Printer', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(384, 'G.C.13c/OM8/20', 'Keyboard', NULL, 32, NULL, 1, 1.00, NULL, 'H.P.', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 52, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(385, 'G.C.13c/OM8/30', 'Keyboard', NULL, 32, NULL, 1, 1.00, NULL, 'Dell', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 99, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(386, 'G.C.13C/OM9/20', 'Computer Mouse', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 41, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(387, 'G.C.13C/OM9/30', 'Computer Mouse', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 41, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(388, 'G.C.5/OF15/4', 'Stool', NULL, 32, NULL, 1, 1.00, NULL, 'N/A', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 34, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(389, 'G.C.13C', 'HPLC', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 126, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(390, 'G.C.6C/E23/6', 'Balance', NULL, 32, NULL, 1, 1.00, NULL, 'Ohaus', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 78, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(391, 'G.C.6C/E33/1', 'Dissolution Instrument 1', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(392, 'G.C.6C/E33/2', 'Dissolution Instrument 2', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(393, 'G.C.6C/E34/1', 'Sotax Distintegration Tester', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(394, 'G.C.6C/E44/3', 'Epson Printer', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 127, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(395, 'G.C.6c/OM35/5', 'Air Conditioner', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 128, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(396, 'G.C.6C/OM20/3', 'Air Conditioner', NULL, 32, NULL, 1, 1.00, NULL, 'Prizm', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 65, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23');
+INSERT INTO `inv_items` (`item_id`, `item_code`, `item_name`, `description`, `category_id`, `subcategory_id`, `uom_id`, `pack_size`, `barcode`, `manufacturer`, `brand`, `model`, `part_number`, `serial_number_flag`, `batch_lot_flag`, `expiry_date_flag`, `hazard_class_flag`, `storage_conditions`, `shelf_life_days`, `inspection_required`, `receiving_tolerance_pct`, `preferred_supplier_ids`, `contract_reference`, `procurement_method`, `reorder_level`, `reorder_quantity`, `min_level`, `max_level`, `safety_stock`, `lead_time_days`, `economic_order_qty`, `standard_cost`, `last_cost`, `average_cost`, `unit_cost`, `nrv`, `nrv_last_assessed`, `nrv_assessed_by`, `valuation_method`, `funding_source`, `program_project_code`, `gl_account_code`, `criticality_id`, `acct_class_id`, `item_status`, `issue_policy`, `asset_inventory_boundary`, `item_domain`, `asset_type_id`, `inventory_type_id`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(397, 'G.C.6C/OM36/2', 'Eaton 9130', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 129, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(398, 'G.C.6C/OM36/3', 'U.P.S', NULL, 32, NULL, 1, 1.00, NULL, 'Eaton', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 130, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(399, 'G.C.13B/OF19/13', 'Cabinet', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 47, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(400, 'G.C.13B/OF5/4', 'Desk', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(401, 'G.C.13B/OF51/3', 'Chair', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(402, 'G.C.13B/OM3/1', 'Air Conditioner', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 97, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(403, 'G.C.13B/OM7/29', 'Printer', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 131, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(404, 'G.C.13B/OF8/7', 'Book Rack', NULL, 32, NULL, 1, 1.00, NULL, 'N/A', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 107, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(405, 'G.C.14/OM51/2', 'U.P.S', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 46, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(406, 'G.C130/OF15/14', 'Chair', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 133, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(407, 'ITM-00008', 'Water Dispenser', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 134, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(408, 'G.C.12/', 'Telephone', NULL, 32, NULL, 1, 1.00, NULL, 'Avaya', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 54, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(409, 'G.C.12/OF13/9', 'Stationery Cupboard', NULL, 32, NULL, 1, 1.00, NULL, 'Metal', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 136, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(410, 'G.C.12/OF19/15', 'Filing Cabinet', NULL, 32, NULL, 1, 1.00, NULL, 'Metal', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 47, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(411, 'G.C.12/OF19/17', 'Filing Cabinet', NULL, 32, NULL, 1, 1.00, NULL, 'Metal', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 47, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(412, 'G.C.12/OF21/4', 'Document Tray', NULL, 32, NULL, 1, 1.00, NULL, 'Metal/Mesh', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 137, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(413, 'G.C.12/OF21/5', 'Magazine Holder', NULL, 32, NULL, 1, 1.00, NULL, 'Plastic', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 138, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(414, 'G.C.12/OF21/6', 'Document Tray', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 137, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(415, 'G.C.12/OF25/16', 'Chair', NULL, 32, NULL, 1, 1.00, NULL, 'N/A', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 64, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(416, 'G.C.12/OF25/17', 'Chair', NULL, 32, NULL, 1, 1.00, NULL, 'N/A', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 64, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(417, 'G.C.12/OF25/18', 'Chair', NULL, 32, NULL, 1, 1.00, NULL, 'N/A', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 64, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(418, 'G.C.12/OF25/19', 'Chair', NULL, 32, NULL, 1, 1.00, NULL, 'N/A', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 64, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(419, 'G.C.12/OF25/20', 'Chair', NULL, 32, NULL, 1, 1.00, NULL, 'N/A', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 64, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(420, 'G.C.12/OF25/22', 'Chair', NULL, 32, NULL, 1, 1.00, NULL, 'N/A', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 139, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(421, 'G.C.12/OF25/23', 'Chair', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 64, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(422, 'G.C.12/OF25/24', 'Chair', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 64, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(423, 'G.C.12/OF25/25', 'Chair', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 64, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(424, 'G.C.12/OF40/2', 'Desk with Pedestal', NULL, 32, NULL, 1, 1.00, NULL, 'Wooden', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 140, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(425, 'G.C.12/OF48/2', 'Desk', NULL, 32, NULL, 1, 1.00, NULL, 'Wooden', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 141, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(426, 'G.C.12/OF53/2', 'Desk with Pedestal', NULL, 32, NULL, 1, 1.00, NULL, 'Wooden', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 140, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(427, 'G.C.12/OF53/3', 'Desk with Pedestal', NULL, 32, NULL, 1, 1.00, NULL, 'Wooden', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 140, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(428, 'G.C.12/OM20/12', 'Air Conditioner', NULL, 32, NULL, 1, 1.00, NULL, 'Prizm', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 65, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(429, 'G.C.12/OM5/32', 'Computer Monitor', NULL, 32, NULL, 1, 1.00, NULL, 'Lenovo', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 30, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(430, 'G.C.12/OM5/34', 'Computer Monitor', NULL, 32, NULL, 1, 1.00, NULL, 'Lenovo', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 30, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(431, 'G.C.12/OM5/40', 'Computer Monitor', NULL, 32, NULL, 1, 1.00, NULL, 'Dell', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 142, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(432, 'G.C.12/OM5/41', 'Computer Monitor', NULL, 32, NULL, 1, 1.00, NULL, 'HP', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 143, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(433, 'G.C.12/OM50/1', 'U.P.S', NULL, 32, NULL, 1, 1.00, NULL, 'APC', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 144, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(434, 'G.C.12/OM50/10', 'U.P.S', NULL, 32, NULL, 1, 1.00, NULL, 'APC', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 144, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(435, 'G.C.12/OM50/3', 'U.P.S', NULL, 32, NULL, 1, 1.00, NULL, 'APC', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 144, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(436, 'G.C.12/OM50/5', 'U.P.S', NULL, 32, NULL, 1, 1.00, NULL, 'APC', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 144, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(437, 'G.C.12/OM6/44', 'Computer (CPU)', NULL, 32, NULL, 1, 1.00, NULL, 'Lenovo', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 45, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(438, 'G.C.12/OM6/52', 'Computer (CPU)', NULL, 32, NULL, 1, 1.00, NULL, 'HP', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 52, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(439, 'G.C.12/OM6/53', 'Computer (CPU)', NULL, 32, NULL, 1, 1.00, NULL, 'Dell', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 99, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(440, 'G.C.12/OM7/25', 'Printer', NULL, 32, NULL, 1, 1.00, NULL, 'HP', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 145, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(441, 'G.C.12/OM8/36', 'Keyboard', NULL, 32, NULL, 1, 1.00, NULL, 'Lenovo', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 41, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(442, 'G.C.12/OM8/41', 'Keyboard', NULL, 32, NULL, 1, 1.00, NULL, 'Lenovo', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 41, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(443, 'G.C.12/OM8/47', 'Keyboard (HP)', NULL, 32, NULL, 1, 1.00, NULL, 'Dell', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 41, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(444, 'G.C.12/OM8/48', 'Keyboard (DELL)', NULL, 32, NULL, 1, 1.00, NULL, 'HP', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 41, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(445, 'G.C.12/OM9/39', 'Computer Mouse', NULL, 32, NULL, 1, 1.00, NULL, 'Lenovo', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 41, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(446, 'G.C.12/OM9/40', 'Computer Mouse', NULL, 32, NULL, 1, 1.00, NULL, 'Lenovo', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 41, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(447, 'G.C.12/OM9/47', 'Computer Mouse (HP)', NULL, 32, NULL, 1, 1.00, NULL, 'Dell', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 41, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(448, 'G.C.12/OM9/48', 'Computer Mouse (DELL)', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 41, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(449, 'G.C.1O6/OF38/6', 'Chair/Swivel', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 64, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(450, 'G.C.106/OF59/9', 'Chair/Swivel', NULL, 32, NULL, 1, 1.00, NULL, 'HP', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 64, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(451, 'G.C.7b/OM5/37', 'Computer Monitor', NULL, 32, NULL, 1, 1.00, NULL, 'Lenovo', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 30, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(452, 'G.C.7b/OM8/43', 'Keyboard', NULL, 32, NULL, 1, 1.00, NULL, 'Lenovo', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(453, 'G.C.1A/OF8/1', 'Book Rack', NULL, 32, NULL, 1, 1.00, NULL, 'N/A', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 107, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(454, 'G.C.7B/OM9/43', 'Computer Mouse', NULL, 32, NULL, 1, 1.00, NULL, 'Lenovo', NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 41, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(455, 'G.C.7B/OM35/4', 'Air Conditioner', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 146, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(456, 'G.C.7B/OM7/27', 'Printer', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 147, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(457, 'G.C.7B/OF25/10', 'Chair', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 48, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(458, 'G.C.7B/OM6/48', 'Computer (CPU)', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 45, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(459, 'G.C.5/OM11/3', 'U.P.S', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 46, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(460, 'G.C.7B/OF19/18', 'Cabinet', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 47, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(461, 'G.C.7B/OF5/3', 'Desk', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 73, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(462, 'G.C.6A/OF38/24', 'Chair', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 94, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(463, 'G.C.1/OF40/4', 'Executive Desk', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 73, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(464, 'G.C.10A/OF43/1', 'Desk', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 32, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(465, 'G.C.5/OM11/2', 'Surge Protector', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 148, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23'),
+(466, 'G.C.7B/OM12/5', 'Surge Protector', NULL, 32, NULL, 1, 1.00, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0.00, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0, NULL, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, 'AVERAGE', NULL, NULL, NULL, NULL, NULL, 'ACTIVE', 'UNRESTRICTED', 0, 'ASSET', 148, NULL, 27, NULL, '2026-07-21 19:42:23', '2026-07-21 19:42:23');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inv_item_risk_classes`
+--
+
+CREATE TABLE `inv_item_risk_classes` (
+  `item_id` int(11) NOT NULL,
+  `risk_class_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `inv_item_risk_classes`
+--
+
+INSERT INTO `inv_item_risk_classes` (`item_id`, `risk_class_id`) VALUES
+(2, 1),
+(6, 2),
+(7, 2),
+(8, 2),
+(10, 2),
+(11, 2),
+(12, 2),
+(13, 2),
+(14, 2),
+(15, 2),
+(17, 2),
+(18, 2),
+(19, 2),
+(20, 2),
+(21, 2),
+(22, 2),
+(23, 2),
+(24, 2),
+(25, 2),
+(26, 2),
+(27, 2),
+(28, 2),
+(29, 2),
+(30, 2),
+(31, 2),
+(32, 2),
+(33, 2),
+(34, 2),
+(6, 3),
+(7, 3),
+(8, 3),
+(10, 3),
+(11, 3),
+(12, 3),
+(13, 6),
+(14, 6),
+(15, 6),
+(17, 6),
+(18, 6),
+(19, 6),
+(20, 6),
+(21, 6),
+(22, 6),
+(23, 6),
+(24, 6),
+(25, 6),
+(26, 6),
+(27, 6),
+(28, 6),
+(29, 6),
+(30, 6),
+(31, 6),
+(32, 6),
+(33, 6),
+(34, 6);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inv_item_suppliers`
+--
+
+CREATE TABLE `inv_item_suppliers` (
+  `item_id` int(11) NOT NULL,
+  `vendor_id` int(11) NOT NULL,
+  `is_primary` tinyint(1) DEFAULT 0,
+  `last_supply_date` date DEFAULT NULL,
+  `last_price` decimal(14,2) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inv_locations`
+--
+
+CREATE TABLE `inv_locations` (
+  `location_id` int(11) NOT NULL,
+  `location_code` varchar(30) NOT NULL,
+  `site_campus` varchar(100) DEFAULT NULL,
+  `site_name` varchar(100) DEFAULT NULL,
+  `building` varchar(100) DEFAULT NULL,
+  `floor` varchar(20) DEFAULT NULL,
+  `room_storage_area` varchar(100) DEFAULT NULL,
+  `bin_shelf_rack` varchar(50) DEFAULT NULL,
+  `security_level` enum('STANDARD','RESTRICTED','HIGH_SECURITY') DEFAULT 'STANDARD',
+  `temp_humidity_req` varchar(100) DEFAULT NULL,
+  `custodian_user_id` int(11) DEFAULT NULL,
+  `capacity` varchar(50) DEFAULT NULL,
+  `is_active` tinyint(1) DEFAULT 1,
+  `location_type` enum('USABLE','QUARANTINE','EXPIRED','DAMAGED','DISPOSAL','RECEIVING','STAGING') DEFAULT 'USABLE',
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `inv_locations`
+--
+
+INSERT INTO `inv_locations` (`location_id`, `location_code`, `site_campus`, `site_name`, `building`, `floor`, `room_storage_area`, `bin_shelf_rack`, `security_level`, `temp_humidity_req`, `custodian_user_id`, `capacity`, `is_active`, `location_type`, `created_at`, `updated_at`) VALUES
+(2, 'GC1A', 'Hope Complex, Hope Gardens 231 Old Hope Road, Kingston', NULL, 'Main', '1st', 'Government Chemist', NULL, 'STANDARD', 'Regular', 40, NULL, 1, 'USABLE', '2026-05-27 15:13:27', '2026-06-15 17:07:19'),
+(3, 'GC1B', 'Hope Complex, Hope Gardens 231 Old Hope Road, Kingston', NULL, 'Main', '1st', 'Administrator Office', NULL, 'STANDARD', 'Regular', NULL, NULL, 1, 'USABLE', '2026-05-27 15:15:24', '2026-06-15 17:07:29'),
+(4, 'GC6B', 'Hope Complex, Hope Gardens 231 Old Hope Road, Kingston', NULL, 'Main', '1st', 'Deputy Government Chemist Office', NULL, 'RESTRICTED', 'Regular', 40, NULL, 1, 'USABLE', '2026-05-27 15:18:13', '2026-06-15 17:07:38'),
+(5, 'GC7B', 'Hope Complex, Hope Gardens  231 Old Hope Road Kingston', NULL, 'Main', '1st', 'Senior Chemist Office - Toxicology', NULL, 'STANDARD', NULL, NULL, NULL, 1, 'USABLE', '2026-06-15 17:04:06', '2026-06-15 17:24:44'),
+(6, 'GC13C', 'Hope Complex, Hope Gardens  231 Old Hope Road, Kingston', NULL, 'Main', 'Ground', 'Senior Chemist Office - Pharmaceutical', NULL, 'STANDARD', NULL, NULL, NULL, 1, 'USABLE', '2026-06-15 17:05:39', '2026-06-15 17:25:14'),
+(7, 'GC14', 'Hope Complex, Hope Gardens  231 Old Hope Road, Kingston', NULL, 'Main', 'Ground', 'Emerald Office', NULL, 'STANDARD', NULL, NULL, NULL, 1, 'USABLE', '2026-06-15 17:06:58', '2026-06-15 17:06:58'),
+(8, 'GC2', 'Hope Complex, Hope Gardens  231 Old Hope Road, Kingston', NULL, 'Main', '1st', 'Library/Quality Assurance (QA) Office', NULL, 'STANDARD', NULL, NULL, NULL, 1, 'USABLE', '2026-06-15 17:08:47', '2026-06-15 17:08:47'),
+(9, 'GC10D', 'Hope Complex, Hope Gardens  231 Old Hope Road, Kingston', NULL, 'Main', 'Ground', 'Accounting Records/Finance Director’s Office', NULL, 'STANDARD', NULL, NULL, NULL, 1, 'USABLE', '2026-06-15 17:09:51', '2026-06-15 17:09:51'),
+(10, 'GC10A', 'Hope Complex, Hope Gardens  231 Old Hope Road, Kingston', NULL, 'Main', 'Ground', 'Finance & Accounts Office', NULL, 'STANDARD', NULL, NULL, NULL, 1, 'USABLE', '2026-06-15 17:11:05', '2026-06-15 17:11:05'),
+(11, 'GC12', 'Hope Complex, Hope Gardens  231 Old Hope Road, Kingston', NULL, 'Main', 'Ground', 'Human Resource Management & Administration Office', NULL, 'STANDARD', NULL, NULL, NULL, 1, 'USABLE', '2026-06-15 17:14:06', '2026-06-19 17:16:11'),
+(12, 'GC4', 'Hope Complex, Hope Gardens  231 Old Hope Road, Kingston', NULL, 'Main', '1st', 'Male Restroom', NULL, 'STANDARD', NULL, NULL, NULL, 1, 'USABLE', '2026-06-15 17:19:03', '2026-06-15 17:52:49'),
+(13, 'GC7C', 'Hope Complex, Hope Gardens  231 Old Hope Road, Kingston', NULL, 'Main', '1st', 'Toxicology Office', NULL, 'STANDARD', NULL, NULL, NULL, 1, 'USABLE', '2026-06-15 17:23:47', '2026-06-15 17:23:47'),
+(14, 'GC27', 'Hope Complex, Hope Gardens  231 Old Hope Road, Kingston', NULL, 'Main', 'Ground', 'Telephone Operator/Customer Service Office', NULL, 'STANDARD', NULL, NULL, NULL, 1, 'USABLE', '2026-06-15 17:26:38', '2026-06-15 17:26:38'),
+(15, 'GC15', 'Hope Complex, Hope Gardens  231 Old Hope Road, Kingston', NULL, 'Main', 'Ground', 'Main Stores', NULL, 'STANDARD', NULL, NULL, NULL, 1, 'USABLE', '2026-06-15 17:27:46', '2026-06-15 17:27:46'),
+(16, 'GC0', 'Hope Complex, Hope Gardens 231 Old Hope Road, Kingston', NULL, 'Main', 'Ground', 'Lobby', NULL, 'STANDARD', NULL, NULL, NULL, 1, 'USABLE', '2026-06-15 17:28:36', '2026-06-15 17:28:36'),
+(17, 'GC10B', 'Hope Complex, Hope Gardens 231 Old Hope Road, Kingston', NULL, 'Main', 'Ground', 'Conference Room', NULL, 'STANDARD', NULL, NULL, NULL, 1, 'USABLE', '2026-06-15 17:29:44', '2026-06-15 17:29:44'),
+(18, 'GC26', 'Hope Complex, Hope Gardens 231 Old Hope Road, Kingston', NULL, 'Main', 'Ground', 'Generator Room', NULL, 'STANDARD', NULL, NULL, NULL, 1, 'USABLE', '2026-06-15 17:30:42', '2026-06-15 17:30:42'),
+(19, 'GC20', 'Hope Complex, Hope Gardens 231 Old Hope Road, Kingston', NULL, 'Main', 'Ground', 'Breaker/SubPanel Room', NULL, 'STANDARD', NULL, NULL, NULL, 1, 'USABLE', '2026-06-15 17:31:42', '2026-06-15 17:31:42'),
+(20, 'GC25', 'Hope Complex, Hope Gardens  231 Old Hope Road, Kingston', NULL, 'Main', 'Ground', 'Garage', NULL, 'STANDARD', NULL, NULL, NULL, 1, 'USABLE', '2026-06-15 17:32:17', '2026-06-15 17:32:17'),
+(21, 'GC11', 'Hope Complex, Hope Gardens  231 Old Hope Road, Kingston', NULL, 'Main', 'Ground', 'Solvent Stores', NULL, 'STANDARD', NULL, NULL, NULL, 1, 'USABLE', '2026-06-15 17:32:45', '2026-06-15 17:32:45'),
+(22, 'GC13A', 'Hope Complex, Hope Gardens  231 Old Hope Road, Kingston', NULL, 'Main', 'Ground', 'Pharmaceutical Laboratory', NULL, 'STANDARD', NULL, NULL, NULL, 1, 'USABLE', '2026-06-15 17:34:12', '2026-06-15 17:34:12'),
+(23, 'GC13B', 'Hope Complex, Hope Gardens  231 Old Hope Road, Kingston', NULL, 'Main', 'Ground', 'High-Performance Liquid Chromatography (HPLC) Room', NULL, 'STANDARD', NULL, NULL, NULL, 1, 'USABLE', '2026-06-15 17:35:21', '2026-06-15 17:35:21'),
+(24, 'GC18', 'Hope Complex, Hope Gardens  231 Old Hope Road, Kingston', NULL, 'Main', 'Ground', 'Main Breaker Room', NULL, 'STANDARD', NULL, NULL, NULL, 1, 'USABLE', '2026-06-15 17:36:11', '2026-06-15 17:36:11'),
+(25, 'GC19', 'Hope Complex, Hope Gardens  231 Old Hope Road, Kingston', NULL, 'Main', 'Ground', 'Chemical Storage', NULL, 'STANDARD', NULL, NULL, NULL, 1, 'USABLE', '2026-06-15 17:37:02', '2026-06-15 17:37:02'),
+(26, 'GC17', 'Hope Complex, Hope Gardens  231 Old Hope Road, Kingston', NULL, 'Main', 'Ground', 'Male Restroom', NULL, 'STANDARD', NULL, NULL, NULL, 1, 'USABLE', '2026-06-15 17:37:33', '2026-06-15 17:53:26'),
+(27, 'GC16', 'Hope Complex, Hope Gardens  231 Old Hope Road, Kingston', NULL, 'Main', 'Ground', 'Secondary Female Restroom', NULL, 'STANDARD', NULL, NULL, NULL, 1, 'USABLE', '2026-06-15 17:38:17', '2026-06-15 17:38:17'),
+(28, 'GC10C', 'Hope Complex, Hope Gardens  231 Old Hope Road, Kingston', NULL, 'Main', 'Ground', 'Female Restroom', NULL, 'STANDARD', NULL, NULL, NULL, 1, 'USABLE', '2026-06-15 17:38:52', '2026-06-15 17:53:09'),
+(29, 'GC23', 'Hope Complex, Hope Gardens  231 Old Hope Road, Kingston', NULL, 'Main', 'Ground', 'Attendant Room', NULL, 'STANDARD', NULL, NULL, NULL, 1, 'USABLE', '2026-06-15 17:39:21', '2026-06-15 17:39:21'),
+(30, 'GC3', 'Hope Complex, Hope Gardens  231 Old Hope Road, Kingston', NULL, 'Main', '1st', 'Industrial Laboratory', NULL, 'STANDARD', NULL, NULL, NULL, 1, 'USABLE', '2026-06-15 17:40:44', '2026-06-15 17:40:44'),
+(31, 'GC24', 'Hope Complex, Hope Gardens  231 Old Hope Road, Kingston', NULL, 'Main', '1st', 'Sick Bay', NULL, 'STANDARD', NULL, NULL, NULL, 1, 'USABLE', '2026-06-15 17:41:37', '2026-06-15 17:41:37'),
+(32, 'GC22', 'Hope Complex, Hope Gardens  231 Old Hope Road, Kingston', NULL, 'Main', '1st', 'Attendant Room', NULL, 'STANDARD', NULL, NULL, NULL, 1, 'USABLE', '2026-06-15 17:42:27', '2026-06-15 17:42:27'),
+(33, 'GC21', 'Hope Complex, Hope Gardens  231 Old Hope Road, Kingston', NULL, 'Main', '1st', 'Breaker Room', NULL, 'STANDARD', NULL, NULL, NULL, 1, 'USABLE', '2026-06-15 17:43:05', '2026-06-15 17:43:05'),
+(34, 'GC28', 'Hope Complex, Hope Gardens  231 Old Hope Road, Kingston', NULL, 'Security Post', 'Gate', 'Security/Watchman Post', NULL, 'STANDARD', NULL, NULL, NULL, 1, 'USABLE', '2026-06-15 17:46:02', '2026-06-15 17:46:02'),
+(35, 'GC4A', 'Hope Complex, Hope Gardens  231 Old Hope Road, Kingston', NULL, 'Main', '1st', 'Government Chemist Restroom', NULL, 'STANDARD', NULL, NULL, NULL, 1, 'USABLE', '2026-06-15 17:48:06', '2026-06-15 17:48:06'),
+(36, 'GC7', 'Hope Complex, Hope Gardens  231 Old Hope Road, Kingston', NULL, 'Main', '1st', 'Balance Room', NULL, 'STANDARD', NULL, NULL, NULL, 1, 'USABLE', '2026-06-15 17:48:37', '2026-06-15 17:48:37'),
+(37, 'GC7A', 'Hope Complex, Hope Gardens  231 Old Hope Road, Kingston', NULL, 'Main', '1st', 'Toxicology Laboratory', NULL, 'STANDARD', NULL, NULL, NULL, 1, 'USABLE', '2026-06-15 17:49:19', '2026-06-15 17:49:19'),
+(38, 'GC8', 'Hope Complex, Hope Gardens  231 Old Hope Road, Kingston', NULL, 'Main', '1st', 'Kitchen', NULL, 'STANDARD', NULL, NULL, NULL, 1, 'USABLE', '2026-06-15 17:51:20', '2026-06-15 17:51:20'),
+(39, 'GC9', 'Hope Complex, Hope Gardens  231 Old Hope Road, Kingston', NULL, 'Main', '1st', 'Lunch Room', NULL, 'STANDARD', NULL, NULL, NULL, 1, 'USABLE', '2026-06-15 17:51:48', '2026-06-15 17:51:48'),
+(40, 'GC11A', 'Hope Complex, Hope Gardens  231 Old Hope Road, Kingston', NULL, 'Main', '1st', 'Female Restroom', NULL, 'STANDARD', NULL, NULL, NULL, 1, 'USABLE', '2026-06-15 17:52:33', '2026-06-15 17:52:33'),
+(43, 'GC29', 'Hope Complex, Hope Gardens  231 Old Hope Road, Kingston 6', NULL, 'Main', 'Ground', 'Stationery/Water Storage', NULL, 'RESTRICTED', NULL, NULL, NULL, 1, 'USABLE', '2026-06-19 16:56:59', '2026-06-19 16:56:59'),
+(44, 'GC30', 'Hope Complex, Hope Gardens  231 Old Hope Road, Kingston', NULL, 'Container', 'Ground', 'Container', NULL, 'RESTRICTED', NULL, NULL, NULL, 1, 'USABLE', '2026-06-19 16:57:55', '2026-06-19 17:26:48'),
+(45, 'GC12A', 'Hope Complex, Hope Gardens  231 Old Hope Road, Kingston', NULL, 'Main', 'Ground', 'HRM&A Director\'s Office', NULL, 'STANDARD', NULL, NULL, NULL, 1, 'USABLE', '2026-06-19 17:16:46', '2026-06-19 17:16:46'),
+(46, 'GC6D', 'Hope Complex, Hope Gardens  231 Old Hope Road, Kingston', NULL, 'Main', '1st', 'Server Room', NULL, 'STANDARD', NULL, NULL, NULL, 1, 'USABLE', '2026-06-19 17:26:19', '2026-06-19 17:26:19');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inv_period_snapshots`
+--
+
+CREATE TABLE `inv_period_snapshots` (
+  `snapshot_id` int(11) NOT NULL,
+  `period_id` int(11) NOT NULL,
+  `item_id` int(11) NOT NULL,
+  `location_id` int(11) DEFAULT NULL,
+  `quantity_on_hand` decimal(14,4) DEFAULT 0.0000,
+  `unit_cost` decimal(14,2) DEFAULT 0.00,
+  `total_value` decimal(14,2) DEFAULT 0.00,
+  `nrv` decimal(14,2) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inv_quarantine_log`
+--
+
+CREATE TABLE `inv_quarantine_log` (
+  `quarantine_id` int(11) NOT NULL,
+  `item_id` int(11) NOT NULL,
+  `stock_id` int(11) DEFAULT NULL,
+  `location_id` int(11) DEFAULT NULL,
+  `quarantine_location_id` int(11) DEFAULT NULL,
+  `quantity` decimal(14,4) NOT NULL,
+  `reason` text NOT NULL,
+  `status` enum('QUARANTINED','UNDER_INSPECTION','RELEASED','DISPOSED') DEFAULT 'QUARANTINED',
+  `quarantined_by` int(11) NOT NULL,
+  `quarantined_at` datetime DEFAULT current_timestamp(),
+  `released_by` int(11) DEFAULT NULL,
+  `released_at` datetime DEFAULT NULL,
+  `release_decision` enum('RETURN_TO_STOCK','DISPOSE','RETURN_TO_SUPPLIER') DEFAULT NULL,
+  `decision_notes` text DEFAULT NULL,
+  `batch_lot_number` varchar(50) DEFAULT NULL,
+  `serial_number` varchar(100) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inv_recalls`
+--
+
+CREATE TABLE `inv_recalls` (
+  `recall_id` int(11) NOT NULL,
+  `recall_number` varchar(30) NOT NULL,
+  `recall_type` enum('RECALL','WITHDRAWAL') NOT NULL DEFAULT 'RECALL',
+  `item_id` int(11) NOT NULL,
+  `batch_lot_number` varchar(50) DEFAULT NULL,
+  `serial_number` varchar(100) DEFAULT NULL,
+  `reason` text NOT NULL,
+  `severity` enum('CLASS_I','CLASS_II','CLASS_III') DEFAULT 'CLASS_II' COMMENT 'I=critical, II=moderate, III=minor',
+  `status` enum('INITIATED','IN_PROGRESS','COMPLETED','CANCELLED') DEFAULT 'INITIATED',
+  `initiated_by` int(11) NOT NULL,
+  `initiated_at` datetime DEFAULT current_timestamp(),
+  `completed_at` datetime DEFAULT NULL,
+  `total_quantity_affected` decimal(14,4) DEFAULT 0.0000,
+  `total_quantity_recovered` decimal(14,4) DEFAULT 0.0000,
+  `notes` text DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inv_recall_items`
+--
+
+CREATE TABLE `inv_recall_items` (
+  `recall_item_id` int(11) NOT NULL,
+  `recall_id` int(11) NOT NULL,
+  `location_id` int(11) DEFAULT NULL,
+  `issued_to_user_id` int(11) DEFAULT NULL,
+  `quantity_affected` decimal(14,4) DEFAULT 0.0000,
+  `quantity_recovered` decimal(14,4) DEFAULT 0.0000,
+  `status` enum('PENDING','NOTIFIED','RECOVERED','UNRECOVERABLE') DEFAULT 'PENDING',
+  `notes` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inv_requisitions`
+--
+
+CREATE TABLE `inv_requisitions` (
+  `requisition_id` int(11) NOT NULL,
+  `requisition_number` varchar(30) NOT NULL,
+  `requester_user_id` int(11) NOT NULL,
+  `department_id` int(11) DEFAULT NULL COMMENT 'branch_id reference',
+  `cost_centre` varchar(50) DEFAULT NULL,
+  `intended_use` text DEFAULT NULL,
+  `destination_location_id` int(11) DEFAULT NULL,
+  `urgency` enum('NORMAL','URGENT','EMERGENCY') DEFAULT 'NORMAL',
+  `justification` text DEFAULT NULL,
+  `emergency_reason_code` varchar(30) DEFAULT NULL,
+  `status` enum('DRAFT','SUBMITTED','APPROVED','PARTIALLY_ISSUED','ISSUED','REJECTED','CANCELLED') DEFAULT 'DRAFT',
+  `approved_by` int(11) DEFAULT NULL,
+  `approved_at` datetime DEFAULT NULL,
+  `rejection_reason` text DEFAULT NULL,
+  `is_duplicate_flagged` tinyint(1) DEFAULT 0,
+  `procurement_trigger` tinyint(1) DEFAULT 0 COMMENT 'If true, triggers procurement for out-of-stock items',
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `inv_requisitions`
+--
+
+INSERT INTO `inv_requisitions` (`requisition_id`, `requisition_number`, `requester_user_id`, `department_id`, `cost_centre`, `intended_use`, `destination_location_id`, `urgency`, `justification`, `emergency_reason_code`, `status`, `approved_by`, `approved_at`, `rejection_reason`, `is_duplicate_flagged`, `procurement_trigger`, `created_at`, `updated_at`) VALUES
+(1, 'SRQ-00001', 40, 5, 'hrm', 'purchase labtop', 1, 'NORMAL', 'work on the go/home', NULL, 'REJECTED', NULL, NULL, 'Use a loaner', 0, 0, '2026-03-11 19:39:04', '2026-05-28 02:20:17'),
+(2, 'SRQ-00002', 27, 5, NULL, NULL, 4, 'NORMAL', NULL, NULL, 'APPROVED', 30, '2026-07-14 10:48:08', NULL, 0, 0, '2026-07-14 14:50:29', '2026-07-14 15:48:08'),
+(3, 'SRQ-00003', 27, 8, NULL, NULL, 11, 'NORMAL', NULL, NULL, 'APPROVED', 32, '2026-07-20 16:36:58', NULL, 0, 0, '2026-07-16 00:52:06', '2026-07-20 21:36:58'),
+(4, 'SRQ-00004', 32, NULL, NULL, NULL, NULL, 'NORMAL', NULL, NULL, 'REJECTED', NULL, NULL, 'ngjg', 0, 0, '2026-07-20 21:52:37', '2026-07-20 21:54:23'),
+(5, 'SRQ-00005', 32, NULL, NULL, NULL, NULL, 'NORMAL', NULL, NULL, 'SUBMITTED', NULL, NULL, NULL, 0, 0, '2026-07-20 21:54:53', '2026-07-20 21:54:53');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inv_requisition_items`
+--
+
+CREATE TABLE `inv_requisition_items` (
+  `req_item_id` int(11) NOT NULL,
+  `requisition_id` int(11) NOT NULL,
+  `item_id` int(11) NOT NULL,
+  `quantity_requested` decimal(14,4) NOT NULL,
+  `quantity_approved` decimal(14,4) DEFAULT NULL,
+  `quantity_issued` decimal(14,4) DEFAULT 0.0000,
+  `substitute_item_id` int(11) DEFAULT NULL,
+  `remarks` text DEFAULT NULL,
+  `stock_available_at_request` decimal(14,4) DEFAULT NULL COMMENT 'Snapshot of available stock'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `inv_requisition_items`
+--
+
+INSERT INTO `inv_requisition_items` (`req_item_id`, `requisition_id`, `item_id`, `quantity_requested`, `quantity_approved`, `quantity_issued`, `substitute_item_id`, `remarks`, `stock_available_at_request`) VALUES
+(1, 1, 2, 1.0000, NULL, 0.0000, NULL, NULL, 0.0000),
+(2, 2, 19, 2.0000, 2.0000, 0.0000, NULL, NULL, 0.0000),
+(3, 3, 29, 2.0000, 2.0000, 0.0000, NULL, NULL, 0.0000),
+(4, 4, 41, 1.0000, NULL, 0.0000, NULL, NULL, 0.0000),
+(5, 5, 22, 1.0000, NULL, 0.0000, NULL, NULL, 0.0000);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inv_returns`
+--
+
+CREATE TABLE `inv_returns` (
+  `return_id` int(11) NOT NULL,
+  `return_number` varchar(30) NOT NULL,
+  `grn_id` int(11) DEFAULT NULL COMMENT 'Link to original GRN',
+  `supplier_vendor_id` int(11) DEFAULT NULL,
+  `supplier_name` varchar(200) DEFAULT NULL,
+  `reason` text NOT NULL,
+  `return_type` enum('DEFECTIVE','WRONG_ITEM','EXCESS','WARRANTY','OTHER') NOT NULL,
+  `status` enum('DRAFT','PENDING_APPROVAL','APPROVED','DISPATCHED','COMPLETED','CANCELLED') DEFAULT 'DRAFT',
+  `requested_by` int(11) NOT NULL,
+  `approved_by` int(11) DEFAULT NULL,
+  `approved_at` datetime DEFAULT NULL,
+  `dispatched_at` datetime DEFAULT NULL,
+  `completed_at` datetime DEFAULT NULL,
+  `debit_note_number` varchar(50) DEFAULT NULL,
+  `rma_number` varchar(50) DEFAULT NULL COMMENT 'Return Merchandise Authorization',
+  `from_location_id` int(11) DEFAULT NULL,
+  `notes` text DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inv_return_items`
+--
+
+CREATE TABLE `inv_return_items` (
+  `return_item_id` int(11) NOT NULL,
+  `return_id` int(11) NOT NULL,
+  `item_id` int(11) NOT NULL,
+  `quantity` decimal(14,4) NOT NULL,
+  `batch_lot_number` varchar(50) DEFAULT NULL,
+  `serial_number` varchar(100) DEFAULT NULL,
+  `reason` text DEFAULT NULL,
+  `unit_cost` decimal(14,2) DEFAULT 0.00
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inv_risk_classes`
+--
+
+CREATE TABLE `inv_risk_classes` (
+  `risk_class_id` int(11) NOT NULL,
+  `risk_code` varchar(30) NOT NULL,
+  `risk_name` varchar(100) NOT NULL,
+  `description` text DEFAULT NULL,
+  `sort_order` int(11) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `inv_risk_classes`
+--
+
+INSERT INTO `inv_risk_classes` (`risk_class_id`, `risk_code`, `risk_name`, `description`, `sort_order`) VALUES
+(1, 'HIGH_VALUE', 'High-Value Items', 'Items above defined value threshold', 1),
+(2, 'CONTROLLED', 'Controlled Items', 'Items with restricted access', 2),
+(3, 'HAZARDOUS', 'Hazardous Items', 'Items requiring special handling', 3),
+(4, 'EXPIRY_SENS', 'Expiry-Sensitive Items', 'Items with shelf life constraints', 4),
+(5, 'SERIALIZED', 'Serialized Items', 'Items tracked by serial number', 5),
+(6, 'REGULATED', 'Regulated Items', 'Items under regulatory control', 6),
+(7, 'DONATED', 'Donated Items', 'Items received as donations/grants', 7),
+(8, 'EMERG_RESERVE', 'Emergency Reserve / Contingency Stock', 'Items reserved for emergencies', 8);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inv_roles`
+--
+
+CREATE TABLE `inv_roles` (
+  `inv_role_id` int(11) NOT NULL,
+  `role_code` varchar(30) NOT NULL,
+  `role_name` varchar(100) NOT NULL,
+  `description` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `inv_roles`
+--
+
+INSERT INTO `inv_roles` (`inv_role_id`, `role_code`, `role_name`, `description`) VALUES
+(1, 'ACCT_OFFICER', 'Accounting Officer / Head of Department', 'Overall accountability for inventory'),
+(2, 'ASSET_MGR', 'Asset Manager / Inventory Controller', 'Day-to-day inventory management'),
+(3, 'STOREKEEPER', 'Storekeeper / Stores Clerk', 'Physical custody of stores'),
+(4, 'REQ_OFFICER', 'Requisitioning Officer', 'Authorized to submit stock requisitions'),
+(5, 'RCV_OFFICER', 'Receiving Officer', 'Authorized to receive goods'),
+(6, 'APR_OFFICER', 'Approving Officer', 'Authorized to approve inventory transactions'),
+(7, 'PROC_OFFICER', 'Procurement Officer', 'Links procurement to inventory'),
+(8, 'FIN_OFFICER', 'Finance Officer', 'Financial oversight of inventory'),
+(9, 'DISP_AUTH', 'Disposal / Survey / Write-off Authority', 'Authorized for disposal and write-off'),
+(10, 'INT_AUDITOR', 'Internal Auditor', 'Audit and review of inventory'),
+(11, 'SYS_ADMIN', 'System Administrator', 'System configuration for inventory'),
+(12, 'DEPT_CUSTODIAN', 'Departmental Custodian / Location Custodian', 'Responsible for inventory at a location');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inv_serial_numbers`
+--
+
+CREATE TABLE `inv_serial_numbers` (
+  `serial_id` int(11) NOT NULL,
+  `item_id` int(11) NOT NULL,
+  `serial_number` varchar(100) NOT NULL,
+  `purchase_req_number` varchar(50) DEFAULT NULL COMMENT 'Purchase Requisition # (procurement_requests.request_number)',
+  `po_number` varchar(50) DEFAULT NULL COMMENT 'Purchase Order # (purchase_orders.po_number)',
+  `invoice_number` varchar(100) DEFAULT NULL COMMENT 'Supplier Invoice #',
+  `grn_number` varchar(30) DEFAULT NULL COMMENT 'Goods Received Note # (inv_goods_received.grn_number)',
+  `grn_item_id` int(11) DEFAULT NULL COMMENT 'FK to inv_grn_items',
+  `dgc_asset_number` varchar(50) DEFAULT NULL COMMENT 'DGC Asset Register # assigned after receiving',
+  `issue_requisition_number` varchar(30) DEFAULT NULL COMMENT 'Issue Requisition # (inv_requisitions.requisition_number)',
+  `issue_number` varchar(30) DEFAULT NULL COMMENT 'Issue Voucher # (inv_issues.issue_number)',
+  `issued_to_user_id` int(11) DEFAULT NULL COMMENT 'User the asset is assigned/issued to',
+  `issued_to_department` int(11) DEFAULT NULL COMMENT 'Branch/department asset is assigned to',
+  `location_id` int(11) DEFAULT NULL COMMENT 'Physical location of the asset',
+  `bos_number` varchar(50) DEFAULT NULL COMMENT 'Board of Survey / Bill of Sale reference',
+  `disposal_number` varchar(30) DEFAULT NULL COMMENT 'Disposal record # (inv_disposals.disposal_number)',
+  `disposal_method` enum('DESTRUCTION','AUCTION','TRANSFER','DONATION','RETURN_TO_SUPPLIER','SCRAP','SOLD','OTHER') DEFAULT NULL,
+  `disposal_date` date DEFAULT NULL,
+  `lifecycle_status` enum('ORDERED','RECEIVED','ASSIGNED','IN_SERVICE','UNDER_REPAIR','TRANSFERRED','DISPOSED','LOST_STOLEN') NOT NULL DEFAULT 'ORDERED',
+  `asset_status` enum('NEW','LIKE_NEW','USED','POOR','DAMAGED','GOOD','REPAIRED','SERVICED','TO_BE_DISPOSED','BOARD_OF_SURVEY_ITEM','DONATED','SOLD') NOT NULL DEFAULT 'NEW',
+  `condition_on_receipt` varchar(50) DEFAULT NULL,
+  `current_condition` varchar(50) DEFAULT NULL,
+  `condition_last_updated_at` date DEFAULT NULL,
+  `next_condition_review_due_date` date DEFAULT NULL,
+  `purchase_value` decimal(14,2) DEFAULT NULL,
+  `current_book_value` decimal(14,2) DEFAULT NULL,
+  `depreciation_last_updated_at` date DEFAULT NULL,
+  `next_depreciation_review_due_date` date DEFAULT NULL,
+  `warranty_expiry_date` date DEFAULT NULL,
+  `last_service_date` date DEFAULT NULL,
+  `next_service_date` date DEFAULT NULL,
+  `service_notes` text DEFAULT NULL,
+  `notes` text DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Individual serialized asset lifecycle tracking from procurement to disposal';
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inv_stock`
+--
+
+CREATE TABLE `inv_stock` (
+  `stock_id` int(11) NOT NULL,
+  `item_id` int(11) NOT NULL,
+  `location_id` int(11) NOT NULL,
+  `batch_lot_number` varchar(50) DEFAULT NULL,
+  `serial_number` varchar(100) DEFAULT NULL,
+  `expiry_date` date DEFAULT NULL,
+  `quantity_on_hand` decimal(14,4) DEFAULT 0.0000,
+  `quantity_reserved` decimal(14,4) DEFAULT 0.0000 COMMENT 'Reserved for approved requisitions',
+  `quantity_available` decimal(14,4) GENERATED ALWAYS AS (`quantity_on_hand` - `quantity_reserved`) STORED,
+  `unit_cost` decimal(14,2) DEFAULT 0.00,
+  `nrv` decimal(14,2) DEFAULT NULL,
+  `stock_status` enum('USABLE','QUARANTINE','EXPIRED','DAMAGED','DISPOSAL') DEFAULT 'USABLE',
+  `received_date` date DEFAULT NULL,
+  `last_count_date` date DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inv_stock_counts`
+--
+
+CREATE TABLE `inv_stock_counts` (
+  `count_id` int(11) NOT NULL,
+  `count_number` varchar(30) NOT NULL,
+  `count_date` date NOT NULL,
+  `location_id` int(11) DEFAULT NULL,
+  `count_type` enum('FULL','CYCLE','SPOT','ANNUAL') DEFAULT 'FULL',
+  `is_blind_count` tinyint(1) DEFAULT 1 COMMENT 'Hide system qty from counters',
+  `is_frozen` tinyint(1) DEFAULT 0 COMMENT 'Block transactions during count',
+  `frozen_at` datetime DEFAULT NULL,
+  `unfrozen_at` datetime DEFAULT NULL,
+  `variance_threshold_pct` decimal(5,2) DEFAULT 5.00 COMMENT 'Escalation threshold %',
+  `conducted_by` int(11) NOT NULL,
+  `count_lead` int(11) DEFAULT NULL,
+  `supervised_by` int(11) DEFAULT NULL,
+  `status` enum('PLANNED','IN_PROGRESS','COMPLETED','APPROVED','ADJUSTMENT_CREATED','CANCELLED') DEFAULT 'PLANNED',
+  `notes` text DEFAULT NULL,
+  `completed_at` datetime DEFAULT NULL,
+  `approved_by` int(11) DEFAULT NULL,
+  `approved_at` datetime DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `inv_stock_counts`
+--
+
+INSERT INTO `inv_stock_counts` (`count_id`, `count_number`, `count_date`, `location_id`, `count_type`, `is_blind_count`, `is_frozen`, `frozen_at`, `unfrozen_at`, `variance_threshold_pct`, `conducted_by`, `count_lead`, `supervised_by`, `status`, `notes`, `completed_at`, `approved_by`, `approved_at`, `created_at`) VALUES
+(2, 'SC-001', '0000-00-00', NULL, 'FULL', 1, 0, NULL, NULL, 5.00, 30, NULL, NULL, 'PLANNED', NULL, NULL, NULL, NULL, '2026-07-15 17:33:55');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inv_stock_count_items`
+--
+
+CREATE TABLE `inv_stock_count_items` (
+  `count_item_id` int(11) NOT NULL,
+  `count_id` int(11) NOT NULL,
+  `item_id` int(11) NOT NULL,
+  `location_id` int(11) NOT NULL,
+  `system_quantity` decimal(14,4) NOT NULL,
+  `counted_quantity` decimal(14,4) DEFAULT NULL,
+  `variance` decimal(14,4) GENERATED ALWAYS AS (`counted_quantity` - `system_quantity`) STORED,
+  `variance_quantity` decimal(14,4) DEFAULT NULL,
+  `variance_reason` text DEFAULT NULL,
+  `batch_lot_number` varchar(50) DEFAULT NULL,
+  `serial_number` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inv_transactions`
+--
+
+CREATE TABLE `inv_transactions` (
+  `transaction_id` int(11) NOT NULL,
+  `transaction_type` enum('RECEIVE','ISSUE','TRANSFER_OUT','TRANSFER_IN','ADJUSTMENT_GAIN','ADJUSTMENT_LOSS','DISPOSAL','COUNT_ADJUST','RETURN','RECEIPT','ADJUSTMENT_IN','ADJUSTMENT_OUT','QUARANTINE_IN','QUARANTINE_OUT','WRITE_DOWN','RETURN_TO_SUPPLIER') NOT NULL,
+  `item_id` int(11) NOT NULL,
+  `stock_id` int(11) DEFAULT NULL,
+  `location_id` int(11) DEFAULT NULL,
+  `quantity` decimal(14,4) NOT NULL,
+  `unit_cost` decimal(14,2) DEFAULT 0.00,
+  `total_cost` decimal(14,2) DEFAULT 0.00,
+  `balance_after` decimal(14,4) DEFAULT NULL COMMENT 'Running balance at location',
+  `reference_type` varchar(30) DEFAULT NULL COMMENT 'GRN, ISSUE, TRANSFER, etc.',
+  `reference_id` int(11) DEFAULT NULL,
+  `reference_number` varchar(30) DEFAULT NULL,
+  `batch_lot_number` varchar(50) DEFAULT NULL,
+  `serial_number` varchar(100) DEFAULT NULL,
+  `expiry_date` date DEFAULT NULL,
+  `performed_by` int(11) DEFAULT NULL,
+  `notes` text DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inv_transfers`
+--
+
+CREATE TABLE `inv_transfers` (
+  `transfer_id` int(11) NOT NULL,
+  `transfer_number` varchar(30) NOT NULL,
+  `transfer_type` enum('INTERNAL','INTER_BRANCH','INTER_MDA') NOT NULL DEFAULT 'INTERNAL',
+  `source_location_id` int(11) NOT NULL,
+  `destination_location_id` int(11) NOT NULL,
+  `transfer_date` date NOT NULL,
+  `requested_by` int(11) NOT NULL,
+  `approved_by` int(11) DEFAULT NULL,
+  `approved_at` datetime DEFAULT NULL,
+  `financial_secretary_approval` tinyint(1) DEFAULT 0 COMMENT 'Required for inter-MDA transfers',
+  `fs_approved_by` varchar(100) DEFAULT NULL,
+  `fs_approved_at` datetime DEFAULT NULL,
+  `status` enum('DRAFT','PENDING_APPROVAL','PENDING_FS_APPROVAL','APPROVED','IN_TRANSIT','COMPLETED','CANCELLED','REJECTED') DEFAULT 'DRAFT',
+  `received_by` int(11) DEFAULT NULL,
+  `received_at` datetime DEFAULT NULL,
+  `notes` text DEFAULT NULL,
+  `dispatched_at` datetime DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inv_transfer_items`
+--
+
+CREATE TABLE `inv_transfer_items` (
+  `transfer_item_id` int(11) NOT NULL,
+  `transfer_id` int(11) NOT NULL,
+  `item_id` int(11) NOT NULL,
+  `stock_id` int(11) DEFAULT NULL,
+  `quantity` decimal(14,4) NOT NULL,
+  `quantity_received` decimal(14,4) DEFAULT NULL,
+  `serial_number` varchar(100) DEFAULT NULL,
+  `batch_lot_number` varchar(50) DEFAULT NULL,
+  `unit_cost` decimal(14,2) DEFAULT 0.00,
+  `valuation_at_transfer` decimal(14,2) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inv_units_of_measure`
+--
+
+CREATE TABLE `inv_units_of_measure` (
+  `uom_id` int(11) NOT NULL,
+  `uom_code` varchar(10) NOT NULL,
+  `uom_name` varchar(50) NOT NULL,
+  `is_active` tinyint(1) DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `inv_units_of_measure`
+--
+
+INSERT INTO `inv_units_of_measure` (`uom_id`, `uom_code`, `uom_name`, `is_active`) VALUES
+(1, 'EA', 'Each', 1),
+(2, 'PK', 'Pack', 1),
+(3, 'BX', 'Box', 1),
+(4, 'CS', 'Case', 1),
+(5, 'RL', 'Roll', 1),
+(6, 'BT', 'Bottle', 1),
+(7, 'KG', 'Kilogram', 1),
+(8, 'LT', 'Litre', 1),
+(9, 'M', 'Metre', 1),
+(10, 'PR', 'Pair', 1),
+(11, 'ST', 'Set', 1),
+(12, 'DZ', 'Dozen', 1),
+(13, 'RM', 'Ream', 1),
+(14, 'GL', 'Gallon', 1),
+(15, 'TB', 'Tube', 1),
+(16, 'DR', 'Drum', 1),
+(17, 'CT', 'Carton', 1),
+(18, 'TN', 'Tin', 1),
+(19, 'SH', 'Sheet', 1),
+(20, 'BAG', 'Bag', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inv_user_roles`
+--
+
+CREATE TABLE `inv_user_roles` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `inv_role_id` int(11) NOT NULL,
+  `location_id` int(11) DEFAULT NULL COMMENT 'Optional: scope role to a location',
+  `is_active` tinyint(1) DEFAULT 1,
+  `effective_from` date DEFAULT NULL,
+  `effective_to` date DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inv_write_downs`
+--
+
+CREATE TABLE `inv_write_downs` (
+  `write_down_id` int(11) NOT NULL,
+  `write_down_number` varchar(30) NOT NULL,
+  `item_id` int(11) NOT NULL,
+  `location_id` int(11) DEFAULT NULL,
+  `reason` enum('NRV_DECLINE','OBSOLESCENCE','DAMAGE','EXPIRY','OTHER') NOT NULL,
+  `original_cost` decimal(14,2) NOT NULL,
+  `nrv_value` decimal(14,2) NOT NULL,
+  `write_down_amount` decimal(14,2) NOT NULL,
+  `status` enum('DRAFT','PENDING_APPROVAL','APPROVED','REVERSED','CANCELLED') DEFAULT 'DRAFT',
+  `requested_by` int(11) NOT NULL,
+  `approved_by` int(11) DEFAULT NULL,
+  `approved_at` datetime DEFAULT NULL,
+  `reversal_id` int(11) DEFAULT NULL COMMENT 'Points to write-down that reverses this one',
+  `notes` text DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `page_permissions`
+--
+
+CREATE TABLE `page_permissions` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `page_path` varchar(255) NOT NULL COMMENT 'Relative URL, e.g. /procurement/list.php',
+  `page_title` varchar(255) NOT NULL COMMENT 'Human-readable page name',
+  `permission_name` varchar(100) NOT NULL COMMENT 'permission.name required to access this page',
+  `module` varchar(80) NOT NULL DEFAULT 'general' COMMENT 'Grouping label for the admin UI',
+  `is_active` tinyint(1) NOT NULL DEFAULT 1,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `page_permissions`
+--
+
+INSERT INTO `page_permissions` (`id`, `page_path`, `page_title`, `permission_name`, `module`, `is_active`, `created_at`, `updated_at`) VALUES
+(1, '/admin/settings.php', 'System Settings', 'manage_system_settings', 'Administration', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(2, '/admin/page_permissions.php', 'Page Permissions', 'manage_users', 'Administration', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(3, '/users/list.php', 'Users List', 'manage_users', 'Administration', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(4, '/users/add.php', 'Add User', 'manage_users', 'Administration', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(5, '/users/view.php', 'View User', 'manage_users', 'Administration', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(6, '/users/permissions.php', 'User Permissions', 'manage_users', 'Administration', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(7, '/users/update_role.php', 'Update User Role', 'manage_users', 'Administration', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(8, '/users/toggle_status.php', 'Toggle User Status', 'manage_users', 'Administration', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(9, '/users/delete.php', 'Delete User', 'manage_users', 'Administration', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(10, '/users/reset_password.php', 'Reset User Password', 'manage_users', 'Administration', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(11, '/users/unlock.php', 'Unlock User Account', 'manage_users', 'Administration', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(12, '/users/acting_roles.php', 'Acting Roles', 'manage_users', 'Administration', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(13, '/dashboard/admin.php', 'Admin Dashboard', 'manage_users', 'Dashboards', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(14, '/dashboard/procurement.php', 'Procurement Dashboard', 'view_procurement_dashboard', 'Dashboards', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(15, '/dashboard/finance.php', 'Finance Dashboard', 'view_finance_dashboard', 'Dashboards', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(16, '/dashboard/hod.php', 'HOD Dashboard', 'view_requests', 'Dashboards', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(17, '/dashboard/gc.php', 'Deputy Govt Chemist Dashboard', 'view_requests', 'Dashboards', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(18, '/dashboard/committee.php', 'Procurement Committee', 'view_requests', 'Dashboards', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(19, '/dashboard/evaluation.php', 'Evaluation Dashboard', 'view_requests', 'Dashboards', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(20, '/dashboard/director_hrma.php', 'Director HRM&A Dashboard', 'approve_as_director_hrma', 'Dashboards', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(21, '/dashboard/director_procurement.php', 'Director Procurement Dashboard', 'approve_as_director_hrma', 'Dashboards', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(22, '/dashboard/property_management_officer.php', 'PMO Dashboard', 'view_pmo_dashboard', 'Dashboards', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(23, '/dashboard/requestor.php', 'Requestor Dashboard', 'view_own_requests', 'Dashboards', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(24, '/dashboard/viewer.php', 'Viewer Dashboard', 'view_audit_dashboard', 'Dashboards', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(25, '/dashboard/management.php', 'Management Dashboard', 'management_dashboard', 'Dashboards', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(26, '/dashboard/metrics.php', 'Finance Metrics', 'view_finance_dashboard', 'Dashboards', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(27, '/dashboard/monthly.php', 'Monthly Dashboard', 'monthly_metrics', 'Dashboards', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(28, '/dashboard/approval_analytics.php', 'Approval Analytics', 'view_approval_analytics', 'Dashboards', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(29, '/dashboard/approval_queue.php', 'Approval Queue', 'view_requests', 'Dashboards', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(30, '/dashboard/compliance.php', 'Compliance Dashboard', 'view_compliance', 'Dashboards', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(31, '/procurement/list.php', 'All Requests', 'view_requests', 'Procurement', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(32, '/procurement/add.php', 'New Request', 'create_request', 'Procurement', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(33, '/procurement/edit.php', 'Edit Request', 'create_request', 'Procurement', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(34, '/procurement/view.php', 'View Request', 'view_requests', 'Procurement', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(35, '/procurement/submit.php', 'Submit Request', 'submit_request', 'Procurement', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(36, '/procurement/resubmit.php', 'Resubmit Request', 'submit_request', 'Procurement', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(37, '/procurement/approve.php', 'Approve Request', 'approve_request', 'Procurement', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(38, '/procurement/approve_finance.php', 'Finance Approval', 'approve_request', 'Procurement', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(39, '/procurement/approve_hod.php', 'HOD Approval', 'approve_request', 'Procurement', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(40, '/procurement/gc_approve.php', 'DGC Approval', 'approve_request', 'Procurement', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(41, '/procurement/decline.php', 'Decline Request', 'approve_request', 'Procurement', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(42, '/procurement/recommend.php', 'Recommend Request', 'approve_request', 'Procurement', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(43, '/procurement/my_requests.php', 'My Requests', 'view_own_requests', 'Procurement', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(44, '/procurement/start_procurement.php', 'Start Procurement', 'view_requests', 'Procurement', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(45, '/procurement/upload_document.php', 'Upload Document', 'view_requests', 'Procurement', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(46, '/procurement/upload_signed_request.php', 'Upload Signed Request', 'view_requests', 'Procurement', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(47, '/procurement/print_for_signing.php', 'Print for Signing', 'view_requests', 'Procurement', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(48, '/procurement/verify_funds.php', 'Verify Funds', 'verify_funds', 'Procurement', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(49, '/commitments/list.php', 'Commitments List', 'view_commitments', 'Commitments', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(50, '/commitments/view.php', 'View Commitment', 'view_commitments', 'Commitments', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(51, '/commitments/add.php', 'Add Commitment', 'create_commitment', 'Commitments', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(52, '/commitments/add_supplementary.php', 'Add Supplementary Commitment', 'create_commitment', 'Commitments', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(53, '/commitments/approve.php', 'Approve Commitment', 'approve_commitment', 'Commitments', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(54, '/commitments/upload.php', 'Upload Commitment', 'approve_commitment', 'Commitments', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(55, '/po/list.php', 'Purchase Orders List', 'view_purchase_orders', 'Purchase Orders', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(56, '/po/view.php', 'View Purchase Order', 'view_purchase_orders', 'Purchase Orders', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(57, '/po/add.php', 'Create Purchase Order', 'create_purchase_order', 'Purchase Orders', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(58, '/po/edit.php', 'Edit Purchase Order', 'edit_purchase_order', 'Purchase Orders', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(59, '/po/approve.php', 'Approve Purchase Order', 'approve_purchase_order', 'Purchase Orders', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(60, '/po/upload.php', 'Upload PO Document', 'upload_purchase_order', 'Purchase Orders', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(61, '/po/excess_approve.php', 'Approve PO Excess', 'approve_po_excess', 'Purchase Orders', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(62, '/po/variation_queue.php', 'PO Variations Queue', 'approve_po_adjustment', 'Purchase Orders', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(63, '/po/variation_create.php', 'Create PO Variation', 'request_po_adjustment', 'Purchase Orders', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(64, '/po/variation_approve.php', 'Approve PO Variation', 'approve_po_adjustment', 'Purchase Orders', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(65, '/po/add_adjustment.php', 'Add PO Adjustment', 'request_po_adjustment', 'Purchase Orders', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(66, '/po/receive_to_inventory.php', 'Receive PO to Inventory', 'receive_goods', 'Purchase Orders', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(67, '/rfq/list.php', 'RFQ List', 'view_requests', 'RFQ', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(68, '/rfq/view.php', 'View RFQ', 'view_requests', 'RFQ', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(69, '/rfq/create.php', 'Create RFQ', 'create_rfq', 'RFQ', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(70, '/rfq/upload_rfq_letter.php', 'Upload RFQ Letter', 'create_rfq', 'RFQ', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(71, '/rfq/generate_rtf.php', 'Generate RFQ Document', 'create_rfq', 'RFQ', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(72, '/rfq/add_committee.php', 'Add Committee Member', 'manage_rfq_committee', 'RFQ', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(73, '/rfq/remove_committee.php', 'Remove Committee Member', 'manage_rfq_committee', 'RFQ', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(74, '/rfq/add_vendor.php', 'Add Vendor to RFQ', 'add_rfq_vendor', 'RFQ', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(75, '/rfq/remove_vendor.php', 'Remove Vendor from RFQ', 'add_rfq_vendor', 'RFQ', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(76, '/rfq/send_rfq_emails.php', 'Send RFQ Emails', 'add_rfq_vendor', 'RFQ', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(77, '/rfq/upload_quote.php', 'Upload Vendor Quote', 'upload_rfq_quote', 'RFQ', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(78, '/rfq/start_evaluation.php', 'Start Evaluation', 'start_rfq_evaluation', 'RFQ', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(79, '/rfq/advance_evaluation.php', 'Advance Evaluation Stage', 'start_rfq_evaluation', 'RFQ', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(80, '/rfq/vote.php', 'Vote on RFQ', 'vote_rfq', 'RFQ', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(81, '/rfq/review_quote.php', 'Review Quote', 'view_rfq_evaluations', 'RFQ', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(82, '/rfq/select_quote.php', 'Select Winning Quote', 'view_rfq_evaluations', 'RFQ', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(83, '/rfq/upload_report.php', 'Upload Evaluation Report', 'upload_rfq_report', 'RFQ', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(84, '/rfq/view_report.php', 'View Evaluation Report', 'view_rfq_evaluations', 'RFQ', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(85, '/rfq/generate_evaluation_summary.php', 'Generate Evaluation Summary', 'view_rfq_evaluations', 'RFQ', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(86, '/rfq/award.php', 'Award RFQ', 'award_vendor', 'RFQ', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(87, '/rfq/generate_loa.php', 'Generate LOA', 'award_vendor', 'RFQ', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(88, '/rfq/accept_award.php', 'Accept/Decline Award', 'confirm_vendor_award', 'RFQ', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(89, '/rfq/gc_approve.php', 'DGC Approve RFQ', 'approve_request', 'RFQ', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(90, '/invoice/list.php', 'Invoices List', 'view_invoices', 'Finance', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(91, '/invoice/view.php', 'View Invoice', 'view_invoices', 'Finance', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(92, '/invoice/add.php', 'Create Invoice', 'create_invoice', 'Finance', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(93, '/payment/list.php', 'Payments List', 'view_payments', 'Finance', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(94, '/payment/add.php', 'Record Payment', 'create_payment', 'Finance', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(95, '/reimbursement/list.php', 'Reimbursements List', 'view_reimbursement_requests', 'Reimbursements', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(96, '/reimbursement/view.php', 'View Reimbursement', 'view_reimbursement_requests', 'Reimbursements', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(97, '/reimbursement/add.php', 'New Reimbursement', 'create_reimbursement_request', 'Reimbursements', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(98, '/reimbursement/edit.php', 'Edit Reimbursement', 'create_reimbursement_request', 'Reimbursements', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(99, '/reimbursement/submit.php', 'Submit Reimbursement', 'create_reimbursement_request', 'Reimbursements', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(100, '/reimbursement/approve.php', 'Approve Reimbursement', 'approve_reimbursement_request', 'Reimbursements', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(101, '/reimbursement/submit_invoice.php', 'Submit Reimbursement Invoice', 'view_own_requests', 'Reimbursements', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(102, '/petty_cash/list.php', 'Petty Cash List', 'view_petty_cash_requests', 'Petty Cash', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(103, '/petty_cash/view.php', 'View Petty Cash', 'view_petty_cash_requests', 'Petty Cash', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(104, '/petty_cash/add.php', 'New Petty Cash Request', 'create_petty_cash_request', 'Petty Cash', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(105, '/petty_cash/edit.php', 'Edit Petty Cash', 'create_petty_cash_request', 'Petty Cash', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(106, '/petty_cash/submit.php', 'Submit Petty Cash', 'create_petty_cash_request', 'Petty Cash', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(107, '/petty_cash/approve.php', 'Approve Petty Cash', 'approve_petty_cash_request', 'Petty Cash', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(108, '/vendors/list.php', 'Vendors List', 'view_vendors', 'Vendors', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(109, '/vendors/view.php', 'View Vendor', 'view_vendors', 'Vendors', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(110, '/vendors/add.php', 'Add Vendor', 'manage_vendors', 'Vendors', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(111, '/vendors/edit.php', 'Edit Vendor', 'manage_vendors', 'Vendors', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(112, '/vendors/delete.php', 'Delete Vendor', 'manage_vendors', 'Vendors', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(113, '/reports/index.php', 'Reports Home', 'view_financial_reports', 'Reports', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(114, '/reports/procurement_by_status.php', 'Procurement by Status', 'view_financial_reports', 'Reports', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(115, '/reports/procurement_by_type.php', 'Procurement by Type', 'view_financial_reports', 'Reports', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(116, '/reports/procurement_by_branch.php', 'Procurement by Branch', 'view_financial_reports', 'Reports', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(117, '/reports/procurement_by_supplier.php', 'Procurement by Supplier', 'view_financial_reports', 'Reports', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(118, '/reports/po_status_report.php', 'PO Status Report', 'view_financial_reports', 'Reports', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(119, '/reports/period_reports.php', 'Period Reports', 'view_financial_reports', 'Reports', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(120, '/reports/amounts_paid_report.php', 'Amounts Paid Report', 'view_financial_reports', 'Reports', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(121, '/reports/outstanding_commitments_po.php', 'Outstanding Commitments', 'view_financial_reports', 'Reports', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(122, '/reports/branch_summary.php', 'Branch Summary', 'view_financial_reports', 'Reports', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(123, '/reports/branch_outstanding.php', 'Branch Outstanding', 'view_financial_reports', 'Reports', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(124, '/reports/po_adjustment_report.php', 'PO Adjustment Report', 'view_po_adjustments', 'Reports', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(125, '/reports/export_excel.php', 'Export Excel Report', 'view_management_dashboard', 'Reports', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(126, '/reports/print_request.php', 'Print Request', 'print_request', 'Reports', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(127, '/reports/print_po.php', 'Print Purchase Order', 'print_purchase_order', 'Reports', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(128, '/reports/print_invoice.php', 'Print Invoice', 'print_invoice', 'Reports', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(129, '/audit/list.php', 'Audit Logs', 'view_audit_logs', 'Audit', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(130, '/audit/view.php', 'View Audit Entry', 'view_audit_logs', 'Audit', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(131, '/audit/export_csv.php', 'Export Audit CSV', 'view_audit_logs', 'Audit', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(132, '/audit/export_pdf.php', 'Export Audit PDF', 'view_audit_logs', 'Audit', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(133, '/inventory/dashboard.php', 'Inventory Dashboard', 'view_inventory', 'Inventory', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(134, '/inventory/items/list.php', 'Inventory Items', 'view_inventory', 'Inventory', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(135, '/inventory/items/view.php', 'View Item', 'view_inventory', 'Inventory', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(136, '/inventory/items/add.php', 'Add Item', 'manage_inventory_items', 'Inventory', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(137, '/inventory/items/edit.php', 'Edit Item', 'manage_inventory_items', 'Inventory', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(138, '/inventory/locations/list.php', 'Locations', 'view_inventory', 'Inventory', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(139, '/inventory/locations/add.php', 'Add Location', 'manage_inventory_locations', 'Inventory', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(140, '/inventory/requisitions/list.php', 'Stock Requisitions', 'view_inventory', 'Inventory', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(141, '/inventory/requisitions/view.php', 'View Requisition', 'view_inventory', 'Inventory', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(142, '/inventory/requisitions/add.php', 'Submit Stock Requisition', 'submit_stock_requisition', 'Inventory', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(143, '/inventory/receiving/list.php', 'Goods Received', 'receive_goods', 'Inventory', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(144, '/inventory/receiving/view.php', 'View GRN', 'receive_goods', 'Inventory', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(145, '/inventory/receiving/add.php', 'Record GRN', 'receive_goods', 'Inventory', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(146, '/inventory/issuing/list.php', 'Stock Issues', 'issue_stock', 'Inventory', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(147, '/inventory/issuing/view.php', 'View Issue', 'issue_stock', 'Inventory', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(148, '/inventory/issuing/add.php', 'Issue Stock', 'issue_stock', 'Inventory', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(149, '/inventory/transfers/list.php', 'Stock Transfers', 'transfer_stock', 'Inventory', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(150, '/inventory/transfers/view.php', 'View Transfer', 'transfer_stock', 'Inventory', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(151, '/inventory/transfers/add.php', 'Create Transfer', 'transfer_stock', 'Inventory', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(152, '/inventory/adjustments/list.php', 'Stock Adjustments', 'adjust_stock', 'Inventory', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(153, '/inventory/adjustments/view.php', 'View Adjustment', 'adjust_stock', 'Inventory', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(154, '/inventory/adjustments/add.php', 'Create Adjustment', 'adjust_stock', 'Inventory', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(155, '/inventory/disposal/list.php', 'Disposal Requests', 'dispose_stock', 'Inventory', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(156, '/inventory/disposal/view.php', 'View Disposal', 'dispose_stock', 'Inventory', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(157, '/inventory/disposal/add.php', 'Create Disposal', 'dispose_stock', 'Inventory', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(158, '/inventory/stocktake/list.php', 'Stock Counts', 'conduct_stock_count', 'Inventory', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(159, '/inventory/stocktake/view.php', 'View Stock Count', 'conduct_stock_count', 'Inventory', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(160, '/inventory/stocktake/add.php', 'Create Stock Count', 'conduct_stock_count', 'Inventory', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(161, '/inventory/quarantine/list.php', 'Quarantine Items', 'manage_quarantine', 'Inventory', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(162, '/inventory/quarantine/view.php', 'View Quarantine', 'manage_quarantine', 'Inventory', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(163, '/inventory/quarantine/add.php', 'Quarantine Item', 'manage_quarantine', 'Inventory', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(164, '/inventory/recall/list.php', 'Recalls', 'manage_recalls', 'Inventory', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(165, '/inventory/recall/view.php', 'View Recall', 'manage_recalls', 'Inventory', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(166, '/inventory/recall/add.php', 'Create Recall', 'manage_recalls', 'Inventory', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(167, '/inventory/returns/list.php', 'Returns to Supplier', 'manage_returns', 'Inventory', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(168, '/inventory/returns/view.php', 'View Return', 'manage_returns', 'Inventory', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(169, '/inventory/returns/add.php', 'Create Return', 'manage_returns', 'Inventory', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(170, '/inventory/incidents/list.php', 'Incidents / Losses', 'manage_incidents', 'Inventory', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(171, '/inventory/incidents/view.php', 'View Incident', 'manage_incidents', 'Inventory', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(172, '/inventory/incidents/add.php', 'Report Incident', 'manage_incidents', 'Inventory', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(173, '/inventory/writedowns/list.php', 'Write-Downs', 'manage_write_downs', 'Inventory', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(174, '/inventory/writedowns/view.php', 'View Write-Down', 'manage_write_downs', 'Inventory', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(175, '/inventory/writedowns/add.php', 'Create Write-Down', 'manage_write_downs', 'Inventory', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(176, '/inventory/reports/index.php', 'Inventory Reports Home', 'view_inventory_reports', 'Inventory Reports', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(177, '/inventory/reports/stock_valuation.php', 'Stock Valuation', 'view_inventory_reports', 'Inventory Reports', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(178, '/inventory/reports/reorder_report.php', 'Reorder Report', 'view_inventory_reports', 'Inventory Reports', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(179, '/inventory/reports/expiry_report.php', 'Expiry Report', 'view_inventory_reports', 'Inventory Reports', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(180, '/inventory/reports/slow_moving_stock.php', 'Slow Moving Stock', 'view_inventory_reports', 'Inventory Reports', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(181, '/inventory/reports/obsolete_stock.php', 'Obsolete Stock', 'view_inventory_reports', 'Inventory Reports', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(182, '/inventory/reports/transaction_history.php', 'Transaction History', 'view_inventory_reports', 'Inventory Reports', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(183, '/inventory/reports/goods_received_register.php', 'Goods Received Register', 'view_inventory_reports', 'Inventory Reports', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(184, '/inventory/reports/issue_register.php', 'Issue Register', 'view_inventory_reports', 'Inventory Reports', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(185, '/inventory/reports/transfer_register.php', 'Transfer Register', 'view_inventory_reports', 'Inventory Reports', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(186, '/inventory/reports/disposal_register.php', 'Disposal Register', 'view_inventory_reports', 'Inventory Reports', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(187, '/inventory/reports/inventory_expense.php', 'Inventory Expense', 'view_inventory_reports', 'Inventory Reports', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(188, '/inventory/reports/shrinkage_loss.php', 'Shrinkage / Loss', 'view_inventory_reports', 'Inventory Reports', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(189, '/inventory/reports/write_down_report.php', 'Write-Down Report', 'view_inventory_reports', 'Inventory Reports', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(190, '/inventory/reports/traceability_report.php', 'Asset Traceability', 'view_inventory_reports', 'Inventory Reports', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(191, '/inventory/reports/audit_exceptions.php', 'Audit Exceptions', 'view_inventory_reports', 'Inventory Reports', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(192, '/inventory/reports/user_activity.php', 'User Activity', 'view_inventory_reports', 'Inventory Reports', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(193, '/inventory/reports/supplier_performance.php', 'Supplier Performance', 'view_inventory_reports', 'Inventory Reports', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(194, '/inventory/reports/approval_turnaround.php', 'Approval Turnaround', 'view_inventory_reports', 'Inventory Reports', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(195, '/inventory/reports/emergency_stock.php', 'Emergency Stock', 'view_inventory_reports', 'Inventory Reports', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(196, '/inventory/reports/donation_register.php', 'Donation Register', 'view_inventory_reports', 'Inventory Reports', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(197, '/views/compliance-detail.php', 'Compliance Detail', 'view_compliance', 'Compliance', 1, '2026-05-21 19:57:20', '2026-05-21 19:57:20'),
+(395, '/inventory/items/delete.php', 'Delete Item', 'delete_inventory_items', 'Inventory', 1, '2026-05-27 16:13:47', '2026-05-27 16:13:47'),
+(396, '/inventory/locations/delete.php', 'Delete Location', 'delete_inventory_locations', 'Inventory', 1, '2026-05-27 16:13:47', '2026-05-27 16:13:47'),
+(397, '/inventory/items/import.php', 'Import Assets', 'import_inventory_assets', 'Inventory', 1, '2026-07-15 21:44:08', '2026-07-15 21:44:08'),
+(398, '/inventory/items/import_errors_csv.php', 'Import Error Log Export', 'import_inventory_assets', 'Inventory', 1, '2026-07-15 21:44:08', '2026-07-15 21:44:08'),
+(399, '/inventory/items/import_template.php', 'Import Template Download', 'import_inventory_assets', 'Inventory', 1, '2026-07-15 21:44:08', '2026-07-15 21:44:08');
 
 -- --------------------------------------------------------
 
@@ -2641,7 +8590,44 @@ INSERT INTO `permissions` (`id`, `name`, `description`) VALUES
 (177, 'view_vendors', 'View vendor list and details'),
 (178, 'approve_as_dgc', 'Approve requests as Deputy Government Chemist'),
 (179, 'disburse_petty_cash', 'Disburse petty cash funds after authorization'),
-(180, 'process_reimbursement', 'Process reimbursement payment after approval');
+(180, 'process_reimbursement', 'Process reimbursement payment after approval'),
+(181, 'view_inventory', 'View inventory items and stock levels'),
+(182, 'manage_inventory_items', 'Create and edit inventory item master data'),
+(183, 'manage_inventory_locations', 'Manage storage locations'),
+(184, 'submit_stock_requisition', 'Submit stock requisitions'),
+(185, 'approve_stock_requisition', 'Approve stock requisitions'),
+(186, 'receive_goods', 'Record goods received notes'),
+(187, 'inspect_goods', 'Inspect goods on GRN'),
+(188, 'issue_stock', 'Issue stock from stores'),
+(189, 'approve_stock_issue', 'Approve stock issues for controlled items'),
+(190, 'create_transfer', 'Create stock transfers'),
+(191, 'approve_transfer', 'Approve stock transfers'),
+(192, 'create_adjustment', 'Create stock adjustments'),
+(193, 'approve_adjustment', 'Approve stock adjustments'),
+(194, 'create_disposal', 'Create disposal/write-off requests'),
+(195, 'approve_disposal', 'Approve disposals and write-offs'),
+(196, 'conduct_stock_count', 'Conduct physical stock counts'),
+(197, 'manage_inv_roles', 'Manage inventory user roles'),
+(198, 'view_inv_reports', 'View inventory reports'),
+(199, 'manage_inv_delegations', 'Manage inventory delegations'),
+(200, 'inventory_admin', 'Full inventory administration access'),
+(201, 'dispose_stock', 'Create disposal/write-off requests'),
+(202, 'adjust_stock', 'Create stock adjustments'),
+(203, 'transfer_stock', 'Create stock transfers'),
+(204, 'view_inventory_reports', 'View inventory reports'),
+(209, 'manage_quarantine', 'Move stock into/out of quarantine'),
+(210, 'manage_recalls', 'Initiate and manage recall/withdrawal'),
+(211, 'manage_returns', 'Create and manage return-to-supplier'),
+(212, 'manage_incidents', 'Report and manage incident/loss reports'),
+(213, 'manage_write_downs', 'Create and approve write-downs (NRV)'),
+(214, 'manage_fiscal_periods', 'Open/close fiscal periods'),
+(215, 'approve_issue', 'Approve stock issue vouchers'),
+(216, 'approve_stock_count', 'Approve completed stock counts'),
+(217, 'approve_return', 'Approve return-to-supplier requests'),
+(232, 'view_pmo_dashboard', 'Access the Property Management Officer dashboard'),
+(267, 'delete_inventory_items', 'Delete inventory item master records'),
+(268, 'delete_inventory_locations', 'Delete storage location records'),
+(269, 'import_inventory_assets', 'Import inventory assets from Excel/CSV files');
 
 -- --------------------------------------------------------
 
@@ -2667,7 +8653,10 @@ CREATE TABLE `petty_cash_disbursements` (
 
 INSERT INTO `petty_cash_disbursements` (`disburse_id`, `request_id`, `amount_authorized`, `disbursed_by`, `disbursement_date`, `disbursement_deadline`, `status`, `created_at`, `updated_at`) VALUES
 (1, 152, 5000.00, 34, '2026-05-13 12:43:36', '2026-05-14 12:43:36', 'AUTHORIZED', '2026-05-13 12:43:36', '2026-05-13 12:43:36'),
-(2, 157, 5000.00, 34, '2026-05-13 12:44:24', '2026-05-14 12:44:24', 'AUTHORIZED', '2026-05-13 12:44:24', '2026-05-13 12:44:24');
+(2, 157, 5000.00, 34, '2026-05-13 12:44:24', '2026-05-14 12:44:24', 'AUTHORIZED', '2026-05-13 12:44:24', '2026-05-13 12:44:24'),
+(3, 183, 5000.00, 46, '2026-06-17 11:48:36', '2026-06-18 11:48:36', 'AUTHORIZED', '2026-06-17 11:48:36', '2026-06-17 11:48:36'),
+(4, 188, 5000.00, 46, '2026-06-30 11:58:48', '2026-07-01 11:58:48', 'AUTHORIZED', '2026-06-30 11:58:48', '2026-06-30 11:58:48'),
+(5, 192, 5000.00, 46, '2026-06-30 11:59:10', '2026-07-01 11:59:10', 'AUTHORIZED', '2026-06-30 11:59:10', '2026-06-30 11:59:10');
 
 -- --------------------------------------------------------
 
@@ -2721,6 +8710,13 @@ CREATE TABLE `po_items` (
   `unit_price` decimal(12,2) NOT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `po_items`
+--
+
+INSERT INTO `po_items` (`po_item_id`, `po_id`, `description`, `qty`, `unit_price`, `created_at`) VALUES
+(29, 66, 'Box Cutter - TEST', 1.00, 0.00, '2026-07-13 21:22:40');
 
 -- --------------------------------------------------------
 
@@ -2785,7 +8781,12 @@ CREATE TABLE `pre_authorizations` (
 INSERT INTO `pre_authorizations` (`auth_id`, `request_id`, `authorized_by`, `authorization_date`, `authorization_amount`, `authorization_notes`, `created_at`) VALUES
 (4, 128, 32, '2026-03-03 00:00:00', 2000.00, 'Pre-authorization for reimbursement request', '2026-03-04 09:46:43'),
 (5, 139, 39, '2026-03-09 00:00:00', 900.00, 'Pre-authorization for reimbursement request', '2026-03-17 15:03:02'),
-(6, 151, 40, '2026-05-05 00:00:00', 500.00, 'Pre-authorization for reimbursement request', '2026-05-07 12:19:06');
+(6, 151, 40, '2026-05-05 00:00:00', 500.00, 'Pre-authorization for reimbursement request', '2026-05-07 12:19:06'),
+(7, 163, 40, '2026-05-21 00:00:00', 9000.00, 'Pre-authorization for reimbursement request', '2026-05-21 09:17:21'),
+(8, 170, 40, '2026-05-26 00:00:00', 5000.00, 'Pre-authorization for reimbursement request', '2026-06-01 16:33:10'),
+(9, 179, 37, '2026-04-10 00:00:00', 5460.00, 'Pre-authorization for reimbursement request', '2026-06-08 10:48:35'),
+(10, 180, 37, '2026-04-17 00:00:00', 5340.00, 'Pre-authorization for reimbursement request', '2026-06-08 10:56:26'),
+(11, 181, 37, '2026-05-08 00:00:00', 3216.26, 'Pre-authorization for reimbursement request', '2026-06-08 11:01:24');
 
 -- --------------------------------------------------------
 
@@ -2811,6 +8812,9 @@ CREATE TABLE `procurement_requests` (
   `approved_by` int(11) DEFAULT NULL,
   `approved_at` datetime DEFAULT NULL,
   `decline_reason` text DEFAULT NULL,
+  `cancel_reason` text DEFAULT NULL,
+  `cancelled_by` int(11) DEFAULT NULL,
+  `cancelled_at` datetime DEFAULT NULL,
   `signed_request_document_path` varchar(255) DEFAULT NULL COMMENT 'Path to uploaded signed request by branch head',
   `signed_request_received_date` datetime DEFAULT NULL COMMENT 'Date when signed request was received',
   `signed_by_user_id` int(11) DEFAULT NULL COMMENT 'User ID of person who signed the request',
@@ -2833,41 +8837,89 @@ CREATE TABLE `procurement_requests` (
 -- Dumping data for table `procurement_requests`
 --
 
-INSERT INTO `procurement_requests` (`request_id`, `branch_id`, `request_number`, `request_date`, `description`, `request_type`, `status`, `rfq_date`, `quotes_received`, `awardee`, `award_date`, `created_by`, `created_at`, `updated_at`, `approved_by`, `approved_at`, `decline_reason`, `signed_request_document_path`, `signed_request_received_date`, `signed_by_user_id`, `finance_reviewed_by`, `finance_reviewed_at`, `funds_available`, `commitment_form_path`, `procurement_method`, `external_approval_required`, `requires_rfq`, `rfq_letter_generated_at`, `estimated_value`, `currency`, `usd_rate`, `ppc_approval_status`, `cabinet_approval_status`) VALUES
-(123, 6, 'PR001', '2026-02-26', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 37, '2026-02-26 15:55:56', '2026-02-26 10:56:09', 33, '2026-02-26 11:04:04', NULL, NULL, NULL, NULL, 33, '2026-02-26 11:04:04', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 7000.00, 'JMD', NULL, NULL, NULL),
-(124, 6, 'PR002', '2026-02-26', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 38, '2026-02-26 16:06:07', '2026-02-26 11:07:39', 33, '2026-02-26 11:08:20', NULL, NULL, NULL, NULL, 33, '2026-02-26 11:08:20', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 28038.00, 'JMD', NULL, NULL, NULL),
-(125, 1, 'PR003', '2026-02-26', '', 'REGULAR', 'PROCUREMENT_STAGE', NULL, 0, NULL, NULL, 36, '2026-02-26 16:16:29', '2026-02-26 11:29:31', 32, '2026-02-26 11:30:49', NULL, NULL, NULL, NULL, 32, '2026-02-26 11:30:49', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 1500000.00, 'JMD', NULL, NULL, NULL),
-(126, 6, 'PR004', '2026-02-26', '', 'REGULAR', 'SUBMITTED', NULL, 0, NULL, NULL, 41, '2026-02-26 16:18:23', '2026-02-26 11:18:43', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 224999.10, 'JMD', NULL, NULL, NULL),
-(127, 1, 'PR005', '2026-02-26', '', 'REGULAR', 'DECLINED', NULL, 0, NULL, NULL, 36, '2026-02-26 16:20:53', '2026-02-26 11:21:05', 32, '2026-02-26 11:22:21', 'Youre pushing it', '/uploads/signed_requests/SIGNED_REQUEST_127_1773764831_69b980dfe1b24.pdf', '2026-03-17 11:27:11', 27, NULL, NULL, 0, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 15000.00, 'JMD', NULL, NULL, NULL),
-(128, 1, 'PR006', '2026-03-04', 'Hostinger monthly payment', 'REIMBURSEMENT', 'AWARDED', NULL, 0, NULL, NULL, 32, '2026-03-04 14:46:43', '2026-03-04 09:46:56', 34, '2026-05-13 12:22:12', NULL, NULL, NULL, NULL, 34, '2026-05-13 12:22:12', 1, NULL, 'SINGLE_SOURCE', NULL, 0, NULL, 2000.00, 'JMD', NULL, NULL, NULL),
-(129, 5, 'PR007', '2026-03-04', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 27, '2026-03-04 18:09:12', '2026-03-04 15:40:55', 35, '2026-03-04 16:02:57', NULL, NULL, NULL, NULL, 35, '2026-03-04 16:02:57', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 63000.00, 'JMD', NULL, NULL, NULL),
-(130, 5, 'PR008', '2026-03-04', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 27, '2026-03-04 18:10:59', '2026-03-04 15:43:04', 35, '2026-03-04 16:03:50', NULL, NULL, NULL, NULL, 35, '2026-03-04 16:03:50', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 19000.00, 'JMD', NULL, NULL, NULL),
-(132, 5, 'PR010', '2026-03-06', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 40, '2026-03-06 17:14:45', '2026-03-06 12:15:29', 35, '2026-03-06 12:24:09', NULL, NULL, NULL, NULL, 35, '2026-03-06 12:24:09', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 500000.00, 'JMD', NULL, NULL, NULL),
-(134, 6, 'PR011', '2026-03-16', '', 'REGULAR', 'DECLINED', NULL, 0, NULL, NULL, 27, '2026-03-16 14:20:03', '2026-03-16 09:20:13', 33, '2026-03-17 11:10:49', 'Fix issue', NULL, NULL, NULL, NULL, NULL, 0, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 500.00, 'JMD', NULL, NULL, NULL),
-(136, 6, 'PR012', '2026-03-17', '', 'REGULAR', 'DECLINED', NULL, 0, NULL, NULL, 27, '2026-03-17 15:53:09', '2026-03-17 10:57:12', 32, '2026-03-27 13:30:09', 'Previously approved', NULL, NULL, NULL, NULL, NULL, 0, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 579540.94, 'JMD', NULL, NULL, NULL),
-(137, 1, 'PR013', '2026-03-17', '', 'REGULAR', 'COMMITMENT_APPROVED', NULL, 0, NULL, NULL, 27, '2026-03-17 15:59:36', '2026-03-17 11:00:01', 32, '2026-03-17 11:11:54', NULL, '/uploads/signed_requests/SIGNED_REQUEST_137_1773764983_69b98177a23d3.pdf', '2026-03-17 11:29:43', 32, 34, '2026-03-18 14:51:11', 1, '/uploads/commitments/COMMIT_FORM_1773940801_69bc3041f0636.pdf', 'SINGLE_SOURCE', NULL, 1, NULL, 385000.00, 'JMD', NULL, NULL, NULL),
-(138, 6, 'PR014', '2026-03-17', '', 'REGULAR', 'QUOTE_APPROVED', NULL, 0, NULL, NULL, 27, '2026-03-17 16:45:56', '2026-03-17 12:14:46', 33, '2026-03-17 12:59:29', NULL, '/uploads/signed_requests/SIGNED_REQUEST_138_1773768670_69b98fde0b40b.pdf', '2026-03-17 12:31:10', 32, 33, '2026-03-17 12:59:29', 0, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 579540.94, 'JMD', NULL, NULL, NULL),
-(139, 1, 'PR015', '2026-03-17', 'Pan Jamaica Property Company Parking Receipt dated March 10, 2026 for parking - Government Chemist attended a meeting at the MoH&W', 'REIMBURSEMENT', 'AWARDED', NULL, 0, NULL, NULL, 39, '2026-03-17 20:03:02', '2026-03-17 15:15:42', 32, '2026-05-01 17:37:33', NULL, NULL, NULL, NULL, 32, '2026-05-01 17:37:33', 1, NULL, 'SINGLE_SOURCE', NULL, 0, NULL, 900.00, 'JMD', NULL, NULL, NULL),
-(140, 5, 'PR016', '2026-03-24', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 27, '2026-03-24 15:27:47', '2026-03-24 10:27:55', 35, '2026-03-24 11:33:26', NULL, NULL, NULL, NULL, 35, '2026-03-24 11:33:26', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 37000.00, 'JMD', NULL, NULL, NULL),
-(141, 5, 'PR017', '2026-04-10', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 27, '2026-04-10 13:47:58', '2026-04-10 08:48:31', 35, '2026-04-10 09:14:16', NULL, NULL, NULL, NULL, 35, '2026-04-10 09:14:16', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 20000.00, 'JMD', NULL, NULL, NULL),
-(142, 6, 'PR018', '2026-04-17', '', 'REGULAR', 'QUOTE_REVIEW_PENDING', NULL, 0, NULL, NULL, 37, '2026-04-17 17:07:55', '2026-04-17 12:08:11', 33, '2026-04-17 12:45:53', NULL, NULL, NULL, NULL, 33, '2026-04-17 12:45:53', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 208480.00, 'JMD', NULL, NULL, NULL),
-(143, 5, 'PR019', '2026-04-22', '', 'REGULAR', 'QUOTE_APPROVED', NULL, 0, NULL, NULL, 27, '2026-04-22 20:12:26', '2026-04-22 15:12:33', 35, '2026-04-22 15:21:20', NULL, '/uploads/signed_requests/SIGNED_REQUEST_143_1776889680_69e92f5051dd1.pdf', '2026-04-22 15:28:00', 27, 35, '2026-04-22 15:21:20', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 19000.00, 'JMD', NULL, NULL, NULL),
-(144, 5, 'PR020', '2026-04-27', '', 'REGULAR', 'FUNDS_VERIFIED', NULL, 0, NULL, NULL, 27, '2026-04-27 17:00:15', '2026-04-27 12:00:39', 35, '2026-04-27 12:11:34', NULL, '/uploads/signed_requests/SIGNED_REQUEST_144_1777310322_69ef9a72b765c.pdf', '2026-04-27 12:18:42', 27, 34, '2026-04-27 13:42:27', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 137214.00, 'JMD', NULL, NULL, NULL),
-(145, 6, 'PR021', '2026-04-30', '', 'REGULAR', 'QUOTE_REVIEW_PENDING', NULL, 0, NULL, NULL, 37, '2026-04-30 18:41:31', '2026-05-01 12:50:20', 33, '2026-05-01 09:20:35', NULL, '/uploads/signed_requests/SIGNED_REQUEST_145_1777658424_69f4ea3896a07.pdf', '2026-05-01 13:00:24', 33, 33, '2026-05-01 09:20:35', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 145000.00, 'JMD', NULL, NULL, NULL),
-(146, 1, 'PR022', '2026-04-30', '', 'REGULAR', 'QUOTE_REVIEW_PENDING', NULL, 0, NULL, NULL, 27, '2026-04-30 19:48:45', '2026-04-30 14:49:04', 32, '2026-05-01 17:36:38', NULL, '/uploads/signed_requests/SIGNED_REQUEST_146_1778620004_6a0396643df85.pdf', '2026-05-12 16:06:44', 27, 32, '2026-05-01 17:36:38', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 67490.00, 'JMD', NULL, NULL, NULL),
-(147, 6, 'PR023', '2026-05-01', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 37, '2026-05-01 14:28:30', '2026-05-01 09:28:44', 33, '2026-05-01 11:43:42', NULL, '/uploads/signed_requests/SIGNED_REQUEST_147_1777658685_69f4eb3deef7e.pdf', '2026-05-01 13:04:45', 33, 33, '2026-05-01 11:43:42', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 57000.00, 'JMD', NULL, NULL, NULL),
-(148, 5, 'PR024', '2026-05-04', '', 'REGULAR', 'QUOTE_APPROVED', NULL, 0, NULL, NULL, 40, '2026-05-04 21:15:08', '2026-05-04 16:30:19', 35, '2026-05-04 16:33:42', NULL, NULL, NULL, NULL, 35, '2026-05-04 16:33:42', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 80000.00, 'JMD', NULL, NULL, NULL),
-(149, 5, 'PR025', '2026-05-06', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 40, '2026-05-06 20:01:25', '2026-05-07 11:47:14', 35, '2026-05-06 15:13:19', NULL, NULL, NULL, NULL, 35, '2026-05-06 15:13:19', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 40000.00, 'JMD', NULL, NULL, NULL),
-(150, 5, 'PR026', '2026-05-07', '', 'REGULAR', 'DECLINED', NULL, 0, NULL, NULL, 40, '2026-05-07 16:39:01', '2026-05-08 08:17:16', 35, '2026-05-08 15:45:25', 'Please speak with me regarding this request.', NULL, NULL, NULL, NULL, NULL, 0, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 77000.00, 'JMD', NULL, NULL, NULL),
-(151, 5, 'PR027', '2026-05-07', 'Purchased Land Title from National Lands Agency elandjamaica platform to update DGC records and to facilitate surveying, assessment of land for construction/building.', 'REIMBURSEMENT', 'FUNDS_VERIFIED', NULL, 0, NULL, NULL, 40, '2026-05-07 17:19:06', '2026-05-13 12:44:43', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'SINGLE_SOURCE', NULL, 0, NULL, 500.00, 'JMD', NULL, NULL, NULL),
-(152, 5, 'PR028', '2026-05-11', 'Tea Supplies for Meeting', 'PETTY_CASH', 'FUNDS_VERIFIED', NULL, 0, NULL, NULL, 40, '2026-05-11 15:27:29', '2026-05-13 12:43:36', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'SINGLE_SOURCE', NULL, 0, NULL, 5000.00, 'JMD', NULL, NULL, NULL),
-(153, 5, 'PR029', '2026-05-11', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 40, '2026-05-11 20:07:00', '2026-05-11 15:07:09', 35, '2026-05-12 14:28:40', NULL, NULL, NULL, NULL, 35, '2026-05-12 14:28:40', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 20000.00, 'JMD', NULL, NULL, NULL),
-(154, 5, 'PR030', '2026-05-11', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 40, '2026-05-11 21:08:50', '2026-05-12 14:49:47', 35, '2026-05-13 10:19:50', NULL, NULL, NULL, NULL, 35, '2026-05-13 10:19:50', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 18000.00, 'JMD', NULL, NULL, NULL),
-(155, 5, 'PR031', '2026-05-12', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 40, '2026-05-12 19:00:26', '2026-05-12 14:00:37', 35, '2026-05-12 14:30:32', NULL, NULL, NULL, NULL, 35, '2026-05-12 14:30:32', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 10000.00, 'JMD', NULL, NULL, NULL),
-(156, 5, 'PR032', '2026-05-12', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 40, '2026-05-12 19:12:11', '2026-05-13 09:28:02', 35, '2026-05-13 10:20:09', NULL, NULL, NULL, NULL, 35, '2026-05-13 10:20:09', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 300000.00, 'JMD', NULL, NULL, NULL),
-(157, 5, 'PR033', '2026-05-13', 'Gasoline 90 (Gallon)\r\nNeeded to supply weed eater and lawnmower with fuel for maintenance work', 'PETTY_CASH', 'FUNDS_VERIFIED', NULL, 0, NULL, NULL, 40, '2026-05-13 14:19:25', '2026-05-13 12:44:24', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'SINGLE_SOURCE', NULL, 0, NULL, 5000.00, 'JMD', NULL, NULL, NULL),
-(158, 5, 'PR034', '2026-05-13', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 40, '2026-05-13 16:39:26', '2026-05-13 11:39:39', 35, '2026-05-13 16:54:50', NULL, NULL, NULL, NULL, 35, '2026-05-13 16:54:50', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 20000.00, 'JMD', NULL, NULL, NULL),
-(159, 5, 'PR035', '2026-05-14', '', 'REGULAR', 'SUBMITTED', NULL, 0, NULL, NULL, 40, '2026-05-14 18:19:15', '2026-05-14 13:20:01', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 80000.00, 'JMD', NULL, NULL, NULL);
+INSERT INTO `procurement_requests` (`request_id`, `branch_id`, `request_number`, `request_date`, `description`, `request_type`, `status`, `rfq_date`, `quotes_received`, `awardee`, `award_date`, `created_by`, `created_at`, `updated_at`, `approved_by`, `approved_at`, `decline_reason`, `cancel_reason`, `cancelled_by`, `cancelled_at`, `signed_request_document_path`, `signed_request_received_date`, `signed_by_user_id`, `finance_reviewed_by`, `finance_reviewed_at`, `funds_available`, `commitment_form_path`, `procurement_method`, `external_approval_required`, `requires_rfq`, `rfq_letter_generated_at`, `estimated_value`, `currency`, `usd_rate`, `ppc_approval_status`, `cabinet_approval_status`) VALUES
+(123, 6, 'PR001', '2026-02-26', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 37, '2026-02-26 15:55:56', '2026-02-26 10:56:09', 33, '2026-02-26 11:04:04', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 33, '2026-02-26 11:04:04', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 7000.00, 'JMD', NULL, NULL, NULL),
+(124, 6, 'PR002', '2026-02-26', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 38, '2026-02-26 16:06:07', '2026-02-26 11:07:39', 33, '2026-02-26 11:08:20', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 33, '2026-02-26 11:08:20', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 28038.00, 'JMD', NULL, NULL, NULL),
+(125, 1, 'PR003', '2026-02-26', '', 'REGULAR', 'PROCUREMENT_STAGE', NULL, 0, NULL, NULL, 36, '2026-02-26 16:16:29', '2026-02-26 11:29:31', 32, '2026-02-26 11:30:49', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 32, '2026-02-26 11:30:49', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 1500000.00, 'JMD', NULL, NULL, NULL),
+(126, 6, 'PR004', '2026-02-26', '', 'REGULAR', 'SUBMITTED', NULL, 0, NULL, NULL, 41, '2026-02-26 16:18:23', '2026-02-26 11:18:43', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 224999.10, 'JMD', NULL, NULL, NULL),
+(127, 1, 'PR005', '2026-02-26', '', 'REGULAR', 'DECLINED', NULL, 0, NULL, NULL, 36, '2026-02-26 16:20:53', '2026-02-26 11:21:05', 32, '2026-02-26 11:22:21', 'Youre pushing it', NULL, NULL, NULL, '/uploads/signed_requests/SIGNED_REQUEST_127_1773764831_69b980dfe1b24.pdf', '2026-03-17 11:27:11', 27, NULL, NULL, 0, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 15000.00, 'JMD', NULL, NULL, NULL),
+(128, 1, 'PR006', '2026-03-04', 'Hostinger monthly payment', 'REIMBURSEMENT', 'AWARDED', NULL, 0, NULL, NULL, 32, '2026-03-04 14:46:43', '2026-03-04 09:46:56', 34, '2026-05-13 12:22:12', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 34, '2026-05-13 12:22:12', 1, NULL, 'SINGLE_SOURCE', NULL, 0, NULL, 2000.00, 'JMD', NULL, NULL, NULL),
+(129, 5, 'PR007', '2026-03-04', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 27, '2026-03-04 18:09:12', '2026-03-04 15:40:55', 35, '2026-03-04 16:02:57', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 35, '2026-03-04 16:02:57', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 63000.00, 'JMD', NULL, NULL, NULL),
+(130, 5, 'PR008', '2026-03-04', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 27, '2026-03-04 18:10:59', '2026-03-04 15:43:04', 35, '2026-03-04 16:03:50', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 35, '2026-03-04 16:03:50', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 19000.00, 'JMD', NULL, NULL, NULL),
+(132, 5, 'PR010', '2026-03-06', '', 'REGULAR', 'QUOTE_REVIEW_PENDING', NULL, 0, NULL, NULL, 40, '2026-03-06 17:14:45', '2026-03-06 12:15:29', 35, '2026-03-06 12:24:09', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 35, '2026-03-06 12:24:09', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 500000.00, 'JMD', NULL, NULL, NULL),
+(134, 6, 'PR011', '2026-03-16', '', 'REGULAR', 'DECLINED', NULL, 0, NULL, NULL, 27, '2026-03-16 14:20:03', '2026-03-16 09:20:13', 33, '2026-03-17 11:10:49', 'Fix issue', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 500.00, 'JMD', NULL, NULL, NULL),
+(136, 6, 'PR012', '2026-03-17', '', 'REGULAR', 'DECLINED', NULL, 0, NULL, NULL, 27, '2026-03-17 15:53:09', '2026-03-17 10:57:12', 32, '2026-03-27 13:30:09', 'Previously approved', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 579540.94, 'JMD', NULL, NULL, NULL),
+(137, 1, 'PR013', '2026-03-17', '', 'REGULAR', 'COMMITMENT_APPROVED', NULL, 0, NULL, NULL, 27, '2026-03-17 15:59:36', '2026-03-17 11:00:01', 32, '2026-03-17 11:11:54', NULL, NULL, NULL, NULL, '/uploads/signed_requests/SIGNED_REQUEST_137_1773764983_69b98177a23d3.pdf', '2026-03-17 11:29:43', 32, 34, '2026-03-18 14:51:11', 1, '/uploads/commitments/COMMIT_FORM_1773940801_69bc3041f0636.pdf', 'SINGLE_SOURCE', NULL, 1, NULL, 385000.00, 'JMD', NULL, NULL, NULL),
+(138, 6, 'PR014', '2026-03-17', '', 'REGULAR', 'QUOTE_APPROVED', NULL, 0, NULL, NULL, 27, '2026-03-17 16:45:56', '2026-03-17 12:14:46', 33, '2026-03-17 12:59:29', NULL, NULL, NULL, NULL, '/uploads/signed_requests/SIGNED_REQUEST_138_1773768670_69b98fde0b40b.pdf', '2026-03-17 12:31:10', 32, 33, '2026-03-17 12:59:29', 0, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 579540.94, 'JMD', NULL, NULL, NULL),
+(139, 1, 'PR015', '2026-03-17', 'Pan Jamaica Property Company Parking Receipt dated March 10, 2026 for parking - Government Chemist attended a meeting at the MoH&W', 'REIMBURSEMENT', 'AWARDED', NULL, 0, NULL, NULL, 39, '2026-03-17 20:03:02', '2026-03-17 15:15:42', 32, '2026-05-01 17:37:33', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 32, '2026-05-01 17:37:33', 1, NULL, 'SINGLE_SOURCE', NULL, 0, NULL, 900.00, 'JMD', NULL, NULL, NULL),
+(140, 5, 'PR016', '2026-03-24', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 27, '2026-03-24 15:27:47', '2026-03-24 10:27:55', 35, '2026-03-24 11:33:26', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 35, '2026-03-24 11:33:26', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 37000.00, 'JMD', NULL, NULL, NULL),
+(141, 5, 'PR017', '2026-04-10', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 27, '2026-04-10 13:47:58', '2026-04-10 08:48:31', 35, '2026-04-10 09:14:16', NULL, NULL, NULL, NULL, '/uploads/signed_requests/SIGNED_REQUEST_141_1784578153_6a5e806959d49.pdf', '2026-07-20 15:09:13', 35, 35, '2026-04-10 09:14:16', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 20000.00, 'JMD', NULL, NULL, NULL),
+(142, 6, 'PR018', '2026-04-17', '', 'REGULAR', 'QUOTE_REVIEW_PENDING', NULL, 0, NULL, NULL, 37, '2026-04-17 17:07:55', '2026-04-17 12:08:11', 33, '2026-04-17 12:45:53', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 33, '2026-04-17 12:45:53', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 208480.00, 'JMD', NULL, NULL, NULL),
+(143, 5, 'PR019', '2026-04-22', '', 'REGULAR', 'QUOTE_APPROVED', NULL, 0, NULL, NULL, 27, '2026-04-22 20:12:26', '2026-04-22 15:12:33', 35, '2026-04-22 15:21:20', NULL, NULL, NULL, NULL, '/uploads/signed_requests/SIGNED_REQUEST_143_1776889680_69e92f5051dd1.pdf', '2026-04-22 15:28:00', 27, 35, '2026-04-22 15:21:20', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 19000.00, 'JMD', NULL, NULL, NULL),
+(144, 5, 'PR020', '2026-04-27', '', 'REGULAR', 'FUNDS_VERIFIED', NULL, 0, NULL, NULL, 27, '2026-04-27 17:00:15', '2026-04-27 12:00:39', 35, '2026-04-27 12:11:34', NULL, NULL, NULL, NULL, '/uploads/signed_requests/SIGNED_REQUEST_144_1777310322_69ef9a72b765c.pdf', '2026-04-27 12:18:42', 27, 34, '2026-04-27 13:42:27', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 137214.00, 'JMD', NULL, NULL, NULL),
+(145, 6, 'PR021', '2026-04-30', '', 'REGULAR', 'QUOTE_REVIEW_PENDING', NULL, 0, NULL, NULL, 37, '2026-04-30 18:41:31', '2026-05-01 12:50:20', 33, '2026-05-01 09:20:35', NULL, NULL, NULL, NULL, '/uploads/signed_requests/SIGNED_REQUEST_145_1777658424_69f4ea3896a07.pdf', '2026-05-01 13:00:24', 33, 33, '2026-05-01 09:20:35', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 145000.00, 'JMD', NULL, NULL, NULL),
+(146, 1, 'PR022', '2026-04-30', '', 'REGULAR', 'QUOTE_REVIEW_PENDING', NULL, 0, NULL, NULL, 27, '2026-04-30 19:48:45', '2026-07-14 11:42:08', 32, '2026-05-01 17:36:38', NULL, NULL, NULL, NULL, '/uploads/signed_requests/SIGNED_REQUEST_146_1778620004_6a0396643df85.pdf', '2026-05-12 16:06:44', 27, 32, '2026-05-01 17:36:38', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 67490.00, 'JMD', NULL, NULL, NULL),
+(147, 6, 'PR023', '2026-05-01', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 37, '2026-05-01 14:28:30', '2026-05-01 09:28:44', 33, '2026-05-01 11:43:42', NULL, NULL, NULL, NULL, '/uploads/signed_requests/SIGNED_REQUEST_147_1777658685_69f4eb3deef7e.pdf', '2026-05-01 13:04:45', 33, 33, '2026-05-01 11:43:42', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 57000.00, 'JMD', NULL, NULL, NULL),
+(148, 5, 'PR024', '2026-05-04', '', 'REGULAR', 'QUOTE_APPROVED', NULL, 0, NULL, NULL, 40, '2026-05-04 21:15:08', '2026-05-04 16:30:19', 35, '2026-05-04 16:33:42', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 35, '2026-05-04 16:33:42', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 80000.00, 'JMD', NULL, NULL, NULL),
+(149, 5, 'PR025', '2026-05-06', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 40, '2026-05-06 20:01:25', '2026-05-07 11:47:14', 35, '2026-05-06 15:13:19', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 35, '2026-05-06 15:13:19', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 40000.00, 'JMD', NULL, NULL, NULL),
+(150, 5, 'PR026', '2026-05-07', '', 'REGULAR', 'DECLINED', NULL, 0, NULL, NULL, 40, '2026-05-07 16:39:01', '2026-05-08 08:17:16', 35, '2026-05-08 15:45:25', 'Please speak with me regarding this request.', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 77000.00, 'JMD', NULL, NULL, NULL),
+(151, 5, 'PR027', '2026-05-07', 'Purchased Land Title from National Lands Agency elandjamaica platform to update DGC records and to facilitate surveying, assessment of land for construction/building.', 'REIMBURSEMENT', 'FUNDS_VERIFIED', NULL, 0, NULL, NULL, 40, '2026-05-07 17:19:06', '2026-05-13 12:44:43', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'SINGLE_SOURCE', NULL, 0, NULL, 500.00, 'JMD', NULL, NULL, NULL),
+(152, 5, 'PR028', '2026-05-11', 'Tea Supplies for Meeting', 'PETTY_CASH', 'FUNDS_VERIFIED', NULL, 0, NULL, NULL, 40, '2026-05-11 15:27:29', '2026-05-13 12:43:36', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'SINGLE_SOURCE', NULL, 0, NULL, 5000.00, 'JMD', NULL, NULL, NULL),
+(153, 5, 'PR029', '2026-05-11', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 40, '2026-05-11 20:07:00', '2026-05-11 15:07:09', 35, '2026-05-12 14:28:40', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 35, '2026-05-12 14:28:40', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 20000.00, 'JMD', NULL, NULL, NULL),
+(154, 5, 'PR030', '2026-05-11', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 40, '2026-05-11 21:08:50', '2026-05-12 14:49:47', 35, '2026-05-13 10:19:50', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 35, '2026-05-13 10:19:50', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 18000.00, 'JMD', NULL, NULL, NULL),
+(155, 5, 'PR031', '2026-05-12', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 40, '2026-05-12 19:00:26', '2026-05-12 14:00:37', 35, '2026-05-12 14:30:32', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 35, '2026-05-12 14:30:32', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 10000.00, 'JMD', NULL, NULL, NULL),
+(156, 5, 'PR032', '2026-05-12', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 40, '2026-05-12 19:12:11', '2026-05-13 09:28:02', 35, '2026-05-13 10:20:09', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 35, '2026-05-13 10:20:09', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 300000.00, 'JMD', NULL, NULL, NULL),
+(157, 5, 'PR033', '2026-05-13', 'Gasoline 90 (Gallon)\r\nNeeded to supply weed eater and lawnmower with fuel for maintenance work', 'PETTY_CASH', 'FUNDS_VERIFIED', NULL, 0, NULL, NULL, 40, '2026-05-13 14:19:25', '2026-05-13 12:44:24', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'SINGLE_SOURCE', NULL, 0, NULL, 5000.00, 'JMD', NULL, NULL, NULL),
+(158, 5, 'PR034', '2026-05-13', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 40, '2026-05-13 16:39:26', '2026-05-13 11:39:39', 35, '2026-05-13 16:54:50', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 35, '2026-05-13 16:54:50', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 20000.00, 'JMD', NULL, NULL, NULL),
+(159, 5, 'PR035', '2026-05-14', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 40, '2026-05-14 18:19:15', '2026-05-14 13:20:01', 35, '2026-05-19 09:49:18', NULL, NULL, NULL, NULL, '/uploads/signed_requests/SIGNED_REQUEST_159_1779202142_6a0c785e1af14.pdf', '2026-05-19 09:49:02', 35, 35, '2026-05-19 09:49:18', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 80000.00, 'JMD', NULL, NULL, NULL),
+(160, 6, 'PR036', '2026-05-19', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 37, '2026-05-19 15:14:20', '2026-05-19 10:39:56', 33, '2026-05-19 10:40:40', NULL, NULL, NULL, NULL, '/uploads/signed_requests/SIGNED_REQUEST_160_1779207712_6a0c8e20d62e5.pdf', '2026-05-19 11:21:52', 33, 33, '2026-05-19 10:40:40', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 100000.00, 'JMD', NULL, NULL, NULL),
+(161, 6, 'PR037', '2026-05-20', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 37, '2026-05-20 13:36:48', '2026-05-20 08:37:08', 33, '2026-06-01 09:27:23', NULL, NULL, NULL, NULL, '/uploads/signed_requests/SIGNED_REQUEST_161_1780594345_6a21b6a931a28.pdf', '2026-06-04 12:32:25', 33, 33, '2026-06-01 09:27:23', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 17000.00, 'JMD', NULL, NULL, NULL),
+(162, 6, 'PR038', '2026-05-20', '', 'REGULAR', 'DECLINED', NULL, 0, NULL, NULL, 37, '2026-05-20 17:08:19', '2026-05-20 12:08:25', 33, '2026-06-04 12:01:15', 'No budgetary support', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 20000.00, 'JMD', NULL, NULL, NULL),
+(163, 5, 'PR039', '2026-05-21', 'ID Case for DGC Staff', 'REIMBURSEMENT', 'AWARDED', NULL, 0, NULL, NULL, 40, '2026-05-21 14:17:21', '2026-05-21 09:29:44', 34, '2026-05-21 13:25:28', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 34, '2026-05-21 13:25:28', 1, NULL, 'SINGLE_SOURCE', NULL, 0, NULL, 9000.00, 'JMD', NULL, NULL, NULL),
+(164, 5, 'PR040', '2026-05-26', '', 'REGULAR', 'DECLINED', NULL, 0, NULL, NULL, 40, '2026-05-26 13:38:08', '2026-05-26 08:38:20', 35, '2026-07-13 15:30:04', 'No longer needed', NULL, NULL, NULL, '/uploads/signed_requests/SIGNED_REQUEST_164_1780416756_6a1f00f422d26.pdf', '2026-06-02 11:12:36', 35, NULL, NULL, 0, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 700000.00, 'JMD', NULL, NULL, NULL),
+(165, 5, 'PR041', '2026-05-27', 'Gift Package for Staff - Miss Gayle', 'PETTY_CASH', 'AWARDED', NULL, 0, NULL, NULL, 40, '2026-05-27 21:09:01', '2026-05-27 16:09:28', 34, '2026-05-27 16:36:33', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 34, '2026-05-27 16:36:33', 1, NULL, 'SINGLE_SOURCE', NULL, 0, NULL, 5000.00, 'JMD', NULL, NULL, NULL),
+(166, 5, 'PR042', '2026-05-31', '', 'REGULAR', 'DECLINED', NULL, 0, NULL, NULL, 40, '2026-05-31 17:17:11', '2026-05-31 12:17:55', 35, '2026-06-02 11:29:39', 'Please revisit quotation.', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 180000.00, 'JMD', NULL, NULL, NULL),
+(167, 5, 'PR043', '2026-06-01', '', 'REGULAR', 'CANCELLED', NULL, 0, NULL, NULL, 40, '2026-06-01 17:23:20', '2026-06-22 09:09:15', 35, '2026-06-02 11:30:25', 'Please redo', 'Redone', 40, '2026-06-22 09:09:15', NULL, NULL, NULL, NULL, NULL, 0, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 85000.00, 'JMD', NULL, NULL, NULL),
+(168, 5, 'PR044', '2026-06-01', '', 'REGULAR', 'QUOTE_APPROVED', NULL, 0, NULL, NULL, 40, '2026-06-01 17:31:22', '2026-06-01 12:31:28', 35, '2026-06-02 11:20:10', NULL, NULL, NULL, NULL, '/uploads/signed_requests/SIGNED_REQUEST_168_1780417233_6a1f02d1938ca.pdf', '2026-06-02 11:20:33', 35, 35, '2026-06-02 11:20:10', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 43500.00, 'JMD', NULL, NULL, NULL),
+(169, 6, 'PR045', '2026-06-01', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 38, '2026-06-01 17:44:08', '2026-06-01 12:44:16', 33, '2026-06-04 12:01:51', NULL, NULL, NULL, NULL, '/uploads/signed_requests/SIGNED_REQUEST_169_1780594640_6a21b7d0cf7ec.pdf', '2026-06-04 12:37:20', 33, 33, '2026-06-04 12:01:51', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 45000.00, 'JMD', NULL, NULL, NULL),
+(170, 5, 'PR046', '2026-06-01', 'Purchase of Gift for Staff - Miss L. Gayle \r\nGift Card and Photo Frame', 'REIMBURSEMENT', 'SUBMITTED', NULL, 0, NULL, NULL, 40, '2026-06-01 21:33:10', '2026-06-01 16:33:13', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'SINGLE_SOURCE', NULL, 0, NULL, 4564.35, 'JMD', NULL, NULL, NULL),
+(171, 5, 'PR047', '2026-06-02', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 40, '2026-06-02 16:43:32', '2026-06-02 11:43:38', 35, '2026-06-03 11:17:21', NULL, NULL, NULL, NULL, '/uploads/signed_requests/SIGNED_REQUEST_171_1780503431_6a20538765dba.pdf', '2026-06-03 11:17:11', 35, 35, '2026-06-03 11:17:21', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 220000.00, 'JMD', NULL, NULL, NULL),
+(172, 5, 'PR048', '2026-06-02', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 40, '2026-06-02 16:57:30', '2026-06-02 11:57:41', 35, '2026-06-02 13:25:55', NULL, NULL, NULL, NULL, '/uploads/signed_requests/SIGNED_REQUEST_172_1780424735_6a1f201f98680.pdf', '2026-06-02 13:25:35', 35, 35, '2026-06-02 13:25:55', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 120000.00, 'JMD', NULL, NULL, NULL),
+(173, 5, 'PR049', '2026-06-02', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 40, '2026-06-02 17:50:28', '2026-06-02 12:52:19', 35, '2026-06-03 11:02:07', NULL, NULL, NULL, NULL, '/uploads/signed_requests/SIGNED_REQUEST_173_1780502514_6a204ff207b96.pdf', '2026-06-03 11:01:54', 35, 35, '2026-06-03 11:02:07', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 200000.00, 'JMD', NULL, NULL, NULL),
+(174, 6, 'PR050', '2026-06-03', 'Paracetamol tablets for annual ILC', 'PETTY_CASH', 'SUBMITTED', NULL, 0, NULL, NULL, 37, '2026-06-03 18:16:21', '2026-06-03 14:45:51', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'SINGLE_SOURCE', NULL, 0, NULL, 5000.00, 'JMD', NULL, NULL, NULL),
+(175, 6, 'PR051', '2026-06-03', 'Paracetamol tablets for annual ILC', 'PETTY_CASH', 'DRAFT', NULL, 0, NULL, NULL, 37, '2026-06-03 18:17:12', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'SINGLE_SOURCE', NULL, 0, NULL, 5000.00, 'JMD', NULL, NULL, NULL),
+(176, 5, 'PR052', '2026-06-03', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 40, '2026-06-03 19:59:50', '2026-06-05 10:06:05', 35, '2026-06-05 10:11:34', NULL, NULL, NULL, NULL, '/uploads/signed_requests/SIGNED_REQUEST_176_1780674033_6a22edf1ae2ef.pdf', '2026-06-05 10:40:33', 35, 35, '2026-06-05 10:11:34', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 150000.00, 'JMD', NULL, NULL, NULL),
+(177, 5, 'PR053', '2026-06-04', '', 'REGULAR', 'CANCELLED', NULL, 0, NULL, NULL, 40, '2026-06-04 20:20:27', '2026-06-22 09:03:54', 35, '2026-06-11 09:29:01', 'Error in request.', 'Redone', 40, '2026-06-22 09:03:54', NULL, NULL, NULL, NULL, NULL, 0, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 30000.00, 'JMD', NULL, NULL, NULL),
+(178, 5, 'PR054', '2026-06-05', '', 'REGULAR', 'CANCELLED', NULL, 0, NULL, NULL, 27, '2026-06-05 17:52:59', '2026-06-05 12:53:29', NULL, NULL, NULL, 'TEsting Feature', 27, '2026-06-05 12:53:29', NULL, NULL, NULL, NULL, NULL, 0, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 123.00, 'JMD', NULL, NULL, NULL),
+(179, 1, 'PR055', '2026-06-08', 'Two (2) cases of tissue were purchased for the Department to meet immediate needs while awaiting delivery of tissues ordered through the procurement process.', 'REIMBURSEMENT', 'SUBMITTED', NULL, 0, NULL, NULL, 37, '2026-06-08 15:48:35', '2026-06-08 11:17:55', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'SINGLE_SOURCE', NULL, 0, NULL, 5460.00, 'JMD', NULL, NULL, NULL),
+(180, 6, 'PR056', '2026-06-08', 'Conductivity Standard was purchased for the Department to meet immediate needs while awaiting delivery of conductivity standard ordered through the procurement process.', 'REIMBURSEMENT', 'SUBMITTED', NULL, 0, NULL, NULL, 37, '2026-06-08 15:56:26', '2026-06-08 11:17:37', NULL, NULL, NULL, NULL, NULL, NULL, '/uploads/signed_requests/SIGNED_REQUEST_180_1781194140_6a2add9c8c0a9.pdf', '2026-06-11 11:09:00', 33, NULL, NULL, 0, NULL, 'SINGLE_SOURCE', NULL, 0, NULL, 5340.00, 'JMD', NULL, NULL, NULL),
+(181, 6, 'PR057', '2026-06-08', '1 pack of filter paper was purchased for the Department to meet immediate needs while awaiting delivery ordered through the procurement process.', 'REIMBURSEMENT', 'SUBMITTED', NULL, 0, NULL, NULL, 37, '2026-06-08 16:01:24', '2026-06-08 11:17:16', NULL, NULL, NULL, NULL, NULL, NULL, '/uploads/signed_requests/SIGNED_REQUEST_181_1781194569_6a2adf498602e.pdf', '2026-06-11 11:16:09', 33, NULL, NULL, 0, NULL, 'SINGLE_SOURCE', NULL, 0, NULL, 3216.26, 'JMD', NULL, NULL, NULL),
+(182, 6, 'PR058', '2026-06-08', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 37, '2026-06-08 16:14:44', '2026-06-08 11:15:53', 33, '2026-06-11 11:42:19', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 33, '2026-06-11 11:42:19', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 274120.00, 'JMD', NULL, NULL, NULL),
+(183, 5, 'PR059', '2026-06-09', 'L Brackets to hold up shelves/furniture.\r\nApproximately 12', 'PETTY_CASH', 'FUNDS_VERIFIED', NULL, 0, NULL, NULL, 40, '2026-06-09 20:39:46', '2026-06-17 11:48:36', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'SINGLE_SOURCE', NULL, 0, NULL, 5000.00, 'JMD', NULL, NULL, NULL),
+(184, 5, 'PR060', '2026-06-09', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 40, '2026-06-09 21:32:17', '2026-06-09 16:32:38', 35, '2026-06-11 10:13:58', NULL, NULL, NULL, NULL, '/uploads/signed_requests/SIGNED_REQUEST_184_1781190827_6a2ad0ab26389.pdf', '2026-06-11 10:13:47', 35, 35, '2026-06-11 10:13:58', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 50000.00, 'JMD', NULL, NULL, NULL),
+(185, 5, 'PR061', '2026-06-15', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 40, '2026-06-15 14:21:59', '2026-06-15 09:23:25', 35, '2026-06-15 11:36:36', NULL, NULL, NULL, NULL, '/uploads/signed_requests/SIGNED_REQUEST_185_1781541385_6a302a09d8b2f.pdf', '2026-06-15 11:36:25', 35, 35, '2026-06-15 11:36:36', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 20000.00, 'JMD', NULL, NULL, NULL),
+(186, 1, 'PR062', '2026-06-17', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 36, '2026-06-17 14:50:29', '2026-06-17 09:51:22', 32, '2026-06-18 10:21:03', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 32, '2026-06-18 10:21:03', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 70000.00, 'JMD', NULL, NULL, NULL),
+(187, 5, 'PR063', '2026-06-17', '', 'REGULAR', 'DECLINED', NULL, 0, NULL, NULL, 40, '2026-06-17 15:54:16', '2026-06-17 10:56:17', 35, '2026-06-17 14:31:19', 'Too expensive. We can get one on Amazon when we get our credit card. Or, you may buy from Amazon, and be reimbursed.', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 85000.00, 'JMD', NULL, NULL, NULL),
+(188, 5, 'PR064', '2026-06-18', 'Purpose\r\nL Brackets to hold up shelves/furniture. Please note this is not a duplicate of PR059 but for additional brackets.', 'PETTY_CASH', 'FUNDS_VERIFIED', NULL, 0, NULL, NULL, 40, '2026-06-18 13:00:14', '2026-06-30 11:58:48', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'SINGLE_SOURCE', NULL, 0, NULL, 5000.00, 'JMD', NULL, NULL, NULL),
+(189, 5, 'PR065', '2026-06-18', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 45, '2026-06-18 15:49:52', '2026-06-18 10:50:36', 35, '2026-06-30 11:44:13', NULL, NULL, NULL, NULL, '/uploads/signed_requests/SIGNED_REQUEST_189_1782838241_6a43f3e177317.pdf', '2026-06-30 11:50:41', 35, 35, '2026-06-30 11:44:13', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 1500.00, 'JMD', NULL, NULL, NULL),
+(190, 5, 'PR066', '2026-06-18', '', 'REGULAR', 'Draft', NULL, 0, NULL, NULL, 40, '2026-06-18 21:15:56', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 50000.00, 'JMD', NULL, NULL, NULL),
+(191, 6, 'PR067', '2026-06-26', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 37, '2026-06-26 19:21:04', '2026-06-26 14:21:26', 33, '2026-06-26 15:14:46', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 33, '2026-06-26 15:14:46', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 34615.00, 'JMD', NULL, NULL, NULL),
+(192, 5, 'PR068', '2026-06-29', 'Postage stamps for the mailing of documents for Department of Government Chemist records management.', 'PETTY_CASH', 'FUNDS_VERIFIED', NULL, 0, NULL, NULL, 40, '2026-06-29 21:21:42', '2026-06-30 11:59:10', NULL, NULL, NULL, NULL, NULL, NULL, '/uploads/signed_requests/SIGNED_REQUEST_192_1782841838_6a4401eef3161.pdf', '2026-06-30 12:50:38', 27, NULL, NULL, 0, NULL, 'SINGLE_SOURCE', NULL, 0, NULL, 5000.00, 'JMD', NULL, NULL, NULL),
+(193, 5, 'PR069', '2026-07-02', '', 'REGULAR', 'CANCELLED', NULL, 0, NULL, NULL, 40, '2026-07-02 13:04:07', '2026-07-20 12:40:59', 35, '2026-07-13 15:25:46', NULL, 'Adding/making change to request', 40, '2026-07-20 12:40:59', '/uploads/signed_requests/SIGNED_REQUEST_193_1783974367_6a5549dfb4d4f.pdf', '2026-07-13 15:26:07', 35, 35, '2026-07-13 15:25:46', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 107500.00, 'JMD', NULL, NULL, NULL),
+(194, 5, 'PR070', '2026-07-02', '', 'REGULAR', 'Draft', NULL, 0, NULL, NULL, 40, '2026-07-02 16:33:03', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 25162.00, 'JMD', NULL, NULL, NULL),
+(195, 5, 'PR071', '2026-07-02', '', 'REGULAR', 'SUBMITTED', NULL, 0, NULL, NULL, 40, '2026-07-02 18:34:55', '2026-07-09 11:09:40', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 190000.00, 'JMD', NULL, NULL, NULL),
+(196, 5, 'PR072', '2026-07-06', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 40, '2026-07-06 13:19:26', '2026-07-06 08:22:32', 35, '2026-07-17 11:57:53', NULL, NULL, NULL, NULL, '/uploads/signed_requests/SIGNED_REQUEST_196_1784308371_6a5a6293d1c13.pdf', '2026-07-17 12:12:51', 35, 35, '2026-07-17 11:57:53', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 25000.00, 'JMD', NULL, NULL, NULL),
+(197, 5, 'PR073', '2026-07-06', '', 'REGULAR', 'CANCELLED', NULL, 0, NULL, NULL, 40, '2026-07-06 13:27:39', '2026-07-09 09:40:31', NULL, NULL, NULL, 'To edit list of items', 40, '2026-07-09 09:40:31', NULL, NULL, NULL, NULL, NULL, 0, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 25000.00, 'JMD', NULL, NULL, NULL),
+(198, 6, 'PR074', '2026-07-08', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 38, '2026-07-08 18:26:44', '2026-07-08 13:26:56', 33, '2026-07-20 12:40:56', NULL, NULL, NULL, NULL, '/uploads/signed_requests/SIGNED_REQUEST_198_1784579429_6a5e85656da11.pdf', '2026-07-20 15:30:29', 33, 33, '2026-07-20 12:40:56', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 400000.00, 'JMD', NULL, NULL, NULL),
+(199, 6, 'PR075', '2026-07-08', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 37, '2026-07-08 18:44:50', '2026-07-08 13:45:01', 33, '2026-07-08 16:30:18', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 33, '2026-07-08 16:30:18', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 1000000.00, 'JMD', NULL, NULL, NULL),
+(200, 5, 'PR076', '2026-07-09', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 40, '2026-07-09 15:13:10', '2026-07-09 10:13:15', 35, '2026-07-21 09:53:01', NULL, NULL, NULL, NULL, '/uploads/signed_requests/SIGNED_REQUEST_200_1784645571_6a5f87c30a828.pdf', '2026-07-21 09:52:51', 35, 35, '2026-07-21 09:53:01', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 30000.00, 'JMD', NULL, NULL, NULL),
+(201, 5, 'PR077', '2026-07-09', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 40, '2026-07-09 16:16:01', '2026-07-09 11:16:09', 35, '2026-07-17 11:43:46', NULL, NULL, NULL, NULL, '/uploads/signed_requests/SIGNED_REQUEST_201_1784307400_6a5a5ec86fe1b.pdf', '2026-07-17 11:56:40', 35, 35, '2026-07-17 11:43:46', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 35000.00, 'JMD', NULL, NULL, NULL),
+(203, 5, 'PR078', '2026-07-20', '', 'REGULAR', 'CANCELLED', NULL, 0, NULL, NULL, 27, '2026-07-20 17:19:22', '2026-07-20 12:19:49', NULL, NULL, NULL, 'FOrget to add SSD', 27, '2026-07-20 12:19:49', NULL, NULL, NULL, NULL, NULL, 0, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 380000.00, 'JMD', NULL, NULL, NULL),
+(204, 5, 'PR079', '2026-07-20', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 27, '2026-07-20 17:21:57', '2026-07-20 12:22:04', 35, '2026-07-21 10:21:54', NULL, NULL, NULL, NULL, '/uploads/signed_requests/SIGNED_REQUEST_204_1784647155_6a5f8df396393.pdf', '2026-07-21 10:19:15', 35, 35, '2026-07-21 10:21:54', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 385000.00, 'JMD', NULL, NULL, NULL),
+(205, 5, 'PR080', '2026-07-20', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 40, '2026-07-20 17:47:20', '2026-07-20 12:57:56', 35, '2026-07-20 15:15:10', NULL, NULL, NULL, NULL, '/uploads/signed_requests/SIGNED_REQUEST_205_1784578487_6a5e81b7d7b45.pdf', '2026-07-20 15:14:47', 35, 35, '2026-07-20 15:15:10', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 107500.00, 'JMD', NULL, NULL, NULL),
+(207, 6, 'PR082', '2026-07-21', '', 'REGULAR', 'SUBMITTED', NULL, 0, NULL, NULL, 38, '2026-07-21 12:05:39', '2026-07-21 07:05:55', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 100000.00, 'JMD', NULL, NULL, NULL),
+(208, 5, 'PR083', '2026-07-21', '', 'REGULAR', 'RFQ_LETTER_AVAILABLE', NULL, 0, NULL, NULL, 40, '2026-07-21 13:22:31', '2026-07-21 08:38:42', 35, '2026-07-21 10:23:22', NULL, NULL, NULL, NULL, '/uploads/signed_requests/SIGNED_REQUEST_208_1784647388_6a5f8edc5ad10.pdf', '2026-07-21 10:23:08', 35, 35, '2026-07-21 10:23:22', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 66000.00, 'JMD', NULL, NULL, NULL),
+(209, 5, 'PR084', '2026-07-21', '', 'REGULAR', 'AWARDED', NULL, 0, NULL, NULL, 27, '2026-07-22 02:59:05', '2026-07-21 21:59:30', 30, '2026-07-21 22:23:39', NULL, NULL, NULL, NULL, '/uploads/signed_requests/SIGNED_REQUEST_209_1784690576_6a603790edb55.pdf', '2026-07-21 22:22:56', 27, 30, '2026-07-21 22:23:39', 1, NULL, 'SINGLE_SOURCE', NULL, 1, NULL, 90.00, 'JMD', NULL, NULL, NULL);
 
 --
 -- Triggers `procurement_requests`
@@ -3038,11 +9090,6 @@ INSERT INTO `procurement_request_items` (`item_id`, `request_id`, `item_name`, `
 (162, 142, 'Acetonitrile', 'HPLC Grade 4 L', 2, '', '2026-04-17 17:07:55'),
 (163, 143, 'SSD Harddrive', '2.5 sata, 480gb', 1, 'For SMS restoration on primary server', '2026-04-22 20:12:26'),
 (164, 144, 'RAM', 'Dell 1Rx8 16GB DDR5 PC5-5600 UDIMM ECC RAM Memory		', 1, 'For Server Upgrades', '2026-04-27 17:00:15'),
-(169, 146, '3 in 1 Laptop Bag, 15.6 inch PU Leather Shoulder Bag Briefcase Messenger Satchel Laptop Backpack', '15-16 inch Computer Bags Handbag Bookbag, Black ', 1, 'For Gov Chem Surface Pro', '2026-04-30 19:48:45'),
-(170, 146, 'New for Microsoft Surface Docking Station 11-in-1 Surface Dock 2 4K@60HZ', 'HDMI USB C Travel Dock for Microsoft Surface Pro 12/11/10/9/8/X/7/6/5/4,Surface Laptop 6/5/4/3/2/1,Laptop Go 3/2/1,Surface Book ', 1, 'For Gov Chem Surface Pro', '2026-04-30 19:48:45'),
-(171, 146, '65W USB C Surface Pro Charger Compatible with Microsoft Type c Surface Pro Fast Charge', 'Compatible with Microsoft Surface Pro 11 10 9 8 7+ 7 Surface pro X Tablet & Laptop Type C Fast Charger ', 1, 'For Gov Chem Surface Pro', '2026-04-30 19:48:45'),
-(172, 146, '45W Super Fast Charger USB C, Type C Chargers Fast Charging Android Phone Charger Block Samsung Galaxy S25 Ultra Chargers', '10FT Fast Charging Cord for Samsung Galaxy S26 Ultra/S26//S25/S24/S23, 2Port ', 1, 'For Gov Chem Galaxy Ultra', '2026-04-30 19:48:45'),
-(173, 146, 'Privacy Screen for 13 Inch Surface Pro 11/10/9/8/X, MagicSuction™', 'Removable Anti Spy Black Protector, Glare Blue Light Filter for Microsoft Laptop Computer Monitor ', 1, 'For Gov Chem Surface Pro', '2026-04-30 19:48:45'),
 (174, 147, 'Sodium Oxalate', 'Reference Material for Titrimetry', 1, 'For standardization, 25g/ bottle', '2026-05-01 14:28:30'),
 (175, 147, 'Ammonium Oxalate', 'ACS Reagent', 1, 'For general lab, 50 g', '2026-05-01 14:28:30'),
 (176, 147, 'NN- Dimethyl p-phenylenediamine sulphate', 'Catalog No. 186384', 1, 'For general lab use, 25 g', '2026-05-01 14:28:30'),
@@ -3114,7 +9161,144 @@ INSERT INTO `procurement_request_items` (`item_id`, `request_id`, `item_name`, `
 (319, 158, 'Soda			 ', '', 1, 'Managers Training for Departmental Unit Plan', '2026-05-13 16:39:26'),
 (320, 158, 'Orange Juice			 ', '', 1, 'Managers Training for Departmental Unit Plan', '2026-05-13 16:39:26'),
 (321, 158, 'Natural Juice			', '', 8, 'Managers Training for Departmental Unit Plan', '2026-05-13 16:39:26'),
-(322, 159, 'Installation of 110 volts - Circuit to facilitate printer in Accounts Department', '', 1, '', '2026-05-14 18:19:15');
+(322, 159, 'Installation of 110 volts - Circuit to facilitate printer in Accounts Department', '', 1, '', '2026-05-14 18:19:15'),
+(325, 160, 'Agilent Enterprise Edition Caffeine Standard Kit', 'Part No. 5190-0488', 1, '', '2026-05-19 15:39:53'),
+(326, 161, 'Sodium phosphate monobasic', 'ACS Reagent Grade, 500 g', 2, '', '2026-05-20 13:36:48'),
+(327, 162, 'Digital Phone', 'Avaya 1408', 1, 'For Emerald Office', '2026-05-20 17:08:19'),
+(328, 164, 'Solar System Upgrade', 'solar panels, inverters', 1, 'Upgrade to existing Solar System', '2026-05-26 13:38:08'),
+(331, 166, 'Assessment and Repair to leaking drain pipe in Toxicology Lab, Emerald Room & Main Stores ', '', 1, 'Involves the clearing/changing of pipe running from Toxicology lab to Emerald office to Main stores', '2026-05-31 17:17:52'),
+(332, 166, 'Water Filter Installation for Pharmaceutical lab ', '', 1, 'The UltraPure Water/distill machine at risk of being damaged/destroyed,', '2026-05-31 17:17:52'),
+(333, 167, 'Junior Roll Tissue', '10\"*12 roll', 6, '6 cases', '2026-06-01 17:23:20'),
+(334, 167, 'Industrial Hand Towel', 'Special - Med EMB', 26, '26 cases', '2026-06-01 17:23:20'),
+(335, 168, 'Disinfectant', 'Gallon', 20, '', '2026-06-01 17:31:22'),
+(336, 168, 'Bleach', 'Gallon', 20, '', '2026-06-01 17:31:22'),
+(337, 168, 'Antibacterial Soap', 'Gallon', 16, '', '2026-06-01 17:31:22'),
+(338, 169, ' DOA Test Kits', 'THC, COC, MPH, AMP, MOP', 2, 'For Urine Toxicology Screen', '2026-06-01 17:44:08'),
+(339, 171, 'Assessment, Installation/Repair and Material cost to address faulty pipes and leaking drain pipe in Toxicology Lab, Emerald Room & Main Stores', '', 1, 'Involves the assessment, materials, clearing/changing of pipe running from Toxicology lab to Emerald office to Main stores', '2026-06-02 16:43:32'),
+(340, 171, 'Water Filter Installation for Pharmaceutical lab & Stock of Filters to last 12 - 18 months', '', 1, 'To Safeguard the UltraPure Water/distill machine at risk of being damaged/destroyed.', '2026-06-02 16:43:32'),
+(341, 172, 'Junior Roll Tissue', '10\"*12 roll', 30, '30 cases', '2026-06-02 16:57:30'),
+(342, 172, 'Industrial Hand Towel', 'Special - Med EMB', 30, '30 cases', '2026-06-02 16:57:30'),
+(343, 172, 'Toilet Tissue - Regular/Domestic', '', 10, '10 cases', '2026-06-02 16:57:30'),
+(344, 172, 'Industrial Hand Towel', 'Jumbo', 2, '2 cases', '2026-06-02 16:57:30'),
+(345, 173, 'Pole ARTICULATING Hedge Trimmer', 'Milwaukee Electric - M18 Fuel Pole ARTICULATING Hedge Trimmer', 1, '', '2026-06-02 17:50:28'),
+(346, 173, 'Pressure Washer', '', 1, '', '2026-06-02 17:50:28'),
+(347, 173, 'HAND BLOWER ', '', 1, '', '2026-06-02 17:50:28'),
+(348, 173, 'POLE SAW', '', 1, '', '2026-06-02 17:50:28'),
+(354, 176, 'Biometric Fingerprint Clock', '', 1, 'Used to clock in and out for staff members', '2026-06-05 15:06:01'),
+(355, 176, 'Label Generator for Assets', '', 1, 'Used to provide adhesive labels for Assets', '2026-06-05 15:06:01'),
+(360, 178, 'TEST', 'Cancel Feature', 1, '12', '2026-06-05 17:52:59'),
+(367, 182, 'Thermal Paper 57 mmx 13m, 10 roll per pk', 'Item Code: G7910-87002', 1, 'For Dissolution Apparatus', '2026-06-08 16:15:24'),
+(368, 182, 'PTFE Frits, 5 pK', 'Lot Code: 01018-22707', 2, 'For Agilent HPLC servicing', '2026-06-08 16:15:24'),
+(369, 182, '708-DS Printer Upgrade Kit', 'Lot Code: G7910-68025', 1, 'For Dissolution Apparatus', '2026-06-08 16:15:24'),
+(370, 184, 'Junior Roll Tissue', '', 3, '', '2026-06-09 21:32:17'),
+(371, 184, 'Industrial Hand Towel MED EMB Special', '', 8, '', '2026-06-09 21:32:17'),
+(372, 184, 'industrial Hand Towel 1000FT 1PLY ', '', 2, '', '2026-06-09 21:32:17'),
+(373, 177, 'Samsung Galaxy A14', 'Screen Protector', 8, '', '2026-06-11 14:01:40'),
+(374, 177, 'Samsung Galaxy A14', 'Screen Protector', 8, '', '2026-06-11 14:01:40'),
+(375, 177, 'Samsung Galaxy A14', 'Charger - Fast Charge', 8, '', '2026-06-11 14:01:40'),
+(376, 177, 'Samsung A04e ', 'Phone Case', 1, '', '2026-06-11 14:01:40'),
+(377, 177, 'Samsung A04e ', 'Screen Protector', 1, '', '2026-06-11 14:01:40'),
+(378, 177, 'Samsung A04e ', 'Charger - Fast Charge', 1, '', '2026-06-11 14:01:40'),
+(383, 185, 'Samsung Galaxy A14', 'Screen Protector', 8, 'CUG Phones from before 2025 require change due to regular usage, wear and tear', '2026-06-15 14:23:15'),
+(384, 185, 'Samsung Galaxy A14', 'Phone Case', 8, 'CUG Phones from before 2025 require change due to regular usage, wear and tear', '2026-06-15 14:23:15'),
+(385, 185, 'Samsung Galaxy A04e', 'Phone Case', 1, 'CUG Phones from before 2025 require change due to regular usage, wear and tear', '2026-06-15 14:23:15'),
+(386, 185, 'Samsung Galaxy A04e', 'Screen Protector', 1, 'CUG Phones from before 2025 require change due to regular usage, wear and tear', '2026-06-15 14:23:15'),
+(389, 186, 'Servicing of AC units', 'Solvent Stores, Pharmaceutical Laboratory, HPLC Room, Senior Chemist Office (PHARM), Emerald Office, Main Stores, Balance Room, Food1, Food 2, Dissolution Room, Instrument Room, Server Room', 12, 'Expedited please.', '2026-06-17 14:51:11'),
+(391, 187, 'Spiral Binding Machine', '', 1, 'This request is for quotes only until confirmation is given to make purchase around July - September period', '2026-06-17 15:56:11'),
+(392, 189, ' lab coats', 'white', 4, '', '2026-06-18 15:49:52'),
+(393, 189, 'lab coats', 'Blue', 3, '', '2026-06-18 15:49:52'),
+(394, 190, 'Bottle Brush Set', '1cm/0.4in*20cm/7.9in, 1cm/0.4in*24.9cm/9.8in, 1cm/0.4in*30cm/11.8in, 5.5cm/2.15in*35.6cm/14in, ', 6, '', '2026-06-18 21:15:56'),
+(395, 191, 'Potassium Iodide', 'ACS Reagent Grade, 500 g', 1, 'For preparation for Iodine VS', '2026-06-26 19:21:04'),
+(396, 193, 'labour and pruning ', '', 21, '', '2026-07-02 13:04:07'),
+(397, 193, 'Diazion', '', 1, '', '2026-07-02 13:04:07'),
+(398, 193, 'Labour for spraying ', '', 1, '', '2026-07-02 13:04:07'),
+(399, 193, 'Truck -Disposal of tree cutting', '', 1, '', '2026-07-02 13:04:07'),
+(400, 194, 'Transportation', '', 1, '', '2026-07-02 16:33:03'),
+(401, 194, 'Refrigerant Leak repairs', '', 1, '', '2026-07-02 16:33:03'),
+(402, 194, 'Refrigerant 410A', '', 1, '', '2026-07-02 16:33:03'),
+(427, 196, 'Advil Liquid Capsules', '', 1, 'Box', '2026-07-06 13:22:25'),
+(428, 196, 'Advil Cold and Sinus', '', 1, 'Box', '2026-07-06 13:22:25'),
+(429, 196, 'Cetamol Cold and Flu', '', 1, 'Box', '2026-07-06 13:22:25'),
+(430, 196, 'Panadol Cold and Flu (multi symptom)', '', 1, 'Box', '2026-07-06 13:22:25'),
+(431, 196, 'Pepto-Bismol Capsules', '', 1, 'Box', '2026-07-06 13:22:25'),
+(432, 196, 'Pandaol Extra Strength 500   ', '', 1, 'Box', '2026-07-06 13:22:25'),
+(433, 196, 'Cetamol Menstrual', '', 1, 'Box', '2026-07-06 13:22:25'),
+(434, 196, 'Sanitary Napkins', 'with wings', 1, 'pack', '2026-07-06 13:22:25'),
+(435, 196, 'Hydrogen Peroxide ', 'Small', 1, '', '2026-07-06 13:22:25'),
+(436, 196, 'Ice pack', '', 1, '', '2026-07-06 13:22:25'),
+(437, 197, 'Coffee', '170g', 3, '', '2026-07-06 13:27:39'),
+(438, 197, 'Creamer', '650g', 3, '', '2026-07-06 13:27:39'),
+(439, 197, 'Sugar', '2lb', 3, '', '2026-07-06 13:27:39'),
+(440, 197, 'Mint Tea', '', 3, '', '2026-07-06 13:27:39'),
+(441, 197, 'Ginger Tea', '', 3, '', '2026-07-06 13:27:39'),
+(442, 197, 'Tin Milk', '', 3, '', '2026-07-06 13:27:39'),
+(443, 197, 'Chocolate', 'large', 3, '', '2026-07-06 13:27:39'),
+(444, 197, 'Lasco - Vanilla - Large', 'large', 2, '', '2026-07-06 13:27:39'),
+(445, 197, 'Lasco - Soy - Large', 'large', 1, '', '2026-07-06 13:27:39'),
+(446, 197, 'Milo', 'large', 3, '', '2026-07-06 13:27:39'),
+(447, 197, 'Cup - Cold (9oz)', 'disposable plastic', 3, '', '2026-07-06 13:27:39'),
+(448, 197, 'Cup - Hot 9oz)', 'disposable plastic', 3, '', '2026-07-06 13:27:39'),
+(449, 197, 'Spoons', 'disposable plastic', 3, '', '2026-07-06 13:27:39'),
+(450, 197, 'Forks', 'disposable plastic', 3, '', '2026-07-06 13:27:39'),
+(451, 197, 'Plates', 'disposable large plates', 2, '', '2026-07-06 13:27:39'),
+(452, 197, 'Plates', 'disposable small plates', 2, '', '2026-07-06 13:27:39'),
+(453, 197, 'Clear bags 6\"*10\"', '', 1, 'pack', '2026-07-06 13:27:39'),
+(454, 197, 'Bottle Water 236ml  (case) ', '', 1, 'Case', '2026-07-06 13:27:39'),
+(455, 197, 'Foil Paper', '', 1, '', '2026-07-06 13:27:39'),
+(470, 198, '1', 'British Pharmacopoeia 2027 ', 1, '', '2026-07-08 18:26:44'),
+(471, 199, 'Agilent 708 Dissolution ', 'Serial # DL1109C404', 1, 'For Servicing and Preventive maintenance', '2026-07-08 18:44:50'),
+(472, 199, 'Agilent Cary 60 UV-VIS', 'Serial #  MY23449213', 1, 'For servicing and preventative maintenance ', '2026-07-08 18:44:50'),
+(473, 200, 'Coffee', '170g', 4, '', '2026-07-09 15:13:10'),
+(474, 200, 'Creamer', '650g', 5, '', '2026-07-09 15:13:10'),
+(475, 200, 'Sugar', '2lb', 6, '', '2026-07-09 15:13:10'),
+(476, 200, 'PepperMint Tea', '', 3, '', '2026-07-09 15:13:10'),
+(477, 200, 'Ginger Tea', '', 3, '', '2026-07-09 15:13:10'),
+(478, 200, 'Sorrel Tea', '', 3, '', '2026-07-09 15:13:10'),
+(479, 200, 'Tin Milk', '', 3, '', '2026-07-09 15:13:10'),
+(480, 200, 'Chocolate', 'large', 3, '', '2026-07-09 15:13:10'),
+(481, 200, 'Milo', 'large', 4, '', '2026-07-09 15:13:10'),
+(482, 200, 'Lasco - Vanilla - Large', '', 5, '', '2026-07-09 15:13:10'),
+(483, 200, 'Lasco - Soy - Large', '', 1, '', '2026-07-09 15:13:10'),
+(484, 200, 'Spoons', '	disposable plastic', 6, '', '2026-07-09 15:13:10'),
+(485, 200, 'Forks', '	disposable plastic', 4, '', '2026-07-09 15:13:10'),
+(486, 200, 'Plates', 'disposable large plates', 2, '', '2026-07-09 15:13:10'),
+(487, 200, 'Plates', '	disposable small plates', 2, '', '2026-07-09 15:13:10'),
+(488, 200, 'Foil Paper', '', 1, '', '2026-07-09 15:13:10'),
+(489, 200, 'Cup - Cold (7oz)', '', 6, '', '2026-07-09 15:13:10'),
+(490, 200, 'Cup - Hot (9oz)', '', 6, '', '2026-07-09 15:13:10'),
+(491, 195, 'Konica TN‑328K - Black ', '', 1, '(Accounts/Finance)', '2026-07-09 16:09:23'),
+(492, 195, 'Konica TN‑328C - Cyan', '', 1, '(Accounts/Finance)', '2026-07-09 16:09:23'),
+(493, 195, 'Konica TN‑328M - Magenta ', '', 1, '(Accounts/Finance)', '2026-07-09 16:09:23'),
+(494, 195, 'Konica TN‑328Y - Yellow ', '', 1, '(Accounts/Finance)', '2026-07-09 16:09:23'),
+(495, 195, 'Brother\'s Toner Cartridge TN-730 Black ', '', 4, '(Administrator, Emerald Office, Quality Assurance Branch/Library)', '2026-07-09 16:09:23'),
+(496, 195, 'HP Toner Cartridge 212A Yellow ', '', 3, '(HRM&A)', '2026-07-09 16:09:23'),
+(497, 195, 'HP Toner Cartridge 212A Magenta', '', 3, '(HRM&A)', '2026-07-09 16:09:23'),
+(498, 195, 'HP Toner Cartridge 212A Cyan ', '', 3, '(HRM&A)', '2026-07-09 16:09:23'),
+(499, 195, 'HP Toner Cartridge 212A Black', '', 3, '(HRM&A)', '2026-07-09 16:09:23'),
+(500, 195, 'HP Toner Cartridge 230A Magenta ', '', 2, '(Deputy Gov Chem & Gov Chem)', '2026-07-09 16:09:23'),
+(501, 195, 'HP Toner Cartridge 230A Black ', '', 2, '(Deputy Gov Chem & Gov Chem)', '2026-07-09 16:09:23'),
+(502, 195, 'HP Toner Cartridge 230A Yellow ', '', 2, '(Deputy Gov Chem & Gov Chem)', '2026-07-09 16:09:23'),
+(503, 195, 'HP Toner Cartridge 230A Cyan ', '', 2, '(Deputy Gov Chem & Gov Chem)', '2026-07-09 16:09:23'),
+(504, 195, 'HP Toner Cartridge 151A Black ', '', 2, '(Toxicology Office) (HPLC)', '2026-07-09 16:09:23'),
+(505, 195, 'HP 938e/938', 'Magenta, Yellow, Cyan, Black', 2, ' Senior Chemist Pharm', '2026-07-09 16:09:23'),
+(506, 201, 'Analyst Goods Cost Receive Book', 'Pages are to be in duplicate with NCR paper.  Size: 10mm * 17.3mm Previous Sequence number: 12101-12200 ', 4, '', '2026-07-09 16:16:01'),
+(507, 202, 'Box Cutter', 'TEST', 1, 'TEST', '2026-07-13 20:54:27'),
+(508, 146, 'New for Microsoft Surface Docking Station 11-in-1 Surface Dock 2 4K@60HZ', 'HDMI USB C Travel Dock for Microsoft Surface Pro 12/11/10/9/8/X/7/6/5/4,Surface Laptop 6/5/4/3/2/1,Laptop Go 3/2/1,Surface Book ', 1, 'For Gov Chem Surface Pro', '2026-07-14 16:42:08'),
+(509, 146, '65W USB C Surface Pro Charger Compatible with Microsoft Type c Surface Pro Fast Charge', 'Compatible with Microsoft Surface Pro 11 10 9 8 7+ 7 Surface pro X Tablet & Laptop Type C Fast Charger ', 1, 'For Gov Chem Surface Pro', '2026-07-14 16:42:08'),
+(510, 146, '45W Super Fast Charger USB C, Type C Chargers Fast Charging Android Phone Charger Block Samsung Galaxy S25 Ultra Chargers', '10FT Fast Charging Cord for Samsung Galaxy S26 Ultra/S26//S25/S24/S23, 2Port ', 1, 'For Gov Chem Galaxy Ultra', '2026-07-14 16:42:08'),
+(511, 146, 'Privacy Screen for 13 Inch Surface Pro 11/10/9/8/X, MagicSuction™', 'Removable Anti Spy Black Protector, Glare Blue Light Filter for Microsoft Laptop Computer Monitor ', 1, 'For Gov Chem Surface Pro', '2026-07-14 16:42:08'),
+(512, 203, 'Acer Predator Helios Neo 16', 'Intel Core Ultra 9 RTX 4070 32GB-64GB RAM 1TB-2TB SSD 16\" QHD 240Hz', 1, 'For Deveoping Programs', '2026-07-20 17:19:22'),
+(513, 204, 'Acer Predator Helios Neo 16', 'Intel Core Ultra 9 RTX 4070 32GB-64GB RAM 1TB-2TB SSD 16\" QHD 240Hz', 1, 'Deveoping Programs fro Work', '2026-07-20 17:21:57'),
+(514, 204, 'SSD Hard Drive', 'Kingston 480GB SSd', 1, 'For Account Computer (Very Slow)', '2026-07-20 17:21:57'),
+(517, 205, 'Labour and pruning ', '', 1, 'Cost to Prune 21 Infested Willow Forest Trees. 50% Cost Covered by CARPHA & 50% covered by Department of Government Chemist', '2026-07-20 17:49:00'),
+(518, 205, 'Diazion', '', 1, 'Cost to Prune 21 Infested Willow Forest Trees. 50% Cost Covered by CARPHA & 50% covered by Department of Government Chemist', '2026-07-20 17:49:00'),
+(519, 205, 'Labour for spraying ', '', 1, 'Cost to Prune 21 Infested Willow Forest Trees. 50% Cost Covered by CARPHA & 50% covered by Department of Government Chemist', '2026-07-20 17:49:00'),
+(520, 205, 'Truck - Disposal of Tree Cutting', '', 1, 'Cost to Prune 21 Infested Willow Forest Trees. 50% Cost Covered by CARPHA & 50% covered by Department of Government Chemist', '2026-07-20 17:49:00'),
+(523, 207, 'Thermo Scientific Water Still', 'Calibration/ Servicing of Water Still in Toxicology Laboratory', 1, 'Mr. Barrett normally does this service', '2026-07-21 12:05:39'),
+(526, 208, 'Drinking water supply for 3 months', '5 Gallon, 12oz, 16.9oz', 1, 'Drinking water supply for 3 months - August 2026 - October 2026', '2026-07-21 13:33:19'),
+(529, 206, 'TEST', 'TEST APRROVAL', 1, 'TEST', '2026-07-22 02:09:12'),
+(530, 206, 'TEST', 'TEST RFQ FLOW', 1, '', '2026-07-22 02:09:12'),
+(531, 209, 'rfq', 'test', 6, 'test rfq workflow', '2026-07-22 02:59:05');
 
 -- --------------------------------------------------------
 
@@ -3160,6 +9344,13 @@ CREATE TABLE `purchase_orders` (
   `gfms_po_number` varchar(50) DEFAULT NULL COMMENT 'Unique PO number from GFMS system',
   `document_path` varchar(255) DEFAULT NULL COMMENT 'Path to uploaded PO document from GFMS'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `purchase_orders`
+--
+
+INSERT INTO `purchase_orders` (`po_id`, `commitment_id`, `po_number`, `po_date`, `po_total`, `status`, `created_at`, `approved_by`, `approved_at`, `excess_approved_by`, `excess_approved_at`, `commitment_approved_at`, `gfms_generated`, `po_type`, `parent_po_id`, `adjustment_reason`, `gfms_po_number`, `document_path`) VALUES
+(66, 88, 'PO-2026-0001', '2026-07-13', 8000.00, 'Open', '2026-07-13 21:22:40', NULL, '2026-07-13 16:22:40', NULL, NULL, NULL, 0, 'ORIGINAL', NULL, NULL, NULL, '/uploads/po/PO_1783977760_6a555720871d8.pdf');
 
 --
 -- Triggers `purchase_orders`
@@ -3298,7 +9489,46 @@ INSERT INTO `request_approvals` (`id`, `request_id`, `role`, `approved_by`, `sta
 (127, 152, 'Finance Officer', 34, 'approved', '2026-05-13 12:43:36', 'REQUEST', 152, 1, NULL, NULL, '2026-05-13 10:16:00', ''),
 (128, 157, 'Finance Officer', 34, 'approved', '2026-05-13 12:44:24', 'REQUEST', 157, 1, NULL, NULL, '2026-05-13 10:16:32', ''),
 (129, 158, 'Director HRM&A', 35, 'approved', '2026-05-13 16:54:50', 'REQUEST', 158, 1, NULL, NULL, '2026-05-13 11:39:39', NULL),
-(130, 159, 'Director HRM&A', NULL, 'pending', NULL, 'REQUEST', 159, 1, NULL, NULL, '2026-05-14 13:20:01', NULL);
+(130, 159, 'Director HRM&A', 35, 'approved', '2026-05-19 09:49:18', 'REQUEST', 159, 1, NULL, NULL, '2026-05-14 13:20:01', NULL),
+(133, 160, 'Deputy Government Chemist', 33, 'approved', '2026-05-19 10:40:40', 'REQUEST', 160, 1, NULL, NULL, '2026-05-19 10:39:56', NULL),
+(134, 161, 'Deputy Government Chemist', 33, 'approved', '2026-06-01 09:27:23', 'REQUEST', 161, 1, NULL, NULL, '2026-05-20 08:37:08', NULL),
+(136, 163, 'Finance Officer', 34, 'approved', '2026-05-21 13:25:28', 'REQUEST', 163, 1, NULL, NULL, '2026-05-21 09:29:44', NULL),
+(139, 165, 'Finance Officer', 34, 'approved', '2026-05-27 16:36:33', 'REQUEST', 165, 1, NULL, NULL, '2026-05-27 16:09:28', NULL),
+(142, 168, 'Director HRM&A', 35, 'approved', '2026-06-02 11:20:10', 'REQUEST', 168, 1, NULL, NULL, '2026-06-01 12:31:28', NULL),
+(143, 169, 'Deputy Government Chemist', 33, 'approved', '2026-06-04 12:01:51', 'REQUEST', 169, 1, NULL, NULL, '2026-06-01 12:44:16', NULL),
+(144, 170, 'Finance Officer', NULL, 'pending', NULL, 'REQUEST', 170, 1, NULL, NULL, '2026-06-01 16:33:13', NULL),
+(145, 171, 'Director HRM&A', 35, 'approved', '2026-06-03 11:17:21', 'REQUEST', 171, 1, NULL, NULL, '2026-06-02 11:43:38', NULL),
+(146, 172, 'Director HRM&A', 35, 'approved', '2026-06-02 13:25:55', 'REQUEST', 172, 1, NULL, NULL, '2026-06-02 11:57:41', NULL),
+(147, 173, 'Director HRM&A', 35, 'approved', '2026-06-03 11:02:07', 'REQUEST', 173, 1, NULL, NULL, '2026-06-02 12:52:19', NULL),
+(148, 174, 'Finance Officer', NULL, 'pending', NULL, 'REQUEST', 174, 1, NULL, NULL, '2026-06-03 14:45:51', NULL),
+(149, 176, 'Director HRM&A', 35, 'approved', '2026-06-05 10:11:34', 'REQUEST', 176, 1, NULL, NULL, '2026-06-05 10:06:05', NULL),
+(151, 182, 'Deputy Government Chemist', 33, 'approved', '2026-06-11 11:42:19', 'REQUEST', 182, 1, NULL, NULL, '2026-06-08 11:15:53', NULL),
+(152, 181, 'Finance Officer', NULL, 'pending', NULL, 'REQUEST', 181, 1, NULL, NULL, '2026-06-08 11:17:16', NULL),
+(153, 180, 'Finance Officer', NULL, 'pending', NULL, 'REQUEST', 180, 1, NULL, NULL, '2026-06-08 11:17:37', NULL),
+(154, 179, 'Finance Officer', NULL, 'pending', NULL, 'REQUEST', 179, 1, NULL, NULL, '2026-06-08 11:17:55', NULL),
+(155, 184, 'Director HRM&A', 35, 'approved', '2026-06-11 10:13:58', 'REQUEST', 184, 1, NULL, NULL, '2026-06-09 16:32:38', NULL),
+(156, 183, 'Finance Officer', 46, 'approved', '2026-06-17 11:48:36', 'REQUEST', 183, 1, NULL, NULL, '2026-06-11 08:59:16', ''),
+(158, 185, 'Director HRM&A', 35, 'approved', '2026-06-15 11:36:36', 'REQUEST', 185, 1, NULL, NULL, '2026-06-15 09:23:25', NULL),
+(159, 186, 'HOD', 32, 'approved', '2026-06-18 10:21:03', 'REQUEST', 186, 1, NULL, NULL, '2026-06-17 09:51:22', NULL),
+(161, 188, 'Finance Officer', 46, 'approved', '2026-06-30 11:58:48', 'REQUEST', 188, 1, NULL, NULL, '2026-06-18 08:10:44', ''),
+(162, 189, 'Director HRM&A', 35, 'approved', '2026-06-30 11:44:13', 'REQUEST', 189, 1, NULL, NULL, '2026-06-18 10:50:36', NULL),
+(163, 191, 'Deputy Government Chemist', 33, 'approved', '2026-06-26 15:14:46', 'REQUEST', 191, 1, NULL, NULL, '2026-06-26 14:21:26', NULL),
+(164, 192, 'Finance Officer', 46, 'approved', '2026-06-30 11:59:10', 'REQUEST', 192, 1, NULL, NULL, '2026-06-29 16:21:45', ''),
+(165, 193, 'Director HRM&A', 35, 'approved', '2026-07-13 15:25:46', 'REQUEST', 193, 1, NULL, NULL, '2026-07-02 08:06:00', NULL),
+(166, 196, 'Director HRM&A', 35, 'approved', '2026-07-17 11:57:53', 'REQUEST', 196, 1, NULL, NULL, '2026-07-06 08:22:32', NULL),
+(168, 198, 'Deputy Government Chemist', 33, 'approved', '2026-07-20 12:40:56', 'REQUEST', 198, 1, NULL, NULL, '2026-07-08 13:26:56', NULL),
+(169, 199, 'HOD', 32, 'approved', '2026-07-08 16:29:13', 'REQUEST', 199, 1, NULL, NULL, '2026-07-08 13:45:01', NULL),
+(170, 199, 'Deputy Government Chemist', 33, 'approved', '2026-07-08 16:30:18', 'REQUEST', 199, 2, NULL, NULL, '2026-07-08 13:45:01', NULL),
+(171, 200, 'Director HRM&A', 35, 'approved', '2026-07-21 09:53:01', 'REQUEST', 200, 1, NULL, NULL, '2026-07-09 10:13:15', NULL),
+(172, 195, 'Director HRM&A', NULL, 'pending', NULL, 'REQUEST', 195, 1, NULL, NULL, '2026-07-09 11:09:40', NULL),
+(173, 201, 'Director HRM&A', 35, 'approved', '2026-07-17 11:43:46', 'REQUEST', 201, 1, NULL, NULL, '2026-07-09 11:16:09', NULL),
+(174, 202, 'Director HRM&A', 35, 'approved', '2026-07-13 15:56:20', 'REQUEST', 202, 1, NULL, NULL, '2026-07-13 15:54:32', NULL),
+(176, 204, 'Director HRM&A', 35, 'approved', '2026-07-21 10:21:54', 'REQUEST', 204, 1, NULL, NULL, '2026-07-20 12:22:04', NULL),
+(178, 205, 'Director HRM&A', 35, 'approved', '2026-07-20 15:15:10', 'REQUEST', 205, 1, NULL, NULL, '2026-07-20 12:57:56', NULL),
+(180, 207, 'Deputy Government Chemist', NULL, 'pending', NULL, 'REQUEST', 207, 1, NULL, NULL, '2026-07-21 07:05:55', NULL),
+(181, 208, 'Director HRM&A', 35, 'approved', '2026-07-21 10:23:22', 'REQUEST', 208, 1, NULL, NULL, '2026-07-21 08:38:42', NULL),
+(183, 206, 'Director HRM&A', 30, 'approved', '2026-07-21 21:11:02', 'REQUEST', 206, 1, NULL, NULL, '2026-07-21 21:09:17', NULL),
+(184, 209, 'Director HRM&A', 30, 'approved', '2026-07-21 22:23:39', 'REQUEST', 209, 1, NULL, NULL, '2026-07-21 21:59:30', NULL);
 
 -- --------------------------------------------------------
 
@@ -3309,7 +9539,7 @@ INSERT INTO `request_approvals` (`id`, `request_id`, `role`, `approved_by`, `sta
 CREATE TABLE `request_documents` (
   `document_id` int(11) NOT NULL,
   `request_id` int(11) NOT NULL,
-  `document_type` enum('SIGNED_PO','SIGNED_COMMITMENT','OTHER') NOT NULL DEFAULT 'OTHER',
+  `document_type` enum('SIGNED_PO','SIGNED_COMMITMENT','SIGNED_REQUEST','MEMO','OTHER') NOT NULL DEFAULT 'OTHER',
   `document_name` varchar(255) NOT NULL COMMENT 'Original filename',
   `document_path` varchar(255) NOT NULL COMMENT 'Server file path',
   `uploaded_by` int(11) NOT NULL,
@@ -3329,7 +9559,37 @@ INSERT INTO `request_documents` (`document_id`, `request_id`, `document_type`, `
 (7, 144, '', 'Document_260427_121219.pdf', '/uploads/signed_requests/SIGNED_REQUEST_144_1777310322_69ef9a72b765c.pdf', 27, '2026-04-27 17:18:42', 'Signed request uploaded by Technical & User Support Officer'),
 (8, 145, '', 'PR021 .pdf', '/uploads/signed_requests/SIGNED_REQUEST_145_1777658424_69f4ea3896a07.pdf', 33, '2026-05-01 18:00:24', 'Signed request uploaded by Daneika Anderson'),
 (9, 147, '', 'PR023.pdf', '/uploads/signed_requests/SIGNED_REQUEST_147_1777658685_69f4eb3deef7e.pdf', 33, '2026-05-01 18:04:45', 'Signed request uploaded by Daneika Anderson'),
-(10, 146, '', 'PR22.pdf', '/uploads/signed_requests/SIGNED_REQUEST_146_1778620004_6a0396643df85.pdf', 27, '2026-05-12 21:06:44', 'Signed request uploaded by Technical & User Support Officer');
+(10, 146, '', 'PR22.pdf', '/uploads/signed_requests/SIGNED_REQUEST_146_1778620004_6a0396643df85.pdf', 27, '2026-05-12 21:06:44', 'Signed request uploaded by Technical & User Support Officer'),
+(11, 159, '', 'Document_260519_094642.pdf', '/uploads/signed_requests/SIGNED_REQUEST_159_1779202142_6a0c785e1af14.pdf', 35, '2026-05-19 14:49:02', 'Signed request uploaded by Nellesha Samuels'),
+(12, 160, '', 'Caffteine srtandard procurement request.pdf', '/uploads/signed_requests/SIGNED_REQUEST_160_1779207711_6a0c8e1f1b627.pdf', 33, '2026-05-19 16:21:51', 'Signed request uploaded by Daneika Anderson'),
+(13, 160, '', 'Caffteine srtandard procurement request.pdf', '/uploads/signed_requests/SIGNED_REQUEST_160_1779207712_6a0c8e20d62e5.pdf', 33, '2026-05-19 16:21:52', 'Signed request uploaded by Daneika Anderson'),
+(14, 164, '', 'Document_260602_111021.pdf', '/uploads/signed_requests/SIGNED_REQUEST_164_1780416756_6a1f00f422d26.pdf', 35, '2026-06-02 16:12:36', 'Signed request uploaded by Nellesha Samuels'),
+(15, 168, '', 'Document_260602_111629.pdf', '/uploads/signed_requests/SIGNED_REQUEST_168_1780417233_6a1f02d1938ca.pdf', 35, '2026-06-02 16:20:33', 'Signed request uploaded by Nellesha Samuels'),
+(16, 172, '', 'Document_260602_132109.pdf', '/uploads/signed_requests/SIGNED_REQUEST_172_1780424735_6a1f201f98680.pdf', 35, '2026-06-02 18:25:35', 'Signed request uploaded by Nellesha Samuels'),
+(17, 173, '', 'Document_260603_110100.pdf', '/uploads/signed_requests/SIGNED_REQUEST_173_1780502514_6a204ff207b96.pdf', 35, '2026-06-03 16:01:54', 'Signed request uploaded by Nellesha Samuels'),
+(18, 171, '', 'Document_260603_111143.pdf', '/uploads/signed_requests/SIGNED_REQUEST_171_1780503431_6a20538765dba.pdf', 35, '2026-06-03 16:17:11', 'Signed request uploaded by Nellesha Samuels'),
+(19, 161, '', 'PR037.pdf', '/uploads/signed_requests/SIGNED_REQUEST_161_1780594345_6a21b6a931a28.pdf', 33, '2026-06-04 17:32:25', 'Signed request uploaded by Daneika Anderson'),
+(20, 169, '', 'PR047.pdf', '/uploads/signed_requests/SIGNED_REQUEST_169_1780594640_6a21b7d0cf7ec.pdf', 33, '2026-06-04 17:37:20', 'Signed request uploaded by Daneika Anderson'),
+(21, 176, '', 'Document_260605_103855.pdf', '/uploads/signed_requests/SIGNED_REQUEST_176_1780674033_6a22edf1ae2ef.pdf', 35, '2026-06-05 15:40:33', 'Signed request uploaded by Nellesha Samuels'),
+(22, 184, '', 'Document_260611_101227.pdf', '/uploads/signed_requests/SIGNED_REQUEST_184_1781190827_6a2ad0ab26389.pdf', 35, '2026-06-11 15:13:47', 'Signed request uploaded by Nellesha Samuels'),
+(23, 180, '', 'PRO signed request.pdf', '/uploads/signed_requests/SIGNED_REQUEST_180_1781194140_6a2add9c8c0a9.pdf', 33, '2026-06-11 16:09:00', 'Signed request uploaded by Daneika Anderson'),
+(24, 181, '', 'PR057 signed procurement request.pdf', '/uploads/signed_requests/SIGNED_REQUEST_181_1781194569_6a2adf498602e.pdf', 33, '2026-06-11 16:16:09', 'Signed request uploaded by Daneika Anderson'),
+(25, 185, '', 'Procurement Request PR061_260615_113517.pdf', '/uploads/signed_requests/SIGNED_REQUEST_185_1781541385_6a302a09d8b2f.pdf', 35, '2026-06-15 16:36:25', 'Signed request uploaded by Nellesha Samuels'),
+(26, 189, '', 'Document_260630_114714.pdf', '/uploads/signed_requests/SIGNED_REQUEST_189_1782838241_6a43f3e177317.pdf', 35, '2026-06-30 16:50:41', 'Signed request uploaded by Nellesha Samuels'),
+(27, 192, '', 'Document_260630_124536.pdf', '/uploads/signed_requests/SIGNED_REQUEST_192_1782841838_6a4401eef3161.pdf', 27, '2026-06-30 17:50:38', 'Signed request uploaded by Technical & User Support Officer'),
+(28, 193, '', 'Document_260713_152326.pdf', '/uploads/signed_requests/SIGNED_REQUEST_193_1783974367_6a5549dfb4d4f.pdf', 35, '2026-07-13 20:26:07', 'Signed request uploaded by Nellesha Samuels'),
+(30, 201, '', 'Document_260717_114837.pdf', '/uploads/signed_requests/SIGNED_REQUEST_201_1784307400_6a5a5ec86fe1b.pdf', 35, '2026-07-17 16:56:40', 'Signed request uploaded by Nellesha Samuels'),
+(31, 196, '', 'Document_260717_120909.pdf', '/uploads/signed_requests/SIGNED_REQUEST_196_1784308371_6a5a6293d1c13.pdf', 35, '2026-07-17 17:12:51', 'Signed request uploaded by Nellesha Samuels'),
+(33, 141, 'SIGNED_REQUEST', 'Document_260720_150724.pdf', '/uploads/signed_requests/SIGNED_REQUEST_141_1784578153_6a5e806959d49.pdf', 35, '2026-07-20 20:09:13', 'Signed request uploaded by Nellesha Samuels'),
+(34, 205, 'SIGNED_REQUEST', 'Document_260720_151338.pdf', '/uploads/signed_requests/SIGNED_REQUEST_205_1784578487_6a5e81b7d7b45.pdf', 35, '2026-07-20 20:14:47', 'Signed request uploaded by Nellesha Samuels'),
+(35, 198, 'SIGNED_REQUEST', 'Procurement request FormB.P. 2026.docx', '/uploads/signed_requests/SIGNED_REQUEST_198_1784579361_6a5e85215afd3.docx', 33, '2026-07-20 20:29:21', 'Signed request uploaded by Daneika Anderson'),
+(36, 198, 'SIGNED_REQUEST', 'Procurement Request.pdf', '/uploads/signed_requests/SIGNED_REQUEST_198_1784579429_6a5e85656da11.pdf', 33, '2026-07-20 20:30:29', 'Signed request uploaded by Daneika Anderson'),
+(37, 207, 'MEMO', 'water still procurement request.pdf', '/uploads/request_documents/MEMO_207_1784635539_6a5f6093ec8fa.pdf', 38, '2026-07-21 12:05:39', 'Supporting memo attached at request creation'),
+(38, 200, 'SIGNED_REQUEST', 'Document_260721_095118.pdf', '/uploads/signed_requests/SIGNED_REQUEST_200_1784645571_6a5f87c30a828.pdf', 35, '2026-07-21 14:52:51', 'Signed request uploaded by Nellesha Samuels'),
+(39, 204, 'SIGNED_REQUEST', 'Document_260721_100029.pdf', '/uploads/signed_requests/SIGNED_REQUEST_204_1784647155_6a5f8df396393.pdf', 35, '2026-07-21 15:19:15', 'Signed request uploaded by Nellesha Samuels'),
+(40, 208, 'SIGNED_REQUEST', 'Document_260721_095951.pdf', '/uploads/signed_requests/SIGNED_REQUEST_208_1784647388_6a5f8edc5ad10.pdf', 35, '2026-07-21 15:23:08', 'Signed request uploaded by Nellesha Samuels'),
+(41, 204, 'MEMO', 'RFQ Program and Hard Ware.pdf', '/uploads/request_documents/MEMO_204_1784659263_6a5fbd3fafa3e.pdf', 42, '2026-07-21 18:41:03', NULL),
+(42, 209, 'SIGNED_REQUEST', 'procurement_request_209_for_signing.pdf', '/uploads/signed_requests/SIGNED_REQUEST_209_1784690576_6a603790edb55.pdf', 27, '2026-07-22 03:22:56', 'Signed request uploaded by Technical & User Support Officer');
 
 -- --------------------------------------------------------
 
@@ -3362,7 +9622,7 @@ CREATE TABLE `rfqs` (
 
 INSERT INTO `rfqs` (`rfq_id`, `request_id`, `rfq_number`, `rfq_date`, `submission_deadline`, `status`, `created_by`, `created_at`, `awarded_quote_id`, `letter_of_award_file`, `rfq_letter_file`, `acceptance_status`, `quote_review_status`, `reviewed_by`, `reviewed_at`, `acceptance_received_at`) VALUES
 (25, 131, 'RFQ-20260316-131', '2026-03-16', '2026-03-23 04:51:00', '', 44, '2026-03-16 17:51:59', NULL, NULL, '/uploads/rfq_letters/RFQ_LETTER_1773683519_69b8433fcf9c6.docx', 'PENDING', 'PENDING', NULL, NULL, NULL),
-(26, 132, 'RFQ-20260316-132', '2026-03-16', '2026-03-23 15:31:00', '', 44, '2026-03-16 20:31:08', NULL, NULL, '/uploads/rfq_letters/RFQ_LETTER_1773693068_69b8688cb1fc8.docx', 'PENDING', 'PENDING', NULL, NULL, NULL),
+(26, 132, 'RFQ-20260316-132', '2026-03-16', '2026-03-23 15:31:00', 'PUBLISHED', 44, '2026-03-16 20:31:08', NULL, NULL, '/uploads/rfq_letters/RFQ_LETTER_1773693068_69b8688cb1fc8.docx', 'PENDING', 'PENDING', NULL, NULL, NULL),
 (27, 137, 'RFQ-20260317-137', '2026-03-17', '2026-03-19 11:00:00', 'PUBLISHED', 44, '2026-03-17 16:53:40', NULL, NULL, '/uploads/rfq_letters/RFQ_LETTER_1773766420_69b987142ce58.pdf', 'PENDING', 'PENDING', NULL, NULL, NULL),
 (28, 138, 'RFQ-20260317-138', '2026-03-17', '2026-03-19 11:00:00', 'PUBLISHED', 44, '2026-03-17 19:12:55', NULL, NULL, '/uploads/rfq_letters/RFQ_LETTER_1773774775_69b9a7b773bb0.pdf', 'PENDING', 'PENDING', NULL, NULL, NULL),
 (29, 144, 'RFQ-20260427-144', '2026-04-08', '2026-04-15 11:00:00', 'PUBLISHED', 44, '2026-04-27 17:33:44', NULL, NULL, NULL, 'PENDING', 'PENDING', NULL, NULL, NULL),
@@ -3373,7 +9633,15 @@ INSERT INTO `rfqs` (`rfq_id`, `request_id`, `rfq_number`, `rfq_date`, `submissio
 (34, 142, 'RFQ-20260505-142', '2026-04-29', '2026-05-06 11:00:00', 'PUBLISHED', 44, '2026-05-05 18:42:09', NULL, NULL, '/uploads/rfq_letters/RFQ_LETTER_1778006547_69fa3a13883e2.pdf', 'PENDING', 'PENDING', NULL, NULL, NULL),
 (35, 148, 'RFQ-20260505-148', '2026-05-05', '2026-05-12 11:00:00', 'PUBLISHED', 42, '2026-05-05 21:28:10', NULL, NULL, '/uploads/rfq_letters/RFQ_LETTER_1778016490_69fa60ea3edfe.pdf', 'PENDING', 'PENDING', NULL, NULL, NULL),
 (36, 149, 'RFQ-20260507-149', '2026-05-07', '2026-05-14 11:00:00', '', 42, '2026-05-07 16:39:25', NULL, NULL, '/uploads/rfq_letters/RFQ_LETTER_1778171965_69fcc03dd202a.pdf', 'PENDING', 'PENDING', NULL, NULL, NULL),
-(37, 155, 'RFQ-20260512-155', '2026-05-12', '2026-05-19 11:00:00', '', 42, '2026-05-12 20:48:45', NULL, NULL, '/uploads/rfq_letters/RFQ_LETTER_1778618925_6a03922d88e7f.pdf', 'PENDING', 'PENDING', NULL, NULL, NULL);
+(37, 155, 'RFQ-20260512-155', '2026-05-12', '2026-05-19 11:00:00', '', 42, '2026-05-12 20:48:45', NULL, NULL, '/uploads/rfq_letters/RFQ_LETTER_1778618925_6a03922d88e7f.pdf', 'PENDING', 'PENDING', NULL, NULL, NULL),
+(38, 161, 'RFQ-20260527-161', '2026-05-20', '2026-05-27 11:00:00', '', 44, '2026-05-27 19:56:33', NULL, NULL, '/uploads/rfq_letters/RFQ_LETTER_1779911793_6a174c718806c.pdf', 'PENDING', 'PENDING', NULL, NULL, NULL),
+(39, 162, 'RFQ-20260529-162', '2026-05-27', '2026-06-03 11:00:00', '', 44, '2026-05-29 14:25:59', NULL, NULL, '/uploads/rfq_letters/RFQ_LETTER_1780064759_6a19a1f7017bf.pdf', 'PENDING', 'PENDING', NULL, NULL, NULL),
+(40, 168, 'RFQ-20260602-168', '2026-06-01', '2026-06-08 11:00:00', 'PUBLISHED', 42, '2026-06-02 16:43:50', NULL, NULL, '/uploads/rfq_letters/RFQ_LETTER_1780418630_6a1f0846e442d.pdf', 'PENDING', 'PENDING', NULL, NULL, NULL),
+(41, 172, 'RFQ-20260603-172', '2026-06-02', '2026-06-09 11:00:00', '', 44, '2026-06-03 16:06:13', NULL, NULL, '/uploads/rfq_letters/RFQ_LETTER_1780502773_6a2050f509cfe.pdf', 'PENDING', 'PENDING', NULL, NULL, NULL),
+(42, 176, 'RFQ-20260608-176', '2026-06-08', '2026-06-15 11:00:00', '', 44, '2026-06-08 18:53:37', NULL, NULL, '/uploads/rfq_letters/RFQ_LETTER_1780944817_6a270fb11c75a.pdf', 'PENDING', 'PENDING', NULL, NULL, NULL),
+(43, 169, 'RFQ-20260615-169', '2026-06-01', '2026-06-08 11:00:00', '', 44, '2026-06-15 21:18:32', NULL, NULL, '/uploads/rfq_letters/RFQ_LETTER_1781558312_6a306c284550c.pdf', 'PENDING', 'PENDING', NULL, NULL, NULL),
+(44, 182, 'RFQ-20260615-182', '2026-06-09', '2026-06-16 11:00:00', '', 44, '2026-06-15 21:35:57', NULL, NULL, '/uploads/rfq_letters/RFQ_LETTER_1781559357_6a30703dafbbe.pdf', 'PENDING', 'PENDING', NULL, NULL, NULL),
+(45, 202, 'RFQ-20260713-202', '2026-07-13', '2026-07-17 12:00:00', 'PUBLISHED', 27, '2026-07-13 20:58:41', NULL, NULL, NULL, 'PENDING', 'PENDING', NULL, NULL, NULL);
 
 --
 -- Triggers `rfqs`
@@ -3525,7 +9793,22 @@ INSERT INTO `rfq_quotes` (`quote_id`, `rfq_vendor_id`, `quote_amount`, `currency
 (82, 83, 105344.00, 'JMD', NULL, 15081.60, 30, '1778016595_Quotation - S06256.pdf', 0, 'PENDING', NULL, '2026-05-05 16:29:55'),
 (83, 84, 299000.00, 'JMD', NULL, 39000.00, 30, '1778076483_No.35431.26 Government Chemist.xls', 0, 'PENDING', NULL, '2026-05-06 09:08:03'),
 (84, 85, 187493.07, 'JMD', NULL, 24351.27, 30, '1778596068_QT-000057.pdf', 0, 'PENDING', NULL, '2026-05-12 09:27:48'),
-(85, 86, 181438.95, 'JMD', NULL, 23665.95, 30, '1778596163_Quotation - S06329 (1).pdf', 0, 'PENDING', NULL, '2026-05-12 09:29:23');
+(85, 86, 181438.95, 'JMD', NULL, 23665.95, 30, '1778596163_Quotation - S06329 (1).pdf', 0, 'PENDING', NULL, '2026-05-12 09:29:23'),
+(86, 88, 57500.00, 'JMD', NULL, 7500.00, 30, '1779911965_No.36525.26 Government Chemist (- Sodium Phosphate.xls', 0, 'PENDING', NULL, '2026-05-27 14:59:25'),
+(87, 89, 14774.95, 'JMD', NULL, 1770.65, 30, '1780064851_QT-000058.pdf', 0, 'PENDING', NULL, '2026-05-29 09:27:31'),
+(88, 90, 38154.20, 'JMD', NULL, 5723.13, 30, '1780428844_Government Chemist.pdf', 0, 'PENDING', NULL, '2026-06-02 14:34:04'),
+(89, 90, 38154.20, 'JMD', NULL, 5723.13, 30, '1780428844_Government Chemist.pdf', 0, 'PENDING', NULL, '2026-06-02 14:34:04'),
+(90, 90, 38154.20, 'JMD', NULL, 5723.13, 30, '1780428845_Government Chemist.pdf', 0, 'PENDING', NULL, '2026-06-02 14:34:05'),
+(91, 90, 38154.20, 'JMD', NULL, 5723.13, 30, '1780428845_Government Chemist.pdf', 0, 'PENDING', NULL, '2026-06-02 14:34:05'),
+(92, 90, 38154.20, 'JMD', NULL, 5723.13, 30, '1780428845_Government Chemist.pdf', 0, 'PENDING', NULL, '2026-06-02 14:34:05'),
+(93, 90, 38154.20, 'JMD', NULL, 5723.13, 30, '1780428849_Government Chemist.pdf', 0, 'PENDING', NULL, '2026-06-02 14:34:09'),
+(94, 90, 38154.20, 'JMD', NULL, 5723.13, 30, '1780428849_Government Chemist.pdf', 0, 'PENDING', NULL, '2026-06-02 14:34:09'),
+(95, 90, 38154.20, 'JMD', NULL, 5723.13, 30, '1780428849_Government Chemist.pdf', 0, 'PENDING', NULL, '2026-06-02 14:34:09'),
+(96, 90, 38154.20, 'JMD', NULL, 5723.13, 30, '1780428849_Government Chemist.pdf', 1, 'MEETS_REQUIREMENTS', NULL, '2026-06-02 14:34:09'),
+(97, 91, 299165.60, 'JMD', NULL, 39021.60, 30, '1780606346_Quote # m4427 (1).PDF', 0, 'PENDING', NULL, '2026-06-04 15:52:26'),
+(98, 92, 47920.50, 'JMD', NULL, 6250.50, 30, '1781558842_Government Chemist Department Quotation S 15 06 2026.pdf', 0, 'PENDING', NULL, '2026-06-15 16:27:22'),
+(99, 93, 1713.25, 'USD', 155.2200, 0.00, 30, '1781559641_S04594 (1) (1).pdf', 0, 'PENDING', NULL, '2026-06-15 16:40:41'),
+(100, 94, 8000.00, 'JMD', NULL, 150.00, 30, '1783976446_test.pdf', 1, 'MEETS_REQUIREMENTS', NULL, '2026-07-13 16:00:46');
 
 -- --------------------------------------------------------
 
@@ -3577,7 +9860,15 @@ INSERT INTO `rfq_vendors` (`rfq_vendor_id`, `rfq_id`, `vendor_id`, `vendor_name`
 (83, 35, 12, '', NULL, 'SUBMITTED', '2026-05-05 21:28:31'),
 (84, 34, 11, '', NULL, 'SUBMITTED', '2026-05-06 14:07:33'),
 (85, 32, 7, '', NULL, 'SUBMITTED', '2026-05-11 15:49:34'),
-(86, 32, 12, '', NULL, 'SUBMITTED', '2026-05-11 15:50:19');
+(86, 32, 12, '', NULL, 'SUBMITTED', '2026-05-11 15:50:19'),
+(87, 37, 13, '', NULL, 'PENDING', '2026-05-20 22:04:15'),
+(88, 38, 11, '', NULL, 'SUBMITTED', '2026-05-27 19:56:42'),
+(89, 39, 7, '', NULL, 'SUBMITTED', '2026-05-29 14:26:42'),
+(90, 40, 14, '', NULL, 'SUBMITTED', '2026-06-02 19:31:08'),
+(91, 41, 15, '', NULL, 'SUBMITTED', '2026-06-04 20:46:07'),
+(92, 43, 18, '', NULL, 'SUBMITTED', '2026-06-15 21:19:32'),
+(93, 44, 19, '', NULL, 'SUBMITTED', '2026-06-15 21:39:58'),
+(94, 45, 7, '', NULL, 'SUBMITTED', '2026-07-13 20:59:01');
 
 -- --------------------------------------------------------
 
@@ -3622,7 +9913,8 @@ INSERT INTO `roles` (`id`, `name`, `description`, `created_at`) VALUES
 (9, 'Deputy Government Chemist', 'Final approving authority', '2026-02-14 18:20:06'),
 (10, 'Director HRM&A', 'Director of Human Resource Management and Administration', '2026-02-17 02:30:11'),
 (11, 'Director Procurement', 'Director of Procurement Operations', '2026-02-17 02:30:11'),
-(12, 'Requestor', 'Employee submitting procurement requests', '2026-02-17 02:30:11');
+(12, 'Requestor', 'Employee submitting procurement requests', '2026-02-17 02:30:11'),
+(13, 'Property Management Officer', 'Manages physical property, stock, and inventory operations', '2026-05-12 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -3706,6 +9998,7 @@ INSERT INTO `role_permissions` (`role_id`, `permission_id`) VALUES
 (10, 12),
 (11, 12),
 (12, 12),
+(13, 12),
 (3, 13),
 (4, 13),
 (5, 13),
@@ -3775,6 +10068,7 @@ INSERT INTO `role_permissions` (`role_id`, `permission_id`) VALUES
 (9, 24),
 (10, 24),
 (11, 24),
+(13, 24),
 (3, 25),
 (4, 25),
 (5, 25),
@@ -3823,6 +10117,7 @@ INSERT INTO `role_permissions` (`role_id`, `permission_id`) VALUES
 (10, 33),
 (11, 33),
 (12, 33),
+(13, 33),
 (2, 45),
 (5, 45),
 (6, 45),
@@ -3990,6 +10285,7 @@ INSERT INTO `role_permissions` (`role_id`, `permission_id`) VALUES
 (9, 120),
 (10, 120),
 (11, 120),
+(13, 120),
 (5, 121),
 (6, 121),
 (11, 121),
@@ -4043,6 +10339,8 @@ INSERT INTO `role_permissions` (`role_id`, `permission_id`) VALUES
 (10, 177),
 (11, 177),
 (12, 177),
+(13, 177),
+(5, 178),
 (6, 178),
 (9, 178),
 (3, 179),
@@ -4050,7 +10348,81 @@ INSERT INTO `role_permissions` (`role_id`, `permission_id`) VALUES
 (6, 179),
 (3, 180),
 (5, 180),
-(6, 180);
+(6, 180),
+(2, 181),
+(3, 181),
+(4, 181),
+(12, 181),
+(13, 181),
+(13, 182),
+(13, 183),
+(12, 184),
+(13, 184),
+(4, 185),
+(13, 185),
+(2, 186),
+(6, 186),
+(13, 186),
+(2, 187),
+(13, 187),
+(5, 188),
+(6, 188),
+(13, 188),
+(4, 189),
+(13, 189),
+(13, 190),
+(4, 191),
+(13, 191),
+(13, 192),
+(4, 193),
+(5, 193),
+(13, 193),
+(13, 194),
+(13, 195),
+(13, 196),
+(13, 197),
+(2, 198),
+(3, 198),
+(4, 198),
+(13, 198),
+(13, 199),
+(13, 200),
+(2, 201),
+(4, 201),
+(13, 201),
+(2, 202),
+(5, 202),
+(13, 202),
+(2, 203),
+(13, 203),
+(2, 204),
+(3, 204),
+(4, 204),
+(12, 204),
+(13, 204),
+(2, 209),
+(13, 209),
+(13, 210),
+(2, 211),
+(13, 211),
+(4, 212),
+(5, 212),
+(13, 212),
+(3, 213),
+(13, 213),
+(3, 214),
+(13, 214),
+(4, 215),
+(13, 215),
+(4, 216),
+(13, 216),
+(4, 217),
+(13, 217),
+(5, 232),
+(6, 232),
+(13, 232),
+(5, 269),
+(6, 269);
 
 -- --------------------------------------------------------
 
@@ -4090,10 +10462,11 @@ CREATE TABLE `system_config` (
 INSERT INTO `system_config` (`config_id`, `config_key`, `config_value`, `description`, `created_at`, `updated_at`) VALUES
 (1, 'petty_cash_limit', '5000', 'Maximum amount for petty cash procurement without formal approval (JMD)', '2026-02-17 02:30:11', '2026-02-18 00:00:42'),
 (2, 'direct_procurement_threshold', '3000000', 'Threshold value for direct procurement eligibility (JMD)', '2026-02-17 02:30:11', '2026-03-17 10:53:51'),
-(7, 'enable_notifications', '1', 'Enable/disable email notifications (1=enabled, 0=disabled)', '2026-02-17 21:32:44', '2026-02-26 10:02:41'),
+(7, 'enable_notifications', '0', 'Enable/disable email notifications (1=enabled, 0=disabled)', '2026-02-17 21:32:44', '2026-07-21 20:32:17'),
 (19, 'usd_to_jmd_rate', '155.22', 'Current USD to JMD exchange rate for currency conversion', '2026-02-24 01:17:49', '2026-02-25 21:18:00'),
-(41, 'hod_approval_threshold', '500000', 'Procurement requests above this amount require HOD approval (JMD)', '2026-03-17 10:53:51', '2026-03-17 16:25:58'),
-(42, 'committee_review_threshold', '3000000', 'Procurement requests above this amount require committee review (JMD)', '2026-03-17 10:53:51', '2026-03-17 16:25:58');
+(41, 'hod_approval_threshold', '500000', 'Procurement requests above this amount require HOD approval (JMD)', '2026-03-17 10:53:51', '2026-06-05 11:33:55'),
+(42, 'committee_review_threshold', '3000000', 'Procurement requests above this amount require committee review (JMD)', '2026-03-17 10:53:51', '2026-03-17 16:25:58'),
+(63, 'enable_rfq_auto_email', '0', 'Enable/disable automatic RFQ email distribution to vendors', '2026-07-20 17:52:54', '2026-07-20 21:14:06');
 
 -- --------------------------------------------------------
 
@@ -4124,19 +10497,22 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`user_id`, `full_name`, `email`, `role_id`, `password_hash`, `is_active`, `created_at`, `must_change_password`, `password_changed_at`, `failed_attempts`, `lock_until`, `reset_token_hash`, `reset_token_expires`) VALUES
 (27, 'Technical & User Support Officer', 'Demario.Ewan@moh.gov.jm', 6, '$2y$10$genzJdfdKkzU5Jqg3LKeyeaUXPCr6BEjmPouYjbl9FUDqJFdsAS7i', 1, '2026-02-25 15:05:24', 0, '2026-02-25 10:07:13', 0, NULL, NULL, NULL),
 (30, 'Demario Ewan', 'demarioe14@gmail.com', 6, '$2y$10$ElFPjESZG3kHeBMgT4ALtuysNO3h3MgxH/CZf0A3EwiVOe2Fo7UFS', 1, '2026-02-26 15:14:04', 0, '2026-02-26 10:17:55', 0, NULL, NULL, NULL),
-(32, 'Yanique A. Fraser', 'yanique.fraser@moh.gov.jm', 4, '$2y$10$X/nzfCVshLBMuNGdeDFDT.CzBjxewEUzS02L8KAyTXiT53qG0eqcC', 1, '2026-02-26 15:28:16', 0, '2026-02-26 10:37:45', 0, NULL, NULL, NULL),
+(32, 'Yanique A. Fraser', 'yanique.fraser@moh.gov.jm', 4, '$2y$10$q6VQYGZPS4iNDCcm3vy.cO33zfHuR7Kx6Bhro1yN3ghvSjOG4qVv.', 1, '2026-02-26 15:28:16', 0, '2026-02-26 10:37:45', 0, NULL, NULL, NULL),
 (33, 'Daneika Anderson', 'Daneika.Anderson@moh.gov.jm', 9, '$2y$10$2A5G.tgoFure8koXQnu8peMl.7RfmFxQ5MMx6TuutQucFOi4MlBt6', 1, '2026-02-26 15:29:16', 0, '2026-02-26 11:01:58', 0, NULL, NULL, NULL),
-(34, 'Latoya Gayle', 'Latoya.Gayle@moh.gov.jm', 3, '$2y$10$JKmsjcSWwv4objXFXCjnzOfAIGG8LrbBTiBEzSaiXaeIp7RccKKZK', 1, '2026-02-26 15:29:48', 0, '2026-03-04 09:53:22', 0, NULL, NULL, NULL),
-(35, 'Nellesha Samuels', 'Nellesha.Samuels@moh.gov.jm', 10, '$2y$10$QUMu2jnAN3f52X8M3B/OeOvlcVvgCmzkm23Ej4myoHWoBcrYJf/am', 1, '2026-02-26 15:30:15', 0, '2026-03-04 09:59:46', 0, NULL, NULL, NULL),
+(34, 'Latoya Gayle', 'Latoya.Gayle@moh.gov.jm', 3, '$2y$10$JKmsjcSWwv4objXFXCjnzOfAIGG8LrbBTiBEzSaiXaeIp7RccKKZK', 0, '2026-02-26 15:29:48', 0, '2026-03-04 09:53:22', 0, NULL, NULL, NULL),
+(35, 'Nellesha Samuels', 'Nellesha.Samuels@moh.gov.jm', 10, '$2y$10$QUMu2jnAN3f52X8M3B/OeOvlcVvgCmzkm23Ej4myoHWoBcrYJf/am', 1, '2026-02-26 15:30:15', 0, '2026-03-04 09:59:46', 0, NULL, '20cac89d421171b8cdf2215ccfb6a8411c81447e03d701763a41bec6a38efebc', '2026-06-09 17:35:10'),
 (36, 'Ryan Warburton', 'Ryan.Warburton@moh.gov.jm', 12, '$2y$10$PKQcRwWLT5v9G.9rEc9JqO9fnPleVqhd9qJLVJo2dySMCgGBCJKgK', 1, '2026-02-26 15:30:42', 0, '2026-02-26 11:12:42', 0, NULL, NULL, NULL),
-(37, 'Shermaine McKenzie', 'Shermaine.McKenzie@moh.gov.jm', 12, '$2y$10$Mwx0A2LeS/8.ybVWoMQaBO/0TR6C3EazvOaujX4t5O1rrVaLrftoy', 1, '2026-02-26 15:31:09', 0, '2026-02-26 10:52:01', 0, NULL, NULL, NULL),
-(38, 'Waveney Warrick', 'Waveney.Warrick@moh.gov.jm', 12, '$2y$10$8Q/iPFz5x.13NbJrYg08BeNvu8CtafdCxAxJKqGOVDfle.qd7NG5y', 1, '2026-02-26 15:31:30', 0, '2026-02-26 11:00:39', 0, NULL, NULL, NULL),
+(37, 'Shermaine McKenzie', 'Shermaine.McKenzie@moh.gov.jm', 12, '$2y$10$mNlADkzeqJSG/GymbjSe9effd4949OEUYqdjcZJRYC0DzErAvJJeW', 1, '2026-02-26 15:31:09', 0, '2026-06-11 15:37:10', 0, NULL, NULL, NULL),
+(38, 'Waveney Warrick', 'Waveney.Warrick@moh.gov.jm', 12, '$2y$10$sJpeRepM.iYL4YT9kyDOq.zBMw7GnRDkESYP1VxcBUJanInoTlcfy', 1, '2026-02-26 15:31:30', 0, '2026-06-01 12:39:45', 0, NULL, NULL, NULL),
 (39, 'Sancia Johnally Haynes', 'Sancia.Johnally-Haynes@moh.gov.jm', 12, '$2y$10$uEV/WQl0fMHBCesu26vvJOcWMwJlwFvRnDhNJLVp5wQ6/nuAZoKxO', 1, '2026-02-26 15:32:07', 0, '2026-03-04 15:10:33', 0, NULL, NULL, NULL),
-(40, 'Alfred Bryan', 'Alfred.Bryan@moh.gov.jm', 12, '$2y$10$AmmaNjQz8dQXGyipklEy6.BCa5qUC9vjiwLyZd4mJx77U2mOrZhIq', 1, '2026-02-26 15:32:30', 0, '2026-03-06 12:12:33', 0, NULL, NULL, NULL),
+(40, 'Alfred Bryan', 'Alfred.Bryan@moh.gov.jm', 13, '$2y$10$AmmaNjQz8dQXGyipklEy6.BCa5qUC9vjiwLyZd4mJx77U2mOrZhIq', 1, '2026-02-26 15:32:30', 0, '2026-03-06 12:12:33', 0, NULL, NULL, NULL),
 (41, 'Fredricka Chung', 'Fredricka.Chung@moh.gov.jm', 12, '$2y$10$rB/iA9zKLWZOLivDI1efIOyOXQRW1hVsZDnXU.3MRuSXmXiIr4vLe', 1, '2026-02-26 15:33:18', 0, '2026-02-26 11:15:58', 0, NULL, NULL, NULL),
 (42, 'Yanique McKenzie', 'Yanique.McKenzie@moh.gov.jm', 2, '$2y$10$jIxD5ymo7QezPDzq7xFOsO.yeoyUfOUWo5QoQG1lWvigK4L9uPefm', 1, '2026-02-26 15:33:44', 0, '2026-04-07 09:50:15', 0, NULL, NULL, NULL),
 (43, 'Shenai McFarlane', 'Shenai.McFarlane@moh.gov.jm', 12, '$2y$10$F3ZoG92jf9GQSdj8TKtR8ey4f8uTEe.mTkh2tvaOtIlsso6t2mZhK', 1, '2026-02-26 15:34:07', 1, NULL, 0, NULL, NULL, NULL),
-(44, 'Gabrielle Green', 'Gabrielle.Green@moh.gov.jm', 2, '$2y$10$WQ8rgucFRH/gztETMZjUbOPZj/W8jOtujyoj6mWRC9YyERwzVkxCK', 1, '2026-02-26 15:34:42', 0, '2026-02-26 11:05:55', 0, NULL, NULL, NULL);
+(44, 'Gabrielle Green', 'Gabrielle.Green@moh.gov.jm', 2, '$2y$10$WQ8rgucFRH/gztETMZjUbOPZj/W8jOtujyoj6mWRC9YyERwzVkxCK', 1, '2026-02-26 15:34:42', 0, '2026-02-26 11:05:55', 0, NULL, '1d4cc60d77cfbe7183fd5e22ee120a608c29a2cb2ebb3ac671ea526e27aa6f8b', '2026-06-11 11:06:13'),
+(45, 'Troxel Orboine', 'troxel.orboine@moh.gov.jm', 12, '$2y$10$1pc.fdApx45I5cl950TH8.kneIvztMqKGGPFQiknGpKISFVfKHAG6', 1, '2026-05-22 14:45:17', 0, '2026-05-26 11:18:29', 0, NULL, NULL, NULL),
+(46, 'Ackelia McLaren', 'ackelia.mclaren@moh.gov.jm', 3, '$2y$10$ZXGIzlqHif2R/45BSmOk1ueDIIj1Re.Yzx1Rg.fUvvCkQQn9BLT4q', 1, '2026-06-15 15:34:37', 0, '2026-06-15 11:27:25', 0, NULL, NULL, NULL),
+(47, 'Amekie Anson', 'amekie.anson@moh.gov.jm', 1, '$2y$10$UzsrNFS9RwHgNj1R5QjA1e2RdcWZBD29ahm0HH9eXlDNUUFYURe.2', 1, '2026-06-17 17:02:32', 0, '2026-06-17 12:11:08', 0, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -4357,7 +10733,27 @@ INSERT INTO `user_permissions` (`id`, `user_id`, `permission_id`, `is_granted`, 
 (541, 34, 107, 1, NULL, '2026-03-04 09:56:40'),
 (542, 34, 106, 1, NULL, '2026-03-04 09:56:40'),
 (543, 39, 103, 1, NULL, '2026-03-17 15:05:21'),
-(544, 37, 102, 1, NULL, '2026-04-17 11:47:11');
+(544, 37, 102, 1, NULL, '2026-04-17 11:47:11'),
+(545, 44, 59, 1, NULL, '2026-05-18 19:49:07'),
+(546, 44, 58, 1, NULL, '2026-05-18 19:49:07'),
+(547, 44, 103, 1, NULL, '2026-05-18 19:49:07'),
+(548, 44, 102, 1, NULL, '2026-05-18 19:49:07'),
+(549, 37, 103, 1, NULL, '2026-06-03 14:44:22'),
+(551, 40, 103, 1, NULL, '2026-06-11 08:45:01'),
+(552, 40, 102, 1, NULL, '2026-06-11 08:45:01'),
+(553, 42, 103, 1, '2026-08-28 00:00:00', '2026-06-17 08:58:32'),
+(554, 42, 102, 1, '2026-08-28 00:00:00', '2026-06-17 08:58:32'),
+(557, 46, 111, 1, NULL, '2026-06-17 11:45:10'),
+(558, 46, 103, 1, NULL, '2026-06-17 11:45:10'),
+(559, 40, 173, 1, NULL, '2026-07-13 16:15:21'),
+(560, 40, 46, 1, NULL, '2026-07-13 16:15:21'),
+(563, 40, 114, 1, NULL, '2026-07-13 16:15:21'),
+(564, 40, 61, 1, NULL, '2026-07-20 12:44:40'),
+(565, 40, 60, 1, NULL, '2026-07-20 12:44:40'),
+(566, 40, 1, 1, NULL, '2026-07-20 12:44:40'),
+(575, 40, 105, 1, NULL, '2026-07-20 12:57:36'),
+(577, 40, 104, 1, NULL, '2026-07-20 12:57:36'),
+(578, 40, 2, 1, NULL, '2026-07-20 12:57:36');
 
 -- --------------------------------------------------------
 
@@ -4388,12 +10784,18 @@ INSERT INTO `vendors` (`vendor_id`, `vendor_name`, `contact_person`, `email`, `p
 (4, 'MC System', 'Roget Hall', 'roget.hall@mcsystems.com', '', '', 'ACTIVE', NULL, 0, '2026-03-17 16:56:32'),
 (5, 'Advanced Integrated System', 'Richard Hutchinson', 'richard.hutchinson@aiswebnet.com', '', '', 'ACTIVE', NULL, 0, '2026-03-17 17:14:52'),
 (6, 'Printware', '', 'Ashley@printwareonline.com', '', '', 'ACTIVE', NULL, 0, '2026-03-17 17:16:54'),
-(7, 'D&S IT Services', 'Shanice Smith', 'ssmith@dsitservicesja.com', '', '', 'ACTIVE', NULL, 0, '2026-03-17 18:53:56'),
-(8, 'Demario Ewan', '', 'demario.ewan@moh.gov.jm', '', '', 'ACTIVE', NULL, 0, '2026-03-17 19:48:10'),
+(7, 'D&S IT Services Limited', 'Shanice Smith', 'sales@dsitservicesja.com', '8762354053', 'Kingston \r\nJamaica', 'ACTIVE', NULL, 0, '2026-03-17 18:53:56'),
 (9, 'Royale Computers & Accessories Ltd', '', 'Shaquille.Murray@royalecomputers.com', '', '', 'ACTIVE', NULL, 0, '2026-03-18 13:48:28'),
 (10, 'BCB Sales and Services', '', '', '', '', 'ACTIVE', NULL, 0, '2026-05-04 21:44:20'),
 (11, 'Jam Labs', 'Ackelia Raymond', '', 'Phone: (876) 929-3513 Phone: (876) 968-5908 Phone:', '18C Lyndhurst Road, Kingston', 'ACTIVE', NULL, 0, '2026-05-04 21:47:29'),
-(12, 'Tech Pro Business Solution', '', '', '', '', 'ACTIVE', NULL, 0, '2026-05-04 22:18:36');
+(12, 'Tech Pro Business Solution', '', '', '', '', 'ACTIVE', NULL, 0, '2026-05-04 22:18:36'),
+(13, 'Century Business Machines Limited', 'Mr. Jedi Gordon', 'jgordon@cbmja.com', '1-876-802-8831', '175 Mountain View Avenue, Kingston 6', 'ACTIVE', NULL, 0, '2026-05-20 22:03:25'),
+(14, 'Minott Equipment and Chemicals', 'Christina Chambers', '', '1-876-324-2745', '14 1/2 Retirement Road, Kingston 5 Jamaica, W.I.', 'ACTIVE', NULL, 0, '2026-06-02 14:27:11'),
+(15, 'Sanmerna Paper Products', '', '', '', '', 'ACTIVE', NULL, 0, '2026-06-04 20:45:55'),
+(16, 'All Power', '', 'allpowerja@gmail.com', '1876-805-2783', '11 Fairway Avenue, Kingston 13', 'ACTIVE', NULL, 0, '2026-06-05 20:59:17'),
+(17, 'Roger Clayton', '', '', '', '', 'ACTIVE', NULL, 0, '2026-06-05 21:07:57'),
+(18, 'Recharged Distributors Ltd', '', '', '', '', 'ACTIVE', NULL, 0, '2026-06-15 21:19:21'),
+(19, 'Analogic Solution', '', '', '', '', 'ACTIVE', NULL, 0, '2026-06-15 21:38:51');
 
 -- --------------------------------------------------------
 
@@ -4482,6 +10884,13 @@ ALTER TABLE `approval_workflows`
   ADD PRIMARY KEY (`workflow_id`);
 
 --
+-- Indexes for table `asset_types`
+--
+ALTER TABLE `asset_types`
+  ADD PRIMARY KEY (`asset_type_id`),
+  ADD UNIQUE KEY `uk_asset_type_code` (`type_code`);
+
+--
 -- Indexes for table `audit_log`
 --
 ALTER TABLE `audit_log`
@@ -4522,11 +10931,26 @@ ALTER TABLE `compliance_approvals`
   ADD KEY `idx_entity` (`entity_type`,`entity_id`);
 
 --
+-- Indexes for table `document_reminder_log`
+--
+ALTER TABLE `document_reminder_log`
+  ADD PRIMARY KEY (`reminder_id`),
+  ADD KEY `idx_doc_reminder_request` (`request_id`),
+  ADD KEY `idx_doc_reminder_sent` (`sent_at`);
+
+--
 -- Indexes for table `external_approvals`
 --
 ALTER TABLE `external_approvals`
   ADD PRIMARY KEY (`approval_id`),
   ADD KEY `request_id` (`request_id`);
+
+--
+-- Indexes for table `inventory_types`
+--
+ALTER TABLE `inventory_types`
+  ADD PRIMARY KEY (`inventory_type_id`),
+  ADD UNIQUE KEY `uk_inv_type_code` (`type_code`);
 
 --
 -- Indexes for table `invoices`
@@ -4536,6 +10960,413 @@ ALTER TABLE `invoices`
   ADD UNIQUE KEY `uq_invoice_number` (`invoice_number`),
   ADD KEY `po_id` (`po_id`),
   ADD KEY `idx_invoice_source` (`invoice_source`);
+
+--
+-- Indexes for table `inv_accounting_classes`
+--
+ALTER TABLE `inv_accounting_classes`
+  ADD PRIMARY KEY (`acct_class_id`),
+  ADD UNIQUE KEY `uk_acct_code` (`acct_class_code`);
+
+--
+-- Indexes for table `inv_adjustments`
+--
+ALTER TABLE `inv_adjustments`
+  ADD PRIMARY KEY (`adjustment_id`),
+  ADD UNIQUE KEY `uk_adj_number` (`adjustment_number`),
+  ADD KEY `fk_adj_by` (`requested_by`);
+
+--
+-- Indexes for table `inv_adjustment_items`
+--
+ALTER TABLE `inv_adjustment_items`
+  ADD PRIMARY KEY (`adj_item_id`),
+  ADD KEY `fk_ai_adj` (`adjustment_id`),
+  ADD KEY `fk_ai_item` (`item_id`);
+
+--
+-- Indexes for table `inv_approval_log`
+--
+ALTER TABLE `inv_approval_log`
+  ADD PRIMARY KEY (`approval_log_id`),
+  ADD KEY `idx_aplog_ref` (`reference_type`,`reference_id`);
+
+--
+-- Indexes for table `inv_approval_matrix`
+--
+ALTER TABLE `inv_approval_matrix`
+  ADD PRIMARY KEY (`matrix_id`);
+
+--
+-- Indexes for table `inv_asset_details`
+--
+ALTER TABLE `inv_asset_details`
+  ADD PRIMARY KEY (`asset_detail_id`),
+  ADD UNIQUE KEY `uk_asset_detail_item` (`item_id`),
+  ADD UNIQUE KEY `uk_asset_detail_code` (`asset_code`),
+  ADD KEY `idx_asset_serial` (`serial_number`),
+  ADD KEY `idx_asset_reference` (`reference_number`),
+  ADD KEY `idx_asset_department` (`department_branch_id`),
+  ADD KEY `idx_asset_custodian` (`custodian_user_id`);
+
+--
+-- Indexes for table `inv_asset_movements`
+--
+ALTER TABLE `inv_asset_movements`
+  ADD PRIMARY KEY (`movement_id`),
+  ADD KEY `idx_asset_move_serial` (`serial_id`),
+  ADD KEY `idx_asset_move_moved_at` (`moved_at`),
+  ADD KEY `idx_asset_move_to_loc` (`to_location_id`),
+  ADD KEY `fk_asset_move_from_loc` (`from_location_id`),
+  ADD KEY `fk_asset_move_user` (`moved_by`);
+
+--
+-- Indexes for table `inv_categories`
+--
+ALTER TABLE `inv_categories`
+  ADD PRIMARY KEY (`category_id`),
+  ADD UNIQUE KEY `uk_category_code` (`category_code`),
+  ADD KEY `idx_parent` (`parent_category_id`);
+
+--
+-- Indexes for table `inv_criticality_classes`
+--
+ALTER TABLE `inv_criticality_classes`
+  ADD PRIMARY KEY (`criticality_id`),
+  ADD UNIQUE KEY `uk_crit_code` (`criticality_code`);
+
+--
+-- Indexes for table `inv_delegations`
+--
+ALTER TABLE `inv_delegations`
+  ADD PRIMARY KEY (`delegation_id`),
+  ADD KEY `idx_delegate` (`delegate_user_id`),
+  ADD KEY `idx_expiry` (`effective_to`),
+  ADD KEY `fk_del_delegator` (`delegator_user_id`),
+  ADD KEY `fk_del_role` (`inv_role_id`);
+
+--
+-- Indexes for table `inv_disposals`
+--
+ALTER TABLE `inv_disposals`
+  ADD PRIMARY KEY (`disposal_id`),
+  ADD UNIQUE KEY `uk_disp_number` (`disposal_number`),
+  ADD KEY `fk_disp_by` (`requested_by`);
+
+--
+-- Indexes for table `inv_disposal_items`
+--
+ALTER TABLE `inv_disposal_items`
+  ADD PRIMARY KEY (`disp_item_id`),
+  ADD KEY `fk_di_disp` (`disposal_id`),
+  ADD KEY `fk_di_item` (`item_id`);
+
+--
+-- Indexes for table `inv_documents`
+--
+ALTER TABLE `inv_documents`
+  ADD PRIMARY KEY (`document_id`),
+  ADD UNIQUE KEY `uk_doc_number` (`document_number`),
+  ADD KEY `idx_doc_type` (`document_type`),
+  ADD KEY `idx_doc_ref` (`reference_table`,`reference_id`);
+
+--
+-- Indexes for table `inv_document_attachments`
+--
+ALTER TABLE `inv_document_attachments`
+  ADD PRIMARY KEY (`attachment_id`),
+  ADD KEY `fk_att_doc` (`document_id`);
+
+--
+-- Indexes for table `inv_fiscal_periods`
+--
+ALTER TABLE `inv_fiscal_periods`
+  ADD PRIMARY KEY (`period_id`),
+  ADD UNIQUE KEY `uk_period_name` (`period_name`),
+  ADD KEY `idx_period_dates` (`period_start`,`period_end`);
+
+--
+-- Indexes for table `inv_goods_received`
+--
+ALTER TABLE `inv_goods_received`
+  ADD PRIMARY KEY (`grn_id`),
+  ADD UNIQUE KEY `uk_grn_number` (`grn_number`),
+  ADD KEY `idx_grn_po` (`po_reference`),
+  ADD KEY `fk_grn_receiver` (`received_by`);
+
+--
+-- Indexes for table `inv_grn_items`
+--
+ALTER TABLE `inv_grn_items`
+  ADD PRIMARY KEY (`grn_item_id`),
+  ADD KEY `fk_grni_grn` (`grn_id`),
+  ADD KEY `fk_grni_item` (`item_id`);
+
+--
+-- Indexes for table `inv_import_batches`
+--
+ALTER TABLE `inv_import_batches`
+  ADD PRIMARY KEY (`batch_id`),
+  ADD KEY `idx_import_user` (`imported_by`);
+
+--
+-- Indexes for table `inv_import_errors`
+--
+ALTER TABLE `inv_import_errors`
+  ADD PRIMARY KEY (`error_id`),
+  ADD KEY `idx_import_error_batch` (`batch_id`);
+
+--
+-- Indexes for table `inv_incidents`
+--
+ALTER TABLE `inv_incidents`
+  ADD PRIMARY KEY (`incident_id`),
+  ADD UNIQUE KEY `uk_incident_number` (`incident_number`),
+  ADD KEY `fk_inc_user` (`reported_by`);
+
+--
+-- Indexes for table `inv_incident_items`
+--
+ALTER TABLE `inv_incident_items`
+  ADD PRIMARY KEY (`incident_item_id`),
+  ADD KEY `fk_inci_incident` (`incident_id`),
+  ADD KEY `fk_inci_item` (`item_id`);
+
+--
+-- Indexes for table `inv_issues`
+--
+ALTER TABLE `inv_issues`
+  ADD PRIMARY KEY (`issue_id`),
+  ADD UNIQUE KEY `uk_issue_number` (`issue_number`),
+  ADD KEY `fk_iss_req` (`requisition_id`),
+  ADD KEY `fk_iss_by` (`issued_by`);
+
+--
+-- Indexes for table `inv_issue_items`
+--
+ALTER TABLE `inv_issue_items`
+  ADD PRIMARY KEY (`issue_item_id`),
+  ADD KEY `fk_ii_issue` (`issue_id`),
+  ADD KEY `fk_ii_item` (`item_id`);
+
+--
+-- Indexes for table `inv_items`
+--
+ALTER TABLE `inv_items`
+  ADD PRIMARY KEY (`item_id`),
+  ADD UNIQUE KEY `uk_item_code` (`item_code`),
+  ADD KEY `idx_category` (`category_id`),
+  ADD KEY `idx_criticality` (`criticality_id`),
+  ADD KEY `idx_status` (`item_status`),
+  ADD KEY `fk_item_subcategory` (`subcategory_id`),
+  ADD KEY `fk_item_uom` (`uom_id`),
+  ADD KEY `fk_item_acct_class` (`acct_class_id`),
+  ADD KEY `idx_item_domain` (`item_domain`),
+  ADD KEY `idx_asset_type` (`asset_type_id`),
+  ADD KEY `idx_inv_type` (`inventory_type_id`);
+
+--
+-- Indexes for table `inv_item_risk_classes`
+--
+ALTER TABLE `inv_item_risk_classes`
+  ADD PRIMARY KEY (`item_id`,`risk_class_id`),
+  ADD KEY `fk_irc_risk` (`risk_class_id`);
+
+--
+-- Indexes for table `inv_item_suppliers`
+--
+ALTER TABLE `inv_item_suppliers`
+  ADD PRIMARY KEY (`item_id`,`vendor_id`),
+  ADD KEY `fk_is_vendor` (`vendor_id`);
+
+--
+-- Indexes for table `inv_locations`
+--
+ALTER TABLE `inv_locations`
+  ADD PRIMARY KEY (`location_id`),
+  ADD UNIQUE KEY `uk_location_code` (`location_code`),
+  ADD KEY `idx_custodian` (`custodian_user_id`);
+
+--
+-- Indexes for table `inv_period_snapshots`
+--
+ALTER TABLE `inv_period_snapshots`
+  ADD PRIMARY KEY (`snapshot_id`),
+  ADD KEY `idx_snap_period` (`period_id`),
+  ADD KEY `idx_snap_item` (`item_id`);
+
+--
+-- Indexes for table `inv_quarantine_log`
+--
+ALTER TABLE `inv_quarantine_log`
+  ADD PRIMARY KEY (`quarantine_id`),
+  ADD KEY `idx_quar_item` (`item_id`),
+  ADD KEY `fk_quar_user` (`quarantined_by`);
+
+--
+-- Indexes for table `inv_recalls`
+--
+ALTER TABLE `inv_recalls`
+  ADD PRIMARY KEY (`recall_id`),
+  ADD UNIQUE KEY `uk_recall_number` (`recall_number`),
+  ADD KEY `idx_recall_item` (`item_id`),
+  ADD KEY `idx_recall_batch` (`batch_lot_number`),
+  ADD KEY `fk_recall_user` (`initiated_by`);
+
+--
+-- Indexes for table `inv_recall_items`
+--
+ALTER TABLE `inv_recall_items`
+  ADD PRIMARY KEY (`recall_item_id`),
+  ADD KEY `fk_rcli_recall` (`recall_id`);
+
+--
+-- Indexes for table `inv_requisitions`
+--
+ALTER TABLE `inv_requisitions`
+  ADD PRIMARY KEY (`requisition_id`),
+  ADD UNIQUE KEY `uk_req_number` (`requisition_number`),
+  ADD KEY `idx_requester` (`requester_user_id`),
+  ADD KEY `idx_status` (`status`);
+
+--
+-- Indexes for table `inv_requisition_items`
+--
+ALTER TABLE `inv_requisition_items`
+  ADD PRIMARY KEY (`req_item_id`),
+  ADD KEY `idx_req_id` (`requisition_id`),
+  ADD KEY `fk_ri_item` (`item_id`);
+
+--
+-- Indexes for table `inv_returns`
+--
+ALTER TABLE `inv_returns`
+  ADD PRIMARY KEY (`return_id`),
+  ADD UNIQUE KEY `uk_return_number` (`return_number`),
+  ADD KEY `fk_ret_user` (`requested_by`);
+
+--
+-- Indexes for table `inv_return_items`
+--
+ALTER TABLE `inv_return_items`
+  ADD PRIMARY KEY (`return_item_id`),
+  ADD KEY `fk_reti_return` (`return_id`),
+  ADD KEY `fk_reti_item` (`item_id`);
+
+--
+-- Indexes for table `inv_risk_classes`
+--
+ALTER TABLE `inv_risk_classes`
+  ADD PRIMARY KEY (`risk_class_id`),
+  ADD UNIQUE KEY `uk_risk_code` (`risk_code`);
+
+--
+-- Indexes for table `inv_roles`
+--
+ALTER TABLE `inv_roles`
+  ADD PRIMARY KEY (`inv_role_id`),
+  ADD UNIQUE KEY `uk_inv_role` (`role_code`);
+
+--
+-- Indexes for table `inv_serial_numbers`
+--
+ALTER TABLE `inv_serial_numbers`
+  ADD PRIMARY KEY (`serial_id`),
+  ADD UNIQUE KEY `uk_item_serial` (`item_id`,`serial_number`),
+  ADD KEY `idx_serial_number` (`serial_number`),
+  ADD KEY `idx_grn_number` (`grn_number`),
+  ADD KEY `idx_po_number` (`po_number`),
+  ADD KEY `idx_dgc_asset` (`dgc_asset_number`),
+  ADD KEY `idx_lifecycle_status` (`lifecycle_status`),
+  ADD KEY `idx_issued_user` (`issued_to_user_id`),
+  ADD KEY `idx_location` (`location_id`),
+  ADD KEY `fk_sn_grni` (`grn_item_id`);
+
+--
+-- Indexes for table `inv_stock`
+--
+ALTER TABLE `inv_stock`
+  ADD PRIMARY KEY (`stock_id`),
+  ADD KEY `idx_item_loc` (`item_id`,`location_id`),
+  ADD KEY `idx_expiry` (`expiry_date`),
+  ADD KEY `idx_status` (`stock_status`),
+  ADD KEY `fk_stock_location` (`location_id`);
+
+--
+-- Indexes for table `inv_stock_counts`
+--
+ALTER TABLE `inv_stock_counts`
+  ADD PRIMARY KEY (`count_id`),
+  ADD UNIQUE KEY `uk_count_number` (`count_number`),
+  ADD KEY `fk_sc_by` (`conducted_by`);
+
+--
+-- Indexes for table `inv_stock_count_items`
+--
+ALTER TABLE `inv_stock_count_items`
+  ADD PRIMARY KEY (`count_item_id`),
+  ADD KEY `fk_sci_count` (`count_id`),
+  ADD KEY `fk_sci_item` (`item_id`);
+
+--
+-- Indexes for table `inv_transactions`
+--
+ALTER TABLE `inv_transactions`
+  ADD PRIMARY KEY (`transaction_id`),
+  ADD KEY `idx_txn_item` (`item_id`),
+  ADD KEY `idx_txn_type` (`transaction_type`),
+  ADD KEY `idx_txn_ref` (`reference_type`,`reference_id`),
+  ADD KEY `idx_txn_date` (`created_at`);
+
+--
+-- Indexes for table `inv_transfers`
+--
+ALTER TABLE `inv_transfers`
+  ADD PRIMARY KEY (`transfer_id`),
+  ADD UNIQUE KEY `uk_transfer_number` (`transfer_number`),
+  ADD KEY `fk_xfer_src` (`source_location_id`),
+  ADD KEY `fk_xfer_dst` (`destination_location_id`),
+  ADD KEY `fk_xfer_by` (`requested_by`);
+
+--
+-- Indexes for table `inv_transfer_items`
+--
+ALTER TABLE `inv_transfer_items`
+  ADD PRIMARY KEY (`transfer_item_id`),
+  ADD KEY `fk_ti_xfer` (`transfer_id`),
+  ADD KEY `fk_ti_item` (`item_id`);
+
+--
+-- Indexes for table `inv_units_of_measure`
+--
+ALTER TABLE `inv_units_of_measure`
+  ADD PRIMARY KEY (`uom_id`),
+  ADD UNIQUE KEY `uk_uom_code` (`uom_code`);
+
+--
+-- Indexes for table `inv_user_roles`
+--
+ALTER TABLE `inv_user_roles`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `uk_user_inv_role_loc` (`user_id`,`inv_role_id`,`location_id`),
+  ADD KEY `fk_iur_role` (`inv_role_id`);
+
+--
+-- Indexes for table `inv_write_downs`
+--
+ALTER TABLE `inv_write_downs`
+  ADD PRIMARY KEY (`write_down_id`),
+  ADD UNIQUE KEY `uk_wd_number` (`write_down_number`),
+  ADD KEY `fk_wd_item` (`item_id`),
+  ADD KEY `fk_wd_user` (`requested_by`);
+
+--
+-- Indexes for table `page_permissions`
+--
+ALTER TABLE `page_permissions`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `uq_page_path` (`page_path`),
+  ADD KEY `idx_permission_name` (`permission_name`);
 
 --
 -- Indexes for table `password_resets`
@@ -4766,6 +11597,7 @@ ALTER TABLE `roles`
 --
 ALTER TABLE `role_permissions`
   ADD PRIMARY KEY (`role_id`,`permission_id`),
+  ADD UNIQUE KEY `uq_role_permission` (`role_id`,`permission_id`),
   ADD KEY `permission_id` (`permission_id`);
 
 --
@@ -4820,13 +11652,13 @@ ALTER TABLE `workflow_notifications`
 -- AUTO_INCREMENT for table `acting_roles`
 --
 ALTER TABLE `acting_roles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `acting_role_log`
 --
 ALTER TABLE `acting_role_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
 
 --
 -- AUTO_INCREMENT for table `approval_rules`
@@ -4853,22 +11685,28 @@ ALTER TABLE `approval_workflows`
   MODIFY `workflow_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `asset_types`
+--
+ALTER TABLE `asset_types`
+  MODIFY `asset_type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=149;
+
+--
 -- AUTO_INCREMENT for table `audit_log`
 --
 ALTER TABLE `audit_log`
-  MODIFY `audit_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2176;
+  MODIFY `audit_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2722;
 
 --
 -- AUTO_INCREMENT for table `branches`
 --
 ALTER TABLE `branches`
-  MODIFY `branch_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `branch_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `commitments`
 --
 ALTER TABLE `commitments`
-  MODIFY `commitment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
+  MODIFY `commitment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
 
 --
 -- AUTO_INCREMENT for table `compliance_approvals`
@@ -4877,16 +11715,304 @@ ALTER TABLE `compliance_approvals`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `document_reminder_log`
+--
+ALTER TABLE `document_reminder_log`
+  MODIFY `reminder_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `external_approvals`
 --
 ALTER TABLE `external_approvals`
   MODIFY `approval_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `inventory_types`
+--
+ALTER TABLE `inventory_types`
+  MODIFY `inventory_type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+
+--
 -- AUTO_INCREMENT for table `invoices`
 --
 ALTER TABLE `invoices`
   MODIFY `invoice_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+
+--
+-- AUTO_INCREMENT for table `inv_accounting_classes`
+--
+ALTER TABLE `inv_accounting_classes`
+  MODIFY `acct_class_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `inv_adjustments`
+--
+ALTER TABLE `inv_adjustments`
+  MODIFY `adjustment_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `inv_adjustment_items`
+--
+ALTER TABLE `inv_adjustment_items`
+  MODIFY `adj_item_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `inv_approval_log`
+--
+ALTER TABLE `inv_approval_log`
+  MODIFY `approval_log_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `inv_approval_matrix`
+--
+ALTER TABLE `inv_approval_matrix`
+  MODIFY `matrix_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
+-- AUTO_INCREMENT for table `inv_asset_details`
+--
+ALTER TABLE `inv_asset_details`
+  MODIFY `asset_detail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=433;
+
+--
+-- AUTO_INCREMENT for table `inv_asset_movements`
+--
+ALTER TABLE `inv_asset_movements`
+  MODIFY `movement_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `inv_categories`
+--
+ALTER TABLE `inv_categories`
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+
+--
+-- AUTO_INCREMENT for table `inv_criticality_classes`
+--
+ALTER TABLE `inv_criticality_classes`
+  MODIFY `criticality_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `inv_delegations`
+--
+ALTER TABLE `inv_delegations`
+  MODIFY `delegation_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `inv_disposals`
+--
+ALTER TABLE `inv_disposals`
+  MODIFY `disposal_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `inv_disposal_items`
+--
+ALTER TABLE `inv_disposal_items`
+  MODIFY `disp_item_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `inv_documents`
+--
+ALTER TABLE `inv_documents`
+  MODIFY `document_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `inv_document_attachments`
+--
+ALTER TABLE `inv_document_attachments`
+  MODIFY `attachment_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `inv_fiscal_periods`
+--
+ALTER TABLE `inv_fiscal_periods`
+  MODIFY `period_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `inv_goods_received`
+--
+ALTER TABLE `inv_goods_received`
+  MODIFY `grn_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `inv_grn_items`
+--
+ALTER TABLE `inv_grn_items`
+  MODIFY `grn_item_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `inv_import_batches`
+--
+ALTER TABLE `inv_import_batches`
+  MODIFY `batch_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `inv_import_errors`
+--
+ALTER TABLE `inv_import_errors`
+  MODIFY `error_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2568;
+
+--
+-- AUTO_INCREMENT for table `inv_incidents`
+--
+ALTER TABLE `inv_incidents`
+  MODIFY `incident_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `inv_incident_items`
+--
+ALTER TABLE `inv_incident_items`
+  MODIFY `incident_item_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `inv_issues`
+--
+ALTER TABLE `inv_issues`
+  MODIFY `issue_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `inv_issue_items`
+--
+ALTER TABLE `inv_issue_items`
+  MODIFY `issue_item_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `inv_items`
+--
+ALTER TABLE `inv_items`
+  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=467;
+
+--
+-- AUTO_INCREMENT for table `inv_locations`
+--
+ALTER TABLE `inv_locations`
+  MODIFY `location_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+
+--
+-- AUTO_INCREMENT for table `inv_period_snapshots`
+--
+ALTER TABLE `inv_period_snapshots`
+  MODIFY `snapshot_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `inv_quarantine_log`
+--
+ALTER TABLE `inv_quarantine_log`
+  MODIFY `quarantine_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `inv_recalls`
+--
+ALTER TABLE `inv_recalls`
+  MODIFY `recall_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `inv_recall_items`
+--
+ALTER TABLE `inv_recall_items`
+  MODIFY `recall_item_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `inv_requisitions`
+--
+ALTER TABLE `inv_requisitions`
+  MODIFY `requisition_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `inv_requisition_items`
+--
+ALTER TABLE `inv_requisition_items`
+  MODIFY `req_item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `inv_returns`
+--
+ALTER TABLE `inv_returns`
+  MODIFY `return_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `inv_return_items`
+--
+ALTER TABLE `inv_return_items`
+  MODIFY `return_item_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `inv_risk_classes`
+--
+ALTER TABLE `inv_risk_classes`
+  MODIFY `risk_class_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `inv_roles`
+--
+ALTER TABLE `inv_roles`
+  MODIFY `inv_role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `inv_serial_numbers`
+--
+ALTER TABLE `inv_serial_numbers`
+  MODIFY `serial_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `inv_stock`
+--
+ALTER TABLE `inv_stock`
+  MODIFY `stock_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `inv_stock_counts`
+--
+ALTER TABLE `inv_stock_counts`
+  MODIFY `count_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `inv_stock_count_items`
+--
+ALTER TABLE `inv_stock_count_items`
+  MODIFY `count_item_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `inv_transactions`
+--
+ALTER TABLE `inv_transactions`
+  MODIFY `transaction_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `inv_transfers`
+--
+ALTER TABLE `inv_transfers`
+  MODIFY `transfer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `inv_transfer_items`
+--
+ALTER TABLE `inv_transfer_items`
+  MODIFY `transfer_item_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `inv_units_of_measure`
+--
+ALTER TABLE `inv_units_of_measure`
+  MODIFY `uom_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT for table `inv_user_roles`
+--
+ALTER TABLE `inv_user_roles`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `inv_write_downs`
+--
+ALTER TABLE `inv_write_downs`
+  MODIFY `write_down_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `page_permissions`
+--
+ALTER TABLE `page_permissions`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=400;
 
 --
 -- AUTO_INCREMENT for table `password_resets`
@@ -4904,13 +12030,13 @@ ALTER TABLE `payments`
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=181;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=270;
 
 --
 -- AUTO_INCREMENT for table `petty_cash_disbursements`
 --
 ALTER TABLE `petty_cash_disbursements`
-  MODIFY `disburse_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `disburse_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `petty_cash_reconciliations`
@@ -4928,7 +12054,7 @@ ALTER TABLE `po_adjustment_log`
 -- AUTO_INCREMENT for table `po_items`
 --
 ALTER TABLE `po_items`
-  MODIFY `po_item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `po_item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `po_variations`
@@ -4946,19 +12072,19 @@ ALTER TABLE `po_warnings`
 -- AUTO_INCREMENT for table `pre_authorizations`
 --
 ALTER TABLE `pre_authorizations`
-  MODIFY `auth_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `auth_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `procurement_requests`
 --
 ALTER TABLE `procurement_requests`
-  MODIFY `request_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=160;
+  MODIFY `request_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=210;
 
 --
 -- AUTO_INCREMENT for table `procurement_request_items`
 --
 ALTER TABLE `procurement_request_items`
-  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=323;
+  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=532;
 
 --
 -- AUTO_INCREMENT for table `procurement_verifications`
@@ -4970,7 +12096,7 @@ ALTER TABLE `procurement_verifications`
 -- AUTO_INCREMENT for table `purchase_orders`
 --
 ALTER TABLE `purchase_orders`
-  MODIFY `po_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `po_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT for table `reimbursement_invoices`
@@ -4988,19 +12114,19 @@ ALTER TABLE `reimbursement_status_history`
 -- AUTO_INCREMENT for table `request_approvals`
 --
 ALTER TABLE `request_approvals`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=131;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=185;
 
 --
 -- AUTO_INCREMENT for table `request_documents`
 --
 ALTER TABLE `request_documents`
-  MODIFY `document_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `document_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `rfqs`
 --
 ALTER TABLE `rfqs`
-  MODIFY `rfq_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `rfq_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `rfq_evaluation_committee`
@@ -5018,7 +12144,7 @@ ALTER TABLE `rfq_evaluation_reports`
 -- AUTO_INCREMENT for table `rfq_quotes`
 --
 ALTER TABLE `rfq_quotes`
-  MODIFY `quote_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+  MODIFY `quote_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
 
 --
 -- AUTO_INCREMENT for table `rfq_scores`
@@ -5030,7 +12156,7 @@ ALTER TABLE `rfq_scores`
 -- AUTO_INCREMENT for table `rfq_vendors`
 --
 ALTER TABLE `rfq_vendors`
-  MODIFY `rfq_vendor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+  MODIFY `rfq_vendor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
 
 --
 -- AUTO_INCREMENT for table `rfq_votes`
@@ -5042,7 +12168,7 @@ ALTER TABLE `rfq_votes`
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `system_alerts`
@@ -5054,25 +12180,25 @@ ALTER TABLE `system_alerts`
 -- AUTO_INCREMENT for table `system_config`
 --
 ALTER TABLE `system_config`
-  MODIFY `config_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `config_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `user_permissions`
 --
 ALTER TABLE `user_permissions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=545;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=583;
 
 --
 -- AUTO_INCREMENT for table `vendors`
 --
 ALTER TABLE `vendors`
-  MODIFY `vendor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `vendor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `workflow_notifications`
@@ -5097,6 +12223,186 @@ ALTER TABLE `acting_roles`
 --
 ALTER TABLE `acting_role_log`
   ADD CONSTRAINT `acting_role_log_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `document_reminder_log`
+--
+ALTER TABLE `document_reminder_log`
+  ADD CONSTRAINT `fk_doc_reminder_request` FOREIGN KEY (`request_id`) REFERENCES `procurement_requests` (`request_id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `inv_adjustments`
+--
+ALTER TABLE `inv_adjustments`
+  ADD CONSTRAINT `fk_adj_by` FOREIGN KEY (`requested_by`) REFERENCES `users` (`user_id`);
+
+--
+-- Constraints for table `inv_asset_details`
+--
+ALTER TABLE `inv_asset_details`
+  ADD CONSTRAINT `fk_asset_detail_branch` FOREIGN KEY (`department_branch_id`) REFERENCES `branches` (`branch_id`),
+  ADD CONSTRAINT `fk_asset_detail_custodian` FOREIGN KEY (`custodian_user_id`) REFERENCES `users` (`user_id`),
+  ADD CONSTRAINT `fk_asset_detail_item` FOREIGN KEY (`item_id`) REFERENCES `inv_items` (`item_id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `inv_disposals`
+--
+ALTER TABLE `inv_disposals`
+  ADD CONSTRAINT `fk_disp_by` FOREIGN KEY (`requested_by`) REFERENCES `users` (`user_id`);
+
+--
+-- Constraints for table `inv_document_attachments`
+--
+ALTER TABLE `inv_document_attachments`
+  ADD CONSTRAINT `fk_att_doc` FOREIGN KEY (`document_id`) REFERENCES `inv_documents` (`document_id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `inv_goods_received`
+--
+ALTER TABLE `inv_goods_received`
+  ADD CONSTRAINT `fk_grn_receiver` FOREIGN KEY (`received_by`) REFERENCES `users` (`user_id`);
+
+--
+-- Constraints for table `inv_import_batches`
+--
+ALTER TABLE `inv_import_batches`
+  ADD CONSTRAINT `fk_import_batch_user` FOREIGN KEY (`imported_by`) REFERENCES `users` (`user_id`);
+
+--
+-- Constraints for table `inv_import_errors`
+--
+ALTER TABLE `inv_import_errors`
+  ADD CONSTRAINT `fk_import_error_batch` FOREIGN KEY (`batch_id`) REFERENCES `inv_import_batches` (`batch_id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `inv_incidents`
+--
+ALTER TABLE `inv_incidents`
+  ADD CONSTRAINT `fk_inc_user` FOREIGN KEY (`reported_by`) REFERENCES `users` (`user_id`);
+
+--
+-- Constraints for table `inv_item_suppliers`
+--
+ALTER TABLE `inv_item_suppliers`
+  ADD CONSTRAINT `fk_is_item` FOREIGN KEY (`item_id`) REFERENCES `inv_items` (`item_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_is_vendor` FOREIGN KEY (`vendor_id`) REFERENCES `vendors` (`vendor_id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `inv_period_snapshots`
+--
+ALTER TABLE `inv_period_snapshots`
+  ADD CONSTRAINT `fk_snap_item` FOREIGN KEY (`item_id`) REFERENCES `inv_items` (`item_id`),
+  ADD CONSTRAINT `fk_snap_period` FOREIGN KEY (`period_id`) REFERENCES `inv_fiscal_periods` (`period_id`);
+
+--
+-- Constraints for table `inv_quarantine_log`
+--
+ALTER TABLE `inv_quarantine_log`
+  ADD CONSTRAINT `fk_quar_item` FOREIGN KEY (`item_id`) REFERENCES `inv_items` (`item_id`),
+  ADD CONSTRAINT `fk_quar_user` FOREIGN KEY (`quarantined_by`) REFERENCES `users` (`user_id`);
+
+--
+-- Constraints for table `inv_recalls`
+--
+ALTER TABLE `inv_recalls`
+  ADD CONSTRAINT `fk_recall_item` FOREIGN KEY (`item_id`) REFERENCES `inv_items` (`item_id`),
+  ADD CONSTRAINT `fk_recall_user` FOREIGN KEY (`initiated_by`) REFERENCES `users` (`user_id`);
+
+--
+-- Constraints for table `inv_recall_items`
+--
+ALTER TABLE `inv_recall_items`
+  ADD CONSTRAINT `fk_rcli_recall` FOREIGN KEY (`recall_id`) REFERENCES `inv_recalls` (`recall_id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `inv_requisitions`
+--
+ALTER TABLE `inv_requisitions`
+  ADD CONSTRAINT `fk_req_user` FOREIGN KEY (`requester_user_id`) REFERENCES `users` (`user_id`);
+
+--
+-- Constraints for table `inv_requisition_items`
+--
+ALTER TABLE `inv_requisition_items`
+  ADD CONSTRAINT `fk_ri_item` FOREIGN KEY (`item_id`) REFERENCES `inv_items` (`item_id`),
+  ADD CONSTRAINT `fk_ri_req` FOREIGN KEY (`requisition_id`) REFERENCES `inv_requisitions` (`requisition_id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `inv_returns`
+--
+ALTER TABLE `inv_returns`
+  ADD CONSTRAINT `fk_ret_user` FOREIGN KEY (`requested_by`) REFERENCES `users` (`user_id`);
+
+--
+-- Constraints for table `inv_return_items`
+--
+ALTER TABLE `inv_return_items`
+  ADD CONSTRAINT `fk_reti_item` FOREIGN KEY (`item_id`) REFERENCES `inv_items` (`item_id`),
+  ADD CONSTRAINT `fk_reti_return` FOREIGN KEY (`return_id`) REFERENCES `inv_returns` (`return_id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `inv_serial_numbers`
+--
+ALTER TABLE `inv_serial_numbers`
+  ADD CONSTRAINT `fk_sn_grni` FOREIGN KEY (`grn_item_id`) REFERENCES `inv_grn_items` (`grn_item_id`) ON DELETE SET NULL,
+  ADD CONSTRAINT `fk_sn_item` FOREIGN KEY (`item_id`) REFERENCES `inv_items` (`item_id`),
+  ADD CONSTRAINT `fk_sn_loc` FOREIGN KEY (`location_id`) REFERENCES `inv_locations` (`location_id`) ON DELETE SET NULL,
+  ADD CONSTRAINT `fk_sn_user` FOREIGN KEY (`issued_to_user_id`) REFERENCES `users` (`user_id`) ON DELETE SET NULL;
+
+--
+-- Constraints for table `inv_stock`
+--
+ALTER TABLE `inv_stock`
+  ADD CONSTRAINT `fk_stock_item` FOREIGN KEY (`item_id`) REFERENCES `inv_items` (`item_id`),
+  ADD CONSTRAINT `fk_stock_location` FOREIGN KEY (`location_id`) REFERENCES `inv_locations` (`location_id`);
+
+--
+-- Constraints for table `inv_stock_counts`
+--
+ALTER TABLE `inv_stock_counts`
+  ADD CONSTRAINT `fk_sc_by` FOREIGN KEY (`conducted_by`) REFERENCES `users` (`user_id`);
+
+--
+-- Constraints for table `inv_stock_count_items`
+--
+ALTER TABLE `inv_stock_count_items`
+  ADD CONSTRAINT `fk_sci_count` FOREIGN KEY (`count_id`) REFERENCES `inv_stock_counts` (`count_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_sci_item` FOREIGN KEY (`item_id`) REFERENCES `inv_items` (`item_id`);
+
+--
+-- Constraints for table `inv_transactions`
+--
+ALTER TABLE `inv_transactions`
+  ADD CONSTRAINT `fk_txn_item` FOREIGN KEY (`item_id`) REFERENCES `inv_items` (`item_id`);
+
+--
+-- Constraints for table `inv_transfers`
+--
+ALTER TABLE `inv_transfers`
+  ADD CONSTRAINT `fk_xfer_by` FOREIGN KEY (`requested_by`) REFERENCES `users` (`user_id`),
+  ADD CONSTRAINT `fk_xfer_dst` FOREIGN KEY (`destination_location_id`) REFERENCES `inv_locations` (`location_id`),
+  ADD CONSTRAINT `fk_xfer_src` FOREIGN KEY (`source_location_id`) REFERENCES `inv_locations` (`location_id`);
+
+--
+-- Constraints for table `inv_transfer_items`
+--
+ALTER TABLE `inv_transfer_items`
+  ADD CONSTRAINT `fk_ti_item` FOREIGN KEY (`item_id`) REFERENCES `inv_items` (`item_id`),
+  ADD CONSTRAINT `fk_ti_xfer` FOREIGN KEY (`transfer_id`) REFERENCES `inv_transfers` (`transfer_id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `inv_user_roles`
+--
+ALTER TABLE `inv_user_roles`
+  ADD CONSTRAINT `fk_iur_role` FOREIGN KEY (`inv_role_id`) REFERENCES `inv_roles` (`inv_role_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_iur_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `inv_write_downs`
+--
+ALTER TABLE `inv_write_downs`
+  ADD CONSTRAINT `fk_wd_item` FOREIGN KEY (`item_id`) REFERENCES `inv_items` (`item_id`),
+  ADD CONSTRAINT `fk_wd_user` FOREIGN KEY (`requested_by`) REFERENCES `users` (`user_id`);
 
 --
 -- Constraints for table `petty_cash_disbursements`
