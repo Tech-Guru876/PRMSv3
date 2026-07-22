@@ -40,7 +40,7 @@ function allowedTransitions(): array {
         'PROCUREMENT_STAGE'      => ['EVALUATION_STAGE', 'QUOTE_REVIEW_PENDING', 'AWARDED'],
         'EVALUATION_STAGE'       => ['COMMITTEE_RECOMMENDED', 'QUOTE_REVIEW_PENDING', 'AWARDED'],
         'COMMITTEE_RECOMMENDED'  => ['GC_APPROVED', 'QUOTE_REVIEW_PENDING', 'AWARDED'],
-        'AWARDED'                => ['COMMITMENT_APPROVED', 'COMMITMENT_DECLINED', 'COMMITMENTS_PENDING', 'FUNDS_VERIFIED', 'PO_PENDING', 'COMPLETED'],
+        'AWARDED'                => ['COMMITMENT_APPROVED', 'COMMITMENT_DECLINED', 'COMMITMENTS_PENDING', 'FUNDS_VERIFIED', 'PO_PENDING'],
     ];
 }
 
@@ -731,7 +731,7 @@ function getNextRFQStep(string $status, bool $isDirectProcurement = false): arra
         'PROCUREMENT_STAGE' => 'EVALUATION_STAGE',
         'EVALUATION_STAGE' => 'QUOTE_REVIEW_PENDING',
         'COMMITTEE_RECOMMENDED' => 'QUOTE_REVIEW_PENDING',
-        'AWARDED' => 'FUNDS_VERIFIED',
+        'AWARDED' => 'COMMITMENTS_PENDING',
     ];
     
     $next = $nextStepMap[strtoupper($status)] ?? 'COMPLETED';
@@ -821,7 +821,7 @@ function getStatusLabel(string $status): array {
         'PROCUREMENT_STAGE' => ['label' => 'Procurement Stage', 'description' => 'Request in procurement workflow', 'color' => 'info'],
         'EVALUATION_STAGE' => ['label' => 'Evaluation Stage', 'description' => 'Bids/quotes under evaluation', 'color' => 'warning'],
         'COMMITTEE_RECOMMENDED' => ['label' => 'Committee Recommended', 'description' => 'Evaluation committee has made recommendation', 'color' => 'success'],
-        'AWARDED' => ['label' => 'Awarded', 'description' => 'Contract/order awarded to vendor', 'color' => 'success'],
+        'AWARDED' => ['label' => 'Awarded', 'description' => 'Vendor selected — commitment and payment activities are required before this request can be closed.', 'color' => 'success'],
         'COMPLETED' => ['label' => 'Completed', 'description' => 'Procurement process completed', 'color' => 'dark'],
         'DECLINED' => ['label' => 'Declined', 'description' => 'Request has been declined', 'color' => 'danger'],
         'CANCELLED' => ['label' => 'Cancelled', 'description' => 'Request has been cancelled', 'color' => 'danger'],
