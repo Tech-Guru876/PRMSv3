@@ -72,10 +72,10 @@ SELECT 13, id FROM permissions WHERE name = 'edit_asset_code';
 
 -- ─── 7. Page permissions for new admin pages ───────────────────────────────────
 
-INSERT IGNORE INTO `page_permissions` (`page_path`, `permission_name`, `is_active`, `description`) VALUES
-('/admin/roles.php',        'manage_roles', 1, 'Role management listing and actions'),
-('/admin/roles_edit.php',   'manage_roles', 1, 'Edit role and assign permissions'),
-('/admin/roles_assign.php', 'manage_roles', 1, 'Assign roles to users');
+INSERT IGNORE INTO `page_permissions` (`page_path`, `page_title`, `permission_name`, `module`, `is_active`) VALUES
+('/admin/roles.php',        'Role Management',          'manage_roles', 'Administration', 1),
+('/admin/roles_edit.php',   'Edit Role & Permissions',  'manage_roles', 'Administration', 1),
+('/admin/roles_assign.php', 'Assign Roles to Users',    'manage_roles', 'Administration', 1);
 
 -- ─── 8. Populate user_roles from existing users.role_id ────────────────────────
 -- This ensures backward compatibility: existing primary roles are also in user_roles

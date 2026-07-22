@@ -9579,6 +9579,9 @@ INSERT IGNORE INTO `page_permissions` (`page_path`, `page_title`, `permission_na
 ('/users/reset_password.php',           'Reset User Password',          'manage_users',            'Administration'),
 ('/users/unlock.php',                   'Unlock User Account',          'manage_users',            'Administration'),
 ('/users/acting_roles.php',             'Acting Roles',                 'manage_users',            'Administration'),
+('/admin/roles.php',                   'Role Management',              'manage_roles',            'Administration'),
+('/admin/roles_edit.php',              'Edit Role & Permissions',      'manage_roles',            'Administration'),
+('/admin/roles_assign.php',            'Assign Roles to Users',        'manage_roles',            'Administration'),
 
 -- ── Dashboards ───────────────────────────────────────────────────────
 ('/dashboard/admin.php',                'Admin Dashboard',              'manage_users',            'Dashboards'),
