@@ -1340,6 +1340,7 @@ $requestDocuments = $docStmt->fetchAll(PDO::FETCH_ASSOC);
                             <option value="MEMO">Supporting Memo</option>
                             <option value="SIGNED_PO">Signed Purchase Order</option>
                             <option value="SIGNED_COMMITMENT">Signed Commitment</option>
+                            <option value="SIGNED_REQUEST">Signed Request Form</option>
                             <option value="OTHER">Other</option>
                         </select>
                     </div>

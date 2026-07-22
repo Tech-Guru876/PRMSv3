@@ -70,6 +70,10 @@ if ($requestStatus === 'FUNDS_VERIFIED') {
     // Both Finance and Procurement can upload an optional commitment form
     $currentStep = 'upload_form';
 }
+if ($requestStatus === 'COMMITMENTS_PENDING') {
+    // Commitment form submitted (or skipped) — Finance should create the commitment
+    $currentStep = $isFinance ? 'create_commitment' : 'upload_form';
+}
 if ($existingCommitment && !empty($existingCommitment['document_path']) && $existingCommitment['status'] === 'closed') {
     $currentStep = 'completed'; // Already done
 }
@@ -242,7 +246,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             $pdo->beginTransaction();
             
-            // Store the uploaded form path in request_approvals extra_data for Finance to see
+            $uploaderRole = $isFinance ? 'Finance Officer' : 'Procurement Officer';
+            
+            // Store the uploaded form path
             if ($formDocPath) {
                 $stmt = $pdo->prepare("
                     UPDATE procurement_requests
@@ -251,17 +257,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 ");
                 $stmt->execute([$formDocPath, $request_id]);
                 
-                $uploaderRole = $isFinance ? 'Finance Officer' : 'Procurement Officer';
                 logAudit($pdo, 'procurement_requests', $request_id, 'FORM_UPLOADED',
                         "Commitment form uploaded by $uploaderRole: $formDocPath");
-                logRequestTimeline($pdo, $request_id, 'FUNDS_VERIFIED',
-                                  "$uploaderRole uploaded commitment form. Finance to create commitment in GFMS.");
             } else {
-                $uploaderRole = $isFinance ? 'Finance Officer' : 'Procurement Officer';
                 logAudit($pdo, 'procurement_requests', $request_id, 'FORM_SKIPPED',
                         "$uploaderRole skipped commitment form upload (optional step).");
-                logRequestTimeline($pdo, $request_id, 'FUNDS_VERIFIED',
-                                  "$uploaderRole proceeded without uploading commitment form. Finance to create commitment in GFMS.");
+            }
+            
+            // Advance status to COMMITMENTS_PENDING so Finance knows to create
+            // the commitment. This applies to both skip-RFQ (AWARDED) and
+            // normal (FUNDS_VERIFIED) paths — ensures the pipeline progresses.
+            if (in_array($requestStatus, ['AWARDED', 'FUNDS_VERIFIED'])) {
+                $pdo->prepare("
+                    UPDATE procurement_requests
+                    SET status = 'COMMITMENTS_PENDING'
+                    WHERE request_id = ?
+                ")->execute([$request_id]);
+                
+                logRequestTimeline($pdo, $request_id, 'COMMITMENTS_PENDING',
+                    "$uploaderRole submitted commitment form. Finance to create commitment in GFMS and upload document.");
+            } else {
+                logRequestTimeline($pdo, $request_id, 'COMMITMENTS_PENDING',
+                    "$uploaderRole proceeded without uploading commitment form. Finance to create commitment in GFMS.");
             }
             
             $pdo->commit();
