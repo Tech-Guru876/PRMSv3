@@ -131,6 +131,7 @@ try {
     if ($pdo->inTransaction()) {
         $pdo->rollBack();
     }
+    // extractDbMessage() is defined in config/helper.php (already required above)
     pop(
         "Submission failed: " . extractDbMessage($e),
         "/procurement/view.php?id=" . $request_id,

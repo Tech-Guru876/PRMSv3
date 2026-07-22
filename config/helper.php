@@ -198,11 +198,11 @@ if ($redirect !== '' && !str_starts_with($redirect, '/')) {
     $safeRedirect = htmlspecialchars($redirect, ENT_QUOTES, 'UTF-8');
 
     // Body content: show a centered card when redirecting so the page is not blank.
-    // When there is no redirect, auto-hide the toast after 3 seconds.
+    // When there is no redirect, auto-hide the toast after $delay ms.
+    $delayJs    = (int) $delay;
     $bodyContent = '';
     if ($redirect !== '') {
         $redirectJs = json_encode($redirect, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT);
-        $delayJs    = (int) $delay;
         $bodyContent = <<<HTML
 
 <div class="d-flex justify-content-center align-items-center" style="min-height:100vh;">
@@ -227,7 +227,7 @@ HTML;
 <script>
 setTimeout(function () {
     document.querySelector('.toast')?.classList.remove('show');
-}, 3000);
+}, {$delayJs});
 </script>
 HTML;
     }
