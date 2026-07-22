@@ -304,7 +304,7 @@ if ($requestType === 'PETTY_CASH') {
     // All regular procurement now uses RFQ - check threshold to determine if committee evaluation needed
     $isDirectProcurement = isDirectProcurement($requestType, $estimatedValue);
     // Detect "Proceed Without RFQ" path: REGULAR request that reached AWARDED or beyond
-    // without any RFQ record. The requires_rfq DB column cannot be used reliably because
+    // without any RFQ record. This requires_rfq DB column cannot be used reliably because
     // the BEFORE UPDATE trigger always resets it to 1 for REGULAR requests (see
     // trg_auto_update_requires_rfq). Using the absence of an RFQ record combined with a
     // post-award status is the most reliable heuristic available without a schema change.
@@ -638,7 +638,7 @@ $badge = $badgeMap[$status] ?? ['secondary', 'bi-question-circle'];
 // Show this banner for ALL REGULAR requests at AWARDED without a commitment — not just the
 // skip-RFQ path. Both the skip-RFQ path and the standard over-threshold RFQ path land at
 // AWARDED and still require Commitment → PO → Invoice before the request can be closed.
-// $originalCommitment is initialised earlier in this file (set to null, then populated from
+// $originalCommitment is initialized earlier in this file (set to null, then populated from
 // the commitments query above).
 if ($current === 'AWARDED' && $requestType === 'REGULAR' && !$originalCommitment): ?>
 <div class="alert alert-warning border-0 shadow-sm d-flex align-items-center gap-3 mb-4" role="alert">
