@@ -233,6 +233,11 @@ if ($nextApproverRole === 'Government Chemist') {
     $nextApproverRole = 'Deputy Government Chemist';
 }
 
+/* RFQ lookup — needed by the pipeline builder and quick links */
+$stmt = $pdo->prepare("SELECT rfq_id FROM rfqs WHERE request_id = ?");
+$stmt->execute([$request['request_id']]);
+$rfqId = $stmt->fetchColumn();
+
 /* Build dynamic pipeline based on approval stages */
 $pipelineStages = [];
 
@@ -288,14 +293,24 @@ if ($requestType === 'PETTY_CASH') {
         }
     }
     
-    // UPDATED: Add RFQ workflow stages (dynamically based on threshold)
+    // UPDATED: Add RFQ workflow stages (dynamically based on threshold and path)
     // All regular procurement now uses RFQ - check threshold to determine if committee evaluation needed
     $isDirectProcurement = isDirectProcurement($requestType, $estimatedValue);
-    
+    // Detect the "Proceed Without RFQ" path via isSkipRfqPath() in workflow.php.
+    // The requires_rfq column cannot be used reliably here — see isSkipRfqPath() docblock for details.
+    $isSkipRfqPath = isSkipRfqPath($requestType, $rfqId, $current);
+
     if (!$isDirectProcurement) {
-        // Regular procurement requires RFQ
         $directThreshold = getDirectProcurementThreshold($pdo);
-        if ($estimatedValue > $directThreshold) {
+        if ($isSkipRfqPath) {
+            // "Proceed Without RFQ" path: AWARDED is the post-approval milestone followed by the
+            // full financial post-award sequence. No RFQ/quote stages are shown.
+            $pipelineStages['AWARDED']             = ['icon' => 'bi-trophy',             'label' => 'Awarded'];
+            $pipelineStages['COMMITMENTS_PENDING'] = ['icon' => 'bi-pencil-square',      'label' => 'Commitment Form'];
+            $pipelineStages['COMMITMENT_APPROVED'] = ['icon' => 'bi-file-earmark-check', 'label' => 'Commitment Created'];
+            $pipelineStages['PO_PENDING']          = ['icon' => 'bi-file-earmark-text',  'label' => 'PO Created'];
+            $pipelineStages['INVOICE_RECEIVED']    = ['icon' => 'bi-receipt',            'label' => 'Invoice'];
+        } elseif ($estimatedValue > $directThreshold) {
             // Over-threshold: Committee evaluation → GC approval gate (SOP Step 10) → Award → Financial stages
             $pipelineStages['PROCUREMENT_STAGE'] = ['icon' => 'bi-clipboard-check', 'label' => 'Procurement'];
             $pipelineStages['EVALUATION_STAGE'] = ['icon' => 'bi-bar-chart', 'label' => 'Evaluation'];
@@ -322,13 +337,6 @@ if ($requestType === 'PETTY_CASH') {
             $pipelineStages['PO_PENDING'] = ['icon' => 'bi-file-earmark-text', 'label' => 'PO Created'];
             $pipelineStages['INVOICE_RECEIVED'] = ['icon' => 'bi-receipt', 'label' => 'Invoice'];
         }
-    }
-    
-    // For under-threshold, AWARDED is not part of the standard pipeline
-    // (flow goes Quote → Commitment → PO → Invoice → Complete)
-    // Only add if the current status is AWARDED (edge case / shortcut path)
-    if ($current === 'AWARDED' && !isset($pipelineStages['AWARDED'])) {
-        $pipelineStages['AWARDED'] = ['icon' => 'bi-trophy', 'label' => 'Awarded'];
     }
     $pipelineStages['COMPLETED'] = ['icon' => 'bi-check-circle', 'label' => 'Complete'];
 }
@@ -374,10 +382,6 @@ $badgeMap = [
 ];
 $badge = $badgeMap[$status] ?? ['secondary', 'bi-question-circle'];
 
-/* RFQ lookup — used by quick links and KPI */
-$stmt = $pdo->prepare("SELECT rfq_id FROM rfqs WHERE request_id = ?");
-$stmt->execute([$request['request_id']]);
-$rfqId = $stmt->fetchColumn();
 ?>
 
 <!-- ═══════════════════════════════════════════════════════
@@ -617,6 +621,25 @@ $rfqId = $stmt->fetchColumn();
 </div>
 <?php endif; ?>
 
+<?php
+// Show this banner for ALL REGULAR requests at AWARDED without a commitment — not just the
+// skip-RFQ path. Both the skip-RFQ path and the standard over-threshold RFQ path land at
+// AWARDED and still require Commitment → PO → Invoice before the request can be closed.
+// $originalCommitment is initialized earlier in this file (set to null, then populated from
+// the commitments query above).
+// Build the guidance message here — not at page-top — since it is only needed from this
+// point onwards (banner and Actions tab).
+$awardedNextStepMsg = "This request is NOT complete. Next: " . getAwardedWorkflowGuidance();
+if ($current === 'AWARDED' && $requestType === 'REGULAR' && !$originalCommitment): ?>
+<div class="alert alert-warning border-0 shadow-sm d-flex align-items-center gap-3 mb-4" role="alert">
+    <i class="bi bi-exclamation-triangle-fill fs-2 flex-shrink-0 text-warning"></i>
+    <div>
+        <strong>Action Required — This request is not yet complete.</strong>
+        <div class="mt-1 small"><?= htmlspecialchars($awardedNextStepMsg) ?></div>
+    </div>
+</div>
+<?php endif; ?>
+
 <!-- ═══════════════════════════════════════════════════════
      REQUEST DETAILS + ACTIONS (TWO-COLUMN)
 ═══════════════════════════════════════════════════════ -->
@@ -765,9 +788,9 @@ $rfqId = $stmt->fetchColumn();
                         $nextStepIcon = 'bi-cash-coin';
                         $nextStepColor = 'text-success';
                     } else {
-                        $nextStepDisplay = "Create Commitment & Purchase Order";
-                        $nextStepIcon = 'bi-clipboard-check';
-                        $nextStepColor = 'text-success';
+                        $nextStepDisplay = $awardedNextStepMsg;
+                        $nextStepIcon = 'bi-exclamation-triangle';
+                        $nextStepColor = 'text-warning';
                     }
                 } elseif ($current === 'PROCUREMENT_STAGE') {
                     $nextStepDisplay = "Create RFQ and issue letters to vendors for quotes (Over threshold evaluation required).";
@@ -1436,7 +1459,7 @@ $requestDocuments = $docStmt->fetchAll(PDO::FETCH_ASSOC);
                             <?php if ($rfqOptional && $current !== 'SUBMITTED' && in_array($role, ['Procurement Officer', 'Admin', 'SuperAdmin'], true)): ?>
                                 <a href="/procurement/skip_rfq.php?id=<?= $request['request_id'] ?>"
                                    class="btn btn-outline-secondary btn-sm"
-                                   onclick="return confirm('RFQ is optional for requests at or below the JMD threshold. Proceed without an RFQ?')">
+                                   onclick="return confirm('You are proceeding without an RFQ. The request will move to Awarded, and you will still need to complete Commitment, Purchase Order, Invoice, and Payment steps before the request can be closed. Continue?')">
                                     <i class="bi bi-skip-forward me-1"></i>Proceed Without RFQ (Optional)
                                 </a>
                             <?php endif; ?>

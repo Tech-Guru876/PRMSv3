@@ -106,7 +106,7 @@ try {
 
     $pdo->commit();
 
-    pop('Proceeding without RFQ. The request can now move to funds verification and commitment.', '/procurement/view.php?id=' . $id, POP_DEFAULT_DELAY_MS, 'success');
+    pop('Proceeding without RFQ. Next steps: ' . getAwardedWorkflowGuidance(), '/procurement/view.php?id=' . $id, POP_DEFAULT_DELAY_MS, 'success');
     exit;
 
 } catch (Exception $e) {
