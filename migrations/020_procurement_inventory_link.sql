@@ -12,11 +12,18 @@ SET FOREIGN_KEY_CHECKS = 0;
 --    (a free-text PO number).  This column adds a proper FK so
 --    that GRNs created from PRMS POs are traceable both ways.
 
+-- Step 1a: Add column
 ALTER TABLE `inv_goods_received`
     ADD COLUMN IF NOT EXISTS `procurement_po_id` int(11) DEFAULT NULL
-        COMMENT 'FK to purchase_orders.po_id when GRN originates from a PRMS PO',
-    ADD KEY IF NOT EXISTS `idx_grn_po_id` (`procurement_po_id`),
-    ADD CONSTRAINT IF NOT EXISTS `fk_grn_procurement_po`
+        COMMENT 'FK to purchase_orders.po_id when GRN originates from a PRMS PO';
+
+-- Step 1b: Add index
+ALTER TABLE `inv_goods_received`
+    ADD KEY IF NOT EXISTS `idx_grn_po_id` (`procurement_po_id`);
+
+-- Step 1c: Add foreign key constraint
+ALTER TABLE `inv_goods_received`
+    ADD CONSTRAINT `fk_grn_procurement_po`
         FOREIGN KEY (`procurement_po_id`)
         REFERENCES `purchase_orders` (`po_id`)
         ON DELETE SET NULL ON UPDATE CASCADE;
