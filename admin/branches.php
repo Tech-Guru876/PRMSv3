@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['toast'] = ['message' => "Branch '{$branch['branch_name']}' set {$newState}.", 'type' => 'success'];
         }
     } catch (Throwable $e) {
-        $_SESSION['toast'] = ['message' => $e->getMessage(), 'type' => 'danger'];
+        $_SESSION['toast'] = ['message' => extractDbMessage($e), 'type' => 'danger'];
     }
 
     header('Location: /admin/branches.php');

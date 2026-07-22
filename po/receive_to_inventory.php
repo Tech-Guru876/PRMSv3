@@ -93,7 +93,7 @@ try {
         'success'
     );
 } catch (RuntimeException $e) {
-    pop($e->getMessage(), "/po/view.php?po_id=$poId", 2500, 'warning');
+    pop(extractDbMessage($e), "/po/view.php?po_id=$poId", 2500, 'warning');
 } catch (Throwable $e) {
     error_log("GRN creation from PO failed: " . $e->getMessage());
     pop("An unexpected error occurred while creating the GRN.", "/po/view.php?po_id=$poId", 2500, 'danger');

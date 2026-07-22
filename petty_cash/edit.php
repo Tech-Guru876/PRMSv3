@@ -88,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     } catch (Throwable $e) {
         if ($pdo->inTransaction()) $pdo->rollBack();
-        $_SESSION['error'] = $e->getMessage();
+        $_SESSION['error'] = extractDbMessage($e);
     }
 }
 

@@ -165,7 +165,7 @@ try {
     }
     error_log("Reimbursement approval error: " . $e->getMessage());
     pop(
-        "Error processing approval: " . $e->getMessage(),
+        "Error processing approval: " . extractDbMessage($e),
         "/reimbursement/view.php?request_id=".$request_id,
         2000,
         "error"

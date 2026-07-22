@@ -90,7 +90,7 @@ try {
     }
 
     pop(
-        "Error: " . $e->getMessage(),
+        "Error: " . extractDbMessage($e),
         "/petty_cash/view.php?request_id=" . $id,
         2500,
         "error"

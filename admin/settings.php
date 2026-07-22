@@ -106,7 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     } catch (Exception $e) {
         $_SESSION['toast'] = [
-            'message' => 'Error updating settings: ' . $e->getMessage(),
+            'message' => 'Error updating settings: ' . extractDbMessage($e),
             'type' => 'danger'
         ];
     }

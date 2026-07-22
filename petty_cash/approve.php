@@ -176,7 +176,7 @@ try {
     }
     error_log("Petty cash approval error: " . $e->getMessage());
     pop(
-        "Error processing approval: " . $e->getMessage(),
+        "Error processing approval: " . extractDbMessage($e),
         "/petty_cash/view.php?request_id=".$request_id,
         2000,
         "error"

@@ -123,7 +123,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $pdo->rollBack();
         }
         error_log("Reimbursement creation error: " . $e->getMessage());
-        $_SESSION['error'] = $e->getMessage();
+        $_SESSION['error'] = extractDbMessage($e);
     }
 }
 

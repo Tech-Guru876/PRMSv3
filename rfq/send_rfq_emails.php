@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
 
     } catch (Throwable $e) {
-        $_SESSION['popup_error'] = "Error sending RFQ emails: " . $e->getMessage();
+        $_SESSION['popup_error'] = "Error sending RFQ emails: " . extractDbMessage($e);
         header("Location: view.php?id=" . $rfq_id);
         exit;
     }

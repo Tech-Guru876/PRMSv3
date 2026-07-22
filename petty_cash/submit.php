@@ -151,7 +151,7 @@ try {
     }
     error_log("Petty cash submission error: " . $e->getMessage());
     pop(
-        "Error submitting petty cash request: " . $e->getMessage(),
+        "Error submitting petty cash request: " . extractDbMessage($e),
         "/petty_cash/view.php?request_id=".$request_id,
         2000,
         "error"

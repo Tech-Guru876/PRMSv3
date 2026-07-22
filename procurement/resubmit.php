@@ -87,7 +87,7 @@ try {
     }
     
     pop(
-        "Error: " . $e->getMessage(),
+        "Error: " . extractDbMessage($e),
         "/procurement/view.php?id=" . $id,
         2500,
         "error"

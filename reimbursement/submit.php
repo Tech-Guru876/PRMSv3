@@ -153,7 +153,7 @@ try {
     }
     error_log("Reimbursement submission error: " . $e->getMessage());
     pop(
-        "Error submitting reimbursement request: " . $e->getMessage(),
+        "Error submitting reimbursement request: " . extractDbMessage($e),
         "/reimbursement/view.php?request_id=".$request_id,
         2000,
         "error"

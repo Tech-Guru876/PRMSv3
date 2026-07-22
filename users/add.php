@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
                 $message = "Role '{$role_name}' created successfully.";
             }
         } catch (Exception $e) {
-            $error = "Error creating role: " . htmlspecialchars($e->getMessage());
+            $error = "Error creating role: " . htmlspecialchars(extractDbMessage($e));
         }
     }
 }
@@ -75,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
             header("Location: /users/list.php?created=1");
             exit;
         } catch (Exception $e) {
-            $error = "Error creating user: " . htmlspecialchars($e->getMessage());
+            $error = "Error creating user: " . htmlspecialchars(extractDbMessage($e));
         }
     }
 }

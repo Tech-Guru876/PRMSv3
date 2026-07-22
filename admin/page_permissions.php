@@ -116,7 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($e->getCode() == '23000') {
                 jsonError('A page with that path already exists.');
             }
-            jsonError('Database error: ' . $e->getMessage());
+            jsonError('Database error: ' . extractDbMessage($e));
         }
         exit;
     }

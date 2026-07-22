@@ -120,7 +120,7 @@ try {
         $pdo->rollBack();
     }
     
-    $_SESSION['error'] = "Error declining request: " . $e->getMessage();
+    $_SESSION['error'] = "Error declining request: " . extractDbMessage($e);
     header("Location: /procurement/view.php?id=" . $id);
     exit;
 }

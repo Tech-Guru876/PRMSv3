@@ -233,7 +233,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         modalPop(
             'Error',
-            'Failed to process variation: ' . $e->getMessage(),
+            'Failed to process variation: ' . extractDbMessage($e),
             "/po/view.php?po_id=" . (int)$variation['po_id'],
             'error'
         );

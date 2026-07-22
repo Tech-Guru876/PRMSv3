@@ -156,7 +156,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $pdo->rollBack();
 
             pop(
-                "Approval failed: " . $e->getMessage(),
+                "Approval failed: " . extractDbMessage($e),
                 "/po/excess_approve.php?id=".$po_id,
                 2000,
                 "error"
@@ -223,7 +223,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $pdo->rollBack();
 
             pop(
-                "Rejection failed: " . $e->getMessage(),
+                "Rejection failed: " . extractDbMessage($e),
                 "/po/excess_approve.php?id=".$po_id,
                 2000,
                 "error"
