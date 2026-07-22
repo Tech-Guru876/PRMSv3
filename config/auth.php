@@ -102,7 +102,7 @@ if ($_SESSION['role_name'] === 'Admin') {
         return (bool)$override;
     }
 
-    /* 2️⃣ Role permission */
+    /* 2️⃣ Primary role permission */
     $stmt = $pdo->prepare("
         SELECT COUNT(*)
         FROM role_permissions
@@ -111,7 +111,27 @@ if ($_SESSION['role_name'] === 'Admin') {
     ");
     $stmt->execute([$role_id, $permission_id]);
 
-    return $stmt->fetchColumn() > 0;
+    if ($stmt->fetchColumn() > 0) {
+        return true;
+    }
+
+    /* 3️⃣ Additional roles via user_roles table (multi-role support) */
+    try {
+        $stmt = $pdo->prepare("
+            SELECT COUNT(*)
+            FROM user_roles ur
+            INNER JOIN role_permissions rp ON rp.role_id = ur.role_id
+            INNER JOIN roles r ON r.id = ur.role_id AND r.is_active = 1
+            WHERE ur.user_id = ?
+              AND rp.permission_id = ?
+              AND ur.role_id != ?
+        ");
+        $stmt->execute([$user_id, $permission_id, $role_id]);
+        return $stmt->fetchColumn() > 0;
+    } catch (Throwable $e) {
+        // user_roles table may not exist yet — fall back gracefully
+        return false;
+    }
 }
 
 

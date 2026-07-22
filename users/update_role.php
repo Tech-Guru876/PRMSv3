@@ -49,6 +49,19 @@ $stmt = $pdo->prepare("
 $stmt->execute([$new_role_id, $user_id]);
 
 /* ================================
+   Sync user_roles table (ensure primary role is also in user_roles)
+================================ */
+try {
+    $pdo->prepare("
+        INSERT IGNORE INTO user_roles (user_id, role_id, assigned_by)
+        VALUES (?, ?, ?)
+    ")->execute([$user_id, $new_role_id, $_SESSION['user_id'] ?? null]);
+} catch (Throwable $e) {
+    // user_roles table may not exist yet
+    error_log('user_roles sync: ' . $e->getMessage());
+}
+
+/* ================================
    Audit log
 ================================ */
 logAudit(

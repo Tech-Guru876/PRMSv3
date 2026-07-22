@@ -469,7 +469,7 @@ function isCollapsibleActive($urls, $currentPage) {
         <?php endif; ?>
 
         <!-- ===== ADMINISTRATION SECTION ===== -->
-        <?php if (has_permission('manage_users') || has_permission('view_audit_logs')): ?>
+        <?php if (has_permission('manage_users') || has_permission('manage_roles') || has_permission('view_audit_logs')): ?>
         <li class="nav-item mt-2">
             <div class="sidebar-section-label">ADMIN</div>
 
@@ -482,6 +482,14 @@ function isCollapsibleActive($urls, $currentPage) {
                href="/users/acting_roles.php">
                 <i class="bi bi-lightning me-2"></i>Acting Roles
             </a>
+            <?php endif; ?>
+            <?php if (has_permission('manage_roles')): ?>
+            <a class="nav-link text-white sidebar-link <?= active('/admin/roles', $currentPage) ?>"
+               href="/admin/roles.php">
+                <i class="bi bi-shield-check me-2"></i>Roles
+            </a>
+            <?php endif; ?>
+            <?php if (has_permission('manage_users')): ?>
             <a class="nav-link text-white sidebar-link <?= active('/admin/permissions', $currentPage) ?>"
                href="/admin/permissions.php">
                 <i class="bi bi-key me-2"></i>Permissions

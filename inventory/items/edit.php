@@ -26,6 +26,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $itemName = trim($_POST['item_name'] ?? '');
         if (empty($itemName)) throw new Exception("Item name is required.");
 
+        /* ── Asset Code Tag editing (permission-gated) ── */
+        $newItemCode = null;
+        $oldItemCode = $item['item_code'];
+        if (has_permission('edit_asset_code') && isset($_POST['item_code'])) {
+            $newItemCode = trim($_POST['item_code']);
+            if ($newItemCode === '') throw new Exception("Item Code (Asset Code Tag) cannot be empty.");
+            if (strlen($newItemCode) > 50) throw new Exception("Item Code must be 50 characters or less.");
+
+            // Uniqueness check (exclude current item)
+            if ($newItemCode !== $oldItemCode) {
+                $dupChk = $pdo->prepare("SELECT COUNT(*) FROM inv_items WHERE item_code = ? AND item_id != ?");
+                $dupChk->execute([$newItemCode, $itemId]);
+                if ($dupChk->fetchColumn() > 0) {
+                    throw new Exception("Item Code '{$newItemCode}' is already in use by another item.");
+                }
+            }
+        }
+
         $stmt = $pdo->prepare("
             UPDATE inv_items SET
                 item_name = ?, description = ?, category_id = ?, subcategory_id = ?, uom_id = ?,
@@ -40,10 +58,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 criticality_id = ?, acct_class_id = ?, item_status = ?, issue_policy = ?,
                 asset_inventory_boundary = ?, item_domain = ?, asset_type_id = ?, inventory_type_id = ?,
                 updated_by = ?
+                <?= ($newItemCode !== null && $newItemCode !== $oldItemCode) ? ', item_code = ?' : '' ?>
             WHERE item_id = ?
         ");
 
-        $stmt->execute([
+        $params = [
             $itemName,
             trim($_POST['description'] ?? ''),
             (int) $_POST['category_id'],
@@ -86,8 +105,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ($_POST['asset_type_id'] ?? null) ?: null,
             ($_POST['inventory_type_id'] ?? null) ?: null,
             $_SESSION['user_id'] ?? null,
-            $itemId,
-        ]);
+        ];
+
+        if ($newItemCode !== null && $newItemCode !== $oldItemCode) {
+            $params[] = $newItemCode;
+        }
+        $params[] = $itemId;
+
+        $stmt->execute($params);
 
         // Update risk classes
         $pdo->prepare("DELETE FROM inv_item_risk_classes WHERE item_id = ?")->execute([$itemId]);
@@ -98,7 +123,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
 
-        logInventoryAudit($pdo, 'inv_items', $itemId, 'UPDATE', "Item updated: " . $item['item_code']);
+        /* ── Sync asset_code in inv_asset_details if item_code changed ── */
+        if ($newItemCode !== null && $newItemCode !== $oldItemCode) {
+            try {
+                $pdo->prepare("UPDATE inv_asset_details SET asset_code = ? WHERE item_id = ?")
+                    ->execute([$newItemCode, $itemId]);
+            } catch (Throwable $e) {
+                // Table may not have a row for this item — that's fine
+            }
+
+            logInventoryAudit($pdo, 'inv_items', $itemId, 'UPDATE',
+                "Asset Code changed: '{$oldItemCode}' → '{$newItemCode}'");
+        }
+
+        logInventoryAudit($pdo, 'inv_items', $itemId, 'UPDATE', "Item updated: " . ($newItemCode ?? $oldItemCode));
         $pdo->commit();
         pop("Item updated successfully.", "/inventory/items/view.php?id=$itemId", 1800, 'success');
         exit;
@@ -132,8 +170,14 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
         <div class="card-body">
             <div class="row g-3">
                 <div class="col-md-3">
-                    <label class="form-label">Item Code</label>
+                    <label class="form-label">Item Code (Asset Code Tag)</label>
+                    <?php if (has_permission('edit_asset_code')): ?>
+                    <input type="text" name="item_code" class="form-control" required maxlength="50"
+                           value="<?= htmlspecialchars($f['item_code']) ?>">
+                    <small class="text-muted">Editable — must be unique</small>
+                    <?php else: ?>
                     <input type="text" class="form-control" value="<?= htmlspecialchars($f['item_code']) ?>" disabled>
+                    <?php endif; ?>
                 </div>
                 <div class="col-md-5">
                     <label class="form-label">Item Name <span class="text-danger">*</span></label>
