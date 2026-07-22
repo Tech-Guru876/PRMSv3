@@ -117,15 +117,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     $tz = new DateTimeZone(date_default_timezone_get());
-   $invoiceDate = DateTimeImmutable::createFromFormat('Y-m-d', $invoiceDateRaw, $tz)
-    ->setTime(0, 0, 0);
+    $invoiceDateObj = DateTimeImmutable::createFromFormat('Y-m-d', $invoiceDateRaw, $tz);
 
-$today = (new DateTimeImmutable('now', $tz))->setTime(0, 0, 0);
+    if ($invoiceDateObj === false) {
+        modalPop('Error', 'Invalid invoice date format.', '', 'error');
+        exit;
+    }
 
-if ($invoiceDate > $today) {
-    modalPop('Error', 'Invoice date cannot be in the future.', '', 'error');
-    exit;
-}
+    $invoiceDate = $invoiceDateObj->setTime(0, 0, 0);
+    $today = (new DateTimeImmutable('now', $tz))->setTime(0, 0, 0);
+
+    if ($invoiceDate > $today) {
+        modalPop('Error', 'Invoice date cannot be in the future.', '', 'error');
+        exit;
+    }
 
     if ($invoiceAmount <= 0) {
         modalPop('Error', 'Invoice amount must be greater than zero.', '', 'error');

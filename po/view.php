@@ -39,6 +39,21 @@ if (!$po) {
 }
 
 /* ================================
+   Check for PO limit warning
+================================ */
+try {
+    $warnStmt = $pdo->prepare("
+        SELECT created_at FROM po_warnings
+        WHERE po_id = ? AND warning_type = 'PO_LIMIT_ATTEMPT'
+        ORDER BY created_at DESC LIMIT 1
+    ");
+    $warnStmt->execute([$po_id]);
+    $warning = $warnStmt->fetch(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    $warning = false;
+}
+
+/* ================================
    Fetch Approval Progress
 ================================ */
 $stmt = $pdo->prepare("
@@ -199,10 +214,17 @@ foreach ($variations as $v) {
 ================================ */
 require_once $_SERVER['DOCUMENT_ROOT'] . '/services/ProcurementInventoryBridge.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/services/InventoryService.php';
-$linkedGrns           = inventoryTablesExist($pdo)
-    ? ProcurementInventoryBridge::getGrnsForPo($pdo, $po_id)
-    : [];
 $inventoryModuleReady = inventoryTablesExist($pdo);
+$linkedGrns = [];
+if ($inventoryModuleReady) {
+    try {
+        $linkedGrns = ProcurementInventoryBridge::getGrnsForPo($pdo, $po_id);
+    } catch (PDOException $e) {
+        // Column procurement_po_id may not exist if migration 020 hasn't been applied
+        $linkedGrns = [];
+        $inventoryModuleReady = false;
+    }
+}
 
 /* ================================
    Render page AFTER logic
@@ -503,9 +525,10 @@ $statusIcon = match($po['status']) {
                 </div>
                 <?php endif; ?>
 
-                <div class="d-grid gap-2">                    <?php if (empty($po['po_file']) && has_permission('upload_purchase_order')): ?>
-                        <a href=\"/po/upload.php?commitment_id=<?= (int)$po['commitment_id'] ?>\" class=\"btn btn-warning\">
-                            <i class=\"bi bi-cloud-upload me-1\"></i>Upload PO Document
+                <div class="d-grid gap-2">
+                    <?php if (empty($po['po_file']) && has_permission('upload_purchase_order')): ?>
+                        <a href="/po/upload.php?commitment_id=<?= (int)$po['commitment_id'] ?>" class="btn btn-warning">
+                            <i class="bi bi-cloud-upload me-1"></i>Upload PO Document
                         </a>
                     <?php endif; ?>
                     <?php if ($isFullyApproved && $po['status'] === 'Open' && has_permission('create_invoice')): ?>
