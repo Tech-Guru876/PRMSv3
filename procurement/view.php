@@ -299,6 +299,7 @@ if ($requestType === 'PETTY_CASH') {
     // Detect "Proceed Without RFQ" path: REGULAR request that reached AWARDED or post-award
     // stages without any RFQ record (requires_rfq DB trigger always resets to 1, so we use
     // the absence of an RFQ record combined with a post-approval status as the reliable indicator).
+    // These are the statuses that can only be reached after a vendor award decision.
     $skipRfqStatuses = ['AWARDED', 'COMMITMENTS_PENDING', 'COMMITMENT_APPROVED', 'PO_PENDING', 'INVOICE_RECEIVED', 'COMPLETED'];
     $isSkipRfqPath   = ($requestType === 'REGULAR' && !$rfqId && in_array($current, $skipRfqStatuses));
 
@@ -623,7 +624,11 @@ $badge = $badgeMap[$status] ?? ['secondary', 'bi-question-circle'];
 </div>
 <?php endif; ?>
 
-<?php if ($current === 'AWARDED' && $requestType === 'REGULAR' && !$originalCommitment): ?>
+<?php
+// Show this banner for ALL REGULAR requests at AWARDED without a commitment — not just the
+// skip-RFQ path. Both the skip-RFQ path and the standard over-threshold RFQ path land at
+// AWARDED and still require Commitment → PO → Invoice before the request can be closed.
+if ($current === 'AWARDED' && $requestType === 'REGULAR' && !$originalCommitment): ?>
 <div class="alert alert-warning border-0 shadow-sm d-flex align-items-center gap-3 mb-4" role="alert">
     <i class="bi bi-exclamation-triangle-fill fs-2 flex-shrink-0 text-warning"></i>
     <div>
@@ -764,6 +769,12 @@ $badge = $badgeMap[$status] ?? ['secondary', 'bi-question-circle'];
                 
                 // Check if under threshold (direct procurement)
                 $isDirectProcurement = isDirectProcurement($requestType, $estimatedValue);
+
+                // Pre-build the AWARDED next-step message for REGULAR requests so it
+                // can be referenced in one place (Actions tab and any future contexts).
+                $awardedNextStepMsg = "⚠ This request is NOT complete. Next: Create a Commitment in GFMS, "
+                    . "then a Purchase Order, upload the Vendor Invoice, and record payment before this "
+                    . "request can be closed. Responsible: Finance Officer / Procurement Officer.";
                 
                 // Build next step description based on workflow
                 $nextStepDisplay = null;
@@ -786,7 +797,7 @@ $badge = $badgeMap[$status] ?? ['secondary', 'bi-question-circle'];
                         $nextStepIcon = 'bi-cash-coin';
                         $nextStepColor = 'text-success';
                     } else {
-                        $nextStepDisplay = "⚠ This request is NOT complete. Next: Create a Commitment in GFMS, then a Purchase Order, upload the Vendor Invoice, and record payment before this request can be closed. Responsible: Finance Officer / Procurement Officer.";
+                        $nextStepDisplay = $awardedNextStepMsg;
                         $nextStepIcon = 'bi-exclamation-triangle';
                         $nextStepColor = 'text-warning';
                     }
