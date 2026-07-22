@@ -186,16 +186,42 @@ if ($redirect !== '' && !str_starts_with($redirect, '/')) {
 
 
     $map = [
-        'success' => ['bg-success', '✅'],
-        'error'   => ['bg-danger', '❌'],
-        'warning' => ['bg-warning text-dark', '⚠️'],
-        'info'    => ['bg-primary', 'ℹ️'],
+        'success' => ['bg-success', '✅', 'text-success'],
+        'error'   => ['bg-danger',  '❌', 'text-danger'],
+        'warning' => ['bg-warning text-dark', '⚠️', 'text-warning'],
+        'info'    => ['bg-primary', 'ℹ️', 'text-primary'],
     ];
 
-    [$bg, $icon] = $map[$type] ?? $map['info'];
+    [$bg, $icon, $textColor] = $map[$type] ?? $map['info'];
 
     $safeMessage  = htmlspecialchars($message, ENT_QUOTES, 'UTF-8');
     $safeRedirect = htmlspecialchars($redirect, ENT_QUOTES, 'UTF-8');
+
+    // Body content: show a centered card when redirecting so the page is not blank
+    $bodyContent = '';
+    if ($redirect !== '') {
+        $redirectJs = json_encode($redirect, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT);
+        $delayJs    = (int) $delay;
+        $bodyContent = <<<HTML
+
+<div class="d-flex justify-content-center align-items-center" style="min-height:100vh;">
+  <div class="text-center p-4">
+    <div class="{$textColor} mb-3" style="font-size:3rem;">{$icon}</div>
+    <p class="fs-5 fw-semibold mb-1">{$safeMessage}</p>
+    <p class="text-muted small">Redirecting, please wait…</p>
+    <div class="spinner-border spinner-border-sm text-secondary mt-2" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+</div>
+
+<script>
+setTimeout(function () {
+    window.location.replace({$redirectJs});
+}, {$delayJs});
+</script>
+HTML;
+    }
 
     echo <<<HTML
 <!DOCTYPE html>
@@ -227,25 +253,11 @@ if ($redirect !== '' && !str_starts_with($redirect, '/')) {
   </div>
 </div>
 
-<script>
-setTimeout(function () {
-    document.querySelector('.toast')?.classList.remove('show');
-}, 3000);
-</script>
+{$bodyContent}
+
+</body></html>
 HTML;
 
-    if ($redirect !== '') {
-        $msgJs      = json_encode($message,  JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT);
-        $redirectJs = json_encode($redirect, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT);
-        echo "<script>
-        document.addEventListener('DOMContentLoaded', function () {
-            alert({$msgJs});
-            window.location.replace({$redirectJs});
-        });
-        </script>";
-    }
-
-    echo '</body></html>';
     exit;
 }
 
