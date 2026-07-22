@@ -180,13 +180,6 @@ $requestUsdRate = (float)($request['usd_rate'] ?? 0);
 // Always use JMD for threshold comparison
 $estimatedValue = ($requestCurrency === 'USD') ? $estimatedValueRaw * ($requestUsdRate ?: 155.00) : $estimatedValueRaw;
 
-// Pre-built guidance message for the AWARDED stage used in the warning banner and the Actions
-// tab card. Uses getAwardedWorkflowGuidance() from workflow.php as a single source of truth
-// for the step list. This is intentionally standalone user-facing text; it does not need to
-// be derived from workflow status names because it describes human actions.
-$awardedNextStepMsg = "This request is NOT complete. Next: " . getAwardedWorkflowGuidance()
-    . " Responsible: Finance Officer / Procurement Officer.";
-
 /* ================================
    Fetch approval chain from database
 ================================ */
@@ -304,14 +297,9 @@ if ($requestType === 'PETTY_CASH') {
     // All regular procurement now uses RFQ - check threshold to determine if committee evaluation needed
     $isDirectProcurement = isDirectProcurement($requestType, $estimatedValue);
     // Detect "Proceed Without RFQ" path: REGULAR request that reached AWARDED or beyond
-    // without any RFQ record. This requires_rfq DB column cannot be used reliably because
-    // the BEFORE UPDATE trigger always resets it to 1 for REGULAR requests (see
-    // trg_auto_update_requires_rfq). Using the absence of an RFQ record combined with a
-    // post-award status is the most reliable heuristic available without a schema change.
-    // Known edge case: if an RFQ record is deleted after the fact this check would give a
-    // false positive — that scenario is treated as an acceptable limitation.
-    $awardAndBeyondStatuses = getAwardAndBeyondStatuses(); // cached to avoid repeated calls
-    $isSkipRfqPath = ($requestType === 'REGULAR' && !$rfqId && in_array($current, $awardAndBeyondStatuses));
+    // Detect the "Proceed Without RFQ" path via isSkipRfqPath() in workflow.php.
+    // The requires_rfq column cannot be used reliably here — see function docblock for details.
+    $isSkipRfqPath = isSkipRfqPath($requestType, $rfqId, $current);
 
     if (!$isDirectProcurement) {
         $directThreshold = getDirectProcurementThreshold($pdo);
@@ -640,6 +628,10 @@ $badge = $badgeMap[$status] ?? ['secondary', 'bi-question-circle'];
 // AWARDED and still require Commitment → PO → Invoice before the request can be closed.
 // $originalCommitment is initialized earlier in this file (set to null, then populated from
 // the commitments query above).
+// Build the guidance message here — not at page-top — since it is only needed from this
+// point onwards (banner and Actions tab).
+$awardedNextStepMsg = "This request is NOT complete. Next: " . getAwardedWorkflowGuidance()
+    . " Responsible: Finance Officer / Procurement Officer.";
 if ($current === 'AWARDED' && $requestType === 'REGULAR' && !$originalCommitment): ?>
 <div class="alert alert-warning border-0 shadow-sm d-flex align-items-center gap-3 mb-4" role="alert">
     <i class="bi bi-exclamation-triangle-fill fs-2 flex-shrink-0 text-warning"></i>

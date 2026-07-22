@@ -64,13 +64,38 @@ function canTransition(string $current, string $next): bool {
  * correctly identified as having used the "Proceed Without RFQ" path (e.g. for
  * pipeline display on a read-only completed view).
  *
- * Used by view.php to detect $isSkipRfqPath without relying on the requires_rfq
- * column, which is reset to 1 by the database trigger on every update.
+ * NOTE: This array must be kept in sync with allowedTransitions() in this file.
+ * If new post-award statuses are added to the transitions map, add them here too.
+ *
+ * Used by isSkipRfqPath() to detect skip-RFQ requests without relying on the
+ * requires_rfq column, which is reset by the database trigger on every update.
  *
  * @return string[]
  */
 function getAwardAndBeyondStatuses(): array {
     return ['AWARDED', 'COMMITMENTS_PENDING', 'COMMITMENT_APPROVED', 'PO_PENDING', 'INVOICE_RECEIVED', 'COMPLETED'];
+}
+
+/**
+ * Determine whether a procurement request used the "Proceed Without RFQ" path.
+ *
+ * Detection heuristic: a REGULAR request at an AWARDED-or-beyond status with no
+ * linked RFQ record is treated as a skip-RFQ request. The requires_rfq column
+ * cannot be used reliably because the BEFORE UPDATE trigger resets it to 1 for
+ * all REGULAR requests on every UPDATE (see trg_auto_update_requires_rfq).
+ *
+ * Known edge case: if an RFQ record is later deleted this would give a false
+ * positive — that scenario is treated as an acceptable limitation.
+ *
+ * @param string   $requestType  Value of procurement_requests.request_type
+ * @param int|bool $rfqId        ID of the linked rfqs row, or falsy if none exists
+ * @param string   $currentStatus Current status of the request (uppercase)
+ * @return bool
+ */
+function isSkipRfqPath(string $requestType, $rfqId, string $currentStatus): bool {
+    return $requestType === 'REGULAR'
+        && !$rfqId
+        && in_array(strtoupper($currentStatus), getAwardAndBeyondStatuses(), true);
 }
 
 /**
