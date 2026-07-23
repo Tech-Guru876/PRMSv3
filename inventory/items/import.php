@@ -181,8 +181,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
                         <input class="form-check-input" type="checkbox" name="auto_create_lookups" id="auto_create_lookups" value="1"
                                <?= $_SERVER['REQUEST_METHOD'] !== 'POST' || !empty($_POST['auto_create_lookups']) ? 'checked' : '' ?>>
                         <label class="form-check-label" for="auto_create_lookups">
-                            Auto-create missing categories, types &amp; departments
-                            <small class="d-block text-muted">Otherwise unmatched lookup values generate row errors.</small>
+                            Auto-create missing categories &amp; departments
+                            <small class="d-block text-muted">Otherwise unmatched lookup values generate row errors. Asset types must match an approved Asset Classification.</small>
                         </label>
                     </div>
                     <div class="form-check mb-3">

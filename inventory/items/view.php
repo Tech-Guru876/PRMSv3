@@ -181,17 +181,18 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
                                 <td>
                                     <?php
                                     $domainBadge = ['INVENTORY' => 'primary', 'ASSET' => 'success', 'BOTH' => 'info'];
-                                    $domainLabel = ['INVENTORY' => 'Inventory (Stock)', 'ASSET' => 'Asset (Fixed/Movable)', 'BOTH' => 'Both'];
+                                    $domainLabel = ['INVENTORY' => 'Inventory / Stock / Consumable', 'ASSET' => 'Asset (Fixed/Movable)', 'BOTH' => 'Both'];
                                     $d = $item['item_domain'] ?? 'INVENTORY';
                                     ?>
                                     <span class="badge bg-<?= $domainBadge[$d] ?? 'secondary' ?>"><?= $domainLabel[$d] ?? htmlspecialchars($d) ?></span>
                                 </td>
                             </tr>
+                            <tr><th>Primary Asset Type</th><td><?= htmlspecialchars(getPrimaryAssetTypeLabel($d)) ?></td></tr>
                             <?php if (!empty($item['asset_type_name'])): ?>
-                            <tr><th>Asset Type</th><td><?= htmlspecialchars($item['asset_type_name']) ?></td></tr>
+                            <tr><th>Asset Classification (PPE)</th><td><?= htmlspecialchars($item['asset_type_name']) ?></td></tr>
                             <?php endif; ?>
                             <?php if (!empty($item['inventory_type_name'])): ?>
-                            <tr><th>Inventory Type</th><td><?= htmlspecialchars($item['inventory_type_name']) ?></td></tr>
+                            <tr><th>Asset Classification (Consumable)</th><td><?= htmlspecialchars($item['inventory_type_name']) ?></td></tr>
                             <?php endif; ?>
                             <tr><th>Criticality</th><td><?= htmlspecialchars($item['criticality_name'] ?? '-') ?></td></tr>
                             <tr><th>Accounting Class</th><td><?= htmlspecialchars($item['acct_class_name'] ?? '-') ?></td></tr>

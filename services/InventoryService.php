@@ -499,6 +499,71 @@ function getInventoryTypes(PDO $pdo, bool $activeOnly = true): array
     }
 }
 
+/** Approved top-level Primary Asset Types (Ministry of Finance alignment). */
+const PRIMARY_ASSET_TYPE_PPE        = 'Property, Plant, and Equipment (Non-Financial Assets)';
+const PRIMARY_ASSET_TYPE_CONSUMABLE = 'Consumable and Expendable Assets';
+
+/**
+ * Derive the Primary Asset Type label(s) for an item domain.
+ * ASSET  -> Property, Plant, and Equipment (Non-Financial Assets)
+ * INVENTORY -> Consumable and Expendable Assets
+ * BOTH -> both types apply
+ */
+function getPrimaryAssetTypeLabel(?string $itemDomain): string
+{
+    switch ($itemDomain) {
+        case 'ASSET':
+            return PRIMARY_ASSET_TYPE_PPE;
+        case 'BOTH':
+            return PRIMARY_ASSET_TYPE_PPE . ' + ' . PRIMARY_ASSET_TYPE_CONSUMABLE;
+        case 'INVENTORY':
+        default:
+            return PRIMARY_ASSET_TYPE_CONSUMABLE;
+    }
+}
+
+/**
+ * Validate the Primary Asset Type / classification selection for an item.
+ * - item_domain (Primary Asset Type) is mandatory and must be a known value.
+ * - Classifications may only belong to the selected Primary Asset Type.
+ *
+ * Returns [itemDomain, assetTypeId, inventoryTypeId] with the classification
+ * that does not belong to the selected Primary Asset Type cleared.
+ *
+ * @throws Exception when the selection is invalid
+ */
+function validatePrimaryAssetTypeSelection(PDO $pdo, ?string $itemDomain, $assetTypeId, $inventoryTypeId): array
+{
+    $itemDomain = $itemDomain !== null ? strtoupper(trim($itemDomain)) : '';
+    if (!in_array($itemDomain, ['INVENTORY', 'ASSET', 'BOTH'], true)) {
+        throw new Exception("Primary Asset Type is mandatory. Select Property, Plant, and Equipment (Non-Financial Assets) or Consumable and Expendable Assets.");
+    }
+
+    $assetTypeId     = $assetTypeId ? (int) $assetTypeId : null;
+    $inventoryTypeId = $inventoryTypeId ? (int) $inventoryTypeId : null;
+
+    // Classifications may only belong to the selected Primary Asset Type
+    if ($itemDomain === 'INVENTORY') $assetTypeId = null;
+    if ($itemDomain === 'ASSET')     $inventoryTypeId = null;
+
+    if ($assetTypeId !== null) {
+        $chk = $pdo->prepare("SELECT COUNT(*) FROM asset_types WHERE asset_type_id = ? AND is_active = 1");
+        $chk->execute([$assetTypeId]);
+        if ((int) $chk->fetchColumn() === 0) {
+            throw new Exception("Invalid Asset Classification: only approved Property, Plant, and Equipment classifications may be selected.");
+        }
+    }
+    if ($inventoryTypeId !== null) {
+        $chk = $pdo->prepare("SELECT COUNT(*) FROM inventory_types WHERE inventory_type_id = ? AND is_active = 1");
+        $chk->execute([$inventoryTypeId]);
+        if ((int) $chk->fetchColumn() === 0) {
+            throw new Exception("Invalid Asset Classification: only approved Consumable and Expendable classifications may be selected.");
+        }
+    }
+
+    return [$itemDomain, $assetTypeId, $inventoryTypeId];
+}
+
 function getActiveLocations(PDO $pdo): array
 {
     return $pdo->query("

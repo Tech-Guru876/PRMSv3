@@ -27,6 +27,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $uomId = (int) ($_POST['uom_id'] ?? 0);
         if ($uomId <= 0) throw new Exception("Unit of measure is required.");
 
+        // Primary Asset Type is mandatory; classifications may only belong to it
+        [$itemDomain, $assetTypeId, $inventoryTypeId] = validatePrimaryAssetTypeSelection(
+            $pdo,
+            $_POST['item_domain'] ?? 'INVENTORY',
+            $_POST['asset_type_id'] ?? null,
+            $_POST['inventory_type_id'] ?? null
+        );
+
         // Check for duplicate item code
         $dup = $pdo->prepare("SELECT COUNT(*) FROM inv_items WHERE item_code = ?");
         $dup->execute([$itemCode]);
@@ -104,9 +112,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_POST['item_status'] ?? 'ACTIVE',
             $_POST['issue_policy'] ?? 'UNRESTRICTED',
             isset($_POST['asset_inventory_boundary']) ? 1 : 0,
-            $_POST['item_domain'] ?? 'INVENTORY',
-            ($_POST['asset_type_id'] ?? null) ?: null,
-            ($_POST['inventory_type_id'] ?? null) ?: null,
+            $itemDomain,
+            $assetTypeId,
+            $inventoryTypeId,
             $_SESSION['user_id'] ?? null,
         ]);
 
@@ -197,20 +205,26 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
                     <label class="form-label">Pack Size / Conversion</label>
                     <input type="number" step="0.01" name="pack_size" class="form-control" value="<?= $_POST['pack_size'] ?? '1.00' ?>">
                 </div>
-                <!-- Domain classification (migration 024) -->
+                <!-- Domain classification (migration 024 / Primary Asset Type restructure) -->
                 <?php if (!empty($assetTypes) || !empty($invTypes)): ?>
                 <div class="col-md-4">
                     <label class="form-label">Item Domain <span class="text-danger">*</span></label>
                     <select name="item_domain" id="itemDomain" class="form-select" required>
-                        <option value="INVENTORY" <?= ($_POST['item_domain'] ?? 'INVENTORY') === 'INVENTORY' ? 'selected' : '' ?>>Inventory (Stock)</option>
+                        <option value="INVENTORY" <?= ($_POST['item_domain'] ?? 'INVENTORY') === 'INVENTORY' ? 'selected' : '' ?>>Inventory / Stock / Consumable</option>
                         <option value="ASSET"     <?= ($_POST['item_domain'] ?? '') === 'ASSET'     ? 'selected' : '' ?>>Asset (Fixed/Movable)</option>
                         <option value="BOTH"      <?= ($_POST['item_domain'] ?? '') === 'BOTH'      ? 'selected' : '' ?>>Both</option>
                     </select>
                 </div>
-                <div class="col-md-4" id="assetTypeGroup" style="<?= in_array($_POST['item_domain'] ?? 'INVENTORY', ['ASSET','BOTH']) ? '' : 'display:none' ?>">
-                    <label class="form-label">Asset Type</label>
+                <div class="col-md-8">
+                    <label class="form-label">Primary Asset Type <span class="text-danger">*</span></label>
+                    <input type="text" id="primaryAssetType" class="form-control" readonly
+                           value="<?= htmlspecialchars(getPrimaryAssetTypeLabel($_POST['item_domain'] ?? 'INVENTORY')) ?>">
+                    <small class="text-muted">Derived from the Item Domain per Ministry of Finance classification.</small>
+                </div>
+                <div class="col-md-6" id="assetTypeGroup" style="<?= in_array($_POST['item_domain'] ?? 'INVENTORY', ['ASSET','BOTH']) ? '' : 'display:none' ?>">
+                    <label class="form-label">Asset Classification (Property, Plant, and Equipment)</label>
                     <select name="asset_type_id" class="form-select">
-                        <option value="">— Select asset type —</option>
+                        <option value="">— Select classification —</option>
                         <?php foreach ($assetTypes as $at): ?>
                         <option value="<?= $at['asset_type_id'] ?>" <?= ($_POST['asset_type_id'] ?? '') == $at['asset_type_id'] ? 'selected' : '' ?>>
                             <?= htmlspecialchars($at['type_name']) ?>
@@ -218,10 +232,10 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
                         <?php endforeach; ?>
                     </select>
                 </div>
-                <div class="col-md-4" id="invTypeGroup" style="<?= in_array($_POST['item_domain'] ?? 'INVENTORY', ['INVENTORY','BOTH']) ? '' : 'display:none' ?>">
-                    <label class="form-label">Inventory Type</label>
+                <div class="col-md-6" id="invTypeGroup" style="<?= in_array($_POST['item_domain'] ?? 'INVENTORY', ['INVENTORY','BOTH']) ? '' : 'display:none' ?>">
+                    <label class="form-label">Asset Classification (Consumable and Expendable)</label>
                     <select name="inventory_type_id" class="form-select">
-                        <option value="">— Select inventory type —</option>
+                        <option value="">— Select classification —</option>
                         <?php foreach ($invTypes as $it): ?>
                         <option value="<?= $it['inventory_type_id'] ?>" <?= ($_POST['inventory_type_id'] ?? '') == $it['inventory_type_id'] ? 'selected' : '' ?>>
                             <?= htmlspecialchars($it['type_name']) ?>
@@ -490,12 +504,19 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 (function () {
     var domainSel = document.getElementById('itemDomain');
     if (!domainSel) return;
+    var primaryLabels = {
+        'INVENTORY': <?= json_encode(getPrimaryAssetTypeLabel('INVENTORY')) ?>,
+        'ASSET':     <?= json_encode(getPrimaryAssetTypeLabel('ASSET')) ?>,
+        'BOTH':      <?= json_encode(getPrimaryAssetTypeLabel('BOTH')) ?>
+    };
     function toggleTypeGroups() {
         var v = domainSel.value;
         var ag = document.getElementById('assetTypeGroup');
         var ig = document.getElementById('invTypeGroup');
+        var pt = document.getElementById('primaryAssetType');
         if (ag) ag.style.display = (v === 'ASSET' || v === 'BOTH') ? '' : 'none';
         if (ig) ig.style.display = (v === 'INVENTORY' || v === 'BOTH') ? '' : 'none';
+        if (pt) pt.value = primaryLabels[v] || primaryLabels['INVENTORY'];
     }
     domainSel.addEventListener('change', toggleTypeGroups);
     toggleTypeGroups();

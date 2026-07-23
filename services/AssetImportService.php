@@ -544,16 +544,9 @@ class AssetImportService
         $key = self::norm($name);
         if (isset($this->assetTypeCache[$key])) return $this->assetTypeCache[$key];
 
-        if (!$this->options['auto_create_lookups']) {
-            throw new RowValidationException('asset_type', "Asset type '$name' does not exist.");
-        }
-        // Create the asset type so items keep their correct classification
-        $code = $this->makeCode($name, 30);
-        $stmt = $this->pdo->prepare("INSERT INTO asset_types (type_code, type_name, description, is_active) VALUES (?, ?, ?, 1)");
-        $stmt->execute([$code, mb_substr(trim($name), 0, 100), 'Auto-created during asset import (category: ' . trim($categoryName) . ')']);
-        $id = (int)$this->pdo->lastInsertId();
-        $this->assetTypeCache[$key] = $id;
-        return $id;
+        // Only approved Primary Asset Type classifications may be used;
+        // legacy or ad-hoc asset types are no longer created.
+        throw new RowValidationException('asset_type', "Asset type '$name' is not an approved Asset Classification. Only approved Property, Plant, and Equipment classifications may be used.");
     }
 
     private function resolveBranch(string $name): int
@@ -613,7 +606,7 @@ class AssetImportService
             $this->categoryCache[self::norm($r['category_name'])] = (int)$r['category_id'];
             $this->categoryCache[self::norm($r['category_code'])] = (int)$r['category_id'];
         }
-        foreach ($this->pdo->query("SELECT asset_type_id, type_name, type_code FROM asset_types") as $r) {
+        foreach ($this->pdo->query("SELECT asset_type_id, type_name, type_code FROM asset_types WHERE is_active = 1") as $r) {
             $this->assetTypeCache[self::norm($r['type_name'])] = (int)$r['asset_type_id'];
             $this->assetTypeCache[self::norm($r['type_code'])] = (int)$r['asset_type_id'];
             // Allow singular/plural leniency, e.g. "Vehicle" → "Vehicles"

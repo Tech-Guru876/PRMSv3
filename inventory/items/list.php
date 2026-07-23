@@ -187,7 +187,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
                 <label class="form-label">Domain</label>
                 <select name="domain" class="form-select">
                     <option value="">All</option>
-                    <option value="INVENTORY" <?= ($_GET['domain'] ?? '') === 'INVENTORY' ? 'selected' : '' ?>>Inventory</option>
+                    <option value="INVENTORY" <?= ($_GET['domain'] ?? '') === 'INVENTORY' ? 'selected' : '' ?>>Inventory / Stock / Consumable</option>
                     <option value="ASSET"     <?= ($_GET['domain'] ?? '') === 'ASSET'     ? 'selected' : '' ?>>Assets</option>
                     <option value="BOTH"      <?= ($_GET['domain'] ?? '') === 'BOTH'      ? 'selected' : '' ?>>Both</option>
                 </select>

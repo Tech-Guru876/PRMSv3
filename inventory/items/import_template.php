@@ -22,7 +22,7 @@ $out = fopen('php://output', 'w');
 fwrite($out, "\xEF\xBB\xBF");
 fputcsv($out, $headers, ',', '"', '\\');
 fputcsv($out, [
-    'DGC-IT-0001', 'Dell Latitude 5440 Laptop', 'IT Equipment', 'Dell', 'PO-2024-015',
+    'DGC-IT-0001', 'Dell Latitude 5440 Laptop', 'Computer and Electronic Equipment', 'Dell', 'PO-2024-015',
     '15/01/2024', 'Executive Branch', '250000.00', '', '250000.00', '', 'In Use',
     'IT Equipment', 'Good', '14-inch business laptop', 'John Brown', '20/01/2024',
     '01/02/2024', '15/01/2027', '', '', 'SN-ABC12345', '', '', '25000.00',
