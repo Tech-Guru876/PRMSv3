@@ -503,7 +503,7 @@ function isCollapsibleActive($urls, $currentPage) {
                 <i class="bi bi-person-badge me-2"></i>Director HRM&amp;A
             </a>
             <a class="nav-link text-white sidebar-link <?= active('/dashboard/director_procurement', $currentPage) ?>" href="/dashboard/director_procurement.php">
-                <i class="bi bi-person-badge me-2"></i>Director Procurement
+                <i class="bi bi-person-vcard me-2"></i>Director Procurement
             </a>
             <a class="nav-link text-white sidebar-link <?= active('/dashboard/property_management_officer', $currentPage) ?>" href="/dashboard/property_management_officer.php">
                 <i class="bi bi-building-gear me-2"></i>Property Management
