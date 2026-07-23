@@ -4,6 +4,8 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/config/page_guard.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/config/db.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/config/helper.php';
 
+define('MAX_CONTRACT_DOCUMENT_SIZE', 25 * 1024 * 1024); // 25 MB
+
 /* ===============================
    Fetch vendors and branches for dropdowns
 ================================ */
@@ -69,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     if (!in_array($file['type'], $allowedTypes)) {
                         throw new Exception('Invalid file type. Allowed: PDF, Word, JPEG, PNG.');
                     }
-                    if ($file['size'] > 25 * 1024 * 1024) {
+                    if ($file['size'] > MAX_CONTRACT_DOCUMENT_SIZE) {
                         throw new Exception('File too large. Maximum 25MB.');
                     }
                     $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/uploads/contracts/';

@@ -60,10 +60,18 @@ require_once $_SERVER['DOCUMENT_ROOT']."/includes/header.php";
             <i class="bi bi-receipt me-2"></i>Invoice: <?= htmlspecialchars($i['invoice_number']) ?>
         </h3>
         <small class="text-muted">
+            <?php if ($i['po_id']): ?>
             Purchase Order
             <a href="/po/view.php?po_id=<?= (int)$i['po_id'] ?>" class="text-decoration-none fw-semibold">
                 <?= htmlspecialchars($i['po_number']) ?>
             </a>
+            <?php elseif ($i['contract_number']): ?>
+            Service Contract
+            <a href="/contracts/view.php?id=<?= (int)$i['sc_id'] ?>" class="text-decoration-none fw-semibold">
+                <?= htmlspecialchars($i['contract_number']) ?>
+            </a>
+            — <?= htmlspecialchars($i['contract_title'] ?? '') ?>
+            <?php endif; ?>
         </small>
     </div>
     <div class="d-flex gap-2 flex-wrap align-items-center">
@@ -150,16 +158,24 @@ require_once $_SERVER['DOCUMENT_ROOT']."/includes/header.php";
                         <p class="mb-0"><?= !empty($i['invoice_date']) ? date('d M Y', strtotime($i['invoice_date'])) : '&mdash;' ?></p>
                     </div>
                     <div class="col-6">
-                        <label class="form-label text-muted small fw-bold mb-0">Purchase Order</label>
+                        <label class="form-label text-muted small fw-bold mb-0"><?= $i['po_id'] ? 'Purchase Order' : 'Service Contract' ?></label>
                         <p class="mb-0">
+                            <?php if ($i['po_id']): ?>
                             <a href="/po/view.php?po_id=<?= (int)$i['po_id'] ?>" class="text-decoration-none fw-semibold">
                                 <?= htmlspecialchars($i['po_number']) ?>
                             </a>
+                            <?php elseif ($i['contract_number']): ?>
+                            <a href="/contracts/view.php?id=<?= (int)$i['sc_id'] ?>" class="text-decoration-none fw-semibold">
+                                <?= htmlspecialchars($i['contract_number']) ?>
+                            </a>
+                            <?php else: ?>
+                            <span class="text-muted">—</span>
+                            <?php endif; ?>
                         </p>
                     </div>
                     <div class="col-6">
-                        <label class="form-label text-muted small fw-bold mb-0">PO Total</label>
-                        <p class="mb-0 fw-semibold"><?= money((float)$i['po_total']) ?></p>
+                        <label class="form-label text-muted small fw-bold mb-0"><?= $i['po_id'] ? 'PO Total' : 'Contract' ?></label>
+                        <p class="mb-0 fw-semibold"><?= $i['po_id'] ? money((float)$i['po_total']) : htmlspecialchars($i['contract_title'] ?? '—') ?></p>
                     </div>
                     <div class="col-6">
                         <label class="form-label text-muted small fw-bold mb-0">Invoice Amount</label>
@@ -214,9 +230,15 @@ require_once $_SERVER['DOCUMENT_ROOT']."/includes/header.php";
                         <i class="bi bi-printer me-1"></i>Print Invoice PDF
                     </a>
 
+                    <?php if ($i['po_id']): ?>
                     <a href="/po/view.php?po_id=<?= (int)$i['po_id'] ?>" class="btn btn-outline-secondary">
                         <i class="bi bi-file-earmark-ruled me-1"></i>View Purchase Order
                     </a>
+                    <?php elseif ($i['sc_id']): ?>
+                    <a href="/contracts/view.php?id=<?= (int)$i['sc_id'] ?>" class="btn btn-outline-secondary">
+                        <i class="bi bi-file-earmark-text me-1"></i>View Contract
+                    </a>
+                    <?php endif; ?>
 
                     <a href="<?= auditUrl('invoices', $i['invoice_id']) ?>" class="btn btn-outline-secondary">
                         <i class="bi bi-journal-text me-1"></i>Audit Trail

@@ -138,8 +138,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         logAudit($pdo, 'invoices', $invoice_id, 'CREATE',
             'Service contract invoice added by user ID ' . $_SESSION['user_id']);
 
-        // Update contract consumed_value
+        // Update contract consumed_value (lock row to prevent race condition)
         if ($contract_id) {
+            $pdo->prepare("SELECT contract_id FROM service_contracts WHERE contract_id = ? FOR UPDATE")->execute([$contract_id]);
             $pdo->prepare("
                 UPDATE service_contracts
                 SET consumed_value = consumed_value + ?

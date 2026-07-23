@@ -411,10 +411,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             // Always create new commitment record (Procurement no longer creates commitments)
             $commitmentNumber = generateCommitmentNumber($pdo);
+            
+            // Get contract_id if this is a SERVICE_CONTRACT request
+            $contractIdForCommitment = null;
+            $reqTypeStmt = $pdo->prepare("SELECT request_type, contract_id FROM procurement_requests WHERE request_id = ?");
+            $reqTypeStmt->execute([$request_id]);
+            $reqTypeData = $reqTypeStmt->fetch(PDO::FETCH_ASSOC);
+            if ($reqTypeData && $reqTypeData['request_type'] === 'SERVICE_CONTRACT') {
+                $contractIdForCommitment = $reqTypeData['contract_id'] ? (int)$reqTypeData['contract_id'] : null;
+            }
+            
             $stmt = $pdo->prepare("
                 INSERT INTO commitments
-                (request_id, commitment_number, commitment_date, commitment_total, gfms_commitment_number, document_path, status, approved_at, commitment_type)
-                VALUES (?, ?, ?, ?, ?, ?, 'closed', NOW(), 'ORIGINAL')
+                (request_id, commitment_number, commitment_date, commitment_total, gfms_commitment_number, document_path, status, approved_at, commitment_type, contract_id)
+                VALUES (?, ?, ?, ?, ?, ?, 'closed', NOW(), 'ORIGINAL', ?)
             ");
             $stmt->execute([
                 $request_id,
@@ -422,7 +432,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $commitmentDate,
                 (float)$commitmentTotal,
                 !empty($gfmsNumber) ? $gfmsNumber : null,
-                $documentPath
+                $documentPath,
+                $contractIdForCommitment
             ]);
             $commitment_id = $pdo->lastInsertId();
             
@@ -442,11 +453,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 ")->execute([$formDocPath, $request_id]);
             }
             
+            $isServiceContract = ($reqTypeData && $reqTypeData['request_type'] === 'SERVICE_CONTRACT');
+            $nextStepMsg = $isServiceContract
+                ? "Finance Officer created commitment $commitmentNumber. Ready for invoice submission."
+                : "Finance Officer created commitment $commitmentNumber in GFMS and uploaded commitment document. Ready for PO creation.";
+            
             logAudit($pdo, 'commitments', $commitment_id, 'CREATE',
                     "Commitment created by Finance Officer from GFMS and document uploaded");
             
-            logRequestTimeline($pdo, $request_id, 'COMMITMENT_APPROVED',
-                              "Finance Officer created commitment $commitmentNumber in GFMS and uploaded commitment document. Ready for PO creation.");
+            logRequestTimeline($pdo, $request_id, 'COMMITMENT_APPROVED', $nextStepMsg);
             
             $pdo->commit();
             
