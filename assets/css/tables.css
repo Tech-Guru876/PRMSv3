@@ -99,12 +99,13 @@
 }
 
 .permissions-matrix-wrap {
+  --permissions-matrix-max-height: 70vh;
   --permissions-matrix-header-bg: var(--bs-dark, #212529);
   --permissions-matrix-header-color: var(--bs-white, #fff);
   --permissions-matrix-cell-bg: var(--bs-body-bg, #fff);
   --permissions-matrix-divider-color: rgba(0, 0, 0, 0.125);
   overflow: auto;
-  max-height: 70vh;
+  max-height: var(--permissions-matrix-max-height);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -138,5 +139,6 @@
   left: 0;
   z-index: 10;
   background: var(--permissions-matrix-cell-bg);
+  border-right: 1px solid var(--permissions-matrix-divider-color);
   box-shadow: 1px 0 0 var(--permissions-matrix-divider-color);
 }
