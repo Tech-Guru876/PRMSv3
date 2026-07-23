@@ -82,6 +82,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->execute([$newCommitteeThreshold]);
         }
         
+        // ── Asset Register Field Requirement Toggles ──────────────────────────
+        $arFieldKeys = [
+            'ar_require_inventory_number',
+            'ar_require_condition',
+            'ar_require_status',
+            'ar_require_acquired_date',
+            'ar_require_custodian',
+            'ar_require_location',
+            'ar_require_purchase_cost',
+        ];
+        foreach ($arFieldKeys as $arKey) {
+            $arVal = isset($_POST[$arKey]) ? '1' : '0';
+            $stmt = $pdo->prepare("
+                INSERT INTO system_config (config_key, config_value, description, created_at)
+                VALUES (?, ?, ?, NOW())
+                ON DUPLICATE KEY UPDATE config_value = VALUES(config_value)
+            ");
+            $stmt->execute([$arKey, $arVal, 'Asset Register field requirement toggle']);
+        }
+
         // Log audit
         logAudit(
             $pdo,
@@ -145,6 +165,28 @@ try {
     $currentUsdRate = (float)($stmt->fetchColumn() ?: 155.00);
 } catch (Exception $e) {
     $currentUsdRate = 155.00;
+}
+
+// Get current Asset Register field requirement toggles
+$arFieldSettings = [];
+$arFieldKeys = [
+    'ar_require_inventory_number',
+    'ar_require_condition',
+    'ar_require_status',
+    'ar_require_acquired_date',
+    'ar_require_custodian',
+    'ar_require_location',
+    'ar_require_purchase_cost',
+];
+foreach ($arFieldKeys as $arKey) {
+    try {
+        $stmt = $pdo->prepare("SELECT config_value FROM system_config WHERE config_key = ?");
+        $stmt->execute([$arKey]);
+        $val = $stmt->fetchColumn();
+        $arFieldSettings[$arKey] = $val !== false ? (bool)(int)$val : true; // default required
+    } catch (Exception $e) {
+        $arFieldSettings[$arKey] = true;
+    }
 }
 
 // Now include header AFTER form processing and headers are sent
@@ -370,6 +412,84 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/includes/header.php';
                                 <strong>Current Status:</strong> Notifications are currently <strong class="<?= $notificationsEnabled ? 'text-success' : 'text-danger' ?>">
                                     <?= $notificationsEnabled ? 'ENABLED' : 'DISABLED' ?>
                                 </strong>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <!-- ═══ Asset Register Field Requirements ═══ -->
+                        <h5 class="fw-bold mb-3"><i class="bi bi-clipboard2-check me-2"></i> Asset Register Field Requirements</h5>
+                        <div class="mb-4">
+                            <div class="card border-0 bg-light">
+                                <div class="card-body">
+                                    <p class="text-muted small mb-3">
+                                        Toggle which fields are <strong>mandatory</strong> when adding or editing assets in the Asset Register Details section.
+                                        Disabled fields become optional (users can still fill them in).
+                                    </p>
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <div class="form-check form-switch py-1">
+                                                <input class="form-check-input" type="checkbox" id="ar_require_inventory_number"
+                                                       name="ar_require_inventory_number" value="1"
+                                                       <?= $arFieldSettings['ar_require_inventory_number'] ? 'checked' : '' ?>>
+                                                <label class="form-check-label" for="ar_require_inventory_number">Inventory Number</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-check form-switch py-1">
+                                                <input class="form-check-input" type="checkbox" id="ar_require_condition"
+                                                       name="ar_require_condition" value="1"
+                                                       <?= $arFieldSettings['ar_require_condition'] ? 'checked' : '' ?>>
+                                                <label class="form-check-label" for="ar_require_condition">Asset Condition</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-check form-switch py-1">
+                                                <input class="form-check-input" type="checkbox" id="ar_require_status"
+                                                       name="ar_require_status" value="1"
+                                                       <?= $arFieldSettings['ar_require_status'] ? 'checked' : '' ?>>
+                                                <label class="form-check-label" for="ar_require_status">Asset Status</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-check form-switch py-1">
+                                                <input class="form-check-input" type="checkbox" id="ar_require_acquired_date"
+                                                       name="ar_require_acquired_date" value="1"
+                                                       <?= $arFieldSettings['ar_require_acquired_date'] ? 'checked' : '' ?>>
+                                                <label class="form-check-label" for="ar_require_acquired_date">Date of Acquisition</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-check form-switch py-1">
+                                                <input class="form-check-input" type="checkbox" id="ar_require_custodian"
+                                                       name="ar_require_custodian" value="1"
+                                                       <?= $arFieldSettings['ar_require_custodian'] ? 'checked' : '' ?>>
+                                                <label class="form-check-label" for="ar_require_custodian">Custodian</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-check form-switch py-1">
+                                                <input class="form-check-input" type="checkbox" id="ar_require_location"
+                                                       name="ar_require_location" value="1"
+                                                       <?= $arFieldSettings['ar_require_location'] ? 'checked' : '' ?>>
+                                                <label class="form-check-label" for="ar_require_location">Location (at least one field)</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-check form-switch py-1">
+                                                <input class="form-check-input" type="checkbox" id="ar_require_purchase_cost"
+                                                       name="ar_require_purchase_cost" value="1"
+                                                       <?= $arFieldSettings['ar_require_purchase_cost'] ? 'checked' : '' ?>>
+                                                <label class="form-check-label" for="ar_require_purchase_cost">Cost / Purchase Price</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="alert alert-warning mt-3 mb-0 small">
+                                        <i class="bi bi-exclamation-triangle me-1"></i>
+                                        <strong>Note:</strong> Disabling a field requirement means assets can be saved without that data.
+                                        This may affect asset register completeness and compliance reporting.
+                                    </div>
+                                </div>
                             </div>
                         </div>
 

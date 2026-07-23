@@ -113,6 +113,8 @@ if ($custodian !== '') {
         $params[] = $custLike;
         $custClauses[] = "ad.accountable_officer LIKE ?";
         $params[] = $custLike;
+        $custClauses[] = "ad.secondary_custodian LIKE ?";
+        $params[] = $custLike;
     }
     if ($serialTableReady) {
         $custClauses[] = "EXISTS (
@@ -187,7 +189,7 @@ if ($q !== '') {
     }
     if ($assetDetailsReady) {
         foreach (['ad.asset_code', 'ad.serial_number', 'ad.custodian_name', 'ad.accountable_officer',
-                  'ad.site', 'ad.building', 'ad.floor_room', 'ad.address'] as $col) {
+                  'ad.secondary_custodian', 'ad.site', 'ad.building', 'ad.floor_room', 'ad.address'] as $col) {
             $searchClauses[] = "$col LIKE ?";
             $searchParams[] = $like;
         }
@@ -238,10 +240,11 @@ $adJoin = $assetDetailsReady
     : "";
 $adSelect = $assetDetailsReady
     ? "ad.asset_code, ad.acquired_date, ad.asset_condition, ad.asset_status,
-       COALESCE(ad.custodian_name, adcu.full_name) AS custodian_display,"
+       COALESCE(ad.custodian_name, adcu.full_name) AS custodian_display,
+       ad.secondary_custodian,"
       . ($branchesReady ? " adb.branch_name AS department_name," : " NULL AS department_name,")
     : "NULL AS asset_code, NULL AS acquired_date, NULL AS asset_condition, NULL AS asset_status,
-       NULL AS custodian_display, NULL AS department_name,";
+       NULL AS custodian_display, NULL AS secondary_custodian, NULL AS department_name,";
 
 $serialJoin = $serialTableReady
     ? "LEFT JOIN (
@@ -519,7 +522,12 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
                             <?php endif; ?>
                         </td>
                         <td><?= htmlspecialchars($r['department_name'] ?? '-') ?></td>
-                        <td><?= htmlspecialchars($r['custodian_display'] ?? '-') ?></td>
+                        <td>
+                            <?= htmlspecialchars($r['custodian_display'] ?? '-') ?>
+                            <?php if (!empty($r['secondary_custodian'])): ?>
+                            <br><small class="text-muted">2nd: <?= htmlspecialchars($r['secondary_custodian']) ?></small>
+                            <?php endif; ?>
+                        </td>
                         <td><?= htmlspecialchars($r['asset_condition'] ?? '-') ?></td>
                         <td><?= htmlspecialchars($r['acquired_date'] ?? '-') ?></td>
                         <td class="text-end"><?= number_format((float) $r['serial_count']) ?></td>

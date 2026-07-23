@@ -489,6 +489,10 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
                             <td><?= htmlspecialchars($ad['custodian_name'] ?? '-') ?></td>
                         </tr>
                         <tr>
+                            <th>Secondary Custodian</th>
+                            <td><?= htmlspecialchars($ad['secondary_custodian'] ?? '-') ?></td>
+                        </tr>
+                        <tr>
                             <th>Asset Location</th>
                             <td><?= htmlspecialchars($locationStr) ?></td>
                         </tr>

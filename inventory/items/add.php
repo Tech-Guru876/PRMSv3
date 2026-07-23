@@ -26,6 +26,28 @@ if ($assetDetailsTableExists) {
     } catch (Throwable $e) { /* branches table may not exist on all installs */ }
 }
 
+/* Load admin-configured field requirement settings for Asset Register Details */
+$arFieldRequired = [];
+$arFieldKeys = [
+    'ar_require_inventory_number',
+    'ar_require_condition',
+    'ar_require_status',
+    'ar_require_acquired_date',
+    'ar_require_custodian',
+    'ar_require_location',
+    'ar_require_purchase_cost',
+];
+foreach ($arFieldKeys as $arKey) {
+    try {
+        $s = $pdo->prepare("SELECT config_value FROM system_config WHERE config_key = ?");
+        $s->execute([$arKey]);
+        $val = $s->fetchColumn();
+        $arFieldRequired[$arKey] = $val !== false ? (bool)(int)$val : true;
+    } catch (Throwable $e) {
+        $arFieldRequired[$arKey] = true;
+    }
+}
+
 /* Handle POST */
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
@@ -178,6 +200,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $arStatus           = trim($_POST['ar_asset_status'] ?? '');
             $arAcquiredDate     = trim($_POST['ar_acquired_date'] ?? '');
             $arCustodian        = trim($_POST['ar_custodian'] ?? '');
+            $arSecondaryCustodian = trim($_POST['ar_secondary_custodian'] ?? '');
             $arLocation         = trim($_POST['ar_location'] ?? '');
             $arSite             = trim($_POST['ar_site'] ?? '');
             $arBuilding         = trim($_POST['ar_building'] ?? '');
@@ -187,21 +210,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $arDisposalAmount   = trim($_POST['ar_disposal_amount'] ?? '');
             $arIsDisposed       = isset($_POST['ar_is_disposed']) ? 1 : 0;
 
-            // Mandatory field validation for assets
+            // Mandatory field validation (respects admin settings)
             $arErrors = [];
-            if ($arInventoryNumber === '')
+            if ($arFieldRequired['ar_require_inventory_number'] && $arInventoryNumber === '')
                 $arErrors[] = "Inventory Number is required for assets.";
-            if ($arCondition === '')
+            if ($arFieldRequired['ar_require_condition'] && $arCondition === '')
                 $arErrors[] = "Asset Condition is required.";
-            if ($arStatus === '')
+            if ($arFieldRequired['ar_require_status'] && $arStatus === '')
                 $arErrors[] = "Asset Status is required.";
-            if ($arAcquiredDate === '')
+            if ($arFieldRequired['ar_require_acquired_date'] && $arAcquiredDate === '')
                 $arErrors[] = "Date of Acquisition is required.";
-            if ($arCustodian === '')
+            if ($arFieldRequired['ar_require_custodian'] && $arCustodian === '')
                 $arErrors[] = "Custodian is required.";
-            if ($arSite === '' && $arBuilding === '' && $arFloorRoom === '' && $arLocation === '')
+            if ($arFieldRequired['ar_require_location'] && $arSite === '' && $arBuilding === '' && $arFloorRoom === '' && $arLocation === '')
                 $arErrors[] = "Asset Location is required (provide at least Site, Building, Floor/Room, or Address).";
-            if ($arPurchaseCost === '' || (float) $arPurchaseCost < 0)
+            if ($arFieldRequired['ar_require_purchase_cost'] && ($arPurchaseCost === '' || (float) $arPurchaseCost < 0))
                 $arErrors[] = "Cost / Purchase Price is required and must be a non-negative number.";
 
             // Disposal consistency check
@@ -217,26 +240,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
 
             // Unique inventory number check
-            $dupAr = $pdo->prepare("SELECT COUNT(*) FROM inv_asset_details WHERE asset_code = ?");
-            $dupAr->execute([$arInventoryNumber]);
-            if ($dupAr->fetchColumn() > 0)
-                throw new Exception("Inventory Number '$arInventoryNumber' is already assigned to another asset.");
+            if ($arInventoryNumber !== '') {
+                $dupAr = $pdo->prepare("SELECT COUNT(*) FROM inv_asset_details WHERE asset_code = ?");
+                $dupAr->execute([$arInventoryNumber]);
+                if ($dupAr->fetchColumn() > 0)
+                    throw new Exception("Inventory Number '$arInventoryNumber' is already assigned to another asset.");
+            }
 
             $arStmt = $pdo->prepare("
                 INSERT INTO inv_asset_details
                     (item_id, asset_code, acquired_date, asset_condition, asset_status,
-                     custodian_name, accountable_officer, site, building, floor_room, address,
+                     custodian_name, accountable_officer, secondary_custodian,
+                     site, building, floor_room, address,
                      purchase_cost, disposal_date, disposal_amount, is_disposed)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             ");
             $arStmt->execute([
                 $newItemId,
-                $arInventoryNumber,
+                $arInventoryNumber ?: null,
                 $arAcquiredDate ?: null,
                 $arCondition ?: null,
                 $arStatus ?: null,
                 $arCustodian ?: null,
-                $arCustodian ?: null,      // accountable_officer mirrors custodian_name; the field is backfilled by migration 2026_07_23
+                $arCustodian ?: null,      // accountable_officer mirrors custodian_name
+                $arSecondaryCustodian ?: null,
                 $arSite ?: null,
                 $arBuilding ?: null,
                 $arFloorRoom ?: null,
@@ -636,35 +663,37 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
         </div>
         <div class="card-body">
             <p class="text-muted small mb-3">
-                All fields marked <span class="text-danger fw-bold">*</span> are mandatory before this asset record can be saved.
+                Fields marked <span class="text-danger fw-bold">*</span> are mandatory (configured by admin).
                 Disposal fields are required only when the asset has been disposed of.
             </p>
             <div class="row g-3">
                 <!-- Inventory Number -->
                 <div class="col-md-4">
-                    <label class="form-label">Inventory Number Assigned <span class="text-danger">*</span></label>
-                    <input type="text" name="ar_inventory_number" id="ar_inventory_number" class="form-control ar-required"
+                    <label class="form-label">Inventory Number Assigned <?= $arFieldRequired['ar_require_inventory_number'] ? '<span class="text-danger">*</span>' : '' ?></label>
+                    <input type="text" name="ar_inventory_number" id="ar_inventory_number"
+                           class="form-control <?= $arFieldRequired['ar_require_inventory_number'] ? 'ar-required' : '' ?>"
                            placeholder="Unique asset identifier"
                            value="<?= htmlspecialchars($_POST['ar_inventory_number'] ?? '') ?>">
                     <small class="text-muted">Must be unique across the asset register.</small>
                 </div>
                 <!-- Purchase Cost -->
                 <div class="col-md-4">
-                    <label class="form-label">Cost / Purchase Price <span class="text-danger">*</span></label>
+                    <label class="form-label">Cost / Purchase Price <?= $arFieldRequired['ar_require_purchase_cost'] ? '<span class="text-danger">*</span>' : '' ?></label>
                     <input type="number" step="0.01" min="0" name="ar_purchase_cost" id="ar_purchase_cost"
-                           class="form-control ar-required"
+                           class="form-control <?= $arFieldRequired['ar_require_purchase_cost'] ? 'ar-required' : '' ?>"
                            value="<?= htmlspecialchars($_POST['ar_purchase_cost'] ?? '') ?>">
                 </div>
                 <!-- Date of Acquisition -->
                 <div class="col-md-4">
-                    <label class="form-label">Date of Acquisition <span class="text-danger">*</span></label>
-                    <input type="date" name="ar_acquired_date" id="ar_acquired_date" class="form-control ar-required"
+                    <label class="form-label">Date of Acquisition <?= $arFieldRequired['ar_require_acquired_date'] ? '<span class="text-danger">*</span>' : '' ?></label>
+                    <input type="date" name="ar_acquired_date" id="ar_acquired_date"
+                           class="form-control <?= $arFieldRequired['ar_require_acquired_date'] ? 'ar-required' : '' ?>"
                            value="<?= htmlspecialchars($_POST['ar_acquired_date'] ?? '') ?>">
                 </div>
                 <!-- Asset Condition -->
                 <div class="col-md-4">
-                    <label class="form-label">Asset Condition <span class="text-danger">*</span></label>
-                    <select name="ar_condition" id="ar_condition" class="form-select ar-required">
+                    <label class="form-label">Asset Condition <?= $arFieldRequired['ar_require_condition'] ? '<span class="text-danger">*</span>' : '' ?></label>
+                    <select name="ar_condition" id="ar_condition" class="form-select <?= $arFieldRequired['ar_require_condition'] ? 'ar-required' : '' ?>">
                         <option value="">— Select —</option>
                         <?php foreach (['New','Good','Fair','Poor','Damaged'] as $cnd): ?>
                         <option value="<?= $cnd ?>" <?= ($_POST['ar_condition'] ?? '') === $cnd ? 'selected' : '' ?>><?= $cnd ?></option>
@@ -673,8 +702,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
                 </div>
                 <!-- Asset Status -->
                 <div class="col-md-4">
-                    <label class="form-label">Asset Status <span class="text-danger">*</span></label>
-                    <select name="ar_asset_status" id="ar_asset_status" class="form-select ar-required">
+                    <label class="form-label">Asset Status <?= $arFieldRequired['ar_require_status'] ? '<span class="text-danger">*</span>' : '' ?></label>
+                    <select name="ar_asset_status" id="ar_asset_status" class="form-select <?= $arFieldRequired['ar_require_status'] ? 'ar-required' : '' ?>">
                         <option value="">— Select —</option>
                         <?php foreach (['Active','In Use','In Storage','Under Repair','Disposed'] as $st): ?>
                         <option value="<?= $st ?>" <?= ($_POST['ar_asset_status'] ?? '') === $st ? 'selected' : '' ?>><?= $st ?></option>
@@ -683,14 +712,24 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
                 </div>
                 <!-- Custodian -->
                 <div class="col-md-4">
-                    <label class="form-label">Custodian <span class="text-danger">*</span></label>
-                    <input type="text" name="ar_custodian" id="ar_custodian" class="form-control ar-required"
+                    <label class="form-label">Custodian <?= $arFieldRequired['ar_require_custodian'] ? '<span class="text-danger">*</span>' : '' ?></label>
+                    <input type="text" name="ar_custodian" id="ar_custodian"
+                           class="form-control <?= $arFieldRequired['ar_require_custodian'] ? 'ar-required' : '' ?>"
                            placeholder="Person or department responsible"
                            value="<?= htmlspecialchars($_POST['ar_custodian'] ?? '') ?>">
                 </div>
+                <!-- Secondary Custodian -->
+                <div class="col-md-4">
+                    <label class="form-label">Secondary Custodian</label>
+                    <input type="text" name="ar_secondary_custodian" id="ar_secondary_custodian"
+                           class="form-control"
+                           placeholder="Backup custodian (optional)"
+                           value="<?= htmlspecialchars($_POST['ar_secondary_custodian'] ?? '') ?>">
+                    <small class="text-muted">Backup person responsible for this asset.</small>
+                </div>
                 <!-- Location -->
                 <div class="col-md-3">
-                    <label class="form-label">Site / Campus <span class="text-danger">*</span></label>
+                    <label class="form-label">Site / Campus <?= $arFieldRequired['ar_require_location'] ? '<span class="text-danger">*</span>' : '' ?></label>
                     <input type="text" name="ar_site" id="ar_site" class="form-control ar-location"
                            placeholder="Site or campus name"
                            value="<?= htmlspecialchars($_POST['ar_site'] ?? '') ?>">
@@ -713,9 +752,11 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
                            placeholder="Street address or other"
                            value="<?= htmlspecialchars($_POST['ar_location'] ?? '') ?>">
                 </div>
+                <?php if ($arFieldRequired['ar_require_location']): ?>
                 <div class="col-12">
                     <small class="text-muted"><span class="text-danger">*</span> At least one location field (Site, Building, Floor/Room, or Address) must be completed.</small>
                 </div>
+                <?php endif; ?>
             </div>
 
             <!-- Disposal Details -->
