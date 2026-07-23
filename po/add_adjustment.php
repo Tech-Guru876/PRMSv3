@@ -73,6 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
+    try {
     $stmt = $pdo->prepare("
         INSERT INTO purchase_orders
         (po_type, parent_po_id, po_total, adjustment_reason, status, created_at)
@@ -94,6 +95,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         "/po/view.php?po_id=" . $parent_po_id,
         "success"
     );
+    } catch (Throwable $e) {
+        modalPop("Error", extractDbMessage($e), "/po/view.php?po_id=" . $parent_po_id, "error");
+    }
     exit;
 }
 

@@ -65,6 +65,7 @@ if ($amount > $balance) {
 }
 
 
+    try {
     $stmt = $pdo->prepare("
       INSERT INTO payments
       (invoice_id, payment_date, payment_reference, payment_amount, created_by)
@@ -164,6 +165,11 @@ error_log(print_r($i, true));
 
     header("Location: /invoice/view.php?id=" . $invoice_id);
     exit;
+
+    } catch (Throwable $e) {
+        modalPop('Error', extractDbMessage($e), '/invoice/view.php?id=' . $invoice_id, 'error');
+        exit;
+    }
 }
 
 /* Render page AFTER POST handling */

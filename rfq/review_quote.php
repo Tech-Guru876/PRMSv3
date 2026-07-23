@@ -77,6 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     
     // Update quote review
+    try {
     $stmt = $pdo->prepare("
         UPDATE rfq_quotes
         SET review_status = ?, review_comments = ?
@@ -127,6 +128,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     pop('Quote review saved successfully', '/rfq/view.php?id=' . $rfq_id, POP_DEFAULT_DELAY_MS, 'success');
     exit;
+    } catch (Throwable $e) {
+        pop(extractDbMessage($e), '/rfq/view.php?id=' . $rfq_id, POP_DEFAULT_DELAY_MS, 'error');
+        exit;
+    }
 }
 
 require_once $_SERVER['DOCUMENT_ROOT'] . "/includes/header.php";

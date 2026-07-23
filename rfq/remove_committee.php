@@ -24,12 +24,17 @@ if ($stmt->fetchColumn() > 0) {
     exit;
 }
 
-$pdo->prepare("
-    DELETE FROM rfq_evaluation_committee
-    WHERE rfq_id = ? AND user_id = ?
-")->execute([$rfq_id, $user_id]);
+try {
+    $pdo->prepare("
+        DELETE FROM rfq_evaluation_committee
+        WHERE rfq_id = ? AND user_id = ?
+    ")->execute([$rfq_id, $user_id]);
 
-logAudit($pdo, 'rfq_evaluation_committee', $rfq_id, 'DELETE', 'Committee member (user_id=' . $user_id . ') removed from RFQ');
+    logAudit($pdo, 'rfq_evaluation_committee', $rfq_id, 'DELETE', 'Committee member (user_id=' . $user_id . ') removed from RFQ');
+} catch (Throwable $e) {
+    pop(extractDbMessage($e), '/rfq/view.php?id=' . $rfq_id, POP_DEFAULT_DELAY_MS, 'error');
+    exit;
+}
 
 header("Location: view.php?id=".$rfq_id);
 exit;

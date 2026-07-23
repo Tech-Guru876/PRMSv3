@@ -81,6 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     /* Insert Quote */
+    try {
     $stmt = $pdo->prepare("
         INSERT INTO rfq_quotes 
         (rfq_vendor_id, quote_amount, gct_amount, validity_days, quote_file, currency, usd_rate)
@@ -116,6 +117,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     header("Location: view.php?id=" . $rfq_id);
     exit;
+    } catch (Throwable $e) {
+        require_once $_SERVER['DOCUMENT_ROOT'].'/config/helper.php';
+        pop(extractDbMessage($e), '/rfq/upload_quote.php?vendor_id=' . $vendor_id, POP_DEFAULT_DELAY_MS, 'error');
+        exit;
+    }
 }
 
 require_once $_SERVER['DOCUMENT_ROOT'] . "/includes/header.php";

@@ -85,6 +85,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $action = $_POST['action'] ?? '';
 
+    try {
+
     /* ===============================
        APPROVE
     ================================ */
@@ -217,6 +219,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             "/po/view.php?po_id=".$id,
             "warning"
         );
+        exit;
+    }
+
+    } catch (Throwable $e) {
+        modalPop("Error", extractDbMessage($e), "/po/view.php?po_id=".$id, "error");
         exit;
     }
 }

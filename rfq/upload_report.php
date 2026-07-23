@@ -41,11 +41,17 @@ if ($stmt->fetchColumn() < 3) {
 }
 
 
+    try {
     $pdo->prepare("
         INSERT INTO rfq_evaluation_reports
         (rfq_id, report_file, created_at)
         VALUES (?, ?, NOW())
     ")->execute([$rfq_id, $fileName]);
+    } catch (Throwable $e) {
+        require_once $_SERVER['DOCUMENT_ROOT'].'/config/helper.php';
+        pop(extractDbMessage($e), '/rfq/view.php?id=' . $rfq_id, POP_DEFAULT_DELAY_MS, 'error');
+        exit;
+    }
 
     header("Location: view.php?id=".$rfq_id);
     exit;

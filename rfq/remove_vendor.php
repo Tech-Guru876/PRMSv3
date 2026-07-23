@@ -52,10 +52,12 @@ if ($stmt->fetchColumn() > 0) {
 }
 
 /* Delete vendor from RFQ */
-$pdo->prepare("DELETE FROM rfq_vendors WHERE rfq_id = ? AND rfq_vendor_id = ?")->execute([$rfq_id, $vendor_id]);
-
-logAudit($pdo, 'rfq_vendors', $rfq_id, 'DELETE', 'Vendor "' . $vendor['vendor_name'] . '" (rfq_vendor_id=' . $vendor_id . ') removed from RFQ');
-
-$_SESSION['popup_success'] = htmlspecialchars($vendor['vendor_name']) . ' removed from RFQ';
+try {
+    $pdo->prepare("DELETE FROM rfq_vendors WHERE rfq_id = ? AND rfq_vendor_id = ?")->execute([$rfq_id, $vendor_id]);
+    logAudit($pdo, 'rfq_vendors', $rfq_id, 'DELETE', 'Vendor "' . $vendor['vendor_name'] . '" (rfq_vendor_id=' . $vendor_id . ') removed from RFQ');
+    $_SESSION['popup_success'] = htmlspecialchars($vendor['vendor_name']) . ' removed from RFQ';
+} catch (Throwable $e) {
+    $_SESSION['popup_error'] = extractDbMessage($e);
+}
 header("Location: view.php?id=" . $rfq_id);
 exit;

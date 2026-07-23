@@ -58,6 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && empty($error)) {
     if (!$amount || $amount <= 0) {
         $form_error = "Total amount must be greater than 0.";
     } else {
+        try {
         $stmt = $pdo->prepare("
             UPDATE purchase_orders
             SET po_total = ?
@@ -93,6 +94,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && empty($error)) {
 
         header("Location: view.php?po_id=$po_id");
         exit;
+        } catch (Throwable $e) {
+            $form_error = extractDbMessage($e);
+        }
     }
 }
 

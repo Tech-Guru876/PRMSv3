@@ -35,6 +35,7 @@ if ($estimatedValue <= $directThreshold) {
     // No committee required for under-threshold
     enforceTransition($request, 'QUOTE_REVIEW_PENDING');
     
+    try {
     $pdo->prepare("
         UPDATE procurement_requests
         SET status = 'QUOTE_REVIEW_PENDING'
@@ -43,6 +44,11 @@ if ($estimatedValue <= $directThreshold) {
 
     // Also update RFQ status to PUBLISHED
     $pdo->prepare("UPDATE rfqs SET status = 'PUBLISHED' WHERE rfq_id = ?")->execute([$rfq_id]);
+    } catch (Throwable $e) {
+        require_once $_SERVER['DOCUMENT_ROOT'].'/config/helper.php';
+        pop(extractDbMessage($e), '/rfq/view.php?id=' . $rfq_id, POP_DEFAULT_DELAY_MS, 'error');
+        exit;
+    }
 
     // Notify quote reviewers (Requestor, HOD, Procurement)
     require_once $_SERVER['DOCUMENT_ROOT']."/config/notifications.php";
@@ -64,6 +70,7 @@ if ($committeeCount < 3) {
     exit;
 }
 
+try {
 $pdo->prepare("
     UPDATE procurement_requests
     SET status = 'EVALUATION_STAGE'
@@ -72,6 +79,11 @@ $pdo->prepare("
 
 // Also update RFQ status to EVALUATION
 $pdo->prepare("UPDATE rfqs SET status = 'EVALUATION' WHERE rfq_id = ?")->execute([$rfq_id]);
+} catch (Throwable $e) {
+    require_once $_SERVER['DOCUMENT_ROOT'].'/config/helper.php';
+    pop(extractDbMessage($e), '/rfq/view.php?id=' . $rfq_id, POP_DEFAULT_DELAY_MS, 'error');
+    exit;
+}
 
 // Notify evaluation committee members
 require_once $_SERVER['DOCUMENT_ROOT']."/config/notifications.php";

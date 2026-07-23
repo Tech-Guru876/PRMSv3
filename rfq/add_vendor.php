@@ -75,6 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     /* Insert */
+    try {
     $stmt = $pdo->prepare("
         INSERT INTO rfq_vendors
         (rfq_id, vendor_id, response_status, created_at)
@@ -123,6 +124,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     
     $_SESSION['popup_success'] = $message;
+    } catch (Throwable $e) {
+        require_once $_SERVER['DOCUMENT_ROOT'].'/config/helper.php';
+        $_SESSION['popup_error'] = extractDbMessage($e);
+    }
     header("Location: view.php?id=" . $rfq_id);
     exit;
 }

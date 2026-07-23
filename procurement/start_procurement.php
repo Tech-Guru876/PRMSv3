@@ -4,6 +4,7 @@ $REQUIRE_PERMISSION = 'view_requests';
 require_once $_SERVER['DOCUMENT_ROOT'].'/config/page_guard.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/config/db.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/config/workflow.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/config/helper.php';
 
 $id = (int)($_GET['id'] ?? 0);
 if (!$id) {
@@ -22,12 +23,17 @@ if (!$request) {
 
 enforceTransition($request, 'PROCUREMENT_STAGE');
 
-$stmt = $pdo->prepare("
-    UPDATE procurement_requests
-    SET status = 'PROCUREMENT_STAGE'
-    WHERE request_id = ?
-");
-$stmt->execute([$id]);
+try {
+    $stmt = $pdo->prepare("
+        UPDATE procurement_requests
+        SET status = 'PROCUREMENT_STAGE'
+        WHERE request_id = ?
+    ");
+    $stmt->execute([$id]);
+} catch (Throwable $e) {
+    pop(extractDbMessage($e), '/procurement/view.php?id=' . $id, POP_DEFAULT_DELAY_MS, 'error');
+    exit;
+}
 
 header("Location: view.php?id=".$id);
 exit;
