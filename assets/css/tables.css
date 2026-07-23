@@ -103,7 +103,7 @@
   --permissions-matrix-header-bg: var(--bs-dark, #212529);
   --permissions-matrix-header-color: var(--bs-white, #fff);
   --permissions-matrix-cell-bg: var(--bs-body-bg, #fff);
-  --permissions-matrix-divider-border-color: rgba(0, 0, 0, 0.2);
+  --permissions-matrix-divider-border-color: var(--bs-border-color, rgba(0, 0, 0, 0.2));
   overflow: auto;
   max-height: var(--permissions-matrix-max-height);
 }
@@ -113,7 +113,7 @@
     --permissions-matrix-header-bg: var(--bs-dark, #1f2937);
     --permissions-matrix-header-color: var(--bs-white, #f9fafb);
     --permissions-matrix-cell-bg: var(--bs-body-bg, #111827);
-    --permissions-matrix-divider-border-color: rgba(255, 255, 255, 0.24);
+    --permissions-matrix-divider-border-color: var(--bs-border-color, rgba(255, 255, 255, 0.24));
   }
 }
 
