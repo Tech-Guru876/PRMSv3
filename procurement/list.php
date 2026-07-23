@@ -40,6 +40,7 @@ if (!empty($_GET['q'])) {
         po.po_number LIKE :q
         OR c.commitment_number LIKE :q
         OR pr.request_number LIKE :q
+        OR pr.description LIKE :q
         OR EXISTS (
             SELECT 1
             FROM procurement_request_items pri
@@ -111,6 +112,7 @@ $sql = "
         pr.request_date,
         pr.request_type,
         pr.status AS request_status,
+        pr.description AS request_description,
 
         c.commitment_id,
         c.commitment_number,
@@ -539,7 +541,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/config/helper.php";
             ?>
             <tr style="background-color: <?= $rowBgColor ?>; border-bottom: 1px solid #e0e0e0; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='#f5f5f5'" onmouseout="this.style.backgroundColor='<?= $rowBgColor ?>'">
                 <td style="padding: 1rem; border: none; vertical-align: middle;">
-                    <div>
+                    <div <?php if (!empty($row['request_description'])): ?>data-bs-toggle="tooltip" data-bs-placement="top" title="<?= htmlspecialchars($row['request_description'], ENT_QUOTES, 'UTF-8') ?>"<?php endif; ?>>
                         <code style="background-color: #f0f0f0; padding: 0.4rem 0.8rem; border-radius: 4px; color: #1a1a1a; font-weight: 600; font-size: 0.9rem;"><?= htmlspecialchars($row['request_number']) ?></code>
                         <br>
                         <small style="color: #999;"><?= date('d M Y', strtotime($row['request_date'])) ?></small>
@@ -682,5 +684,15 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/config/helper.php";
     ?>
 </div>
 <?php endif; ?>
+
+<!-- Initialize Bootstrap Tooltips -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+});
+</script>
 
 <?php require_once $_SERVER['DOCUMENT_ROOT'] . "/includes/footer.php"; ?>

@@ -79,6 +79,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
+    $description = trim($_POST['description'] ?? '');
+
     if (empty($_POST['items']) || !is_array($_POST['items'])) {
         pop('At least one item is required', '/procurement/edit.php?id='.$id, POP_DEFAULT_DELAY_MS, 'error');
         exit;
@@ -87,13 +89,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $pdo->beginTransaction();
 
     try {
-        // Update header timestamp and estimated value
+        // Update header timestamp, estimated value, and description
         $stmt = $pdo->prepare("
             UPDATE procurement_requests
-            SET updated_at = NOW(), estimated_value = ?
+            SET updated_at = NOW(), estimated_value = ?, description = ?
             WHERE request_id = ?
         ");
-        $stmt->execute([$estimatedValue, $id]);
+        $stmt->execute([$estimatedValue, $description, $id]);
 
 
 /* ===== Capture OLD items for audit ===== */
@@ -279,6 +281,15 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/includes/header.php";
                     <h6 class="mb-0 fw-semibold">
                         <span id="itemCount"><?= count($items) ?></span> item(s)
                     </h6>
+                </div>
+            </div>
+            <div class="row g-3 mt-2">
+                <div class="col-12">
+                    <label for="description" class="form-label fw-bold">Brief Description</label>
+                    <textarea name="description" id="description" class="form-control" rows="3" maxlength="500"
+                              placeholder="Briefly describe the purpose of this procurement request"
+                              form="editForm"><?= htmlspecialchars($request['description'] ?? '') ?></textarea>
+                    <small class="text-muted">Max 500 characters. This will be shown as a summary on the procurement list.</small>
                 </div>
             </div>
         </div>
