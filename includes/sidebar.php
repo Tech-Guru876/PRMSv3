@@ -474,6 +474,67 @@ function isCollapsibleActive($urls, $currentPage) {
         </li>
         <?php endif; ?>
 
+        <!-- ===== SUPERADMIN: ALL DASHBOARDS ACCESS ===== -->
+        <?php if ($roleName === 'SuperAdmin'): ?>
+        <li class="nav-item mt-2">
+            <div class="sidebar-section-label">ALL DASHBOARDS</div>
+            <a class="nav-link text-white sidebar-link <?= active('/dashboard/admin', $currentPage) ?>" href="/dashboard/admin.php">
+                <i class="bi bi-speedometer2 me-2"></i>Admin
+            </a>
+            <a class="nav-link text-white sidebar-link <?= active('/dashboard/gc', $currentPage) ?>" href="/dashboard/gc.php">
+                <i class="bi bi-award me-2"></i>Deputy Government Chemist
+            </a>
+            <a class="nav-link text-white sidebar-link <?= active('/dashboard/committee', $currentPage) ?>" href="/dashboard/committee.php">
+                <i class="bi bi-people-fill me-2"></i>Procurement Committee
+            </a>
+            <a class="nav-link text-white sidebar-link <?= active('/dashboard/procurement', $currentPage) ?>" href="/dashboard/procurement.php">
+                <i class="bi bi-cart-check me-2"></i>Procurement Officer
+            </a>
+            <a class="nav-link text-white sidebar-link <?= active('/dashboard/evaluation', $currentPage) ?>" href="/dashboard/evaluation.php">
+                <i class="bi bi-clipboard-data me-2"></i>Evaluation Committee
+            </a>
+            <a class="nav-link text-white sidebar-link <?= active('/dashboard/finance', $currentPage) ?>" href="/dashboard/finance.php">
+                <i class="bi bi-cash-stack me-2"></i>Finance
+            </a>
+            <a class="nav-link text-white sidebar-link <?= active('/dashboard/hod', $currentPage) ?>" href="/dashboard/hod.php">
+                <i class="bi bi-diagram-2 me-2"></i>HOD
+            </a>
+            <a class="nav-link text-white sidebar-link <?= active('/dashboard/director_hrma', $currentPage) ?>" href="/dashboard/director_hrma.php">
+                <i class="bi bi-person-badge me-2"></i>Director HRM&amp;A
+            </a>
+            <a class="nav-link text-white sidebar-link <?= active('/dashboard/director_procurement', $currentPage) ?>" href="/dashboard/director_procurement.php">
+                <i class="bi bi-person-vcard me-2"></i>Director Procurement
+            </a>
+            <a class="nav-link text-white sidebar-link <?= active('/dashboard/property_management_officer', $currentPage) ?>" href="/dashboard/property_management_officer.php">
+                <i class="bi bi-building-gear me-2"></i>Property Management
+            </a>
+            <a class="nav-link text-white sidebar-link <?= active('/dashboard/requestor', $currentPage) ?>" href="/dashboard/requestor.php">
+                <i class="bi bi-person-lines-fill me-2"></i>Requestor
+            </a>
+            <a class="nav-link text-white sidebar-link <?= active('/dashboard/viewer', $currentPage) ?>" href="/dashboard/viewer.php">
+                <i class="bi bi-eye me-2"></i>Viewer
+            </a>
+            <a class="nav-link text-white sidebar-link <?= active('/dashboard/management', $currentPage) ?>" href="/dashboard/management.php">
+                <i class="bi bi-bar-chart-line me-2"></i>Management
+            </a>
+            <a class="nav-link text-white sidebar-link <?= active('/dashboard/compliance', $currentPage) ?>" href="/dashboard/compliance.php">
+                <i class="bi bi-shield-check me-2"></i>Compliance
+            </a>
+            <a class="nav-link text-white sidebar-link <?= active('/dashboard/approval_queue', $currentPage) ?>" href="/dashboard/approval_queue.php">
+                <i class="bi bi-list-check me-2"></i>Approval Queue
+            </a>
+            <a class="nav-link text-white sidebar-link <?= active('/dashboard/approval_analytics', $currentPage) ?>" href="/dashboard/approval_analytics.php">
+                <i class="bi bi-graph-up me-2"></i>Approval Analytics
+            </a>
+            <a class="nav-link text-white sidebar-link <?= active('/dashboard/monthly', $currentPage) ?>" href="/dashboard/monthly.php">
+                <i class="bi bi-calendar3 me-2"></i>Monthly Metrics
+            </a>
+            <a class="nav-link text-white sidebar-link <?= active('/dashboard/metrics', $currentPage) ?>" href="/dashboard/metrics.php">
+                <i class="bi bi-speedometer me-2"></i>Metrics
+            </a>
+        </li>
+        <?php endif; ?>
+
         <!-- ===== ADMINISTRATION SECTION ===== -->
         <?php if (has_permission('manage_users') || has_permission('manage_roles') || has_permission('view_audit_logs')): ?>
         <li class="nav-item mt-2">

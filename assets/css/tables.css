@@ -119,6 +119,12 @@
 
 .permissions-matrix {
   min-width: max-content;
+  /* position: sticky on cells does not work reliably with the default
+     collapsed border model, so the matrix needs a separate border model
+     for the sticky header row and first column to stay in place while
+     scrolling. */
+  border-collapse: separate;
+  border-spacing: 0;
 }
 
 .permissions-matrix thead th {
