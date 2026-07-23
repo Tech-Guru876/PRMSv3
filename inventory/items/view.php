@@ -52,6 +52,17 @@ $supStmt = $pdo->prepare("
 $supStmt->execute([$itemId]);
 $suppliers = $supStmt->fetchAll(PDO::FETCH_ASSOC);
 
+// Asset Register details
+$assetDetail = [];
+$isAssetDomain = in_array($item['item_domain'] ?? 'INVENTORY', ['ASSET', 'BOTH']);
+if ($isAssetDomain) {
+    try {
+        $adStmt = $pdo->prepare("SELECT * FROM inv_asset_details WHERE item_id = ? LIMIT 1");
+        $adStmt->execute([$itemId]);
+        $assetDetail = $adStmt->fetch(PDO::FETCH_ASSOC) ?: [];
+    } catch (Throwable $e) { /* table may not be migrated yet */ }
+}
+
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 ?>
 
@@ -127,6 +138,12 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 <!-- Tabs -->
 <ul class="nav nav-tabs mb-3" role="tablist">
     <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#details">Details</a></li>
+    <?php if ($isAssetDomain): ?>
+    <li class="nav-item"><a class="nav-link<?= empty($assetDetail) ? ' text-danger' : '' ?>" data-bs-toggle="tab" href="#asset-register">
+        <i class="bi bi-clipboard2-check"></i> Asset Register
+        <?php if (empty($assetDetail)): ?><span class="badge bg-danger ms-1">Incomplete</span><?php endif; ?>
+    </a></li>
+    <?php endif; ?>
     <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#stock">Stock Levels</a></li>
     <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#transactions">Transactions</a></li>
     <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#replenishment">Replenishment</a></li>
@@ -389,6 +406,139 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
             </div>
         </div>
     </div>
+
+    <?php if ($isAssetDomain): ?>
+    <!-- Asset Register Tab -->
+    <div class="tab-pane fade" id="asset-register">
+        <?php if (empty($assetDetail)): ?>
+        <div class="alert alert-warning d-flex align-items-center">
+            <i class="bi bi-exclamation-triangle-fill me-2 fs-4"></i>
+            <div>
+                <strong>Asset Register record is incomplete.</strong>
+                Required Asset Register information has not been recorded for this asset.
+                <?php if (has_permission('manage_inventory_items')): ?>
+                <a href="/inventory/items/edit.php?id=<?= $itemId ?>" class="btn btn-sm btn-warning ms-2">
+                    <i class="bi bi-pencil"></i> Complete Asset Register
+                </a>
+                <?php endif; ?>
+            </div>
+        </div>
+        <?php else: ?>
+        <?php
+        $ad = $assetDetail;
+        $locationParts = array_filter([$ad['site'] ?? '', $ad['building'] ?? '', $ad['floor_room'] ?? '', $ad['address'] ?? '']);
+        $locationStr   = $locationParts ? implode(', ', $locationParts) : '-';
+        $isDisposed    = !empty($ad['is_disposed']) || !empty($ad['disposal_date']);
+        ?>
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-warning text-dark d-flex justify-content-between align-items-center">
+                <span><i class="bi bi-clipboard2-check"></i> Asset Register Record</span>
+                <?php if (has_permission('manage_inventory_items')): ?>
+                <a href="/inventory/items/edit.php?id=<?= $itemId ?>" class="btn btn-sm btn-dark">
+                    <i class="bi bi-pencil"></i> Edit
+                </a>
+                <?php endif; ?>
+            </div>
+            <div class="card-body">
+                <table class="table table-sm table-bordered mb-0">
+                    <tbody>
+                        <tr class="table-light">
+                            <th class="w-35" style="width:35%">Inventory Number</th>
+                            <td><strong><?= htmlspecialchars($ad['asset_code'] ?? '-') ?></strong></td>
+                        </tr>
+                        <tr>
+                            <th>Asset Description</th>
+                            <td><?= htmlspecialchars($item['item_name']) ?>
+                                <?php if (!empty($item['description'])): ?>
+                                <br><small class="text-muted"><?= nl2br(htmlspecialchars($item['description'])) ?></small>
+                                <?php endif; ?>
+                            </td>
+                        </tr>
+                        <tr class="table-light">
+                            <th>Cost / Purchase Price</th>
+                            <td><?= isset($ad['purchase_cost']) ? '$' . number_format((float)$ad['purchase_cost'], 2) : '-' ?></td>
+                        </tr>
+                        <tr>
+                            <th>Asset Condition</th>
+                            <td>
+                                <?php
+                                $condColors = ['New'=>'success','Good'=>'primary','Fair'=>'warning','Poor'=>'secondary','Damaged'=>'danger'];
+                                $condVal = $ad['asset_condition'] ?? '-';
+                                $condColor = $condColors[$condVal] ?? 'secondary';
+                                ?>
+                                <span class="badge bg-<?= $condColor ?>"><?= htmlspecialchars($condVal) ?></span>
+                            </td>
+                        </tr>
+                        <tr class="table-light">
+                            <th>Asset Status</th>
+                            <td>
+                                <?php
+                                $statColors = ['Active'=>'success','In Use'=>'primary','In Storage'=>'secondary','Under Repair'=>'warning','Disposed'=>'danger'];
+                                $statVal = $ad['asset_status'] ?? '-';
+                                $statColor = $statColors[$statVal] ?? 'secondary';
+                                ?>
+                                <span class="badge bg-<?= $statColor ?>"><?= htmlspecialchars($statVal) ?></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Date of Acquisition</th>
+                            <td><?= !empty($ad['acquired_date']) ? date('d M Y', strtotime($ad['acquired_date'])) : '-' ?></td>
+                        </tr>
+                        <tr class="table-light">
+                            <th>Custodian</th>
+                            <td><?= htmlspecialchars($ad['custodian_name'] ?? '-') ?></td>
+                        </tr>
+                        <tr>
+                            <th>Asset Location</th>
+                            <td><?= htmlspecialchars($locationStr) ?></td>
+                        </tr>
+                        <tr class="<?= $isDisposed ? 'table-danger' : 'table-light' ?>">
+                            <th>Disposal Date</th>
+                            <td><?= !empty($ad['disposal_date']) ? date('d M Y', strtotime($ad['disposal_date'])) : '-' ?></td>
+                        </tr>
+                        <tr class="<?= $isDisposed ? 'table-danger' : '' ?>">
+                            <th>Disposal Amount Realized</th>
+                            <td><?= isset($ad['disposal_amount']) && $ad['disposal_amount'] !== null ? '$' . number_format((float)$ad['disposal_amount'], 2) : '-' ?></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <?php
+                // Completeness check — flag missing mandatory fields
+                $missingFields = [];
+                if (empty($ad['asset_code']))       $missingFields[] = 'Inventory Number';
+                if (empty($ad['purchase_cost']) && $ad['purchase_cost'] !== '0') $missingFields[] = 'Cost / Purchase Price';
+                if (empty($ad['asset_condition']))   $missingFields[] = 'Asset Condition';
+                if (empty($ad['asset_status']))      $missingFields[] = 'Asset Status';
+                if (empty($ad['acquired_date']))     $missingFields[] = 'Date of Acquisition';
+                if (empty($ad['custodian_name']))    $missingFields[] = 'Custodian';
+                if (empty($ad['site']) && empty($ad['building']) && empty($ad['floor_room']) && empty($ad['address']))
+                    $missingFields[] = 'Asset Location';
+                if ($isDisposed) {
+                    if (empty($ad['disposal_date']))   $missingFields[] = 'Disposal Date';
+                    if (!isset($ad['disposal_amount']) || $ad['disposal_amount'] === null) $missingFields[] = 'Disposal Amount Realized';
+                }
+                ?>
+                <?php if (!empty($missingFields)): ?>
+                <div class="alert alert-warning mt-3 mb-0">
+                    <strong><i class="bi bi-exclamation-triangle"></i> Incomplete Asset Register:</strong>
+                    The following required fields are missing:
+                    <ul class="mb-0 mt-1">
+                        <?php foreach ($missingFields as $mf): ?>
+                        <li><?= htmlspecialchars($mf) ?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+                <?php else: ?>
+                <div class="alert alert-success mt-3 mb-0">
+                    <i class="bi bi-check-circle-fill"></i> Asset Register record is complete.
+                </div>
+                <?php endif; ?>
+            </div>
+        </div>
+        <?php endif; ?>
+    </div>
+    <?php endif; ?>
 </div>
 
 <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/footer.php'; ?>

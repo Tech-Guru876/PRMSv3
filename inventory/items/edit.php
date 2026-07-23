@@ -19,6 +19,24 @@ $itemRiskIds = array_column(getItemRiskClasses($pdo, $itemId), 'risk_class_id');
 $assetTypes  = getAssetTypes($pdo);
 $invTypes    = getInventoryTypes($pdo);
 
+/* Asset Register helpers */
+$assetDetailsTableExists = (function (PDO $pdo): bool {
+    $s = $pdo->prepare("SELECT COUNT(*) FROM information_schema.TABLES WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'inv_asset_details'");
+    $s->execute();
+    return (int) $s->fetchColumn() > 0;
+})($pdo);
+
+$assetDetail = [];
+$branches    = [];
+if ($assetDetailsTableExists) {
+    $adStmt = $pdo->prepare("SELECT * FROM inv_asset_details WHERE item_id = ? LIMIT 1");
+    $adStmt->execute([$itemId]);
+    $assetDetail = $adStmt->fetch(PDO::FETCH_ASSOC) ?: [];
+    try {
+        $branches = $pdo->query("SELECT branch_id, branch_name FROM branches WHERE is_active = 1 ORDER BY branch_name")->fetchAll(PDO::FETCH_ASSOC);
+    } catch (Throwable $e) { /* branches table may not exist on all installs */ }
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
         $pdo->beginTransaction();
@@ -148,6 +166,116 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             logInventoryAudit($pdo, 'inv_items', $itemId, 'UPDATE',
                 "Asset Code changed: '{$oldItemCode}' → '{$newItemCode}'");
+        }
+
+        // ── Asset Register Details upsert ───────────────────────────────────
+        if ($assetDetailsTableExists && in_array($itemDomain, ['ASSET', 'BOTH']) && isset($_POST['ar_inventory_number'])) {
+            $arInventoryNumber = trim($_POST['ar_inventory_number'] ?? '');
+            $arCondition       = trim($_POST['ar_condition'] ?? '');
+            $arStatus          = trim($_POST['ar_asset_status'] ?? '');
+            $arAcquiredDate    = trim($_POST['ar_acquired_date'] ?? '');
+            $arCustodian       = trim($_POST['ar_custodian'] ?? '');
+            $arLocation        = trim($_POST['ar_location'] ?? '');
+            $arSite            = trim($_POST['ar_site'] ?? '');
+            $arBuilding        = trim($_POST['ar_building'] ?? '');
+            $arFloorRoom       = trim($_POST['ar_floor_room'] ?? '');
+            $arPurchaseCost    = trim($_POST['ar_purchase_cost'] ?? '');
+            $arDisposalDate    = trim($_POST['ar_disposal_date'] ?? '');
+            $arDisposalAmount  = trim($_POST['ar_disposal_amount'] ?? '');
+            $arIsDisposed      = isset($_POST['ar_is_disposed']) ? 1 : 0;
+
+            // Mandatory field validation
+            $arErrors = [];
+            if ($arInventoryNumber === '')
+                $arErrors[] = "Inventory Number is required for assets.";
+            if ($arCondition === '')
+                $arErrors[] = "Asset Condition is required.";
+            if ($arStatus === '')
+                $arErrors[] = "Asset Status is required.";
+            if ($arAcquiredDate === '')
+                $arErrors[] = "Date of Acquisition is required.";
+            if ($arCustodian === '')
+                $arErrors[] = "Custodian is required.";
+            if ($arSite === '' && $arBuilding === '' && $arFloorRoom === '' && $arLocation === '')
+                $arErrors[] = "Asset Location is required (provide at least Site, Building, Floor/Room, or Address).";
+            if ($arPurchaseCost === '' || (float) $arPurchaseCost < 0)
+                $arErrors[] = "Cost / Purchase Price is required and must be a non-negative number.";
+
+            if ($arIsDisposed || $arDisposalDate !== '' || $arDisposalAmount !== '') {
+                if ($arDisposalDate === '')
+                    $arErrors[] = "Disposal Date is required when the asset is disposed.";
+                if ($arDisposalAmount === '')
+                    $arErrors[] = "Disposal Amount Realized is required when the asset is disposed.";
+            }
+
+            if (!empty($arErrors)) {
+                throw new Exception(implode(' ', $arErrors));
+            }
+
+            // Unique inventory number check (exclude this item's existing record)
+            $dupAr = $pdo->prepare("SELECT COUNT(*) FROM inv_asset_details WHERE asset_code = ? AND item_id != ?");
+            $dupAr->execute([$arInventoryNumber, $itemId]);
+            if ($dupAr->fetchColumn() > 0)
+                throw new Exception("Inventory Number '$arInventoryNumber' is already assigned to another asset.");
+
+            // Determine whether this is an insert or update (check existing record)
+            $existingAd = $pdo->prepare("SELECT asset_detail_id FROM inv_asset_details WHERE item_id = ? LIMIT 1");
+            $existingAd->execute([$itemId]);
+            $existingAdId = $existingAd->fetchColumn();
+
+            if ($existingAdId) {
+                $pdo->prepare("
+                    UPDATE inv_asset_details SET
+                        asset_code = ?, acquired_date = ?, asset_condition = ?, asset_status = ?,
+                        custodian_name = ?, accountable_officer = ?,
+                        site = ?, building = ?, floor_room = ?, address = ?,
+                        purchase_cost = ?, disposal_date = ?, disposal_amount = ?, is_disposed = ?
+                    WHERE item_id = ?
+                ")->execute([
+                    $arInventoryNumber,
+                    $arAcquiredDate ?: null,
+                    $arCondition ?: null,
+                    $arStatus ?: null,
+                    $arCustodian ?: null,
+                    $arCustodian ?: null,
+                    $arSite ?: null,
+                    $arBuilding ?: null,
+                    $arFloorRoom ?: null,
+                    $arLocation ?: null,
+                    ($arPurchaseCost !== '') ? (float) $arPurchaseCost : null,
+                    ($arDisposalDate !== '') ? $arDisposalDate : null,
+                    ($arDisposalAmount !== '') ? (float) $arDisposalAmount : null,
+                    $arIsDisposed,
+                    $itemId,
+                ]);
+            } else {
+                $pdo->prepare("
+                    INSERT INTO inv_asset_details
+                        (item_id, asset_code, acquired_date, asset_condition, asset_status,
+                         custodian_name, accountable_officer, site, building, floor_room, address,
+                         purchase_cost, disposal_date, disposal_amount, is_disposed)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                ")->execute([
+                    $itemId,
+                    $arInventoryNumber,
+                    $arAcquiredDate ?: null,
+                    $arCondition ?: null,
+                    $arStatus ?: null,
+                    $arCustodian ?: null,
+                    $arCustodian ?: null,
+                    $arSite ?: null,
+                    $arBuilding ?: null,
+                    $arFloorRoom ?: null,
+                    $arLocation ?: null,
+                    ($arPurchaseCost !== '') ? (float) $arPurchaseCost : null,
+                    ($arDisposalDate !== '') ? $arDisposalDate : null,
+                    ($arDisposalAmount !== '') ? (float) $arDisposalAmount : null,
+                    $arIsDisposed,
+                ]);
+            }
+
+            logInventoryAudit($pdo, 'inv_asset_details', $itemId, $existingAdId ? 'UPDATE' : 'CREATE',
+                "Asset Register updated: Inv# $arInventoryNumber, Condition: $arCondition, Status: $arStatus, Custodian: $arCustodian");
         }
 
         logInventoryAudit($pdo, 'inv_items', $itemId, 'UPDATE', "Item updated: " . ($newItemCode ?? $oldItemCode));
@@ -409,6 +537,144 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
         </div>
     </div>
 
+    <?php if ($assetDetailsTableExists): ?>
+    <?php
+    // Use POSTed values on validation failure, otherwise fall back to the stored record
+    $arv = ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ar_inventory_number']))
+        ? $_POST
+        : $assetDetail;
+    $arIsAsset = in_array($f['item_domain'] ?? 'INVENTORY', ['ASSET', 'BOTH']);
+    ?>
+    <!-- Asset Register Details (shown only for ASSET / BOTH domain) -->
+    <div class="card border-0 shadow-sm mb-4 border-warning" id="assetRegisterSection"
+         style="<?= $arIsAsset ? '' : 'display:none' ?>">
+        <div class="card-header bg-warning text-dark">
+            <i class="bi bi-clipboard2-check"></i> Asset Register Details
+            <span class="badge bg-danger ms-2">Required for Assets</span>
+        </div>
+        <div class="card-body">
+            <p class="text-muted small mb-3">
+                All fields marked <span class="text-danger fw-bold">*</span> are mandatory.
+                Disposal fields are required only when the asset has been disposed of.
+            </p>
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <label class="form-label">Inventory Number Assigned <span class="text-danger">*</span></label>
+                    <input type="text" name="ar_inventory_number" id="ar_inventory_number" class="form-control ar-required"
+                           placeholder="Unique asset identifier"
+                           value="<?= htmlspecialchars($arv['ar_inventory_number'] ?? $arv['asset_code'] ?? '') ?>">
+                    <small class="text-muted">Must be unique across the asset register.</small>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Cost / Purchase Price <span class="text-danger">*</span></label>
+                    <input type="number" step="0.01" min="0" name="ar_purchase_cost" id="ar_purchase_cost"
+                           class="form-control ar-required"
+                           value="<?= htmlspecialchars($arv['ar_purchase_cost'] ?? $arv['purchase_cost'] ?? '') ?>">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Date of Acquisition <span class="text-danger">*</span></label>
+                    <input type="date" name="ar_acquired_date" id="ar_acquired_date" class="form-control ar-required"
+                           value="<?= htmlspecialchars($arv['ar_acquired_date'] ?? $arv['acquired_date'] ?? '') ?>">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Asset Condition <span class="text-danger">*</span></label>
+                    <select name="ar_condition" id="ar_condition" class="form-select ar-required">
+                        <option value="">— Select —</option>
+                        <?php
+                        $arCondVal = $arv['ar_condition'] ?? $arv['asset_condition'] ?? '';
+                        foreach (['New','Good','Fair','Poor','Damaged'] as $cnd): ?>
+                        <option value="<?= $cnd ?>" <?= $arCondVal === $cnd ? 'selected' : '' ?>><?= $cnd ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Asset Status <span class="text-danger">*</span></label>
+                    <select name="ar_asset_status" id="ar_asset_status" class="form-select ar-required">
+                        <option value="">— Select —</option>
+                        <?php
+                        $arStatVal = $arv['ar_asset_status'] ?? $arv['asset_status'] ?? '';
+                        foreach (['Active','In Use','In Storage','Under Repair','Disposed'] as $st): ?>
+                        <option value="<?= $st ?>" <?= $arStatVal === $st ? 'selected' : '' ?>><?= $st ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Custodian <span class="text-danger">*</span></label>
+                    <input type="text" name="ar_custodian" id="ar_custodian" class="form-control ar-required"
+                           placeholder="Person or department responsible"
+                           value="<?= htmlspecialchars($arv['ar_custodian'] ?? $arv['custodian_name'] ?? '') ?>">
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Site / Campus <span class="text-danger">*</span></label>
+                    <input type="text" name="ar_site" id="ar_site" class="form-control ar-location"
+                           placeholder="Site or campus name"
+                           value="<?= htmlspecialchars($arv['ar_site'] ?? $arv['site'] ?? '') ?>">
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Building</label>
+                    <input type="text" name="ar_building" id="ar_building" class="form-control ar-location"
+                           placeholder="Building"
+                           value="<?= htmlspecialchars($arv['ar_building'] ?? $arv['building'] ?? '') ?>">
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Floor / Room</label>
+                    <input type="text" name="ar_floor_room" id="ar_floor_room" class="form-control ar-location"
+                           placeholder="Floor or room"
+                           value="<?= htmlspecialchars($arv['ar_floor_room'] ?? $arv['floor_room'] ?? '') ?>">
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Address / Other Location</label>
+                    <input type="text" name="ar_location" id="ar_location" class="form-control ar-location"
+                           placeholder="Street address or other"
+                           value="<?= htmlspecialchars($arv['ar_location'] ?? $arv['address'] ?? '') ?>">
+                </div>
+                <div class="col-12">
+                    <small class="text-muted"><span class="text-danger">*</span> At least one location field (Site, Building, Floor/Room, or Address) must be completed.</small>
+                </div>
+            </div>
+
+            <hr class="my-3">
+            <h6 class="text-secondary"><i class="bi bi-trash3"></i> Disposal Information
+                <small class="text-muted fw-normal">(required if asset has been disposed)</small>
+            </h6>
+            <?php
+            if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ar_inventory_number'])) {
+                // After a failed POST: checkbox is only in $_POST if it was checked
+                $arIsDisposedVal = isset($_POST['ar_is_disposed']);
+            } else {
+                $arIsDisposedVal = (bool) ($assetDetail['is_disposed'] ?? false);
+            }
+            ?>
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <div class="form-check form-switch mt-2">
+                        <input class="form-check-input" type="checkbox" name="ar_is_disposed" id="ar_is_disposed"
+                               <?= $arIsDisposedVal ? 'checked' : '' ?>>
+                        <label class="form-check-label" for="ar_is_disposed">Asset is Disposed</label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Disposal Date <span class="text-danger ar-disposal-required" style="display:none">*</span></label>
+                    <input type="date" name="ar_disposal_date" id="ar_disposal_date" class="form-control"
+                           value="<?= htmlspecialchars($arv['ar_disposal_date'] ?? $arv['disposal_date'] ?? '') ?>">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Disposal Amount Realized <span class="text-danger ar-disposal-required" style="display:none">*</span></label>
+                    <input type="number" step="0.01" min="0" name="ar_disposal_amount" id="ar_disposal_amount"
+                           class="form-control"
+                           value="<?= htmlspecialchars($arv['ar_disposal_amount'] ?? $arv['disposal_amount'] ?? '') ?>">
+                </div>
+            </div>
+
+            <hr class="my-3">
+            <div class="alert alert-info small mb-0">
+                <strong><i class="bi bi-info-circle"></i> Asset Register Record Format:</strong>
+                Inventory Number | Asset Description | Cost | Condition | Status | Date of Acquisition | Custodian | Location | Disposal Date | Disposal Amount Realized
+            </div>
+        </div>
+    </div>
+    <?php endif; ?>
+
     <div class="text-end mb-4">
         <a href="/inventory/items/view.php?id=<?= $itemId ?>" class="btn btn-outline-secondary me-2">Cancel</a>
         <button type="submit" class="btn btn-primary btn-lg"><i class="bi bi-check-circle"></i> Save Changes</button>
@@ -425,16 +691,57 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
         'ASSET':     <?= json_encode(getPrimaryAssetTypeLabel('ASSET')) ?>,
         'BOTH':      <?= json_encode(getPrimaryAssetTypeLabel('BOTH')) ?>
     };
+
+    var arSection    = document.getElementById('assetRegisterSection');
+    var arRequired   = arSection ? arSection.querySelectorAll('.ar-required') : [];
+    var disposedChk  = document.getElementById('ar_is_disposed');
+    var statusSel    = document.getElementById('ar_asset_status');
+    var disposalDate = document.getElementById('ar_disposal_date');
+    var disposalAmt  = document.getElementById('ar_disposal_amount');
+    var disposalStars = arSection ? arSection.querySelectorAll('.ar-disposal-required') : [];
+
+    function setArRequired(enable) {
+        arRequired.forEach(function (el) { el.required = enable; });
+    }
+
+    function isDisposalActive() {
+        return (disposedChk && disposedChk.checked) ||
+               (statusSel && statusSel.value === 'Disposed') ||
+               (disposalDate && disposalDate.value !== '') ||
+               (disposalAmt && disposalAmt.value !== '');
+    }
+
+    function toggleDisposalRequired() {
+        var active = isDisposalActive();
+        if (disposalDate) disposalDate.required = active;
+        if (disposalAmt)  disposalAmt.required  = active;
+        disposalStars.forEach(function (el) { el.style.display = active ? '' : 'none'; });
+    }
+
     function toggleTypeGroups() {
         var v = domainSel.value;
+        var isAsset = (v === 'ASSET' || v === 'BOTH');
         var ag = document.getElementById('assetTypeGroup');
         var ig = document.getElementById('invTypeGroup');
         var pt = document.getElementById('primaryAssetType');
-        if (ag) ag.style.display = (v === 'ASSET' || v === 'BOTH') ? '' : 'none';
+        if (ag) ag.style.display = isAsset ? '' : 'none';
         if (ig) ig.style.display = (v === 'INVENTORY' || v === 'BOTH') ? '' : 'none';
         if (pt) pt.value = primaryLabels[v] || primaryLabels['INVENTORY'];
+        if (arSection) arSection.style.display = isAsset ? '' : 'none';
+        setArRequired(isAsset);
+        toggleDisposalRequired();
     }
+
     domainSel.addEventListener('change', toggleTypeGroups);
+    if (disposedChk) disposedChk.addEventListener('change', toggleDisposalRequired);
+    if (statusSel)   statusSel.addEventListener('change', function () {
+        if (statusSel.value === 'Disposed' && disposedChk) disposedChk.checked = true;
+        toggleDisposalRequired();
+    });
+    if (disposalDate) disposalDate.addEventListener('change', toggleDisposalRequired);
+    if (disposalAmt)  disposalAmt.addEventListener('change', toggleDisposalRequired);
+
     toggleTypeGroups();
+    toggleDisposalRequired();
 }());
 </script>
