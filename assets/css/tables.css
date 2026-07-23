@@ -139,6 +139,5 @@
   left: 0;
   z-index: 10;
   background: var(--permissions-matrix-cell-bg);
-  border-right: 1px solid var(--permissions-matrix-divider-color);
-  box-shadow: 1px 0 0 var(--permissions-matrix-divider-color);
+  box-shadow: 2px 0 0 var(--permissions-matrix-divider-color);
 }
