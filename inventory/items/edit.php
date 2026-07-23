@@ -237,7 +237,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $arCondition ?: null,
                     $arStatus ?: null,
                     $arCustodian ?: null,
-                    $arCustodian ?: null,
+                    $arCustodian ?: null,  // accountable_officer mirrors custodian_name; backfilled by migration 2026_07_23
                     $arSite ?: null,
                     $arBuilding ?: null,
                     $arFloorRoom ?: null,
@@ -262,7 +262,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $arCondition ?: null,
                     $arStatus ?: null,
                     $arCustodian ?: null,
-                    $arCustodian ?: null,
+                    $arCustodian ?: null,  // accountable_officer mirrors custodian_name; backfilled by migration 2026_07_23
                     $arSite ?: null,
                     $arBuilding ?: null,
                     $arFloorRoom ?: null,

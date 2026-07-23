@@ -207,7 +207,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $arCondition ?: null,
                 $arStatus ?: null,
                 $arCustodian ?: null,
-                $arCustodian ?: null,      // also stored in accountable_officer
+                $arCustodian ?: null,      // accountable_officer mirrors custodian_name; the field is backfilled by migration 2026_07_23
                 $arSite ?: null,
                 $arBuilding ?: null,
                 $arFloorRoom ?: null,

@@ -507,7 +507,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
                 // Completeness check — flag missing mandatory fields
                 $missingFields = [];
                 if (empty($ad['asset_code']))       $missingFields[] = 'Inventory Number';
-                if (empty($ad['purchase_cost']) && $ad['purchase_cost'] !== '0') $missingFields[] = 'Cost / Purchase Price';
+                if (!isset($ad['purchase_cost']) || $ad['purchase_cost'] === null || $ad['purchase_cost'] === '') $missingFields[] = 'Cost / Purchase Price';
                 if (empty($ad['asset_condition']))   $missingFields[] = 'Asset Condition';
                 if (empty($ad['asset_status']))      $missingFields[] = 'Asset Status';
                 if (empty($ad['acquired_date']))     $missingFields[] = 'Date of Acquisition';
