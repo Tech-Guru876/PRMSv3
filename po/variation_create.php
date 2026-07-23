@@ -121,6 +121,7 @@ if ($po['po_type'] !== 'ORIGINAL') {
 
 
     // Insert variation request
+    try {
     $stmt = $pdo->prepare("
         INSERT INTO po_variations
         (po_id, variation_amount, reason, requested_by, status, requested_at)
@@ -172,6 +173,9 @@ if ($po['po_type'] !== 'ORIGINAL') {
         "/po/view.php?po_id=" . (int)$po_id,
         'success'
     );
+    } catch (Throwable $e) {
+        modalPop('Error', extractDbMessage($e), "/po/view.php?po_id=" . (int)$po_id, 'error');
+    }
     exit;
 }
 

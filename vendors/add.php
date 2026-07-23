@@ -30,6 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
 
             /* Insert */
+            try {
             $stmt = $pdo->prepare("
                 INSERT INTO vendors
                 (vendor_name, contact_person, email, phone, address, status)
@@ -59,6 +60,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             header("Location: view.php?id=$vendor_id");
             exit;
+            } catch (Throwable $e) {
+                require_once $_SERVER['DOCUMENT_ROOT'].'/config/helper.php';
+                $error = extractDbMessage($e);
+            }
         }
     }
 }

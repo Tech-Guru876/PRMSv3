@@ -38,6 +38,7 @@ if ($stmt->fetchColumn() == 0) {
 }
 
 
+try {
 $stmt = $pdo->prepare("
     INSERT INTO rfq_votes (rfq_id, user_id, rfq_vendor_id)
     VALUES (?, ?, ?)
@@ -45,6 +46,10 @@ $stmt = $pdo->prepare("
 $stmt->execute([$rfq_id, $user_id, $rfq_vendor_id]);
 
 logAudit($pdo, 'rfq_votes', $rfq_id, 'CREATE', 'Vote cast for vendor (rfq_vendor_id=' . $rfq_vendor_id . ')');
+} catch (Throwable $e) {
+    pop(extractDbMessage($e), '/rfq/view.php?id=' . $rfq_id, POP_DEFAULT_DELAY_MS, 'error');
+    exit;
+}
 
 header("Location: view.php?id=".$rfq_id);
 exit;

@@ -33,6 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $hash = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
+        try {
         /* Update password + force change */
         $pdo->prepare("
             UPDATE users
@@ -50,6 +51,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         header("Location: /users/list.php?reset=1");
         exit;
+        } catch (Throwable $e) {
+            require_once $_SERVER['DOCUMENT_ROOT'].'/config/helper.php';
+            $error = extractDbMessage($e);
+        }
     }
 }
 

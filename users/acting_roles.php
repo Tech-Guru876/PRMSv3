@@ -10,6 +10,7 @@
 $REQUIRE_PERMISSION = 'manage_users';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/page_guard.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/db.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/config/helper.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 
 /* ─── Handle POST actions ─── */
@@ -40,6 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         // Upsert (update if duplicate)
+        try {
         $stmt = $pdo->prepare("
             INSERT INTO acting_roles (user_id, acting_role_id, assigned_by, reason, starts_at, ends_at, is_active)
             VALUES (?, ?, ?, ?, ?, ?, 1)
@@ -60,6 +62,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ]);
 
         pop('Acting role assigned successfully.', '/users/acting_roles.php', POP_DEFAULT_DELAY_MS, 'success');
+        } catch (Throwable $e) {
+            pop(extractDbMessage($e), '/users/acting_roles.php', POP_DEFAULT_DELAY_MS, 'error');
+        }
         exit;
     }
 
@@ -67,8 +72,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($action === 'revoke') {
         $assignmentId = (int)($_POST['assignment_id'] ?? 0);
         if ($assignmentId) {
-            $pdo->prepare("UPDATE acting_roles SET is_active = 0 WHERE id = ?")->execute([$assignmentId]);
-            pop('Acting role revoked.', '/users/acting_roles.php', POP_DEFAULT_DELAY_MS, 'success');
+            try {
+                $pdo->prepare("UPDATE acting_roles SET is_active = 0 WHERE id = ?")->execute([$assignmentId]);
+                pop('Acting role revoked.', '/users/acting_roles.php', POP_DEFAULT_DELAY_MS, 'success');
+            } catch (Throwable $e) {
+                pop(extractDbMessage($e), '/users/acting_roles.php', POP_DEFAULT_DELAY_MS, 'error');
+            }
         }
         exit;
     }

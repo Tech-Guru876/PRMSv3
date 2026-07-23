@@ -31,10 +31,12 @@ if ($stmt->fetchColumn() > 0) {
 }
 
 /* Delete vendor */
-$pdo->prepare("DELETE FROM vendors WHERE vendor_id = ?")->execute([$id]);
-
-logAudit($pdo, 'vendors', $id, 'DELETE', 'Vendor "' . $vendor['vendor_name'] . '" deleted from master list');
-
-$_SESSION['popup_success'] = htmlspecialchars($vendor['vendor_name']) . ' has been deleted';
+try {
+    $pdo->prepare("DELETE FROM vendors WHERE vendor_id = ?")->execute([$id]);
+    logAudit($pdo, 'vendors', $id, 'DELETE', 'Vendor "' . $vendor['vendor_name'] . '" deleted from master list');
+    $_SESSION['popup_success'] = htmlspecialchars($vendor['vendor_name']) . ' has been deleted';
+} catch (Throwable $e) {
+    $_SESSION['popup_error'] = extractDbMessage($e);
+}
 header("Location: /vendors/list.php");
 exit;

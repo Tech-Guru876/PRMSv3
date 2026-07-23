@@ -14,13 +14,17 @@ if (
 ) {
     $deleteId = (int)$_POST['delete_request_id'];
     // Delete request
-    $delStmt = $pdo->prepare("DELETE FROM procurement_requests WHERE request_id = ?");
-    $delStmt->execute([$deleteId]);
-    // Audit log
-    logAudit($pdo, 'procurement_requests', $deleteId, 'DELETE', 'Request deleted by admin');
-    logRequestTimeline($pdo, $deleteId, 'DELETE', 'Request deleted by admin');
-    // Feedback: show popup notification then reload
-    echo '<script>alert("Request deleted successfully."); window.location.href="/procurement/list.php";</script>';
+    try {
+        $delStmt = $pdo->prepare("DELETE FROM procurement_requests WHERE request_id = ?");
+        $delStmt->execute([$deleteId]);
+        // Audit log
+        logAudit($pdo, 'procurement_requests', $deleteId, 'DELETE', 'Request deleted by admin');
+        logRequestTimeline($pdo, $deleteId, 'DELETE', 'Request deleted by admin');
+        // Feedback: show popup notification then reload
+        echo '<script>alert("Request deleted successfully."); window.location.href="/procurement/list.php";</script>';
+    } catch (Throwable $e) {
+        echo '<script>alert("' . addslashes(extractDbMessage($e)) . '"); window.location.href="/procurement/list.php";</script>';
+    }
     exit;
 }
 

@@ -141,6 +141,8 @@ if ($rfq_id) {
 
     $action = $_POST['action'] ?? '';
 
+    try {
+
     /* ===============================
        APPROVE
     ================================ */
@@ -276,6 +278,11 @@ if ($rfq_id) {
             "/commitments/view.php?commitment_id=".$id,
             "warning"
         );
+        exit;
+    }
+
+    } catch (Throwable $e) {
+        modalPop("Error", extractDbMessage($e), "/commitments/view.php?commitment_id=".$id, "error");
         exit;
     }
 }

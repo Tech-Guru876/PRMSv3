@@ -43,10 +43,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
+    try {
     $pdo->prepare("
         INSERT INTO rfq_evaluation_committee (rfq_id, user_id)
         VALUES (?, ?)
     ")->execute([$rfq_id, $user_id]);
+    } catch (Throwable $e) {
+        require_once $_SERVER['DOCUMENT_ROOT'].'/config/helper.php';
+        pop(extractDbMessage($e), '/rfq/add_committee.php?rfq_id=' . $rfq_id, POP_DEFAULT_DELAY_MS, 'error');
+        exit;
+    }
 
     header("Location: view.php?id=".$rfq_id);
     exit;

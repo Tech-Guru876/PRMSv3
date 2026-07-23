@@ -59,6 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($vendor['status'] !== $status) $changes[] = "Status: {$vendor['status']} → $status";
 
             /* Update vendor */
+            try {
             $stmt = $pdo->prepare("
                 UPDATE vendors
                 SET vendor_name = ?,
@@ -99,6 +100,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             header("Location: view.php?id=$id");
             exit;
+            } catch (Throwable $e) {
+                require_once $_SERVER['DOCUMENT_ROOT'].'/config/helper.php';
+                $error = extractDbMessage($e);
+            }
         }
     }
 }

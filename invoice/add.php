@@ -214,8 +214,14 @@ if ($stmt->fetchColumn()) {
         exit;
     }
 
-    // 🔥 Any other DB error
-    throw $e;
+    // 🔥 Any other DB error (e.g. trigger SIGNAL)
+    modalPop(
+        'Database Error',
+        extractDbMessage($e),
+        "/invoice/add.php?po_id=".$po_id,
+        'error'
+    );
+    exit;
 }
     $invoice_id = $pdo->lastInsertId();
 
