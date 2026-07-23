@@ -22,6 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // FIX: define all required variables explicitly
         $branch_id   = (int)($_POST['branch_id'] ?? 0);
         $requestDateRaw = trim($_POST['request_date'] ?? '');
+        $description = trim($_POST['description'] ?? '');
         $request_type = 'REGULAR'; // This form is for regular procurement only
         $estimated_value = (float)($_POST['estimated_value'] ?? 0);
         $currency = in_array(($_POST['currency'] ?? ''), ['JMD', 'USD']) ? $_POST['currency'] : 'JMD';
@@ -67,14 +68,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         /* ---------- Insert procurement request ---------- */
         $stmt = $pdo->prepare("
             INSERT INTO procurement_requests
-            (branch_id, request_number, request_date, created_by, status, request_type, estimated_value, currency, usd_rate)
-            VALUES (?, ?, ?, ?, 'Draft', ?, ?, ?, ?)
+            (branch_id, request_number, request_date, description, created_by, status, request_type, estimated_value, currency, usd_rate)
+            VALUES (?, ?, ?, ?, ?, 'Draft', ?, ?, ?, ?)
         ");
 
         $stmt->execute([
             $branch_id,
             $requestNumber,
             $requestDateRaw,
+            $description,
             $_SESSION['user_id'],
             $request_type,
             $estimated_value,
@@ -282,6 +284,12 @@ $jsUsdRate = (float)($sysRateStmt->fetchColumn() ?: 155.00);
                    max="<?= date('Y-m-d') ?>"
                    required>
           </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label fw-bold">Brief Description <span class="text-danger">*</span></label>
+          <textarea name="description" class="form-control" rows="3" maxlength="500" required
+                    placeholder="Briefly describe the purpose of this procurement request"></textarea>
+          <small class="text-muted">Max 500 characters. This will be shown as a summary on the procurement list.</small>
         </div>
         <h5 class="mt-4 mb-2"><i class="bi bi-list-task me-2"></i> Items Required</h5>
         <div class="table-responsive mb-3">
