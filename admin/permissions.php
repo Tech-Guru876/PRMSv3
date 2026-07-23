@@ -474,9 +474,9 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/includes/header.php';
 (function () {
     'use strict';
 
-    var matrixWrap = document.querySelector('.permissions-matrix-wrap');
+    const matrixWrap = document.querySelector('.permissions-matrix-wrap');
 
-    function updateMatrixHeight() {
+    const updateMatrixHeight = () => {
         if (!matrixWrap) {
             return;
         }
@@ -485,7 +485,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/includes/header.php';
             '--permissions-matrix-top-offset',
             Math.max(matrixWrap.getBoundingClientRect().top, 0) + 'px'
         );
-    }
+    };
 
     updateMatrixHeight();
     window.addEventListener('resize', updateMatrixHeight);
