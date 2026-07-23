@@ -85,6 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'creat
         exit;
     }
 
+    try {
     $stmt = $pdo->prepare("INSERT INTO permissions (name, description) VALUES (?, ?)");
     $stmt->execute([$newPermName, $newPermDesc ?: null]);
     $newPermId = $pdo->lastInsertId();
@@ -96,6 +97,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'creat
         1200,
         'success'
     );
+    } catch (Throwable $e) {
+        pop(extractDbMessage($e), '/users/permissions.php?id='.$user_id, POP_DEFAULT_DELAY_MS, 'error');
+    }
     exit;
 }
 

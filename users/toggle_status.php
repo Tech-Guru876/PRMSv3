@@ -21,6 +21,7 @@ if ((int)$user_id === (int)$_SESSION['user_id']) {
 $newStatus = $current ? 0 : 1;
 
 /* Update status */
+try {
 $stmt = $pdo->prepare("
     UPDATE users
     SET is_active = ?
@@ -41,4 +42,8 @@ $log->execute([
 ]);
 
 pop("User status updated.", "/users/list.php", 1200);
+} catch (Throwable $e) {
+    require_once $_SERVER['DOCUMENT_ROOT'].'/config/helper.php';
+    pop(extractDbMessage($e), "/users/list.php", 1500, 'error');
+}
 exit;
