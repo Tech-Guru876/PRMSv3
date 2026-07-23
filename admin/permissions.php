@@ -235,10 +235,12 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/includes/header.php';
 
 <style>
 .permissions-matrix-wrap {
+    /* Accounts for the page header, search bar, card chrome, and surrounding spacing. */
     --permissions-matrix-viewport-offset: 18rem;
     --permissions-matrix-header-bg: var(--bs-dark, #212529);
     --permissions-matrix-header-color: var(--bs-white, #fff);
     --permissions-matrix-cell-bg: var(--bs-body-bg, #fff);
+    --permissions-matrix-divider-color: rgba(0, 0, 0, 0.125);
     overflow: auto;
     max-height: calc(100vh - var(--permissions-matrix-viewport-offset));
 }
@@ -265,7 +267,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/includes/header.php';
     left: 0;
     z-index: 10;
     background: var(--permissions-matrix-cell-bg);
-    box-shadow: 1px 0 0 rgba(0, 0, 0, 0.125);
+    box-shadow: 1px 0 0 var(--permissions-matrix-divider-color);
 }
 </style>
 
