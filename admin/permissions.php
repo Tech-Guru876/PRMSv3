@@ -235,8 +235,12 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/includes/header.php';
 
 <style>
 .permissions-matrix-wrap {
+    --permissions-matrix-viewport-offset: 18rem;
+    --permissions-matrix-header-bg: var(--bs-dark, #212529);
+    --permissions-matrix-header-color: var(--bs-white, #fff);
+    --permissions-matrix-cell-bg: var(--bs-body-bg, #fff);
     overflow: auto;
-    max-height: calc(100vh - 18rem);
+    max-height: calc(100vh - var(--permissions-matrix-viewport-offset));
 }
 
 .permissions-matrix {
@@ -247,8 +251,8 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/includes/header.php';
     position: sticky;
     top: 0;
     z-index: 20;
-    background: #212529;
-    color: #fff;
+    background: var(--permissions-matrix-header-bg);
+    color: var(--permissions-matrix-header-color);
 }
 
 .permissions-matrix thead th:first-child {
@@ -260,7 +264,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/includes/header.php';
     position: sticky;
     left: 0;
     z-index: 10;
-    background: #fff;
+    background: var(--permissions-matrix-cell-bg);
     box-shadow: 1px 0 0 rgba(0, 0, 0, 0.125);
 }
 </style>
