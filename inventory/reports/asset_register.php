@@ -191,7 +191,7 @@ if ($q !== '') {
     }
     if ($assetDetailsReady) {
         foreach (['ad.asset_code', 'ad.serial_number', 'ad.custodian_name', 'ad.accountable_officer',
-                  'ad.secondary_custodian', 'ad.site', 'ad.building', 'ad.floor_room', 'ad.address'] as $col) {
+                  'ad.secondary_custodian', 'ad.site', 'ad.building', 'ad.floor_room', 'ad.address', 'ad.asset_status'] as $col) {
             $searchClauses[] = "$col LIKE ?";
             $searchParams[] = $like;
         }
