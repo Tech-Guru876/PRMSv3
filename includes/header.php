@@ -24,6 +24,17 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/config/auth.php";
 
 <body class="prms-body">
 
+<!-- Top progress bar (page navigation indicator) -->
+<div id="pageLoaderBar"></div>
+
+<!-- Full-page loading overlay shown while navigating between pages -->
+<div id="pageLoader" aria-hidden="true">
+  <div class="page-loader-spinner">
+    <div class="page-loader-ring"></div>
+    <div class="page-loader-label">Loading…</div>
+  </div>
+</div>
+
 <!-- Mobile sidebar toggle -->
 <div class="d-md-none mobile-topbar">
   <a href="/dashboard/index.php" class="mobile-topbar-brand">
@@ -42,6 +53,23 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/config/auth.php";
          class="col-md-2 col-lg-2 d-md-block bg-dark sidebar collapse">
       <?php require_once $_SERVER['DOCUMENT_ROOT'].'/includes/sidebar.php'; ?>
     </nav>
+    <script>
+      // Restore the sidebar's scroll position immediately (before first paint)
+      // so it stays where the user left it after selecting a link/tab.
+      // window.PRMS_SIDEBAR_SCROLL_KEY establishes the shared sessionStorage
+      // key used by both this script and assets/js/app-nav.js; whichever
+      // script runs first sets it (falling back to the same default string),
+      // and the other reuses it so both always agree on the same key.
+      (function () {
+        var KEY = window.PRMS_SIDEBAR_SCROLL_KEY || 'prms.sidebarScrollTop';
+        window.PRMS_SIDEBAR_SCROLL_KEY = KEY;
+        var sidebar = document.getElementById('sidebarMenu');
+        var saved = sessionStorage.getItem(KEY);
+        if (sidebar && saved !== null) {
+          sidebar.scrollTop = parseInt(saved, 10) || 0;
+        }
+      })();
+    </script>
 
     <!-- Main content -->
     <main class="col-md-10 ms-sm-auto col-lg-10 px-md-4 pt-3">
