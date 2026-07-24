@@ -81,7 +81,7 @@ try {
     switch ($report) {
 
         // ── Reorder Report ──────────────────────────────────────────────────
-        case 'reorder_report':
+        case 'reorder':
             $catF = (int) ($_GET['category_id'] ?? 0);
             $locF = (int) ($_GET['location_id']  ?? 0);
             $where  = "i.reorder_point > 0 AND i.item_status = 'ACTIVE' AND COALESCE(s.total_qty, 0) <= i.reorder_point";
@@ -119,7 +119,7 @@ try {
             break;
 
         // ── Expiry Report ───────────────────────────────────────────────────
-        case 'expiry_report':
+        case 'expiry':
             $daysAhead = max(1, (int) ($_GET['days_ahead'] ?? 90));
             $rows = $pdo->prepare("
                 SELECT i.item_code, i.item_name, s.batch_lot_number,
@@ -159,7 +159,7 @@ try {
             break;
 
         // ── Write-Down Report ───────────────────────────────────────────────
-        case 'write_down_report':
+        case 'write_down':
             $rows = $pdo->prepare("
                 SELECT wd.write_down_number, wd.write_down_date, wd.reason,
                        wd.total_original_value, wd.total_written_down_value,
@@ -234,7 +234,7 @@ try {
             break;
 
         // ── Disposal Register ───────────────────────────────────────────────
-        case 'disposal_register':
+        case 'disposal':
             $rows = $pdo->prepare("
                 SELECT d.disposal_number, d.disposal_date, d.disposal_method,
                        d.total_book_value, d.total_proceeds, d.status,
@@ -265,7 +265,7 @@ try {
             break;
 
         // ── Donation Register ───────────────────────────────────────────────
-        case 'donation_register':
+        case 'donation':
             $rows = $pdo->prepare("
                 SELECT g.grn_number, g.received_date,
                        COALESCE(g.donor_name, v.vendor_name, 'Unknown') AS donor,
@@ -298,7 +298,7 @@ try {
             break;
 
         // ── Goods Received Register ─────────────────────────────────────────
-        case 'goods_received_register':
+        case 'goods_received':
             $rows = $pdo->prepare("
                 SELECT g.grn_number, g.received_date,
                        COALESCE(v.vendor_name, 'Unknown') AS supplier,
@@ -480,9 +480,9 @@ try {
             break;
 
         // ── Slow Moving Stock ───────────────────────────────────────────────
-        case 'slow_moving_stock':
-            $days     = max(1, (int) ($_GET['days'] ?? 90));
-            $statusF  = $_GET['status'] ?? 'ACTIVE';
+        case 'slow_moving':
+            $days     = max(1, (int) ($_GET['days'] ?? 180));
+            $statusF  = $_GET['item_status'] ?? 'ACTIVE';
             $catF     = (int) ($_GET['category_id'] ?? 0);
             $catWhere = $catF > 0 ? " AND i.category_id = $catF" : '';
             $rows = $pdo->prepare("
