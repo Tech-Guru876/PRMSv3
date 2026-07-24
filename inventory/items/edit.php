@@ -47,6 +47,7 @@ $arFieldKeys = [
     'ar_require_custodian',
     'ar_require_location',
     'ar_require_purchase_cost',
+    'ar_require_disposal_date',
 ];
 foreach ($arFieldKeys as $arKey) {
     try {
@@ -225,7 +226,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $arErrors[] = "Cost / Purchase Price is required and must be a non-negative number.";
 
             if ($arIsDisposed || $arDisposalDate !== '' || $arDisposalAmount !== '') {
-                if ($arDisposalDate === '')
+                if ($arFieldRequired['ar_require_disposal_date'] && $arDisposalDate === '')
                     $arErrors[] = "Disposal Date is required when the asset is disposed.";
                 if ($arDisposalAmount === '')
                     $arErrors[] = "Disposal Amount Realized is required when the asset is disposed.";
@@ -696,7 +697,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label">Disposal Date <span class="text-danger ar-disposal-required" style="display:none">*</span></label>
+                    <label class="form-label">Disposal Date <?php if ($arFieldRequired['ar_require_disposal_date']): ?><span class="text-danger ar-disposal-required" style="display:none">*</span><?php endif; ?></label>
                     <input type="date" name="ar_disposal_date" id="ar_disposal_date" class="form-control"
                            value="<?= htmlspecialchars($arv['ar_disposal_date'] ?? $arv['disposal_date'] ?? '') ?>">
                 </div>
@@ -753,9 +754,11 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
                (disposalAmt && disposalAmt.value !== '');
     }
 
+    var disposalDateRequired = <?= json_encode((bool)$arFieldRequired['ar_require_disposal_date']) ?>;
+
     function toggleDisposalRequired() {
         var active = isDisposalActive();
-        if (disposalDate) disposalDate.required = active;
+        if (disposalDate) disposalDate.required = active && disposalDateRequired;
         if (disposalAmt)  disposalAmt.required  = active;
         disposalStars.forEach(function (el) { el.style.display = active ? '' : 'none'; });
     }

@@ -91,6 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'ar_require_custodian',
             'ar_require_location',
             'ar_require_purchase_cost',
+            'ar_require_disposal_date',
         ];
         foreach ($arFieldKeys as $arKey) {
             $arVal = isset($_POST[$arKey]) ? '1' : '0';
@@ -177,6 +178,7 @@ $arFieldKeys = [
     'ar_require_custodian',
     'ar_require_location',
     'ar_require_purchase_cost',
+    'ar_require_disposal_date',
 ];
 foreach ($arFieldKeys as $arKey) {
     try {
@@ -481,6 +483,14 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/includes/header.php';
                                                        name="ar_require_purchase_cost" value="1"
                                                        <?= $arFieldSettings['ar_require_purchase_cost'] ? 'checked' : '' ?>>
                                                 <label class="form-check-label" for="ar_require_purchase_cost">Cost / Purchase Price</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-check form-switch py-1">
+                                                <input class="form-check-input" type="checkbox" id="ar_require_disposal_date"
+                                                       name="ar_require_disposal_date" value="1"
+                                                       <?= $arFieldSettings['ar_require_disposal_date'] ? 'checked' : '' ?>>
+                                                <label class="form-check-label" for="ar_require_disposal_date">Disposal Date (when asset is disposed)</label>
                                             </div>
                                         </div>
                                     </div>
