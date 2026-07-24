@@ -103,11 +103,13 @@ $totalRows = (int)$countStmt->fetchColumn();
 ================================ */
 $statsStmt = $pdo->prepare("
     SELECT
-        COUNT(*) as total,
-        SUM(CASE WHEN status = 'Open' THEN 1 ELSE 0 END) as open,
-        SUM(po_total) as total_value,
-        SUM(CASE WHEN status = 'Closed' THEN 1 ELSE 0 END) as closed
-    FROM purchase_orders
+        COUNT(DISTINCT po.po_id) as total,
+        SUM(CASE WHEN po.status = 'Open' THEN 1 ELSE 0 END) as open,
+        SUM(po.po_total) as total_value,
+        SUM(CASE WHEN po.status = 'Closed' THEN 1 ELSE 0 END) as closed
+    FROM purchase_orders po
+    JOIN commitments c ON po.commitment_id = c.commitment_id
+    JOIN procurement_requests pr ON c.request_id = pr.request_id
 ");
 $statsStmt->execute();
 $stats = $statsStmt->fetch(PDO::FETCH_ASSOC);
