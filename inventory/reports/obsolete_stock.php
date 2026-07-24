@@ -3,6 +3,7 @@ $REQUIRE_PERMISSION = 'view_inventory_reports';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/page_guard.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/db.php';
 require_once __DIR__ . '/../check_setup.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/pagination.php';
 
 $categoryF = (int) ($_GET['category_id'] ?? 0);
 
@@ -10,7 +11,22 @@ $where  = "i.item_status = 'OBSOLETE'";
 $params = [];
 if ($categoryF > 0) { $where .= " AND i.category_id = ?"; $params[] = $categoryF; }
 
-$rows = $pdo->prepare("
+extract(getPaginationParams(25));
+
+$countStmt = $pdo->prepare("SELECT COUNT(*) FROM inv_items i WHERE $where");
+$countStmt->execute($params);
+$totalRows = (int) $countStmt->fetchColumn();
+
+$totalsStmt = $pdo->prepare("
+    SELECT COALESCE(SUM(s.quantity_on_hand * s.unit_cost), 0) AS total_value
+    FROM inv_items i
+    LEFT JOIN inv_stock s ON i.item_id = s.item_id
+    WHERE $where
+");
+$totalsStmt->execute($params);
+$totalValue = (float) $totalsStmt->fetchColumn();
+
+$rowsStmt = $pdo->prepare("
     SELECT i.item_id, i.item_code, i.item_name, i.item_status, i.updated_at AS status_changed_at,
            c.category_name, u.uom_code,
            COALESCE(SUM(s.quantity_on_hand), 0)               AS qty_on_hand,
@@ -24,19 +40,24 @@ $rows = $pdo->prepare("
     WHERE $where
     GROUP BY i.item_id
     ORDER BY stock_value DESC, i.item_name ASC
+    LIMIT $perPage OFFSET $offset
 ");
-$rows->execute($params);
-$rows = $rows->fetchAll(PDO::FETCH_ASSOC);
+$rowsStmt->execute($params);
+$rows = $rowsStmt->fetchAll(PDO::FETCH_ASSOC);
 
-$totalValue  = array_sum(array_column($rows, 'stock_value'));
 $categories  = $pdo->query("SELECT category_id, category_name FROM inv_categories ORDER BY category_name")->fetchAll(PDO::FETCH_ASSOC);
+
+$pdfUrl = '/inventory/reports/export_pdf.php?report=obsolete_stock&' . http_build_query($_GET);
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 ?>
 
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h2><i class="bi bi-archive"></i> Obsolete Stock Report</h2>
-    <a href="/inventory/reports/" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Reports</a>
+    <div class="d-flex gap-2">
+        <a href="<?= htmlspecialchars($pdfUrl) ?>" class="btn btn-outline-danger" target="_blank"><i class="bi bi-file-pdf"></i> Export PDF</a>
+        <a href="/inventory/reports/" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Reports</a>
+    </div>
 </div>
 
 <div class="alert alert-warning">
@@ -101,7 +122,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
                     </tr>
                     <?php endforeach; endif; ?>
                 </tbody>
-                <?php if (!empty($rows)): ?>
+                <?php if ($totalRows > 0): ?>
                 <tfoot class="table-dark">
                     <tr>
                         <td colspan="5" class="text-end fw-bold">Total Obsolete Value:</td>
@@ -115,4 +136,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
     </div>
 </div>
 
+<?php renderShowingInfo($page, $perPage, $totalRows); ?>
+<?php renderPagination($totalRows, $perPage, $page, $_GET); ?>
 <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/footer.php'; ?>

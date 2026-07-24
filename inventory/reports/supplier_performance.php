@@ -3,14 +3,28 @@ $REQUIRE_PERMISSION = 'view_inventory_reports';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/page_guard.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/db.php';
 require_once __DIR__ . '/../check_setup.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/pagination.php';
 
 $dateFrom = $_GET['date_from'] ?? date('Y-m-01');
 $dateTo   = $_GET['date_to']   ?? date('Y-m-d');
 
-// Supplier stats: orders, on-time, qty ordered vs received, acceptance rate
+extract(getPaginationParams(25));
+
+// Total distinct suppliers in period
+$totalRows = 0;
 $rows = [];
 $reportError = null;
 try {
+    $countStmt = $pdo->prepare("
+        SELECT COUNT(DISTINCT COALESCE(g.supplier_vendor_id, 0))
+        FROM inv_goods_received g
+        WHERE g.received_date BETWEEN ? AND ?
+          AND g.is_donation = 0
+    ");
+    $countStmt->execute([$dateFrom, $dateTo]);
+    $totalRows = (int) $countStmt->fetchColumn();
+
+    // Supplier stats: orders, on-time, qty ordered vs received, acceptance rate
     $rowsStmt = $pdo->prepare("
         SELECT
             COALESCE(v.vendor_name, 'Unknown Supplier') AS supplier_name,
@@ -32,6 +46,7 @@ try {
           AND g.is_donation = 0
         GROUP BY v.vendor_id, COALESCE(v.vendor_name, 'Unknown Supplier')
         ORDER BY total_value DESC
+        LIMIT $perPage OFFSET $offset
     ");
     $rowsStmt->execute([$dateFrom, $dateTo]);
     $rows = $rowsStmt->fetchAll(PDO::FETCH_ASSOC);
@@ -40,12 +55,17 @@ try {
     error_log('supplier_performance report error: ' . $e->getMessage());
 }
 
+$pdfUrl = '/inventory/reports/export_pdf.php?report=supplier_performance&' . http_build_query($_GET);
+
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 ?>
 
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h2><i class="bi bi-truck"></i> Supplier Performance Report</h2>
-    <a href="/inventory/reports/" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Reports</a>
+    <div class="d-flex gap-2">
+        <a href="<?= htmlspecialchars($pdfUrl) ?>" class="btn btn-outline-danger" target="_blank"><i class="bi bi-file-pdf"></i> Export PDF</a>
+        <a href="/inventory/reports/" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Reports</a>
+    </div>
 </div>
 
 <?php if ($reportError): ?>
@@ -125,5 +145,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
         </div>
     </div>
 </div>
+
+<?php renderShowingInfo($page, $perPage, $totalRows); ?>
+<?php renderPagination($totalRows, $perPage, $page, $_GET); ?>
 
 <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/footer.php'; ?>

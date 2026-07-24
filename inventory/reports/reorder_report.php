@@ -3,6 +3,20 @@ $REQUIRE_PERMISSION = 'view_inventory_reports';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/page_guard.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/db.php';
 require_once __DIR__ . '/../check_setup.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/pagination.php';
+
+extract(getPaginationParams(25));
+
+$totalRows = (int) $pdo->query("
+    SELECT COUNT(*) FROM (
+        SELECT i.item_id
+        FROM inv_items i
+        LEFT JOIN inv_stock sl ON i.item_id = sl.item_id
+        WHERE i.item_status = 'ACTIVE' AND i.reorder_level > 0
+        GROUP BY i.item_id
+        HAVING COALESCE(SUM(sl.quantity_on_hand), 0) <= i.reorder_level
+    ) sub
+")->fetchColumn();
 
 $rows = $pdo->query("
     SELECT i.item_id, i.item_code, i.item_name, i.reorder_level, i.reorder_quantity,
@@ -17,18 +31,24 @@ $rows = $pdo->query("
     GROUP BY i.item_id
     HAVING total_stock <= i.reorder_level
     ORDER BY shortfall DESC
+    LIMIT $perPage OFFSET $offset
 ")->fetchAll(PDO::FETCH_ASSOC);
+
+$pdfUrl = '/inventory/reports/export_pdf.php?report=reorder&' . http_build_query($_GET);
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 ?>
 
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h2><i class="bi bi-exclamation-triangle"></i> Reorder Report</h2>
-    <a href="/inventory/reports/" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Reports</a>
+    <div class="d-flex gap-2">
+        <a href="<?= htmlspecialchars($pdfUrl) ?>" class="btn btn-outline-danger" target="_blank"><i class="bi bi-file-pdf"></i> Export PDF</a>
+        <a href="/inventory/reports/" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Reports</a>
+    </div>
 </div>
 
 <div class="alert alert-warning">
-    <strong><?= count($rows) ?></strong> item(s) at or below reorder point.
+    <strong><?= $totalRows ?></strong> item(s) at or below reorder point.
 </div>
 
 <div class="card border-0 shadow-sm">
@@ -59,4 +79,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
     </div>
 </div>
 
+<?php renderShowingInfo($page, $perPage, $totalRows); ?>
+<?php renderPagination($totalRows, $perPage, $page, $_GET); ?>
 <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/footer.php'; ?>

@@ -3,13 +3,35 @@ $REQUIRE_PERMISSION = 'view_inventory_reports';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/page_guard.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/db.php';
 require_once __DIR__ . '/../check_setup.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/pagination.php';
 
 $dateFrom = $_GET['date_from'] ?? date('Y-m-01');
 $dateTo   = $_GET['date_to']   ?? date('Y-m-d');
 
+extract(getPaginationParams(25));
+
 $rows = [];
 $reportError = null;
 try {
+    $countStmt = $pdo->prepare("
+        SELECT COUNT(DISTINCT g.grn_id)
+        FROM inv_goods_received g
+        WHERE (g.is_donation = 1 OR g.is_non_exchange_transaction = 1)
+          AND g.received_date BETWEEN ? AND ?
+    ");
+    $countStmt->execute([$dateFrom, $dateTo]);
+    $totalRows = (int) $countStmt->fetchColumn();
+
+    $totalsStmt = $pdo->prepare("
+        SELECT COALESCE(SUM(gi.quantity_received * gi.unit_cost), 0) AS total_value
+        FROM inv_goods_received g
+        LEFT JOIN inv_grn_items gi ON g.grn_id = gi.grn_id
+        WHERE (g.is_donation = 1 OR g.is_non_exchange_transaction = 1)
+          AND g.received_date BETWEEN ? AND ?
+    ");
+    $totalsStmt->execute([$dateFrom, $dateTo]);
+    $totalValue = (float) $totalsStmt->fetchColumn();
+
     $rowsStmt = $pdo->prepare("
         SELECT g.grn_id, g.grn_number, g.received_date, g.status,
                g.donor_source, g.donation_reference, g.fair_value_basis,
@@ -24,22 +46,27 @@ try {
           AND g.received_date BETWEEN ? AND ?
         GROUP BY g.grn_id
         ORDER BY g.received_date DESC
+        LIMIT $perPage OFFSET $offset
     ");
     $rowsStmt->execute([$dateFrom, $dateTo]);
     $rows = $rowsStmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (Throwable $e) {
+    $totalRows = 0; $totalValue = 0;
     $reportError = 'Donation register data is temporarily unavailable.';
     error_log('donation_register report error: ' . $e->getMessage());
 }
 
-$totalValue = array_sum(array_column($rows, 'total_fair_value'));
+$pdfUrl = '/inventory/reports/export_pdf.php?report=donation&' . http_build_query($_GET);
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 ?>
 
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h2><i class="bi bi-gift"></i> Donation &amp; Non-Exchange Register</h2>
-    <a href="/inventory/reports/" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Reports</a>
+    <div class="d-flex gap-2">
+        <a href="<?= htmlspecialchars($pdfUrl) ?>" class="btn btn-outline-danger" target="_blank"><i class="bi bi-file-pdf"></i> Export PDF</a>
+        <a href="/inventory/reports/" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Reports</a>
+    </div>
 </div>
 
 <?php if ($reportError): ?>
@@ -61,7 +88,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 <div class="row g-3 mb-4">
     <div class="col-md-4">
         <div class="card border-0 shadow-sm bg-info bg-opacity-10 text-center py-3">
-            <h4><?= count($rows) ?></h4>
+            <h4><?= $totalRows ?></h4>
             <small class="text-muted">Donation Records</small>
         </div>
     </div>
@@ -125,7 +152,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
                     </tr>
                     <?php endforeach; endif; ?>
                 </tbody>
-                <?php if (!empty($rows)): ?>
+                <?php if ($totalRows > 0): ?>
                 <tfoot class="table-dark">
                     <tr>
                         <td colspan="8" class="text-end fw-bold">Total Fair Value:</td>
@@ -139,4 +166,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
     </div>
 </div>
 
+<?php renderShowingInfo($page, $perPage, $totalRows); ?>
+<?php renderPagination($totalRows, $perPage, $page, $_GET); ?>
 <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/footer.php'; ?>

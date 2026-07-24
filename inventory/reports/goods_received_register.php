@@ -3,6 +3,7 @@ $REQUIRE_PERMISSION = 'view_inventory_reports';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/page_guard.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/db.php';
 require_once __DIR__ . '/../check_setup.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/pagination.php';
 
 $dateFrom = $_GET['date_from'] ?? date('Y-m-01');
 $dateTo   = $_GET['date_to']   ?? date('Y-m-d');
@@ -12,9 +13,24 @@ $where  = "g.received_date BETWEEN ? AND ?";
 $params = [$dateFrom, $dateTo];
 if ($statusF !== '') { $where .= " AND g.status = ?"; $params[] = $statusF; }
 
+extract(getPaginationParams(25));
+
 $rows = [];
 $reportError = null;
 try {
+    $countStmt = $pdo->prepare("SELECT COUNT(DISTINCT g.grn_id) FROM inv_goods_received g WHERE $where");
+    $countStmt->execute($params);
+    $totalRows = (int) $countStmt->fetchColumn();
+
+    $totalsStmt = $pdo->prepare("
+        SELECT COALESCE(SUM(gi.quantity_received * gi.unit_cost), 0) AS grand_total
+        FROM inv_goods_received g
+        LEFT JOIN inv_grn_items gi ON g.grn_id = gi.grn_id
+        WHERE $where
+    ");
+    $totalsStmt->execute($params);
+    $grandTotal = (float) $totalsStmt->fetchColumn();
+
     $rowsStmt = $pdo->prepare("
         SELECT g.grn_id, g.grn_number, g.received_date, g.status,
                g.po_reference, g.is_donation, g.is_non_exchange_transaction,
@@ -30,22 +46,27 @@ try {
         WHERE $where
         GROUP BY g.grn_id
         ORDER BY g.received_date DESC, g.grn_id DESC
+        LIMIT $perPage OFFSET $offset
     ");
     $rowsStmt->execute($params);
     $rows = $rowsStmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (Throwable $e) {
+    $totalRows = 0; $grandTotal = 0;
     $reportError = 'Goods received data is temporarily unavailable.';
     error_log('goods_received_register report error: ' . $e->getMessage());
 }
 
-$grandTotal = array_sum(array_column($rows, 'total_value'));
+$pdfUrl = '/inventory/reports/export_pdf.php?report=goods_received&' . http_build_query($_GET);
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 ?>
 
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h2><i class="bi bi-box-seam"></i> Goods Received Register</h2>
-    <a href="/inventory/reports/" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Reports</a>
+    <div class="d-flex gap-2">
+        <a href="<?= htmlspecialchars($pdfUrl) ?>" class="btn btn-outline-danger" target="_blank"><i class="bi bi-file-pdf"></i> Export PDF</a>
+        <a href="/inventory/reports/" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Reports</a>
+    </div>
 </div>
 
 <?php if ($reportError): ?>
@@ -67,7 +88,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 </form>
 
 <div class="alert alert-info mb-3">
-    <strong><?= count($rows) ?></strong> GRNs &nbsp;|&nbsp;
+    <strong><?= $totalRows ?></strong> GRNs &nbsp;|&nbsp;
     <strong>Total Received Value: $<?= number_format($grandTotal, 2) ?></strong>
 </div>
 
@@ -132,7 +153,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
                     </tr>
                     <?php endforeach; endif; ?>
                 </tbody>
-                <?php if (!empty($rows)): ?>
+                <?php if ($totalRows > 0): ?>
                 <tfoot class="table-dark">
                     <tr>
                         <td colspan="8" class="text-end fw-bold">Grand Total:</td>
@@ -146,4 +167,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
     </div>
 </div>
 
+<?php renderShowingInfo($page, $perPage, $totalRows); ?>
+<?php renderPagination($totalRows, $perPage, $page, $_GET); ?>
 <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/footer.php'; ?>

@@ -3,6 +3,7 @@ $REQUIRE_PERMISSION = 'view_inventory_reports';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/page_guard.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/db.php';
 require_once __DIR__ . '/../check_setup.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/pagination.php';
 
 $dateFrom = $_GET['date_from'] ?? date('Y-m-01');
 $dateTo   = $_GET['date_to']   ?? date('Y-m-d');
@@ -13,8 +14,36 @@ $params = [$dateFrom, $dateTo . ' 23:59:59'];
 if ($typeF !== '') { $where .= " AND al.reference_type = ?"; $params[] = $typeF; }
 
 $rows = [];
+$typeSummary = [];
+$refTypes = [];
 $reportError = null;
 try {
+    // Summary across all rows (not paginated)
+    $summaryStmt = $pdo->prepare("
+        SELECT al.reference_type,
+               COUNT(*) AS cnt,
+               SUM(TIMESTAMPDIFF(MINUTE, al.created_at, al.approved_at)) AS total_min,
+               SUM(CASE WHEN al.status = 'APPROVED' THEN 1 ELSE 0 END) AS approved,
+               SUM(CASE WHEN al.status = 'REJECTED' THEN 1 ELSE 0 END) AS rejected
+        FROM inv_approval_log al
+        WHERE $where
+        GROUP BY al.reference_type
+    ");
+    $summaryStmt->execute($params);
+    foreach ($summaryStmt->fetchAll(PDO::FETCH_ASSOC) as $s) {
+        $type = $s['reference_type'] ?? 'UNKNOWN';
+        $typeSummary[$type] = ['count' => $s['cnt'], 'total_min' => $s['total_min'], 'approved' => $s['approved'], 'rejected' => $s['rejected']];
+        $refTypes[] = $type;
+    }
+    sort($refTypes);
+
+    // Count for pagination
+    $countStmt = $pdo->prepare("SELECT COUNT(*) FROM inv_approval_log al WHERE $where");
+    $countStmt->execute($params);
+    $totalRows = (int) $countStmt->fetchColumn();
+
+    extract(getPaginationParams(25));
+
     $rowsStmt = $pdo->prepare("
         SELECT al.reference_type,
                al.reference_id,
@@ -29,30 +58,18 @@ try {
         LEFT JOIN users u ON al.approved_by = u.user_id
         WHERE $where
         ORDER BY al.created_at DESC
-        LIMIT 2000
+        LIMIT $perPage OFFSET $offset
     ");
     $rowsStmt->execute($params);
     $rows = $rowsStmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (Throwable $e) {
+    $totalRows = 0;
+    extract(getPaginationParams(25));
     $reportError = 'Approval turnaround data is temporarily unavailable.';
     error_log('approval_turnaround report error: ' . $e->getMessage());
 }
 
-// Summary by type
-$typeSummary = [];
-foreach ($rows as $r) {
-    $type = $r['reference_type'] ?? 'UNKNOWN';
-    if (!isset($typeSummary[$type])) {
-        $typeSummary[$type] = ['count' => 0, 'total_min' => 0, 'approved' => 0, 'rejected' => 0];
-    }
-    $typeSummary[$type]['count']++;
-    $typeSummary[$type]['total_min'] += $r['minutes_to_approve'];
-    if ($r['status'] === 'APPROVED') $typeSummary[$type]['approved']++;
-    if ($r['status'] === 'REJECTED') $typeSummary[$type]['rejected']++;
-}
-
-$refTypes = array_unique(array_column($rows, 'reference_type'));
-sort($refTypes);
+$pdfUrl = '/inventory/reports/export_pdf.php?report=approval_turnaround&' . http_build_query($_GET);
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 
@@ -65,7 +82,10 @@ function formatDuration(int $minutes): string {
 
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h2><i class="bi bi-stopwatch"></i> Approval Turnaround Report</h2>
-    <a href="/inventory/reports/" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Reports</a>
+    <div class="d-flex gap-2">
+        <a href="<?= htmlspecialchars($pdfUrl) ?>" class="btn btn-outline-danger" target="_blank"><i class="bi bi-file-pdf"></i> Export PDF</a>
+        <a href="/inventory/reports/" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Reports</a>
+    </div>
 </div>
 
 <?php if ($reportError): ?>
@@ -112,7 +132,7 @@ function formatDuration(int $minutes): string {
 <?php endif; ?>
 
 <!-- Detail -->
-<h5 class="mb-2">Approval Detail <small class="text-muted">(max 2,000 rows)</small></h5>
+<h5 class="mb-2">Approval Detail</h5>
 <div class="card border-0 shadow-sm">
     <div class="card-body p-0">
         <div class="table-responsive">
@@ -164,4 +184,6 @@ function formatDuration(int $minutes): string {
     </div>
 </div>
 
+<?php renderShowingInfo($page, $perPage, $totalRows); ?>
+<?php renderPagination($totalRows, $perPage, $page, $_GET); ?>
 <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/footer.php'; ?>

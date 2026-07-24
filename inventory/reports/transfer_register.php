@@ -3,6 +3,7 @@ $REQUIRE_PERMISSION = 'view_inventory_reports';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/page_guard.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/db.php';
 require_once __DIR__ . '/../check_setup.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/pagination.php';
 
 $dateFrom = $_GET['date_from'] ?? date('Y-m-01');
 $dateTo   = $_GET['date_to']   ?? date('Y-m-d');
@@ -14,7 +15,22 @@ $params = [$dateFrom, $dateTo];
 if ($typeF !== '')   { $where .= " AND t.transfer_type = ?";   $params[] = $typeF; }
 if ($statusF !== '') { $where .= " AND t.status = ?"; $params[] = $statusF; }
 
-$rows = $pdo->prepare("
+extract(getPaginationParams(25));
+
+$countStmt = $pdo->prepare("SELECT COUNT(DISTINCT t.transfer_id) FROM inv_transfers t WHERE $where");
+$countStmt->execute($params);
+$totalRows = (int) $countStmt->fetchColumn();
+
+$totalsStmt = $pdo->prepare("
+    SELECT COALESCE(SUM(ti.quantity * ti.unit_cost), 0) AS grand_total
+    FROM inv_transfers t
+    LEFT JOIN inv_transfer_items ti ON t.transfer_id = ti.transfer_id
+    WHERE $where
+");
+$totalsStmt->execute($params);
+$grandTotal = (float) $totalsStmt->fetchColumn();
+
+$rowsStmt = $pdo->prepare("
     SELECT t.transfer_id, t.transfer_number, t.transfer_date, t.transfer_type, t.status,
            t.financial_secretary_approval,
            ls.location_code AS from_location, ld.location_code AS to_location,
@@ -29,18 +45,22 @@ $rows = $pdo->prepare("
     WHERE $where
     GROUP BY t.transfer_id
     ORDER BY t.transfer_date DESC, t.transfer_id DESC
+    LIMIT $perPage OFFSET $offset
 ");
-$rows->execute($params);
-$rows = $rows->fetchAll(PDO::FETCH_ASSOC);
+$rowsStmt->execute($params);
+$rows = $rowsStmt->fetchAll(PDO::FETCH_ASSOC);
 
-$grandTotal = array_sum(array_column($rows, 'total_value'));
+$pdfUrl = '/inventory/reports/export_pdf.php?report=transfer_register&' . http_build_query($_GET);
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 ?>
 
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h2><i class="bi bi-arrow-left-right"></i> Transfer Register</h2>
-    <a href="/inventory/reports/" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Reports</a>
+    <div class="d-flex gap-2">
+        <a href="<?= htmlspecialchars($pdfUrl) ?>" class="btn btn-outline-danger" target="_blank"><i class="bi bi-file-pdf"></i> Export PDF</a>
+        <a href="/inventory/reports/" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Reports</a>
+    </div>
 </div>
 
 <form class="row g-2 mb-4">
@@ -66,7 +86,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 </form>
 
 <div class="alert alert-info mb-3">
-    <strong><?= count($rows) ?></strong> transfers &nbsp;|&nbsp;
+    <strong><?= $totalRows ?></strong> transfers &nbsp;|&nbsp;
     <strong>Total Transfer Value: $<?= number_format($grandTotal, 2) ?></strong>
 </div>
 
@@ -127,7 +147,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
                     </tr>
                     <?php endforeach; endif; ?>
                 </tbody>
-                <?php if (!empty($rows)): ?>
+                <?php if ($totalRows > 0): ?>
                 <tfoot class="table-dark">
                     <tr>
                         <td colspan="8" class="text-end fw-bold">Grand Total:</td>
@@ -141,4 +161,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
     </div>
 </div>
 
+<?php renderShowingInfo($page, $perPage, $totalRows); ?>
+<?php renderPagination($totalRows, $perPage, $page, $_GET); ?>
 <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/footer.php'; ?>

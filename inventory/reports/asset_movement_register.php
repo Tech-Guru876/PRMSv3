@@ -3,6 +3,7 @@ $REQUIRE_PERMISSION = 'view_inventory_reports';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/page_guard.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/db.php';
 require_once __DIR__ . '/../check_setup.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/pagination.php';
 
 $dateFrom = $_GET['date_from'] ?? date('Y-m-01');
 $dateTo = $_GET['date_to'] ?? date('Y-m-d');
@@ -27,6 +28,7 @@ $rows = [];
 $serialOptions = [];
 $totalMoves = 0;
 $distinctAssets = 0;
+$totalRows = 0;
 
 if ($serialTableReady) {
     $serialOptions = $pdo->query("
@@ -55,6 +57,29 @@ if ($serialTableReady && $movementTableReady) {
         $params[] = $statusFilter;
     }
 
+    extract(getPaginationParams(25));
+
+    $countStmt = $pdo->prepare("
+        SELECT COUNT(*)
+        FROM inv_asset_movements m
+        JOIN inv_serial_numbers sn ON m.serial_id = sn.serial_id
+        WHERE $where
+    ");
+    $countStmt->execute($params);
+    $totalRows = (int) $countStmt->fetchColumn();
+
+    // Aggregate summary (not paginated)
+    $summaryStmt = $pdo->prepare("
+        SELECT COUNT(*) AS total_moves, COUNT(DISTINCT m.serial_id) AS distinct_assets
+        FROM inv_asset_movements m
+        JOIN inv_serial_numbers sn ON m.serial_id = sn.serial_id
+        WHERE $where
+    ");
+    $summaryStmt->execute($params);
+    $summary = $summaryStmt->fetch(PDO::FETCH_ASSOC);
+    $totalMoves    = (int) ($summary['total_moves']     ?? 0);
+    $distinctAssets = (int) ($summary['distinct_assets'] ?? 0);
+
     $stmt = $pdo->prepare("
         SELECT
             m.movement_id, m.moved_at, m.movement_reason, m.notes,
@@ -71,23 +96,27 @@ if ($serialTableReady && $movementTableReady) {
         LEFT JOIN users u ON m.moved_by = u.user_id
         WHERE $where
         ORDER BY m.moved_at DESC
-        LIMIT 2000
+        LIMIT $perPage OFFSET $offset
     ");
     $stmt->execute($params);
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    $totalMoves = count($rows);
-    $distinctAssets = count(array_unique(array_map(static fn($r) => (int) $r['serial_id'], $rows)));
+} else {
+    extract(getPaginationParams(25));
 }
 
 $statusOptions = ['ORDERED','RECEIVED','ASSIGNED','IN_SERVICE','UNDER_REPAIR','TRANSFERRED','DISPOSED','LOST_STOLEN'];
+
+$pdfUrl = '/inventory/reports/export_pdf.php?report=asset_movement&' . http_build_query($_GET);
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 ?>
 
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h2><i class="bi bi-arrow-left-right"></i> Asset Movement Register</h2>
-    <a href="/inventory/reports/" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Reports</a>
+    <div class="d-flex gap-2">
+        <a href="<?= htmlspecialchars($pdfUrl) ?>" class="btn btn-outline-danger" target="_blank"><i class="bi bi-file-pdf"></i> Export PDF</a>
+        <a href="/inventory/reports/" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Reports</a>
+    </div>
 </div>
 
 <?php if (!$serialTableReady): ?>
@@ -147,7 +176,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
             <div class="card-body py-3">
                 <small class="text-muted">
                     Showing movements from <strong><?= htmlspecialchars($dateFrom) ?></strong> to
-                    <strong><?= htmlspecialchars($dateTo) ?></strong> (max 2,000 rows).
+                    <strong><?= htmlspecialchars($dateTo) ?></strong>.
                 </small>
             </div>
         </div>
@@ -203,6 +232,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
     </div>
 </div>
 
+<?php renderShowingInfo($page, $perPage, $totalRows); ?>
+<?php renderPagination($totalRows, $perPage, $page, $_GET); ?>
 <?php endif; ?>
 
 <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/footer.php'; ?>

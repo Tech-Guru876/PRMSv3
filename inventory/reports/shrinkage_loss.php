@@ -3,6 +3,7 @@ $REQUIRE_PERMISSION = 'view_inventory_reports';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/page_guard.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/db.php';
 require_once __DIR__ . '/../check_setup.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/pagination.php';
 
 $dateFrom  = $_GET['date_from'] ?? date('Y-m-01');
 $dateTo    = $_GET['date_to']   ?? date('Y-m-d');
@@ -56,12 +57,31 @@ $totalAdjLoss = array_sum(array_column($adjustments, 'total_value_impact'));
 $totalIncLoss = array_sum(array_column($incidents, 'total_estimated_loss'));
 $grandTotal   = $totalAdjLoss + $totalIncLoss;
 
+// Paginate adjustments
+$adjPerPage = 25;
+$adjPage    = max(1, (int) ($_GET['adj_page'] ?? 1));
+$adjOffset  = ($adjPage - 1) * $adjPerPage;
+$adjTotal   = count($adjustments);
+$adjRows    = array_slice($adjustments, $adjOffset, $adjPerPage);
+
+// Paginate incidents
+$incPerPage = 25;
+$incPage    = max(1, (int) ($_GET['inc_page'] ?? 1));
+$incOffset  = ($incPage - 1) * $incPerPage;
+$incTotal   = count($incidents);
+$incRows    = array_slice($incidents, $incOffset, $incPerPage);
+
+$pdfUrl = '/inventory/reports/export_pdf.php?report=shrinkage_loss&' . http_build_query($_GET);
+
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 ?>
 
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h2><i class="bi bi-exclamation-diamond"></i> Shrinkage &amp; Loss Report</h2>
-    <a href="/inventory/reports/" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Reports</a>
+    <div class="d-flex gap-2">
+        <a href="<?= htmlspecialchars($pdfUrl) ?>" class="btn btn-outline-danger" target="_blank"><i class="bi bi-file-pdf"></i> Export PDF</a>
+        <a href="/inventory/reports/" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Reports</a>
+    </div>
 </div>
 
 <?php if ($reportError): ?>
@@ -105,7 +125,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 
 <!-- Loss Adjustments -->
 <h5 class="mb-2"><i class="bi bi-sliders"></i> Stock Adjustment Losses</h5>
-<div class="card border-0 shadow-sm mb-4">
+<div class="card border-0 shadow-sm mb-2">
     <div class="card-body p-0">
         <div class="table-responsive">
             <table class="table table-hover align-middle mb-0 table-sm">
@@ -113,9 +133,9 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
                     <tr><th>Adjustment #</th><th>Date</th><th>Reason</th><th>Location</th><th class="text-end">Value Impact</th><th>Requested By</th></tr>
                 </thead>
                 <tbody>
-                    <?php if (empty($adjustments)): ?>
+                    <?php if (empty($adjRows)): ?>
                     <tr><td colspan="6" class="text-center text-muted py-3">No adjustment losses in period</td></tr>
-                    <?php else: foreach ($adjustments as $a): ?>
+                    <?php else: foreach ($adjRows as $a): ?>
                     <tr>
                         <td><a href="/inventory/adjustments/view.php?id=<?= $a['adjustment_id'] ?>"><?= htmlspecialchars($a['adjustment_number']) ?></a></td>
                         <td><?= date('Y-m-d', strtotime($a['created_at'])) ?></td>
@@ -130,9 +150,11 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
         </div>
     </div>
 </div>
+<?php renderShowingInfo($adjPage, $adjPerPage, $adjTotal); ?>
+<?php renderPagination($adjTotal, $adjPerPage, $adjPage, array_merge($_GET, ['inc_page' => $incPage]), 'adj_page'); ?>
 
 <!-- Incidents -->
-<h5 class="mb-2"><i class="bi bi-shield-exclamation"></i> Incident / Loss Reports</h5>
+<h5 class="mb-2 mt-4"><i class="bi bi-shield-exclamation"></i> Incident / Loss Reports</h5>
 <div class="card border-0 shadow-sm">
     <div class="card-body p-0">
         <div class="table-responsive">
@@ -141,9 +163,9 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
                     <tr><th>Incident #</th><th>Date</th><th>Type</th><th>Location</th><th class="text-end">Est. Loss</th><th>Status</th><th>Reported By</th></tr>
                 </thead>
                 <tbody>
-                    <?php if (empty($incidents)): ?>
+                    <?php if (empty($incRows)): ?>
                     <tr><td colspan="7" class="text-center text-muted py-3">No incidents in period</td></tr>
-                    <?php else: foreach ($incidents as $inc): ?>
+                    <?php else: foreach ($incRows as $inc): ?>
                     <tr>
                         <td><a href="/inventory/incidents/view.php?id=<?= $inc['incident_id'] ?>"><?= htmlspecialchars($inc['incident_number']) ?></a></td>
                         <td><?= htmlspecialchars($inc['incident_date']) ?></td>
@@ -166,5 +188,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
         </div>
     </div>
 </div>
+<?php renderShowingInfo($incPage, $incPerPage, $incTotal); ?>
+<?php renderPagination($incTotal, $incPerPage, $incPage, array_merge($_GET, ['adj_page' => $adjPage]), 'inc_page'); ?>
 
 <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/footer.php'; ?>

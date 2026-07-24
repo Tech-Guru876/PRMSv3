@@ -3,6 +3,7 @@ $REQUIRE_PERMISSION = 'view_inventory_reports';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/page_guard.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/db.php';
 require_once __DIR__ . '/../check_setup.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/pagination.php';
 
 $dateFrom = $_GET['date_from'] ?? date('Y-m-01');
 $dateTo   = $_GET['date_to']   ?? date('Y-m-d');
@@ -14,7 +15,23 @@ $params = [$dateFrom, $dateTo . ' 23:59:59'];
 if ($statusF !== '') { $where .= " AND d.status = ?";           $params[] = $statusF; }
 if ($methodF !== '') { $where .= " AND d.disposal_method = ?";  $params[] = $methodF; }
 
-$rows = $pdo->prepare("
+extract(getPaginationParams(25));
+
+// Summary totals across all matching rows
+$totalsStmt = $pdo->prepare("
+    SELECT COUNT(*) AS total_records,
+           COALESCE(SUM(d.total_write_off_value), 0) AS total_write_off,
+           COALESCE(SUM(d.actual_proceeds), 0)        AS total_proceeds
+    FROM inv_disposals d
+    WHERE $where
+");
+$totalsStmt->execute($params);
+$totals = $totalsStmt->fetch(PDO::FETCH_ASSOC);
+$totalRecords  = (int)   ($totals['total_records']  ?? 0);
+$totalWriteOff = (float) ($totals['total_write_off'] ?? 0);
+$totalProceeds = (float) ($totals['total_proceeds']  ?? 0);
+
+$rowsStmt = $pdo->prepare("
     SELECT d.disposal_id, d.disposal_number, d.disposal_method, d.reason,
            d.status, d.total_write_off_value, d.proceeds_amount, d.actual_proceeds,
            d.committee_review_required, d.created_at,
@@ -30,19 +47,22 @@ $rows = $pdo->prepare("
     WHERE $where
     GROUP BY d.disposal_id
     ORDER BY d.created_at DESC
+    LIMIT $perPage OFFSET $offset
 ");
-$rows->execute($params);
-$rows = $rows->fetchAll(PDO::FETCH_ASSOC);
+$rowsStmt->execute($params);
+$rows = $rowsStmt->fetchAll(PDO::FETCH_ASSOC);
 
-$totalWriteOff = array_sum(array_column($rows, 'total_write_off_value'));
-$totalProceeds = array_sum(array_column($rows, 'actual_proceeds'));
+$pdfUrl = '/inventory/reports/export_pdf.php?report=disposal&' . http_build_query($_GET);
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 ?>
 
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h2><i class="bi bi-trash3"></i> Disposal Register</h2>
-    <a href="/inventory/reports/" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Reports</a>
+    <div class="d-flex gap-2">
+        <a href="<?= htmlspecialchars($pdfUrl) ?>" class="btn btn-outline-danger" target="_blank"><i class="bi bi-file-pdf"></i> Export PDF</a>
+        <a href="/inventory/reports/" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Reports</a>
+    </div>
 </div>
 
 <form class="row g-2 mb-4">
@@ -82,7 +102,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
     </div>
     <div class="col-md-4">
         <div class="card border-0 shadow-sm bg-secondary bg-opacity-10 text-center py-3">
-            <h4><?= count($rows) ?></h4>
+            <h4><?= $totalRecords ?></h4>
             <small class="text-muted">Disposal Records</small>
         </div>
     </div>
@@ -137,7 +157,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
                     </tr>
                     <?php endforeach; endif; ?>
                 </tbody>
-                <?php if (!empty($rows)): ?>
+                <?php if ($totalRecords > 0): ?>
                 <tfoot class="table-dark">
                     <tr>
                         <td colspan="7" class="text-end fw-bold">Totals:</td>
@@ -152,4 +172,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
     </div>
 </div>
 
+<?php renderShowingInfo($page, $perPage, $totalRecords); ?>
+<?php renderPagination($totalRecords, $perPage, $page, $_GET); ?>
 <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/footer.php'; ?>

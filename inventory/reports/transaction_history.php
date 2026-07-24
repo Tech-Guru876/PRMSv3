@@ -40,12 +40,17 @@ $items = $pdo->query("SELECT item_id, item_code, item_name FROM inv_items ORDER 
 $locations = $pdo->query("SELECT location_id, location_code FROM inv_locations ORDER BY location_code")->fetchAll(PDO::FETCH_ASSOC);
 $txnTypes = ['RECEIVE','ISSUE','TRANSFER_IN','TRANSFER_OUT','ADJUSTMENT_GAIN','ADJUSTMENT_LOSS','DISPOSAL','COUNT_ADJUST','RETURN'];
 
+$pdfUrl = '/inventory/reports/export_pdf.php?report=transaction_history&' . http_build_query($_GET);
+
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 ?>
 
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h2><i class="bi bi-clock-history"></i> Transaction History</h2>
-    <a href="/inventory/reports/" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Reports</a>
+    <div class="d-flex gap-2">
+        <a href="<?= htmlspecialchars($pdfUrl) ?>" class="btn btn-outline-danger" target="_blank"><i class="bi bi-file-pdf"></i> Export PDF</a>
+        <a href="/inventory/reports/" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Reports</a>
+    </div>
 </div>
 
 <form class="row g-2 mb-4">

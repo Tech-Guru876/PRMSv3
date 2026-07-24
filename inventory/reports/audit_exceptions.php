@@ -3,13 +3,25 @@ $REQUIRE_PERMISSION = 'view_inventory_reports';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/page_guard.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/db.php';
 require_once __DIR__ . '/../check_setup.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/pagination.php';
 
 $dateFrom = $_GET['date_from'] ?? date('Y-m-01');
 $dateTo = $_GET['date_to'] ?? date('Y-m-d');
 
+extract(getPaginationParams(25));
+
 $rows = [];
 $reportError = null;
 try {
+    $countStmt = $pdo->prepare("
+        SELECT COUNT(*)
+        FROM audit_log al
+        WHERE al.table_name LIKE 'inv_%'
+          AND al.change_date BETWEEN ? AND ?
+    ");
+    $countStmt->execute([$dateFrom, $dateTo . ' 23:59:59']);
+    $totalRows = (int) $countStmt->fetchColumn();
+
     $rowsStmt = $pdo->prepare("
         SELECT al.audit_id, al.table_name, al.record_id, al.action, al.notes,
                al.change_date AS event_time, al.changed_by AS user_name
@@ -17,21 +29,27 @@ try {
         WHERE al.table_name LIKE 'inv_%'
           AND al.change_date BETWEEN ? AND ?
         ORDER BY al.change_date DESC
-        LIMIT 500
+        LIMIT $perPage OFFSET $offset
     ");
     $rowsStmt->execute([$dateFrom, $dateTo . ' 23:59:59']);
     $rows = $rowsStmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (Throwable $e) {
+    $totalRows = 0;
     $reportError = 'Audit data is temporarily unavailable.';
     error_log('audit_exceptions report error: ' . $e->getMessage());
 }
+
+$pdfUrl = '/inventory/reports/export_pdf.php?report=audit_exceptions&' . http_build_query($_GET);
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 ?>
 
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h2><i class="bi bi-shield-exclamation"></i> Audit Exceptions</h2>
-    <a href="/inventory/reports/" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Reports</a>
+    <div class="d-flex gap-2">
+        <a href="<?= htmlspecialchars($pdfUrl) ?>" class="btn btn-outline-danger" target="_blank"><i class="bi bi-file-pdf"></i> Export PDF</a>
+        <a href="/inventory/reports/" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Reports</a>
+    </div>
 </div>
 
 <?php if ($reportError): ?>
@@ -78,4 +96,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
     </div>
 </div>
 
+<?php renderShowingInfo($page, $perPage, $totalRows); ?>
+<?php renderPagination($totalRows, $perPage, $page, $_GET); ?>
 <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/footer.php'; ?>

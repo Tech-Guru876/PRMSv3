@@ -3,12 +3,14 @@ $REQUIRE_PERMISSION = 'view_inventory_reports';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/page_guard.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/db.php';
 require_once __DIR__ . '/../check_setup.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/pagination.php';
 
 $searchBatch  = trim($_GET['batch']  ?? '');
 $searchSerial = trim($_GET['serial'] ?? '');
 $itemId       = (int) ($_GET['item_id'] ?? 0);
 
-$rows = [];
+$allRows = [];
+$rows    = [];
 $summary = null;
 
 if ($searchBatch !== '' || $searchSerial !== '' || $itemId > 0) {
@@ -31,20 +33,24 @@ if ($searchBatch !== '' || $searchSerial !== '' || $itemId > 0) {
         LEFT JOIN users u ON t.performed_by = u.user_id
         WHERE $where
         ORDER BY t.created_at ASC
-        LIMIT 1000
     ");
     $stmt->execute($params);
-    $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $allRows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    if (!empty($rows)) {
+    if (!empty($allRows)) {
         $summary = [
-            'item_code' => $rows[0]['item_code'],
-            'item_name' => $rows[0]['item_name'],
-            'total_in'  => array_sum(array_column(array_filter($rows, fn($r) => in_array($r['transaction_type'], ['RECEIVE','TRANSFER_IN','ADJUSTMENT_GAIN','RETURN'])), 'quantity')),
-            'total_out' => array_sum(array_column(array_filter($rows, fn($r) => in_array($r['transaction_type'], ['ISSUE','TRANSFER_OUT','ADJUSTMENT_LOSS','DISPOSAL'])), 'quantity')),
+            'item_code' => $allRows[0]['item_code'],
+            'item_name' => $allRows[0]['item_name'],
+            'total_in'  => array_sum(array_column(array_filter($allRows, fn($r) => in_array($r['transaction_type'], ['RECEIVE','TRANSFER_IN','ADJUSTMENT_GAIN','RETURN'])), 'quantity')),
+            'total_out' => array_sum(array_column(array_filter($allRows, fn($r) => in_array($r['transaction_type'], ['ISSUE','TRANSFER_OUT','ADJUSTMENT_LOSS','DISPOSAL'])), 'quantity')),
         ];
     }
 }
+
+// Pagination (only active when search was performed)
+extract(getPaginationParams(25));
+$totalRows = count($allRows);
+$rows      = array_slice($allRows, $offset, $perPage);
 
 $items = $pdo->query("
     SELECT item_id, item_code, item_name
@@ -53,12 +59,19 @@ $items = $pdo->query("
     ORDER BY item_code
 ")->fetchAll(PDO::FETCH_ASSOC);
 
+$pdfUrl = '/inventory/reports/export_pdf.php?report=traceability_report&' . http_build_query($_GET);
+
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 ?>
 
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h2><i class="bi bi-upc-scan"></i> Batch / Serial Traceability Report</h2>
-    <a href="/inventory/reports/" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Reports</a>
+    <div class="d-flex gap-2">
+        <?php if ($totalRows > 0): ?>
+        <a href="<?= htmlspecialchars($pdfUrl) ?>" class="btn btn-outline-danger" target="_blank"><i class="bi bi-file-pdf"></i> Export PDF</a>
+        <?php endif; ?>
+        <a href="/inventory/reports/" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Reports</a>
+    </div>
 </div>
 
 <div class="alert alert-info">
@@ -160,6 +173,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
         </div>
     </div>
 </div>
+<?php renderShowingInfo($page, $perPage, $totalRows); ?>
+<?php renderPagination($totalRows, $perPage, $page, $_GET); ?>
 <?php else: ?>
 <div class="alert alert-light border text-center py-5">
     <i class="bi bi-upc-scan display-4 text-muted d-block mb-2"></i>

@@ -3,6 +3,7 @@ $REQUIRE_PERMISSION = 'view_inventory_reports';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/page_guard.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/db.php';
 require_once __DIR__ . '/../check_setup.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/pagination.php';
 
 // Emergency / contingency items are tagged with risk class EMERG_RESERVE
 $locationF = (int) ($_GET['location_id'] ?? 0);
@@ -14,10 +15,48 @@ if ($locationF > 0) {
     $params[]       = $locationF;
 }
 
+extract(getPaginationParams(25));
+
 $rows = [];
 $locations = [];
 $reportError = null;
 try {
+    $countStmt = $pdo->prepare("
+        SELECT COUNT(*) FROM (
+            SELECT i.item_id, l.location_id
+            FROM inv_items i
+            JOIN inv_item_risk_classes irc ON i.item_id = irc.item_id
+            JOIN inv_risk_classes rc ON irc.risk_class_id = rc.risk_class_id
+            LEFT JOIN inv_stock s ON i.item_id = s.item_id
+                AND s.stock_status = 'USABLE'
+                $stockLocFilter
+            LEFT JOIN inv_locations l ON s.location_id = l.location_id
+            WHERE rc.risk_code = 'EMERG_RESERVE'
+              AND i.item_status = 'ACTIVE'
+            GROUP BY i.item_id, l.location_id
+        ) cnt_sub
+    ");
+    $countStmt->execute($params);
+    $totalRows = (int) $countStmt->fetchColumn();
+
+    $totalsStmt = $pdo->prepare("
+        SELECT COALESCE(SUM(stock_val), 0)
+        FROM (
+            SELECT COALESCE(SUM(s.quantity_on_hand * s.unit_cost), 0) AS stock_val
+            FROM inv_items i
+            JOIN inv_item_risk_classes irc ON i.item_id = irc.item_id
+            JOIN inv_risk_classes rc ON irc.risk_class_id = rc.risk_class_id
+            LEFT JOIN inv_stock s ON i.item_id = s.item_id
+                AND s.stock_status = 'USABLE'
+                $stockLocFilter
+            WHERE rc.risk_code = 'EMERG_RESERVE'
+              AND i.item_status = 'ACTIVE'
+            GROUP BY i.item_id
+        ) vals
+    ");
+    $totalsStmt->execute($params);
+    $totalValue = (float) $totalsStmt->fetchColumn();
+
     $rowsStmt = $pdo->prepare("
         SELECT i.item_id, i.item_code, i.item_name, i.min_level, i.max_level,
                i.safety_stock, i.reorder_level,
@@ -40,22 +79,28 @@ try {
           AND i.item_status = 'ACTIVE'
         GROUP BY i.item_id, l.location_id
         ORDER BY COALESCE(qty_on_hand / NULLIF(i.safety_stock, 0), 0) ASC, i.item_code
+        LIMIT $perPage OFFSET $offset
     ");
     $rowsStmt->execute($params);
     $rows = $rowsStmt->fetchAll(PDO::FETCH_ASSOC);
     $locations = $pdo->query("SELECT location_id, location_code FROM inv_locations WHERE is_active=1 ORDER BY location_code")->fetchAll(PDO::FETCH_ASSOC);
 } catch (Throwable $e) {
+    $totalRows = 0; $totalValue = 0;
     $reportError = 'Emergency stock data is temporarily unavailable.';
     error_log('emergency_stock report error: ' . $e->getMessage());
 }
-$totalValue = array_sum(array_column($rows, 'stock_value'));
+
+$pdfUrl = '/inventory/reports/export_pdf.php?report=emergency_stock&' . http_build_query($_GET);
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 ?>
 
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h2><i class="bi bi-shield-fill-check"></i> Emergency &amp; Contingency Stock Report</h2>
-    <a href="/inventory/reports/" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Reports</a>
+    <div class="d-flex gap-2">
+        <a href="<?= htmlspecialchars($pdfUrl) ?>" class="btn btn-outline-danger" target="_blank"><i class="bi bi-file-pdf"></i> Export PDF</a>
+        <a href="/inventory/reports/" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Reports</a>
+    </div>
 </div>
 
 <?php if ($reportError): ?>
@@ -132,7 +177,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
                     </tr>
                     <?php endforeach; endif; ?>
                 </tbody>
-                <?php if (!empty($rows)): ?>
+                <?php if ($totalRows > 0): ?>
                 <tfoot class="table-dark">
                     <tr>
                         <td colspan="9" class="text-end fw-bold">Total Reserve Value:</td>
@@ -146,4 +191,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
     </div>
 </div>
 
+<?php renderShowingInfo($page, $perPage, $totalRows); ?>
+<?php renderPagination($totalRows, $perPage, $page, $_GET); ?>
 <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/footer.php'; ?>

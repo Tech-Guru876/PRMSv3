@@ -3,6 +3,7 @@ $REQUIRE_PERMISSION = 'view_inventory_reports';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/page_guard.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/db.php';
 require_once __DIR__ . '/../check_setup.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/pagination.php';
 
 $dateFrom = $_GET['date_from'] ?? date('Y-m-01');
 $dateTo   = $_GET['date_to']   ?? date('Y-m-d');
@@ -15,9 +16,34 @@ if ($statusF !== '') { $where .= " AND wd.status = ?"; $params[] = $statusF; }
 if ($showOnly === 'reversals') { $where .= " AND wd.reversal_id IS NOT NULL"; }
 if ($showOnly === 'write_downs') { $where .= " AND wd.reversal_id IS NULL"; }
 
+extract(getPaginationParams(25));
+
 $rows = [];
 $reportError = null;
 try {
+    $countStmt = $pdo->prepare("
+        SELECT COUNT(*)
+        FROM inv_write_downs wd
+        JOIN inv_items i ON wd.item_id = i.item_id
+        WHERE $where
+    ");
+    $countStmt->execute($params);
+    $totalRows = (int) $countStmt->fetchColumn();
+
+    // Summary totals (across all matching rows)
+    $totalsStmt = $pdo->prepare("
+        SELECT
+            SUM(CASE WHEN wd.reversal_id IS NULL THEN wd.write_down_amount ELSE 0 END) AS total_write_down,
+            SUM(CASE WHEN wd.reversal_id IS NOT NULL THEN wd.write_down_amount ELSE 0 END) AS total_reversed
+        FROM inv_write_downs wd
+        JOIN inv_items i ON wd.item_id = i.item_id
+        WHERE $where
+    ");
+    $totalsStmt->execute($params);
+    $totals = $totalsStmt->fetch(PDO::FETCH_ASSOC);
+    $totalWriteDown = (float) ($totals['total_write_down'] ?? 0);
+    $totalReversed  = (float) ($totals['total_reversed']  ?? 0);
+
     $rowsStmt = $pdo->prepare("
         SELECT wd.write_down_id, wd.write_down_number, wd.reason,
                wd.original_cost, wd.nrv_value, wd.write_down_amount, wd.status,
@@ -33,23 +59,27 @@ try {
         LEFT JOIN users ua ON wd.approved_by  = ua.user_id
         WHERE $where
         ORDER BY wd.created_at DESC
+        LIMIT $perPage OFFSET $offset
     ");
     $rowsStmt->execute($params);
     $rows = $rowsStmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (Throwable $e) {
+    $totalRows = 0; $totalWriteDown = 0; $totalReversed = 0;
     $reportError = 'Write-down data is temporarily unavailable.';
     error_log('write_down_report error: ' . $e->getMessage());
 }
 
-$totalWriteDown = array_sum(array_column(array_filter($rows, fn($r) => !$r['reversal_id']), 'write_down_amount'));
-$totalReversed  = array_sum(array_column(array_filter($rows, fn($r) => (bool)$r['reversal_id']), 'write_down_amount'));
+$pdfUrl = '/inventory/reports/export_pdf.php?report=write_down&' . http_build_query($_GET);
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 ?>
 
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h2><i class="bi bi-arrow-down-circle"></i> Write-Down &amp; Reversal Report</h2>
-    <a href="/inventory/reports/" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Reports</a>
+    <div class="d-flex gap-2">
+        <a href="<?= htmlspecialchars($pdfUrl) ?>" class="btn btn-outline-danger" target="_blank"><i class="bi bi-file-pdf"></i> Export PDF</a>
+        <a href="/inventory/reports/" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Reports</a>
+    </div>
 </div>
 
 <?php if ($reportError): ?>
@@ -162,4 +192,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
     </div>
 </div>
 
+<?php renderShowingInfo($page, $perPage, $totalRows); ?>
+<?php renderPagination($totalRows, $perPage, $page, $_GET); ?>
 <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/footer.php'; ?>

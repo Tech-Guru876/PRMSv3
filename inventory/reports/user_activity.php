@@ -3,6 +3,7 @@ $REQUIRE_PERMISSION = 'view_inventory_reports';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/page_guard.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/db.php';
 require_once __DIR__ . '/../check_setup.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/pagination.php';
 
 $dateFrom  = $_GET['date_from'] ?? date('Y-m-01');
 $dateTo    = $_GET['date_to']   ?? date('Y-m-d');
@@ -14,7 +15,8 @@ $params = [$dateFrom, $dateTo . ' 23:59:59'];
 if ($userF > 0)    { $where .= " AND t.performed_by = ?";      $params[] = $userF; }
 if ($typeF !== '') { $where .= " AND t.transaction_type = ?";  $params[] = $typeF; }
 
-$rows = $pdo->prepare("
+// Fetch all rows for user summary (summary must reflect full result set)
+$allRows = $pdo->prepare("
     SELECT t.transaction_id, t.transaction_type, t.quantity, t.unit_cost,
            (t.quantity * t.unit_cost) AS line_value,
            t.reference_number, t.created_at,
@@ -27,14 +29,13 @@ $rows = $pdo->prepare("
     LEFT JOIN users u ON t.performed_by = u.user_id
     WHERE $where
     ORDER BY t.created_at DESC
-    LIMIT 2000
 ");
-$rows->execute($params);
-$rows = $rows->fetchAll(PDO::FETCH_ASSOC);
+$allRows->execute($params);
+$allRows = $allRows->fetchAll(PDO::FETCH_ASSOC);
 
 // Summary by user
 $userSummary = [];
-foreach ($rows as $r) {
+foreach ($allRows as $r) {
     $uid  = $r['user_id'] ?? 0;
     $name = $r['user_name'] ?? 'Unknown';
     if (!isset($userSummary[$uid])) {
@@ -45,14 +46,24 @@ foreach ($rows as $r) {
 }
 uasort($userSummary, fn($a, $b) => $b['value'] <=> $a['value']);
 
+// Paginate detail rows
+extract(getPaginationParams(25));
+$totalRows = count($allRows);
+$rows      = array_slice($allRows, $offset, $perPage);
+
 $users = $pdo->query("SELECT user_id, full_name FROM users ORDER BY full_name")->fetchAll(PDO::FETCH_ASSOC);
+
+$pdfUrl = '/inventory/reports/export_pdf.php?report=user_activity&' . http_build_query($_GET);
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 ?>
 
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h2><i class="bi bi-person-lines-fill"></i> User Activity Report</h2>
-    <a href="/inventory/reports/" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Reports</a>
+    <div class="d-flex gap-2">
+        <a href="<?= htmlspecialchars($pdfUrl) ?>" class="btn btn-outline-danger" target="_blank"><i class="bi bi-file-pdf"></i> Export PDF</a>
+        <a href="/inventory/reports/" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Reports</a>
+    </div>
 </div>
 
 <form class="row g-2 mb-4">
@@ -101,7 +112,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 <?php endif; ?>
 
 <!-- Transaction Detail -->
-<h5 class="mb-2">Transaction Detail <small class="text-muted">(max 2,000 rows)</small></h5>
+<h5 class="mb-2">Transaction Detail</h5>
 <div class="card border-0 shadow-sm">
     <div class="card-body p-0">
         <div class="table-responsive">
@@ -136,5 +147,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
         </div>
     </div>
 </div>
+
+<?php renderShowingInfo($page, $perPage, $totalRows); ?>
+<?php renderPagination($totalRows, $perPage, $page, $_GET); ?>
 
 <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/footer.php'; ?>

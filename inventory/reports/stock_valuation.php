@@ -3,6 +3,7 @@ $REQUIRE_PERMISSION = 'view_inventory_reports';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/page_guard.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/db.php';
 require_once __DIR__ . '/../check_setup.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/pagination.php';
 
 $locationFilter = (int) ($_GET['location_id'] ?? 0);
 $categoryFilter = (int) ($_GET['category_id'] ?? 0);
@@ -11,6 +12,26 @@ $where = "sl.quantity_on_hand > 0";
 $params = [];
 if ($locationFilter > 0) { $where .= " AND sl.location_id = ?"; $params[] = $locationFilter; }
 if ($categoryFilter > 0) { $where .= " AND i.category_id = ?"; $params[] = $categoryFilter; }
+
+extract(getPaginationParams(50));
+
+$countStmt = $pdo->prepare("
+    SELECT COUNT(*)
+    FROM inv_stock sl
+    JOIN inv_items i ON sl.item_id = i.item_id
+    WHERE $where
+");
+$countStmt->execute($params);
+$totalRows = (int) $countStmt->fetchColumn();
+
+$totalsStmt = $pdo->prepare("
+    SELECT COALESCE(SUM(sl.quantity_on_hand * sl.unit_cost), 0) AS grand_total
+    FROM inv_stock sl
+    JOIN inv_items i ON sl.item_id = i.item_id
+    WHERE $where
+");
+$totalsStmt->execute($params);
+$grandTotal = (float) $totalsStmt->fetchColumn();
 
 $stmt = $pdo->prepare("
     SELECT i.item_code, i.item_name, i.valuation_method, c.category_name,
@@ -22,21 +43,25 @@ $stmt = $pdo->prepare("
     LEFT JOIN inv_locations l ON sl.location_id = l.location_id
     WHERE $where
     ORDER BY i.item_code, l.location_code
+    LIMIT $perPage OFFSET $offset
 ");
 $stmt->execute($params);
 $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-$grandTotal = array_sum(array_column($rows, 'total_value'));
-
 $locations = $pdo->query("SELECT location_id, location_code FROM inv_locations WHERE is_active=1 ORDER BY location_code")->fetchAll(PDO::FETCH_ASSOC);
 $categories = $pdo->query("SELECT category_id, category_name FROM inv_categories ORDER BY category_name")->fetchAll(PDO::FETCH_ASSOC);
+
+$pdfUrl = '/inventory/reports/export_pdf.php?report=stock_valuation&' . http_build_query($_GET);
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 ?>
 
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h2><i class="bi bi-currency-dollar"></i> Stock Valuation Report</h2>
-    <a href="/inventory/reports/" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Reports</a>
+    <div class="d-flex gap-2">
+        <a href="<?= htmlspecialchars($pdfUrl) ?>" class="btn btn-outline-danger" target="_blank"><i class="bi bi-file-pdf"></i> Export PDF</a>
+        <a href="/inventory/reports/" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Reports</a>
+    </div>
 </div>
 
 <form class="row g-2 mb-4">
@@ -61,7 +86,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 
 <div class="alert alert-info">
     <strong>Total Inventory Value:</strong> $<?= number_format($grandTotal, 2) ?>
-    <span class="text-muted ms-3">(<?= count($rows) ?> line items)</span>
+    <span class="text-muted ms-3">(<?= $totalRows ?> line items)</span>
 </div>
 
 <div class="card border-0 shadow-sm">
@@ -93,4 +118,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
     </div>
 </div>
 
+<?php renderShowingInfo($page, $perPage, $totalRows); ?>
+<?php renderPagination($totalRows, $perPage, $page, $_GET); ?>
 <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/footer.php'; ?>
