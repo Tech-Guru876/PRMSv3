@@ -98,11 +98,9 @@
   /* ── Sidebar scroll position persistence ──────────────────── */
   var sidebar = document.getElementById('sidebarMenu');
   if (sidebar) {
-    var SCROLL_KEY = SIDEBAR_SCROLL_KEY;
-
     var saveTimer = null;
     function persistScroll() {
-      sessionStorage.setItem(SCROLL_KEY, String(sidebar.scrollTop));
+      sessionStorage.setItem(SIDEBAR_SCROLL_KEY, String(sidebar.scrollTop));
     }
     sidebar.addEventListener('scroll', function () {
       if (saveTimer) window.clearTimeout(saveTimer);
