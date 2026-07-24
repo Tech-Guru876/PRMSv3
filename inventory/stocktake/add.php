@@ -21,9 +21,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $countNumber = InventoryService::generateDocNumber($pdo, 'CNT', 'inv_stock_counts', 'count_number');
 
         $pdo->prepare("INSERT INTO inv_stock_counts
-            (count_number, count_type, location_id, count_date, count_lead, notes, status, created_at)
-            VALUES (?,?,?,?,?,?,?,NOW())")
-            ->execute([$countNumber, $countType, $locationId, $countDate, $_SESSION['user_id'], $notes, 'IN_PROGRESS']);
+            (count_number, count_type, location_id, count_date, conducted_by, count_lead, notes, status, created_at)
+            VALUES (?,?,?,?,?,?,?,?,NOW())")
+            ->execute([$countNumber, $countType, $locationId, $countDate, $_SESSION['user_id'], $_SESSION['user_id'], $notes, 'IN_PROGRESS']);
 
         $countId = $pdo->lastInsertId();
 
