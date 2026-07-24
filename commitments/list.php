@@ -119,16 +119,13 @@ $totalRows = (int)$countStmt->fetchColumn();
 /* ================================
    KPI Summary Metrics
 ================================ */
-// KPI query with branch filtering
-$kpiBranchJoin = '';
+// KPI query with branch filtering — always JOIN procurement_requests to match the data query
 $kpiBranchWhere = '';
 $kpiBranchParams = [];
 if ($currentRole === 'Director HRM&A') {
-    $kpiBranchJoin = 'JOIN procurement_requests pr ON c.request_id = pr.request_id';
     $kpiBranchWhere = 'WHERE pr.branch_id = ?';
     $kpiBranchParams = [5];
 } elseif ($currentRole === 'Deputy Government Chemist') {
-    $kpiBranchJoin = 'JOIN procurement_requests pr ON c.request_id = pr.request_id';
     $kpiBranchWhere = 'WHERE pr.branch_id = ?';
     $kpiBranchParams = [6];
 }
@@ -139,7 +136,7 @@ $kpiStmt = $pdo->prepare("
         SUM(CASE WHEN c.status = 'open' THEN 1 ELSE 0 END)   AS open_count,
         SUM(CASE WHEN c.status = 'closed' THEN 1 ELSE 0 END) AS closed_count
     FROM commitments c
-    $kpiBranchJoin
+    JOIN procurement_requests pr ON c.request_id = pr.request_id
     $kpiBranchWhere
 ");
 $kpiStmt->execute($kpiBranchParams);
