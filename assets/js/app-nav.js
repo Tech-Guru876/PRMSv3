@@ -8,6 +8,13 @@
 (function () {
   'use strict';
 
+  // Shared sessionStorage key for the sidebar scroll position. Exposed on
+  // window so the early inline restore script in includes/header.php (which
+  // must run before this file loads, to avoid a visible scroll-position
+  // flash) and this file both read/write the same key.
+  var SIDEBAR_SCROLL_KEY = window.PRMS_SIDEBAR_SCROLL_KEY || 'prms.sidebarScrollTop';
+  window.PRMS_SIDEBAR_SCROLL_KEY = SIDEBAR_SCROLL_KEY;
+
   /* ── Page loading overlay ─────────────────────────────────── */
   var loader = document.getElementById('pageLoader');
   var loaderBar = document.getElementById('pageLoaderBar');
@@ -17,7 +24,9 @@
     if (loader) loader.classList.add('is-active');
     if (loaderBar) {
       loaderBar.classList.remove('is-done');
-      // restart the width transition
+      // Reading offsetWidth forces the browser to flush pending style
+      // changes (reflow) so the width transition below restarts cleanly,
+      // instead of being skipped because the class was already applied.
       void loaderBar.offsetWidth;
       loaderBar.classList.add('is-active');
     }
@@ -39,6 +48,12 @@
   window.addEventListener('pageshow', hideLoader);
   document.addEventListener('DOMContentLoaded', hideLoader);
 
+  function isSamePageAnchorLink(url) {
+    return url.pathname === window.location.pathname &&
+      url.search === window.location.search &&
+      !!url.hash;
+  }
+
   function isSameOriginNavigation(link) {
     if (!link || !link.href) return false;
     if (link.target && link.target !== '' && link.target !== '_self') return false;
@@ -46,12 +61,14 @@
     if (link.dataset && (link.dataset.bsToggle || link.dataset.noLoader !== undefined)) return false;
     var href = link.getAttribute('href') || '';
     if (href === '' || href.charAt(0) === '#') return false;
-    if (href.indexOf('javascript:') === 0 || href.indexOf('mailto:') === 0 || href.indexOf('tel:') === 0) return false;
     try {
       var url = new URL(link.href, window.location.href);
+      // Only allow standard http(s) navigations; reject javascript:, data:,
+      // mailto:, tel:, vbscript: and any other non-navigable scheme.
+      if (url.protocol !== 'http:' && url.protocol !== 'https:') return false;
       if (url.origin !== window.location.origin) return false;
       // Same-page anchor navigation shouldn't show the loader.
-      if (url.pathname === window.location.pathname && url.search === window.location.search && url.hash) return false;
+      if (isSamePageAnchorLink(url)) return false;
     } catch (e) {
       return false;
     }
@@ -81,7 +98,7 @@
   /* ── Sidebar scroll position persistence ──────────────────── */
   var sidebar = document.getElementById('sidebarMenu');
   if (sidebar) {
-    var SCROLL_KEY = 'prms.sidebarScrollTop';
+    var SCROLL_KEY = SIDEBAR_SCROLL_KEY;
 
     var saveTimer = null;
     function persistScroll() {

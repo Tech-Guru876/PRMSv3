@@ -56,9 +56,14 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/config/auth.php";
     <script>
       // Restore the sidebar's scroll position immediately (before first paint)
       // so it stays where the user left it after selecting a link/tab.
+      // The key here must match SIDEBAR_SCROLL_KEY in assets/js/app-nav.js
+      // (that file also picks up window.PRMS_SIDEBAR_SCROLL_KEY if it is
+      // already set, keeping both in sync).
       (function () {
+        var KEY = window.PRMS_SIDEBAR_SCROLL_KEY || 'prms.sidebarScrollTop';
+        window.PRMS_SIDEBAR_SCROLL_KEY = KEY;
         var sidebar = document.getElementById('sidebarMenu');
-        var saved = sessionStorage.getItem('prms.sidebarScrollTop');
+        var saved = sessionStorage.getItem(KEY);
         if (sidebar && saved !== null) {
           sidebar.scrollTop = parseInt(saved, 10) || 0;
         }
