@@ -443,6 +443,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 
     <!-- Product Details -->
     <div class="card border-0 shadow-sm mb-4">
+        <div class="card-header bg-dark text-white"><i class="bi bi-tag"></i> Product Details</div>
         <div class="card-body">
             <div class="row g-3">
                 <div class="col-md-3">
