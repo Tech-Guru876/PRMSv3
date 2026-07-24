@@ -830,3 +830,82 @@ a:hover { color: var(--dgc-green-dark); }
   color: #1a1a1a !important;
 }
 
+/* ── Page Loading Overlay ─────────────────────────────────── */
+#pageLoader {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(246, 248, 250, 0.85);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--t-slow) ease, visibility 0s linear var(--t-slow);
+}
+
+#pageLoader.is-active {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity var(--t-fast) ease, visibility 0s linear 0s;
+}
+
+#pageLoader .page-loader-spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+#pageLoader .page-loader-ring {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 3.5px solid rgba(11, 94, 43, 0.15);
+  border-top-color: var(--dgc-green);
+  border-right-color: var(--dgc-gold);
+  animation: pageLoaderSpin 0.8s linear infinite;
+}
+
+#pageLoader .page-loader-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+@keyframes pageLoaderSpin {
+  to { transform: rotate(360deg); }
+}
+
+/* Top progress bar */
+#pageLoaderBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--dgc-green), var(--dgc-gold));
+  z-index: 2001;
+  opacity: 0;
+  transition: width 0.4s ease, opacity 0.2s ease;
+}
+
+#pageLoaderBar.is-active {
+  opacity: 1;
+  width: 78%;
+}
+
+#pageLoaderBar.is-done {
+  width: 100%;
+  opacity: 0;
+  transition: width 0.2s ease, opacity 0.3s ease 0.15s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #pageLoader .page-loader-ring { animation-duration: 1.6s; }
+}
+
