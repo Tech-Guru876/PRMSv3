@@ -211,6 +211,16 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
                             <?php if (!empty($item['inventory_type_name'])): ?>
                             <tr><th>Asset Classification (Consumable)</th><td><?= htmlspecialchars($item['inventory_type_name']) ?></td></tr>
                             <?php endif; ?>
+                            <?php if (!empty($item['asset_item_type_name'])): ?>
+                            <tr>
+                                <th>Asset Item Type</th>
+                                <td>
+                                    <code><?= htmlspecialchars($item['asset_item_type_code']) ?></code>
+                                    &mdash; <?= htmlspecialchars($item['asset_item_type_name']) ?>
+                                    <span class="text-muted small">(<?= htmlspecialchars($item['asset_item_group_name'] ?? '') ?>)</span>
+                                </td>
+                            </tr>
+                            <?php endif; ?>
                             <tr><th>Criticality</th><td><?= htmlspecialchars($item['criticality_name'] ?? '-') ?></td></tr>
                             <tr><th>Accounting Class</th><td><?= htmlspecialchars($item['acct_class_name'] ?? '-') ?></td></tr>
                             <tr>

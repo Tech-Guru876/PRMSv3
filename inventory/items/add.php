@@ -11,6 +11,8 @@ $acctClasses = getAccountingClasses($pdo);
 $riskClasses = getRiskClasses($pdo);
 $assetTypes = getAssetTypes($pdo);
 $invTypes    = getInventoryTypes($pdo);
+$assetItemTypeGroups = getAssetItemTypeGroups($pdo);
+$assetItemTypes      = getAssetItemTypes($pdo);
 
 /* Asset Register helpers — used by the Asset Register Details section */
 $assetDetailsTableExists = (function (PDO $pdo): bool {
@@ -119,6 +121,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 funding_source, program_project_code, gl_account_code,
                 criticality_id, acct_class_id, item_status, issue_policy,
                 asset_inventory_boundary, item_domain, asset_type_id, inventory_type_id,
+                asset_item_type_id,
                 created_by
             ) VALUES (
                 ?, ?, ?, ?, ?, ?,
@@ -132,6 +135,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 ?, ?, ?,
                 ?, ?, ?, ?,
                 ?, ?, ?, ?,
+                ?,
                 ?
             )
         ");
@@ -181,6 +185,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $itemDomain,
             $assetTypeId,
             $inventoryTypeId,
+            (int) ($_POST['asset_item_type_id'] ?? 0) ?: null,
             $_SESSION['user_id'] ?? null,
         ]);
 
@@ -407,13 +412,37 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
                     </select>
                 </div>
                 <?php endif; ?>
+                <?php if (!empty($assetItemTypeGroups)): ?>
+                <div class="col-md-6">
+                    <label class="form-label">Asset Item Type
+                        <small class="text-muted">(<a href="/inventory/asset-item-types/list.php" target="_blank">manage</a>)</small>
+                    </label>
+                    <select name="asset_item_type_id" id="assetItemTypeSelect" class="form-select">
+                        <option value="">— None —</option>
+                        <?php
+                        $prevGroup = null;
+                        foreach ($assetItemTypes as $ait):
+                            if ($ait['group_id'] !== $prevGroup):
+                                if ($prevGroup !== null) echo '</optgroup>';
+                                echo '<optgroup label="' . htmlspecialchars($ait['group_code'] . ' — ' . $ait['group_name']) . '">';
+                                $prevGroup = $ait['group_id'];
+                            endif;
+                        ?>
+                        <option value="<?= $ait['item_type_id'] ?>"
+                            <?= ($_POST['asset_item_type_id'] ?? '') == $ait['item_type_id'] ? 'selected' : '' ?>>
+                            <?= htmlspecialchars($ait['type_code'] . ' — ' . $ait['type_name']) ?>
+                        </option>
+                        <?php endforeach; ?>
+                        <?php if ($prevGroup !== null) echo '</optgroup>'; ?>
+                    </select>
+                </div>
+                <?php endif; ?>
             </div>
         </div>
     </div>
 
     <!-- Product Details -->
     <div class="card border-0 shadow-sm mb-4">
-        <div class="card-header bg-dark text-white"><i class="bi bi-tag"></i> Product Details</div>
         <div class="card-body">
             <div class="row g-3">
                 <div class="col-md-3">
