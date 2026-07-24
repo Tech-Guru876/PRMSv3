@@ -11,8 +11,7 @@
 
 ALTER TABLE `inv_asset_details`
   ADD COLUMN IF NOT EXISTS `secondary_custodian` varchar(150) DEFAULT NULL
-    COMMENT 'Secondary custodian / backup responsible person'
-    AFTER `accountable_officer`;
+    COMMENT 'Secondary custodian / backup responsible person';
 
 -- ─── 2. System config keys for field requirement toggles ─────────────────────
 -- Each key stores '1' (required) or '0' (optional). Default all to '1'

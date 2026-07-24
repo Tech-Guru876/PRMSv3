@@ -31,7 +31,8 @@ $invTypeReady         = reportColumnExists($pdo, 'inv_items', 'inventory_type_id
 $assetTypesTableReady = reportTableExists($pdo, 'asset_types');
 $invTypesTableReady   = reportTableExists($pdo, 'inventory_types');
 $serialTableReady     = reportTableExists($pdo, 'inv_serial_numbers');
-$assetDetailsReady    = reportTableExists($pdo, 'inv_asset_details');
+$assetDetailsReady    = reportTableExists($pdo, 'inv_asset_details')
+                     && reportColumnExists($pdo, 'inv_asset_details', 'accountable_officer');
 $branchesReady        = reportTableExists($pdo, 'branches');
 $locationsReady       = reportTableExists($pdo, 'inv_locations');
 
