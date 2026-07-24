@@ -103,8 +103,8 @@
       sessionStorage.setItem(SIDEBAR_SCROLL_KEY, String(sidebar.scrollTop));
     }
     sidebar.addEventListener('scroll', function () {
-      if (saveTimer) window.clearTimeout(saveTimer);
-      saveTimer = window.setTimeout(persistScroll, 100);
+      if (saveTimer) clearTimeout(saveTimer);
+      saveTimer = setTimeout(persistScroll, 100);
     }, { passive: true });
 
     sidebar.addEventListener('click', persistScroll, true);
