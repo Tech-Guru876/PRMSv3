@@ -19,7 +19,8 @@ function renderPagination(
     int $totalRows,
     int $perPage,
     int $currentPage,
-    array $queryParams = []
+    array $queryParams = [],
+    string $pageKey = 'page'
 ): void {
 
     $totalPages = (int)ceil($totalRows / $perPage);
@@ -32,20 +33,20 @@ function renderPagination(
     $end   = min($totalPages, $currentPage + $range);
 
     // First button
-    $queryParams['page'] = 1;
+    $queryParams[$pageKey] = 1;
     echo '<li class="page-item '.($currentPage <= 1 ? 'disabled' : '').'">
             <a class="page-link" href="?'.http_build_query($queryParams).'" aria-label="First">&laquo;&laquo;</a>
           </li>';
 
     // Previous button
-    $queryParams['page'] = max(1, $currentPage - 1);
+    $queryParams[$pageKey] = max(1, $currentPage - 1);
     echo '<li class="page-item '.($currentPage <= 1 ? 'disabled' : '').'">
             <a class="page-link" href="?'.http_build_query($queryParams).'" aria-label="Previous">&laquo; Previous</a>
           </li>';
 
     // Leading ellipsis
     if ($start > 1) {
-        $queryParams['page'] = 1;
+        $queryParams[$pageKey] = 1;
         echo '<li class="page-item">
                 <a class="page-link" href="?'.http_build_query($queryParams).'">1</a>
               </li>';
@@ -57,7 +58,7 @@ function renderPagination(
 
     // Middle pages
     for ($i = $start; $i <= $end; $i++) {
-        $queryParams['page'] = $i;
+        $queryParams[$pageKey] = $i;
         echo '<li class="page-item '.($i === $currentPage ? 'active' : '').'">
                 <a class="page-link" href="?'.http_build_query($queryParams).'">'.$i.'</a>
               </li>';
@@ -69,20 +70,20 @@ function renderPagination(
             echo '<li class="page-item disabled"><span class="page-link">&hellip;</span></li>';
         }
 
-        $queryParams['page'] = $totalPages;
+        $queryParams[$pageKey] = $totalPages;
         echo '<li class="page-item">
                 <a class="page-link" href="?'.http_build_query($queryParams).'">'.$totalPages.'</a>
               </li>';
     }
 
     // Next button
-    $queryParams['page'] = min($totalPages, $currentPage + 1);
+    $queryParams[$pageKey] = min($totalPages, $currentPage + 1);
     echo '<li class="page-item '.($currentPage >= $totalPages ? 'disabled' : '').'">
             <a class="page-link" href="?'.http_build_query($queryParams).'" aria-label="Next">Next &raquo;</a>
           </li>';
 
     // Last button
-    $queryParams['page'] = $totalPages;
+    $queryParams[$pageKey] = $totalPages;
     echo '<li class="page-item '.($currentPage >= $totalPages ? 'disabled' : '').'">
             <a class="page-link" href="?'.http_build_query($queryParams).'" aria-label="Last">&raquo;&raquo;</a>
           </li>';

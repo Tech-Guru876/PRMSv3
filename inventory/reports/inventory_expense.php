@@ -3,6 +3,7 @@ $REQUIRE_PERMISSION = 'view_inventory_reports';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/page_guard.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/db.php';
 require_once __DIR__ . '/../check_setup.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/pagination.php';
 
 $dateFrom  = $_GET['date_from']  ?? date('Y-m-01');
 $dateTo    = $_GET['date_to']    ?? date('Y-m-d');
@@ -12,7 +13,8 @@ $where  = "t.transaction_type = 'ISSUE' AND t.created_at BETWEEN ? AND ?";
 $params = [$dateFrom, $dateTo . ' 23:59:59'];
 if ($categoryF > 0) { $where .= " AND i.category_id = ?"; $params[] = $categoryF; }
 
-$rows = $pdo->prepare("
+// Summary totals (all rows) for cards and category breakdown
+$allRows = $pdo->prepare("
     SELECT i.item_code, i.item_name, c.category_name, u.uom_code,
            i.gl_account_code, i.program_project_code,
            SUM(t.quantity)                AS total_qty_issued,
@@ -26,28 +28,35 @@ $rows = $pdo->prepare("
     GROUP BY i.item_id
     ORDER BY total_cost DESC
 ");
-$rows->execute($params);
-$rows = $rows->fetchAll(PDO::FETCH_ASSOC);
+$allRows->execute($params);
+$allRowsData = $allRows->fetchAll(PDO::FETCH_ASSOC);
 
-$grandTotal   = array_sum(array_column($rows, 'total_cost'));
-$totalQty     = array_sum(array_column($rows, 'total_qty_issued'));
+$grandTotal = array_sum(array_column($allRowsData, 'total_cost'));
+$totalRows  = count($allRowsData);
 
-// Summary by category
 $catSummary = [];
-foreach ($rows as $r) {
+foreach ($allRowsData as $r) {
     $cat = $r['category_name'] ?? 'Uncategorised';
     $catSummary[$cat] = ($catSummary[$cat] ?? 0) + $r['total_cost'];
 }
 arsort($catSummary);
 
+extract(getPaginationParams(25));
+$rows = array_slice($allRowsData, $offset, $perPage);
+
 $categories = $pdo->query("SELECT category_id, category_name FROM inv_categories ORDER BY category_name")->fetchAll(PDO::FETCH_ASSOC);
+
+$pdfUrl = '/inventory/reports/export_pdf.php?report=inventory_expense&' . http_build_query($_GET);
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 ?>
 
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h2><i class="bi bi-receipt-cutoff"></i> Inventory Expense Report</h2>
-    <a href="/inventory/reports/" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Reports</a>
+    <div class="d-flex gap-2">
+        <a href="<?= htmlspecialchars($pdfUrl) ?>" class="btn btn-outline-danger" target="_blank"><i class="bi bi-file-pdf"></i> Export PDF</a>
+        <a href="/inventory/reports/" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Reports</a>
+    </div>
 </div>
 
 <div class="alert alert-info">
@@ -79,7 +88,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
     </div>
     <div class="col-md-4">
         <div class="card border-0 shadow-sm bg-info bg-opacity-10 text-center py-3">
-            <h4><?= count($rows) ?></h4>
+            <h4><?= $totalRows ?></h4>
             <small class="text-muted">Item Lines</small>
         </div>
     </div>
@@ -144,7 +153,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
                     </tr>
                     <?php endforeach; endif; ?>
                 </tbody>
-                <?php if (!empty($rows)): ?>
+                <?php if ($totalRows > 0): ?>
                 <tfoot class="table-dark">
                     <tr>
                         <td colspan="8" class="text-end fw-bold">Total Inventory Expense:</td>
@@ -157,4 +166,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
     </div>
 </div>
 
+<?php renderShowingInfo($page, $perPage, $totalRows); ?>
+<?php renderPagination($totalRows, $perPage, $page, $_GET); ?>
 <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/footer.php'; ?>

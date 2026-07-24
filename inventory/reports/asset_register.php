@@ -3,6 +3,7 @@ $REQUIRE_PERMISSION = 'view_inventory_reports';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/page_guard.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/db.php';
 require_once __DIR__ . '/../check_setup.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/pagination.php';
 
 /* ── Schema readiness guards ─────────────────────────────────────────────── */
 function reportColumnExists(PDO $pdo, string $table, string $column): bool
@@ -313,12 +314,23 @@ $totalQty        = array_sum(array_map(static fn($r) => (float) $r['total_qty'],
 $totalValue      = array_sum(array_map(static fn($r) => (float) $r['total_value'], $rows));
 $serializedItems = count(array_filter($rows, static fn($r) => (int) $r['serial_number_flag'] === 1));
 
+// Paginate rows (summary stats reflect full result set)
+$arPerPage = 25;
+$arPage    = max(1, (int) ($_GET['page'] ?? 1));
+$arOffset  = ($arPage - 1) * $arPerPage;
+$pageRows  = array_slice($rows, $arOffset, $arPerPage);
+
+$pdfUrl = '/inventory/reports/export_pdf.php?report=asset_register&' . http_build_query($_GET);
+
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 ?>
 
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h2><i class="bi bi-building"></i> Asset Register Report</h2>
-    <a href="/inventory/reports/" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Reports</a>
+    <div class="d-flex gap-2">
+        <a href="<?= htmlspecialchars($pdfUrl) ?>" class="btn btn-outline-danger" target="_blank"><i class="bi bi-file-pdf"></i> Export PDF</a>
+        <a href="/inventory/reports/" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Reports</a>
+    </div>
 </div>
 
 <form method="GET" class="card border-0 shadow-sm mb-4">
@@ -492,9 +504,9 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
                     </tr>
                 </thead>
                 <tbody>
-                    <?php if (empty($rows)): ?>
+                    <?php if (empty($pageRows)): ?>
                     <tr><td colspan="11" class="text-center text-muted py-4">No records found for the selected search and filters.</td></tr>
-                    <?php else: foreach ($rows as $r): ?>
+                    <?php else: foreach ($pageRows as $r): ?>
                     <tr>
                         <td>
                             <code><?= htmlspecialchars($r['item_code']) ?></code>
@@ -546,5 +558,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
         </div>
     </div>
 </div>
+
+<?php renderShowingInfo($arPage, $arPerPage, $totalItems); ?>
+<?php renderPagination($totalItems, $arPerPage, $arPage, $_GET); ?>
 
 <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/footer.php'; ?>
