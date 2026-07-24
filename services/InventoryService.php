@@ -167,7 +167,11 @@ function getInventoryItem(PDO $pdo, int $itemId): ?array
         SELECT i.*, c.category_name, u.uom_code, u.uom_name,
                cr.criticality_name, ac.acct_class_name,
                atype.type_name  AS asset_type_name,
-               itype.type_name  AS inventory_type_name
+               itype.type_name  AS inventory_type_name,
+               ait.type_code    AS asset_item_type_code,
+               ait.type_name    AS asset_item_type_name,
+               aitg.group_code  AS asset_item_group_code,
+               aitg.group_name  AS asset_item_group_name
         FROM inv_items i
         LEFT JOIN inv_categories c       ON i.category_id        = c.category_id
         LEFT JOIN inv_units_of_measure u ON i.uom_id             = u.uom_id
@@ -175,6 +179,8 @@ function getInventoryItem(PDO $pdo, int $itemId): ?array
         LEFT JOIN inv_accounting_classes ac  ON i.acct_class_id  = ac.acct_class_id
         LEFT JOIN asset_types     atype  ON i.asset_type_id      = atype.asset_type_id
         LEFT JOIN inventory_types itype  ON i.inventory_type_id  = itype.inventory_type_id
+        LEFT JOIN inv_asset_item_types  ait  ON i.asset_item_type_id = ait.item_type_id
+        LEFT JOIN inv_asset_item_type_groups aitg ON ait.group_id   = aitg.group_id
         WHERE i.item_id = ?
     ");
     $stmt->execute([$itemId]);
@@ -491,6 +497,64 @@ function getInventoryTypes(PDO $pdo, bool $activeOnly = true): array
     try {
         $where = $activeOnly ? "WHERE is_active = 1" : "";
         return $pdo->query("SELECT * FROM inventory_types $where ORDER BY sort_order, type_name")->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        if (strpos($e->getMessage(), '1146') !== false || strpos($e->getMessage(), '42S02') !== false) {
+            return [];
+        }
+        throw $e;
+    }
+}
+
+/**
+ * Get all active asset item type groups (OFFICE FURNITURE, OFFICE MACHINE, etc.)
+ * Returns an empty array if the table does not yet exist.
+ */
+function getAssetItemTypeGroups(PDO $pdo, bool $activeOnly = true): array
+{
+    try {
+        $where = $activeOnly ? "WHERE is_active = 1" : "";
+        return $pdo->query(
+            "SELECT * FROM inv_asset_item_type_groups $where ORDER BY sort_order, group_name"
+        )->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        if (strpos($e->getMessage(), '1146') !== false || strpos($e->getMessage(), '42S02') !== false) {
+            return [];
+        }
+        throw $e;
+    }
+}
+
+/**
+ * Get active asset item types, optionally filtered by group.
+ * Returns an empty array if the table does not yet exist.
+ *
+ * @param PDO      $pdo
+ * @param int|null $groupId  Limit to a specific group; NULL returns all.
+ * @param bool     $activeOnly
+ * @return array  Each row: item_type_id, group_id, type_code, type_name, sort_order, is_active
+ */
+function getAssetItemTypes(PDO $pdo, ?int $groupId = null, bool $activeOnly = true): array
+{
+    try {
+        $conditions = [];
+        $params     = [];
+        if ($activeOnly) {
+            $conditions[] = 't.is_active = 1';
+        }
+        if ($groupId !== null) {
+            $conditions[] = 't.group_id = ?';
+            $params[]     = $groupId;
+        }
+        $where = $conditions ? 'WHERE ' . implode(' AND ', $conditions) : '';
+        $stmt  = $pdo->prepare(
+            "SELECT t.*, g.group_code, g.group_name
+             FROM inv_asset_item_types t
+             JOIN inv_asset_item_type_groups g ON t.group_id = g.group_id
+             $where
+             ORDER BY g.sort_order, t.sort_order, t.type_code"
+        );
+        $stmt->execute($params);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
         if (strpos($e->getMessage(), '1146') !== false || strpos($e->getMessage(), '42S02') !== false) {
             return [];

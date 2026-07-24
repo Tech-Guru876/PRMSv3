@@ -454,6 +454,12 @@ function isCollapsibleActive($urls, $currentPage) {
                 <i class="bi bi-bar-chart-line me-2"></i>Inventory Reports
             </a>
             <?php endif; ?>
+            <?php if (has_permission('manage_inventory_items')): ?>
+            <a class="nav-link text-white sidebar-link <?= active('/inventory/asset-item-types', $currentPage) ?>"
+               href="/inventory/asset-item-types/list.php">
+                <i class="bi bi-tags me-2"></i>Asset Item Types
+            </a>
+            <?php endif; ?>
         </li>
         <?php endif; ?>
 
